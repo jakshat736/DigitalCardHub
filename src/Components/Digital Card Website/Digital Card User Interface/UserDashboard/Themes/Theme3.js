@@ -1333,12 +1333,25 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               onClick={() => handleSave()}
             >
               <Button
-                
+                sx={{
+                  paddingX: "30px",
+                  paddingY: "10px",
+                  bgcolor: "#F3B419",
+                  color: "#000000",
+                  fontWeight: 600,
+                 
+                  
+                  "&:hover": {
+                    bgcolor: "#F3B419",
+                    color: "#000000",
+                  },
+                  boxShadow:20
+                }}
                
                 onClick={() => handleSave()}
               >
-                
-                {/* &nbsp;&nbsp;&nbsp;Add To Contact */}
+                <SaveAlt/>
+                &nbsp;&nbsp;&nbsp;Add To Contact
               </Button>
             </Grid>
             
