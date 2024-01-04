@@ -47,6 +47,7 @@ export default function Menu() {
   const [button1, setButton1] = useState("block");
   const [button2, setButton2] = useState("none");
   const [showViewCart, setShowViewCart] = useState(false);
+  const [showOrder, setShowOrder] = useState(false);
   // const [value, setValue] = useState(1);
   const [cart, setCart] = useState(Array(0).fill(null));
   const [datafood, setData] = useState([]);
@@ -54,12 +55,47 @@ export default function Menu() {
   const [count1, setCount1] = useState(0);
  
   const [price, setPrice] = useState("");
+  const [keywords, setKeywords] = useState("");
   const [Halfprice, setHalfprice] = useState("");
   const [dish, setDish] = useState();
 
   const [selectedProducts, setSelectedProducts] = useState([]);
 
   const [open, setOpen] = useState(false);
+
+  const [name, setName] = useState("")
+  const [call, setCall] = useState("")
+    const [number, setNumber] = useState("")
+    const [Image, setImage] = useState({
+        fileName: "",
+        bytes: "",
+    });
+
+  const checkCart=()=>{
+    const cart=JSON.parse(window.localStorage.getItem("menucart"))
+   
+    if(cart!=null){
+    if(cart.length!=0){
+      setCart(cart)
+      setShowViewCart(true)
+    }}
+
+  }
+  const checkOrder=()=>{
+    const cart=JSON.parse(window.localStorage.getItem("menuorder"))
+   
+    if(cart!=null){
+    if(cart.length!=0){
+      
+      setShowOrder(true)
+    }}
+
+  }
+
+  useEffect(()=>{
+    checkOrder()
+    checkCart()
+  },[])
 
   const handleClose = () => {
     setCount(0)
@@ -73,11 +109,12 @@ export default function Menu() {
      let data = cart.map((item1) => {
       if (item1._id === item._id) {
         return { ...item1, full: item1.full + 1 };
-      }
+      }else{
 
-      return item1;
+      return item1;}
     });
-   
+     
+    window.localStorage.setItem("menucart",JSON.stringify(data))
     setCart(data);
     Swal.fire({
       
@@ -124,7 +161,7 @@ export default function Menu() {
 
       return item1;
     });
-    
+    window.localStorage.setItem("menucart",JSON.stringify(data))
     setCart(data);
     Swal.fire({
       
@@ -165,7 +202,8 @@ export default function Menu() {
   };
 
   const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
+    setKeywords(event.target.value);
+   
   };
 
   const handleVegSwitchChange = () => {
@@ -177,17 +215,20 @@ export default function Menu() {
   };
   const handleOpen = (item,index) => {
     setDish(item);
-    const data = {
-      index: index,
-      _id: item._id,
-      name:item.dish,
-      fullPrice:item.price,
-      halfPrice:item.Halfprice,
-      full:0,
-      half:0
-    };
+    const itemIndex = cart.findIndex((item1) => item1._id === item._id);
+   
+   if(itemIndex===-1) {const data = {
+     index: index,
+     _id: item._id,
+     name:item.dish,
+     fullPrice:item.price,
+     halfPrice:item.Halfprice,
+     full:0,
+     half:0
+   };
 
-    setCart([...cart, ...Array(1).fill(data)]);
+   setCart([...cart, ...Array(1).fill(data)]);}
+
 
     // setCart([...cart,])
     setSelectedProducts((prevSelected) => [...prevSelected, index]);
@@ -218,6 +259,16 @@ export default function Menu() {
     setShowViewCart(true);
   };
 
+  const FetchProductByKeywords = async () => {
+
+    var formData=new FormData
+    formData.append("companyId",companyId)
+    formData.append("keywords",keywords)
+    var result = await postData('index/search',formData,true)
+    setData(result.data)
+    console.log(result.data)
+}
+
   const fetchData = async () => {
     var formData=new FormData
     formData.append('companyId',companyId)
@@ -226,7 +277,22 @@ export default function Menu() {
     console.log("result", result.data);
   };
 
+  const fetchRestaurantData=async()=>{
+    var formData=new FormData
+    formData.append("companyId",companyId)
+    const response=await postData('index/getRestaurantDetails',formData,true)
+  
+      if(response.status==true){
+       
+        setName(response.data.name)
+        setNumber(response.data.number)
+        setCall(response.data.call)
+        setImage({fileName:`${serverURL}/images/${response.data.logo}`,bytes:""})
+    }    
+}
+
   useEffect(() => {
+    fetchRestaurantData()
     fetchData(); // Fetch data when the component mounts
   }, []);
 
@@ -328,8 +394,11 @@ export default function Menu() {
             }}
           >
             <Grid container spacing={2} sx={{display:"flex",justifyContent:"center"}}>
-              <Paper sx={{ width: "100%", backgroundColor: "white" }}>
-                <Typography
+             
+              <Paper
+                sx={{ width: 500, backgroundColor: "white", paddingBottom: 10 }}
+              >
+                 <Typography
                   sx={{
                     mt: 3,
                     fontFamily: "poppins",
@@ -339,7 +408,7 @@ export default function Menu() {
                 >
                   {dish.dish}
                 </Typography>
-                <Typography
+                 <Typography
                   sx={{
                     mt: 3,
                     fontFamily: "poppins",
@@ -372,10 +441,6 @@ export default function Menu() {
                     +
                   </button>
                 </Grid>
-              </Paper>
-              <Paper
-                sx={{ width: 500, backgroundColor: "white", paddingBottom: 10 }}
-              >
                 <Typography
                   sx={{
                     mt: 3,
@@ -424,6 +489,11 @@ export default function Menu() {
     );
   };
 
+  const handleCart=()=>{
+    window.localStorage.setItem("menucart",JSON.stringify(cart))
+    navigate('/Kitchen',{state:{data:JSON.stringify(cart),companyId:companyId}})
+  }
+
   const ViewCart = () => {
     const total = selectedProducts.reduce((acc, index) => {
       // Find the corresponding product in the 'data' array
@@ -437,16 +507,17 @@ export default function Menu() {
         acc + (product ? product.price * (cartItem ? cartItem.cart : 0) : 0)
       );
     }, 0);
+     
 
     return (
       <Grid >
-        <Grid container spacing={2}   onClick={()=>navigate('/Kitchen',{state:{data:JSON.stringify(cart),companyId:companyId}})}sx={{display:"flex",justifyContent:"center"}} >
+        <Grid container spacing={2}   sx={{display:"flex",justifyContent:"center"}} >
         
             <Grid
               item
               xs={12}
               sx={{
-                bgcolor: "#6ab04c",
+               
                 display: "flex",
                 
                 justifyContent: "center",
@@ -457,9 +528,45 @@ export default function Menu() {
             >
 
               <Button
-                sx={{ color: "white", mb: 2, display: "flex" }}
+              onClick={()=>handleCart()}
+                sx={{ bgcolor: "#f3b419", color: "black", mb: 2, display: "flex",borderRadius:2 }}
               >
                 ViewCart
+                <LocalMallIcon sx={{ width: 20, ml: 1 }} />
+              </Button>
+            </Grid>
+          
+        </Grid>
+      </Grid>
+    );
+  };
+  const ViewOrder = () => {
+   
+     
+
+    return (
+      <Grid >
+        <Grid container spacing={2}   sx={{display:"flex",justifyContent:"center"}} >
+        
+            <Grid
+              item
+              xs={12}
+              sx={{
+               
+                display: "flex",
+                
+                justifyContent: "center",
+                alignItems: "center",
+                height: 55,
+                cursor: "pointer",
+              }}
+            >
+
+              <Button
+              onClick={()=>navigate('/menucheckout',{state:{companyId:companyId}})}
+                sx={{ bgcolor: "#f3b419", color: "black", mb: 2, display: "flex",borderRadius:2 }}
+              >
+                Order Status
                 <LocalMallIcon sx={{ width: 20, ml: 1 }} />
               </Button>
             </Grid>
@@ -598,32 +705,34 @@ export default function Menu() {
               </Grid>
             </React.Fragment>
           ))}
-          <Grid
-            item
-            xs={12}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              position: "fixed",
-              left: 100,
-              bottom: 55,
-            }}
-          >
-            <FloatingMenu />
-          </Grid>
+         
         </Grid>
 
         <Grid
           item
-          xs={12}
+          xs={6}
           sx={{
             display: "flex",
             justifyContent: "center",
             position: "fixed",
-            bottom: -5,
+            left:25,
+            bottom:5
           }}
         >
           {showViewCart && <ViewCart />}
+        </Grid>
+        <Grid
+          item
+          xs={6}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            position: "fixed",
+            left:200,
+            bottom:5
+          }}
+        >
+          {showOrder && <ViewOrder />}
         </Grid>
       </Paper>
     );
@@ -631,7 +740,7 @@ export default function Menu() {
 
   return (
     <Grid container spacing={2} sx={{ width: 400 }}>
-      <Box />
+      <Box name={name} number={number} image={Image.fileName} call={call}/>
 
       <Grid item xs={12}>
         <Typography sx={{ display: "flex", justifyContent: "center" }}>
@@ -651,7 +760,7 @@ export default function Menu() {
       >
         <TextField
           placeholder="Search dishes"
-          value={searchQuery}
+          value={keywords}
           onChange={handleSearchChange}
           InputProps={{
             endAdornment: (
@@ -662,18 +771,12 @@ export default function Menu() {
                     padding: "5px",
                     cursor: "pointer",
                   }}
+                  disabled={keywords==''?true:false}
+                  onClick={()=>FetchProductByKeywords()}
                 >
                   <SearchIcon />
                 </IconButton>
-                <IconButton
-                  sx={{
-                    color: "black",
-                    padding: "5px",
-                    cursor: "pointer",
-                  }}
-                >
-                  <MicIcon />
-                </IconButton>
+                
               </InputAdornment>
             ),
           }}
@@ -683,7 +786,7 @@ export default function Menu() {
           }}
         />
       </Grid>
-      <Grid
+      {/* <Grid
         item
         xs={12}
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
@@ -774,7 +877,7 @@ export default function Menu() {
             BestSeller
           </Typography>
         </Grid>
-      </Grid>
+      </Grid> */}
       <Divider
         sx={{
           backgroundColor: "black",

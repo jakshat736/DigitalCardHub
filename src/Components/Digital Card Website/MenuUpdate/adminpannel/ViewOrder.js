@@ -107,6 +107,7 @@ export default function ViewOrder() {
                   >
                     ViewOrderdetail 
                   </Button>
+                  <Typography sx={{mr:0}}>Calling Waiter:{item.waiterCalled}</Typography>
                 </Grid>
 
                 <Grid item xs={5}>

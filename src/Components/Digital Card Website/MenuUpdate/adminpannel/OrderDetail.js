@@ -13,6 +13,7 @@ import { useLocation } from 'react-router-dom';
 export default function OrderDetail() {
   var navigate = useNavigate()
   const location = useLocation()
+ 
 
   const fullData = JSON.parse(location.state.data)
   const data = JSON.parse(fullData.dishes)
@@ -34,7 +35,7 @@ export default function OrderDetail() {
 
         </Grid>
         <Grid item xs={6} sx={{}}>
-          <Button variant="outlined" sx={{ bgcolor: 'yellow', mt: 2 }}><WhatsAppIcon />Live support</Button>
+          <Button variant="outlined"     sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"},mt:2}}><WhatsAppIcon />Live support</Button>
         </Grid>
         <Divider
           sx={{

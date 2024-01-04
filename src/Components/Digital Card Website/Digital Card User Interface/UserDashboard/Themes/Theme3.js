@@ -2,6 +2,8 @@ import {
   Box,
   Button,
   Container,
+  Dialog,
+  DialogContent,
   Grid,
   IconButton,
   InputAdornment,
@@ -11,13 +13,14 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import './Theme9.css'
 import review from "./ThemeAssets/reviewicon.png"
 import {
   ArrowDownwardSharp,
   ArrowDropDownSharp,
   ArrowDropUpSharp,
+  Close,
   Email,
   Facebook,
   FacebookOutlined,
@@ -66,6 +69,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
   const [href, setHref] = React.useState("");
   const [fullCard, setFullCard] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [fullOpen,setFullOpen]=useState(false)
   const handleMessage = (e) => {
     console.log(e);
     setHref(
@@ -380,6 +384,223 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
     bytes.forEach((b) => (binary += String.fromCharCode(b)));
     return window.btoa(binary);
   };
+
+  const handleFull=()=>{
+    setFullCard(!fullCard)
+    if(fullCard!=true){
+      if( data.enquiry=='true'){
+      setFullOpen(true)}
+    }
+  }
+
+  const handleClose=()=>{
+    setFullOpen(false)
+  }
+
+  const DialogComponent = () => {
+    return (
+      <Dialog
+        open={fullOpen}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+         <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+        <Close/>
+        </IconButton>
+        <DialogContent>
+          
+        <Grid
+            container
+            spacing={2}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 2,
+            }}
+          >
+            <Grid item xs={12} md={12} sx={{ color: "#fff", paddingInline: 0 }}>
+              <Grid
+                style={{
+                  fontSize: 30,
+                  textAlign: "center",
+                  color: "#000",
+                  fontWeight: 700,
+                }}
+              >
+                Contact Us
+              </Grid>
+              <Grid
+                sx={{
+                  marginTop: 5,
+                  width: "90%",
+                  display: "flex",
+                  flexDirection: "column",
+                  mb: "10px",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: "1.1rem",
+                    textAlign: "left",
+                    fontWeight: 600,
+                    ml: "5px",
+                    color: "#000",
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  Enter Your Name :{" "}
+                </Typography>
+                <TextField
+                  fullWidth
+                  value={name}
+                  onChange={(e)=>setName(e.target.value)}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      "&:hover fieldset": {
+                        borderColor: "#EBD8B2", // Outline color when hovering
+                      },
+
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#EBD8B2", // Outline color when focused
+                      },
+                    },
+
+                    "& label": {
+                      paddingLeft: (theme) => theme.spacing(2),
+                      color: "#654E92",
+                      "&.Mui-focused": {
+                        color: "#654E92", // Change label color when focused
+                      },
+                    },
+                    "& input": {
+                      paddingLeft: (theme) => theme.spacing(0),
+                      color: "#000000",
+                      zIndex: 1,
+                    },
+
+                    "& fieldset": {
+                      paddingLeft: (theme) => theme.spacing(2.5),
+                      borderRadius: 2,
+                      backgroundColor: "#fff",
+                      "&:hover": {
+                        borderColor: "#EBD8B2",
+                      },
+                    },
+                    mb: "10px",
+                    color: "#654E92",
+                  }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Typography
+                          sx={{ color: "#654E92", zIndex: 1 }}
+                        ></Typography>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <Typography
+                  sx={{
+                    fontSize: "1.1rem",
+                    textAlign: "left",
+                    fontWeight: 600,
+                    ml: "5px",
+                    color: "#000",
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  Enter Your Mobile No :{" "}
+                </Typography>
+                <TextField
+                  fullWidth
+                  value={phoneNo}
+                  onChange={(e)=>setPhoneNo(e.target.value)}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      "&:hover fieldset": {
+                        borderColor: "#EBD8B2", // Outline color when hovering
+                      },
+
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#EBD8B2", // Outline color when focused
+                      },
+                    },
+
+                    "& label": {
+                      paddingLeft: (theme) => theme.spacing(2),
+                      color: "#D24A61",
+                      "&.Mui-focused": {
+                        color: "#EBD8B2", // Change label color when focused
+                      },
+                    },
+                    "& input": {
+                      paddingLeft: (theme) => theme.spacing(0),
+                      color: "#000000",
+                      zIndex: 1,
+                    },
+
+                    "& fieldset": {
+                      paddingLeft: (theme) => theme.spacing(2.5),
+                      borderRadius: 2,
+                      backgroundColor: "#fff",
+                      "&:hover": {
+                        borderColor: "#EBD8B2",
+                      },
+                    },
+                    mb: "10px",
+                  }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Typography
+                          sx={{ color: "#654E92", zIndex: 1 }}
+                        ></Typography>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+
+                <Button
+                  variant="contained"
+                  sx={{
+                    marginY: "12px",
+                    paddingX: "20px",
+                    bgcolor: "#fff",
+                    color: "#000",
+                    fontWeight: 600,
+                    border: "1px solid #ebebeb",
+                    "&:hover": {
+                      bgcolor: "#fff",
+                      color: "#000",
+                    },
+                  }}
+                  onClick={()=>handleSubmit(data.customerId)}
+                >
+                  Submit
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </DialogContent>
+      </Dialog>
+    );
+  };
+
 
   return (
     <Grid
@@ -1129,7 +1350,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   color: "#000000",
                 },
               }}
-              onClick={() => setFullCard(!fullCard)}
+              onClick={() =>handleFull()}
             >
               {fullCard ? "Show Less" : "Show Full Card"}
             </Button>
@@ -1426,6 +1647,111 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 }}
               >
                 <ReactPlayer height="300px" url={data.YoutubeVideoLink5} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: data.YoutubeVideoLink6 == "" ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                }}
+              >
+                <ReactPlayer height="300px" url={data.YoutubeVideoLink6} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: data.YoutubeVideoLink7 == "" ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                }}
+              >
+                <ReactPlayer height="300px" url={data.YoutubeVideoLink7} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: data.YoutubeVideoLink8 == "" ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                }}
+              >
+                <ReactPlayer height="300px" url={data.YoutubeVideoLink8} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: data.YoutubeVideoLink9 == "" ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                }}
+              >
+                <ReactPlayer height="300px" url={data.YoutubeVideoLink9} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: data.YoutubeVideoLink10 == "" ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                }}
+              >
+                <ReactPlayer height="300px" url={data.YoutubeVideoLink10} />
               </Grid>
             </Grid>
           </Grid>
@@ -1976,6 +2302,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
           </Grid>
         </Grid>
       </Grid>
+      {DialogComponent()}
     </Grid>
   );
 }

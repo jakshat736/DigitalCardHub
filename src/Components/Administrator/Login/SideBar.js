@@ -131,6 +131,15 @@ return(
           
         </MenuItem>
         </Link>
+        <Link to="/dashboard/displayallusers" className={classes.link}>
+        <MenuItem>
+          <ListItemIcon>
+            <RemoveRedEyeIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Users</ListItemText>
+          
+        </MenuItem>
+        </Link>
         <Link to="/dashboard/displayalltags" className={classes.link}>
         <MenuItem >
           <ListItemIcon>

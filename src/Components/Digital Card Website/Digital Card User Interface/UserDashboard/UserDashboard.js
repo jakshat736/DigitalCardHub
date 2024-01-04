@@ -646,6 +646,18 @@ const editDialog=()=>{
     fetchCardDetail()
      
    };
+  const handleEnquiry = async(id,status) => {
+
+   
+    var formData = new FormData();
+    formData.append("_id",id);
+    formData.append("enquiry",status=='false'?'true':'false');
+    
+    const response= await postData('carddetails/updateEnquiry',formData,true)
+
+    fetchCardDetail()
+     
+   };
 
   return (
     <Grid>
@@ -707,7 +719,7 @@ const editDialog=()=>{
                       </Button>
                     
                 </Grid>
-            <Grid item xs={3} sx={{display:"flex",flexDirection:"column"}}>
+            {/* <Grid item xs={3} sx={{display:"flex",flexDirection:"column"}}>
             <Typography>Restaurant Menu</Typography>
                       <Button
                         variant="contained"
@@ -721,8 +733,8 @@ const editDialog=()=>{
                         Open
                       </Button>
                     
-                </Grid>
-            <Grid item xs={3} sx={{display:"flex",flexDirection:"column"}}>
+                </Grid> */}
+            {/* <Grid item xs={3} sx={{display:"flex",flexDirection:"column"}}>
             <Typography>Create Invitation</Typography>
                       <Button
                         variant="contained"
@@ -736,7 +748,7 @@ const editDialog=()=>{
                         Create
                       </Button>
                     
-                </Grid>
+                </Grid> */}
           <Grid
             xs={12}
             item
@@ -823,34 +835,7 @@ const editDialog=()=>{
                       : cardData.companyname}
                   </Typography>
                 </Grid>
-                <Grid item xs={6}>
-                  <Typography>Payment Status : </Typography>
-                </Grid>
-                <Grid item xs={6} sx={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-start",
-                  }}>
-                  <Typography>
-                    {cardData == undefined
-                      ? "No Data Available"
-                      : cardData.paymentStatus}
-                  </Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography>Card Status : </Typography>
-                </Grid>
-                <Grid item xs={6} sx={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-start",
-                  }}>
-                  <Typography>
-                    {cardData == undefined
-                      ? "No Data Available"
-                      : cardData.cardStatus}
-                  </Typography>
-                </Grid>
+
                 <Grid item xs={6}>
                   <Typography>Created On : </Typography>
                 </Grid>
@@ -863,20 +848,6 @@ const editDialog=()=>{
                     {cardData == undefined
                       ? "No Data Available"
                       : cardData.createdDate}
-                  </Typography>
-                </Grid>
-                <Grid item xs={6} >
-                  <Typography>Subscription Validity : </Typography>
-                </Grid>
-                <Grid item xs={6} sx={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-start",
-                  }}>
-                  <Typography>
-                    {cardData == undefined
-                      ? "No Data Available"
-                      : `${days} days Remaining` }
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
@@ -970,6 +941,24 @@ const editDialog=()=>{
                     </>
                   )}
                 </Grid>
+                <Grid item xs={6}>
+                  <Typography>Show Enquiry Form : </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  {cardData == undefined ? (
+                    <>
+                      <Typography>No Data Available</Typography>
+                    </>
+                  ) : (
+                    <>
+                     <Switch
+                  checked={cardData.enquiry=='true'?true:false}
+                  onChange={()=>handleEnquiry(cardData._id,cardData.enquiry)}
+                  inputProps={{ "aria-label": "controlled" }}
+                />
+                    </>
+                  )}
+                </Grid>
 
                 <Grid item xs={6}>
                   <Typography>Edit : </Typography>
@@ -993,69 +982,7 @@ const editDialog=()=>{
                     </>
                   )}
                 </Grid>
-                {amount == 0 ? (
-                <>
-                <Grid item xs={6}>
-                  <Typography>Card Payment : </Typography>
-                </Grid>
-                <Grid item xs={6} style={{ marginBottom: 3 }}>
-                  {cardData == undefined ? (
-                    <>
-                      <Typography>No Data Available</Typography>
-                    </>
-                  ) : (
-                    <>
-                      <Button
-                        variant="contained"
-                        sx={{
-                          borderRadius: 2,
-                          backgroundImage:
-                            "linear-gradient(to top left,#48dbfb,#001e3c)",
-                          fontSize: { xs: 10, sm: 13, md: 15 },
-                        }}
-                        onClick={() => navigate("/designUpload")}
-                      >
-                        Book Your NFC Card
-                      </Button>
-                    </>
-                  )}
-                   
-                  
-                </Grid>
-                </>) : (
-                  <></>
-                )}
-                {amount == 499 ? (
-                  <>
-                    <Grid item xs={6}>
-                      <Typography>Card Payment : </Typography>
-                    </Grid>
-                    <Grid item xs={6} style={{ marginBottom: 3 }}>
-                      {cardData == undefined ? (
-                        <>
-                          <Typography>No Data Available</Typography>
-                        </>
-                      ) : (
-                        <>
-                          <Button
-                            variant="contained"
-                            sx={{
-                              borderRadius: 2,
-                              backgroundImage:
-                                "linear-gradient(to top left,#48dbfb,#001e3c)",
-                              fontSize: { xs: 10, sm: 13, md: 15 },
-                            }}
-                            onClick={() => navigate("/partialDesignUpload")}
-                          >
-                            Order Your NFC Card
-                          </Button>
-                        </>
-                      )}
-                    </Grid>
-                  </>
-                ) : (
-                  <></>
-                )}
+               
               </Grid>
             </Paper>
           </Grid>

@@ -1,43 +1,82 @@
-import { Grid ,Typography,Button,Divider,TextField,IconButton,handleImage,Avatar} from '@mui/material'
+import { Grid ,Typography,Button,Divider,TextField,IconButton,handleImage,Avatar, FormControl, InputLabel, Select, MenuItem, Icon} from '@mui/material'
 import img1 from "../assets/dch logooo.png";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import React, { useState,  } from "react";
+import React, { useEffect, useState,  } from "react";
 import { getData, postData, serverURL } from "../../../Services/NodeServices";
 
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Cancel } from '@mui/icons-material';
 export default function Kitchen() {
   const location =useLocation()
+  const navigate =useNavigate()
   const companyId=location.state.companyId
-  const fullData=JSON.parse(location.state.data)
-   
   
+   
+
+  const [fullData,setFullData]  = useState([])
+  const [expandedData,setExpandedData]  = useState([])
+ 
   const [Name,setName]  = useState("")
   const [Phone,setPhone]  = useState("")
   const [Chief,setChief]  = useState("")
-  const [Table,setTable]  = useState("")
+  const [Table,setTable]  = useState("Serve On Table")
   const [Number,setNumber]  = useState("")
+  const [showOrder,setShowOrder]=useState(false)
+  const [order,setOrder]=useState([])
+  const checkCart=()=>{
+    const cart=JSON.parse(window.localStorage.getItem("menucart"))
+   
+    if(cart!=null){
+    if(cart.length!=0){
+      setFullData(cart)
+      setExpandedData(cart.reduce((acc, item) => {
+        if (item.full && item.full > 0) {
+          acc.push({ ...item, quantity: item.full, totalprice: item.fullPrice,type:"full" });
+        }
+        if (item.half && item.half > 0) {
+          acc.push({ ...item, quantity: item.half, totalprice: item.halfPrice,type:"half" });
+        }
+        return acc;
+      }, []))
+    }}else{
+      navigate(`/menu/${companyId}`)
+    }
 
-  const expandedData = fullData.reduce((acc, item) => {
-    if (item.full && item.full > 0) {
-      acc.push({ ...item, quantity: item.full, totalprice: item.fullPrice,type:"full" });
-    }
-    if (item.half && item.half > 0) {
-      acc.push({ ...item, quantity: item.half, totalprice: item.halfPrice,type:"half" });
-    }
-    return acc;
-  }, []);
+  }
+
+  useEffect(()=>{
+    checkCart()
+  },[])
+  
 
   const totalPrice = expandedData.reduce((total, item) => {
     return total + item.totalprice * item.quantity;
   }, 0);
 
 
+
+  const checkOrder=()=>{
+     let order1=JSON.parse(window.localStorage.getItem("menuorder"))
+   
+    if(order1!=null){
+    if(order1.length!=0){
+      setOrder(order1)
+      setShowOrder(true)
+    }}
+
+  }
+
+  useEffect(()=>{
+    checkOrder()
+  },[])
+  
+  
   
   const handleSubmit = async () => {
-    var menuorderdata = new FormData;
+   if(Name!="" && Phone!=""){ var menuorderdata = new FormData;
     menuorderdata.append("companyId",companyId)
     menuorderdata.append("name",Name)
     menuorderdata.append("phone",Phone)
@@ -47,12 +86,16 @@ export default function Kitchen() {
     menuorderdata.append("totalPrice",totalPrice)
     menuorderdata.append("dishes",JSON.stringify(expandedData))
 const response = await postData("index/menuorder", menuorderdata, true);
+
 if(response.status==true){
   Swal.fire({
     text:"Order Sent to kitchen",
     icon:"success",
     timer:1000
   })
+  window.localStorage.setItem("menuorder",JSON.stringify(response.data))
+  window.localStorage.removeItem("menucart")
+  navigate('/menucheckout',{state:{companyId:companyId}})
   
 }else{
   Swal.fire({
@@ -62,11 +105,95 @@ if(response.status==true){
   })
 }
    
+}else{
+  Swal.fire({
+    text:"Fill All the fields"
+  })
+}
 
 
 
 
+  }
+  
+  const handleUpdate = async () => {
 
+    const dishesData=[...JSON.parse(order.dishes),...expandedData]
+   
+   if(Name!="" && Phone!=""){ 
+    var menuorderdata = new FormData;
+    menuorderdata.append("_id",order._id)
+    menuorderdata.append("name",Name)
+    menuorderdata.append("phone",Phone)
+    menuorderdata.append("message",Chief)
+   
+    menuorderdata.append("totalPrice",parseInt(order.totalPrice)+parseInt(totalPrice))
+    menuorderdata.append("dishes",JSON.stringify(dishesData))
+const response = await postData("index/updatemenuorder", menuorderdata, true);
+
+if(response.status==true){
+  Swal.fire({
+    text:"Order Updated to kitchen",
+    icon:"success",
+    timer:1000
+  })
+  window.localStorage.setItem("menuorder",JSON.stringify(response.data))
+  window.localStorage.removeItem("menucart")
+  navigate('/menucheckout',{state:{companyId:companyId}})
+  
+}else{
+  Swal.fire({
+    text:"failed to send",
+    icon:"error",
+    timer:1000
+  })
+}
+   
+}else{
+  Swal.fire({
+    text:"Fill All the fields"
+  })
+}
+
+
+
+
+  }
+
+  const handleChange = (event) => {
+    setTable(event.target.value);
+  };
+
+  const handleDelete=(index)=>{
+    const newArray = [...expandedData];
+    // Remove the item at the specified index using splice
+  
+    if(newArray[index].type=='full'){
+      const itemToDeleteFull = fullData.findIndex((item) => item._id === newArray[index]._id);
+      
+      const updated=[...fullData]
+
+      updated[itemToDeleteFull]={...updated[itemToDeleteFull],full:0}
+      console.log(updated)
+      setFullData(updated)
+      window.localStorage.setItem("menucart",JSON.stringify(updated))
+      console.log(window.localStorage.getItem("menucart"))
+    }
+    if(newArray[index].type=='half'){
+      const itemToDeleteFull = fullData.findIndex((item) => item._id === newArray[index]._id);
+      
+      const updated=[...fullData]
+
+      updated[itemToDeleteFull]={...updated[itemToDeleteFull],full:0}
+      console.log(updated)
+      setFullData(updated)
+      window.localStorage.setItem("menucart",JSON.stringify(updated))
+    }
+    newArray.splice(index, 1);
+    // Update the state with the new array
+    setExpandedData(newArray);
+    
+    
   }
 
   return (
@@ -99,7 +226,7 @@ if(response.status==true){
         <Typography sx={{textAlign:'left'}}>shipping details</Typography>
         </Grid>
 
-        <Grid item xs={6} sx={{display:'flex'}}>
+        <Grid item xs={5} sx={{display:'flex'}}>
          <Typography>Dish Name</Typography>
         </Grid>
         <Grid item xs={3}>
@@ -108,16 +235,25 @@ if(response.status==true){
         <Grid item xs={3}>
         <Typography> total price</Typography>
         </Grid>
+        <Grid item xs={1}>
+      
+        </Grid>
 
-        {expandedData.map((item) => (
+        {expandedData.map((item,index) => (
         <>
-          <Grid item xs={6} sx={{ display: "flex", flexDirection: "row" }}>
+          <Grid item xs={1} sx={{ display: "flex", flexDirection: "row" }}>
+          <Typography>
+          {index+1}
+      </Typography>
+           
+          </Grid>
+          <Grid item xs={5} sx={{ display: "flex", flexDirection: "row" }}>
           <Typography>
         {item.type=="full" ? "Full" : item.type=="half" ? "Half" : ""}
       </Typography>
             <Typography>-{item.name} X {item.quantity}</Typography>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <Typography>
               {item.type=="full" ? `Rs:${item.fullPrice}` :item.type=="half" ? `Rs:${item.halfPrice}` : ""}
             </Typography>
@@ -130,6 +266,9 @@ if(response.status==true){
             
             
           </Grid>
+          <Grid item xs={1}>
+              <IconButton sx={{mt:-1}} onClick={()=>handleDelete(index)}><Cancel/></IconButton>
+          </Grid>
           
         </>
       ))}
@@ -140,8 +279,28 @@ if(response.status==true){
       <Typography>Grand Total: ₹ {((totalPrice * 5)/100)+totalPrice}</Typography>
 {/* <Typography>CGST: ₹ {(data.dish1price + data.dish2price)*data.cgst}</Typography> */}
       </Grid>
-
+    {showOrder==true?<>
         <Grid item xs={6}>
+        <TextField onChange={(e)=>setName(e.target.value)} value={Name} id="outlined-basic" label="Name" variant="outlined" />
+
+        </Grid>
+        <Grid item xs={6}>
+        <TextField onChange={(e)=>setPhone(e.target.value)} value={Phone} id="outlined-basic" label="Phone*" variant="outlined" />
+
+        </Grid>
+        <Grid item xs={12}>
+
+        <TextField onChange={(e)=>setChief(e.target.value)} value={Chief} fullWidth label="Any message for the chef?" id="fullWidth" />
+        </Grid>
+       
+<Grid item xs={12} sx={{display:'flex',justifyContent:'center',alignItems:'center',}}>
+ 
+ <Button sx={{bgcolor:'black'}} onClick={handleUpdate} fullWidth variant="contained" disableElevation>
+  <Typography sx={{color:'yellow'}}>Update the order</Typography>
+</Button>
+
+</Grid>
+</>:<> <Grid item xs={6}>
         <TextField onChange={(e)=>setName(e.target.value)} value={Name} id="outlined-basic" label="Name" variant="outlined" />
 
         </Grid>
@@ -155,7 +314,18 @@ if(response.status==true){
         </Grid>
         <Grid item xs={12}>
 
-        <TextField onChange={(e)=>setTable(e.target.value)} value={Table} fullWidth label="Serve on Table" id="fullWidth" />
+        <FormControl fullWidth>
+      
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={Table}
+          onChange={handleChange}
+        >
+          <MenuItem value={"Serve On Table"} >Serve On Table</MenuItem>
+          <MenuItem value={"Home Delivery"}>Home Delivery</MenuItem>
+        </Select>
+      </FormControl>
         </Grid>
         <Grid item xs={12}>
 
@@ -167,8 +337,7 @@ if(response.status==true){
   <Typography sx={{color:'yellow'}}>Send to Kitchen</Typography>
 </Button>
 
-</Grid>
- 
+</Grid></>}
         </Grid>
        
     </Grid>

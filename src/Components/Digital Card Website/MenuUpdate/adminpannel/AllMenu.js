@@ -5,7 +5,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { getData, postData, serverURL } from "../../../Services/NodeServices";
 
 import { useLocation, useNavigate } from "react-router-dom";
-import { PhotoCamera } from '@mui/icons-material';
+import { Delete, PhotoCamera } from '@mui/icons-material';
 import Swal from 'sweetalert2';
 
 
@@ -141,6 +141,21 @@ export default function AllMenu() {
     );
   };
 
+  const handleDelete=async(_id)=>{
+    var formData=new FormData
+    formData.append("_id",_id)
+    const response=await postData('index/delete',formData,true)
+    if(response.status==true){
+      Swal.fire({
+        text:"Deleted",
+        icon:"success",
+        timer:1000
+      })
+      fetchData()
+    }
+
+  }
+
 
   return (
     <Grid sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -149,7 +164,7 @@ export default function AllMenu() {
           <img src={img1} alt="Masala Grill" width={120} />
         </Grid>
         <Grid item xs={6}>
-          <Button variant="outlined" sx={{ bgcolor: "yellow", mt: 0.5 }}>
+          <Button variant="outlined"  sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"},mt:2}}>
             <WhatsAppIcon />
             Live support
           </Button>
@@ -168,7 +183,7 @@ export default function AllMenu() {
           <Button
             onClick={() => navigate(`/menudashboard/${companyId}`)}
             variant='contained'
-           
+            sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}
           >
             Back
           </Button>
@@ -182,23 +197,28 @@ export default function AllMenu() {
         {datafood.map((item,index) => (
             <Paper sx={{width:400,m:1}}>
           <Grid container sx={{width:400, cursor:'pointer',padding:1}} >
+            <Grid item xs={12} sx={{display:"flex",justifyContent:"end"}}>
+              <IconButton onClick={()=>handleDelete(item._id)} sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}>
+                <Delete/>
+              </IconButton>
+            </Grid>
             
-            <Grid item xs={6} sx={{display:"flex",justifyContent:"center",flexDirection:"column"}}>
+            <Grid item xs={6} sx={{display:"flex",justifyContent:"center",flexDirection:"column",mt:-5}}>
               <Typography>{index+1} : {item.dish}</Typography>
               <Typography>{item.description}</Typography>
               <Typography>{item.stock}</Typography>
-              <Button variant='contained' sx={{display:'flex',justifyContent:'center',alignItems:'center',ml:2,mb:-3}} onClick={()=>navigate('/editmenu',{state:{data:JSON.stringify(item)}})}>Edit</Button>
+              <Button variant='contained' sx={{display:'flex',justifyContent:'center',alignItems:'center',ml:2,mb:-3,bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}} onClick={()=>navigate('/editmenu',{state:{data:JSON.stringify(item),companyId:companyId}})}>Edit</Button>
                    
         
             </Grid>
-            <Grid item xs={5} sx={{ml:2}}>
+            <Grid item xs={5} sx={{ml:2,mt:-5}}>
             <Avatar
           alt="Remy Sharp"
           variant="rounded"
           src={`${serverURL}/images/${item.Image}`}
           sx={{ width: 100, height: 100,ml:2 }}
         />
-              <Button variant='contained' onClick={()=>handleImage(item)}>Update Image</Button>
+              <Button sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"},m:1}} variant='contained' onClick={()=>handleImage(item)} >Update Image</Button>
             </Grid>
           
           </Grid>

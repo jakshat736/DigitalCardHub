@@ -81,6 +81,9 @@ import MenuDashBoard from './Components/Digital Card Website/MenuUpdate/adminpan
 import Invite from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/Invite';
 import Home1 from './Components/Digital Card Website/Digital Card User Interface/Invite/Home';
 import Invitation from './Components/Digital Card Website/Digital Card User Interface/Invite/Invitation';
+import Details from './Components/Digital Card Website/MenuUpdate/adminpannel/Details';
+import OrderComplete1 from './Components/Digital Card Website/MenuUpdate/adminpannel/OrderComplete';
+import OrderDelivered from './Components/Digital Card Website/MenuUpdate/adminpannel/OrderDelivered';
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -176,16 +179,12 @@ function App() {
     <Route path="/editmenu" element={<EditMenu/>}/>
      <Route path="/kitchen" element={<Kitchen/>}/>
      <Route path="/selectqy" element={<Selectqy/>}/>
-
-
-      
-
-      
-
-    
     <Route path="/floatingmenu" element={<FloatingMenu/>}/>
     <Route path="/uploadmenucsv" element={<UploadMenuCsv/>}/>
     <Route path="/uploadYourLogo" element={<UploadYourLogo/>}/>
+    <Route path="/restaurantdetails" element={<Details/>}/>
+    <Route path="/menucheckout" element={<OrderComplete1/>}/>
+    <Route path="/orderdelivered" element={<OrderDelivered/>}/>
 					
       </Routes>
 	  </HashRouter>

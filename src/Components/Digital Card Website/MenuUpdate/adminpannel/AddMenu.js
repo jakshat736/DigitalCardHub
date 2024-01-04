@@ -12,6 +12,7 @@ import img1 from "../assets/dch logooo.png";
 import { PhotoCamera } from '@mui/icons-material';
 import { getData, postData } from "../../../Services/NodeServices";
 import { useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export default function AddMenu() {
   const location = useLocation()
@@ -50,6 +51,7 @@ export default function AddMenu() {
 
   const handleSubmit = async () => {
     var AddMenudata = new FormData;
+    if(Dish!="" && Price!="" && Halfprice!="" && rating!="" && Sorting!="" && Stock!="" && Description!="" && foodType!="" && Image.fileName!=""){
     AddMenudata.append("companyId", companyId);
     AddMenudata.append("dish", Dish);
     AddMenudata.append("price", Price);
@@ -62,7 +64,25 @@ export default function AddMenu() {
     AddMenudata.append("foodtype", foodType);
     AddMenudata.append("image", Image.bytes);
     const response = await postData("index/addmenu", AddMenudata, true);
-    // alert(response.data.id)
+     console.log(response)
+
+     if(response.status==true){
+      Swal.fire({
+        text:"Saved Successfully",
+        timer:1000,
+        icon:"success"
+      })
+     }
+
+  
+
+    }else{
+      Swal.fire({
+        text:"Fill All The Details",
+        timer:1000,
+        icon:"warning"
+      })
+    }
 
 
   };
@@ -82,7 +102,7 @@ export default function AddMenu() {
         </Grid>
 
         <Grid item xs={6} sx={{}}>
-          <Button variant="outlined" sx={{ bgcolor: 'yellow', mt: 2 }}><WhatsAppIcon />Live support</Button>
+          <Button variant="outlined" sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"},mt:2}}><WhatsAppIcon />Live support</Button>
         </Grid>
         <Divider
           sx={{
@@ -98,7 +118,7 @@ export default function AddMenu() {
           <Button
             onClick={() => navigate(`/menudashboard/${companyId}`)}
             variant='contained'
-
+            sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}
           >
             Back
           </Button>
@@ -106,7 +126,7 @@ export default function AddMenu() {
         </Grid>
         {/* {data.map((item) => (
         <React.Fragment key={item.id}> */}
-        <Grid item xs={12} sx={{ mt: 5 }}>
+        <Grid item xs={12} sx={{ mt: 2 }}>
           <Typography sx={{ fontFamily: 'poppins', fontSize: 30, textAlign: 'left' }}>Update Menu Items</Typography>
         </Grid>
 
@@ -154,30 +174,34 @@ export default function AddMenu() {
           <Typography sx={{ textAlign: 'left', fontSize: 12 }}>If left 0 will not track.</Typography>
           <TextField onChange={(e) => setStock(e.target.value)} value={Stock} id="outlined-basic" label="Price" variant="outlined" />
         </Grid>
-        <Grid item xs={6} >
-          <IconButton
-            fullWidth
-            color="primary"
-            aria-label="upload picture"
-            component="label"
-          >
-            <input
-              hidden
-              accept="image/*"
-              type="file"
-              onChange={handleImage}
-            />
-            <PhotoCamera />
-          </IconButton>
+        <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
 
-          <Avatar
-            alt="Remy Sharp"
-            variant="rounded"
-            src={Image.fileName}
-            sx={{ width: 56, height: 56 }}
-          />
-        </Grid>
+<Avatar
+    alt="Remy Sharp"
+    variant="rounded"
+    src={Image.fileName}
+    sx={{ width: 80, height: 80, m: 1 }}
+/>
+<Button
 
+    color="primary"
+    aria-label="upload picture"
+    component="label"
+    variant='contained'
+    sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}
+>
+    <input
+        hidden
+        accept="image/*"
+        type="file"
+        onChange={handleImage}
+        
+    />
+    Upload Image<PhotoCamera />
+</Button>
+
+
+</Grid>
         <Grid item xs={12}>
           <TextField onChange={(e) => setDescription(e.target.value)} value={Description} multiline minRows={4} id="outlined-basic" label="Descrption" variant="outlined" fullWidth />
         </Grid>
@@ -188,8 +212,8 @@ export default function AddMenu() {
 
         <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
 
-          <Button sx={{ bgcolor: 'yellow' }} onClick={handleSubmit} fullWidth variant="contained" disableElevation>
-            Update item
+          <Button  sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}} onClick={handleSubmit} fullWidth variant="contained" disableElevation>
+            Save item
           </Button>
 
         </Grid>

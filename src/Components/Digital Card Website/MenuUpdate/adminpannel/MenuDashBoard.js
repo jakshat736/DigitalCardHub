@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Grid,Typography,Button,Divider } from '@mui/material'
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import List from '@mui/material/List';
@@ -17,19 +17,56 @@ import img1 from "../assets/dch logooo.png";
 
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import { useNavigate, useParams } from "react-router-dom";
+import { postData } from '../../../Services/NodeServices';
+import { PhoneEnabled } from '@mui/icons-material';
+import Swal from 'sweetalert2';
 export default function MenuDashBoard() {
   var navigate=useNavigate()
   const {companyId}=useParams()
+  const [call,setCall]=useState("")
     const style = {
         width: '100%',
         maxWidth: 360,
         bgcolor: 'background.paper',
       };
       
+      useEffect(()=>{
+
+      })
+
+      const fetchData=async()=>{
+        var formData=new FormData
+        formData.append("companyId",companyId)
+        const response=await postData('index/getRestaurantDetails',formData,true)
+        if(response.status!=true){
+           navigate('/restaurantdetails',{state:{companyId:companyId}})
+        }else{
+          setCall(response.data.call)
+        }
+    }
+
+    useEffect(()=>{
+        fetchData()
+    },[])
+
+    const handleCall=async()=>{
+      var formData=new FormData
+      formData.append("companyId",companyId)
+      formData.append("call",call=="able"?"disable":"able")
+      const response=await postData('index/call',formData,true)
+      if(response.status==true){
+        Swal.fire({
+          text:"Updated",
+          timer:1000
+        })
+        fetchData()
+      }
+    }
+      
   return (
-    <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',width:360,}}>
+    <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
      
-     <Grid container spacing={2} sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+     <Grid container spacing={2} sx={{display:'flex',justifyContent:'center',alignItems:'center',width:{xs:"100%",md:400},}}>
       <Grid item xs={6} sx={{display:'flex',flexDirection:'row',}}>
      <img src={img1} alt="Masala Grill" width={120} />
         
@@ -37,7 +74,7 @@ export default function MenuDashBoard() {
 </Grid>
 
 <Grid item xs={6} sx={{}}>
-<Button variant="outlined" sx={{bgcolor:'yellow',}}><WhatsAppIcon/>Live support</Button>
+<Button variant="outlined" sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}><WhatsAppIcon/>Live support</Button>
 </Grid>
 <Divider
           sx={{
@@ -52,7 +89,7 @@ export default function MenuDashBoard() {
      </Grid>
      <Grid item xs={12}>
      <List sx={style} component="nav" aria-label="mailbox folders">
-      <ListItem button sx={{bgcolor:'yellow'}}>
+      <ListItem button sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}>
         <ListItemText onClick={()=>navigate('/ViewOrder',{state:{companyId:companyId}})} primary="View Orders" />
         <NotificationsIcon sx={{mr:{xs:5,md:0}}}/>
       </ListItem>
@@ -72,25 +109,20 @@ export default function MenuDashBoard() {
       </ListItem>
       <Divider />
       <ListItem button>
-        <ListItemText primary="Edit Details" />
+        <ListItemText primary="Edit Restaurant Details" onClick={()=>navigate('/restaurantdetails',{state:{companyId:companyId}})} />
         <BlurCircularIcon sx={{mr:{xs:5,md:0}}}/>
       </ListItem>
       <Divider />
-      <ListItem button>
-        <ListItemText onClick={()=>navigate('/UploadMenuCsv')} primary="Upload Menu CSV." />
-        <PhotoSizeSelectLargeIcon sx={{mr:{xs:5,md:0}}}/>
-      </ListItem>
-      <Divider />
-      <ListItem onClick={()=>navigate('/UploadYourLogo')} button>
-        <ListItemText primary="Upload Your logo." />
-      </ListItem>
-      <Divider />
-      <ListItem button>
-        <ListItemText primary="Disabble Calls." />
+      
+      {call=="able"? <ListItem button onClick={()=>handleCall()}>
+     <ListItemText primary="Disable Calls." />
         <PhoneDisabledIcon sx={{mr:{xs:5,md:0}}}/>
-      </ListItem>
+      </ListItem>:<ListItem button onClick={()=>handleCall()}>
+     <ListItemText primary="Enable Calls." />
+        <PhoneEnabled sx={{mr:{xs:5,md:0}}}/>
+      </ListItem>}
       <Divider />
-      <ListItem button>
+      {/* <ListItem button>
         <ListItemText primary="Enable order from home" />
         <PlayArrowIcon sx={{mr:{xs:5,md:0}}}/>
       </ListItem>
@@ -113,13 +145,13 @@ export default function MenuDashBoard() {
     }
   />
   <DashboardCustomizeIcon sx={{mr:{xs:5,md:0}}}/>
-</ListItem>
+</ListItem> */}
       <Divider />
     </List>
      </Grid>
      <Grid item xs={12}>
-     <Button variant="contained" disableElevation>
-     <WhatsAppIcon sx={{mr:{xs:5,md:0}}}/> Share Business on WhatsApp
+     <Button variant="contained" disableElevation sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}>
+     <WhatsAppIcon  sx={{mr:{xs:5,md:0}}}/> Share Business on WhatsApp
     </Button>
      </Grid>
       

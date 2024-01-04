@@ -19,6 +19,7 @@ import SubCategory from "../AddSubCategory";
 import DisplaySubCategory from "../DisplaySubCategory";
 import DisplayAllCategory from "../DisplayAllCategory";
 import Order from "../Order";
+import DisplayAllUsers from "../DisplayAllUsers";
 export default function DashBoard(props){
     var navigate=useNavigate();
     let Session=window.localStorage.getItem("Session");
@@ -40,6 +41,7 @@ return(
     <Grid item xs={12} sm={12} md={10}>
        <Routes>
               <Route element={<DisplayAllEnquries/>} path="/displayallenquiries" /> 
+              <Route element={<DisplayAllUsers/>} path="/displayallusers" /> 
             
               <Route element={<DisplayAllRegistrations/>} path="/displayallregistrations" /> 
               <Route element={<DisplayAllCards/>} path="/displayallcards" /> 

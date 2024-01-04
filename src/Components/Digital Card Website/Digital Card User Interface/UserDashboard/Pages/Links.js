@@ -36,6 +36,16 @@ const Links = () => {
     const [link4, setLink4] = useState('none')
     const [youtubeLink5, setYoutubeLink5] = useState('')
     const [link5, setLink5] = useState('none')
+    const [youtubeLink6, setYoutubeLink6] = useState('')
+    const [link6, setLink6] = useState('none')
+    const [youtubeLink7, setYoutubeLink7] = useState('')
+    const [link7, setLink7] = useState('none')
+    const [youtubeLink8, setYoutubeLink8] = useState('')
+    const [link8, setLink8] = useState('none')
+    const [youtubeLink9, setYoutubeLink9] = useState('')
+    const [link9, setLink9] = useState('none')
+    const [youtubeLink10, setYoutubeLink10] = useState('')
+    const [link10, setLink10] = useState('none')
     const [googleMapLink, setGoogleMapLink] = useState('')
     const [count,setCount]=useState(1);
     const [themeId, setThemeId] = useState('')
@@ -73,13 +83,39 @@ const Links = () => {
             setLink5('flex')
             setCount(count+1)
         }
+        if(result.data.YoutubeVideoLink6!=''){
+            setLink6('flex')
+            setCount(count+1)
+        }
+        if(result.data.YoutubeVideoLink7!=''){
+            setLink7('flex')
+            setCount(count+1)
+        }
+        if(result.data.YoutubeVideoLink8!=''){
+            setLink8('flex')
+            setCount(count+1)
+        }
+        if(result.data.YoutubeVideoLink9!=''){
+            setLink9('flex')
+            setCount(count+1)
+        }
+        if(result.data.YoutubeVideoLink10!=''){
+            setLink10('flex')
+            setCount(count+1)
+        }
         setYoutubeLink2(result.data.YoutubeVideoLink2)
         setYoutubeLink3(result.data.YoutubeVideoLink3)
         setYoutubeLink4(result.data.YoutubeVideoLink4)
         setYoutubeLink5(result.data.YoutubeVideoLink5)
+        setYoutubeLink6(result.data.YoutubeVideoLink6)
+        setYoutubeLink7(result.data.YoutubeVideoLink7)
+        setYoutubeLink8(result.data.YoutubeVideoLink8)
+        setYoutubeLink9(result.data.YoutubeVideoLink9)
+        setYoutubeLink10(result.data.YoutubeVideoLink10)
         setGoogleMapLink(result.data.GoogleMapLink)
         setThemeId(result.data.themeid)
         setOtherLink(result.data.links)
+       
 
     }
     React.useEffect(() => {
@@ -101,6 +137,11 @@ const Links = () => {
         formData.append('YoutubeVideoLink3', youtubeLink3)
         formData.append('YoutubeVideoLink4', youtubeLink4)
         formData.append('YoutubeVideoLink5', youtubeLink5)
+        formData.append('YoutubeVideoLink6', youtubeLink6)
+        formData.append('YoutubeVideoLink7', youtubeLink7)
+        formData.append('YoutubeVideoLink8', youtubeLink8)
+        formData.append('YoutubeVideoLink9', youtubeLink9)
+        formData.append('YoutubeVideoLink10', youtubeLink10)
         formData.append('GoogleMapLink', googleMapLink)
         formData.append('menuLink', menuLink)
         formData.append('website', website)
@@ -116,7 +157,7 @@ const Links = () => {
     }
 
     const handleAdd=(n)=>{
-       
+        
         if(n==1){
             setLink2('flex')
             setCount(n+1)
@@ -131,6 +172,26 @@ const Links = () => {
         }
         if(n==4){
             setLink5('flex')
+            setCount(n+1)
+        }
+        if(n==5){
+            setLink6('flex')
+            setCount(n+1)
+        }
+        if(n==6){
+            setLink7('flex')
+            setCount(n+1)
+        }
+        if(n==7){
+            setLink8('flex')
+            setCount(n+1)
+        }
+        if(n==8){
+            setLink9('flex')
+            setCount(n+1)
+        }
+        if(n==9){
+            setLink10('flex')
             setCount(n+1)
         }
 
@@ -286,6 +347,21 @@ const Links = () => {
                     </Grid>
                     <Grid item xs={12} style={{ display: link5, justifyContent: "center", marginBottom: 8 }}>
                         <TextField value={youtubeLink5} onChange={(e) => setYoutubeLink5(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 5(Optional)' />
+                    </Grid>
+                    <Grid item xs={12} style={{ display: link6, justifyContent: "center", marginBottom: 8 }}>
+                        <TextField value={youtubeLink6} onChange={(e) => setYoutubeLink6(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 6(Optional)' />
+                    </Grid>
+                    <Grid item xs={12} style={{ display: link7, justifyContent: "center", marginBottom: 8 }}>
+                        <TextField value={youtubeLink7} onChange={(e) => setYoutubeLink7(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 7(Optional)' />
+                    </Grid>
+                    <Grid item xs={12} style={{ display: link8, justifyContent: "center", marginBottom: 8 }}>
+                        <TextField value={youtubeLink8} onChange={(e) => setYoutubeLink8(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 8(Optional)' />
+                    </Grid>
+                    <Grid item xs={12} style={{ display: link9, justifyContent: "center", marginBottom: 8 }}>
+                        <TextField value={youtubeLink9} onChange={(e) => setYoutubeLink9(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 9(Optional)' />
+                    </Grid>
+                    <Grid item xs={12} style={{ display: link10, justifyContent: "center", marginBottom: 8 }}>
+                        <TextField value={youtubeLink10} onChange={(e) => setYoutubeLink10(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 10(Optional)' />
                     </Grid>
                     <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
                         <Button sx={{

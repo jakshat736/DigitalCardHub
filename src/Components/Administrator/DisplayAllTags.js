@@ -67,7 +67,7 @@ export default function DisplayAllTags(props) {
       year: 'numeric',
     });
 
-   const handleDelete=(tagId)=>{
+   const handleDelete=async(tagId)=>{
     var formData = new FormData();
     formData.append("tagId",tagId);
      
@@ -77,11 +77,11 @@ export default function DisplayAllTags(props) {
       showCancelButton: true,
       confirmButtonText: 'Save',
       denyButtonText: `Don't save`,
-    }).then((result) => {
+    }).then(async(result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        const response=postData('review/deleteReviewTag',formData,true)
-        
+        const response= await postData('review/deleteReviewTag',formData,true)
+        console.log(response)
         if(response.status==true || response.status=='true'){
     fetchAllTags()}
       } else if (result.isDenied) {

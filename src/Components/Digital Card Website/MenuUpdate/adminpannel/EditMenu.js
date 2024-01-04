@@ -9,11 +9,13 @@ import FormLabel from '@mui/material/FormLabel';
 import img1 from "../assets/dch logooo.png";
 import { PhotoCamera } from '@mui/icons-material';
 import { getData, postData, serverURL } from "../../../Services/NodeServices";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function EditMenu() {
   const location=useLocation()
+  const navigate=useNavigate()
   const data=JSON.parse(location.state.data)
+  const companyId=location.state.companyId
   const [Dish,setDish]  = useState(data.dish)
 
   const [Price,setPrice]  = useState(data.price)
@@ -64,7 +66,7 @@ export default function EditMenu() {
       </Grid>
 
       <Grid item xs={6} sx={{}}>
-        <Button variant="outlined" sx={{ bgcolor: 'yellow', mt: 2 }}><WhatsAppIcon />Live support</Button>
+        <Button variant="outlined"  sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"},mt:2}}><WhatsAppIcon />Live support</Button>
       </Grid>
       <Divider
         sx={{
@@ -74,6 +76,18 @@ export default function EditMenu() {
           mt: 1
         }}
       />
+       <Grid item xs={3}>
+          
+          
+          <Button
+            onClick={() => navigate(`/menudashboard/${companyId}`)}
+            variant='contained'
+            sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}
+          >
+            Back
+          </Button>
+        
+        </Grid>
       {/* {data.map((item) => (
       <React.Fragment key={item.id}> */}
       <Grid item xs={12} sx={{ mt: 5 }}>
@@ -135,7 +149,7 @@ export default function EditMenu() {
 
       <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
 
-        <Button sx={{ bgcolor: 'yellow' }} onClick={handleSubmit} fullWidth variant="contained" disableElevation>
+        <Button  sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}} onClick={handleSubmit} fullWidth variant="contained" disableElevation>
           Update item
         </Button>
 
