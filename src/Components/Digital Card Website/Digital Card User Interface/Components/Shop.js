@@ -20,7 +20,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import bg from "../../Digital Card Assets/footer.png";
+import bg from "../../Digital Card Assets/Footer New 1.png";
 import Footer from "./Footer";
 import { postData, serverURL } from '../../../Services/NodeServices'
 import { useEffect } from 'react'

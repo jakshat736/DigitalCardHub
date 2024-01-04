@@ -18,7 +18,7 @@ import { postData } from '../../../Services/NodeServices';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import bg from "../../Digital Card Assets/footer.png";
+import bg from "../../Digital Card Assets/Footer New 1.png";
 import Swal from 'sweetalert2';
 import { format } from 'date-fns';
 
@@ -160,7 +160,7 @@ export default function DeliverDetails(props) {
                 >
                     <Typography
                         style={{
-                            color: "#001E3C",
+                            color: "#000",
                             fontSize: matches1 ? 16 : 24,
                         }}
                     >
@@ -175,10 +175,10 @@ export default function DeliverDetails(props) {
                         }}
               
                     >
-                        <Typography sx={{ fontSize: matches1 ? 10 : 20,color:'#001E3C' }}>
+                        <Typography sx={{ fontSize: matches1 ? 10 : 20,color:'#000' }}>
                             Sub total
                         </Typography>
-                        <Typography sx={{ fontSize: matches1 ? 10 : 20,color:'#001E3C' }}>
+                        <Typography sx={{ fontSize: matches1 ? 10 : 20,color:'#000' }}>
                             ₹{location.state.subTotal}
                         </Typography>
                     </Box>
@@ -351,7 +351,7 @@ export default function DeliverDetails(props) {
                             <Button
                                 fullWidth
                                 style={{
-                                    backgroundColor: "#001E3C",
+                                    backgroundColor: "#F3B419",
                                     color: "#ffffff",
                                     fontSize: matches1 ? 14 : 15,
                                    
@@ -375,7 +375,7 @@ export default function DeliverDetails(props) {
 
    return (
     <>
-      <Grid container spacing={2} sx={{ bgcolor: "#001E3C" }}>
+      <Grid container spacing={2} sx={{ bgcolor: "#F3B419" }}>
 
         <Navbar />
         <Grid item xs={12} sx={{ mt: 15 }}>

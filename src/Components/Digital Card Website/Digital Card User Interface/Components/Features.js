@@ -17,20 +17,20 @@ import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import Aos from "aos";
 import 'aos/dist/aos.css';
 const data = [
-    { icon:<LocalPhoneIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#001e3c", mb: "1.5vh" }} /> , name: "One Click Call" },
-    { icon: <WhatsAppIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "One Click What's App" },
-    { icon: <EmailIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "One Click Email" },
-    { icon: <StarIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Get Customers Feedback" },
-    { icon: <LocationOnIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "One Click Navigation" },
-    { icon: <MobileFriendlyIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Add to Contact" },
-    { icon: <FacebookIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Website & Social Links" },
-    { icon: <ShareIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Share Unlimited" },
-    { icon: <StorefrontIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Online Store" },
-    { icon: <EditIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Easy To Update" },
-    { icon: <CollectionsIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Photo Gallary" },
-    { icon: <YouTubeIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "YouTube Video Gallery" },
-    { icon: <CurrencyRupeeIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Payment Section" },
-    { icon: <ChatBubbleIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Enquiry Form" },
+    { icon:<LocalPhoneIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#F3B419", mb: "1.5vh" }} /> , name: "One Click Call" },
+    { icon: <WhatsAppIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#F3B419", mb: "1.5vh" }} />, name: "One Click What's App" },
+    { icon: <EmailIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#F3B419", mb: "1.5vh" }} />, name: "One Click Email" },
+    { icon: <StarIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#F3B419", mb: "1.5vh" }} />, name: "Get Customers Feedback" },
+    { icon: <LocationOnIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#F3B419", mb: "1.5vh" }} />, name: "One Click Navigation" },
+    { icon: <MobileFriendlyIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#F3B419", mb: "1.5vh" }} />, name: "Add to Contact" },
+    { icon: <FacebookIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#F3B419", mb: "1.5vh" }} />, name: "Website & Social Links" },
+    { icon: <ShareIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#F3B419", mb: "1.5vh" }} />, name: "Share Unlimited" },
+    { icon: <StorefrontIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#F3B419", mb: "1.5vh" }} />, name: "Online Store" },
+    { icon: <EditIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#F3B419", mb: "1.5vh" }} />, name: "Easy To Update" },
+    { icon: <CollectionsIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#F3B419", mb: "1.5vh" }} />, name: "Photo Gallary" },
+    { icon: <YouTubeIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#F3B419", mb: "1.5vh" }} />, name: "YouTube Video Gallery" },
+    { icon: <CurrencyRupeeIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#F3B419", mb: "1.5vh" }} />, name: "Payment Section" },
+    { icon: <ChatBubbleIcon sx={{ fontSize: {xs:"1.5rem",lg:"2rem"}, color: "#F3B419", mb: "1.5vh" }} />, name: "Enquiry Form" },
 ]
 
 export default function Features() {
@@ -53,14 +53,14 @@ export default function Features() {
                             justifyContent: "center",
                             alignItems: "center",
                             flexDirection: "column",
-                            p: "4vh 2vw",
+                            p: "6vh 2vw",
                             height:80,
                             borderRadius: "10px",
                             transition: "box-shadow 0.3s ease, transform 0.3s ease, border 0.3s ease",
                             "&:hover": {
                                 boxShadow: "0px 0px 10px 2px rgba(0, 0, 0, 0.3)",
                                 transform: "scale(1.1)",
-                                border: "5px solid #000000",
+                                border: "5px solid #fff",
                                 m:"-10px"
                             },
                         }}
@@ -71,7 +71,7 @@ export default function Features() {
                                 fontSize: { xs: "1em", lg: "1.2em" },
                                 fontFamily: "OXANIUM",
                                 fontWeight: 600,
-                                color: "#001e3c",
+                                color: "#F3B419",
                                 textAlign: "center",
                             }}
                         >
@@ -93,19 +93,19 @@ export default function Features() {
                         justifyContent: "center",
                         alignItems: "center",
                         flexDirection: "column",
-                        p: "1.5vh 1vw",
+                        p: "3.5vh 1.5vw",
                         height:50,
                         borderRadius:2,
                         transition: "box-shadow 0.3s ease, transform 0.3s ease, border 0.3s ease",
                             "&:hover": {
                                 boxShadow: "0px 0px 10px 2px rgba(0, 0, 0, 0.3)",
                                 transform: "scale(1.1)",
-                                border: "5px solid #000000",
+                                border: "5px solid #fff",
                                 m:"-10px"
                             },
                     }}>
                         {item.icon}
-                        <Typography sx={{ fontSize: { xs: "0.7em", lg: "1.2em" }, fontFamily: "OXANIUM", fontWeight: 600, color: "#001e3c", textAlign: "center" }}>
+                        <Typography sx={{ fontSize: { xs: "0.7em", lg: "1.2em" }, fontFamily: "OXANIUM", fontWeight: 600, color: "#F3B419", textAlign: "center" }}>
                             {item.name}
                         </Typography>
                     </Paper>

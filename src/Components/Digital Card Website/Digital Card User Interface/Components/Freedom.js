@@ -84,7 +84,7 @@ export default function Freedom() {
                             fontSize: { xs: "1.9em", lg: "2.4em" },
                             fontWeight: 600,
                             fontFamily: "OXANIUM",
-                            color: { xs: "#ffffff", lg: "#043f77" },
+                            color: { xs: "#ffffff", lg: "#000" },
                             letterSpacing: "-1.2px",
                             m: "auto",
                             mt:"25vh" ,
@@ -102,7 +102,7 @@ export default function Freedom() {
                         fontSize: { xs: "1.1em", lg: "1.4em" },
                         fontWeight: 600,
                         fontFamily: "OXANIUM",
-                        color: { xs: "#ffffff", lg: "#043f77" },
+                        color: { xs: "#ffffff", lg: "#000" },
                         letterSpacing: "-1.2px",
                         m: "auto",
                         
@@ -243,7 +243,7 @@ export default function Freedom() {
                               type='number'
                             />
                         </Grid>
-                        <Grid item xs={12} sx={{display:'flex',justifyContent:'center',mt:2}}>
+                        <Grid item xs={12} sx={{display:'flex',justifyContent:'center',mt:2,backgroundColor: '#F3B419',"&:hover":{backgroundColor:'#F3B419' },color:"#000"}}>
                             <Button sx={{ paddingX: "80px",width:180 }} variant="contained" onClick={()=>handleSubmit()}>
                                 Send
                             </Button>

@@ -7,7 +7,7 @@ import HowItWorks from '../Components/HowItWorks';
 import DigCardECom from '../Components/DigCardECom';
 import SampleDCard from '../Components/SampleDCard';
 import Footer from '../Components/Footer';
-import bg from "../../Digital Card Assets/footer.png";
+import bg from "../../Digital Card Assets/Footer New 1.png";
 import ServiceWeOffer from '../Components/ServiceWeOffer';
 import Features from '../Components/Features';
 import DCSlider from '../Components/DCSlider';
@@ -42,8 +42,8 @@ export default function Home() {
     }, [])
     
     return (
-        <Box sx={{ background: "#001E3C", overflowX: "hidden" }}>
-            <Grid sx={{ position: 'fixed', bottom: 0, zIndex: 2 }}>
+        <Box sx={{ background: "#F3B419", overflowX: "hidden" }}>
+            <Grid sx={{ position: 'fixed', bottom: 0, zIndex:2 }}>
                 <Lower callParentFunction={parentFunction}/>
             </Grid>
             <Navbar />
@@ -71,8 +71,8 @@ export default function Home() {
                 <Features />
 
             </Container>
-            <Divider sx={{ backgroundColor: "#ffffff", width: "100%" }} />
-            <Box sx={{ backgroundImage: `url('${bg}')`, backgroundSize: "cover" }}>
+            
+            <Box sx={{ backgroundImage: `url('${bg}')`, backgroundSize: "cover",mt:5 }}>
                 <Footer />
             </Box>
         </Box>

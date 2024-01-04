@@ -5,18 +5,18 @@ import { Computer, Contactless, Nfc,LocalOffer, Autorenew, Smartphone, Storage, 
 import Aos from "aos";
 import 'aos/dist/aos.css'
 const data = [
-    { icon: <Contactless sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Contactless Transfer of Details" },
-    { icon: <Nfc sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Dynamic NFC Business Cards" },
-    { icon: <Computer sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Tech-Savvy Business Showcase" },
-    { icon: <LocalOffer sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Digital Discount Convenience" },
-    { icon: <Autorenew sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Material-Free Durability and Flexibility" },
-    { icon: <Smartphone sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Convenient Contact Exchange, Instantly" },
-    { icon: <Storage sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Smartphone Storage Simplicity" },
-    { icon: <CreditCard sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Sustainable Solution: NFC Business Cards" },
-    { icon: <TouchApp sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Enhanced User Experience NFC" },
-    { icon: <Settings sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Enhanced Connectivity: Programmable NFC" },
-    { icon: <BarChart sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Actionable Insights: NFC Analytics" },
-    { icon: <MonetizationOn sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#001e3c", mb: "1.5vh" }} />, name: "Cost-Effective Solution: NFC Cards" },
+    { icon: <Contactless sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#fff", mb: "1.5vh" }} />, name: "Contactless Transfer of Details" },
+    { icon: <Nfc sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#fff", mb: "1.5vh" }} />, name: "Dynamic NFC Business Cards" },
+    { icon: <Computer sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#fff", mb: "1.5vh" }} />, name: "Tech-Savvy Business Showcase" },
+    { icon: <LocalOffer sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#fff", mb: "1.5vh" }} />, name: "Digital Discount Convenience" },
+    { icon: <Autorenew sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#fff", mb: "1.5vh" }} />, name: "Material-Free Durability and Flexibility" },
+    { icon: <Smartphone sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#fff", mb: "1.5vh" }} />, name: "Convenient Contact Exchange, Instantly" },
+    { icon: <Storage sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#ffff", mb: "1.5vh" }} />, name: "Smartphone Storage Simplicity" },
+    { icon: <CreditCard sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#fff", mb: "1.5vh" }} />, name: "Sustainable Solution: NFC Business Cards" },
+    { icon: <TouchApp sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#ffff", mb: "1.5vh" }} />, name: "Enhanced User Experience NFC" },
+    { icon: <Settings sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#ffff", mb: "1.5vh" }} />, name: "Enhanced Connectivity: Programmable NFC" },
+    { icon: <BarChart sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#ffff", mb: "1.5vh" }} />, name: "Actionable Insights: NFC Analytics" },
+    { icon: <MonetizationOn sx={{ fontSize: {xs:"2.8rem",md:"2.5rem"}, color: "#ffff", mb: "1.5vh" }} />, name: "Cost-Effective Solution: NFC Cards" },
 ];
 
 export default function ServiceWeOffer() {
@@ -43,7 +43,7 @@ export default function ServiceWeOffer() {
                         // borderBottomRightRadius: "5em",
                         p: mobile?"1vh 1vw":tablet?"1.6vh 1.6vw":"4vh 2vw",
                         // background: "#FFDE00",
-                        background:"#80d4ff",
+                        background:"#F3B419",
                         boxShadow: "0px 0px 5px 2px rgba(0, 0, 0, 0.3)",
                         transition: "transform 0.3s ease, box-shadow 0.3s ease",
                         "&:hover": {
@@ -54,7 +54,7 @@ export default function ServiceWeOffer() {
                         },
                     }}>
                         {item.icon}
-                        <Typography sx={{ fontSize: "0.7rem", fontFamily: "OXANIUM", fontWeight: 600, color: "#001e3c", textAlign: "center" }}>
+                        <Typography sx={{ fontSize: "0.74rem", fontFamily: "OXANIUM", fontWeight: 600, color: "#ffff", textAlign: "center" }}>
                             {item.name}
                         </Typography>
                     </Paper>

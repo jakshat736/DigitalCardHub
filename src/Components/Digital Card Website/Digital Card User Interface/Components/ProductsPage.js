@@ -20,7 +20,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import bg from "../../Digital Card Assets/footer.png";
+import bg from "../../Digital Card Assets/Footer New 1.png";
 import Footer from "./Footer";
 import { postData, serverURL } from '../../../Services/NodeServices'
 import { useEffect } from 'react'
@@ -57,7 +57,7 @@ const ProductsPage = () => {
         return data.map((item) => {
             return (
                 <Grid item xs={5} md={3.8} sx={{ display: "flex", justifyContent: "center", mb: 2, mt: 2 }}>
-                    <Paper elevation={2} sx={{ width: "90%", bgcolor: "#001E3C", cursor: 'pointer' }} onClick={() => navigate(`/productscomponent/${item._id}`)}>
+                    <Paper elevation={2} sx={{ width: "90%", bgcolor: "#000", cursor: 'pointer' }} onClick={() => navigate(`/productscomponent/${item._id}`)}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
                                 <img src={`${serverURL}/images/${item.images[0]}`} width={"50%"} />
@@ -81,7 +81,7 @@ const ProductsPage = () => {
         })
     }
     return (
-        <Grid id='top' sx={{ bgcolor: "#001E3C" }}>
+        <Grid id='top' sx={{ bgcolor: "#F3B419" }}>
             <Navbar />
             <Grid container spacing={2} sx={{ display: "flex", justifyContent: 'center' }} >
                 <Grid item xs={12} sx={{ mt: 12 }}>

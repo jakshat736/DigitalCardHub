@@ -4,7 +4,7 @@ import bg from "../../Digital Card Assets/3.png";
 import Play from "../../Digital Card Assets/Play.jpg";
 import { useNavigate } from "react-router-dom";
 // import vid from "../../Digital Card Assets/Hero-vid-1.gif";
-import sideimg from "../../Digital Card Assets/hero_img.png";
+import sideimg from "../../Digital Card Assets/Group 1001.png";
 import './slider.css';
 import Aos from "aos";
 import 'aos/dist/aos.css'
@@ -50,7 +50,7 @@ export default function Hero() {
                             fontSize: { xs: "1.9em", lg: "2.3rem" },
                             fontWeight: 600,
                             fontFamily: "OXANIUM",
-                            color: { xs: "#ffffff", lg: "#043f77" },
+                            color: { xs: "#ffffff", lg: "#F3B419" },
                             letterSpacing: "-1.2px",
                             mt: { xs: "5.5vh", md: "10%" },
                             ml: "1.5%",
@@ -109,7 +109,7 @@ export default function Hero() {
                             display: { xs: "none", lg: "flex" }
                         }}
                     >
-                        digital business card platform makes <br />designing a card simple, convenient, and <br />reliable.
+                        Digital business card platform makes <br />designing a card simple, convenient, and <br />reliable.
                     </Typography>
                     <Typography
                         sx={{
@@ -125,7 +125,7 @@ export default function Hero() {
                             display: { xs: "block", lg: "none" }
                         }}
                     >
-                        digital business card platform makes designing a card simple, convenient, and reliable.create what you need in Just 5 minutes
+                        Digital business card platform makes designing a card simple, convenient, and reliable.create what you need in just 5 minutes.
                     </Typography>
                     <Typography
                         sx={{
@@ -139,7 +139,7 @@ export default function Hero() {
                             display: { xs: "none", md: "flex" }
                         }}
                     >
-                        create what you need in Just 5 minutes
+                        create what you need in just 5 minutes
                     </Typography>
                     <Grid container spacing={2} sx={{ mb: { xs: 0, md: "17%" } }}>
                         <Grid
@@ -157,7 +157,7 @@ export default function Hero() {
                             <Button
                                 onClick={() => navigate("/digitalcardlogin")}
                                 sx={{
-                                    backgroundImage: `linear-gradient(to bottom left,#80ffe5,#ffffff,#ffffff)`,
+                                    backgroundImage: `linear-gradient(to bottom left,#F3B419,#ffffff,#ffffff)`,
                                     width: mobile ? "50%" : medium ? "35%" : "60%",
                                     p: mobile ? "1.5vh 3vw" : "1.5% 0%",
                                     borderRadius: "3em",
@@ -175,7 +175,7 @@ export default function Hero() {
                                         fontSize: mobile ? "1.2em" : medium ? "1.6em" : "1.7em",
                                         fontWeight: 700,
                                         fontFamily: "OXANIUM",
-                                        color: "#043f77",
+                                        color: "#F3B419",
                                         display: "flex",
                                         justifyContent: "center",
                                         alignItems: "center",

@@ -17,7 +17,7 @@ const LoadingScreen1 = () => {
         return () => clearTimeout(timer);
       }, [navigate]);
   return (
-    <Grid style={{backgroundColor:'#001d3e',width:"100%",height:'790px',display:'flex',justifyContent:'center',alignItems:"center",flexDirection:'column'}}>
+    <Grid style={{backgroundColor:'#F3B419',width:"100%",height:'790px',display:'flex',justifyContent:'center',alignItems:"center",flexDirection:'column'}}>
     <video loop muted autoPlay  width='390px' height='400px'>
 
       <source type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;" src={intro}></source>     
