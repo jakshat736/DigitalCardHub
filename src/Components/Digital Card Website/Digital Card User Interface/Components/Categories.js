@@ -60,18 +60,18 @@ export default function Categories() {
                         height:40, 
                         p: mobile?"1vh 1vw":tablet?"1.6vh 1.6vw":"4vh 2vw",
                         // background: "#FFDE00",
-                        backgroundImage: "linear-gradient(to left,#6699ff,#ffffb3)",
+                        backgroundImage: "linear-gradient(to left,#F3B419,#ffffb3)",
                         boxShadow: "0px 0px 5px 2px rgba(0, 0, 0, 0.3)",
                         transition: "transform 0.3s ease, box-shadow 0.3s ease",
                         "&:hover": {
                             boxShadow: "0px 0px 10px 3px rgba(0, 0, 0, 0.5)",
                             transform: "scale(1.02)",
-                            border: "5px solid #000000",
+                            border: "5px solid #ffff",
                             m:"-10px"
                         },
                     }}>
                         {item.icon}
-                        <Typography sx={{ fontSize: mobile?"1rem":tablet?"1.1rem":"1.6em", fontFamily: "OXANIUM", fontWeight: 600, color: "#001e3c", textAlign: "center" }}>
+                        <Typography sx={{ fontSize: mobile?"1rem":tablet?"1.1rem":"1.6em", fontFamily: "OXANIUM", fontWeight: 600, color: "#fff", textAlign: "center" }}>
                             {item.name}
                         </Typography>
                     </Paper>
@@ -90,7 +90,7 @@ export default function Categories() {
             <Typography sx={{ fontSize: { xs: "2.5em", lg: "3.2em" }, fontFamily: "OXANIUM", fontWeight: 700, color: "#ffffff", textAlign: "center", mt: { xs: "4vh", lg: "6vh" } }}>
                 Categories We Work With
             </Typography>
-            <Typography sx={{ width: { xs: "95vw", lg: "70vw" }, fontSize: "1em", fontFamily: "OXANIUM", fontWeight: 400, color: "#ffffff", textAlign: "center", mb: { xs: "8vh", lg: "12vh" }, mt: { xs: "4vh", lg: "6vh" } }}>
+            <Typography sx={{ width: { xs: "95vw", lg: "70vw" }, fontSize: "1.5em", fontFamily: "OXANIUM", fontWeight: 400, color: "#ffffff", textAlign: "center", mb: { xs: "8vh", lg: "12vh" }, mt: { xs: "4vh", lg: "6vh" } }}>
                 If you meet your prospective customers in person (one to one meeting) or atleast you do telephonic conversations to market and sell your products or services, then our Digital Business Card will help convey your message in a more strategic way.
             </Typography>
             <Grid container spacing={3} sx={{ paddingX:{xs:"10px",md:"180px"},paddingY:"5px",pl:"200px" }}>

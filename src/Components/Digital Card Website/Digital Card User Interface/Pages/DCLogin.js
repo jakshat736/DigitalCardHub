@@ -186,7 +186,7 @@ export default function DCLogin() {
 
 
     return (
-        <Box sx={{ background: "#001E3C", width: "100vw", height: "100vh", overflowX: "hidden" }}>
+        <Box sx={{ background: "#F3B419", width: "100vw", height: "100vh", overflowX: "hidden" }}>
             <Navbar />
             <Container maxWidth="xl" sx={{ display: "flex", justifyContent: "center", alignItems: "center", mt: "5.5%", pt: "3%" }}>
                 <Box sx={{ background: "#ffffff", p: 0, width: {xs:"100vw",md:"80vw"},borderRadius:{xs:"4%",md:"0%"}, mt: { xs: "22%", lg: "0%" } }}>
@@ -229,13 +229,13 @@ export default function DCLogin() {
                                         fullWidth
                                         onClick={handleSubmit}
                                         sx={{
-                                            background: "#001E3C",
+                                            background: "#F3B419",
                                             color: "#ffffff",
                                             p: "2% 10%",
                                             fontSize: { xs: "0.8em", md: "1.1em", lg: "1.2em" },
                                             fontWeight: 600,
                                             "&:hover": {
-                                                background: "#023569",
+                                                background: "#F3B419",
                                                 color: "#ffffff",
                                             }
                                         }}

@@ -2,7 +2,7 @@ import { Grid, Typography, Paper, Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 
-import bg from "../../Digital Card Assets/footer.png";
+import bg from "../../Digital Card Assets/Footer New 1.png";
 import Footer from "./Footer";
 const IosDevices = [
   {
@@ -870,7 +870,7 @@ const Compatibility = () => {
     });
   };
   return (
-    <Grid id='top' sx={{bgcolor:"#001E3C"}}>
+    <Grid id='top' sx={{bgcolor:"#F3B419"}}>
         <Navbar/>
       <Grid container spacing={2}>
         <Grid item xs={12} sx={{mt:15}}>
@@ -890,7 +890,7 @@ const Compatibility = () => {
           <AndroidComponent />
         </Grid>
       </Grid>
-      <Box sx={{backgroundImage:`url('${bg}')`,backgroundSize:"cover"}}>
+      <Box sx={{backgroundImage:`url('${bg}')`,backgroundSize:"cover",mt:5}}>
                 <Footer />
             </Box>
     </Grid>

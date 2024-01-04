@@ -1,6 +1,6 @@
 import { Box, Container, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
-import img from "../../Digital Card Assets/why_choose.png";
+import img from "../../Digital Card Assets/Group 1004.png";
 import { Parallax } from 'react-scroll-parallax';
 
 

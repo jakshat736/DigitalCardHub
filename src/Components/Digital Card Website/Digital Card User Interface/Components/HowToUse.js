@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import { Grid, Box, Typography, Paper, Container, useTheme, useMediaQuery } from "@mui/material";
 import Footer from "./Footer";
 import TopBg from "../../Digital Card Assets/how to use bg.jpg";
-import bg from "../../Digital Card Assets/footer.png";
+import bg from "../../Digital Card Assets/Footer New 1.png";
 import step1 from "../../Digital Card Assets/step1.jpg";
 import step2 from "../../Digital Card Assets/step2.jpg";
 import step3 from "../../Digital Card Assets/step3.jpg";
@@ -21,7 +21,7 @@ const HowToUse = () => {
     const tablet = useMediaQuery(theme.breakpoints.down(1280));
 
     return (
-        <Grid id="top" sx={{ backgroundImage: "linear-gradient(#001E3C,#81909E,#001E3C)", minHeight: "100vh" }}>
+        <Grid id="top" sx={{ backgroundColor:'#F3B419', minHeight: "100vh" }}>
             <Navbar />
             <Grid container
                 spacing={2}
@@ -237,7 +237,7 @@ const HowToUse = () => {
                 </Grid>
             </Grid>
 
-            <Box sx={{ backgroundImage: `url('${bg}')`, backgroundSize: "cover" }}>
+            <Box sx={{ backgroundImage: `url('${bg}')`, backgroundSize: "cover",mt:5}}>
                 <Footer />
             </Box>
         </Grid >

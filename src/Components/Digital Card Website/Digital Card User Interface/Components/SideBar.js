@@ -65,10 +65,10 @@ export default function TemporaryDrawer() {
 
         const list = (anchor) => (
                 <Box
-                  sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250, background: "#001E3C", height: "100vh" }}
+                  sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250, background: "#F3B419", height: "100vh" }}
                   role="presentation"
                 >
-                  <Typography sx={{ fontSize: "1.5em", fontWeight: 700, color: "#ffffff", textAlign: "center", mt: 2 }}>
+                  <Typography sx={{ fontSize: "1.7em", fontWeight: 700, color: "#ffffff", textAlign: "center", mt: 2 }}>
                     Digital Card Hub
                   </Typography>
                   <List>

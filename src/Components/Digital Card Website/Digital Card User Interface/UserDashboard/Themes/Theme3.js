@@ -31,6 +31,7 @@ import {
   Share,
   Twitter,
   WhatsApp,
+  
 } from "@mui/icons-material";
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 
@@ -43,7 +44,19 @@ import EmailIcon from "@mui/icons-material/Email";
 import CallIcon from "@mui/icons-material/Call";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import WhatsAppgif from "../../../Digital Card Assets/Whatsapp.gif";
+import instagif from "../../../Digital Card Assets/Instagram.gif";
+import facebookgif from "../../../Digital Card Assets/Facebook.gif";
+import emailgif from "../../../Digital Card Assets/Gmail.gif";
+import linkedgif from "../../../Digital Card Assets/Linkedin.gif";
+import youtubegif from "../../../Digital Card Assets/Youtube.gif";
+import locationgif from "../../../Digital Card Assets/Location Pin.gif";
+import browsergif from "../../../Digital Card Assets/Internet.gif";
+import reviewgif from "../../../Digital Card Assets/Star.gif";
+import twittergif from "../../../Digital Card Assets/Twitter.gif";
+import callgif from "../../../Digital Card Assets/Incoming Call.gif";
+import sharegif from "../../../Digital Card Assets/Share.gif";
+
 import Clock from "react-live-clock";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { postData } from "../../../../Services/NodeServices";
@@ -52,6 +65,7 @@ import phonepe from './ThemeAssets/phonepe.png'
 import paytm from './ThemeAssets/paytm.png'
 import gpay from './ThemeAssets/gpay.png'
 import RateReviewIcon from '@mui/icons-material/RateReview';
+
 export default function Theme3({ data, products, gallery, ecommerce }) {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down(600));
@@ -384,7 +398,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
   return (
     <Grid
       style={{
-        backgroundColor: "wheat",
+        backgroundColor: "#ffff",
         height: "100%",
         width: "100%",
         display: "flex",
@@ -416,7 +430,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
           <Button
             variant="contained"
             sx={{
-              bgcolor: "#ebebeb",
+              bgcolor: "#F3B419",
               color: "#008069",
               fontWeight: 600,
               borderTopRightRadius: 20,
@@ -467,7 +481,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
           <Button
             variant="contained"
             sx={{
-              bgcolor: "#ebebeb",
+              bgcolor: "#F3B419",
               color: "#0a290a",
               fontWeight: 600,
               borderTopRightRadius: 20,
@@ -540,7 +554,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
           md={12}
           sx={{
             color: "#fff",
-            bgcolor: "#ebebeb",
+            bgcolor: "#F3B419",
             width: "100%",
             minHeight: { xs: 600, sm: 600, md: 600 },
             zIndex:1
@@ -567,7 +581,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             <Grid item xs={12} sx={{display:"flex", marginBottom: 1, marginTop: -3 }}>
               <Typography
                 sx={{
-                  fontSize: "1.5rem",
+                  fontSize: "1.6rem",
                   fontWeight: 600,
                   color: "#0a290a",
                 }}
@@ -578,7 +592,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             <Grid item xs={12} sx={{display:"flex", marginBottom: 1, marginTop: -3 }}>
               <Typography
                 sx={{
-                  fontSize: "1.0rem",
+                  fontSize: "1.2rem",
                   fontWeight: 300,
                   color: "#0a290a",
                 }}
@@ -589,7 +603,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             <Grid item xs={12} sx={{ display:"flex",marginBottom: 1, marginTop: -3 }}>
               <Typography
                 sx={{
-                  fontSize: "1.0rem",
+                  fontSize: "1.1rem",
                   fontWeight: 300,
                   color: "#0a290a",
                 }}
@@ -600,7 +614,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             <Grid item xs={12} sx={{display:"flex", marginBottom: 1, marginTop: -3 }}>
               <Typography
                 sx={{
-                  fontSize: "1.0rem",
+                  fontSize: "1.1rem",
                   fontWeight: 300,
                   color: "#0a290a",
                 }}
@@ -613,16 +627,17 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 href={`https://wa.me/+91${data.phoneNumber}?text=`}
                 onClick={() => handleWhatsappUpdate()}
                 sx={{
-                  backgroundColor: "#fff",
+                  
                   color: "#000",
-                  border: 1,
+                  backgroundColor: "#fff",
+                 
                   "&:hover": {
-                    backgroundColor: "wheat",
+                    backgroundColor: "#fff",
                   },
                 }}
                 variant="outlined"
               >
-                <WhatsAppIcon sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
+                <img src={WhatsAppgif} style={{width:40,}}/>
               </IconButton>
             </Grid>
             <Grid
@@ -637,15 +652,16 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 href={`https://www.instagram.com/${data.igLink}`}
                 onClick={() => handleInstaUpdate()}
                 sx={{
-                  backgroundColor: "#fff",
+                  
                   color: "#000",
-                  border: 1,
+                  backgroundColor: "#fff",
+                 
                   "&:hover": {
-                    backgroundColor: "wheat",
+                    backgroundColor: "#fff",
                   },
                 }}
               >
-                <InstagramIcon sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
+                <img src={instagif} style={{width:40,}}/>
               </IconButton>
             </Grid>
             <Grid
@@ -659,15 +675,16 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               <IconButton
                 href={`mailto:${data.Email}?body=Query%20About%20Business`}
                 sx={{
-                  backgroundColor: "#fff",
+                  
                   color: "#000",
-                  border: 1,
+                  backgroundColor: "#fff",
+                 
                   "&:hover": {
-                    backgroundColor: "wheat",
+                    backgroundColor: "#fff",
                   },
                 }}
               >
-                <EmailIcon sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
+                <img src={emailgif} style={{width:40,}}/>
               </IconButton>
             </Grid>
             <Grid
@@ -681,15 +698,16 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               <IconButton
                 href={`tel:${data.phoneNumber}`}
                 sx={{
-                  backgroundColor: "#fff",
+                  
                   color: "#000",
-                  border: 1,
+                  backgroundColor: "#fff",
+                 
                   "&:hover": {
-                    backgroundColor: "wheat",
+                    backgroundColor: "#fff",
                   },
                 }}
               >
-                <CallIcon sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
+                <img src={callgif} style={{width:40,}}/>
               </IconButton>
             </Grid>
             <Grid
@@ -704,15 +722,16 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 href={`https://www.facebook.com/${data.fbLink}`}
                 onClick={() => handleFbUpdate()}
                 sx={{
-                  backgroundColor: "#fff",
+                  
                   color: "#000",
-                  border: 1,
+                  backgroundColor: "#fff",
+                 
                   "&:hover": {
-                    backgroundColor: "wheat",
+                    backgroundColor: "#fff",
                   },
                 }}
               >
-                <FacebookIcon sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
+                <img src={facebookgif} style={{width:40,}}/>
               </IconButton>
             </Grid>
             <Grid
@@ -727,15 +746,16 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 href={`https://twitter.com/${data.TwitterLink}`}
                 // onClick={() => handleFbUpdate()}
                 sx={{
-                  backgroundColor: "#fff",
+                  
                   color: "#000",
-                  border: 1,
+                  backgroundColor: "#fff",
+                 
                   "&:hover": {
-                    backgroundColor: "wheat",
+                    backgroundColor: "#fff",
                   },
                 }}
               >
-                <Twitter sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
+                <img src={twittergif} style={{width:40,}}/>
               </IconButton>
             </Grid>
             <Grid
@@ -750,15 +770,16 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 href={`https://www.linkedin.com/in/${data. LinkdnLink}`}
                 // onClick={() => handleFbUpdate()}
                 sx={{
-                  backgroundColor: "#fff",
+                  
                   color: "#000",
-                  border: 1,
+                  backgroundColor: "#fff",
+                 
                   "&:hover": {
-                    backgroundColor: "wheat",
+                    backgroundColor: "#fff",
                   },
                 }}
               >
-                <LinkedIn sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
+                <img src={linkedgif} style={{width:40,}}/>
               </IconButton>
             </Grid>
             <Grid
@@ -774,15 +795,16 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 href={`https://www.youtube.com/@${data.YoutubeLink}`}
                 onClick={()=>handleLinkdinUpdate()}
                 sx={{
-                  backgroundColor: "#fff",
+                  
                   color: "#000",
-                  border: 1,
+                  backgroundColor: "#fff",
+                 
                   "&:hover": {
-                    backgroundColor: "wheat",
+                    backgroundColor: "#fff",
                   },
                 }}
               >
-                <YouTubeIcon sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
+                <img src={youtubegif} style={{width:40,}}/>
               </IconButton>
             </Grid>
             <Grid
@@ -798,15 +820,16 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 href={`${data.location}`}
                 // onClick={() => handleLinkdinUpdate()}
                 sx={{
-                  backgroundColor: "#fff",
+                  
                   color: "#000",
-                  border: 1,
+                  backgroundColor: "#fff",
+                 
                   "&:hover": {
-                    backgroundColor: "wheat",
+                    backgroundColor: "#fff",
                   },
                 }}
               >
-                <LocationOn sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
+                <img src={locationgif} style={{width:40,}}/>
               </IconButton>
             </Grid>
             <Grid
@@ -822,27 +845,69 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 href={`${data.website}`}
                 // onClick={() => handleLinkdinUpdate()}
                 sx={{
-                  backgroundColor: "#fff",
+                  
                   color: "#000",
-                  border: 1,
+                  backgroundColor: "#fff",
+                 
                   "&:hover": {
-                    backgroundColor: "wheat",
+                    backgroundColor: "#fff",
                   },
                 }}
               >
-                <Language sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
+                  <img src={browsergif} style={{width:40,}}/>
               </IconButton>
             </Grid>
             <Grid item xs={2} sx={{display:data.GoogleMapLink!=''?'block':'none'}}>
              <IconButton
                  href={`${data.GoogleMapLink}`}
                 // onClick={()=>handleInstaUpdate()}
-                sx={{ color: "#fff", "&:hover": {bgcolor:"#fff"},bgcolor:'#fff',border:1,borderStyle:"solid" }}
+                sx={{
+                  
+                  color: "#000",
+                  backgroundColor: "#fff",
+                 
+                  "&:hover": {
+                    backgroundColor: "#fff",
+                  },
+                }}
               >
-                <img src={review} width={35} />
+                <img src={reviewgif} width={35} />
               </IconButton>
                
               </Grid>
+
+              <Grid
+              item
+              xs={2}
+              sx={{
+                display: "flex",
+               
+                cursor: "pointer",
+              }}
+              
+            >
+              <IconButton
+                
+                sx={{
+                  
+                  color: "#000",
+                  backgroundColor: "#fff",
+                 
+                  "&:hover": {
+                    backgroundColor: "#fff",
+                  },
+                }}
+                onClick={() =>
+                  handleClick(
+                    `${data.companyId}`,
+                    `http://digitalcardhub.in/#/${data.companyId}`
+                  )
+                }
+              >
+                <img src={sharegif} style={{width:40,}}/>
+                {/* &nbsp;&nbsp;&nbsp; SHARE YOUR DETAIL */}
+              </IconButton>
+            </Grid>
           </Grid>
 
           <Grid
@@ -950,36 +1015,38 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             >
               <TextField
                 sx={{
+                  mt:4,
+                  mb:2,
                   "& .MuiOutlinedInput-root": {
                     "&:hover fieldset": {
-                      borderColor: "#000000", // Outline color when hovering
+                      borderColor: "#ffff", // Outline color when hovering
                     },
 
                     "&.Mui-focused fieldset": {
-                      borderColor: "#000000", // Outline color when focused
+                      borderColor: "#fff", // Outline color when focused
                     },
                   },
 
                   "& label": {
                     paddingLeft: (theme) => theme.spacing(2),
-                    color: "#000000",
+                    color: "#fff",
                     "&.Mui-focused": {
-                      color: "#000000", // Change label color when focused
+                      color: "#000", // Change label color when focused
                     },
                   },
                   "& input": {
                     paddingLeft: (theme) => theme.spacing(0),
-                    color: "#000000",
+                    color: "#000",
                     zIndex: 1,
                   },
 
                   "& fieldset": {
                     paddingLeft: (theme) => theme.spacing(2.5),
                     borderRadius: "15px",
-                    backgroundColor: "wheat",
+                    backgroundColor: "#ffff",
                     "&:hover": {
                       borderColor: "#000000",
-                      backgroundColor: "wheat",
+                      backgroundColor: "#fff",
                     },
                   },
                 }}
@@ -1028,47 +1095,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             spacing={2}
             sx={{ dispaly: "flex", justifyContent: "center",mb:1 }}
           >
-            <Grid
-              item
-              xs={10}
-              sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-                cursor: "pointer",
-              }}
-              onClick={() =>
-                handleClick(
-                  `${data.companyId}`,
-                  `https://digitalcardhub.in/#/${data.companyId}`
-                )
-              }
-            >
-              <Button
-                fullWidth
-                sx={{
-                  paddingX: "25px",
-                  paddingY: "10px",
-                  bgcolor: "#ebebeb",
-                  color: "#000000",
-                  fontWeight: 600,
-                  borderRadius: 2,
-                  border: "1px solid #000000",
-                  "&:hover": {
-                    bgcolor: "wheat",
-                    color: "#000000",
-                  },
-                }}
-                onClick={() =>
-                  handleClick(
-                    `${data.companyId}`,
-                    `http://digitalcardhub.in/#/${data.companyId}`
-                  )
-                }
-              >
-                <Share />
-                &nbsp;&nbsp;&nbsp; SHARE YOUR DETAIL
-              </Button>
-            </Grid>
+           
             <Grid
               item
               xs={10}
@@ -1085,25 +1112,12 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               onClick={() => handleSave()}
             >
               <Button
-                fullWidth
-                sx={{
-                  paddingX: "30px",
-                  paddingY: "10px",
-                  bgcolor: "#ebebeb",
-                  color: "#000000",
-                  fontWeight: 600,
-                  borderRadius: 2,
-                  border: "1px solid #000000",
-                  "&:hover": {
-                    bgcolor: "wheat",
-                    color: "#000000",
-                  },
-                  boxShadow:20
-                }}
+                
+               
                 onClick={() => handleSave()}
               >
-                <SaveAlt />
-                &nbsp;&nbsp;&nbsp;Add To Contact
+                
+                {/* &nbsp;&nbsp;&nbsp;Add To Contact */}
               </Button>
             </Grid>
             
@@ -1113,20 +1127,20 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             item
             xs={12}
             md={12}
-            sx={{ display: data.profile=='false'?'none':"flex", justifyContent: "center", margin: 0 }}
+            sx={{ display: data.profile=='false'?'none':"flex", justifyContent: "center", margin: 0,mt:5, }}
           >
             <Button
               variant="contained"
               sx={{
-                borderRadius: 2,
-                bgcolor: "wheat",
-                color: "#000000",
+                
+                bgcolor: "#fff",
+                color: "#F3B419",
                 fontWeight: 600,
                 borderRadius: 2,
-                border: "1px solid #000000",
+                
                 "&:hover": {
-                  bgcolor: "#ebebeb",
-                  color: "#000000",
+                  bgcolor: "#F3B419",
+                  color: "#ffff",
                 },
               }}
               onClick={() => setFullCard(!fullCard)}
@@ -1142,9 +1156,9 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
           md={12}
           sx={{
             display: fullCard ? "block" : "none",
-            color: "#fff",
+            color: "#000",
 
-            backgroundColor: "#ebebeb",
+            backgroundColor: "#F3B419",
             width: "100%",
             minHeight: { xs: "auto", sm: "auto", md: "auto" },
             marginTop: 2,
@@ -1157,11 +1171,14 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              
             }}
           >
-            <Grid item xs={12} md={12}>
+            <Grid item xs={12} md={12} >
+
             <p
               className="theme3heading"
+              style={{color:"#000"}}
               >
                 {" "}
                 About Us
@@ -1224,8 +1241,8 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
           md={12}
           sx={{
             display: ecommerce.length != 0 && fullCard ? "block" : "none",
-            color: "#fff",
-            backgroundColor: "#ebebeb",
+            color: "#000",
+            backgroundColor: "#F3B419",
             width: "100%",
             minHeight: { xs: "auto", sm: "100%", md: "auto" },
             marginTop: 2,
@@ -1244,7 +1261,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             <Grid item xs={12} md={12}>
               <Typography
                 textAlign={"center"}
-                sx={{ fontSize: 25, color: "#000" }}
+                sx={{ fontSize: 25, color: "#000",fontWeight:"bold" }}
               >
                 Products / Gallery
               </Typography>
@@ -1301,7 +1318,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 ? "block"
                 : "none",
             color: "#fff",
-            backgroundColor: "#ebebeb",
+            backgroundColor: "#F3B419",
             width: "100%",
             minHeight: { xs: "auto", sm: "100%", md: "auto" },
             marginTop: 2,
@@ -1319,7 +1336,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
           >
             <Typography
               textAlign={"center"}
-              sx={{ fontSize: 25, color: "#000" }}
+              sx={{ fontSize: 25, color: "#000",fontWeight:"bold" }}
             >
               See Our Videos
             </Typography>
@@ -1689,7 +1706,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
           sx={{
             display: fullCard ? "block" : "none",
             color: "#fff",
-            backgroundColor: "#ebebeb",
+            backgroundColor: "#F3B419",
             width: "100%",
             minHeight: { xs: "auto", sm: "100%", md: "auto" },
             marginTop: 2,
@@ -1714,7 +1731,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   fontWeight: 700,
                 }}
               >
-                Contact Us
+                Get in touch
               </Grid>
               <Grid
                 sx={{
@@ -1746,11 +1763,11 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   sx={{
                     "& .MuiOutlinedInput-root": {
                       "&:hover fieldset": {
-                        borderColor: "#EBD8B2", // Outline color when hovering
+                        borderColor: "#ffff", // Outline color when hovering
                       },
 
                       "&.Mui-focused fieldset": {
-                        borderColor: "#EBD8B2", // Outline color when focused
+                        borderColor: "#ffff", // Outline color when focused
                       },
                     },
 
@@ -1758,7 +1775,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                       paddingLeft: (theme) => theme.spacing(2),
                       color: "#654E92",
                       "&.Mui-focused": {
-                        color: "#654E92", // Change label color when focused
+                        color: "#fff", // Change label color when focused
                       },
                     },
                     "& input": {
@@ -1772,17 +1789,17 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                       borderRadius: 2,
                       backgroundColor: "#fff",
                       "&:hover": {
-                        borderColor: "#EBD8B2",
+                        borderColor: "#ffff",
                       },
                     },
                     mb: "10px",
-                    color: "#654E92",
+                    color: "#ffff",
                   }}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
                         <Typography
-                          sx={{ color: "#654E92", zIndex: 1 }}
+                          sx={{ color: "#ffff", zIndex: 1 }}
                         ></Typography>
                       </InputAdornment>
                     ),
@@ -1809,11 +1826,11 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   sx={{
                     "& .MuiOutlinedInput-root": {
                       "&:hover fieldset": {
-                        borderColor: "#EBD8B2", // Outline color when hovering
+                        borderColor: "#ffff", // Outline color when hovering
                       },
 
                       "&.Mui-focused fieldset": {
-                        borderColor: "#EBD8B2", // Outline color when focused
+                        borderColor: "#ffff", // Outline color when focused
                       },
                     },
 
@@ -1872,11 +1889,11 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   sx={{
                     "& .MuiOutlinedInput-root": {
                       "&:hover fieldset": {
-                        borderColor: "#EBD8B2", // Outline color when hovering
+                        borderColor: "#fff", // Outline color when hovering
                       },
 
                       "&.Mui-focused fieldset": {
-                        borderColor: "#EBD8B2", // Outline color when focused
+                        borderColor: "#ffff", // Outline color when focused
                       },
                     },
 
@@ -1917,14 +1934,14 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   variant="contained"
                   sx={{
                     marginY: "12px",
-                    paddingX: "20px",
+                    
                     bgcolor: "#fff",
-                    color: "#000",
+                    color: "#F3B419",
                     fontWeight: 600,
-                    border: "1px solid #ebebeb",
+                    border: "1px solid #F3B419",
                     "&:hover": {
-                      bgcolor: "#fff",
-                      color: "#ebebeb",
+                      bgcolor: "#F3B419",
+                      color: "#ffff",
                     },
                   }}
                   onClick={()=>handleSubmit(data.customerId)}
@@ -1941,7 +1958,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
           md={12}
           sx={{
             color: "#fff",
-            backgroundColor: "#ebebeb",
+            backgroundColor: "#F3B419",
             width: "100%",
             minHeight: { xs: "auto", sm: "auto", md: "auto" },
             marginTop: 2,

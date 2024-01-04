@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import bg from "../../Digital Card Assets/footer.png";
+import bg from "../../Digital Card Assets/Footer New 1.png";
 import { SessionContext } from '../../../Services/SessionContext';
 import { postData, serverURL } from '../../../Services/NodeServices';
 import { useState } from 'react';
@@ -149,7 +149,7 @@ const handleRemove = async (item) => {
                             <Grid style={{ display: "flex", flexDirection: "row" }}>
                                 <Typography
                                     sx={{
-                                        color: "#001E3C",
+                                        color: "#000",
                                         width: '90%',
                                         fontSize: { xs:16,md: 25},
                                         margin: matches1 ? "0px 0px 8px" : "0px 15px",
@@ -200,13 +200,12 @@ const handleRemove = async (item) => {
                                 }}
                                
                             >
-                                <Box style={{ display: "flex",
-    flexDirection: "row",}}>
+                                <Box style={{ display: "flex",  flexDirection: "row",}}>
                                     <AddCircleIcon
                                         onClick={() => handleAdd(item)}
                                         style={{
                                             fontSize: matches1 ? 16 : 30,
-                                            color: "#001E3C",
+                                            color: "#000",
                                             margin: 2,
                                             marginRight: 10,
                                             cursor:"pointer"
@@ -228,7 +227,7 @@ const handleRemove = async (item) => {
                                         onClick={() => handleRemove(item)}
                                         style={{
                                             fontSize: matches1 ? 16 : 30,
-                                            color: "#001E3C",
+                                            color: "#000",
                                             margin: 2,
                                             marginLeft: 10,
                                             cursor:"pointer"
@@ -427,8 +426,8 @@ const handleOrderSummary = () => {
                             variant="outlined"
                             fullWidth
                             style={{
-                                color: "#001E3C",
-                                border: "2px solid #001E3C",
+                                color: "#000",
+                                border: "2px solid #F3B419",
                                 fontSize: matches1 ? 8 : 11,
                             }}
                             onClick={()=>navigate('/')}
@@ -441,7 +440,7 @@ const handleOrderSummary = () => {
                             onClick={() => navigate('/details', { state: { products: cartProducts, discount: discountPrice, subTotal: subTotal, totalPrice:(subTotal - discountPrice)+(((subTotal - discountPrice)*18)/100) } })}
                             fullWidth
                             style={{
-                                backgroundColor: "#001E3C",
+                                backgroundColor: "#F3B419",
                                 color: "#ffffff",
                                 fontSize: matches1 ? 8 : 12,
                             }}
@@ -457,7 +456,7 @@ const handleOrderSummary = () => {
 
   return (
     <>
-      <Grid container spacing={2} sx={{ bgcolor: "#001E3C" }}>
+      <Grid container spacing={2} sx={{ bgcolor: "#F3B419" }}>
 
         <Navbar />
         <Grid item xs={12} sx={{ mt: 15 }}>

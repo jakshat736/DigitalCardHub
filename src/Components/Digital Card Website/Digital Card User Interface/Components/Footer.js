@@ -65,10 +65,10 @@ export default function Footer() {
           >
             <Typography
               sx={{
-                fontSize: { xs: "1.6em", lg: "2.4em" },
+                fontSize: { xs: "1.6em", lg: "2.6em" },
                 fontWeight: 700,
                 fontFamily: "OXANIUM",
-                color: "#001E3C",
+                color: "#000",
                 letterSpacing: "-0.2px",
                 mt: { xs: 0, md: "4%" },
                 textAlign: "left",
@@ -79,10 +79,10 @@ export default function Footer() {
             <Box>
               <Typography
                 sx={{
-                  fontSize: "1.1em",
+                  fontSize: "1.3em",
                   fontWeight: 500,
                   fontFamily: "OXANIUM",
-                  color: "#001E3C",
+                  color: "#000",
                   letterSpacing: "-0.2px",
                   // mt: { xs: 0, md: "4%" },
                   textAlign: "left",
@@ -94,10 +94,10 @@ export default function Footer() {
             <Box>
               <Typography
                 sx={{
-                  fontSize: "1.1em",
+                  fontSize: "1.3em",
                   fontWeight: 500,
                   fontFamily: "OXANIUM",
-                  color: "#001E3C",
+                  color: "#000",
                   letterSpacing: "-0.2px",
                   textAlign: "left",
                 }}
@@ -133,7 +133,7 @@ export default function Footer() {
                       sx={{
                         fontSize: "0.9rem",
                         fontFamily: "OXANIUM",
-                        color: "#001E3C",
+                        color: "#000",
                       }}
                     >
                       Contact Us
@@ -142,7 +142,7 @@ export default function Footer() {
                       sx={{
                         fontSize: "0.9rem",
                         fontFamily: "OXANIUM",
-                        color: "#001E3C",
+                        color: "#000",
                       }}
                     >
                       Terms and conditions
@@ -151,7 +151,7 @@ export default function Footer() {
                       sx={{
                         fontSize: "0.9rem",
                         fontFamily: "OXANIUM",
-                        color: "#001E3C",
+                        color: "#000",
                       }}
                     >
                       Privacy Policy
@@ -160,7 +160,7 @@ export default function Footer() {
                       sx={{
                         fontSize: "0.9rem",
                         fontFamily: "OXANIUM",
-                        color: "#001E3C",
+                        color: "#000",
                       }}
                     >
                       Refund Policy
@@ -169,7 +169,7 @@ export default function Footer() {
                       sx={{
                         fontSize: "0.9rem",
                         fontFamily: "OXANIUM",
-                        color: "#001E3C",
+                        color: "#000",
                       }}
                     >
                       Shipping Policy
@@ -204,7 +204,7 @@ export default function Footer() {
                       sx={{
                         fontSize: "0.9rem",
                         fontFamily: "OXANIUM",
-                        color: "#001E3C",
+                        color: "#000",
                       }}
                     >
                       Products
@@ -213,7 +213,7 @@ export default function Footer() {
                       sx={{
                         fontSize: "0.9rem",
                         fontFamily: "OXANIUM",
-                        color: "#001E3C",
+                        color: "#000",
                       }}
                     >
                       How It Works
@@ -222,7 +222,7 @@ export default function Footer() {
                       sx={{
                         fontSize: "0.9rem",
                         fontFamily: "OXANIUM",
-                        color: "#001E3C",
+                        color: "#000",
                         cursor:'pointer'
                       }}
                       onClick={()=>navigate('/compatible-devices')}
@@ -252,13 +252,13 @@ export default function Footer() {
                     sx={{ mt: "1vh", display: "flex", flexDirection: "row" }}
                   >
                     <IconButton href="https://www.facebook.com/digitalcardhub.in">
-                      <Facebook sx={{ color: "#001E3C", fontSize: "2rem" }} />
+                      <Facebook sx={{ color: "#000", fontSize: "2rem" }} />
                     </IconButton>
                     <IconButton href="https://www.instagram.com/digitalcardhub.in/">
-                      <Instagram sx={{ color: "#001E3C", fontSize: "2rem" }} />
+                      <Instagram sx={{ color: "#000", fontSize: "2rem" }} />
                     </IconButton>
                     <IconButton  href={`https://wa.me/+918889430333?text=`}>
-                      <WhatsApp sx={{ color: "#001E3C", fontSize: "2rem" }} />
+                      <WhatsApp sx={{ color: "#000", fontSize: "2rem" }} />
                     </IconButton>
                   </Grid>
                 </Grid>
@@ -280,7 +280,7 @@ export default function Footer() {
                 fontSize: { xs: "1.6em", lg: "2.4em" },
                 fontWeight: 700,
                 fontFamily: "OXANIUM",
-                color: "#001E3C",
+                color: "#000",
                 letterSpacing: "-0.2px",
                 mb: "2.5vh",
                 textAlign: "center",
@@ -335,15 +335,15 @@ export default function Footer() {
                   fullWidth
                   sx={{
                     borderRadius: "1.4em",
-                    background: "#001E3C",
+                    background: "#F3B419",
                     color: "#ffffff",
                     p: "2% 40%",
                     fontSize: "1.2em",
                     fontWeight: 600,
                     mt: "2vh",
                     "&:hover": {
-                      background: "#9cbccb",
-                      color: "#001E3C",
+                      background: "#fff",
+                      color: "#F3B419",
                     },
                   }}
                 >
@@ -353,21 +353,21 @@ export default function Footer() {
             </Grid>
           </Grid>
         </Grid>
-        <Divider sx={{ backgroundColor: "#001E3C", mt: "6vh", p: "0.1%" }} />
+        <Divider sx={{ backgroundColor: "#000", mt: "6vh", p: "0.1%" }} />
         <Typography
           onClick={() => window.open("https://indiabuzz.co.in/", "_blank")}
           sx={{
             fontSize: "1.5em",
             fontWeight: 500,
             fontFamily: "OXANIUM",
-            color: "#001E3C",
+            color: "#000",
             letterSpacing: "-0.2px",
             textAlign: "center",
             mt: "2vh",
             cursor: "pointer",
           }}
         >
-          Copyrights © 2022 Powered By IndiaBuzz
+          Copyrights © 2024 Powered By IndiaBuzz
         </Typography>
       </Box>
     </Container>
