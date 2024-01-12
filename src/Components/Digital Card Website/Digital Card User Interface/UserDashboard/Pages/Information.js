@@ -329,7 +329,9 @@ const Information = () => {
 
 
   const handleSubmit = async () => {
-    if(verify==true){var formData = new FormData();
+    
+    if(verify==true){
+      var formData = new FormData();
     formData.append("companyname", companyName);
     formData.append("companyId", companyName);
     formData.append("customerId", userId);
@@ -346,10 +348,44 @@ const Information = () => {
         handleSubmit1(result.data._id)
     } else {
        
-    }}else{
+    }}else if(companyName==''){
       Swal.fire({
-        title:"First Verify Your Unique Card Id",
+        title:'<b>Enter Your Unique Id First</b>',
         icon:"error"
+      })
+    }else{
+      Swal.fire({
+        title: '<b style={{color:"#fff"}}>You Are Changine the Unique Card Id!</b>',
+        html:'<b>Bad News!</b><br/>Changing the unique id can make the old link deactive for the users and your NFC Card will also not work.',
+        showDenyButton: true,
+        icon:"warning",
+       
+        confirmButtonText: 'Save',
+        denyButtonText: `Don't save`,
+      }).then(async(result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          var formData = new FormData();
+          formData.append("companyname", companyName);
+          formData.append("companyId", companyName);
+          formData.append("customerId", userId);
+          formData.append("paymentStatus", "Trial Period");
+          formData.append("cardStatus", "Active");
+          formData.append("createdDate", date);
+          formData.append("cardViewCount", 0);
+      
+          var result = await postData("carddetails/addcardDetails", formData, true);
+          console.log(result);
+          if (result.status) {
+              window.localStorage.setItem("CardId", result.data._id);
+              
+              handleSubmit1(result.data._id)
+          } else {
+             
+          }
+        } else if (result.isDenied) {
+          Swal.fire('Changes are not saved', '', 'info')
+        }
       })
     }
 };
@@ -369,10 +405,43 @@ const handleUpdate = async () => {
         handleSubmit1(cardId)
     } else {
        
-    }}else{
+    }}else if(companyName==''){
       Swal.fire({
-        title:"First Verify Your Unique Card Id",
+        title:'<b>Enter Your Unique Id First</b>',
         icon:"error"
+      })
+    }
+    else{
+      Swal.fire({
+        title: '<b style={{color:"#fff"}}>You Are Changine the Unique Card Id!</b>',
+        html:'<b>Bad News!</b><br/>Changing the unique id can make the old link deactive for the users and your NFC Card will also not work.',
+        showDenyButton: true,
+        icon:"warning",
+       
+        confirmButtonText: 'Save',
+        denyButtonText: `Don't save`,
+      }).then(async(result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          var formData = new FormData();
+          formData.append("_id", cardId);
+          formData.append("companyname", companyName);
+      
+          var result = await postData(
+              "carddetails/updateCompanyName",
+              formData,
+              true
+          );
+          console.log(result);
+          if (result.status) {
+             
+              handleSubmit1(cardId)
+          } else {
+             
+          }
+        } else if (result.isDenied) {
+          Swal.fire('Changes are not saved', '', 'info')
+        }
       })
     }
 };
@@ -476,20 +545,7 @@ const handleUpdate = async () => {
     if(response.status!=true)
     {
       setVerify(false)
-      Swal.fire({
-        title: '',
-        showDenyButton: true,
-       
-        confirmButtonText: 'Save',
-        denyButtonText: `Don't save`,
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          Swal.fire('Saved!', '', 'success')
-        } else if (result.isDenied) {
-          Swal.fire('Changes are not saved', '', 'info')
-        }
-      })
+     
     }else{
       setVerify(response.status)
     }
