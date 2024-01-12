@@ -64,6 +64,14 @@ return(
           <ListItemText>Generated Company Links</ListItemText>  
         </MenuItem>
         </Link>
+        <Link to="/dashboard/displayallmenulinks" className={classes.link}>
+        <MenuItem>
+          <ListItemIcon>
+            <RemoveRedEyeIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Generated Menu Links</ListItemText>  
+        </MenuItem>
+        </Link>
 
           <Link to="/dashboard/displayallenquiries" className={classes.link}>
         <MenuItem>

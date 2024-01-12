@@ -22,7 +22,7 @@ import { PhoneEnabled } from '@mui/icons-material';
 import Swal from 'sweetalert2';
 export default function MenuDashBoard() {
   var navigate=useNavigate()
-  const {companyId}=useParams()
+  const {menuId}=useParams()
   const [call,setCall]=useState("")
     const style = {
         width: '100%',
@@ -36,10 +36,10 @@ export default function MenuDashBoard() {
 
       const fetchData=async()=>{
         var formData=new FormData
-        formData.append("companyId",companyId)
+        formData.append("menuId",menuId)
         const response=await postData('index/getRestaurantDetails',formData,true)
-        if(response.status!=true){
-           navigate('/restaurantdetails',{state:{companyId:companyId}})
+        if(response.data.restaurantName==""){
+           navigate('/restaurantdetails',{state:{menuId:menuId}})
         }else{
           setCall(response.data.call)
         }
@@ -51,7 +51,7 @@ export default function MenuDashBoard() {
 
     const handleCall=async()=>{
       var formData=new FormData
-      formData.append("companyId",companyId)
+      formData.append("menuId",menuId)
       formData.append("call",call=="able"?"disable":"able")
       const response=await postData('index/call',formData,true)
       if(response.status==true){
@@ -90,26 +90,26 @@ export default function MenuDashBoard() {
      <Grid item xs={12}>
      <List sx={style} component="nav" aria-label="mailbox folders">
       <ListItem button sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}>
-        <ListItemText onClick={()=>navigate('/ViewOrder',{state:{companyId:companyId}})} primary="View Orders" />
+        <ListItemText onClick={()=>navigate('/ViewOrder',{state:{menuId:menuId}})} primary="View Orders" />
         <NotificationsIcon sx={{mr:{xs:5,md:0}}}/>
       </ListItem>
       <Divider />
       <ListItem button divider>
-        <ListItemText  onClick={()=>navigate('/AddMenu',{state:{companyId:companyId}})} primary="Add Menu Items" />
+        <ListItemText  onClick={()=>navigate('/AddMenu',{state:{menuId:menuId}})} primary="Add Menu Items" />
         <SoupKitchenIcon sx={{mr:{xs:5,md:0}}}/>
       </ListItem>
       <ListItem button>
-        <ListItemText onClick={()=>navigate('/Allmenu',{state:{companyId:companyId}})} primary="Edit Menu Items" />
+        <ListItemText onClick={()=>navigate('/Allmenu',{state:{menuId:menuId}})} primary="Edit Menu Items" />
         <EditNoteIcon sx={{mr:{xs:5,md:0}}}/>
       </ListItem>
       <Divider light />
       <ListItem button>
-        <ListItemText onClick={()=>navigate(`/Menu/${companyId}`)} primary="View menu" />
+        <ListItemText onClick={()=>navigate(`/menus/${menuId}`)} primary="View menu" />
         <MenuOpenIcon sx={{mr:{xs:5,md:0}}}/>
       </ListItem>
       <Divider />
       <ListItem button>
-        <ListItemText primary="Edit Restaurant Details" onClick={()=>navigate('/restaurantdetails',{state:{companyId:companyId}})} />
+        <ListItemText primary="Edit Restaurant Details" onClick={()=>navigate('/restaurantdetails',{state:{menuId:menuId}})} />
         <BlurCircularIcon sx={{mr:{xs:5,md:0}}}/>
       </ListItem>
       <Divider />

@@ -15,7 +15,7 @@ import img1 from "../assets/dch logooo.png";
 import { useLocation, useNavigate } from "react-router-dom";
 export default function ViewOrder() {
   const location=useLocation()
-  const companyId=location.state.companyId
+  const menuId=location.state.menuId
   const [showCard, setShowCard] = useState(false);
   const [showData, setShowData] = useState([]);
 
@@ -57,7 +57,7 @@ export default function ViewOrder() {
   };
   const fetchData = async () => {
     const formData=new FormData
-    formData.append("companyId",companyId)
+    formData.append("menuId",menuId)
     const result = await postData("index/menudata",formData,true);
     setShowData(result.data.reverse()); // Update the data state with the fetched data
      setShowCard(true)
@@ -181,7 +181,7 @@ export default function ViewOrder() {
           
           
           <Button
-            onClick={() => navigate(`/menudashboard/${companyId}`)}
+            onClick={() => navigate(`/menudashboard/${menuId}`)}
             variant="outlined"
             color="inherit"
           >

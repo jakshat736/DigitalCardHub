@@ -49,6 +49,7 @@ const UserDashboard = () => {
   const [enquriy,setEnquiry]=useState([])
   const [standeeTag,setStandeeTag]=useState([])
   const [tagDisplay,setTagDisplay]=useState('none')
+  const [menuDisplay,setMenuDisplay]=useState('none')
   const [standeeTagDisplay,setStandeeTagDisplay]=useState('none')
   const [tagId,setTagId]=useState('')
   const [link,setLink]=useState('')
@@ -77,6 +78,16 @@ const UserDashboard = () => {
         if(response.data.length!=0){
           setTagDisplay("flex")
           setTag(response.data)
+
+        }
+      }    
+  const fetchMenu = async()=>{
+        var formData=new FormData();
+        formData.append("email",data.email)
+        const response=await postData('index/getTagsByEmail',formData,true);
+        if(response.status!=true){
+          setMenuDisplay("flex")
+        
 
         }
       }    
@@ -122,6 +133,7 @@ const UserDashboard = () => {
     
      fetchAllTag()
      fetchAllStandeeTag();
+     fetchMenu()
       if(result.data!=undefined){fetchAllEnquiries()}
   };
   
@@ -724,8 +736,8 @@ const editDialog=()=>{
                       </Button>
                     
                 </Grid>
-            {/* <Grid item   xs={6}
-            md={3} sx={{display:"flex",flexDirection:"column"}}>
+            <Grid item   xs={6}
+            md={3} sx={{display:menuDisplay,flexDirection:"column"}}>
             <Typography>Restaurant Menu</Typography>
                       <Button
                         variant="contained"
@@ -739,7 +751,7 @@ const editDialog=()=>{
                         Open
                       </Button>
                     
-                </Grid> */}
+                </Grid>
             {/* <Grid item   xs={6}
             md={3} sx={{display:"flex",flexDirection:"column"}}>
             <Typography>Create Invitation</Typography>

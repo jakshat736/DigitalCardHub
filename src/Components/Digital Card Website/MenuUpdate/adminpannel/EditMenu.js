@@ -15,7 +15,7 @@ export default function EditMenu() {
   const location=useLocation()
   const navigate=useNavigate()
   const data=JSON.parse(location.state.data)
-  const companyId=location.state.companyId
+  const menuId=location.state.menuId
   const [Dish,setDish]  = useState(data.dish)
 
   const [Price,setPrice]  = useState(data.price)
@@ -80,7 +80,7 @@ export default function EditMenu() {
           
           
           <Button
-            onClick={() => navigate(`/menudashboard/${companyId}`)}
+            onClick={() => navigate('/Allmenu',{state:{menuId:menuId}})}
             variant='contained'
             sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}
           >
@@ -130,12 +130,12 @@ export default function EditMenu() {
       <Grid item xs={6}>
         <Typography sx={{ textAlign: 'left', fontSize: 12 }}>Sorting Order</Typography>
         <Typography sx={{ textAlign: 'left', fontSize: 12 }}>Higher order will be shown first.</Typography>
-        <TextField onChange={(e) => setSorting(e.target.value)} value={Sorting} id="outlined-basic" label="Price" variant="outlined" />
+        <TextField onChange={(e) => setSorting(e.target.value)} value={Sorting} id="outlined-basic"  variant="outlined" />
       </Grid>
       <Grid item xs={6}>
         <Typography sx={{ textAlign: 'left', fontSize: 12 }}> Stock</Typography>
         <Typography sx={{ textAlign: 'left', fontSize: 12 }}>If left 0 will not track.</Typography>
-        <TextField onChange={(e) => setStock(e.target.value)} value={Stock} id="outlined-basic" label="Price" variant="outlined" />
+        <TextField onChange={(e) => setStock(e.target.value)} value={Stock} id="outlined-basic"  variant="outlined" />
       </Grid>
      
 

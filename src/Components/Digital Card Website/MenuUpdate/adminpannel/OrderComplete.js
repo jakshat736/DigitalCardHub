@@ -15,8 +15,9 @@ const OrderComplete1 = () => {
     // const data=JSON.parse(menuOrder.dishes)
     const [menuOrder,setMenuOrder]=useState([])
     const [data,setData]=useState([])
-    const companyId=location.state.companyId
+    const menuId=location.state.menuId
     const [name, setName] = useState("")
+    const [status, setStatus] = useState("")
     const [call, setCall] = useState("")
     const [waiterCalled, setWaiterCalled] = useState("no")
       const [number, setNumber] = useState("")
@@ -24,18 +25,29 @@ const OrderComplete1 = () => {
           fileName: "",
           bytes: "",
       });
+
+      const checkStatus=async(id)=>{
+        var formData=new FormData
+        formData.append('_id',id)
+        var response=await postData("order/checkStatus", formData, true)
+        setStatus(response.orderStatus)
+
+      }
       
       const checkOrder=()=>{
         const cart=JSON.parse(window.localStorage.getItem("menuorder"))
        
         if(cart==null){
-        navigate(`/menu/${companyId}`)
+        navigate(`/menu/${menuId}`)
           }else{
             setMenuOrder(cart)
             setData(JSON.parse(cart.dishes))
+            checkStatus(cart._id)
           }
     
       }
+
+
     
       useEffect(()=>{
         checkOrder()
@@ -48,7 +60,7 @@ const OrderComplete1 = () => {
       }, 0);
       const fetchRestaurantData=async()=>{
         var formData=new FormData
-        formData.append("companyId",companyId)
+        formData.append("menuId",menuId)
         
         const response=await postData('index/getRestaurantDetails',formData,true)
       
@@ -156,13 +168,13 @@ const OrderComplete1 = () => {
       <Typography>Grand Total: ₹ {((totalPrice * 5)/100)+totalPrice}</Typography>
         </Grid>
         <Grid item xs={12} sx={{}}>
-          <Button variant='contained' fullWidth    sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"},borderRadius:2}}>{menuOrder.status!="served"?<><AccessTimeFilledIcon/>Pending</>:<><CheckCircleIcon/>Delivered</>}</Button>
+          <Button variant='contained' fullWidth    sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"},borderRadius:2}}>{status!="served"?<><AccessTimeFilledIcon/>Pending</>:<><CheckCircleIcon/>Delivered</>}</Button>
         </Grid>
         <Grid item xs={6} sx={{}}>
           <Button variant='outlined' fullWidth    sx={{bgcolor:"#fff",color:"black",borderColor:"black","&:hover":{ bgcolor:"#fff",color:"black",borderColor:"black"},borderRadius:2}} onClick={()=>handleWaiter()}>{waiterCalled!="yes"?<><WavingHandRounded/>Call Waiter</>:<><WavingHandRounded/>Waiter Called</>}</Button>
         </Grid>
         <Grid item xs={6} sx={{}}>
-          <Button variant='outlined' fullWidth    sx={{bgcolor:"#fff",color:"black",borderColor:"black","&:hover":{ bgcolor:"#fff",color:"black",borderColor:"black"},borderRadius:2}} onClick={()=>{navigate(`/menu/${companyId}`)}}>Add More Item</Button>
+          <Button variant='outlined' fullWidth    sx={{bgcolor:"#fff",color:"black",borderColor:"black","&:hover":{ bgcolor:"#fff",color:"black",borderColor:"black"},borderRadius:2}} onClick={()=>{navigate(`/menu/${menuId}`)}}>Add More Item</Button>
         </Grid>
         <Grid item xs={12}>
 

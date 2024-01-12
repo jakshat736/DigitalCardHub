@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 export default function AddMenu() {
   const location = useLocation()
   const navigate = useNavigate()
-  const companyId = location.state.companyId
+  const menuId = location.state.menuId
   const [Dish, setDish] = useState("")
   const [Price, setPrice] = useState("")
   const [Halfprice, setHalfprice] = useState("")
@@ -52,7 +52,7 @@ export default function AddMenu() {
   const handleSubmit = async () => {
     var AddMenudata = new FormData;
     if(Dish!="" && Price!="" && Halfprice!="" && rating!="" && Sorting!="" && Stock!="" && Description!="" && foodType!="" && Image.fileName!=""){
-    AddMenudata.append("companyId", companyId);
+    AddMenudata.append("menuId", menuId);
     AddMenudata.append("dish", Dish);
     AddMenudata.append("price", Price);
     AddMenudata.append("Halfprice", Halfprice);
@@ -116,7 +116,7 @@ export default function AddMenu() {
 
 
           <Button
-            onClick={() => navigate(`/menudashboard/${companyId}`)}
+            onClick={() => navigate(`/menudashboard/${menuId}`)}
             variant='contained'
             sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}
           >
@@ -167,12 +167,12 @@ export default function AddMenu() {
         <Grid item xs={6}>
           <Typography sx={{ textAlign: 'left', fontSize: 12 }}>Sorting Order</Typography>
           <Typography sx={{ textAlign: 'left', fontSize: 12 }}>Higher order will be shown first.</Typography>
-          <TextField onChange={(e) => setSorting(e.target.value)} value={Sorting} id="outlined-basic" label="Price" variant="outlined" />
+          <TextField onChange={(e) => setSorting(e.target.value)} value={Sorting} id="outlined-basic"variant="outlined" />
         </Grid>
         <Grid item xs={6}>
           <Typography sx={{ textAlign: 'left', fontSize: 12 }}> Stock</Typography>
           <Typography sx={{ textAlign: 'left', fontSize: 12 }}>If left 0 will not track.</Typography>
-          <TextField onChange={(e) => setStock(e.target.value)} value={Stock} id="outlined-basic" label="Price" variant="outlined" />
+          <TextField onChange={(e) => setStock(e.target.value)} value={Stock} id="outlined-basic"  variant="outlined" />
         </Grid>
         <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
 

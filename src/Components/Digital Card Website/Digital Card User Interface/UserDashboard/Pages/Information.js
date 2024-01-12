@@ -93,7 +93,7 @@ const Information = () => {
   const [themeId, setThemeId] = useState('')
   const [message, setMessage] = useState('')
   const [type, setType] = useState('')
-  const [verify, setVerify] = useState()
+  const [save, setSave] = useState()
 
   const [Editor, setEditor] = useState(null);
   const [Editor1, setEditor1] = useState(null);
@@ -328,8 +328,8 @@ const Information = () => {
   }, [])
 
 
-  const handleSubmit = async () => {
-    
+  const handleSubmit = async (verify) => {
+   
     if(verify==true){
       var formData = new FormData();
     formData.append("companyname", companyName);
@@ -345,9 +345,10 @@ const Information = () => {
     if (result.status) {
         window.localStorage.setItem("CardId", result.data._id);
         
-        handleSubmit1(result.data._id)
+        setCardId(result.data._id)
+        setSave(true)
     } else {
-       
+       setSave(false)
     }}else if(companyName==''){
       Swal.fire({
         title:'<b>Enter Your Unique Id First</b>',
@@ -378,10 +379,10 @@ const Information = () => {
           console.log(result);
           if (result.status) {
               window.localStorage.setItem("CardId", result.data._id);
-              
+              setSave(true)
               handleSubmit1(result.data._id)
           } else {
-             
+             setSave(false)
           }
         } else if (result.isDenied) {
           Swal.fire('Changes are not saved', '', 'info')
@@ -389,8 +390,10 @@ const Information = () => {
       })
     }
 };
-const handleUpdate = async () => {
-    if(verify==true || companyName1==companyName){var formData = new FormData();
+const handleUpdate = async (verify) => {
+  
+    if(verify==true || companyName1==companyName){
+      var formData = new FormData();
     formData.append("_id", cardId);
     formData.append("companyname", companyName);
 
@@ -402,9 +405,9 @@ const handleUpdate = async () => {
     console.log(result);
     if (result.status) {
        
-        handleSubmit1(cardId)
+        setSave(true)
     } else {
-       
+       setSave(false)
     }}else if(companyName==''){
       Swal.fire({
         title:'<b>Enter Your Unique Id First</b>',
@@ -435,9 +438,9 @@ const handleUpdate = async () => {
           console.log(result);
           if (result.status) {
              
-              handleSubmit1(cardId)
+              setSave(true)
           } else {
-             
+             setSave(false)
           }
         } else if (result.isDenied) {
           Swal.fire('Changes are not saved', '', 'info')
@@ -541,13 +544,16 @@ const handleUpdate = async () => {
     var formData=new FormData
     formData.append('companyId',companyName.replace(/\s/g, ''))
     const response=await postData('generatedcompanylink/checkCompanyName',formData,true)
-    
+    alert(response)
     if(response.status!=true)
     {
-      setVerify(false)
+    
+      (cardId == "" ? handleSubmit(false) : handleUpdate(false))
      
     }else{
-      setVerify(response.status)
+      (cardId == "" ? handleSubmit(response.status) : handleUpdate(response.status))
+    
+   
     }
 
   }
@@ -624,7 +630,7 @@ const handleUpdate = async () => {
             justifyContent: "space-evenly",
             textAlign: "center",
             alignItems: "center",
-          }} onClick={() => (cardId == "" ? handleSubmit() : handleUpdate())} variant='contained'>Save<BeenhereIcon /></Button>
+          }} onClick={() =>handleSubmit1(cardId) } variant='contained'>Save<BeenhereIcon /></Button>
           {loading && <LoaderComponent />}
         </Grid>
         <Grid item xs={4} sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: "2vh", marginBottom: "2vh" }}>
@@ -752,7 +758,7 @@ const handleUpdate = async () => {
                             endAdornment: (
                               <InputAdornment position="start">
                                 <Button variant='contained' onClick={()=>handleClick()}>
-                                  Verify
+                                  Save
                                 </Button>
                                 <IconButton variant='contained' onClick={()=>setOpenDialog(true)} sx={{color:"black"}}>
                                   <HelpOutline/>
@@ -767,7 +773,7 @@ const handleUpdate = async () => {
                             required
                            
                         />
-                        <Typography>{verify==true?"Verified":verify==false?"Not Verified":''}</Typography>  </Grid>
+                        <Typography>{save==true?"Saved Successfully":save==false?"Not Saved":''}</Typography>  </Grid>
               <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
                 <TextField value={phone} type='number' InputProps={{
                   startAdornment: (

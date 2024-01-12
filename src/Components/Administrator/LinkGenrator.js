@@ -5,9 +5,11 @@ import { getData, postData } from '../Services/NodeServices';
 const LinkGenrator = () => {
     
   const [link, setLink] = React.useState('');
-  const [businessLink, setBusinessLink] = useState()
+  const [businessLink, setBusinessLink] = useState("")
+  const [menuLink, setMenuLink] = useState("")
   const [companyName, setCompanyName] = useState("");
   const [clientName, setClientName] = useState("");
+  const [restaurantName, setRestaurantName] = useState("");
 
   const handleCopy=()=>{
    
@@ -26,6 +28,14 @@ const LinkGenrator = () => {
  
    
    }
+  const handleMenuCopy=()=>{
+   
+
+    // Copy the text inside the text field
+   navigator.clipboard.writeText(menuLink);
+ 
+   
+   }
    const handleGenerate=async()=>{
     if(clientName!=''){
       var formData=new FormData
@@ -34,6 +44,17 @@ const LinkGenrator = () => {
 
     if(res.status=="true"){
         setLink(`https://digitalcardhub.in/#/tag/${res.tagId}`)
+    }}
+   }
+   const handleMenuGenerate=async()=>{
+    if(restaurantName!=''){
+      var formData=new FormData
+      formData.append("menuId",restaurantName.replace(/\s/g, ''))
+      formData.append("restaurantName",restaurantName)
+    const res=await postData('menulink/add',formData,true)
+
+    if(res.status==true){
+        setMenuLink(`https://digitalcardhub.in/#/menu/${res.data.menuId}`)
     }}
    }
 
@@ -141,6 +162,37 @@ const LinkGenrator = () => {
             }} variant='contained' onClick={() => handleBusinessCopy()}>Copy</Button>
           </Grid>
           } </Paper>
+          <Paper elevation={5} sx={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column",width:'50%',mt:5}}>
+             <Grid item xs={12} sx={{display:"flex",justifyContent:"center",m:1}}>
+            <TextField
+                          
+                            value={restaurantName}
+                            onChange={(e) => setRestaurantName(e.target.value)}
+                        
+                            label="Restaurant Name"
+                            required
+                           
+                        />
+            </Grid>
+            <Grid item xs={12} sx={{display:"flex",justifyContent:"center",m:1}}>
+                <Button variant='contained' onClick={()=>handleMenuGenerate()}>Generate Dynamic Menu link</Button>
+            </Grid>
+            <Grid item xs={6} sx={{display:"flex",justifyContent:"center",m:1}}>
+          <Typography>{menuLink}</Typography>
+        </Grid>
+       {menuLink && <Grid item xs={6} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+            <Button sx={{
+              borderRadius: 10,
+              backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+              paddingX:"30px",
+              textAlign: "center",
+              alignItems: "center",
+            }} variant='contained' onClick={() => handleMenuCopy()}>Copy</Button>
+          </Grid>}
+          </Paper>
            </Grid>
           
     </Grid>

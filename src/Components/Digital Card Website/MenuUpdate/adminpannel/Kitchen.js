@@ -12,7 +12,7 @@ import { Cancel } from '@mui/icons-material';
 export default function Kitchen() {
   const location =useLocation()
   const navigate =useNavigate()
-  const companyId=location.state.companyId
+  const menuId=location.state.menuId
   
    
 
@@ -42,7 +42,7 @@ export default function Kitchen() {
         return acc;
       }, []))
     }}else{
-      navigate(`/menu/${companyId}`)
+      navigate(`/menu/${menuId}`)
     }
 
   }
@@ -77,7 +77,7 @@ export default function Kitchen() {
   
   const handleSubmit = async () => {
    if(Name!="" && Phone!=""){ var menuorderdata = new FormData;
-    menuorderdata.append("companyId",companyId)
+    menuorderdata.append("menuId",menuId)
     menuorderdata.append("name",Name)
     menuorderdata.append("phone",Phone)
     menuorderdata.append("message",Chief)
@@ -95,7 +95,7 @@ if(response.status==true){
   })
   window.localStorage.setItem("menuorder",JSON.stringify(response.data))
   window.localStorage.removeItem("menucart")
-  navigate('/menucheckout',{state:{companyId:companyId}})
+  navigate('/menucheckout',{state:{menuId:menuId}})
   
 }else{
   Swal.fire({
@@ -139,7 +139,7 @@ if(response.status==true){
   })
   window.localStorage.setItem("menuorder",JSON.stringify(response.data))
   window.localStorage.removeItem("menucart")
-  navigate('/menucheckout',{state:{companyId:companyId}})
+  navigate('/menucheckout',{state:{menuId:menuId}})
   
 }else{
   Swal.fire({

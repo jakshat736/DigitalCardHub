@@ -37,7 +37,7 @@ import './menu.css'
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function Menu() {
-  const {companyId}=useParams()
+  const {menuId}=useParams()
   var navigate=useNavigate()
   
 
@@ -262,7 +262,7 @@ export default function Menu() {
   const FetchProductByKeywords = async () => {
 
     var formData=new FormData
-    formData.append("companyId",companyId)
+    formData.append("menuId",menuId)
     formData.append("keywords",keywords)
     var result = await postData('index/search',formData,true)
     setData(result.data)
@@ -271,7 +271,7 @@ export default function Menu() {
 
   const fetchData = async () => {
     var formData=new FormData
-    formData.append('companyId',companyId)
+    formData.append('menuId',menuId)
     const result = await postData("index/getDataById",formData,true);
     setData(result.data); // Update the data state with the fetched data
     console.log("result", result.data);
@@ -279,12 +279,12 @@ export default function Menu() {
 
   const fetchRestaurantData=async()=>{
     var formData=new FormData
-    formData.append("companyId",companyId)
+    formData.append("menuId",menuId)
     const response=await postData('index/getRestaurantDetails',formData,true)
   
       if(response.status==true){
        
-        setName(response.data.name)
+        setName(response.data.restaurantName)
         setNumber(response.data.number)
         setCall(response.data.call)
         setImage({fileName:`${serverURL}/images/${response.data.logo}`,bytes:""})
@@ -491,7 +491,7 @@ export default function Menu() {
 
   const handleCart=()=>{
     window.localStorage.setItem("menucart",JSON.stringify(cart))
-    navigate('/Kitchen',{state:{data:JSON.stringify(cart),companyId:companyId}})
+    navigate('/Kitchen',{state:{data:JSON.stringify(cart),menuId:menuId}})
   }
 
   const ViewCart = () => {
@@ -563,7 +563,7 @@ export default function Menu() {
             >
 
               <Button
-              onClick={()=>navigate('/menucheckout',{state:{companyId:companyId}})}
+              onClick={()=>navigate('/menucheckout',{state:{menuId:menuId}})}
                 sx={{ bgcolor: "#f3b419", color: "black", mb: 2, display: "flex",borderRadius:2 }}
               >
                 Order Status
@@ -608,7 +608,7 @@ export default function Menu() {
                   {" "}
                   *{item.rating} (52)
                 </Typography>
-                <Typography>{item.description}</Typography>
+                <Typography sx={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>{item.description}</Typography>
               </Grid>
               <Grid item xs={5}>
                 <img

@@ -22,7 +22,7 @@ export default function AllMenu() {
     bytes: "",
   });
   const location=useLocation()
-  const companyId=location.state.companyId
+  const menuId=location.state.menuId
 
   
 
@@ -38,7 +38,7 @@ export default function AllMenu() {
 
   const fetchData = async () => {
     var formData=new FormData
-    formData.append('companyId',companyId)
+    formData.append('menuId',menuId)
     const result = await postData("index/getDataById",formData,true);
     setData(result.data); // Update the data state with the fetched data
     console.log("result", result.data);
@@ -181,7 +181,7 @@ export default function AllMenu() {
           
           
           <Button
-            onClick={() => navigate(`/menudashboard/${companyId}`)}
+            onClick={() => navigate(`/menudashboard/${menuId}`)}
             variant='contained'
             sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}
           >
@@ -205,9 +205,9 @@ export default function AllMenu() {
             
             <Grid item xs={6} sx={{display:"flex",justifyContent:"center",flexDirection:"column",mt:-5}}>
               <Typography>{index+1} : {item.dish}</Typography>
-              <Typography>{item.description}</Typography>
+              <Typography sx={{ overflow: 'hidden', maxHeight: '3em' }}>{item.description}</Typography>
               <Typography>{item.stock}</Typography>
-              <Button variant='contained' sx={{display:'flex',justifyContent:'center',alignItems:'center',ml:2,mb:-3,bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}} onClick={()=>navigate('/editmenu',{state:{data:JSON.stringify(item),companyId:companyId}})}>Edit</Button>
+              <Button variant='contained' sx={{display:'flex',justifyContent:'center',alignItems:'center',ml:2,mb:-3,bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}} onClick={()=>navigate('/editmenu',{state:{data:JSON.stringify(item),menuId:menuId}})}>Edit</Button>
                    
         
             </Grid>

@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 const Details = () => {
     const location = useLocation()
     const navigate = useNavigate()
-    const companyId = location.state.companyId
+    const menuId = location.state.menuId
     const [name, setName] = useState("")
     const [number, setNumber] = useState("")
     const [Image, setImage] = useState({
@@ -28,11 +28,11 @@ const Details = () => {
 
     const fetchData=async()=>{
         var formData=new FormData
-        formData.append("companyId",companyId)
+        formData.append("menuId",menuId)
         const response=await postData('index/getRestaurantDetails',formData,true)
         if(response.status==true){
             setData(response.data)
-            setName(response.data.name)
+            setName(response.data.restaurantName)
             setNumber(response.data.number)
             setImage({fileName:`${serverURL}/images/${response.data.logo}`,bytes:""})
         }
@@ -45,8 +45,8 @@ const Details = () => {
 
     const handleSubmit=async()=>{
         var formData=new FormData
-        formData.append("companyId",companyId)
-        formData.append("name",name)
+        formData.append("menuId",menuId)
+        formData.append("restaurantName",name)
         formData.append("number",number)
         formData.append("logo",Image.bytes)
 
@@ -84,7 +84,7 @@ const Details = () => {
 
 
                     <Button
-                        onClick={() => navigate(`/menudashboard/${companyId}`)}
+                        onClick={() => navigate(`/menudashboard/${menuId}`)}
                         variant='contained'
                         sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}
                     >

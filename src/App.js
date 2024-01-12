@@ -86,6 +86,9 @@ import OrderComplete1 from './Components/Digital Card Website/MenuUpdate/adminpa
 import OrderDelivered from './Components/Digital Card Website/MenuUpdate/adminpannel/OrderDelivered';
 import LinkGenrator from './Components/Administrator/LinkGenrator';
 import Example from './Components/Administrator/Example';
+import ActivationPage from './Components/Digital Card Website/MenuUpdate/administrator/ActivationPage';
+import MenuLogIn from './Components/Digital Card Website/MenuUpdate/administrator/LogIn';
+import MenuSignUp from './Components/Digital Card Website/MenuUpdate/administrator/SignUp';
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -170,8 +173,8 @@ function App() {
 					{/* Menu */}
 
 					<Route path="/box" element={<Box/>}/>
-    <Route path="/menu/:companyId" element={<Menu/>}/>
-    <Route path="/menuDashboard/:companyId" element={<MenuDashBoard/>}/>
+    <Route path="/menus/:menuId" element={<Menu/>}/>
+    <Route path="/menuDashboard/:menuId" element={<MenuDashBoard/>}/>
     <Route path="/addmenu" element={<AddMenu/>}/>
     <Route path="/vieworder" element={<ViewOrder/>}/>
     <Route path="/orderdetail" element={<OrderDetail/>}/>
@@ -188,6 +191,9 @@ function App() {
     <Route path="/restaurantdetails" element={<Details/>}/>
     <Route path="/menucheckout" element={<OrderComplete1/>}/>
     <Route path="/orderdelivered" element={<OrderDelivered/>}/>
+    <Route path="/menu/:menuId" element={<ActivationPage/>}/>
+    <Route path="/menusignup" element={<MenuSignUp/>}/>
+    <Route path="/menulogin" element={<MenuLogIn/>}/>
     <Route path="/example" element={<Example/>}/>
 					
       </Routes>
