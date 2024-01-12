@@ -69,9 +69,9 @@ const DisplayAllGeneratedCompanyLink = () => {
     }, []);
   
 
-    const handleDelete=async(_id)=>{
+    const handleDelete=async(row)=>{
         var formData = new FormData();
-        formData.append("_id",_id);
+        formData.append("_id",row.original._id);
          
         Swal.fire({
           title: 'Do you want to save the changes?',
