@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 // import Typography from '@mui/material/Typography';
 // import IconButton from '@mui/material/IconButton';
 // import MenuIcon from '@mui/icons-material/Menu';
-import Logo from "../../Digital Card Assets/dchlogo.png";
+import Logo from "../../Digital Card Assets/New Logo New.png";
 import 'animate.css';
 import { Container, IconButton, List, ListItemButton, ListItemText, useMediaQuery, useTheme } from '@mui/material';
 import SideBar from './SideBar';
@@ -108,7 +108,7 @@ export default function Navbar() {
                         <AppBar position="fixed" sx={{ background: "rgba(0, 30, 60,0.6)", boxShadow: "none", color: "black", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                                 <Container maxWidth="xl" sx={{ background: "transparent", boxShadow: "none", color: "black", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                                         <Box >
-                                                <img onClick={() => navigate("/")} src={Logo} style={{ width: mobile ? "51px" : medium ? "52px" : "100px" }} />
+                                                <img onClick={() => navigate("/")} src={Logo} style={{ width: mobile ? "51px" : medium ? "100px" : "130px" }} />
                                         </Box>
                                         <Toolbar>
                                                 <Button sx={{ display: { xs: "none", md: "block" }, color: "#ffffff", fontSize: "1em", fontFamily: "Oxanium", letterSpacing: "0.1em", fontWeight: 600, m: "0px 5px" }} onClick={() => navigate("/")}>Home</Button>

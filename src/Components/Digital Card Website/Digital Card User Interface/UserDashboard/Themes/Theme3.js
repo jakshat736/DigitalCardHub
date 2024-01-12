@@ -55,6 +55,7 @@ import phonepe from './ThemeAssets/phonepe.png'
 import paytm from './ThemeAssets/paytm.png'
 import gpay from './ThemeAssets/gpay.png'
 import RateReviewIcon from '@mui/icons-material/RateReview';
+import { Helmet } from "react-helmet";
 export default function Theme3({ data, products, gallery, ecommerce }) {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down(600));
@@ -90,6 +91,8 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
       await navigator.share({
         title,
         url,
+        text: 'Check out this link!',
+      
       });
     } catch (error) {
       console.error("Error sharing:", error);
@@ -404,6 +407,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+       
       >
          <IconButton
           aria-label="close"
@@ -417,7 +421,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
         >
         <Close/>
         </IconButton>
-        <DialogContent>
+        <DialogContent  sx={{bgcolor:"#f3b419"}}>
           
         <Grid
             container
@@ -613,6 +617,12 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
         alignItems: "center",
       }}
     >
+      <Helmet>
+        <meta property="og:title" content={data.fullname} />
+        <meta property="og:image" content={'data:image/jpeg;base64,' +arrayBufferToBase64(data.companylogo.data.data)} />
+        <meta property="og:url" content={ `http://digitalcardhub.in/#/${data.companyId}`} />
+      </Helmet>
+
       <Grid
         container
         spacing={2}

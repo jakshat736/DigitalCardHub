@@ -185,6 +185,7 @@ const handleChange = async(event,rowData) => {
 
 function displayTable() {
     return (
+     
       <MaterialTable
       title={"Order List"}
         data={products}
@@ -241,6 +242,7 @@ function displayTable() {
         ]}
        
       />
+      
     );
   }
 
@@ -262,7 +264,7 @@ function displayTable() {
         <Grid container spacing={2} style={{  display:"flex",
         justifyContent:'center',
         alignItems:'center'}}>
-          <Grid item xs={12} sm={8} style={{marginTop:20,fontSize:matches?10:20}}>
+          <Grid item xs={12} sm={12} style={{marginTop:20,fontSize:matches?10:20, width:'100%'}}>
         {displayTable()}</Grid>  
         
         {showData && DisplayDailog()}

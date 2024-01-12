@@ -890,7 +890,7 @@ const Compatibility = () => {
           <AndroidComponent />
         </Grid>
       </Grid>
-      <Box sx={{backgroundImage:`url('${bg}')`,backgroundSize:"cover"}}>
+      <Box sx={{backgroundImage:`url('${bg}')`,backgroundSize:"cover",mt:5}}>
                 <Footer />
             </Box>
     </Grid>

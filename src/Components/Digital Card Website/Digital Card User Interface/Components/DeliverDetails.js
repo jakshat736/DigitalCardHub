@@ -91,7 +91,7 @@ export default function DeliverDetails(props) {
 
    
       const handlePay= async(price) => {
-        if(name!="" && address!="" && pincode!="" && city!="" && district!="" && state!="" )
+        if(name!="" && address!="" && pincode!="")
         {
             const newDate = new Date();
                  const date=format(newDate, 'dd-MM-yyyy')
@@ -101,7 +101,7 @@ export default function DeliverDetails(props) {
             formData.append("email",UserEmail)
             formData.append("phone",number)
             formData.append("date",date)
-            formData.append("fullAddress",address+" "+city+" "+district+" "+state+" "+pincode)
+            formData.append("fullAddress",address+" "+pincode)
           
             formData.append("products",JSON.stringify(cartProducts))
             const result=await postData('orders/addOrderDetails',formData,true)
@@ -114,7 +114,7 @@ export default function DeliverDetails(props) {
             "merchantId": "DIGITALCARDONLINE",
             "merchantTransactionId": `${result.data._id}`,
             "merchantUserId": "MUID123",
-            "amount": amount,
+            "amount": '100',
             "redirectUrl": `https://digitalcardhub.in/#/orderComplete/${result.data._id}`,
             "redirectMode": "POST",
             "callbackUrl": `https://digitalcardhub.in/#/orderComplete/${result.data._id}`,
@@ -332,21 +332,12 @@ export default function DeliverDetails(props) {
                         <Grid item xs={6} lg={4}>
                             <TextField label={"Pincode"} value={pincode} onChange={(e)=>setPincode(e.target.value)} fullWidth />
                         </Grid>
-                        <Grid item xs={6} lg={4}>
-                            <TextField label={"City"} value={city} onChange={(e)=>setCity(e.target.value)} fullWidth />
-                        </Grid>
-                        <Grid item xs={12} lg={4}>
-                            <TextField label={"District"} value={district} onChange={(e)=>setDistrict(e.target.value)} fullWidth />
-                        </Grid>
-                        <Grid item xs={12} lg={6}>
-                            <TextField value={state} onChange={(e)=>setState(e.target.value)} label={"State"} fullWidth />
-                        </Grid>
+                      
+                        
                         <Grid item xs={9} lg={6}>
                             <TextField value={number} onChange={(e)=>setNumber(e.target.value)} label={"Recipient's Number"} fullWidth />
                         </Grid>
-                        <Grid item xs={9} lg={6}>
-                            <TextField value={UserEmail} onChange={(e)=>setUserEmail(e.target.value)} label={"Recipient's Email"} fullWidth />
-                        </Grid>
+                       
                         <Grid item xs={12}  >
                             <Button
                                 fullWidth

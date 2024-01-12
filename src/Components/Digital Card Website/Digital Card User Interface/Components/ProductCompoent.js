@@ -635,7 +635,7 @@ useEffect(() => {
 
 
 
-                        <Grid item xs={11} sm={6} md={6}>
+                        <Grid item xs={11} sm={6} md={6} sx={{display:data.uploadName==true?'block':'none'}}>
               <Typography sx={{ fontSize: 25 ,color:"white"}}>Company*</Typography>
               <Typography sx={{color:"white"}}>
                 Please enter the name of your company on Google.
@@ -677,7 +677,7 @@ useEffect(() => {
                     },}}
               />
             </Grid>
-            <Grid item xs={11} sm={6} md={6} sx={{ display: "flex", flexDirection: "column" }}>
+            <Grid item xs={11} sm={6} md={6} sx={{ display:data.uploadLogo==true?'flex':'none', flexDirection: "column" }}>
 
 
               <Typography sx={{ fontSize: 30, color: "#fff" }}>Logo*</Typography>
@@ -713,7 +713,7 @@ useEffect(() => {
               </Grid>
             </Grid>
 
-            <Grid item xs={11} sm={6} md={6}>
+            <Grid item xs={11} sm={6} md={6} sx={{display:data.uploadLink==true?'block':'none'}}>
               <Typography sx={{fontSize: 25,color:"#fff" }}>Link*</Typography>
               <Typography color={'#fff'}>
                 Please tell us Link to the increase of the reach
@@ -753,7 +753,7 @@ useEffect(() => {
               />
             </Grid>
 
-            <Grid item xs={11} sm={6} md={6}>
+            <Grid item xs={11} sm={6} md={6} sx={{display:data.uploadDescription==true?'block':'none'}}>
               <Typography sx={{ fontSize: 25,color:"#fff" }}>Description*</Typography>
               <Typography color={'#fff'}>
                 Please tell us about your business more

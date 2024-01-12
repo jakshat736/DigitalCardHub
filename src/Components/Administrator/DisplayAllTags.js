@@ -130,8 +130,6 @@ export default function DisplayAllTags(props) {
             title: "Name",
             field: "name",
           },
-          
-
           {
             title: "Phone Number",
             field: "phone",
@@ -139,6 +137,10 @@ export default function DisplayAllTags(props) {
           {
             title: "Email Id",
             field: "email",
+          },
+          {
+            title: "Password",
+            field: "password",
           },
           {
             title:"Remaining Days",
@@ -182,7 +184,7 @@ export default function DisplayAllTags(props) {
       <Grid
         item
         xs={12}
-        sm={8}
+        sm={12}
         style={{ marginTop: 20, fontSize: matches ? 10 : 20 }}
       >
         {displayTable()}

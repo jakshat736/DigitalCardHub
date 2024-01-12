@@ -28,6 +28,7 @@ import Swal from "sweetalert2";
 import { useEffect } from "react";
 import Switch from '@mui/material/Switch';
 import MaterialTable from "@material-table/core";
+import google from './UserAssets/Google.gif'
 import { type } from "@testing-library/user-event/dist/type";
 const UserDashboard = () => {
   const theme = useTheme();
@@ -666,7 +667,8 @@ const editDialog=()=>{
         <Grid container spacing={2} sx={{display:"flex",justifyContent:"center"}}>
           <Grid
             item
-            xs={3}
+            xs={6}
+            md={3}
             sx={{
               display:
                 cardData == undefined
@@ -685,10 +687,11 @@ const editDialog=()=>{
               variant="contained"
               sx={{ margin: 1, backgroundColor: "#001e3c" }}
             >
-              + Create Business Card
+            <Typography sx={{fontSize:{xs:12,md:14}}}>+ Create Business Card</Typography>  
             </Button>
           </Grid>
-          <Grid item xs={3} sx={{display:tagDisplay,flexDirection:"column"}}>
+          <Grid item   xs={6}
+            md={3} sx={{display:tagDisplay,flexDirection:"column"}}>
             <Typography>Review Tags</Typography>
                   
                   <Button
@@ -698,13 +701,15 @@ const editDialog=()=>{
                       borderRadius: 2,
                       backgroundImage:
                         "linear-gradient(to top left,#48dbfb,#001e3c)",
+                      display:"flex",flexDirection:"column"  
                     }}
                   >
-                    See Now
+                  <img src={google} width={40}/> <Typography sx={{fontSize:{xs:12,md:14}}}>Activate Google Review / Social Media Card</Typography>
                   </Button>
                 
             </Grid>
-            <Grid item xs={3} sx={{display:standeeTagDisplay,flexDirection:"column"}}>
+            <Grid item   xs={6}
+            md={3} sx={{display:standeeTagDisplay,flexDirection:"column"}}>
             <Typography>Standee Tags</Typography>
                       <Button
                         variant="contained"
@@ -715,11 +720,12 @@ const editDialog=()=>{
                             "linear-gradient(to top left,#48dbfb,#001e3c)",
                         }}
                       >
-                        See Now
+                      <Typography sx={{fontSize:{xs:12,md:14}}}> Activate All in One Standee</Typography>
                       </Button>
                     
                 </Grid>
-            {/* <Grid item xs={3} sx={{display:"flex",flexDirection:"column"}}>
+            {/* <Grid item   xs={6}
+            md={3} sx={{display:"flex",flexDirection:"column"}}>
             <Typography>Restaurant Menu</Typography>
                       <Button
                         variant="contained"
@@ -734,7 +740,8 @@ const editDialog=()=>{
                       </Button>
                     
                 </Grid> */}
-            {/* <Grid item xs={3} sx={{display:"flex",flexDirection:"column"}}>
+            {/* <Grid item   xs={6}
+            md={3} sx={{display:"flex",flexDirection:"column"}}>
             <Typography>Create Invitation</Typography>
                       <Button
                         variant="contained"

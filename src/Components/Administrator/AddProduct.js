@@ -1,4 +1,4 @@
-import { Grid,Button,TextField,Avatar, useMediaQuery ,useTheme,Typography} from '@mui/material'
+import { Grid,Button,TextField,Avatar, useMediaQuery ,useTheme,Typography, Checkbox} from '@mui/material'
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import InputLabel from "@mui/material/InputLabel";
@@ -11,6 +11,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import Swal from 'sweetalert2';
 import { getData, postData } from '../Services/NodeServices';
+import DisplayAllProducts from './DisplayAllProducts';
 var categoryData=[
     "Proximity Tag",
     "Card",
@@ -43,7 +44,12 @@ const AddProduct = () => {
   const [getDescription2, setDescrition2] = useState("");
   const [getDescription3, setDescrition3] = useState("");
   const [getDescription4, setDescrition4] = useState("");
- 
+  const [uploadName, setUploadName] = useState(false);
+  const [uploadLogo, setUploadLogo] = useState(false);
+  const [uploadDescription, setUploadDescription] = useState(false);
+  const [uploadLink, setUploadLink] = useState(false);
+  const[products,setProducts]=useState([])
+
   const [productData, setProductData] = useState(Array(4).fill(null));
   const [selectedImages, setSelectedImages] = useState(Array(4).fill(null));
 
@@ -78,7 +84,23 @@ const AddProduct = () => {
    }
   }
 
+  const fetchAllProducts=async()=>{
+    const result=await getData('products/displayAllProduct')
+    
+    setProducts(result.data)
+    console.log(result.data)
+}
+
+
+  useEffect(function(){
+  
+    fetchAllProducts()
+ 
+ },[])
+  
+
   const handleSubmit = async () => {
+  
     var formdata = new FormData();
     formdata.append("categoryName", categoryName);
     formdata.append("subCategoryName", subCategoryName);
@@ -93,6 +115,10 @@ const AddProduct = () => {
     formdata.append("description4", getDescription4);
    
     formdata.append("hotSelling", hotSelling);
+    formdata.append("uploadName", uploadName);
+    formdata.append("uploadDescription", uploadDescription);
+    formdata.append("uploadLogo", uploadLogo);
+    formdata.append("uploadLink", uploadLink);
     formdata.append("newArrival", newArrival);
     selectedImages.forEach((image, index) => {
         if (image) {
@@ -138,6 +164,10 @@ const AddProduct = () => {
     setDescrition4("");
     setHotSelling("");
     setNewArrival("");
+    setUploadName(false);
+    setUploadDescription(false);
+    setUploadLogo(false);
+    setUploadLink(false)
     setSelectedImages(Array(4).fill(null))
     setProductData(Array(4).fill(null))
     
@@ -291,7 +321,7 @@ const AddProduct = () => {
           </Grid>
 
 
-          <Grid item xs={5}>
+          <Grid item xs={2}>
             <FormControl>
               <FormLabel id="demo-row-radio-buttons-group-label">
                 Hot Selling
@@ -319,7 +349,7 @@ const AddProduct = () => {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={2}>
             <FormControl>
               <FormLabel id="demo-row-radio-buttons-group-label">
                 New Arrival
@@ -346,6 +376,18 @@ const AddProduct = () => {
                 />
               </RadioGroup>
             </FormControl>
+          </Grid>
+          <Grid item xs={2}>
+          <FormControlLabel control={<Checkbox checked={uploadName==true?true:false} onChange={()=>setUploadName(!uploadName)} />} label="Upload Name" />
+          </Grid>
+          <Grid item xs={2}>
+          <FormControlLabel control={<Checkbox checked={uploadLogo==true?true:false} onChange={()=>setUploadLogo(!uploadLogo)} />} label="Upload Logo" />
+          </Grid>
+          <Grid item xs={2}>
+          <FormControlLabel control={<Checkbox checked={uploadDescription==true?true:false} onChange={()=>setUploadDescription(!uploadDescription)} />} label="Upload Description" />
+          </Grid>
+          <Grid item xs={2}>
+          <FormControlLabel control={<Checkbox checked={uploadLink==true?true:false} onChange={()=>setUploadLink(!uploadLink)} />} label="Upload Link" />
           </Grid>
          
           
@@ -476,8 +518,15 @@ const AddProduct = () => {
               Reset
             </Button>
           </Grid>
+          <Grid item xs={12} sx={{mt:10}}>
+          <DisplayAllProducts products={products} onChange={()=>fetchAllProducts()} />
+          </Grid>
     </Grid>
+    
    </Grid>
+    
+    
+  
   )
 }
 

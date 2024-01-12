@@ -21,6 +21,7 @@ const Theme = ({data}) => {
   return (
     <Grid
   container
+  
   spacing={0}
   sx={{
     display: "flex",
@@ -46,6 +47,7 @@ const Theme = ({data}) => {
       autoPlay
       loop
       muted
+      playsInline
       style={{
         width: "100%",
         height: "100%",
@@ -62,17 +64,17 @@ const Theme = ({data}) => {
     </video>
     <Grid
       container
-      alignItems="center"
-      justifyContent="center"
+      
       sx={{
 
         position: "absolute",
-        top: 0,
-        left: 0,
+       
         height: "100%",
         width: "100%",
         display:"flex",
-        flexDirection:"column"
+        flexDirection:"column",
+        top:650,
+        alignItems:"center"
       }}
     >
       <Button
@@ -83,9 +85,10 @@ const Theme = ({data}) => {
           fontSize: 12,
           bgcolor: "#f3b419",
           color: "black",
+          width:"40%"
         }}
       >
-        View Invitation
+        Play
       </Button>
       <Button
         variant="contained"
@@ -95,6 +98,7 @@ const Theme = ({data}) => {
           fontSize: 12,
           bgcolor: "#f3b419",
           color: "black",
+          width:"40%"
         }}
       >
         Download Invitation

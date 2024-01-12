@@ -99,7 +99,7 @@ export default function DisplayAllCards(props) {
   function displayTable() {
     return (
       <MaterialTable
-        title={"Enquiry List"}
+        title={"Card List"}
         data={enquiries}
         style={{}}
         columns={[
@@ -118,6 +118,10 @@ export default function DisplayAllCards(props) {
           {
             title: "Card Id",
             field: "_id",
+          },
+          {
+            title: "User Id",
+            field: "customerId",
           },
           {
             title: "Company Name",
@@ -159,10 +163,14 @@ export default function DisplayAllCards(props) {
 
   const fetchAllEnquiries = async () => {
     const result = await getData("carddetails/displayallcards");
-    console.log(result);
+    // alert(result.data);
     setEnquiries(result.reverse());
    
   };
+
+  useEffect(()=>{
+    fetchAllEnquiries()
+  },[])
 
   return (
     <Grid
@@ -177,7 +185,7 @@ export default function DisplayAllCards(props) {
       <Grid
         item
         xs={12}
-        sm={8}
+        sm={12}
         style={{ marginTop: 20, fontSize: matches ? 10 : 20 }}
       >
         {displayTable()}

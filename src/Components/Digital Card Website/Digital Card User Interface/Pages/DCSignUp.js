@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import OtpComponent from '../ReviewTag/OtpComponent';
 import OtpGenerator from '../ReviewTag/OtpGenerator';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { isValid } from 'date-fns';
 
 export default function DCSignUp() {
     const theme = useTheme();
@@ -51,6 +52,18 @@ export default function DCSignUp() {
 
         setIsError(!isValid);
     };
+    const validateNumber = (value) => {
+        // Define the regular expressions to check for lowercase, uppercase, number, and special character.
+        const numberRegex = /[0-9]/;
+
+
+        // Check if the password meets all the requirements.
+        const isValid =
+            value.length >= 10 &&
+            numberRegex.test(value) &&
+
+            alert(isValid)
+    };
 
     const handleOtp = (value) => {
         if (value.length == 4) {
@@ -64,7 +77,7 @@ export default function DCSignUp() {
 
     const handleSubmit = async () => {
 
-        if (isError == false && verified == true) {
+        if (isError == false && verified == true && fullName != "" && phoneNo != "" && emailId != "") {
 
             var formData = new FormData()
             formData.append('name', fullName)
@@ -75,12 +88,12 @@ export default function DCSignUp() {
 
             var result = await postData('customerLogin/customerLogin', formData, true)
             console.log(result)
-            
+
             if (result.status == 'true') {
-                window.localStorage.setItem("userId",result.data._id)
-            window.localStorage.setItem("UserNumber",result.data.phone)
-            window.localStorage.setItem("UserEmail",emailId.toLowerCase())
-            
+                window.localStorage.setItem("userId", result.data._id)
+                window.localStorage.setItem("UserNumber", result.data.phone)
+                window.localStorage.setItem("UserEmail", emailId.toLowerCase())
+
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
@@ -89,9 +102,9 @@ export default function DCSignUp() {
                     timer: 1500
                 })
                 navigate('/userdashboard')
-                window.localStorage.setItem("User",true)
+                window.localStorage.setItem("User", true)
                 window.localStorage.removeItem('data')
-                window.localStorage.setItem("data",JSON.stringify(result.data))
+                window.localStorage.setItem("data", JSON.stringify(result.data))
             }
             else if (result.status == 'exist') {
                 Swal.fire({
@@ -122,75 +135,54 @@ export default function DCSignUp() {
 
             }
 
+        } else {
+            Swal.fire({
+                text: "Fill all the Details First",
+                timer: 1000,
+                icon: 'error'
+            })
         }
     }
 
 
     const handleopenotpdailog = async () => {
 
+        if (phoneNo != '') {
+            var otpval = OtpGenerator()
+            
+            setOtp(otpval)
 
-        var otpval = OtpGenerator()
-       
-        setOtp(otpval)
-        var formData = new FormData
-        formData.append('mail', emailId.toLowerCase())
-        formData.append('otp', otpval)
-        let res = await postData('customerLogin/sendOtp', formData, true)
+            const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=659669EFAB045&access_token=6591142e9fcef`;
+            const response = await postData('otp/api', { url: apiUrl })
+
+        } else {
+            Swal.fire({
+                text: "Enter the Number First",
+                timer: 1000
+            })
+        }
+
+        // var formData = new FormData
+        // formData.append('mail', emailId.toLowerCase())
+        // formData.append('otp', otpval)
+        // let res = await postData('customerLogin/sendOtp', formData, true)
 
     }
     const handleotpdailogClose = () => {
         setOpenOtp(false)
     }
 
-    const ShowOtpDailog = () => {
-        return (
-            <div >
 
-                <Dialog
-                    open={openOtp}
-                    keepMounted
-                    onClose={handleotpdailogClose}
-                    aria-describedby="alert-dialog-description"
-                >
-                    <DialogTitle >
-                        <div style={{ color: "#d24a61" }}>
-                            Confirm your Mail Id
-                        </div>
-                    </DialogTitle>
-                    <Divider />
-                    <DialogContent>
-                        <DialogContentText >
-                            <div >
-                                Enter the code we have sent via Mail to {emailId}
-                            </div>
-                        </DialogContentText>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <OtpComponent value="" onChange={(value) => { handleSubmit(value) }} />
-                                {/* <TextField value={enteredOtp} onChange={(event)=>chkOtp(event)}/> */}
-                            </Grid>
-                            <Grid item xs={12}>
-                                <div >
-                                    Haven't recieved a code? More Options
-                                </div>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <div >
-                                    {message}
-                                </div>
-                            </Grid>
+    const handlePhoneNoChange = (event) => {
+        // Remove non-numeric characters from the input
+        const numericValue = event.target.value.replace(/\D/g, '');
 
-                        </Grid>
-                    </DialogContent>
+        // Limit the input to 10 digits
+        const limitedValue = numericValue.slice(0, 10);
 
-                    <DialogActions>
-                        <Button style={{ color: '#d24a61' }} onClick={handleotpdailogClose}>Close</Button>
-
-                    </DialogActions>
-                </Dialog>
-            </div>
-        );
-    }
+        // Update the state with the limited numeric value
+        setPhoneNo(limitedValue);
+    };
 
 
 
@@ -234,11 +226,14 @@ export default function DCSignUp() {
                                 <Grid item xs={12}>
                                     <TextField label="Full Name" fullWidth value={fullName} onChange={(event) => setFullName(event.target.value)} />
                                 </Grid>
-                                <Grid item xs={12}>
-                                    <TextField label="Phone Number" fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
-                                </Grid>
                                 <Grid item xs={9}>
-                                    <TextField label="Email" fullWidth value={emailId} onChange={(event) => setEmailId(event.target.value)} />
+                                    <TextField InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                +91
+                                            </InputAdornment>
+                                        ),
+                                    }} label="Whatsapp Number" fullWidth value={phoneNo} onChange={handlePhoneNoChange} />
                                 </Grid>
                                 <Grid item xs={3} sx={{ display: "flex" }}>
                                     <Button
@@ -268,25 +263,31 @@ export default function DCSignUp() {
                                 <Grid item xs={12}>
                                     {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
                                 </Grid>
+                                <Grid item xs={12}>
+                                    <TextField label="Email" fullWidth value={emailId} onChange={(event) => setEmailId(event.target.value)} />
+                                </Grid>
+
+
+
 
                                 <Grid item xs={12}>
                                     <TextField
                                         id="password"
-                                        label="Password" 
+                                        label="Password"
                                         type={showPassword ? "text" : "password"} // <-- This is where the magic happens
                                         InputProps={{ // <-- This is where the toggle button is added.
-    endAdornment: (
-      <InputAdornment position="end">
-        <IconButton
-          aria-label="toggle password visibility"
-          onClick={handleClickShowPassword}
-          onMouseDown={handleMouseDownPassword}
-        >
-          {showPassword ? <Visibility /> : <VisibilityOff />}
-        </IconButton>
-      </InputAdornment>
-    )
-  }}
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="toggle password visibility"
+                                                        onClick={handleClickShowPassword}
+                                                        onMouseDown={handleMouseDownPassword}
+                                                    >
+                                                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            )
+                                        }}
                                         variant="outlined"
                                         value={password}
                                         onChange={handleChange}
@@ -332,7 +333,7 @@ export default function DCSignUp() {
                     </Grid>
                 </Box>
             </Container>
-            {ShowOtpDailog()}
+
         </Box>
     )
 }

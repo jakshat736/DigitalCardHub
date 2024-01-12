@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import { Button,FormControl,FormControlLabel,FormLabel,Grid,InputLabel,MenuItem,Radio,RadioGroup,Select,Table,TableCell,TableRow,TextField } from "@mui/material";
+import { Button,Checkbox,FormControl,FormControlLabel,FormLabel,Grid,InputLabel,MenuItem,Radio,RadioGroup,Select,Table,TableCell,TableRow,TextField } from "@mui/material";
 import { getData, serverURL } from ".././Services/NodeServices";
 import MaterialTable from "@material-table/core";
 import {useStyles} from "./DisplayAllCategoryCss"
@@ -54,6 +54,11 @@ const [getCategoryData, setCategoryData] = useState([]);
   const [getDescription3, setDescrition3] = useState("");
   const [getDescription4, setDescrition4] = useState("");
   const [productId,setProductId]=useState('')
+  
+  const [uploadName, setUploadName] = useState(false);
+  const [uploadLogo, setUploadLogo] = useState(false);
+  const [uploadDescription, setUploadDescription] = useState(false);
+  const [uploadLink, setUploadLink] = useState(false);
  
 
 const [socket,setSocket]=React.useState()
@@ -62,7 +67,7 @@ const [socket,setSocket]=React.useState()
 
 useEffect(function(){
   
-   fetchAllProducts()
+   props.onChange()
 
 },[socket])
 
@@ -87,12 +92,12 @@ const handleDelete=async(rowdata)=>{
       if(result.status==true)
       {
       Swal.fire('Delete!', '', 'success')
-      fetchAllProducts()
+      props.onChange()
       }
       else{
         Swal.fire('Server error', '', 'error')
       }
-      fetchAllProducts()
+      props.onChange()
     } 
     else if (res.isDenied) {
       Swal.fire('Changes are not deleted', '', 'info')
@@ -120,6 +125,10 @@ const handleEdit=(data)=>{
   setDescrition4(data.description4)
   setNewArrival(data.newArrival)
   setHotSelling(data.hotSelling)
+  setUploadName(data.uploadName)
+  setUploadLogo(data.uploadLogo)
+  setUploadDescription(data.uploadDescription)
+  setUploadLink(data.uploadLink)
   setProductId(data._id)
   fetchsubCategory(data.categoryName)
   setEdit(true)
@@ -233,17 +242,45 @@ const handleSubmit = async () => {
   formdata.append("description2", getDescription2);
   formdata.append("description3", getDescription3);
   formdata.append("description4", getDescription4);
- 
+  formdata.append("uploadName", uploadName);
+    formdata.append("uploadDescription", uploadDescription);
+    formdata.append("uploadLogo", uploadLogo);
+    formdata.append("uploadLink", uploadLink);
+   
   formdata.append("hotSelling", hotSelling);
   formdata.append("newArrival", newArrival);
   
   var response = await postData("products/editProduct", formdata, true);
   if (response.status == true) {
     setEdit(false)
+    setOpen1(false)
     Swal.fire({
       icon: "success",
       title: "successfully submitted",
     });
+    props.onChange()
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong!",
+    });
+  }
+};
+const handleStockUpdate = async (_Id,stock) => {
+  var formdata = new FormData();
+  formdata.append("_id", _Id);
+  formdata.append("Instock", stock==true?false:true);
+  
+  var response = await postData("products/editStock", formdata, true);
+  if (response.status == true) {
+    setEdit(false)
+    setOpen1(false)
+    Swal.fire({
+      icon: "success",
+      title: "successfully submitted",
+    });
+    props.onChange()
   } else {
     Swal.fire({
       icon: "error",
@@ -415,9 +452,7 @@ function EditDailog(){
               minRows={4}
             />
           </Grid>
-
-
-          <Grid item xs={5}>
+          <Grid item xs={2}>
             <FormControl>
               <FormLabel id="demo-row-radio-buttons-group-label">
                 Hot Selling
@@ -445,7 +480,7 @@ function EditDailog(){
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={2}>
             <FormControl>
               <FormLabel id="demo-row-radio-buttons-group-label">
                 New Arrival
@@ -473,6 +508,19 @@ function EditDailog(){
               </RadioGroup>
             </FormControl>
           </Grid>
+          <Grid item xs={2} >
+          <FormControlLabel sx={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}} control={<Checkbox checked={uploadName==true?true:false} onChange={()=>setUploadName(!uploadName)} />} label="Upload Name" />
+          </Grid>
+          <Grid item xs={2}>
+          <FormControlLabel sx={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}} control={<Checkbox checked={uploadLogo==true?true:false} onChange={()=>setUploadLogo(!uploadLogo)} />} label="Upload Logo" />
+          </Grid>
+          <Grid item xs={2}>
+          <FormControlLabel sx={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}} control={<Checkbox checked={uploadDescription==true?true:false} onChange={()=>setUploadDescription(!uploadDescription)} />} label="Upload Description" />
+          </Grid>
+          <Grid item xs={2}>
+          <FormControlLabel sx={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}} control={<Checkbox checked={uploadLink==true?true:false} onChange={()=>setUploadLink(!uploadLink)} />} label="Upload Link" />
+          </Grid>
+         
          
           <Grid item xs={12} md={6}>
             <Grid container spacing={2}>
@@ -579,9 +627,10 @@ const ImagesDialog=()=>{
 
 function displayTable() {
     return (
+      
       <MaterialTable
       title={"Product List"}
-        data={products}
+        data={props.products}
         style={{}}
         columns={[
             {
@@ -604,6 +653,15 @@ function displayTable() {
                   <Button variant="contained" onClick={() => handleOpen(rowData)}>
                     Show
                   </Button>
+                </div>
+              ),
+            },
+            {
+              title: "Stock",
+              render: (rowData) => (
+                <div>
+                 <FormControlLabel sx={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}} control={<Checkbox checked={rowData.Instock==true?true:false} onChange={()=>handleStockUpdate(rowData._id,rowData.Instock)} />} label="In Stock" />
+          
                 </div>
               ),
             },
@@ -635,13 +693,7 @@ function displayTable() {
 
 
 
-    const fetchAllProducts=async()=>{
-        const result=await getData('products/displayAllProduct')
-        
-        setProducts(result.data)
-        console.log(result.data)
-    }
-
+    
 
     
 
@@ -651,7 +703,7 @@ function displayTable() {
         <Grid container spacing={2} style={{  display:"flex",
         justifyContent:'center',
         alignItems:'center'}}>
-          <Grid item xs={12} sm={8} style={{marginTop:20,fontSize:matches?10:20}}>
+          <Grid item xs={12} sm={12} style={{marginTop:20,fontSize:matches?10:20}}>
         {displayTable()}</Grid>  
         {ImagesDialog()}
         {showData && DisplayDailog()}

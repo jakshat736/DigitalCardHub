@@ -17,10 +17,43 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Delete, Edit } from "@mui/icons-material";
 
+import {
+  MaterialReactTable,
+  createMRTColumnHelper,
+  useMaterialReactTable,
+} from 'material-react-table';
+import { Box, IconButton, Tooltip } from '@mui/material';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import { mkConfig, generateCsv, download } from 'export-to-csv'; //or use your library of choice here
+import { data1 } from './MakeData';
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+
+const columnHelper = createMRTColumnHelper();
+  
+const columns = [
+  columnHelper.accessor('_id', {
+    header: 'Category Id',
+    size: 40,
+  }),
+  columnHelper.accessor('categoryname', {
+    header: 'Category Name',
+    size: 120,
+  }),
+];
+
+const csvConfig = mkConfig({
+  fieldSeparator: ',',
+  decimalSeparator: '.',
+  useKeysAsHeaders: true,
+});
+
 
 export default function DisplayAllCategory(props) {
   const classes = useStyles();
   const navigate = useNavigate();
+  var theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down(700));
   const [categoryID, setCategoryID] = useState(" ");
   const [getcategory, setcategory] = useState(" ");
   const [Icon, setIcon] = useState({ url: "/girl.png", bytes: "" });
@@ -40,26 +73,14 @@ export default function DisplayAllCategory(props) {
   const [btnStatus, setBtnStatus] = useState(false);
   const [priority, setPriority] = useState("");
 
-  const [category, setCategory] = useState([]);
-  const FetchAllCategory = async () => {
-    var data = await getData("category/display_all_category");
+ 
 
-    setCategory(data.data);
-  };
-
-  const handleChange=(event)=>{
-    setPriority(event.target.value)
-
-}
-  useEffect(function () {
-    FetchAllCategory();
-  }, []);
+  
 
   const handleOpen = (rowData) => {
-    setCategoryID(rowData._id);
-    setcategory(rowData.categoryname);
-    setOldicon({ url: `${serverURL}/images/${rowData.icon}`, bytes: " " });
-    setIcon({ url: `${serverURL}/images/${rowData.icon}`, bytes: " " });
+    setCategoryID(rowData.original._id);
+    setcategory(rowData.original.categoryname);
+   
     setOpen(true);
   };
   const handleClose = () => {
@@ -74,6 +95,7 @@ export default function DisplayAllCategory(props) {
         icon: "success",
         title: " EDIT Record successfully submited",
       });
+      setOpen(false);
     } else {
       Swal.fire({
         position: "top-end",
@@ -83,7 +105,8 @@ export default function DisplayAllCategory(props) {
       });
     }
 
-    FetchAllCategory();
+    // FetchAllCategory();
+    props.onChange()
   };
   const handleDelete = async (rowData) => {
     Swal.fire({
@@ -94,21 +117,24 @@ export default function DisplayAllCategory(props) {
     }).then(async (res) => {
       /* Read more about isConfirmed, isDenied below */
       if (res.isConfirmed) {
-        var body = { categoryid: rowData._id };
+        var body = { categoryid: rowData.original._id };
         var result = await postData("category/delete_category_data", body);
         if (result.status) {
           Swal.fire("Delete!", "", "success");
-          FetchAllCategory();
+          // FetchAllCategory();
+          props.onChange()
         } else {
           Swal.fire("Server error", "", "error");
         }
-        FetchAllCategory();
+        // FetchAllCategory();
+        props.onChange()
       } else if (res.isDenied) {
         Swal.fire("Changes are not deleted", "", "info");
       }
     });
 
-    FetchAllCategory();
+    // FetchAllCategory();
+    
     handleClose();
   };
   const handleCancel = () => {
@@ -127,41 +153,10 @@ export default function DisplayAllCategory(props) {
 
     setBtnStatus(false);
     setuploadbtn(false);
-    FetchAllCategory();
+    // FetchAllCategory();
+    props.onChange()
   };
 
-  const SaveAndCancel = () => {
-    return (
-      <div>
-        {btnStatus ? (
-          <div
-            style={{
-              display: "flex",
-              width: 180,
-              justifyContent: "space-between",
-            }}
-          >
-            <Button
-              onClick={handleSavePicture}
-              color="primary"
-              variant="contained"
-            >
-              Save
-            </Button>
-            <Button
-              color="secondary"
-              variant="contained"
-              onClick={handleCancel}
-            >
-              cancel
-            </Button>
-          </div>
-        ) : (
-          <></>
-        )}
-      </div>
-    );
-  };
 
   const showCategory = () => {
     return (
@@ -212,48 +207,109 @@ export default function DisplayAllCategory(props) {
     );
   };
 
-  function DisplayCategory() {
-    return (
-      <MaterialTable
-        title="List of Category"
-        columns={[
-          { title: "Category-ID", field: "_id" },
-          { title: "Category-Name", field: "categoryname" },
-          
-        ]}
-        data={category}
-        actions={[
-          {
-            icon: ()=><Edit/>,
-            tooltip: "edit category details",
-            onClick: (event, rowData) => {
-              handleOpen(rowData);
-            },
-          },
-          {
-            icon: ()=><Delete/>,
-            tooltip: "Delete",
-            onClick: (event, rowData) => {
-              handleDelete(rowData);
-            },
-          },
-          
-        ]}
-      />
-    );
-  }
+  const handleExportRows = (rows) => {
+    const rowData = rows.map((row) => row.original);
+    const csv = generateCsv(csvConfig)(rowData);
+    download(csvConfig)(csv);
+  };
+
+  const handleExportData = () => {
+    const csv = generateCsv(csvConfig)(props.category);
+    download(csvConfig)(csv);
+  };
+
+  const table = useMaterialReactTable({
+    columns,
+    data:props.category,
+    enableRowSelection: true,
+    columnFilterDisplayMode: 'popover',
+    paginationDisplayMode: 'pages',
+    positionToolbarAlertBanner: 'bottom',
+    createDisplayMode: 'modal', //default ('row', and 'custom' are also available)
+    editDisplayMode: 'modal', //default ('row', 'cell', 'table', and 'custom' are also available)
+    enableEditing: true,
+    renderTopToolbarCustomActions: ({ table }) => (
+      <Box
+        sx={{
+          display: 'flex',
+          gap: '16px',
+          padding: '8px',
+          flexWrap: 'wrap',
+        }}
+      >
+        <Button
+          //export all data that is currently in the table (ignore pagination, sorting, filtering, etc.)
+          onClick={handleExportData}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export All Data
+        </Button>
+        <Button
+          disabled={table.getPrePaginationRowModel().rows.length === 0}
+          //export all rows, including from the next page, (still respects filtering and sorting)
+          onClick={() =>
+            handleExportRows(table.getPrePaginationRowModel().rows)
+          }
+          startIcon={<FileDownloadIcon />}
+        >
+          Export All Rows
+        </Button>
+        <Button
+          disabled={table.getRowModel().rows.length === 0}
+          //export all rows as seen on the screen (respects pagination, sorting, filtering, etc.)
+          onClick={() => handleExportRows(table.getRowModel().rows)}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export Page Rows
+        </Button>
+        <Button
+          disabled={
+            !table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
+          }
+          //only export selected rows
+          onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export Selected Rows
+        </Button>
+      </Box>
+    ),
+    renderRowActions: ({ row, table }) => (
+      <Box sx={{ display: 'flex', gap: '1rem' }}>
+        <Tooltip title="Edit">
+          <IconButton onClick={() => handleOpen(row)}>
+            <Edit/>
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Delete">
+          <IconButton color="error" onClick={() => handleDelete(row)}>
+           <Delete/>
+          </IconButton>
+        </Tooltip>
+      </Box>
+    ),
+  });
 
   return (
-    <div style={{ height:'100vh',
-    background:'#f5f6fa',
-    justifyContent:'center',
-    display:'flex'}}>
-      <div style={{borderRadius:20,
-        width:'100%',
-        height:'40%',
-        background:'white ',
-        marginTop:'3%'}}>{DisplayCategory()}</div>
-      {showCategory()}
-    </div>
+    <Grid
+    container
+    spacing={2}
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    <Grid
+      item
+      xs={12}
+      sm={12}
+      style={{ marginTop: 20, fontSize: matches ? 10 : 20 }}
+    >
+     
+      <MaterialReactTable table={table} />
+    </Grid>
+     {showCategory()}
+  </Grid>
   );
 }

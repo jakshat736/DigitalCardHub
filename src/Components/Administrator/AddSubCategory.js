@@ -9,6 +9,7 @@ import Select from "@mui/material/Select";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import ViewListIcon from '@mui/icons-material/ViewList';
+import DisplaySubCategory from "./DisplaySubCategory";
 
 export default function SubCategory(props) {
 
@@ -22,8 +23,19 @@ export default function SubCategory(props) {
     const [categoryId, setcategoryId] = useState("");
     const [subcategory, setsubcategory] = useState("");
     const [categoryList, setcategoryList] = useState([]);
+    
+const[subcategorydata,setSubcategory]=useState([ ])
 
     // FUNCTION TO FETCH THE CATEGORY
+    // FUNCTION TO FETCH THE CATEGORY
+    const FetchAllsubCategory=async()=>{
+  var data=await getData('subcategory/display_all_subcategory')
+  setSubcategory(data.data)  
+}
+ useEffect( function(){
+  FetchAllsubCategory()
+},[])
+
     const FetchAllCategory = async () => {
         var data = await getData("category/display_all_category");
         setcategoryList(data.data);
@@ -52,6 +64,7 @@ export default function SubCategory(props) {
                 icon: "success",
                 title: "Record successfully submited",
             });
+            FetchAllsubCategory()
         } else {
             Swal.fire({
                 icon: "success",
@@ -138,6 +151,9 @@ export default function SubCategory(props) {
                             RESET
                         </Button>
                     </Grid>
+                </Grid>
+                <Grid >
+                    <DisplaySubCategory subcategory={subcategorydata} onChange={()=>FetchAllsubCategory()}/>
                 </Grid>
             </div>
         </div>

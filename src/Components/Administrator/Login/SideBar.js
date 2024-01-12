@@ -38,6 +38,33 @@ return(
          
         </MenuItem>
 
+        <Link to="/dashboard/selforder" className={classes.link}>
+        <MenuItem>
+          <ListItemIcon>
+            <RemoveRedEyeIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Self Order</ListItemText>  
+        </MenuItem>
+        </Link>
+
+        <Link to="/dashboard/displayalllinks" className={classes.link}>
+        <MenuItem>
+          <ListItemIcon>
+            <RemoveRedEyeIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Generated Links</ListItemText>  
+        </MenuItem>
+        </Link>
+
+        <Link to="/dashboard/displayallcompanylinks" className={classes.link}>
+        <MenuItem>
+          <ListItemIcon>
+            <RemoveRedEyeIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Generated Company Links</ListItemText>  
+        </MenuItem>
+        </Link>
+
           <Link to="/dashboard/displayallenquiries" className={classes.link}>
         <MenuItem>
           <ListItemIcon>
@@ -59,7 +86,7 @@ return(
         </MenuItem>
         </Link>
        
-        <Link to="/dashboard/displayallcategory" className={classes.link}>
+        {/* <Link to="/dashboard/displayallcategory" className={classes.link}>
         <MenuItem>
           <ListItemIcon>
             <RemoveRedEyeIcon fontSize="small" />
@@ -67,7 +94,7 @@ return(
           <ListItemText>Display All Category</ListItemText>
           
         </MenuItem>
-        </Link>
+        </Link> */}
         <Link to="/dashboard/addsubcategory" className={classes.link}>
         <MenuItem>
           <ListItemIcon>
@@ -77,7 +104,7 @@ return(
           
         </MenuItem>
         </Link>
-        <Link to="/dashboard/displaysubcategory" className={classes.link}>
+        {/* <Link to="/dashboard/displaysubcategory" className={classes.link}>
         <MenuItem>
           <ListItemIcon>
             <RemoveRedEyeIcon fontSize="small" />
@@ -85,7 +112,7 @@ return(
           <ListItemText>Display Sub Category</ListItemText>
           
         </MenuItem>
-        </Link>
+        </Link> */}
         <Link to="/dashboard/addproduct" className={classes.link}>
         <MenuItem>
           <ListItemIcon>
@@ -104,7 +131,7 @@ return(
           
         </MenuItem>
         </Link>
-        <Link to="/dashboard/displayallproduct" className={classes.link}>
+        {/* <Link to="/dashboard/displayallproduct" className={classes.link}>
         <MenuItem>
           <ListItemIcon>
             <RemoveRedEyeIcon fontSize="small" />
@@ -112,7 +139,7 @@ return(
           <ListItemText>Products</ListItemText>
           
         </MenuItem>
-        </Link>
+        </Link> */}
         <Link to="/dashboard/displayallregistrations" className={classes.link}>
         <MenuItem>
           <ListItemIcon>

@@ -20,6 +20,9 @@ import DisplaySubCategory from "../DisplaySubCategory";
 import DisplayAllCategory from "../DisplayAllCategory";
 import Order from "../Order";
 import DisplayAllUsers from "../DisplayAllUsers";
+import DisplayAllGeneratedLinks from "../DisplayAllGeneratedLinks";
+import SelfOrder from "../SelfOrder";
+import DisplayAllGeneratedCompanyLink from "../DisplayAllGeneratedCompanyLink";
 export default function DashBoard(props){
     var navigate=useNavigate();
     let Session=window.localStorage.getItem("Session");
@@ -54,7 +57,10 @@ return(
               <Route element={<DisplayAllCategory/>} path="/displayallcategory" /> 
               <Route element={<DisplayAllProducts/>} path="/displayallproduct" /> 
               <Route element={<Order/>} path="/orders" /> 
+              <Route element={<DisplayAllGeneratedLinks/>} path="/displayalllinks" /> 
+              <Route element={<DisplayAllGeneratedCompanyLink/>} path="/displayallcompanylinks" /> 
   
+              <Route path="/selforder" element={<SelfOrder/>} />
        </Routes>
        </Grid>
        </Grid>

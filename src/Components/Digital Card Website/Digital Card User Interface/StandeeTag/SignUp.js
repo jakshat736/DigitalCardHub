@@ -55,6 +55,8 @@ const handleMouseDownPassword = () => setShowPassword(!showPassword);
         setIsError(!isValid);
     };
 
+    
+
     const handleOtp = (value) => {
         if (value.length == 4) {
             if (otp == value) {
@@ -136,20 +138,44 @@ const handleMouseDownPassword = () => setShowPassword(!showPassword);
         }
     }
 
-    const handleopenotpdailog=async()=>{
-        
-     
-     var otpval=OtpGenerator()
-     setOtp(otpval)
-     var formData=new FormData
-     formData.append('mail',emailId.toLowerCase())
-     formData.append('otp',otpval)
-     let res=await postData('standee/sendOtp',formData,true)
-        
-      }
+    
+    const handleopenotpdailog = async () => {
+
+        if(phoneNo!=''){
+        var otpval = OtpGenerator()
+       
+        setOtp(otpval)
+
+        const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=659669EFAB045&access_token=6591142e9fcef`;
+        const response=await postData('otp/api',{url:apiUrl})
+       
+        }else{
+            Swal.fire({
+                text:"Enter the Number First",
+                timer:1000
+            })
+        }
+
+        // var formData = new FormData
+        // formData.append('mail', emailId.toLowerCase())
+        // formData.append('otp', otpval)
+        // let res = await postData('customerLogin/sendOtp', formData, true)
+
+    }
       const handleotpdailogClose=()=>{
         setOpenOtp(false)
       }
+
+      const handlePhoneNoChange = (event) => {
+        // Remove non-numeric characters from the input
+        const numericValue = event.target.value.replace(/\D/g, '');
+    
+        // Limit the input to 10 digits
+        const limitedValue = numericValue.slice(0, 10);
+    
+        // Update the state with the limited numeric value
+        setPhoneNo(limitedValue);
+      };
 
       const ShowOtpDailog=()=>{
         return (
@@ -202,144 +228,152 @@ const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
     return (
         <Box sx={{ background: "#001E3C", width: "100vw", height: "100vh", overflowX: "hidden" }}>
-          
-            <Container maxWidth="xl" sx={{ display: "flex", justifyContent: "center", alignItems: "center", mt: "5.5%", pt: "3%" }}>
-                <Box sx={{ background: "#ffffff", p: 0, width: { xs: "100vw", md: "80vw" }, borderRadius: { xs: "4%", md: "0%" }, mt: { xs: "22%", lg: "0%" } }}>
-                    <Grid container spacing={0}>
-                        <Grid item lg={7} sx={{ display: { xs: "none", md: "none", lg: "flex" }, flexDirection: "column", background: "#D4E9FF", pr: "2%" }}>
-                            <Box sx={{
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "flex-end",
-                                mt: "2%"
-                            }}>
-                                <img src={logo} width={"20%"} />
-                                <Typography sx={{ color: "#696969", fontFamily: "OXANIUM", fontWeight: 600, textAlign: "left" }}>
-                                    We've got tips and tools to keep your business
-                                </Typography>
-                                <Typography sx={{ color: "#696969", fontFamily: "OXANIUM", fontWeight: 600, textAlign: "left" }}>
-                                    growing while you're out of the office.
-                                </Typography>
-                            </Box>
-                            <img src={bg} width={"70%"} />
-                        </Grid>
-                        <Grid item xs={12} lg={5} sx={{ p: { xs: "14% 5%", lg: "3% 5%" } }}>
-                            <img src={logo} width={"20%"} style={{ display: mobile ? "block" : medium ? "block" : "none", margin: "auto" }} />
-                            <Typography sx={{
-                                fontSize: { xs: "1.5em", md: "2.6em", lg: "2.1em" },
-                                fontWeight: 700,
-                                fontFamily: "OXANIUM",
-                                color: "#000000",
-                                letterSpacing: "-0.2px",
-                                mb: "2.5vh",
-                                textAlign: "center"
-                            }}>
-                                Sign Up Here
+        <Navbar />
+        <Container maxWidth="xl" sx={{ display: "flex", justifyContent: "center", alignItems: "center", mt: "5.5%", pt: "3%" }}>
+            <Box sx={{ background: "#ffffff", p: 0, width: { xs: "100vw", md: "80vw" }, borderRadius: { xs: "4%", md: "0%" }, mt: { xs: "22%", lg: "0%" } }}>
+                <Grid container spacing={0}>
+                    <Grid item lg={7} sx={{ display: { xs: "none", md: "none", lg: "flex" }, flexDirection: "column", background: "#D4E9FF", pr: "2%" }}>
+                        <Box sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "flex-end",
+                            mt: "2%"
+                        }}>
+                            <img src={logo} width={"20%"} />
+                            <Typography sx={{ color: "#696969", fontFamily: "OXANIUM", fontWeight: 600, textAlign: "left" }}>
+                                We've got tips and tools to keep your business
                             </Typography>
-                            <Grid container spacing={2} sx={{ p: "8% 5%" }}>
-                                <Grid item xs={12}>
-                                    <TextField label="Full Name" fullWidth value={fullName} onChange={(event) => setFullName(event.target.value)} />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField label="Phone Number" fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
-                                </Grid>
-                                <Grid item xs={9}>
-                                    <TextField label="Email" fullWidth value={emailId} onChange={(event) => setEmailId(event.target.value)} />
-                                </Grid>
-                                <Grid item xs={3} sx={{ display: "flex" }}>
-                                    <Button
-                                        fullWidth
-                                        onClick={handleopenotpdailog}
-                                        sx={{
-                                            background: "#001E3C",
+                            <Typography sx={{ color: "#696969", fontFamily: "OXANIUM", fontWeight: 600, textAlign: "left" }}>
+                                growing while you're out of the office.
+                            </Typography>
+                        </Box>
+                        <img src={bg} width={"70%"} />
+                    </Grid>
+                    <Grid item xs={12} lg={5} sx={{ p: { xs: "14% 5%", lg: "3% 5%" } }}>
+                        <img src={logo} width={"20%"} style={{ display: mobile ? "block" : medium ? "block" : "none", margin: "auto" }} />
+                        <Typography sx={{
+                            fontSize: { xs: "1.5em", md: "2.6em", lg: "2.1em" },
+                            fontWeight: 700,
+                            fontFamily: "OXANIUM",
+                            color: "#000000",
+                            letterSpacing: "-0.2px",
+                            mb: "2.5vh",
+                            textAlign: "center"
+                        }}>
+                            Sign Up Here
+                        </Typography>
+                        <Grid container spacing={2} sx={{ p: "8% 5%" }}>
+                            <Grid item xs={12}>
+                                <TextField label="Full Name" fullWidth value={fullName} onChange={(event) => setFullName(event.target.value)} />
+                            </Grid>
+                            <Grid item xs={9}>
+                                <TextField  InputProps={{
+      startAdornment: (
+        <InputAdornment position="start">
+          +91
+        </InputAdornment>
+      ),
+    }} label="Whatsapp Number" fullWidth value={phoneNo}  onChange={handlePhoneNoChange} />
+                            </Grid>
+                            <Grid item xs={3} sx={{ display: "flex" }}>
+                                <Button
+                                    fullWidth
+                                    onClick={handleopenotpdailog}
+                                    sx={{
+                                        background: "#001E3C",
+                                        color: "#ffffff",
+                                        p: "2% 10%",
+                                        fontSize: { xs: "0.6em", md: "0.9em", lg: "0.9em" },
+                                        fontWeight: 600,
+                                        "&:hover": {
+                                            background: "#023569",
                                             color: "#ffffff",
-                                            p: "2% 10%",
-                                            fontSize: { xs: "0.6em", md: "0.9em", lg: "0.9em" },
-                                            fontWeight: 600,
-                                            "&:hover": {
-                                                background: "#023569",
-                                                color: "#ffffff",
-                                            }
-                                        }}
-                                    >
-                                        Get Otp
-                                    </Button></Grid>
-                                <Grid item xs={12}>
-                                    <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
-
-                                </Grid>
-                                <Grid item xs={12}>
-                                    OTP not received ? <a style={{ cursor: 'pointer' }} onClick={handleopenotpdailog}>Resend</a>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
-                                </Grid>
-
-                                <Grid item xs={12}>
-                                    <TextField
-                                        id="password"
-                                        label="Password"
-                                        type={showPassword ? "text" : "password"} // <-- This is where the magic happens
-                                        InputProps={{ // <-- This is where the toggle button is added.
-    endAdornment: (
-      <InputAdornment position="end">
-        <IconButton
-          aria-label="toggle password visibility"
-          onClick={handleClickShowPassword}
-          onMouseDown={handleMouseDownPassword}
-        >
-          {showPassword ? <Visibility /> : <VisibilityOff />}
-        </IconButton>
-      </InputAdornment>
-    )
-  }}
-                                        variant="outlined"
-                                        value={password}
-                                        onChange={handleChange}
-                                        error={isError}
-                                        helperText={
-                                            isError
-                                                ? 'Password must be at least 8 characters and contain at least one lowercase letter, one uppercase letter, one number, and one special character.'
-                                                : ''
                                         }
-                                        fullWidth
-                                    />
-                                </Grid>
+                                    }}
+                                >
+                                    Get Otp
+                                </Button></Grid>
                                 <Grid item xs={12}>
-                                    <Button
-                                        fullWidth
-                                        onClick={handleSubmit}
-                                        
-                                        sx={{
-                                            background: "#001E3C",
+                                <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
+
+                            </Grid>
+                            <Grid item xs={12}>
+                                OTP not received ? <a style={{ cursor: 'pointer' }} onClick={handleopenotpdailog}>Resend</a>
+                            </Grid>
+                            <Grid item xs={12}>
+                                {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField label="Email" fullWidth value={emailId} onChange={(event) => setEmailId(event.target.value)} />
+                            </Grid>
+                            
+                           
+                           
+
+                            <Grid item xs={12}>
+                                <TextField
+                                    id="password"
+                                    label="Password" 
+                                    type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+                                    InputProps={{ // <-- This is where the toggle button is added.
+endAdornment: (
+  <InputAdornment position="end">
+    <IconButton
+      aria-label="toggle password visibility"
+      onClick={handleClickShowPassword}
+      onMouseDown={handleMouseDownPassword}
+    >
+      {showPassword ? <Visibility /> : <VisibilityOff />}
+    </IconButton>
+  </InputAdornment>
+)
+}}
+                                    variant="outlined"
+                                    value={password}
+                                    onChange={handleChange}
+                                    error={isError}
+                                    helperText={
+                                        isError
+                                            ? 'Password must be at least 8 characters and contain at least one lowercase letter, one uppercase letter, one number, and one special character.'
+                                            : ''
+                                    }
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Button
+                                    fullWidth
+                                    onClick={handleSubmit}
+                                    sx={{
+                                        background: "#001E3C",
+                                        color: "#ffffff",
+                                        p: "2% 10%",
+                                        fontSize: { xs: "0.8em", md: "1.1em", lg: "1.2em" },
+                                        fontWeight: 600,
+                                        "&:hover": {
+                                            background: "#023569",
                                             color: "#ffffff",
-                                            p: "2% 10%",
-                                            fontSize: { xs: "0.8em", md: "1.1em", lg: "1.2em" },
-                                            fontWeight: 600,
-                                            "&:hover": {
-                                                background: "#023569",
-                                                color: "#ffffff",
-                                            }
-                                        }}
-                                    >
-                                        Sign up
-                                    </Button>
-                                </Grid>
-                                <Grid item xs={12} sx={{ display: "flex", flexDirection: "row", alignItems: "center", mt: "1%" }}>
-                                    <Typography sx={{ fontSize: "0.8em", color: "#696969", fontFamily: "OXANIUM", fontWeight: 600, textAlign: "center" }}>
-                                        already have an account
-                                    </Typography>
-                                    &nbsp;&nbsp;
-                                    <Typography onClick={() =>   navigate('/standeelogin',{state:{id:tagId}})} sx={{ fontSize: "0.8em", color: "#001E3C", fontFamily: "OXANIUM", fontWeight: 600, textAlign: "center", '&:hover': { color: "red" }, cursor: "pointer" }}>
-                                        Log in Now
-                                    </Typography>
-                                </Grid>
+                                        }
+                                    }}
+                                >
+                                    Sign up
+                                </Button>
+                            </Grid>
+                            <Grid item xs={12} sx={{ display: "flex", flexDirection: "row", alignItems: "center", mt: "1%" }}>
+                                <Typography sx={{ fontSize: "0.8em", color: "#696969", fontFamily: "OXANIUM", fontWeight: 600, textAlign: "center" }}>
+                                    already have an account
+                                </Typography>
+                                &nbsp;&nbsp;
+                                <Typography onClick={() => navigate("/digitalcardlogin")} sx={{ fontSize: "0.8em", color: "#001E3C", fontFamily: "OXANIUM", fontWeight: 600, textAlign: "center", '&:hover': { color: "red" }, cursor: "pointer" }}>
+                                    Log in Now
+                                </Typography>
                             </Grid>
                         </Grid>
                     </Grid>
-                </Box>
-            </Container>
-            {ShowOtpDailog()}
-        </Box>
+                </Grid>
+            </Box>
+        </Container>
+        {ShowOtpDailog()}
+    </Box>
     )
 }

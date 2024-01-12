@@ -14,6 +14,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Phone, Visibility, VisibilityOff } from '@mui/icons-material';
+import OtpGenerator from '../ReviewTag/OtpGenerator';
 export default function DCLogin() {
     const theme = useTheme();
     const mobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -25,11 +26,14 @@ export default function DCLogin() {
     const [open, setOpen] = useState(false);
     const [open1, setOpen1] = useState(false);
     const [email, setEmail] = useState("");
-    const [number, setNumber] = useState("");
+    const [number, setNumber] = useState();
     const [message, setMessage] = useState("");
     const [changeMessage, setChangeMessage] = useState("");
     const [newPassword,setNewPassword]=useState("")
     const [showPassword, setShowPassword] = useState(false);
+    const [otp, setOtp] = useState();
+    
+    const [verified, setVerified] = useState()
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
     const handleSubmit=async()=>{
@@ -93,8 +97,12 @@ export default function DCLogin() {
         setOpen1(false)
     }
     const handleCheck=async()=>{
-
-        var formData = new FormData()
+        var otpval = OtpGenerator()
+       
+        setOtp(otpval)
+       
+       if(email!="") { var formData = new FormData()
+        
   
         formData.append('email',email.toLowerCase())
      
@@ -103,13 +111,34 @@ export default function DCLogin() {
         var result = await postData('customerLogin/chkUser', formData, true)
         
         if(result.status=="exist"){
-           
-            setOpen1(true)
-            setMessage("")
+           var formData1 = new FormData
+        formData1.append('mail', emailId.toLowerCase())
+        formData1.append('otp', otpval)
+        let res = await postData('customerLogin/sendOtp', formData1, true)
+       
+        Swal.fire({
+            text:"Otp Sent Succesfully! Check Spam if not found in inbox",
+            icon:"success",
+            timer:1000
+        })
+            
         }else{
             setOpen1(false)
             setMessage("User Not Found")
         }
+
+       }else{
+        Swal.fire({
+            text:"Fill the Email First",
+            icon:"warning",
+            timer:1000
+        })
+       }         
+        
+
+        
+           
+        
     }
 
     const handleChange=async()=>{
@@ -129,9 +158,32 @@ export default function DCLogin() {
         }
     }
 
+    const handlePhoneNoChange = (event) => {
+        // Remove non-numeric characters from the input
+        const numericValue = event.target.value.replace(/\D/g, '');
+    
+        // Limit the input to 10 digits
+        const limitedValue = numericValue.slice(0, 10);
+    
+        // Update the state with the limited numeric value
+        setNumber(limitedValue);
+      };
+
+      const handleOtp = (value) => {
+        if (value.length == 4) {
+            if (otp == value) {
+                setOpen1(true)
+            setMessage("")
+                setVerified(true)
+            } else {
+                setVerified(false)
+            }
+        }
+    }
+
     const dialogComponent = () => {
         return (
-          <Dialog open={open} onClose={handleClose} >
+          <Dialog open={open} onClose={handleClose} sx={{zIndex:1}} >
             <DialogTitle sx={{ backgroundColor: "#001e3c", color: "white" }}>
               Change Password
             </DialogTitle>
@@ -157,9 +209,12 @@ export default function DCLogin() {
                 <Typography sx={{fontSize:20,textAlign:"center",color:"red"}}>{message}</Typography>
                 </Grid>
                 <Grid item xs={12} sx={{display:"flex",justifyContent:"center"}}>
-                    <Button variant='contained' onClick={()=>handleCheck()}>Verify</Button>
+                    <Button variant='contained' onClick={()=>handleCheck()}>Send Otp</Button>
                 </Grid>
+                <Grid item xs={12}>
+                                    <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
 
+                                </Grid>
                 <Grid item xs={10} sx={{display:open1?"flex":"none",justifyContent:"center",mt:2}}>
                     <TextField label="Enter New Password" value={newPassword} onChange={(e)=>setNewPassword(e.target.value)} fullWidth/>
                 </Grid>

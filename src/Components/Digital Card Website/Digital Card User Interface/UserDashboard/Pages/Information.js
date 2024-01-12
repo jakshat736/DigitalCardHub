@@ -1,4 +1,4 @@
-import { Grid, Button, Typography, TextField, useTheme, useMediaQuery, CircularProgress, Box } from '@mui/material'
+import { Grid, Button, Typography, TextField, useTheme, useMediaQuery, CircularProgress, Box, DialogContentText } from '@mui/material'
 import React, { useState } from 'react'
 import Navbar from '../UserComponents/Navbar'
 import Footer from '../UserComponents/Footer'
@@ -27,6 +27,8 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Swal from 'sweetalert2'
+import { HelpOutline } from '@mui/icons-material'
+import help from '../UserAssets/help.png'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -107,6 +109,7 @@ const Information = () => {
   const [companyName, setCompanyName] = useState("");
   const [companyName1, setCompanyName1] = useState("");
   const [loading, setLoading] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
   const setEditorRef = (editor) => {
     setEditor(editor);
   };
@@ -326,7 +329,7 @@ const Information = () => {
 
 
   const handleSubmit = async () => {
-    if(verify==false){var formData = new FormData();
+    if(verify==true){var formData = new FormData();
     formData.append("companyname", companyName);
     formData.append("companyId", companyName);
     formData.append("customerId", userId);
@@ -345,13 +348,13 @@ const Information = () => {
        
     }}else{
       Swal.fire({
-        title:"First Verify Company Name",
+        title:"First Verify Your Unique Card Id",
         icon:"error"
       })
     }
 };
 const handleUpdate = async () => {
-    if(verify==false || companyName1==companyName){var formData = new FormData();
+    if(verify==true || companyName1==companyName){var formData = new FormData();
     formData.append("_id", cardId);
     formData.append("companyname", companyName);
 
@@ -368,7 +371,7 @@ const handleUpdate = async () => {
        
     }}else{
       Swal.fire({
-        title:"First Verify Company Name",
+        title:"First Verify Your Unique Card Id",
         icon:"error"
       })
     }
@@ -467,10 +470,29 @@ const handleUpdate = async () => {
 
   const handleClick=async()=>{
     var formData=new FormData
-    formData.append('companyId',companyName)
-    const response=await postData('carddetails/verifyCompanyName',formData,true)
-    // alert(JSON.stringify(response))
-    setVerify(response.status)
+    formData.append('companyId',companyName.replace(/\s/g, ''))
+    const response=await postData('generatedcompanylink/checkCompanyName',formData,true)
+    
+    if(response.status!=true)
+    {
+      setVerify(false)
+      Swal.fire({
+        title: '',
+        showDenyButton: true,
+       
+        confirmButtonText: 'Save',
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          Swal.fire('Saved!', '', 'success')
+        } else if (result.isDenied) {
+          Swal.fire('Changes are not saved', '', 'info')
+        }
+      })
+    }else{
+      setVerify(response.status)
+    }
 
   }
 
@@ -481,6 +503,46 @@ const handleUpdate = async () => {
     </Box>
     )
   }
+
+  const handleClose1=()=>{
+    setOpenDialog(false)
+  }
+
+   const Dialog1=()=>{
+    return(
+      <Dialog
+      open={openDialog}
+      onClose={handleClose1}
+      fullWidth
+      sx={{
+        width: { xs: 400, sm: 490, md: 490 },
+        marginLeft: { xs: "0%", sm: "20%", md: "35%" },
+      }}
+    >
+      <DialogTitle sx={{ backgroundColor: "#001e3c", color: "white" }}>
+        Your Unique Card Id
+      </DialogTitle>
+      <DialogContent>
+        <DialogContentText sx={{ color: "#001e3c", fontWeight: "bolder" }}>
+         <img src={help} width={"100%"}/>
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+      
+        <Button
+          onClick={handleClose1}
+          variant="contained"
+          sx={{
+            backgroundColor: "#001e3c",
+            "&:hover": { backgroundColor: "#001e3c" },
+          }}
+        >
+          Close
+        </Button>
+      </DialogActions>
+    </Dialog>
+    )
+   }
   return (
     <Grid>
       <Navbar />
@@ -636,17 +698,20 @@ const handleUpdate = async () => {
                                 <Button variant='contained' onClick={()=>handleClick()}>
                                   Verify
                                 </Button>
+                                <IconButton variant='contained' onClick={()=>setOpenDialog(true)} sx={{color:"black"}}>
+                                  <HelpOutline/>
+                                </IconButton>
                               </InputAdornment>
                             ),
                           }}
                             value={companyName}
                             onChange={(e) => setCompanyName(e.target.value)}
                             sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }}
-                            label="Company Name"
+                            label="Your Unique Card Id"
                             required
                            
                         />
-                        <Typography>{verify==false?"Available":verify==true?"Not Available":''}</Typography>  </Grid>
+                        <Typography>{verify==true?"Verified":verify==false?"Not Verified":''}</Typography>  </Grid>
               <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
                 <TextField value={phone} type='number' InputProps={{
                   startAdornment: (
@@ -697,6 +762,7 @@ const handleUpdate = async () => {
       <Footer />
       {DialogComponent()}
       {DialogComponent1()}
+      {Dialog1()}
     </Grid>
   )
 }

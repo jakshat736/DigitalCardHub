@@ -15,6 +15,40 @@ import Swal from "sweetalert2"
 import { useNavigate } from "react-router-dom"
 import { Delete, Edit } from "@mui/icons-material"
 
+import {
+  MaterialReactTable,
+  createMRTColumnHelper,
+  useMaterialReactTable,
+} from 'material-react-table';
+import { Box, IconButton, Tooltip } from '@mui/material';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import { mkConfig, generateCsv, download } from 'export-to-csv'; //or use your library of choice here
+import { data1 } from './MakeData';
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+
+const columnHelper = createMRTColumnHelper();
+  
+const columns = [
+  columnHelper.accessor('categoryid', {
+    header: 'Category Id',
+    size: 40,
+  }),
+  columnHelper.accessor('_id', {
+    header: 'SubCategory Id',
+    size: 40,
+  }),
+  columnHelper.accessor('subcategoryname', {
+    header: 'Sub Category Name',
+    size: 120,
+  }),
+];
+
+const csvConfig = mkConfig({
+  fieldSeparator: ',',
+  decimalSeparator: '.',
+  useKeysAsHeaders: true,
+});
 
 
 
@@ -24,46 +58,33 @@ import { Delete, Edit } from "@mui/icons-material"
 export default function DisplaySubCategory(props){
 const classes=useStyles() 
 const navigate=useNavigate()
-
+var theme = useTheme();
+const matches = useMediaQuery(theme.breakpoints.down(700));
 const [categoryID,setcategoryID]=useState(' ')
 const[ subcategoryId,setsubcategoryId]=useState(' ')
 const [subcategoryName,setsubcategoryName]=useState('')
 const[Icon,setIcon]=useState('')
 const[oldIcon,setOldIcon]=useState('')
 
-const[subcategorydata,setSubcategory]=useState([ ])
-const FetchAllsubCategory=async()=>{
-  var data=await getData('subcategory/display_all_subcategory')
-  setSubcategory(data.data)  
-}
- useEffect( function(){
-  FetchAllsubCategory()
-},[])
 
 const[open,setopen]=useState(false)
 
 const handleOpen=(rowData)=>{
    setopen(true)
-   setsubcategoryId(rowData._id)
-     setcategoryID(rowData.categoryid)
-   setsubcategoryName(rowData.subcategoryname)
-   setOldIcon({url:`${serverURL}/images/${rowData.icon}`,bytes:' '})
-   setIcon({url:`${serverURL}/images/${rowData.icon}`,bytes:' '})
+   setsubcategoryId(rowData.original._id)
+     setcategoryID(rowData.original.categoryid)
+   setsubcategoryName(rowData.original.subcategoryname)
+  
   
 }
 const handleClose=()=>{
   setbtn(false)
   setopen(false)
   setuploadbtn(false)
-  FetchAllsubCategory()
+  props.onChange()
 }
 
 
-const handleIcon=(event)=>{
-  setIcon({url:URL.createObjectURL(event.target.files[0]),bytes:event.target.files[0]})
-  setbtn(true)
-  setuploadbtn(true)
-}
 
 const handleEditdata=async()=>{
   var body={categoryid:categoryID,subcategoryname:subcategoryName,subcategoryid:subcategoryId}
@@ -74,6 +95,7 @@ const handleEditdata=async()=>{
  title: 'EDIT-Record successfully submited',
  
 })
+setopen(false)
 
 }
 else{
@@ -84,7 +106,7 @@ else{
   })
 }
 
-  FetchAllsubCategory()
+props.onChange()
 
 }
 const handleDeletedata=async()=>{
@@ -102,12 +124,12 @@ const handleDeletedata=async()=>{
       if(result.status==true)
       {
       Swal.fire('Delete!', '', 'success')
-      FetchAllsubCategory()
+      props.onChange()
       }
       else{
         Swal.fire('Server error', '', 'error')
       }
-      FetchAllsubCategory()
+      props.onChange()
     } 
     else if (res.isDenied) {
       Swal.fire('Changes are not deleted', '', 'info')
@@ -132,7 +154,7 @@ const handleSave=async()=>{
 
    setbtn(false)
    uploadbtn(false)
-   FetchAllsubCategory()
+   props.onChange()
 
 }
 const handleCancel=()=>{
@@ -175,7 +197,7 @@ const handleChange=(event)=>{
   setcategoryID(event.target.value)
 }
 
-const handleDelete=async(id)=>{
+const handleDelete=async(rowData)=>{
 
   Swal.fire({
     title: 'Do you want to Delete the subcategory?',
@@ -185,17 +207,17 @@ const handleDelete=async(id)=>{
   }).then(async(res) => {
     /* Read more about isConfirmed, isDenied below */
     if (res.isConfirmed) {
-      var body={subcategoryid:id}
+      var body={subcategoryid:rowData.original._id}
       var result=await postData('subcategory/delete_subcategory',body)
       if(result.status==true)
       {
       Swal.fire('Delete!', '', 'success')
-      FetchAllsubCategory()
+      props.onChange()
       }
       else{
         Swal.fire('Server error', '', 'error')
       }
-      FetchAllsubCategory()
+      props.onChange()
     } 
     else if (res.isDenied) {
       Swal.fire('Changes are not deleted', '', 'info')
@@ -251,51 +273,113 @@ function DisplayDailog(){
 }
 
 
+const handleExportRows = (rows) => {
+  const rowData = rows.map((row) => row.original);
+  const csv = generateCsv(csvConfig)(rowData);
+  download(csvConfig)(csv);
+};
 
-function Displaytable() {
-  return (
-    <MaterialTable
-      title="Subcategory-Details"
-      columns={[
-        { title: 'categoryid', field: 'categoryid' },
-        { title: 'subcategoryid', field: '_id' },
-        { title: 'subcategoryname', field: 'subcategoryname' },
-       
-      ]}
-      data={subcategorydata}        
-      actions={[
-        {
-          icon: ()=><Edit/>,
-          tooltip: 'edit subcategory',
-          onClick: (event, rowData) => {handleOpen(rowData)}
-        },
-        {
-          icon: ()=><Delete/>,
-          tooltip: 'Delete',
-          onClick: (event, rowData) => {handleDelete(rowData._id)}
-        },
-       
-      ]}
-    />
-  )
-}
+const handleExportData = () => {
+  const csv = generateCsv(csvConfig)(props.subcategory);
+  download(csvConfig)(csv);
+};
+
+const table = useMaterialReactTable({
+  columns,
+  data:props.subcategory,
+  enableRowSelection: true,
+  columnFilterDisplayMode: 'popover',
+  paginationDisplayMode: 'pages',
+  positionToolbarAlertBanner: 'bottom',
+  createDisplayMode: 'modal', //default ('row', and 'custom' are also available)
+  editDisplayMode: 'modal', //default ('row', 'cell', 'table', and 'custom' are also available)
+  enableEditing: true,
+  renderTopToolbarCustomActions: ({ table }) => (
+    <Box
+      sx={{
+        display: 'flex',
+        gap: '16px',
+        padding: '8px',
+        flexWrap: 'wrap',
+      }}
+    >
+      <Button
+        //export all data that is currently in the table (ignore pagination, sorting, filtering, etc.)
+        onClick={handleExportData}
+        startIcon={<FileDownloadIcon />}
+      >
+        Export All Data
+      </Button>
+      <Button
+        disabled={table.getPrePaginationRowModel().rows.length === 0}
+        //export all rows, including from the next page, (still respects filtering and sorting)
+        onClick={() =>
+          handleExportRows(table.getPrePaginationRowModel().rows)
+        }
+        startIcon={<FileDownloadIcon />}
+      >
+        Export All Rows
+      </Button>
+      <Button
+        disabled={table.getRowModel().rows.length === 0}
+        //export all rows as seen on the screen (respects pagination, sorting, filtering, etc.)
+        onClick={() => handleExportRows(table.getRowModel().rows)}
+        startIcon={<FileDownloadIcon />}
+      >
+        Export Page Rows
+      </Button>
+      <Button
+        disabled={
+          !table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
+        }
+        //only export selected rows
+        onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
+        startIcon={<FileDownloadIcon />}
+      >
+        Export Selected Rows
+      </Button>
+    </Box>
+  ),
+  renderRowActions: ({ row, table }) => (
+    <Box sx={{ display: 'flex', gap: '1rem' }}>
+      <Tooltip title="Edit">
+        <IconButton onClick={() => handleOpen(row)}>
+          <Edit/>
+        </IconButton>
+      </Tooltip>
+      <Tooltip title="Delete">
+        <IconButton color="error" onClick={() => handleDelete(row)}>
+         <Delete/>
+        </IconButton>
+      </Tooltip>
+    </Box>
+  ),
+});
+
   
   
   
   
   
   
-  return( <div style={{ height:'100vh',
-  background:'#f5f6fa',
-  justifyContent:'center',
-  display:'flex'}}>
-    <div style={{borderRadius:20,
-      width:'100%',
-      height:'40%',
-      background:'white ',
-      marginTop:'3%'}}>
-       {Displaytable()}
-    </div>
-       {DisplayDailog()}
-  </div>)
+  return(    <Grid
+    container
+    spacing={2}
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    <Grid
+      item
+      xs={12}
+      sm={12}
+      style={{ marginTop: 20, fontSize: matches ? 10 : 20 }}
+    >
+     
+      <MaterialReactTable table={table} />
+    </Grid>
+     {DisplayDailog()}
+  </Grid>)
 }

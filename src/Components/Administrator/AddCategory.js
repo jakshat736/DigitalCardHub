@@ -1,18 +1,30 @@
 import { TextField, Grid, Button, Avatar } from "@mui/material";
-import { postData } from "../Services/NodeServices";
-import { useState } from "react";
+import { getData, postData } from "../Services/NodeServices";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
+import DisplayAllCategory from "./DisplayAllCategory";
+
 
 const AddCategory = () => {
     const navigate = useNavigate();
 
   // CATEGORY VARIABLES
   const [getcategory, setCategory] = useState("");
+  const [categoryData, setCategoryData] = useState([]);
+  const FetchAllCategory = async () => {
+    var data = await getData("category/display_all_category");
+
+    setCategoryData(data.data);
+  };
+
+  useEffect(function () {
+     FetchAllCategory();
+  }, []);
  
   // FUNCTION FOR ICON HANDLING
   
@@ -30,6 +42,7 @@ const AddCategory = () => {
         title: "Done",
         title: "Record successfully submited",
       });
+      FetchAllCategory()
     } else {
       Swal.fire({
         icon: "error",
@@ -114,6 +127,9 @@ const AddCategory = () => {
             Clear
           </Button>
         </Grid>
+      </Grid>
+      <Grid >
+        <DisplayAllCategory category={categoryData} onChange={()=>FetchAllCategory()}/>
       </Grid>
     </div>
   </div>

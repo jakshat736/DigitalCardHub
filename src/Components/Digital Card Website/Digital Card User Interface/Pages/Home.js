@@ -71,8 +71,8 @@ export default function Home() {
                 <Features />
 
             </Container>
-            <Divider sx={{ backgroundColor: "#ffffff", width: "100%" }} />
-            <Box sx={{ backgroundImage: `url('${bg}')`, backgroundSize: "cover" }}>
+            
+            <Box sx={{ backgroundImage: `url('${bg}')`, backgroundSize: "cover",mt:5 }}>
                 <Footer />
             </Box>
         </Box>

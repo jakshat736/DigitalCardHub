@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { postData } from '../../../../Services/NodeServices';
-import logo from "../../../Digital Card Assets/dchlogo.png";
+import logo from "../../../Digital Card Assets/New Logo New.png";
 
 const settings = ['Change Password', 'Logout'];
 const Navbar = () => {
@@ -73,7 +73,7 @@ const Navbar = () => {
                     display: 'flex', justifyContent: 'space-between'
                 }
                 }>
-                    <img onClick={() => navigate("/digitalcard")} src={logo} style={{ width: mobile ? "51px" :tablet?"52px":"100px" }} />
+                    <img onClick={() => navigate("/digitalcard")} src={logo} style={{ width: mobile ? "100px" :tablet?"120px":"130px" }} />
                     <Box sx={{ flexGrow: 0, display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
                         <Grid sx={{ display: mobile?'none':tablet?"flex":"flex", justifyContent: 'center', alignItems: 'center', margin: 1 }}>
                             <Typography >Hey, {userData.name}</Typography>

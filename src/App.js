@@ -84,6 +84,8 @@ import Invitation from './Components/Digital Card Website/Digital Card User Inte
 import Details from './Components/Digital Card Website/MenuUpdate/adminpannel/Details';
 import OrderComplete1 from './Components/Digital Card Website/MenuUpdate/adminpannel/OrderComplete';
 import OrderDelivered from './Components/Digital Card Website/MenuUpdate/adminpannel/OrderDelivered';
+import LinkGenrator from './Components/Administrator/LinkGenrator';
+import Example from './Components/Administrator/Example';
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -152,6 +154,7 @@ function App() {
 					<Route path="/tags/:id" element={<ReviewLoadingScreen1/>} />  
 					<Route path="/tag/:id" element={<ReviewHome/>} />  
 					<Route path="/review/dashboard" element={<Dashboard/>} />  
+					<Route path="/linkgenerator" element={<LinkGenrator/>} />  
 
 
 					{/* Standee Tags Routes */}
@@ -185,6 +188,7 @@ function App() {
     <Route path="/restaurantdetails" element={<Details/>}/>
     <Route path="/menucheckout" element={<OrderComplete1/>}/>
     <Route path="/orderdelivered" element={<OrderDelivered/>}/>
+    <Route path="/example" element={<Example/>}/>
 					
       </Routes>
 	  </HashRouter>

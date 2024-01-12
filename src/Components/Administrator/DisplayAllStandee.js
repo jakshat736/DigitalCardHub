@@ -99,6 +99,10 @@ export default function DisplayAllStandee(props) {
             field: "email",
           },
           {
+            title: "Password",
+            field: "password",
+          },
+          {
             title:"Remaining Days",
             render: (rowData) => {
                 const createdDate = new Date(rowData.createdDate);
@@ -140,7 +144,7 @@ export default function DisplayAllStandee(props) {
       <Grid
         item
         xs={12}
-        sm={8}
+        sm={12}
         style={{ marginTop: 20, fontSize: matches ? 10 : 20 }}
       >
         {displayTable()}
