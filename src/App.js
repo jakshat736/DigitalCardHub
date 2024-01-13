@@ -92,6 +92,10 @@ import MenuSignUp from './Components/Digital Card Website/MenuUpdate/administrat
 import InviteActivationPage from './Components/Digital Card Website/Digital Card User Interface/Invite/ActivationPage';
 import InviteLogIn from './Components/Digital Card Website/Digital Card User Interface/Invite/LogIn';
 import InviteSignUp from './Components/Digital Card Website/Digital Card User Interface/Invite/SignUp';
+import DownloadContact from './Components/Administrator/DownloadContact';
+import DownloadContact2 from './Components/Administrator/DownloadContact2';
+import DownloadContact3 from './Components/Administrator/DownloadContact3';
+import DownloadContact4 from './Components/Administrator/DownloadContact4';
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -153,6 +157,10 @@ function App() {
 					<Route path="/invite/:inviteId" element={<InviteActivationPage/>} />
 					<Route path="/invitelogin" element={<InviteLogIn/>} />
 					<Route path="/invitesignup" element={<InviteSignUp/>} />
+					<Route path="/manukhandelwal" element={<DownloadContact/>} />
+					<Route path="/raghavkhandelwal" element={<DownloadContact2/>} />
+					<Route path="/hemantkhandelwal" element={<DownloadContact3/>} />
+					<Route path="/rajkumargupta" element={<DownloadContact4/>} />
 					{/* <Route path="/parallax" element={<Parallax/>} /> */}
 					{/* DIGITAL CARD WEBSITE ROUTER END */}
 

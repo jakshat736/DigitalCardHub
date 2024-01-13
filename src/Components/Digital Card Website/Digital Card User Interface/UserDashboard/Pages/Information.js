@@ -333,7 +333,7 @@ const Information = () => {
     if(verify==true){
       var formData = new FormData();
     formData.append("companyname", companyName);
-    formData.append("companyId", companyName);
+    formData.append("companyId", companyName.replace(/\s/g, '').toLowerCase());
     formData.append("customerId", userId);
     formData.append("paymentStatus", "Trial Period");
     formData.append("cardStatus", "Active");
@@ -368,7 +368,7 @@ const Information = () => {
         if (result.isConfirmed) {
           var formData = new FormData();
           formData.append("companyname", companyName);
-          formData.append("companyId", companyName);
+          formData.append("companyId", companyName.replace(/\s/g, '').toLowerCase());
           formData.append("customerId", userId);
           formData.append("paymentStatus", "Trial Period");
           formData.append("cardStatus", "Active");
@@ -395,7 +395,7 @@ const handleUpdate = async (verify) => {
     if(verify==true || companyName1==companyName){
       var formData = new FormData();
     formData.append("_id", cardId);
-    formData.append("companyname", companyName);
+    formData.append("companyname", companyName.replace(/\s/g, '').toLowerCase());
 
     var result = await postData(
         "carddetails/updateCompanyName",
@@ -428,7 +428,7 @@ const handleUpdate = async (verify) => {
         if (result.isConfirmed) {
           var formData = new FormData();
           formData.append("_id", cardId);
-          formData.append("companyname", companyName);
+          formData.append("companyname", companyName.replace(/\s/g, '').toLowerCase());
       
           var result = await postData(
               "carddetails/updateCompanyName",
@@ -542,7 +542,7 @@ const handleUpdate = async (verify) => {
 
   const handleClick=async()=>{
     var formData=new FormData
-    formData.append('companyId',companyName.replace(/\s/g, ''))
+    formData.append('companyId',companyName.replace(/\s/g, '').toLowerCase())
     const response=await postData('generatedcompanylink/checkCompanyName',formData,true)
    
     if(response.status!=true)

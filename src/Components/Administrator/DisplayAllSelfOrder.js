@@ -20,7 +20,7 @@ import { useContext } from "react";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import { Delete, Edit } from "@mui/icons-material";
+import { Delete, Edit, Print } from "@mui/icons-material";
 
 import {
   MaterialReactTable,
@@ -335,6 +335,37 @@ export default function DisplayAllSelfOrder(props) {
     download(csvConfig)(csv);
   };
 
+  const printReceipt = (data) => {
+   
+   
+
+    let receipt = `Receipt\n\n`;
+    const dateTime = new Date().toLocaleString(); // Assuming you have a variable named `dateTime`
+
+receipt += `Customer: ${data.original.productName}\n\n`;
+receipt += `Items:\n`;
+
+receipt += `Order Details \t Quantity \t Unit Price\t Total Price\n`;
+
+const orderDetails = JSON.parse(data.original.orderDetails);
+receipt += `${orderDetails} \t ${data.original.totalAmount / orderDetails} \t Rs: ${data.original.totalAmount / orderDetails} \t Rs: ${data.original.totalAmount}\n`;
+
+receipt += `\nSubTotal: ${data.original.totalAmount}\n\n`;
+receipt += `\nSgst: ${(data.original.totalAmount * 0.025)}\n\n`;
+receipt += `\nCgst: ${(data.original.totalAmount * 0.025)}\n\n`;
+receipt += `\nGrand Total (Including SGST and CGST): ${parseInt(data.original.totalAmount) + parseInt(data.original.totalAmount * 0.05)}\n\n`;
+
+receipt += `Date: ${dateTime}\n`;
+
+
+    const printWindow = window.open('');
+    printWindow.document.write('<html><head><title>Receipt</title></head><body>');
+    printWindow.document.write(`<pre>${receipt}</pre>`);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+  };
+
   const table = useMaterialReactTable({
     columns,
     data:props.data,
@@ -403,6 +434,11 @@ export default function DisplayAllSelfOrder(props) {
             <DeleteIcon />
           </IconButton>
         </Tooltip>
+        {/* <Tooltip title="Print">
+          <IconButton color="error" onClick={() => printReceipt(row)}>
+            <Print/>
+          </IconButton>
+        </Tooltip> */}
       </Box>
     ),
   });

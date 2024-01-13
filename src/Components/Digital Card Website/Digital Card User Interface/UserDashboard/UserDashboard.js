@@ -87,7 +87,7 @@ const UserDashboard = () => {
         var formData=new FormData();
         formData.append("email",data.email)
         const response=await postData('index/getTagsByEmail',formData,true);
-       
+        
         if(response.status==true){
           setMenuDisplay("flex")
         
@@ -98,7 +98,7 @@ const UserDashboard = () => {
         var formData=new FormData();
         formData.append("email",data.email)
         const response=await postData('invite/getTagsByEmail',formData,true);
-       
+        
         if(response.status==true){
         
           setInviteDisplay("flex")

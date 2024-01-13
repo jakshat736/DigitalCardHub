@@ -639,7 +639,7 @@ function displayTable() {
              
             },
             {
-              title: " Name",
+              title: "Name",
               field: "productName",
             },
           

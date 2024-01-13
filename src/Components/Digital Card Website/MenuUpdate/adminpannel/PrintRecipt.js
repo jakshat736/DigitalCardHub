@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 const printReceipt = (data) => {
    
     const dateTime = new Date().toLocaleString();
-      alert(JSON.stringify(data))
+     
     
 
     let receipt = `Receipt\n\n`;

@@ -134,6 +134,7 @@ const AddProduct = () => {
         icon: "success",
         title: "successfully submitted",
       });
+      fetchAllProducts()
     } else {
       Swal.fire({
         icon: "error",
