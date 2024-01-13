@@ -24,6 +24,7 @@ import DisplayAllGeneratedLinks from "../DisplayAllGeneratedLinks";
 import SelfOrder from "../SelfOrder";
 import DisplayAllGeneratedCompanyLink from "../DisplayAllGeneratedCompanyLink";
 import DisplayAllMenuLinks from "../DisplayAllMenuLinks";
+import DisplayAllInviteLinks from "../DispalyAllInviteLinks";
 export default function DashBoard(props){
     var navigate=useNavigate();
     let Session=window.localStorage.getItem("Session");
@@ -61,6 +62,7 @@ return(
               <Route element={<DisplayAllGeneratedLinks/>} path="/displayalllinks" /> 
               <Route element={<DisplayAllGeneratedCompanyLink/>} path="/displayallcompanylinks" /> 
               <Route element={<DisplayAllMenuLinks/>} path="/displayallmenulinks" /> 
+              <Route element={<DisplayAllInviteLinks/>} path="/displayallinvitelinks" /> 
   
               <Route path="/selforder" element={<SelfOrder/>} />
        </Routes>

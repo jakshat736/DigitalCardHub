@@ -50,6 +50,8 @@ const UserDashboard = () => {
   const [standeeTag,setStandeeTag]=useState([])
   const [tagDisplay,setTagDisplay]=useState('none')
   const [menuDisplay,setMenuDisplay]=useState('none')
+  const [inviteDisplay,setInviteDisplay]=useState('none')
+  const [inviteId,setInviteId]=useState('')
   const [standeeTagDisplay,setStandeeTagDisplay]=useState('none')
   const [tagId,setTagId]=useState('')
   const [link,setLink]=useState('')
@@ -85,8 +87,22 @@ const UserDashboard = () => {
         var formData=new FormData();
         formData.append("email",data.email)
         const response=await postData('index/getTagsByEmail',formData,true);
-        if(response.status!=true){
+       
+        if(response.status==true){
           setMenuDisplay("flex")
+        
+
+        }
+      }    
+  const fetchInvite = async()=>{
+        var formData=new FormData();
+        formData.append("email",data.email)
+        const response=await postData('invite/getTagsByEmail',formData,true);
+       
+        if(response.status==true){
+        
+          setInviteDisplay("flex")
+          setInviteId(response.data.inviteId)
         
 
         }
@@ -134,6 +150,7 @@ const UserDashboard = () => {
      fetchAllTag()
      fetchAllStandeeTag();
      fetchMenu()
+     fetchInvite()
       if(result.data!=undefined){fetchAllEnquiries()}
   };
   
@@ -752,12 +769,12 @@ const editDialog=()=>{
                       </Button>
                     
                 </Grid>
-            {/* <Grid item   xs={6}
-            md={3} sx={{display:"flex",flexDirection:"column"}}>
+                <Grid item   xs={6}
+            md={3} sx={{display:inviteDisplay,flexDirection:"column"}}>
             <Typography>Create Invitation</Typography>
                       <Button
                         variant="contained"
-                        onClick={() =>navigate(`/invite`)}
+                        onClick={() =>navigate(`/invite`,{state:{inviteId:inviteId}})}
                         sx={{
                           borderRadius: 2,
                           backgroundImage:
@@ -767,7 +784,7 @@ const editDialog=()=>{
                         Create
                       </Button>
                     
-                </Grid> */}
+                </Grid>
           <Grid
             xs={12}
             item

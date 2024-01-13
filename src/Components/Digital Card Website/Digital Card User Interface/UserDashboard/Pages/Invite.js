@@ -21,22 +21,11 @@ const Invite = () => {
     const [companyName1, setCompanyName1] = useState("");
     const [cardId, setCardId] = useState("");
     const [loading,setLoading]=useState("")
+
+    const location=useLocation()
+    const inviteId=location.state.inviteId
     
-    const fetchCardDetail = async () => {
-        var formData = new FormData()
-        formData.append("customerId", userId)
-        var result = await postData('carddetails/getcardDetails', formData, true)
-        if(result.data!=undefined){setCardId(result.data._id);}
-        if(result.data!=undefined){setCompanyName(result.data.companyname);}
-            if(result.data!=undefined){setCompanyName1(result.data.companyname);}
-         if(result.data!=undefined){fetchInvite(result.data.companyId)}
-      }
-      
-      React.useEffect(() => {
-    
-        fetchCardDetail()
-      }, [])
-    
+   
     
     
     const handleCover = (event) => {
@@ -51,11 +40,11 @@ const Invite = () => {
             bytes: event.target.files[0],
         });
     };
-    const fetchInvite=async(companyId)=>{
+    const fetchInvite=async()=>{
         var formData=new FormData
-        formData.append('companyId',companyId)
+        formData.append('inviteId',inviteId)
 
-        const response=await postData('carddetails/fetchInvite',formData,true)
+        const response=await postData('invite/fetchInvite',formData,true)
         console.log(response.data)
         if(response){
             setCoverVideo({url:`${serverURL}/images/${response.data.coverVideo}`,bytes:""})
@@ -63,63 +52,21 @@ const Invite = () => {
         }
 
     }
-    const handleSubmit = async () => {
-        if(verify==false){var formData = new FormData();
-        formData.append("companyname", companyName);
-        formData.append("companyId", companyName);
-        formData.append("customerId", userId);
-        formData.append("paymentStatus", "Trial Period");
-        formData.append("cardStatus", "Active");
-        formData.append("createdDate", date);
-        formData.append("cardViewCount", 0);
-    
-        var result = await postData("carddetails/addcardDetails", formData, true);
-        console.log(result);
-        if (result.status) {
-            window.localStorage.setItem("CardId", result.data._id);
-            
-            handleSubmit1(result.data.companyId)
-        } else {
-           
-        }}else{
-          Swal.fire({
-            title:"First Verify Company Name",
-            icon:"error"
-          })
-        }
-    };
 
-    const handleUpdate = async () => {
-        if(verify==false || companyName1==companyName){var formData = new FormData();
-        formData.append("_id", cardId);
-        formData.append("companyname", companyName);
+    useEffect(()=>{
+      fetchInvite()
+    },[])
     
-        var result = await postData(
-            "carddetails/updateCompanyName",
-            formData,
-            true
-        );
-        console.log(result);
-        if (result.status) {
-           
-            handleSubmit1(result.data.companyId)
-        } else {
-           
-        }}else{
-          Swal.fire({
-            title:"First Verify Company Name",
-            icon:"error"
-          })
-        }
-    };
+
     
-    const handleSubmit1 = async (companyId) => {
+    
+    const handleSubmit1 = async () => {
 
         try {
           // Set loading to true before making the request
           setLoading(true);
         var formData = new FormData()
-        formData.append('companyId', companyId)
+        formData.append('inviteId', inviteId)
         formData.append('coverVideo', coverVideo.bytes)
         formData.append('invitationVideo', invitationVideo.bytes)
         // alert(file)
@@ -166,24 +113,6 @@ const Invite = () => {
         <Grid>
             <Navbar />
             <Grid container spacing={2} sx={{padding:1,display:"flex",justifyContent:"center"}}>
-            <Grid item xs={12} sx={{ display: 'flex', justifyContent: "center", marginBottom: 2,flexDirection:"column",alignItems:"center",mt:1 }}>
-              <TextField
-                          InputProps={{
-                            endAdornment: (
-                              <InputAdornment position="start">
-                                <Button variant='contained' onClick={()=>handleClick()}>
-                                  Verify
-                                </Button>
-                              </InputAdornment>
-                            ),
-                          }}
-                            value={companyName}
-                            onChange={(e) => setCompanyName(e.target.value)}
-                             label="Company Name"
-                            required
-                           
-                        />
-                        <Typography>{verify==false?"Available":verify==true?"Not Available":''}</Typography>  </Grid>
               
                 <Grid item xs={12}  sx={{ display: 'flex', justifyContent: 'center' }} >
 
@@ -278,7 +207,7 @@ const Invite = () => {
               justifyContent: "space-evenly",
               textAlign: "center",
               alignItems: "center",
-            }} variant='contained' onClick={() => (cardId == "" ? handleSubmit() : handleUpdate())}>Save</Button>
+            }} variant='contained' onClick={() => handleSubmit1()}>Save</Button>
            {loading && <LoaderComponent />}
           </Grid>
          

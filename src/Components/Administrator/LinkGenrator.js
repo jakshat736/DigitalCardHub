@@ -10,6 +10,8 @@ const LinkGenrator = () => {
   const [companyName, setCompanyName] = useState("");
   const [clientName, setClientName] = useState("");
   const [restaurantName, setRestaurantName] = useState("");
+  const [inviteName, setInviteName] = useState("");
+  const [inviteLink, setInviteLInk] = useState("");
 
   const handleCopy=()=>{
    
@@ -36,6 +38,14 @@ const LinkGenrator = () => {
  
    
    }
+  const handleInviteCopy=()=>{
+   
+
+    // Copy the text inside the text field
+   navigator.clipboard.writeText(inviteLink);
+ 
+   
+   }
    const handleGenerate=async()=>{
     if(clientName!=''){
       var formData=new FormData
@@ -55,6 +65,17 @@ const LinkGenrator = () => {
 
     if(res.status==true){
         setMenuLink(`https://digitalcardhub.in/#/menu/${res.data.menuId}`)
+    }}
+   }
+   const handleInviteGenerate=async()=>{
+    if(inviteName!=''){
+      var formData=new FormData
+      formData.append("inviteId",inviteName.replace(/\s/g, ''))
+      formData.append("inviteName",inviteName)
+    const res=await postData('invitelink/add',formData,true)
+
+    if(res.status==true){
+        setInviteLInk(`https://digitalcardhub.in/#/invite/${res.data.inviteId}`)
     }}
    }
 
@@ -191,6 +212,37 @@ const LinkGenrator = () => {
               textAlign: "center",
               alignItems: "center",
             }} variant='contained' onClick={() => handleMenuCopy()}>Copy</Button>
+          </Grid>}
+          </Paper>
+          <Paper elevation={5} sx={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column",width:'50%',mt:5}}>
+             <Grid item xs={12} sx={{display:"flex",justifyContent:"center",m:1}}>
+            <TextField
+                          
+                            value={inviteName}
+                            onChange={(e) => setInviteName(e.target.value)}
+                        
+                            label="Client Name"
+                            required
+                           
+                        />
+            </Grid>
+            <Grid item xs={12} sx={{display:"flex",justifyContent:"center",m:1}}>
+                <Button variant='contained' onClick={()=>handleInviteGenerate()}>Generate Invite link</Button>
+            </Grid>
+            <Grid item xs={6} sx={{display:"flex",justifyContent:"center",m:1}}>
+          <Typography>{inviteLink}</Typography>
+        </Grid>
+       {inviteLink && <Grid item xs={6} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+            <Button sx={{
+              borderRadius: 10,
+              backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+              paddingX:"30px",
+              textAlign: "center",
+              alignItems: "center",
+            }} variant='contained' onClick={() => handleInviteCopy()}>Copy</Button>
           </Grid>}
           </Paper>
            </Grid>

@@ -544,7 +544,7 @@ const handleUpdate = async (verify) => {
     var formData=new FormData
     formData.append('companyId',companyName.replace(/\s/g, ''))
     const response=await postData('generatedcompanylink/checkCompanyName',formData,true)
-    alert(response)
+   
     if(response.status!=true)
     {
     

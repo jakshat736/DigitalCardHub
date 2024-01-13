@@ -64,12 +64,28 @@ return(
           <ListItemText>Generated Company Links</ListItemText>  
         </MenuItem>
         </Link>
+        <Link to="/dashboard/displayallinvitelinks" className={classes.link}>
+        <MenuItem>
+          <ListItemIcon>
+            <RemoveRedEyeIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Generated Invite Links</ListItemText>  
+        </MenuItem>
+        </Link>
         <Link to="/dashboard/displayallmenulinks" className={classes.link}>
         <MenuItem>
           <ListItemIcon>
             <RemoveRedEyeIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText>Generated Menu Links</ListItemText>  
+        </MenuItem>
+        </Link>
+        <Link to="https://digitalcardhub.in/#/linkgenerator" className={classes.link}>
+        <MenuItem>
+          <ListItemIcon>
+            <RemoveRedEyeIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Link Generator</ListItemText>  
         </MenuItem>
         </Link>
 

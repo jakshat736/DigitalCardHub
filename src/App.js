@@ -89,6 +89,9 @@ import Example from './Components/Administrator/Example';
 import ActivationPage from './Components/Digital Card Website/MenuUpdate/administrator/ActivationPage';
 import MenuLogIn from './Components/Digital Card Website/MenuUpdate/administrator/LogIn';
 import MenuSignUp from './Components/Digital Card Website/MenuUpdate/administrator/SignUp';
+import InviteActivationPage from './Components/Digital Card Website/Digital Card User Interface/Invite/ActivationPage';
+import InviteLogIn from './Components/Digital Card Website/Digital Card User Interface/Invite/LogIn';
+import InviteSignUp from './Components/Digital Card Website/Digital Card User Interface/Invite/SignUp';
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -146,7 +149,10 @@ function App() {
 					<Route path="/chri" element={<Chri/>} />
 					<Route path="/invite" element={<Invite/>} />
 					<Route path="/invitation" element={<Invitation/>} />
-					<Route path="/invites/:companyId" element={<Home1/>} />
+					<Route path="/invites/:inviteId" element={<Home1/>} />
+					<Route path="/invite/:inviteId" element={<InviteActivationPage/>} />
+					<Route path="/invitelogin" element={<InviteLogIn/>} />
+					<Route path="/invitesignup" element={<InviteSignUp/>} />
 					{/* <Route path="/parallax" element={<Parallax/>} /> */}
 					{/* DIGITAL CARD WEBSITE ROUTER END */}
 

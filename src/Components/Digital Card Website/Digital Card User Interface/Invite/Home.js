@@ -10,7 +10,7 @@ import Theme from './Theme';
 
 const Card = () => {
     let navigate = useNavigate()
-    const { companyId } = useParams();
+    const { inviteId } = useParams();
     const [data, setData] = useState([]);
     const [products, setProducts] = useState([]);
     const [ecommerce, setEcommerce] = useState([]);
@@ -24,10 +24,10 @@ const Card = () => {
     const fetchCardDetail = async () => {
        
         var formData=new FormData
-        formData.append('companyId',companyId)
+        formData.append('inviteId',inviteId)
 
-        const response=await postData('carddetails/fetchInvite',formData,true)
-        console.log(response)
+        const response=await postData('invite/fetchInvite',formData,true)
+       
         if(response){
             setData(response.data)
             setShow(true)
