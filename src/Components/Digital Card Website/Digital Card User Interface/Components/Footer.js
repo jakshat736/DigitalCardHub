@@ -367,7 +367,7 @@ export default function Footer() {
             cursor: "pointer",
           }}
         >
-          Copyrights © 2022 Powered By IndiaBuzz
+          Copyrights © 2024 Powered By IndiaBuzz
         </Typography>
       </Box>
     </Container>
