@@ -208,7 +208,6 @@ function App() {
     <Route path="/menu/:menuId" element={<ActivationPage/>}/>
     <Route path="/menusignup" element={<MenuSignUp/>}/>
     <Route path="/menulogin" element={<MenuLogIn/>}/>
-    <Route path="/example" element={<Example/>}/>
 					
       </Routes>
 	  </HashRouter>
