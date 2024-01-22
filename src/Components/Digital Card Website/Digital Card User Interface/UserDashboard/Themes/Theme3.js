@@ -1169,13 +1169,26 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                      )
                     }
                      {item.title === "Others" &&(
-                        <IconButton
+                        <Button
+                        sx={{
+                          paddingX: "25px",
+                          paddingY: "10px",
+                          bgcolor: "#ebebeb",
+                          color: "#000000",
+                          fontWeight: 600,
+                          borderRadius: 2,
+                          border: "1px solid #000000",
+                          "&:hover": {
+                            bgcolor: "wheat",
+                            color: "#000000",
+                          },
+                        }}
                         href={`${item.link}`}
                         // onClick={() => handleLinkdinUpdate()}
                         
                       >
-                        <img src={Googlegif} style={{width:70,}}/>
-                      </IconButton>
+                        {item.customTitle}
+                      </Button>
                        
                      )
                     }

@@ -55,6 +55,25 @@ import phonepe from './ThemeAssets/phonepe.png'
 import paytm from './ThemeAssets/paytm.png'
 import gpay from './ThemeAssets/gpay.png'
 import RateReviewIcon from '@mui/icons-material/RateReview';
+import Instagramgif from '../Themes/ThemeAssets/Instagram (1).gif';
+import Whatsappgif from '../Themes/ThemeAssets/Whatsapp (2).gif';
+import Facebookgif from '../Themes/ThemeAssets/Facebook (1).gif';
+import Githubgif from '../Themes/ThemeAssets/Github.gif';
+import Telegramgif from '../Themes/ThemeAssets/Telegram.gif';
+import Youtubegif from '../Themes/ThemeAssets/Youtube (1).gif';
+import Discordgif from '../Themes/ThemeAssets/Discord.gif';
+import Linkedingif from '../Themes/ThemeAssets/Linkedin.gif';
+import Twittergif from '../Themes/ThemeAssets/Twitter.gif';
+import Gmailgif from '../Themes/ThemeAssets/Gmail.gif';
+import Googlegif from '../Themes/ThemeAssets/Google.gif';
+import Behancegif from '../Themes/ThemeAssets/Behance.gif';
+import Paypalgif from '../Themes/ThemeAssets/Paypal (1).gif';
+import Snapchatgif from '../Themes/ThemeAssets/Snapchat.gif';
+import Skypegif from '../Themes/ThemeAssets/Skype.gif';
+import Pinterestgif from '../Themes/ThemeAssets/Pinterest.gif';
+import Drivegif from '../Themes/ThemeAssets/Google Drive.gif';
+import Dropboxgif from '../Themes/ThemeAssets/Dropbox.gif';
+import Redditgif from '../Themes/ThemeAssets/Reddit.gif';
 export default function Theme9({ data, products, gallery, ecommerce }) {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down(600));
@@ -834,187 +853,28 @@ export default function Theme9({ data, products, gallery, ecommerce }) {
                 {data.Email}
               </Typography>
             </Grid>
-            <Grid item xs={2} md={2}>
-              <IconButton
-                href={`https://wa.me/+91${data.phoneNumber}?text=`}
-                onClick={() => handleWhatsappUpdate()}
-                sx={{
-                  backgroundColor: "#fff",
-                  color: "#000",
-                  border: 1,
-                  "&:hover": {
-                    backgroundColor: "wheat",
-                  },
-                }}
-                variant="outlined"
-              >
-                <WhatsAppIcon sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
-              </IconButton>
-            </Grid>
             <Grid
               item
-              xs={2}
-              md={2}
+              xs={3}
+              md={3}
               sx={{
-                display: data.igLink == "" ? "none" : "flex",
-              }}
-            >
-              <IconButton
-                href={`https://www.instagram.com/${data.igLink}`}
-                onClick={() => handleInstaUpdate()}
-                sx={{
-                  backgroundColor: "#fff",
-                  color: "#000",
-                  border: 1,
-                  "&:hover": {
-                    backgroundColor: "wheat",
-                  },
-                }}
-              >
-                <InstagramIcon sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
-              </IconButton>
-            </Grid>
-            <Grid
-              item
-              xs={2}
-              md={2}
-              sx={{
-                display: data.Email == "" ? "none" : "flex",
-              }}
-            >
-              <IconButton
-                href={`mailto:${data.Email}?body=Query%20About%20Business`}
-                sx={{
-                  backgroundColor: "#fff",
-                  color: "#000",
-                  border: 1,
-                  "&:hover": {
-                    backgroundColor: "wheat",
-                  },
-                }}
-              >
-                <EmailIcon sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
-              </IconButton>
-            </Grid>
-            <Grid
-              item
-              xs={2}
-              md={2}
-              sx={{
+                
+                  
                 display: data.phoneNumber == null ? "none" : "flex",
               }}
             >
               <IconButton
                 href={`tel:${data.phoneNumber}`}
-                sx={{
-                  backgroundColor: "#fff",
-                  color: "#000",
-                  border: 1,
-                  "&:hover": {
-                    backgroundColor: "wheat",
-                  },
-                }}
+                sx={{color: "#000",}}
               >
                 <CallIcon sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
               </IconButton>
             </Grid>
+
             <Grid
               item
-              xs={2}
-              md={2}
-              sx={{
-                display: data.fbLink == "" ? "none" : "flex",
-              }}
-            >
-              <IconButton
-                href={`https://www.facebook.com/${data.fbLink}`}
-                onClick={() => handleFbUpdate()}
-                sx={{
-                  backgroundColor: "#fff",
-                  color: "#000",
-                  border: 1,
-                  "&:hover": {
-                    backgroundColor: "wheat",
-                  },
-                }}
-              >
-                <FacebookIcon sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
-              </IconButton>
-            </Grid>
-            <Grid
-              item
-              xs={2}
-              md={2}
-              sx={{
-                display: data.TwitterLink == "" ? "none" : "flex",
-              }}
-            >
-              <IconButton
-                href={`https://twitter.com/${data.TwitterLink}`}
-                // onClick={() => handleFbUpdate()}
-                sx={{
-                  backgroundColor: "#fff",
-                  color: "#000",
-                  border: 1,
-                  "&:hover": {
-                    backgroundColor: "wheat",
-                  },
-                }}
-              >
-                <Twitter sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
-              </IconButton>
-            </Grid>
-            <Grid
-              item
-              xs={2}
-              md={2}
-              sx={{
-                display: data.LinkdnLink == "" ? "none" : "flex",
-              }}
-            >
-              <IconButton
-                href={`https://www.linkedin.com/in/${data. LinkdnLink}`}
-                // onClick={() => handleFbUpdate()}
-                sx={{
-                  backgroundColor: "#fff",
-                  color: "#000",
-                  border: 1,
-                  "&:hover": {
-                    backgroundColor: "wheat",
-                  },
-                }}
-              >
-                <LinkedIn sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
-              </IconButton>
-            </Grid>
-            <Grid
-              item
-              xs={2}
-              md={2}
-              sx={{
-                display: data.YoutubeLink == "" ? "none" : "flex",
-                
-              }}
-            >
-              <IconButton
-                href={`https://www.youtube.com/@${data.YoutubeLink}`}
-                onClick={()=>handleLinkdinUpdate()}
-                sx={{
-                  backgroundColor: "#fff",
-                  color: "#000",
-                  border: 1,
-                  "&:hover": {
-                    backgroundColor: "wheat",
-                  },
-                }}
-              >
-                <YouTubeIcon sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
-              </IconButton>
-            </Grid>
-            <Grid
-              item
-              xs={2}
-              md={2}
+              xs={3}
+              md={3}
               sx={{
                 display: data.location == "" ? "none" : "flex",
 
@@ -1023,22 +883,141 @@ export default function Theme9({ data, products, gallery, ecommerce }) {
               <IconButton
                 href={`${data.location}`}
                 // onClick={() => handleLinkdinUpdate()}
-                sx={{
-                  backgroundColor: "#fff",
-                  color: "#000",
-                  border: 1,
-                  "&:hover": {
-                    backgroundColor: "wheat",
-                  },
-                }}
+                sx={{color: "#000",}}
               >
                 <LocationOn sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
               </IconButton>
             </Grid>
+
+            <Grid item xs={3} sx={{display:data.GoogleMapLink!=''?'block':'none'}}>
+             <IconButton
+                 href={`${data.GoogleMapLink}`}
+                // onClick={()=>handleInstaUpdate()}
+                sx={{color: "#000",}}
+              >
+                <img src={review} width={35} />
+              </IconButton>
+               
+              </Grid>
+  
+
+            <Grid item xs={3} md={3}>
+              <IconButton
+                href={`https://wa.me/+91${data.phoneNumber}?text=`}
+                onClick={() => handleWhatsappUpdate()}
+              //   sx={{
+              //     backgroundColor: "#fff",
+              //     color: "#000",
+              //     border: 1,
+              //     "&:hover": {
+              //       backgroundColor: "wheat",
+              //     },
+              //   }}
+              //   variant="outlined"
+              >
+               <img src={Whatsappgif} style={{width:70,}}/>
+              </IconButton>
+            </Grid>
             <Grid
               item
-              xs={2}
-              md={2}
+              xs={3}
+              md={3}
+              sx={{
+                display: data.igLink == "" ? "none" : "flex",
+              }}
+            >
+              <IconButton
+                href={`https://www.instagram.com/${data.igLink}`}
+                onClick={() => handleInstaUpdate()}
+                
+              >
+                 <img src={Instagramgif} style={{width:70,}}/>
+              </IconButton>
+            </Grid>
+            <Grid
+              item
+              xs={3}
+              md={3}
+              sx={{
+                display: data.Email == "" ? "none" : "flex",
+              }}
+            >
+              <IconButton
+                href={`mailto:${data.Email}?body=Query%20About%20Business`}
+                
+              >
+                 <img src={Gmailgif} style={{width:70,}}/>             </IconButton>
+            </Grid>
+                      <Grid
+              item
+              xs={3}
+              md={3}
+              sx={{
+                display: data.fbLink == "" ? "none" : "flex",
+              }}
+            >
+              <IconButton
+                href={`https://www.facebook.com/${data.fbLink}`}
+                onClick={() => handleFbUpdate()}
+               
+              >
+                <img src={Facebookgif} style={{width:70,}}/>
+              </IconButton>
+            </Grid>
+            <Grid
+              item
+              xs={3}
+              md={3}
+              sx={{
+                display: data.TwitterLink == "" ? "none" : "flex",
+              }}
+            >
+              <IconButton
+                href={`https://twitter.com/${data.TwitterLink}`}
+                // onClick={() => handleFbUpdate()}
+               
+              >
+                <img src={Twittergif} style={{width:70,}}/>
+              </IconButton>
+            </Grid>
+            <Grid
+              item
+              xs={3}
+              md={3}
+              sx={{
+                display: data.LinkdnLink == "" ? "none" : "flex",
+              }}
+            >
+              <IconButton
+                href={`https://www.linkedin.com/in/${data. LinkdnLink}`}
+                // onClick={() => handleFbUpdate()}
+               
+              >
+               <img src={Linkedingif} style={{width:70,}}/>
+              </IconButton>
+            </Grid>
+            <Grid
+              item
+              xs={3}
+              md={3}
+              sx={{
+                display: data.YoutubeLink == "" ? "none" : "flex",
+                
+              }}
+            >
+              <IconButton
+                href={`https://www.youtube.com/@${data.YoutubeLink}`}
+                onClick={()=>handleLinkdinUpdate()}
+               
+              >
+                <img src={Youtubegif} style={{width:70,}}/>
+              </IconButton>
+            </Grid>
+            
+            <Grid
+              item
+              xs={3}
+              md={3}
               sx={{
                 display: data.location == "" ? "none" : "flex",
 
@@ -1047,28 +1026,173 @@ export default function Theme9({ data, products, gallery, ecommerce }) {
               <IconButton
                 href={`${data.website}`}
                 // onClick={() => handleLinkdinUpdate()}
-                sx={{
-                  backgroundColor: "#fff",
-                  color: "#000",
-                  border: 1,
-                  "&:hover": {
-                    backgroundColor: "wheat",
-                  },
-                }}
+               
               >
-                <Language sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
+                <img src={Googlegif} style={{width:70,}}/>
               </IconButton>
             </Grid>
-            <Grid item xs={2} sx={{display:data.GoogleMapLink!=''?'block':'none'}}>
-             <IconButton
-                 href={`${data.GoogleMapLink}`}
-                // onClick={()=>handleInstaUpdate()}
-                sx={{ color: "#fff", "&:hover": {bgcolor:"#fff"},bgcolor:'#fff' }}
-              >
-                <img src={review} width={35} />
-              </IconButton>
-               
-              </Grid>
+
+            {
+                data.links.map((item)=>{
+                  return(
+                    <Grid
+                    item
+                    xs={3}
+                    md={3}
+                   
+                   
+                  >
+                     {item.title === "GitHub" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        <img src={Githubgif} style={{width:70,}}/>
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Telegram" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        <img src={Telegramgif} style={{width:70,}}/>
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Discord" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        <img src={Discordgif} style={{width:70,}}/>
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "PayPal" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        <img src={Paypalgif} style={{width:70,}}/>
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Snapchat" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        <img src={Snapchatgif} style={{width:70,}}/>
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Skype" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        <img src={Skypegif} style={{width:70,}}/>
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Reddit" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        <img src={Redditgif} style={{width:70,}}/>
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Google drive" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        <img src={Drivegif} style={{width:70,}}/>
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Dropbox" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        <img src={Dropboxgif} style={{width:70,}}/>
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Pinterest" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        <img src={Pinterestgif} style={{width:70,}}/>
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Behance" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        <img src={Behancegif} style={{width:70,}}/>
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Others" &&(
+                        <Button
+                        sx={{
+                          paddingX: "25px",
+                          paddingY: "10px",
+                          bgcolor: "#ebebeb",
+                          color: "#000000",
+                          fontWeight: 600,
+                          borderRadius: 2,
+                          border: "1px solid #000000",
+                          "&:hover": {
+                            bgcolor: "wheat",
+                            color: "#000000",
+                          },
+                        }}
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {item.customTitle}
+                      </Button>
+                       
+                     )
+                    }
+                  </Grid>
+                  
+                  )
+                })
+
+}
           </Grid>
 
           <Grid
@@ -1120,45 +1244,6 @@ export default function Theme9({ data, products, gallery, ecommerce }) {
 
               </Box>
             </Grid> */}
-
-{
-                data.links.map((item)=>{
-                  return(
-                    <Grid
-                    item
-                    xs={5}
-                    sx={{
-                      display: "flex",
-                      justifyContent: "flex-end",
-                      cursor: "pointer",
-                    }}
-                   
-                  >
-                    <Button
-                      fullWidth
-                      sx={{
-                        paddingX: "25px",
-                        paddingY: "10px",
-                        bgcolor: "#ebebeb",
-                        color: "#000000",
-                        fontWeight: 600,
-                        borderRadius: 2,
-                        border: "1px solid #000000",
-                        "&:hover": {
-                          bgcolor: "wheat",
-                          color: "#000000",
-                        },
-                      }}
-                      href={`${item.link}`}
-                      // onClick={()=>window.open(`${item.link}`)}
-                    >
-                     {item.title}
-                    </Button>
-                  </Grid>
-                  
-                  )
-                })
-              }
 
 
           </Grid>
