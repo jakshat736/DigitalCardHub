@@ -6,6 +6,11 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { postData } from '../../../../Services/NodeServices'
 import BeenhereIcon from '@mui/icons-material/Beenhere';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Delete } from '@mui/icons-material'
@@ -51,7 +56,7 @@ const Links = () => {
     const [themeId, setThemeId] = useState('')
     const [menuLink, setMenuLink] = useState('')
     const [otherLink, setOtherLink] = useState(Array(0).fill(null));
-   
+    const [age, setAge] = useState('');
     const fetchCardDetail = async () => {
         var formData = new FormData()
         formData.append("customerId", userId)
@@ -226,6 +231,9 @@ const Links = () => {
         setOtherLink(newData);
         
     };
+    const handleChange = (event) => {
+        setAge(event.target.value);
+      };
     return (
         <Grid>
             <Navbar />
@@ -314,10 +322,44 @@ const Links = () => {
                     {
                 otherLink.map((item,index)=>(
                  <>   
-                 <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
-                <TextField value={otherLink[index]?.title ||""}  onChange={(event) =>
+        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+
+
+        
+           <FormControl fullWidth  sx={{ width: mobile ? "65%" : tablet ? "100%" : '56%' }}>
+        <InputLabel id="demo-simple-select-label">Choose Title for Link</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          
+          value={otherLink[index]?.title ||""}
+          label="Choose Title for Link"
+          onChange={(event) =>
+            handleTitleChange(index, event.target.value)
+        }
+        >
+          <MenuItem value={"GitHub"}>GitHub</MenuItem>
+          <MenuItem value={"Telegram"}>Telegram</MenuItem>
+          <MenuItem value={"Discord"}>Discord</MenuItem>
+          <MenuItem value={"PayPal"}>PayPal</MenuItem>
+          <MenuItem value={"Snapchat"}>Snapchat</MenuItem>
+          <MenuItem value={"Skype"}>Skype</MenuItem>
+          <MenuItem value={"Reddit"}>Reddit</MenuItem>
+          <MenuItem value={"Google drive"}>Google drive</MenuItem>
+          <MenuItem value={"Dropbox"}>Dropbox</MenuItem>
+          <MenuItem value={"Pinterest"}>Pinterest</MenuItem>
+          <MenuItem value={"Behance"}>Behance</MenuItem>
+          <MenuItem value={"Others"}>Others</MenuItem>
+        </Select>
+      </FormControl>
+   
+
+
+                {/* <TextField value={otherLink[index]?.title ||""}  onChange={(event) =>
                                         handleTitleChange(index, event.target.value)
-                                    } sx={{ width: mobile ? "65%" : tablet ? "100%" : '56%' }} label='Title' />
+                                    } sx={{ width: mobile ? "65%" : tablet ? "100%" : '56%' }} label='Title'/> */}
+
+
                     <IconButton onClick={()=>handleDeleteLink(index)}><Delete/></IconButton>
                    </Grid>
                

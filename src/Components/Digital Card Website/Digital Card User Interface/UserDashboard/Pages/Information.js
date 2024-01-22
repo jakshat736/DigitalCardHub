@@ -310,7 +310,7 @@ const Information = () => {
       setCoverVideo({ url: `${serverURL}/images/${result.data.coverVideo}`, bytes: " " });
       setShow(true)
     }
-    // setimage1(`${serverURL}/images/${result.data.companyCoverImage}`);
+    // setimage1(${serverURL}/images/${result.data.companyCoverImage});
     //  console.log(result.data.companylogo.data.data)
     if (result.data.companyCoverImage != undefined) {
       setimage1(arrayBufferToBase64(result.data.companyCoverImage.data.data));
@@ -362,7 +362,7 @@ const Information = () => {
         icon:"warning",
        
         confirmButtonText: 'Save',
-        denyButtonText: `Don't save`,
+        denyButtonText:` Don't save`,
       }).then(async(result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
@@ -685,7 +685,7 @@ const handleUpdate = async (verify) => {
             <label htmlFor="icon-button-file">
               <input
                 style={{ display: "none" }}
-                accept="image/*, video/*"
+                accept="image/, video/"
                 id="icon-button-file"
                 type="file"
                 onChange={handleCover}
@@ -817,7 +817,7 @@ const handleUpdate = async (verify) => {
               justifyContent: "space-evenly",
               textAlign: "center",
               alignItems: "center",
-            }} variant='contained' onClick={() => (cardId == "" ? handleSubmit() : handleUpdate())}>Next</Button>
+            }} variant='contained'onClick={() =>handleSubmit1(cardId)}>Next</Button>
           </Grid>
         </Grid>
       </Grid>
