@@ -348,11 +348,11 @@ const Links = () => {
                     {
                         otherLink.map((item, index) => (
                             <>
-                                <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                                <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8,width: mobile ? "95%" : tablet ? "100%" : '60%' }}>
 
 
 
-                                    <FormControl fullWidth sx={{ width: mobile ? "65%" : tablet ? "100%" : '56%' }}>
+                                    <FormControl fullWidth sx={{ width: mobile ? "55%" : tablet ? "100%" : '56%' }}>
                                         <InputLabel id="demo-simple-select-label">Choose Title for Link</InputLabel>
                                         <Select
                                             labelId="demo-simple-select-label"
