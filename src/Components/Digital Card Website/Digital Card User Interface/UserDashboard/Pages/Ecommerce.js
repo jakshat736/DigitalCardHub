@@ -31,7 +31,7 @@ const Ecommerce = () => {
     const navigate = useNavigate();
     const [productData, setProductData] = useState(Array(4).fill(null));
     const [data, setData] = useState(false);
-    const [loadingAnimation, setLoadingAnimation] = useState(false);
+    const [loadingAnimation, setLoadingAnimation] = useState(true);
     const [temp, setTemp] = useState();
 
     const cardId = window.localStorage.getItem("CardId");

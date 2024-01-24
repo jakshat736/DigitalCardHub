@@ -6,6 +6,8 @@ import intro from './ThemeAssets/intro.mp4'
 import ReactPlayer from 'react-player';
 import { RingLoader } from 'react-spinners';
 import { Grid, Typography } from '@mui/material';
+import Preloader from '../../Components/Preloader';
+import newlogo from '../../../Digital Card Assets/newlogo.png'
 const LoadingScreen = () => {
     const { companyId } = useParams();
     var navigate=useNavigate()
@@ -16,11 +18,10 @@ const LoadingScreen = () => {
         return () => clearTimeout(timer);
       }, [navigate]);
   return (
-    <Grid style={{backgroundColor:'#001d3e',width:"100%",height:'790px',display:'flex',justifyContent:'center',alignItems:"center",flexDirection:'column'}}>
-    <video loop muted autoPlay  width='390px' height='400px' >
-
-      <source type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;" src={intro}></source>     
-</video></Grid>
+    <Grid style={{backgroundColor:'#FFF',width:"100%",height:'790px',display:'flex',justifyContent:'center',alignItems:"center",flexDirection:'column'}}>
+    <img src={newlogo} width={300}/>
+    <Preloader/>
+    </Grid>
   )
 }
 

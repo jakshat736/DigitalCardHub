@@ -58,7 +58,7 @@ const Links = () => {
     const [menuLink, setMenuLink] = useState('')
     const [otherLink, setOtherLink] = useState(Array(0).fill(null));
     const [age, setAge] = useState('');
-    const [loadingAnimation,setLoadingAnimation]=useState(false)
+    const [loadingAnimation,setLoadingAnimation]=useState(true)
     const fetchCardDetail = async () => {
         setLoadingAnimation(true)
         var formData = new FormData()

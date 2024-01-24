@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { postData } from '../../../../Services/NodeServices';
 import Theme1 from './Theme1';
-import { Grid } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import NFCCard from './NFCCard';
 import { useNavigate } from 'react-router-dom';
 import Theme2 from './Theme2';
@@ -18,6 +18,8 @@ import Theme8 from './Theme8';
 import Theme9 from './Theme9';
 import Theme10 from './Theme10';
 import Theme11 from './Theme11';
+import Preloader from '../../Components/Preloader';
+import newlogo from '../../../Digital Card Assets/newlogo.png'
 const Card = () => {
     let navigate = useNavigate()
     const { companyId } = useParams();
@@ -26,13 +28,15 @@ const Card = () => {
     const [ecommerce, setEcommerce] = useState([]);
     const [gallery, setGallery] = useState([]);
     const [show,setShow]=useState(false)
+    
+    const [loadingAnimation,setLoadingAnimation]=useState(true)
     React.useEffect(() => {
         fetchCardDetail();
 
     }, []);
 
     const fetchCardDetail = async () => {
-        
+        setLoadingAnimation(true)
         var formData = new FormData();
         formData.append("companyId", companyId);
         var result = await postData(
@@ -54,6 +58,8 @@ const Card = () => {
            
            
             updateViewCount(result.data._id,result.data.cardViewCount)
+            setLoadingAnimation(false)
+            setShow(true)
         }
     };
     const updateViewCount = async (id,view) => {
@@ -91,11 +97,19 @@ const Card = () => {
 
 
     return (
-        <Grid style={{width:"100%"}}>
+        <>{loadingAnimation==true?
+           
+            <Grid style={{backgroundColor:'#FFF',width:"100%",height:'790px',display:'flex',justifyContent:'center',alignItems:"center",flexDirection:'column'}}>
+    <img src={newlogo} width={300}/>
+    <Preloader/>
+    </Grid>
+                :<Grid style={{width:"100%"}}>
             
-               {show && (data.menuLink == "" ? <Theme3 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>:<Theme9 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>)}
-               {/* {show && (<Theme3 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>) } */}
-     </Grid>
+                {show && (data.menuLink == "" ? <Theme3 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>:<Theme9 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>)}
+                {/* {show && (<Theme3 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>) } */}
+      </Grid>}
+      </>
+        
     )
 }
 

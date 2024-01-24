@@ -27,7 +27,7 @@ const Preview = () => {
     const [ecommerce, setEcommerce] = useState([]);
     const [gallery, setGallery] = useState([]);
     const [show,setShow]=useState(false)
-    const [loadingAnimation,setLoadingAnimation]=useState(false)
+    const [loadingAnimation,setLoadingAnimation]=useState(true)
     const userId = window.localStorage.getItem("userId")
    
 
