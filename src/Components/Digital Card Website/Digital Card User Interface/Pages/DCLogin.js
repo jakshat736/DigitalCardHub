@@ -15,11 +15,12 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Phone, Visibility, VisibilityOff } from '@mui/icons-material';
 import OtpGenerator from '../ReviewTag/OtpGenerator';
+import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
 export default function DCLogin() {
     const theme = useTheme();
     const mobile = useMediaQuery(theme.breakpoints.down("sm"));
     const medium = useMediaQuery(theme.breakpoints.down("md"));
-    
+    const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const [emailId, setEmailId] = useState("");
     const [password, setPassword] = useState("");
@@ -58,20 +59,8 @@ export default function DCLogin() {
                 //         showConfirmButton: false,
                 //         timer: 1500
                 // })
-                Swal.fire({
-                    title: 'Successfully Logged In!',
-                    imageUrl:logo1,
-                    imageWidth: 200,
-                    imageHeight: 200,
-                    imageAlt: 'Custom image',
-                    background:'#001e3c',
-                    timer:1500,
-                    width:500,
-                    padding:15,
-                    color:'#fff',
-                    showConfirmButton:false,
-                    
-                  })
+               
+                enqueueSnackbar('Successfully Logged In!');
                 navigate('/userdashboard')
                 window.localStorage.setItem("User",true)
                 window.localStorage.removeItem('data')

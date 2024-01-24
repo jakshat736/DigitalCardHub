@@ -1,4 +1,4 @@
-import { Button, Grid } from '@mui/material'
+import { Button, Container, Grid } from '@mui/material'
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -18,6 +18,7 @@ import Theme8 from '../Themes/Theme8'
 import Theme9 from '../Themes/Theme9'
 import Theme11 from '../Themes/Theme11'
 import Theme10 from '../Themes/Theme10'
+import Preloader from '../../Components/Preloader'
 const Preview = () => {
     let navigate = useNavigate()
 
@@ -26,13 +27,12 @@ const Preview = () => {
     const [ecommerce, setEcommerce] = useState([]);
     const [gallery, setGallery] = useState([]);
     const [show,setShow]=useState(false)
+    const [loadingAnimation,setLoadingAnimation]=useState(false)
     const userId = window.localStorage.getItem("userId")
-    React.useEffect(() => {
-        fetchCardDetail();
-
-    }, []);
+   
 
     const fetchCardDetail = async () => {
+        setLoadingAnimation(true)
         var formData = new FormData();
         formData.append("customerId", userId)
         var result = await postData('carddetails/getcardDetails', formData, true)
@@ -42,10 +42,12 @@ const Preview = () => {
             setProducts(result.data.products);
             setEcommerce(result.data.ecommerce);
             setGallery(result.data.gallery);
-            setShow(true)
+            
 
             
             updateViewCount(result.data._id, result.data.cardViewCount)
+            setLoadingAnimation(false)
+            setShow(true)
         }
     };
     const updateViewCount = async (id, view) => {
@@ -64,18 +66,30 @@ const Preview = () => {
             console.log(result)
             console.log(result.data.YoutubeVideoLink2 == "undefined");
             setData(result.data);
-
-            setProducts(result.data.products);
-            setEcommerce(result.data.ecommerce);
-            setGallery(result.data.gallery);
             
+
+          
+           
         }
     };
+    React.useEffect(() => {
+        fetchCardDetail();
 
+    }, []);
 
     return (
-        <Grid sx={{bgcolor:"#001e3c"}}>
+        <>        
+        {loadingAnimation==true?
+            <Container maxWidth="xl" sx={{height:"100vh",overflow:'hidden',width:"100vw"}}>
+              <Grid container spacing={2} sx={{display:"flex",justifyContent:"center",alignItems:"center",overflow:'hidden'}}>
+                
+                <Preloader/>
+                </Grid></Container>
+                :
+                 <Grid sx={{bgcolor:"#001e3c"}}>
             <Navbar/>
+         
+     
             <Grid sx={{ position: "absolute", left: 10, top: {xs:60,sm:65,md:100} }}><Button sx={{
                 borderRadius: 10,
                 backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
@@ -85,7 +99,7 @@ const Preview = () => {
                 textAlign: "center",
                 alignItems: "center",
                 mt:1
-            }} onClick={() => data.themeid == 11?navigate('/information'):navigate('/ecommerce')} variant='contained'><NavigateBeforeIcon />Back</Button></Grid>
+            }} onClick={() =>navigate('/ecommerce')} variant='contained'><NavigateBeforeIcon />Back</Button></Grid>
             <Grid sx={{mt:7}}>
                 {/* {data.themeid == 1 ? <Theme1 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 2 ? <Theme2 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 3 ? <Theme3 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 4 ? <Theme4 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 6 ? <Theme6 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 5 ? <Theme5 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 7 ? <Theme7 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 8 ? <Theme8 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 9 ? <Theme9 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> :data.themeid == 11 ? <Theme11 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> :data.themeid == 10 ? <Theme10 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : ''} */}
                 {show && (data.menuLink == "" ? <Theme3 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>:<Theme9 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>)}
@@ -101,8 +115,11 @@ const Preview = () => {
                 mt:1
                
             }} onClick={() => navigate('/userdashboard')} variant='contained'><NavigateNextIcon />Go to Home</Button></Grid>
+            
+        </Grid>}
+        </>
 
-        </Grid>
+        
     )
 }
 

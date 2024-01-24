@@ -96,6 +96,7 @@ import DownloadContact from './Components/Administrator/DownloadContact';
 import DownloadContact2 from './Components/Administrator/DownloadContact2';
 import DownloadContact3 from './Components/Administrator/DownloadContact3';
 import DownloadContact4 from './Components/Administrator/DownloadContact4';
+import { SnackbarProvider } from 'notistack';
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -105,6 +106,7 @@ function App() {
    
     <div>
 		<SessionContext.Provider value={{ cart,setCart}}>
+		<SnackbarProvider autoHideDuration={4000} variant='success' anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
 		<ParallaxProvider>
     <HashRouter>
       <Routes>
@@ -212,6 +214,7 @@ function App() {
       </Routes>
 	  </HashRouter>
 	  </ParallaxProvider>
+	  </SnackbarProvider>
 	  </SessionContext.Provider>
     </div>
   );

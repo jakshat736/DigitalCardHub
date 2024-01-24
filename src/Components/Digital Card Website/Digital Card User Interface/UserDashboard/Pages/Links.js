@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../UserComponents/Navbar'
 import Footer from '../UserComponents/Footer'
-import { Grid, Button, Typography, TextField, useTheme, useMediaQuery, IconButton } from '@mui/material'
+import { Grid, Button, Typography, TextField, useTheme, useMediaQuery, IconButton, Container } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { postData } from '../../../../Services/NodeServices'
@@ -14,6 +14,7 @@ import Select from '@mui/material/Select';
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Delete } from '@mui/icons-material'
+import Preloader from '../../Components/Preloader'
 
 const Links = () => {
 
@@ -57,7 +58,9 @@ const Links = () => {
     const [menuLink, setMenuLink] = useState('')
     const [otherLink, setOtherLink] = useState(Array(0).fill(null));
     const [age, setAge] = useState('');
+    const [loadingAnimation,setLoadingAnimation]=useState(false)
     const fetchCardDetail = async () => {
+        setLoadingAnimation(true)
         var formData = new FormData()
         formData.append("customerId", userId)
         var result = await postData('carddetails/getcardDetails', formData, true)
@@ -121,6 +124,10 @@ const Links = () => {
         setThemeId(result.data.themeid)
         setOtherLink(result.data.links)
 
+        if(result.data!="undefined"){
+            setLoadingAnimation(false)
+        }
+
 
     }
     React.useEffect(() => {
@@ -129,6 +136,7 @@ const Links = () => {
     }, [])
 
     const handleSubmit = async () => {
+        setLoadingAnimation(true)
         var formData = new FormData()
         formData.append('_id', cardId)
         formData.append('fbLink', fbLink)
@@ -156,6 +164,7 @@ const Links = () => {
         var response = await postData("carddetails/updatesociallinks", formData, true);
         if (response.status) {
             navigate('/ecommerce')
+            setLoadingAnimation(false)
         } else {
 
         }
@@ -248,6 +257,12 @@ const Links = () => {
     return (
         <Grid>
             <Navbar />
+            {loadingAnimation==true?
+      <Container maxWidth="xl" sx={{height:"100vh",overflow:'hidden',width:"100vw"}}>
+        <Grid container spacing={2} sx={{display:"flex",justifyContent:"center",alignItems:"center",overflow:'hidden'}}>
+          
+          <Preloader/>
+          </Grid></Container>:
             <Grid container spacing={2} sx={{ display: 'flex', alignItems: "center", justifyContent: 'center', paddingInline: "20px" }}>
                 <Grid item xs={4} sx={{ marginTop: "2vh", marginBottom: "2vh" }}>
                     <Button sx={{
@@ -453,7 +468,7 @@ const Links = () => {
                         }} variant='contained' onClick={() => handleSubmit()}>Next</Button>
                     </Grid>
                 </Grid>
-            </Grid>
+            </Grid>}
 
             <Footer />
         </Grid>

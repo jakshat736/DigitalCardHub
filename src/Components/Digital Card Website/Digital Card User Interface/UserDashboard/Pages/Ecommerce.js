@@ -8,6 +8,7 @@ import {
     useTheme,
     useMediaQuery,
     Tooltip,
+    Container,
 } from "@mui/material";
 import React from "react";
 import Navbar from "../UserComponents/Navbar";
@@ -21,6 +22,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import BeenhereIcon from '@mui/icons-material/Beenhere';
 import Swal from "sweetalert2";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import Preloader from "../../Components/Preloader";
 const Ecommerce = () => {
     const theme = useTheme();
     const mobile = useMediaQuery(theme.breakpoints.down(600));
@@ -29,16 +31,18 @@ const Ecommerce = () => {
     const navigate = useNavigate();
     const [productData, setProductData] = useState(Array(4).fill(null));
     const [data, setData] = useState(false);
+    const [loadingAnimation, setLoadingAnimation] = useState(false);
     const [temp, setTemp] = useState();
 
     const cardId = window.localStorage.getItem("CardId");
     const userId = window.localStorage.getItem("userId");
     const oldImg = [];
     const fetchCardDetail = async () => {
+        setLoadingAnimation(true)
         var formData = new FormData();
         formData.append("customerId", userId);
         var result = await postData("carddetails/getcardDetails", formData, true);
-        console.log(result.data.products);
+        // console.log(result.data.products);
         if (result.data.ecommerce.length == 0) {
             setProductData(Array(4).fill(null));
         } else {
@@ -73,7 +77,10 @@ const Ecommerce = () => {
                 setProductData(newData);
             }
             });
+            setLoadingAnimation(false)
         }
+        
+
     };
     React.useEffect(() => {
         fetchCardDetail();
@@ -109,7 +116,7 @@ const Ecommerce = () => {
     };
 
     const handleSubmit = async () => {
-       
+       setLoadingAnimation(true)
         var formData = new FormData();
         formData.append("_id", cardId);
         let productsName = [];
@@ -138,6 +145,7 @@ const Ecommerce = () => {
         );
         if (response.status == true) {
             navigate("/preview");
+            setLoadingAnimation(false)
         }
     };
 
@@ -152,7 +160,7 @@ const Ecommerce = () => {
         );
         if (response.status == true) {
             fetchCardDetail();
-            window.location.reload();
+           
         }
     };
 
@@ -196,6 +204,12 @@ const Ecommerce = () => {
     return (
         <Grid>
             <Navbar />
+            {loadingAnimation==true?
+      <Container maxWidth="xl" sx={{height:"100vh",overflow:'hidden',width:"100vw"}}>
+        <Grid container spacing={2} sx={{display:"flex",justifyContent:"center",alignItems:"center",overflow:'hidden'}}>
+          
+          <Preloader/>
+          </Grid></Container>:
             <Grid
                 container
                 spacing={2}
@@ -414,7 +428,7 @@ const Ecommerce = () => {
                         </Button>
                     </Grid>
                 </Grid>
-            </Grid>
+            </Grid>}
             <Footer />
         </Grid >
     );

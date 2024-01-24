@@ -1,4 +1,4 @@
-import { Grid, Button, Typography, TextField, useTheme, useMediaQuery, CircularProgress, Box, DialogContentText } from '@mui/material'
+import { Grid, Button, Typography, TextField, useTheme, useMediaQuery, CircularProgress, Box, DialogContentText, Container } from '@mui/material'
 import React, { useState } from 'react'
 import Navbar from '../UserComponents/Navbar'
 import Footer from '../UserComponents/Footer'
@@ -29,6 +29,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Swal from 'sweetalert2'
 import { HelpOutline } from '@mui/icons-material'
 import help from '../UserAssets/help.png'
+import Preloader from '../../Components/Preloader'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -110,6 +111,7 @@ const Information = () => {
   const [companyName1, setCompanyName1] = useState("");
   const [loading, setLoading] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
+  const [loadingAnimation,setLoadingAnimation]=useState(false)
   const setEditorRef = (editor) => {
     setEditor(editor);
   };
@@ -261,6 +263,7 @@ const Information = () => {
   }
 
   const fetchCardDetail = async () => {
+    setLoadingAnimation(true)
     var formData = new FormData()
     formData.append("customerId", userId)
     var result = await postData('carddetails/getcardDetails', formData, true)
@@ -321,6 +324,10 @@ const Information = () => {
     //setType(result.data.companyCoverImage.slice(result.data.companyCoverImage.length-3))
     setGoogleMapLink(result.data.GoogleMapLink)
   }
+  if(result.data!=undefined){
+    setLoadingAnimation(false)
+  }
+
   }
   React.useEffect(() => {
 
@@ -453,7 +460,7 @@ const handleUpdate = async (verify) => {
 
     try {
       // Set loading to true before making the request
-      setLoading(true);
+      setLoadingAnimation(true)
     var formData = new FormData()
     formData.append('_id', cardId)
     formData.append('companylogo', file1)
@@ -494,7 +501,9 @@ const handleUpdate = async (verify) => {
     var response = await postData("carddetails/updatepersonelinfo", formData, true);
    
     if (response.status) {
-      navigate('/links') 
+      setLoadingAnimation(false)
+      navigate('/links')
+       
     } else {
 
     }
@@ -503,7 +512,7 @@ const handleUpdate = async (verify) => {
     console.error("An error occurred:", error);
   } finally {
     // Set loading back to false after the request completes
-    setLoading(false);
+    setLoadingAnimation(false);
   }
 
 
@@ -541,6 +550,7 @@ const handleUpdate = async (verify) => {
   };
 
   const handleClick=async()=>{
+   
     var formData=new FormData
     formData.append('companyId',companyName.replace(/\s/g, '').toLowerCase())
     const response=await postData('generatedcompanylink/checkCompanyName',formData,true)
@@ -608,7 +618,12 @@ const handleUpdate = async (verify) => {
   return (
     <Grid>
       <Navbar />
-      
+      {loadingAnimation==true?
+      <Container maxWidth="xl" sx={{height:"100vh",overflow:'hidden',width:"100vw"}}>
+        <Grid container spacing={2} sx={{display:"flex",justifyContent:"center",alignItems:"center",overflow:'hidden'}}>
+          
+          <Preloader/>
+          </Grid></Container>:
       <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', paddingX: "20px" }}>
         <Grid item xs={4} sx={{ marginTop: "2vh", marginBottom: "2vh" }}>
           <Button sx={{
@@ -820,7 +835,7 @@ const handleUpdate = async (verify) => {
             }} variant='contained'onClick={() =>handleSubmit1(cardId)}>Next</Button>
           </Grid>
         </Grid>
-      </Grid>
+      </Grid>}
       <Footer />
       {DialogComponent()}
       {DialogComponent1()}

@@ -30,6 +30,8 @@ import Switch from '@mui/material/Switch';
 import MaterialTable from "@material-table/core";
 import google from './UserAssets/Google.gif'
 import { type } from "@testing-library/user-event/dist/type";
+import loadingAnimation from '../../Digital Card Assets/Loading.gif'
+import Preloader from "../Components/Preloader";
 const UserDashboard = () => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down(600));
@@ -59,6 +61,8 @@ const UserDashboard = () => {
   const [companyId,setCompanyId]=useState('')
   const [color,setColor]=useState('green')
   const [edit,setEdit]=useState(false)
+  const [loading,setLoading]=useState(false)
+
   const handleClose1 = () => {
     setOpen1(false);
     setOpen2(false)
@@ -132,6 +136,7 @@ const UserDashboard = () => {
      
 
   const fetchCardDetail = async () => {
+    setLoading(true)
     var formData = new FormData();
     formData.append("customerId", userId);
    
@@ -152,6 +157,9 @@ const UserDashboard = () => {
      fetchMenu()
      fetchInvite()
       if(result.data!=undefined){fetchAllEnquiries()}
+      if(result.data!=undefined){
+        setLoading(false)
+      }
   };
   
   const fetchAllEnquiries=async()=>{
@@ -690,8 +698,14 @@ const editDialog=()=>{
    };
 
   return (
-    <Grid>
+  <Grid>
       <Navbar />
+      {loading==true?
+      <Container maxWidth="xl" sx={{height:"100vh",overflow:'hidden',width:"100vw"}}>
+        <Grid container spacing={2} sx={{display:"flex",justifyContent:"center",alignItems:"center",overflow:'hidden'}}>
+          
+          <Preloader/>
+          </Grid></Container>:
       <Container maxWidth="xl">
         <Grid container spacing={2} sx={{display:"flex",justifyContent:"center"}}>
           <Grid
@@ -1023,7 +1037,7 @@ const editDialog=()=>{
             </Paper>
           </Grid>
         </Grid>
-      </Container>
+      </Container>}
       
       {dialogComponent()}
       {tagsComponent()}

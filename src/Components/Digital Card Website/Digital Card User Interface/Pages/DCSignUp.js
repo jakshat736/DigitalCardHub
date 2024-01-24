@@ -10,12 +10,13 @@ import OtpComponent from '../ReviewTag/OtpComponent';
 import OtpGenerator from '../ReviewTag/OtpGenerator';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { isValid } from 'date-fns';
-
+import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
 export default function DCSignUp() {
     const theme = useTheme();
     const mobile = useMediaQuery(theme.breakpoints.down("sm"));
     const medium = useMediaQuery(theme.breakpoints.down("md"));
 
+    const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const [fullName, setFullName] = useState("");
     const [phoneNo, setPhoneNo] = useState("");
@@ -94,13 +95,7 @@ export default function DCSignUp() {
                 window.localStorage.setItem("UserNumber", result.data.phone)
                 window.localStorage.setItem("UserEmail", emailId.toLowerCase())
 
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Registered Succesfully',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
+                enqueueSnackbar('Successfully Registered!');
                 navigate('/userdashboard')
                 window.localStorage.setItem("User", true)
                 window.localStorage.removeItem('data')
