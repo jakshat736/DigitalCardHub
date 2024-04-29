@@ -146,7 +146,7 @@ const handleMouseDownPassword = () => setShowPassword(!showPassword);
        
         setOtp(otpval)
 
-        const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=659669EFAB045&access_token=6591142e9fcef`;
+        const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
         const response=await postData('otp/api',{url:apiUrl})
        
         }else{

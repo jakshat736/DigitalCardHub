@@ -10,9 +10,11 @@ export default function Lower(props) {
   const navigate=useNavigate()
   const handleButtonClick = () => {
     // Call the parent function passed as a prop
-    if (props.callParentFunction) {
-      props.callParentFunction();
-    }
+    // if (props.callParentFunction) {
+    //   props.callParentFunction();
+    // }
+
+    navigate('/allproducts')
 
     // Other logic in the Lower component
   };

@@ -114,7 +114,7 @@ export default function DeliverDetails(props) {
             "merchantId": "DIGITALCARDONLINE",
             "merchantTransactionId": `${result.data._id}`,
             "merchantUserId": "MUID123",
-            "amount": '100',
+            "amount": `${amount}`,
             "redirectUrl": `https://digitalcardhub.in/#/orderComplete/${result.data._id}`,
             "redirectMode": "POST",
             "callbackUrl": `https://digitalcardhub.in/#/orderComplete/${result.data._id}`,
@@ -237,7 +237,7 @@ export default function DeliverDetails(props) {
                             fontWeight: 600
                         }}
                     >
-                        ₹{location.state.subTotal - location.state.discount}{" "}
+                        ₹{Math.ceil(location.state.subTotal - location.state.discount)}{" "}
                     </Typography>
                 </Box>
 
@@ -267,7 +267,7 @@ export default function DeliverDetails(props) {
                             fontWeight: 600
                         }}
                     >
-                        ₹{((location.state.subTotal - location.state.discount)*18)/100}{" "}
+                        ₹{Math.ceil(((location.state.subTotal - location.state.discount)*18)/100)}{" "}
                     </Typography>
                 </Box>
                 <Box
@@ -296,7 +296,7 @@ export default function DeliverDetails(props) {
                             fontWeight: 600
                         }}
                     >
-                        ₹{(location.state.subTotal - location.state.discount)+(((location.state.subTotal - location.state.discount)*18)/100)}{" "}
+                        ₹{Math.ceil((location.state.subTotal - location.state.discount)+(((location.state.subTotal - location.state.discount)*18)/100))}{" "}
                     </Typography>
                 </Box>
                 </Paper>

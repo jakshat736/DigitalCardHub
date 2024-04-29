@@ -74,7 +74,10 @@ const Invite = () => {
         var response = await postData("carddetails/addInvite", formData, true);
         console.log(response)
         if (response.status) {
-        
+         setLoading(false)
+         Swal.fire({
+            title:"Saved Succesfully"
+         })
         } else {
     
         }
@@ -198,7 +201,8 @@ const Invite = () => {
                     </label>
                 </Grid>
                 <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
-            <Button sx={{
+            
+           {loading ? <LoaderComponent />:<Button sx={{
               borderRadius: 10,
               paddingInline: "30px",
               backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
@@ -207,8 +211,7 @@ const Invite = () => {
               justifyContent: "space-evenly",
               textAlign: "center",
               alignItems: "center",
-            }} variant='contained' onClick={() => handleSubmit1()}>Save</Button>
-           {loading && <LoaderComponent />}
+            }} variant='contained' onClick={() => handleSubmit1()}>Save</Button>}
           </Grid>
          
             </Grid>

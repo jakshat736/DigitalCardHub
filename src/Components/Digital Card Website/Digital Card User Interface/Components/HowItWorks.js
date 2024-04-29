@@ -19,6 +19,7 @@ export default function HowItWorks() {
                                 justifyContent: "space-between",
 
                         }}>
+                                
                         <Typography
                                 sx={{
                                         fontSize:"3.8em",

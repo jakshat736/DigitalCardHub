@@ -80,6 +80,8 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
   const mobile = useMediaQuery(theme.breakpoints.down(600));
   const tablet = useMediaQuery(theme.breakpoints.down(960));
 
+  console.log(data)
+
   const navigate = useNavigate();
   const UserId = window.localStorage.getItem("userId");
   const [number, setNumber] = React.useState();
@@ -93,8 +95,8 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
   const handleMessage = (e) => {
     console.log(e);
     setHref(
-      `https://api.whatsapp.com/send?phone=+91${e.target.value}&text=https://digitalcardhub.in/%23/${data.companyId}`
-      // `https://wa.me/+91${e.target.value}?text=https://digitalcardhub.in/#/${data.companyId}`
+      `https://api.whatsapp.com/send?phone=+91${e.target.value}&text=https://digitalcardhub.in/%23/${data?.companyId}`
+      // `https://wa.me/+91${e.target.value}?text=https://digitalcardhub.in/#/${data?.companyId}`
     );
   };
 
@@ -166,7 +168,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 }}
                 onClick={() =>
                   window.open(
-                    `https://wa.me/+91${data.WhatsappNo}?text=Enquiry For ${item.productName}`
+                    `https://wa.me/+91${data?.WhatsappNo}?text=Enquiry For ${item.productName}`
                   )
                 }
               >
@@ -263,7 +265,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 }}
                 onClick={() =>
                   window.open(
-                    `https://wa.me/+91${data.WhatsappNo}?text=I Want To Buy Your ${item.productname}`
+                    `https://wa.me/+91${data?.WhatsappNo}?text=I Want To Buy Your ${item.productname}`
                   )
                 }
               >
@@ -313,16 +315,16 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
       "BEGIN:VCARD\r\n" +
       "VERSION:3.0\r\n" +
       "FN:" +
-      data.fullname +
+      data?.fullname +
       "\r\n" +
       "N:" +
-      data.fullname +
+      data?.fullname +
       ";;;\r\n" +
       "EMAIL;TYPE=INTERNET:" +
-      data.Email +
+      data?.Email +
       "\r\n" +
       "TEL;TYPE=CELL:" +
-      data.phoneNumber +
+      data?.phoneNumber +
       "\r\n" +
       "END:VCARD";
     var blob = new Blob([vCardData], { type: "text/vcard" });
@@ -338,8 +340,8 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
 
   const handleWhatsappUpdate = async () => {
     var formData = new FormData();
-    formData.append("_id", data._id);
-    formData.append("whatsappClickCount", data.whatsappClickCount + 1);
+    formData.append("_id", data?._id);
+    formData.append("whatsappClickCount", data?.whatsappClickCount + 1);
     var result = await postData(
       "carddetails/updateWhatsappClickCount",
       formData,
@@ -348,8 +350,8 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
   };
   const handleInstaUpdate = async () => {
     var formData = new FormData();
-    formData.append("_id", data._id);
-    formData.append("instaClickCount", data.whatsappClickCount + 1);
+    formData.append("_id", data?._id);
+    formData.append("instaClickCount", data?.whatsappClickCount + 1);
     var result = await postData(
       "carddetails/updateInstaClickCount",
       formData,
@@ -360,8 +362,8 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
 
   const handleFbUpdate = async () => {
     var formData = new FormData();
-    formData.append("_id", data._id);
-    formData.append("fbClickCount", data.fbClickCount + 1);
+    formData.append("_id", data?._id);
+    formData.append("fbClickCount", data?.fbClickCount + 1);
     var result = await postData(
       "carddetails/updateFbClickCount",
       formData,
@@ -370,8 +372,8 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
   };
   const handleLinkdinUpdate = async () => {
     var formData = new FormData();
-    formData.append("_id", data._id);
-    formData.append("linkdinClickCount", data.linkdinClickCount + 1);
+    formData.append("_id", data?._id);
+    formData.append("linkdinClickCount", data?.linkdinClickCount + 1);
     var result = await postData(
       "carddetails/updateLinkdinClickCount",
       formData,
@@ -380,8 +382,8 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
   };
   const handleContactUpdate = async () => {
     var formData = new FormData();
-    formData.append("_id", data._id);
-    formData.append("contactDownloadCount", data.contactDownloadCount + 1);
+    formData.append("_id", data?._id);
+    formData.append("contactDownloadCount", data?.contactDownloadCount + 1);
     var result = await postData(
       "carddetails/updateContactDownloadCount",
       formData,
@@ -410,7 +412,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
   const handleFull=()=>{
     setFullCard(!fullCard)
     if(fullCard!=true){
-      if( data.enquiry=='true'){
+      if( data?.enquiry=='true'){
       setFullOpen(true)}
     }
   }
@@ -612,7 +614,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                       color: "#000",
                     },
                   }}
-                  onClick={()=>handleSubmit(data.customerId)}
+                  onClick={()=>handleSubmit(data?.customerId)}
                 >
                   Submit
                 </Button>
@@ -637,9 +639,9 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
       }}
     >
       <Helmet>
-        <meta property="og:title" content={data.fullname} />
-        <meta property="og:image" content={'data:image/jpeg;base64,' +arrayBufferToBase64(data.companylogo.data.data)} />
-        <meta property="og:url" content={ `http://digitalcardhub.in/#/${data.companyId}`} />
+        <meta property="og:title" content={data?.fullname} />
+        <meta property="og:image" content={'data:image/jpeg;base64,' +arrayBufferToBase64(data?.companylogo.data?.data)} />
+        <meta property="og:url" content={ `http://digitalcardhub.in/#/${data?.companyId}`} />
       </Helmet>
 
       <Grid
@@ -701,7 +703,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             alignItems: "center",
           }}
         >
-          {data.cardViewCount} <VisibilityIcon sx={{ color: "#0a290a" }} />
+          {data?.cardViewCount} <VisibilityIcon sx={{ color: "#0a290a" }} />
         </Grid>
         <Grid
           item
@@ -731,10 +733,10 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             }}
             onClick={() => navigate("/digitalcardlogin")}
           >
-            {data.customerId == UserId ? "Login" : "Create Now"}
+            {data?.customerId == UserId ? "Login" : "Create Now"}
           </Button>
         </Grid>
-        {data.coverVideo != ''?<Grid
+        {data?.coverVideo != ''?<Grid
           id="hero"
           xs={12}
           
@@ -763,7 +765,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
 
             }}
           >
-            <source src={`${serverURL}/images/${data.coverVideo}`} type="video/mp4" />
+            <source src={`${serverURL}/images/${data?.coverVideo}`} type="video/mp4" />
           </video>
         </Grid>:
         <Grid
@@ -773,7 +775,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             md={12}
             sx={{
               color: "#fff",
-              backgroundImage: `url('data:image/png;base64,${arrayBufferToBase64(data.companyCoverImage.data.data)}')`,
+              backgroundImage: data?.companyCoverImage ?`url('data:image/png;base64,${arrayBufferToBase64(data?.companyCoverImage.data?.data)}')`:'',
               backgroundSize: "cover",
               width: "100%",
               minHeight: { xs: 260 },
@@ -808,7 +810,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             {" "}
             <Grid item xs={12} sx={{ marginBottom: 1, marginTop: -10 }}>
               <img
-                src={'data:image/jpeg;base64,' +arrayBufferToBase64(data.companylogo.data.data)}
+                src={'data:image/jpeg;base64,' +arrayBufferToBase64(data?.companylogo.data?.data)}
                 width={120}
                 height={120}
                 style={{ borderRadius: "60%", boxShadow: "2px 2px 15px 2px" }}
@@ -822,7 +824,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   color: "#0a290a",
                 }}
               >
-                {data.fullname}
+                {data?.fullname}
               </Typography>
             </Grid>
             <Grid item xs={12} sx={{display:"flex", marginBottom: 1, marginTop: -3 }}>
@@ -833,7 +835,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   color: "#0a290a",
                 }}
               >
-                {data.position}
+                {data?.position}
               </Typography>
             </Grid>
             <Grid item xs={12} sx={{ display:"flex",marginBottom: 1, marginTop: -3 }}>
@@ -844,7 +846,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   color: "#0a290a",
                 }}
               >
-                {data.phoneNumber}
+                {data?.phoneNumber}
               </Typography>
             </Grid>
             <Grid item xs={12} sx={{display:"flex", marginBottom: 1, marginTop: -3 }}>
@@ -855,7 +857,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   color: "#0a290a",
                 }}
               >
-                {data.Email}
+                {data?.Email}
               </Typography>
             </Grid>
             <Grid
@@ -865,11 +867,11 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               sx={{
                 
                   
-                display: data.phoneNumber == null ? "none" : "flex",
+                display: data?.phoneNumber == null ? "none" : "flex",
               }}
             >
               <IconButton
-                href={`tel:${data.phoneNumber}`}
+                href={`tel:${data?.phoneNumber}`}
                 sx={{color: "#000",}}
               >
                 <CallIcon sx={{ fontSize: { xs: 25, sm: 35, md: 35 } }} />
@@ -881,12 +883,12 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               xs={3}
               md={3}
               sx={{
-                display: data.location == "" ? "none" : "flex",
+                display: data?.location == "" ? "none" : "flex",
 
               }}
             >
               <IconButton
-                href={`${data.location}`}
+                href={`${data?.location}`}
                 // onClick={() => handleLinkdinUpdate()}
                 sx={{color: "#000",}}
               >
@@ -894,9 +896,9 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               </IconButton>
             </Grid>
 
-            <Grid item xs={3} sx={{display:data.GoogleMapLink!=''?'block':'none'}}>
+            <Grid item xs={3} sx={{display:data?.GoogleMapLink!=''?'block':'none'}}>
              <IconButton
-                 href={`${data.GoogleMapLink}`}
+                 href={`${data?.GoogleMapLink}`}
                 // onClick={()=>handleInstaUpdate()}
                 sx={{color: "#000",}}
               >
@@ -908,7 +910,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
 
             <Grid item xs={3} md={3}>
               <IconButton
-                href={`https://wa.me/+91${data.phoneNumber}?text=`}
+                href={`https://wa.me/+91${data?.phoneNumber}?text=`}
                 onClick={() => handleWhatsappUpdate()}
               //   sx={{
               //     backgroundColor: "#fff",
@@ -928,11 +930,11 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               xs={3}
               md={3}
               sx={{
-                display: data.igLink == "" ? "none" : "flex",
+                display: data?.igLink == "" ? "none" : "flex",
               }}
             >
               <IconButton
-                href={`https://www.instagram.com/${data.igLink}`}
+                href={`https://www.instagram.com/${data?.igLink}`}
                 onClick={() => handleInstaUpdate()}
                 
               >
@@ -944,11 +946,11 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               xs={3}
               md={3}
               sx={{
-                display: data.Email == "" ? "none" : "flex",
+                display: data?.Email == "" ? "none" : "flex",
               }}
             >
               <IconButton
-                href={`mailto:${data.Email}?body=Query%20About%20Business`}
+                href={`mailto:${data?.Email}?body=Query%20About%20Business`}
                 
               >
                  <img src={Gmailgif} style={{width:70,}}/>             </IconButton>
@@ -958,11 +960,11 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               xs={3}
               md={3}
               sx={{
-                display: data.fbLink == "" ? "none" : "flex",
+                display: data?.fbLink == "" ? "none" : "flex",
               }}
             >
               <IconButton
-                href={`https://www.facebook.com/${data.fbLink}`}
+                href={`https://www.facebook.com/${data?.fbLink}`}
                 onClick={() => handleFbUpdate()}
                
               >
@@ -974,15 +976,15 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               xs={3}
               md={3}
               sx={{
-                display: data.TwitterLink == "" ? "none" : "flex",
+                display: data?.TwitterLink == "" ? "none" : "flex",
               }}
             >
               <IconButton
-                href={`https://twitter.com/${data.TwitterLink}`}
+                href={`https://twitter.com/${data?.TwitterLink}`}
                 // onClick={() => handleFbUpdate()}
                
               >
-                <img src={Twittergif} style={{width:70,}}/>
+                <img src={Twittergif} style={{width:70}}/>
               </IconButton>
             </Grid>
             <Grid
@@ -990,11 +992,11 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               xs={3}
               md={3}
               sx={{
-                display: data.LinkdnLink == "" ? "none" : "flex",
+                display: data?.LinkdnLink == "" ? "none" : "flex",
               }}
             >
               <IconButton
-                href={`https://www.linkedin.com/in/${data. LinkdnLink}`}
+                href={`https://www.linkedin.com/in/${data?. LinkdnLink}`}
                 // onClick={() => handleFbUpdate()}
                
               >
@@ -1006,12 +1008,12 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               xs={3}
               md={3}
               sx={{
-                display: data.YoutubeLink == "" ? "none" : "flex",
+                display: data?.YoutubeLink == "" ? "none" : "flex",
                 
               }}
             >
               <IconButton
-                href={`https://www.youtube.com/@${data.YoutubeLink}`}
+                href={`https://www.youtube.com/@${data?.YoutubeLink}`}
                 onClick={()=>handleLinkdinUpdate()}
                
               >
@@ -1024,12 +1026,12 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               xs={3}
               md={3}
               sx={{
-                display: data.location == "" ? "none" : "flex",
+                display: data?.location == "" ? "none" : "flex",
 
               }}
             >
               <IconButton
-                href={`${data.website}`}
+                href={`${data?.website}`}
                 // onClick={() => handleLinkdinUpdate()}
                
               >
@@ -1038,7 +1040,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             </Grid>
 
             {
-                data.links.map((item)=>{
+                data?.links.map((item)=>{
                   return(
                     <Grid
                     item
@@ -1150,7 +1152,6 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                         <IconButton
                         href={`${item.link}`}
                         // onClick={() => handleLinkdinUpdate()}
-                        
                       >
                         <img src={Pinterestgif} style={{width:70,}}/>
                       </IconButton>
@@ -1209,9 +1210,9 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             
           >
              {/* <Grid item xs={5} sx={{  display:
-                    data.paytmNumber == '' &&
-                    data.Googlepaynumber == '' &&
-                    data.phonepenumber == ''
+                    data?.paytmNumber == '' &&
+                    data?.Googlepaynumber == '' &&
+                    data?.phonepenumber == ''
                       ? "none":'block'}} >
                 <Button
                   variant="contained"
@@ -1231,18 +1232,18 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 </Button>
                 <Box sx={{ display: open ? "block" : "none" }}>
                   <Grid container spacing={2}>
-                    <Grid item xs={4} sx={{display:data.phonepenumber!=''?'block':'none',mr:2}}>
-                      <IconButton sx={{marginTop:1,bgcolor:"#fff"}} href={`upi://pay?pa=${data.phonepenumber}&mc=0000&mode=02&purpose=00`}>
+                    <Grid item xs={4} sx={{display:data?.phonepenumber!=''?'block':'none',mr:2}}>
+                      <IconButton sx={{marginTop:1,bgcolor:"#fff"}} href={`upi://pay?pa=${data?.phonepenumber}&mc=0000&mode=02&purpose=00`}>
                         <img src={phonepe}/>
                       </IconButton>
                     </Grid>
-                    <Grid item xs={4} sx={{display:data.paytmNumber!=''?'block':'none',mr:1}}>
-                      <IconButton sx={{marginTop:1,bgcolor:"#fff"}} href={`upi://pay?pa=${data.paytmNumber}&pn=PaytmUser&mc=0000&mode=02&purpose=00&orgid=159761`}>
+                    <Grid item xs={4} sx={{display:data?.paytmNumber!=''?'block':'none',mr:1}}>
+                      <IconButton sx={{marginTop:1,bgcolor:"#fff"}} href={`upi://pay?pa=${data?.paytmNumber}&pn=PaytmUser&mc=0000&mode=02&purpose=00&orgid=159761`}>
                       <img src={paytm}/>
                       </IconButton>
                     </Grid>
-                    <Grid item xs={4} sx={{display:data.Googlepaynumber!=''?'block':'none',mr:1}}>
-                      <IconButton sx={{marginTop:1,bgcolor:"#fff"}} href={`upi://pay?pa=${data.Googlepaynumber}&aid=uGICAgIDzn4f_TQ`}>
+                    <Grid item xs={4} sx={{display:data?.Googlepaynumber!=''?'block':'none',mr:1}}>
+                      <IconButton sx={{marginTop:1,bgcolor:"#fff"}} href={`upi://pay?pa=${data?.Googlepaynumber}&aid=uGICAgIDzn4f_TQ`}>
                       <img src={gpay}/>
                       </IconButton>
                     </Grid>
@@ -1361,8 +1362,8 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               }}
               onClick={() =>
                 handleClick(
-                  `${data.companyId}`,
-                  `https://digitalcardhub.in/#/${data.companyId}`
+                  `${data?.companyId}`,
+                  `https://digitalcardhub.in/#/${data?.companyId}`
                 )
               }
             >
@@ -1383,8 +1384,8 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 }}
                 onClick={() =>
                   handleClick(
-                    `${data.companyId}`,
-                    `http://digitalcardhub.in/#/${data.companyId}`
+                    `${data?.companyId}`,
+                    `http://digitalcardhub.in/#/${data?.companyId}`
                   )
                 }
               >
@@ -1436,7 +1437,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             item
             xs={12}
             md={12}
-            sx={{ display: data.profile=='false'?'none':"flex", justifyContent: "center", margin: 0 }}
+            sx={{ display: data?.profile=='false'?'none':"flex", justifyContent: "center", margin: 0 }}
           >
             <Button
               variant="contained"
@@ -1493,7 +1494,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             {/* <Grid item xs={12} md={12}>
                 <Typography sx={{ fontSize: 25, color: "#000" }}>
                   {" "}
-                  Establishment Date : {data.CompanyEstDate}
+                  Establishment Date : {data?.CompanyEstDate}
                 </Typography>
               </Grid> */}
             <Grid item xs={11} md={11} sx={{ml:-2}}>
@@ -1501,7 +1502,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               className="theme3"
               >
                 {" "}
-                {data.AboutUs}
+                {data?.AboutUs}
               </p>
             </Grid>
           </Grid>
@@ -1615,11 +1616,11 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
           md={12}
           sx={{
             display:
-              (data.YoutubeVideoLink1 != "" ||
-                data.YoutubeVideoLink2 != "" ||
-                data.YoutubeVideoLink3 != "" ||
-                data.YoutubeVideoLink4 != "" ||
-                data.YoutubeVideoLink5 != "") &&
+              (data?.YoutubeVideoLink1 != "" ||
+                data?.YoutubeVideoLink2 != "" ||
+                data?.YoutubeVideoLink3 != "" ||
+                data?.YoutubeVideoLink4 != "" ||
+                data?.YoutubeVideoLink5 != "") &&
               fullCard
                 ? "block"
                 : "none",
@@ -1652,7 +1653,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               md={11}
               style={{
                 margin: 10,
-                display: data.YoutubeVideoLink1 == "" ? "none" : "flex",
+                display: data?.YoutubeVideoLink1 == "" ? "none" : "flex",
                 justifyContent: "center",
                 flexDirection: "column",
               }}
@@ -1664,7 +1665,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   alignItems: "center",
                 }}
               >
-                <ReactPlayer height="300px" url={data.YoutubeVideoLink1} />
+                <ReactPlayer height="300px" url={data?.YoutubeVideoLink1} />
               </Grid>
             </Grid>
             <Grid
@@ -1673,7 +1674,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               md={11}
               style={{
                 margin: 10,
-                display: data.YoutubeVideoLink2 == "" ? "none" : "flex",
+                display: data?.YoutubeVideoLink2 == "" ? "none" : "flex",
                 justifyContent: "center",
                 flexDirection: "column",
               }}
@@ -1685,7 +1686,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   alignItems: "center",
                 }}
               >
-                <ReactPlayer height="300px" url={data.YoutubeVideoLink2} />
+                <ReactPlayer height="300px" url={data?.YoutubeVideoLink2} />
               </Grid>
             </Grid>
             <Grid
@@ -1694,7 +1695,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               md={11}
               style={{
                 margin: 10,
-                display: data.YoutubeVideoLink3 == "" ? "none" : "flex",
+                display: data?.YoutubeVideoLink3 == "" ? "none" : "flex",
                 justifyContent: "center",
                 flexDirection: "column",
               }}
@@ -1706,7 +1707,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   alignItems: "center",
                 }}
               >
-                <ReactPlayer height="300px" url={data.YoutubeVideoLink3} />
+                <ReactPlayer height="300px" url={data?.YoutubeVideoLink3} />
               </Grid>
             </Grid>
             <Grid
@@ -1715,7 +1716,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               md={11}
               style={{
                 margin: 10,
-                display: data.YoutubeVideoLink4 == "" ? "none" : "flex",
+                display: data?.YoutubeVideoLink4 == "" ? "none" : "flex",
                 justifyContent: "center",
                 flexDirection: "column",
               }}
@@ -1727,7 +1728,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   alignItems: "center",
                 }}
               >
-                <ReactPlayer height="300px" url={data.YoutubeVideoLink4} />
+                <ReactPlayer height="300px" url={data?.YoutubeVideoLink4} />
               </Grid>
             </Grid>
             <Grid
@@ -1736,7 +1737,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               md={11}
               style={{
                 margin: 10,
-                display: data.YoutubeVideoLink5 == "" ? "none" : "flex",
+                display: data?.YoutubeVideoLink5 == "" ? "none" : "flex",
                 justifyContent: "center",
                 flexDirection: "column",
               }}
@@ -1748,7 +1749,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   alignItems: "center",
                 }}
               >
-                <ReactPlayer height="300px" url={data.YoutubeVideoLink5} />
+                <ReactPlayer height="300px" url={data?.YoutubeVideoLink5} />
               </Grid>
             </Grid>
             <Grid
@@ -1757,7 +1758,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               md={11}
               style={{
                 margin: 10,
-                display: data.YoutubeVideoLink6 == "" ? "none" : "flex",
+                display: data?.YoutubeVideoLink6 == "" ? "none" : "flex",
                 justifyContent: "center",
                 flexDirection: "column",
               }}
@@ -1769,7 +1770,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   alignItems: "center",
                 }}
               >
-                <ReactPlayer height="300px" url={data.YoutubeVideoLink6} />
+                <ReactPlayer height="300px" url={data?.YoutubeVideoLink6} />
               </Grid>
             </Grid>
             <Grid
@@ -1778,7 +1779,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               md={11}
               style={{
                 margin: 10,
-                display: data.YoutubeVideoLink7 == "" ? "none" : "flex",
+                display: data?.YoutubeVideoLink7 == "" ? "none" : "flex",
                 justifyContent: "center",
                 flexDirection: "column",
               }}
@@ -1790,7 +1791,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   alignItems: "center",
                 }}
               >
-                <ReactPlayer height="300px" url={data.YoutubeVideoLink7} />
+                <ReactPlayer height="300px" url={data?.YoutubeVideoLink7} />
               </Grid>
             </Grid>
             <Grid
@@ -1799,7 +1800,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               md={11}
               style={{
                 margin: 10,
-                display: data.YoutubeVideoLink8 == "" ? "none" : "flex",
+                display: data?.YoutubeVideoLink8 == "" ? "none" : "flex",
                 justifyContent: "center",
                 flexDirection: "column",
               }}
@@ -1811,7 +1812,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   alignItems: "center",
                 }}
               >
-                <ReactPlayer height="300px" url={data.YoutubeVideoLink8} />
+                <ReactPlayer height="300px" url={data?.YoutubeVideoLink8} />
               </Grid>
             </Grid>
             <Grid
@@ -1820,7 +1821,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               md={11}
               style={{
                 margin: 10,
-                display: data.YoutubeVideoLink9 == "" ? "none" : "flex",
+                display: data?.YoutubeVideoLink9 == "" ? "none" : "flex",
                 justifyContent: "center",
                 flexDirection: "column",
               }}
@@ -1832,7 +1833,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   alignItems: "center",
                 }}
               >
-                <ReactPlayer height="300px" url={data.YoutubeVideoLink9} />
+                <ReactPlayer height="300px" url={data?.YoutubeVideoLink9} />
               </Grid>
             </Grid>
             <Grid
@@ -1841,7 +1842,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               md={11}
               style={{
                 margin: 10,
-                display: data.YoutubeVideoLink10 == "" ? "none" : "flex",
+                display: data?.YoutubeVideoLink10 == "" ? "none" : "flex",
                 justifyContent: "center",
                 flexDirection: "column",
               }}
@@ -1853,7 +1854,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   alignItems: "center",
                 }}
               >
-                <ReactPlayer height="300px" url={data.YoutubeVideoLink10} />
+                <ReactPlayer height="300px" url={data?.YoutubeVideoLink10} />
               </Grid>
             </Grid>
           </Grid>
@@ -1872,16 +1873,16 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
             minHeight: { xs: "auto", sm: "100%", md: "auto" },
             marginTop: 2,
             display:
-              (data.paytmNumber != null ||
-                data.Googlepaynumber != null ||
-                data.phonepenumber != null ||
-                data.paytmQrimage != "" ||
-                data.phonepeQrimage != "" ||
-                data.googlepayQrimage != "" ||
-                data.Accountholdername != "" ||
-                data.bankaccountnumber != null ||
-                data.bankifsccode != "" ||
-                data.bankname != "") &&
+              (data?.paytmNumber != null ||
+                data?.Googlepaynumber != null ||
+                data?.phonepenumber != null ||
+                data?.paytmQrimage != "" ||
+                data?.phonepeQrimage != "" ||
+                data?.googlepayQrimage != "" ||
+                data?.Accountholdername != "" ||
+                data?.bankaccountnumber != null ||
+                data?.bankifsccode != "" ||
+                data?.bankname != "") &&
               fullCard
                 ? "block"
                 : "none",
@@ -1901,9 +1902,9 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
               <Grid
                 sx={{
                   display:
-                    data.paytmNumber == null &&
-                    data.Googlepaynumber == null &&
-                    data.phonepenumber == null
+                    data?.paytmNumber == null &&
+                    data?.Googlepaynumber == null &&
+                    data?.phonepenumber == null
                       ? "none"
                       : "block",
                 }}
@@ -1925,46 +1926,46 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 <Grid style={{ marginTop: 10 }}>
                   <Typography
                     sx={{
-                      display: data.paytmNumber == null ? "none" : "block",
+                      display: data?.paytmNumber == null ? "none" : "block",
                       color: "#000",
                     }}
                   >
                     Paytm
                   </Typography>
                   <Typography color="#00adef" fontSize={20}>
-                    {data.paytmNumber}
+                    {data?.paytmNumber}
                   </Typography>
                   <Typography
                     sx={{
-                      display: data.Googlepaynumber == null ? "none" : "block",
+                      display: data?.Googlepaynumber == null ? "none" : "block",
                       color: "#000",
                     }}
                   >
                     Google Pay
                   </Typography>
                   <Typography color="#00adef" fontSize={20}>
-                    {data.Googlepaynumber}
+                    {data?.Googlepaynumber}
                   </Typography>
                   <Typography
                     sx={{
-                      display: data.phonepenumber == null ? "none" : "block",
+                      display: data?.phonepenumber == null ? "none" : "block",
                       color: "#000",
                     }}
                   >
                     PhonePe
                   </Typography>
                   <Typography color="#00adef" fontSize={20}>
-                    {data.phonepenumber}
+                    {data?.phonepenumber}
                   </Typography>
                 </Grid>
               </Grid>
               <Grid
                 sx={{
                   display:
-                    data.Accountholdername == "" &&
-                    data.bankaccountnumber == null &&
-                    data.bankifsccode == "" &&
-                    data.bankname == ""
+                    data?.Accountholdername == "" &&
+                    data?.bankaccountnumber == null &&
+                    data?.bankifsccode == "" &&
+                    data?.bankname == ""
                       ? "none"
                       : "block",
                 }}
@@ -1986,57 +1987,57 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 <Grid style={{ marginTop: 10, marginBottom: 20 }}>
                   <Typography
                     sx={{
-                      display: data.Accountholdername == "" ? "none" : "block",
+                      display: data?.Accountholdername == "" ? "none" : "block",
                       color: "#000",
                     }}
                   >
                     Name:
                   </Typography>
                   <Typography color="#00adef" fontSize={20}>
-                    {data.Accountholdername}
+                    {data?.Accountholdername}
                   </Typography>
                   <Typography
                     sx={{
                       display:
-                        data.bankaccountnumber == null ? "none" : "block",
+                        data?.bankaccountnumber == null ? "none" : "block",
                       color: "#000",
                     }}
                   >
                     Account Number:
                   </Typography>
                   <Typography color="#00adef" fontSize={20}>
-                    {data.bankaccountnumber}
+                    {data?.bankaccountnumber}
                   </Typography>
                   <Typography
                     sx={{
-                      display: data.bankifsccode == "" ? "none" : "block",
+                      display: data?.bankifsccode == "" ? "none" : "block",
                       color: "#000",
                     }}
                   >
                     IFSC Code:
                   </Typography>
                   <Typography color="#00adef" fontSize={20}>
-                    {data.bankifsccode}
+                    {data?.bankifsccode}
                   </Typography>
                   <Typography
                     sx={{
-                      display: data.bankname == "" ? "none" : "block",
+                      display: data?.bankname == "" ? "none" : "block",
                       color: "#000",
                     }}
                   >
                     Bank Name:
                   </Typography>
                   <Typography color="#00adef" fontSize={20}>
-                    {data.bankname}
+                    {data?.bankname}
                   </Typography>
                 </Grid>
               </Grid>
               <Grid
                 sx={{
                   display:
-                    data.paytmQrimage == "" &&
-                    data.phonepeQrimage == "" &&
-                    data.googlepayQrimage == ""
+                    data?.paytmQrimage == "" &&
+                    data?.phonepeQrimage == "" &&
+                    data?.googlepayQrimage == ""
                       ? "none"
                       : "block",
                 }}
@@ -2063,14 +2064,14 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                   <Grid
                     item
                     xs={5}
-                    sx={{ display: data.paytmQrimage == "" ? "none" : "block" }}
+                    sx={{ display: data?.paytmQrimage == "" ? "none" : "block" }}
                   >
                     <Typography color="#000" fontSize={20}>
                       Paytm Qr
                     </Typography>
 
                     <img
-                      src={`${serverURL}/images/${data.paytmQrimage}`}
+                      src={`${serverURL}/images/${data?.paytmQrimage}`}
                       width={"100%"}
                     />
                   </Grid>
@@ -2078,14 +2079,14 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                     item
                     xs={5}
                     sx={{
-                      display: data.phonepeQrimage == "" ? "none" : "block",
+                      display: data?.phonepeQrimage == "" ? "none" : "block",
                     }}
                   >
                     <Typography color="#000" fontSize={20}>
                       Phone Pe Qr
                     </Typography>
                     <img
-                      src={`${serverURL}/images/${data.phonepeQrimage}`}
+                      src={`${serverURL}/images/${data?.phonepeQrimage}`}
                       width={"100%"}
                     />
                   </Grid>
@@ -2093,14 +2094,14 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                     item
                     xs={5}
                     sx={{
-                      display: data.googlepayQrimage == "" ? "none" : "block",
+                      display: data?.googlepayQrimage == "" ? "none" : "block",
                     }}
                   >
                     <Typography color="#000" fontSize={20}>
                       Google Pay Qr
                     </Typography>
                     <img
-                      src={`${serverURL}/images/${data.googlepayQrimage}`}
+                      src={`${serverURL}/images/${data?.googlepayQrimage}`}
                       width={"100%"}
                     />
                   </Grid>
@@ -2355,7 +2356,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                       color: "#ebebeb",
                     },
                   }}
-                  onClick={()=>handleSubmit(data.customerId)}
+                  onClick={()=>handleSubmit(data?.customerId)}
                 >
                   Submit
                 </Button>

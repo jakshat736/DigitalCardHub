@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 
-import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from './Components/Digital Card Website/Digital Card User Interface/Pages/Home';
 import DCLogin from './Components/Digital Card Website/Digital Card User Interface/Pages/DCLogin';
 import DCSignUp from './Components/Digital Card Website/Digital Card User Interface/Pages/DCSignUp';
@@ -97,127 +97,183 @@ import DownloadContact2 from './Components/Administrator/DownloadContact2';
 import DownloadContact3 from './Components/Administrator/DownloadContact3';
 import DownloadContact4 from './Components/Administrator/DownloadContact4';
 import { SnackbarProvider } from 'notistack';
+import ActivateTag from './Components/Digital Card Website/VehicleTag/ActivateTag';
+import VehicleNumber from './Components/Digital Card Website/VehicleTag/VehicleNumber';
+import VerifyNumber from './Components/Digital Card Website/VehicleTag/VerifyNumber';
+import ScanQr from './Components/Digital Card Website/VehicleTag/ScanQr';
+import { MessageSend } from './Components/Digital Card Website/VehicleTag/MessageSend';
+import Register from './Components/Digital Card Website/VehicleTag/Register';
+import Cong from './Components/Digital Card Website/VehicleTag/Cong';
+import VehicleLogin from './Components/Digital Card Website/VehicleTag/LogIn';
+import VehicleSignup from './Components/Digital Card Website/VehicleTag/SignUp';
+import VehicleHome from './Components/Digital Card Website/VehicleTag/VehicleHome';
+import SelfOrder from './Components/Administrator/SelfOrder';
+import MasterLogin from './Components/MasterDashboard/LogIn';
+import MasterDashboard from './Components/MasterDashboard/MasterDashboard';
+import DoorTagHome from './Components/Digital Card Website/DoorTag/DoorTagHome';
+import DoorSignup from './Components/Digital Card Website/DoorTag/SignUp';
+import DoorLogin from './Components/Digital Card Website/DoorTag/LogIn';
+import DoorTagRegister from './Components/Digital Card Website/DoorTag/DoorTagRegister';
+import AllProducts from './Components/Digital Card Website/Digital Card User Interface/Components/AllProducts';
+import CardHome from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/CardHome';
+import MultiSignUp from './Components/Digital Card Website/Digital Card User Interface/MultiLink.js/SignUp';
+import MultiLogIn from './Components/Digital Card Website/Digital Card User Interface/MultiLink.js/LogIn';
+import MultiHome from './Components/Digital Card Website/Digital Card User Interface/MultiLink.js/MultiHome';
+import Instaredirect from './Components/DemoPage/Instaredirect';
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
 
-	
-  return (
-   
-    <div>
-		<SessionContext.Provider value={{ cart,setCart}}>
-		<SnackbarProvider autoHideDuration={4000} variant='success' anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
-		<ParallaxProvider>
-    <HashRouter>
-      <Routes>
-        {/* DIGITAL CARD WEBSITE ROUTER START */}
-					<Route element={<HomePage />} path="/home" />
-					<Route element={<DCLogin />} path="/digitalcardlogin" />
-					<Route element={<DCSignUp />} path="/digitalcardsignup" />
-					<Route element={<DemoPage />} path="/demopage" />
-					<Route element={<DarshitTraders />} path="/darshittraders" />
-					<Route element={<UserDashboard />} path="/userdashboard" />
-					<Route element={<ChangePassword />} path="/changepassword" />
-					<Route element={<CompanyName />} path="/companyname" />
-					<Route element={<ThemePage />} path="/themepage" />
-					<Route element={<Information />} path="/information" />
-					<Route element={<NewThemeInfo />} path="/newthemeinfo" />
-					<Route element={<Links />} path="/links" />
-					<Route element={<HotelLinks />} path="/hotellinks" />
-					<Route element={<MenuLink />} path="/menulink" />
-					<Route element={<Payment />} path="/payment" />
-					<Route element={<Products />} path="/products" />
-					<Route element={<Ecommerce />} path="/ecommerce" />
-					<Route element={<Gallery />} path="/gallery" />
-					<Route element={<Card />} path="/card/:companyId" />
-					<Route element={<LoadingScreen />} path="/:companyId" />
-					<Route element={< LoadingScreen1/>} path="/" />
-					<Route element={<Preview />} path="/preview" />
-					<Route element={<AdminLogin />} path="/adminlogin" />
-					<Route path="/dashboard/*" element={<DashBoard />} />
-					<Route path="/compatible-devices" element={<Compatibility />} />
-					<Route path="/how_to_create" element={<HowToUse />} />
-					<Route path="/designUpload" element={<DesignUpload/>} />
-					<Route path="/partialDesignUpload" element={<PartialDesignUploadPage/>} />
-					<Route path="/packages" element={<Packages/>} />
-					<Route path="/partialPackage" element={<PartialPackage/>} />
-					<Route path="/confirmation/:tmid" element={<PaymentConfirmation/>} />
-					<Route path="/partialconfirmation/:tmid" element={<PartialConfirmation/>} />
-					<Route path="/addresspage" element={<AddressPage/>} />
-					<Route path="/productspage/:_id" element={<ProductsPage/>} />
-					<Route path="/productscomponent/:_id" element={<ProductCompoent/>} />
-					<Route path="/orderform" element={<OrderForm/>} />
-					<Route path="/ab" element={<ImageUploaderAndCropper/>} />
-					<Route path="/product/:_id" element={<Enter/>} />
-					<Route path="/cart" element={<CartPage/>} />
-					<Route path="/details" element={<DeliverDetails/>} />
-					<Route path="/orderComplete/:tmid" element={<OrderComplete/>} />
-					<Route path="/chri" element={<Chri/>} />
-					<Route path="/invite" element={<Invite/>} />
-					<Route path="/invitation" element={<Invitation/>} />
-					<Route path="/invites/:inviteId" element={<Home1/>} />
-					<Route path="/invite/:inviteId" element={<InviteActivationPage/>} />
-					<Route path="/invitelogin" element={<InviteLogIn/>} />
-					<Route path="/invitesignup" element={<InviteSignUp/>} />
-					<Route path="/manukhandelwal" element={<DownloadContact/>} />
-					<Route path="/raghavkhandelwal" element={<DownloadContact2/>} />
-					<Route path="/hemantkhandelwal" element={<DownloadContact3/>} />
-					<Route path="/rajkumargupta" element={<DownloadContact4/>} />
-					{/* <Route path="/parallax" element={<Parallax/>} /> */}
-					{/* DIGITAL CARD WEBSITE ROUTER END */}
 
-					{/* Review Tags Routes */}
-					<Route path="/reviewsignup" element={<SignUp/>} />  
-					<Route path="/reviewlogin" element={<LogIn/>} />  
-					<Route path="/reviewchangepassword" element={<ReviewChangePassword/>} />  
-					<Route path="/tags/:id" element={<ReviewLoadingScreen1/>} />  
-					<Route path="/tag/:id" element={<ReviewHome/>} />  
-					<Route path="/review/dashboard" element={<Dashboard/>} />  
-					<Route path="/linkgenerator" element={<LinkGenrator/>} />  
+	return (
 
+		<div>
+			<SessionContext.Provider value={{ cart, setCart }}>
+				<SnackbarProvider autoHideDuration={4000} variant='success' anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+					<ParallaxProvider>
+						<HashRouter>
+							<Routes>
+								{/* DIGITAL CARD WEBSITE ROUTER START */}
+								<Route element={<HomePage />} path="/home" />
+								<Route element={<Instaredirect />} path="/aradhyarana" />
+								<Route element={<Home />} path="/home1" />
+								<Route element={<DCLogin />} path="/digitalcardlogin" />
+								<Route element={<DCSignUp />} path="/digitalcardsignup" />
+								<Route element={<DemoPage />} path="/demopage" />
+								<Route element={<DarshitTraders />} path="/darshittraders" />
+								<Route element={<UserDashboard />} path="/userdashboard" />
+								<Route element={<ChangePassword />} path="/changepassword" />
+								<Route element={<CompanyName />} path="/companyname" />
+								<Route element={<ThemePage />} path="/themepage" />
+								<Route element={<Information />} path="/information" />
+								<Route element={<NewThemeInfo />} path="/newthemeinfo" />
+								<Route element={<Links />} path="/links" />
+								<Route element={<HotelLinks />} path="/hotellinks" />
+								<Route element={<MenuLink />} path="/menulink" />
+								<Route element={<Payment />} path="/payment" />
+								<Route element={<Products />} path="/products" />
+								<Route element={<Ecommerce />} path="/ecommerce" />
+								<Route element={<Gallery />} path="/gallery" />
+								<Route element={<Card />} path="/card/:companyId" />
+								<Route element={<LoadingScreen />} path="/:companyId" />
+								<Route element={< LoadingScreen1 />} path="/" />
+								<Route element={<Preview />} path="/preview" />
+								<Route element={<AdminLogin />} path="/adminlogin" />
+								<Route path="/dashboard/*" element={<DashBoard />} />
+								<Route path="/compatible-devices" element={<Compatibility />} />
+								<Route path="/how_to_create" element={<HowToUse />} />
+								<Route path="/designUpload" element={<DesignUpload />} />
+								<Route path="/partialDesignUpload" element={<PartialDesignUploadPage />} />
+								<Route path="/packages" element={<Packages />} />
+								<Route path="/partialPackage" element={<PartialPackage />} />
+								<Route path="/confirmation/:tmid" element={<PaymentConfirmation />} />
+								<Route path="/partialconfirmation/:tmid" element={<PartialConfirmation />} />
+								<Route path="/addresspage" element={<AddressPage />} />
+								<Route path="/productspage/:_id" element={<ProductsPage />} />
+								<Route path="/allproducts" element={<AllProducts />} />
+								<Route path="/productscomponent/:_id" element={<ProductCompoent />} />
+								<Route path="/orderform" element={<OrderForm />} />
+								<Route path="/ab" element={<ImageUploaderAndCropper />} />
+								<Route path="/product/:_id" element={<Enter />} />
+								<Route path="/cart" element={<CartPage />} />
+								<Route path="/details" element={<DeliverDetails />} />
+								<Route path="/orderComplete/:tmid" element={<OrderComplete />} />
+								<Route path="/chri" element={<Chri />} />
+								<Route path="/invite" element={<Invite />} />
+								<Route path="/invitation" element={<Invitation />} />
+								<Route path="/invites/:inviteId" element={<Home1 />} />
+								<Route path="/invite/:inviteId" element={<InviteActivationPage />} />
+								<Route path="/invitelogin" element={<InviteLogIn />} />
+								<Route path="/invitesignup" element={<InviteSignUp />} />
+								<Route path="/manukhandelwal" element={<DownloadContact />} />
+								<Route path="/raghavkhandelwal" element={<DownloadContact2 />} />
+								<Route path="/hemantkhandelwal" element={<DownloadContact3 />} />
+								<Route path="/rajkumargupta" element={<DownloadContact4 />} />
+								<Route path="/selforder" element={<SelfOrder />} />
+								{/* <Route path="/parallax" element={<Parallax/>} /> */}
+								{/* DIGITAL CARD WEBSITE ROUTER END */}
 
-					{/* Standee Tags Routes */}
-					<Route path="/standeesignup" element={<SignUp1/>} />  
-					<Route path="/standeelogin" element={<LogIn1/>} />  
-					{/* <Route path="/reviewchangepassword" element={<ReviewChangePassword/>} />   */}
-					<Route path="/stnds/:id" element={<ReviewLoadingScreen2/>} />  
-					<Route path="/stnd/:id" element={<StandeeHome/>} />  
-					<Route path="/shop" element={<Shop/>} />  
-					{/* <Route path="/review/dashboard" element={<Dashboard/>} />   */}
+								{/* Review Tags Routes */}
+								<Route path="/reviewsignup" element={<SignUp />} />
+								<Route path="/reviewlogin" element={<LogIn />} />
+								<Route path="/reviewchangepassword" element={<ReviewChangePassword />} />
+								<Route path="/tags/:id" element={<ReviewLoadingScreen1 />} />
+								<Route path="/tag/:id" element={<ReviewHome />} />
+								<Route path="/review/dashboard" element={<Dashboard />} />
+								<Route path="/linkgenerator" element={<LinkGenrator />} />
+								{/* Multi Link Routes */}
+								<Route path="/multisignup" element={<MultiSignUp />} />
+								<Route path="/multilogin" element={<MultiLogIn />} />
+								<Route path="/multi/:id" element={<MultiHome />} />
 
 
-					{/* Menu */}
+								{/* Standee Tags Routes */}
+								<Route path="/standeesignup" element={<SignUp1 />} />
+								<Route path="/standeelogin" element={<LogIn1 />} />
+								{/* <Route path="/reviewchangepassword" element={<ReviewChangePassword/>} />   */}
+								<Route path="/stnds/:id" element={<ReviewLoadingScreen2 />} />
+								<Route path="/stnd/:id" element={<StandeeHome />} />
+								<Route path="/shop" element={<Shop />} />
+								{/* <Route path="/review/dashboard" element={<Dashboard/>} />   */}
 
-					<Route path="/box" element={<Box/>}/>
-    <Route path="/menus/:menuId" element={<Menu/>}/>
-    <Route path="/menuDashboard/:menuId" element={<MenuDashBoard/>}/>
-    <Route path="/addmenu" element={<AddMenu/>}/>
-    <Route path="/vieworder" element={<ViewOrder/>}/>
-    <Route path="/orderdetail" element={<OrderDetail/>}/>
-    <Route path="/button" element={<MyComponent/>}/>
-    <Route path="/printrecipt" element={<PrintRecipt/>}/>
-    <Route path="/allmenu" element={<AllMenu/>}/>
-    <Route path="/form" element={<Form/>}/>
-    <Route path="/editmenu" element={<EditMenu/>}/>
-     <Route path="/kitchen" element={<Kitchen/>}/>
-     <Route path="/selectqy" element={<Selectqy/>}/>
-    <Route path="/floatingmenu" element={<FloatingMenu/>}/>
-    <Route path="/uploadmenucsv" element={<UploadMenuCsv/>}/>
-    <Route path="/uploadYourLogo" element={<UploadYourLogo/>}/>
-    <Route path="/restaurantdetails" element={<Details/>}/>
-    <Route path="/menucheckout" element={<OrderComplete1/>}/>
-    <Route path="/orderdelivered" element={<OrderDelivered/>}/>
-    <Route path="/menu/:menuId" element={<ActivationPage/>}/>
-    <Route path="/menusignup" element={<MenuSignUp/>}/>
-    <Route path="/menulogin" element={<MenuLogIn/>}/>
-					
-      </Routes>
-	  </HashRouter>
-	  </ParallaxProvider>
-	  </SnackbarProvider>
-	  </SessionContext.Provider>
-    </div>
-  );
+
+								{/* Menu */}
+
+								<Route path="/box" element={<Box />} />
+								<Route path="/menus/:menuId" element={<Menu />} />
+								<Route path="/menuDashboard/:menuId" element={<MenuDashBoard />} />
+								<Route path="/addmenu" element={<AddMenu />} />
+								<Route path="/vieworder" element={<ViewOrder />} />
+								<Route path="/orderdetail" element={<OrderDetail />} />
+								<Route path="/button" element={<MyComponent />} />
+								<Route path="/printrecipt" element={<PrintRecipt />} />
+								<Route path="/allmenu" element={<AllMenu />} />
+								<Route path="/form" element={<Form />} />
+								<Route path="/editmenu" element={<EditMenu />} />
+								<Route path="/kitchen" element={<Kitchen />} />
+								<Route path="/selectqy" element={<Selectqy />} />
+								<Route path="/floatingmenu" element={<FloatingMenu />} />
+								<Route path="/uploadmenucsv" element={<UploadMenuCsv />} />
+								<Route path="/uploadYourLogo" element={<UploadYourLogo />} />
+								<Route path="/restaurantdetails" element={<Details />} />
+								<Route path="/menucheckout" element={<OrderComplete1 />} />
+								<Route path="/orderdelivered" element={<OrderDelivered />} />
+								<Route path="/menu/:menuId" element={<ActivationPage />} />
+								<Route path="/menusignup" element={<MenuSignUp />} />
+								<Route path="/menulogin" element={<MenuLogIn />} />
+								<Route path="/cardhome" element={<CardHome />} />
+
+
+								{/* Vehicle Tag Update */}
+								<Route path="/activatetag" element={<ActivateTag />} />
+								<Route path="/vehiclenumber" element={<VehicleNumber />} />
+								<Route path="/verifynumber" element={<VerifyNumber />} />
+								<Route path="/scanqr" element={<ScanQr />} />
+								<Route path="/messagesend" element={<MessageSend />} />
+								<Route path="/register" element={<Register />} />
+								<Route path="/cong" element={<Cong />} />
+								<Route path="/vehiclelogin" element={<VehicleLogin />} />
+								<Route path="/vehiclesignup" element={<VehicleSignup />} />
+								<Route path="/vehicle/:id" element={<VehicleHome />} />
+
+								{/* Door Tag */}
+
+								<Route path="/doorlogin" element={<DoorLogin />} />
+								<Route path="/doorsignup" element={<DoorSignup />} />
+								<Route path="/door/:id" element={<DoorTagHome />} />
+								<Route path="/dooraddressupdate" element={<DoorTagRegister />} />
+
+							{/* Master Dashboard */}
+							<Route path="/masterlogin" element={<MasterLogin />} />
+							<Route path="/masterdashboard" element={<MasterDashboard />} />
+
+							</Routes>
+						</HashRouter>
+					</ParallaxProvider>
+				</SnackbarProvider>
+			</SessionContext.Provider>
+		</div>
+	);
 }
 
 export default App;

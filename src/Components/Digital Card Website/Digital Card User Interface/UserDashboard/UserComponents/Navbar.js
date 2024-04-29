@@ -16,6 +16,7 @@ import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { postData } from '../../../../Services/NodeServices';
 import logo from "../../../Digital Card Assets/New Logo New.png";
+import { SessionContext } from '../../../../Services/SessionContext';
 
 const settings = ['Change Password', 'Logout'];
 const Navbar = () => {
@@ -27,6 +28,7 @@ const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [userData, setUserData] = React.useState([]);
+    const {  setCart } = React.useContext(SessionContext);
     const userId = window.localStorage.getItem("userId")
 
 
@@ -61,8 +63,10 @@ const Navbar = () => {
     };
     const handleLogout = () => {
         setAnchorElUser(null);
+        setCart([])
         window.localStorage.removeItem('User')
         window.localStorage.removeItem('userId')
+        window.localStorage.clear()
         navigate('/digitalcardlogin')
     };
 

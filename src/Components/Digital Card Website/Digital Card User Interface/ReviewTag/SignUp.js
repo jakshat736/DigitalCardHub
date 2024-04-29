@@ -64,15 +64,22 @@ const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
     const handleSubmit = async (event) => {
         if(isError==false && verified==true){
+            var data=new FormData
+            data.append("tagId",tagId)
+            const responseData=await postData('review/getByTagId',data,true)
+           
+
+            if(responseData.status){
             var formData = new FormData()
             formData.append('name', fullName)
             formData.append('email', emailId.toLowerCase())
             formData.append('phone', phoneNo)
             formData.append('password', password)
+            formData.append('masterId', responseData?.data?.masterId)
     
     
             var result = await postData('customerLogin/customerLogin', formData, true)
-            console.log(result)
+            
             if (result.status == 'true') {
                  window.localStorage.clear()
                  window.localStorage.setItem("userId",result.data._id)
@@ -85,7 +92,7 @@ const handleMouseDownPassword = () => setShowPassword(!showPassword);
                 formData.append('email', emailId.toLowerCase())
                 formData.append('phone', phoneNo)
                 formData.append('password', password)
-        
+                formData.append('masterId', responseData?.data?.masterId)
         
                 var result = await postData('review/customerLogin', formData, true)
                 Swal.fire({
@@ -131,6 +138,7 @@ const handleMouseDownPassword = () => setShowPassword(!showPassword);
             }
         }
     }
+    }
 
     
     
@@ -141,7 +149,7 @@ const handleMouseDownPassword = () => setShowPassword(!showPassword);
        
         setOtp(otpval)
 
-        const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=659669EFAB045&access_token=6591142e9fcef`;
+        const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
         const response=await postData('otp/api',{url:apiUrl})
        
         }else{

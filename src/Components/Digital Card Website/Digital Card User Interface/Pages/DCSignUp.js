@@ -144,12 +144,12 @@ export default function DCSignUp() {
 
         if (phoneNo != '') {
             var otpval = OtpGenerator()
-            
+
             setOtp(otpval)
 
-            const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=659669EFAB045&access_token=6591142e9fcef`;
+            const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
             const response = await postData('otp/api', { url: apiUrl })
-
+            // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41
         } else {
             Swal.fire({
                 text: "Enter the Number First",
@@ -247,7 +247,8 @@ export default function DCSignUp() {
                                         }}
                                     >
                                         Get Otp
-                                    </Button></Grid>
+                                    </Button>
+                                </Grid>
                                 <Grid item xs={12}>
                                     <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
 

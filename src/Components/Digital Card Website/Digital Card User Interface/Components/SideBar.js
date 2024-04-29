@@ -19,6 +19,7 @@ const pages = [
         // {url:"",name:"Cart"},
         { url: "/compatible-devices", name: "Compatible Devices" },
         { url: "/how_to_create", name: "How To Create" },
+        { url: "/allproducts", name: "All Products" },
         { url: "/digitalcardlogin", name: "Login/Sign Up" },]
 
 

@@ -324,9 +324,10 @@ const Information = () => {
     //setType(result.data.companyCoverImage.slice(result.data.companyCoverImage.length-3))
     setGoogleMapLink(result.data.GoogleMapLink)
   }
-  if(result.data!=undefined){
+  if(result===false || result?.data!=undefined){
     setLoadingAnimation(false)
   }
+  
 
   }
   React.useEffect(() => {
@@ -336,7 +337,7 @@ const Information = () => {
 
 
   const handleSubmit = async (verify) => {
-   
+  
     if(verify==true){
       var formData = new FormData();
     formData.append("companyname", companyName);
@@ -348,7 +349,7 @@ const Information = () => {
     formData.append("cardViewCount", 0);
 
     var result = await postData("carddetails/addcardDetails", formData, true);
-    console.log(result);
+
     if (result.status) {
         window.localStorage.setItem("CardId", result.data._id);
         
@@ -387,7 +388,6 @@ const Information = () => {
           if (result.status) {
               window.localStorage.setItem("CardId", result.data._id);
               setSave(true)
-              handleSubmit1(result.data._id)
           } else {
              setSave(false)
           }
@@ -398,7 +398,7 @@ const Information = () => {
     }
 };
 const handleUpdate = async (verify) => {
-  
+ 
     if(verify==true || companyName1==companyName){
       var formData = new FormData();
     formData.append("_id", cardId);
@@ -409,7 +409,6 @@ const handleUpdate = async (verify) => {
         formData,
         true
     );
-    console.log(result);
     if (result.status) {
        
         setSave(true)
@@ -457,7 +456,8 @@ const handleUpdate = async (verify) => {
 };
 
   const handleSubmit1 = async (cardId) => {
-
+         
+   if(!!cardId){
     try {
       // Set loading to true before making the request
       setLoadingAnimation(true)
@@ -514,6 +514,12 @@ const handleUpdate = async (verify) => {
     // Set loading back to false after the request completes
     setLoadingAnimation(false);
   }
+}else{
+  Swal.fire({
+    title:"First Verify Your Unique Card Id",
+    icon:'error'
+  })
+}
 
 
   }

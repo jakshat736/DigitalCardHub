@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./Navbar";
 import { Grid, Box, Typography, Paper, Container, useTheme, useMediaQuery } from "@mui/material";
 import Footer from "./Footer";
@@ -13,6 +13,7 @@ import step6 from "../../Digital Card Assets/step6.jpg";
 import step7 from "../../Digital Card Assets/step7.jpg";
 import step8 from "../../Digital Card Assets/step8.jpg";
 import step9 from "../../Digital Card Assets/step9.jpg";
+import Lower from "./Lower";
 
 const HowToUse = () => {
 
@@ -20,8 +21,21 @@ const HowToUse = () => {
     const mobile = useMediaQuery(theme.breakpoints.down(490));
     const tablet = useMediaQuery(theme.breakpoints.down(1280));
 
+
+
+    useEffect(()=>{
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior:'instant',
+          });
+      },[])
+
     return (
         <Grid id="top" sx={{ backgroundImage: "linear-gradient(#001E3C,#81909E,#001E3C)", minHeight: "100vh" }}>
+            <Grid sx={{ position: 'fixed', bottom: 0, zIndex: 2 }}>
+                <Lower/>
+            </Grid>
             <Navbar />
             <Grid container
                 spacing={2}

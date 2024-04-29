@@ -21,101 +21,129 @@ const CartPage = () => {
   const [subTotal, setSubTotal] = useState(0)
   const [discountPrice, setDiscountPrice] = useState(0)
   const [products, setProducts] = useState([])
-  const User = window.localStorage.getItem("UserNumber") == null ? window.localStorage.getItem("UserMail") : window.localStorage.getItem("UserNumber")
-  const matches1 = useMediaQuery(theme.breakpoints.down(480));
+  const User = window?.localStorage?.getItem("UserNumber") == null ? window?.localStorage?.getItem("UserMail") : window?.localStorage?.getItem("UserNumber")
+  const matches1 = useMediaQuery(theme?.breakpoints?.down(480));
   const func = async (User) => {
     var formdata = new FormData();
-    formdata.append("mobile", User);
+    formdata?.append("mobile", User);
     var response = await postData("cart/getAllProducts", formdata, true);
     if(response){
-    setCartProducts(response.products)
-    console.log(response)
+    setCartProducts(response?.products)
+    console?.log(response)
     }
 
 }
 
 
-React.useEffect(() => {
+React?.useEffect(() => {
     func(User)
 }, [])
 
 const fetchProductById = async (item) => {
     const formData = new FormData();
-    formData.append("_id", item);
+    formData?.append("_id", item);
     const response = await postData("products/getproductbyid", formData, true);
-    return response.data;
+    return response?.data;
 }
 React.useEffect(() => {
-    if(cartProducts.length>0){
+    if(cartProducts?.length>0){
     const fetchProducts = async () => {
-        const productData = await Promise.all(
-            cartProducts.map((item) => fetchProductById(item.productId))
+        const productData = await Promise?.all(
+            cartProducts?.map((item) => fetchProductById(item?.productId))
         );
         
-        setProducts(productData);
-        console.log(productData)
         var price = 0
         var discount = 0
-        productData.map((item) => {
-            return cartProducts.map((items) => {
-                if (item._id == items.productId) {
-                    var subTotal = item.price * items.count
-                    var discountPrice = (item.price - item.offerprice) * items.count
-                    return discount = discount + discountPrice, price = price + subTotal
+        cartProducts?.forEach(cartItem => {
+            const product = productData?.find(item => item?._id === cartItem?.productId);
+           
+            if (product) {
+                if (product?.customizable) {
+                    if(cartItem?.count > 1 && cartItem?.count < 5)
+                    {
+                        product.offerprice = 499;
+                    }
+                    if(cartItem?.count > 4 && cartItem?.count < 10)
+                    {
+                        product.offerprice = 449
+                    }
+                    if(cartItem?.count > 9)
+                    {
+                        product.offerprice = 333
+                    }
+                    
                 }
-            })
-
-        })
+                const subTotal = product?.price * cartItem?.count;
+                const discountPrice = (product?.price - product?.offerprice) * cartItem?.count;
+                price += subTotal;
+                discount += discountPrice;
+            }
+        });
+        console?.log(productData)
+        setProducts(productData);
         setSubTotal(price)
         setDiscountPrice(discount)
     };
     fetchProducts();}
 }, [cartProducts]);
-
+useEffect(() => {
+    window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'instant',
+    });
+}, [])
   
   const handleDelete = async (id) => {
     const formData = new FormData();
-    formData.append("mobile", User);
-    formData.append("productId", id);
+    formData?.append("mobile", User);
+    formData?.append("productId", id);
     const response = await postData("cart/remove", formData, true);
-    window.location.reload()
+    window?.location?.reload()
 
 }
 
 const handleAdd = async (item) => {
     var count
-    cartProducts.map((items) => {
-        if (item._id == items.productId) {
-            count = items.count + 1
+    cartProducts?.map((items) => {
+        if (item?._id == items?.productId) {
+            count = items?.count + 1
         }
 
     })
     const formData = new FormData();
-    formData.append("mobile", User);
-    formData.append("productId", item._id);
-    formData.append("count", count);
+    formData?.append("mobile", User);
+    formData?.append("productId", item?._id);
+    formData?.append("count", count);
     const response = await postData("cart/update-count", formData, true);
-    window.location.reload()
+    window?.location?.reload()
 }
 const handleRemove = async (item) => {
   var count
-  cartProducts.map((items) => {
-      if (item._id == items.productId) {
-          count = items.count - 1
+  cartProducts?.map((items) => {
+      if (item?._id == items?.productId) {
+         
+        count = items?.count - 1
       }
 
   })
-  const formData = new FormData();
-  formData.append("mobile", User);
-  formData.append("productId", item._id);
-  formData.append("count", count);
+  
+  if(count >= 1)
+  {  const formData = new FormData();
+  formData?.append("mobile", User);
+  formData?.append("productId", item?._id);
+  formData?.append("count", count);
   const response = await postData("cart/update-count", formData, true);
-  window.location.reload()
+  window?.location?.reload()
+}else{
+    handleDelete(item?._id)
+  }
+ 
 }
 
   const handleProduct = (item) => {
 
-    return products.map((item) => {
+    return products?.map((item) => {
 
 
         return (
@@ -140,7 +168,7 @@ const handleRemove = async (item) => {
                         }}
                     >
                         <img
-                            src={`${serverURL}/images/${item.images[0]}`}
+                            src={`${serverURL}/images/${item?.images[0]}`}
                             style={{
                                 width: matches1 ? "40%" : "25%",
                             }}
@@ -156,9 +184,9 @@ const handleRemove = async (item) => {
                                         textAlign: "left",
                                     }}
                                 >
-                                    {item.productName}{" "}
+                                    {item?.productName}{" "}
                                 </Typography>
-                                <DeleteOutlineIcon id="icon" onClick={() => { handleDelete(item._id) }} variant={"filled"} sx={{ fontSize: matches1?20:30, marginLeft: matches1 ? "0px" : 20,position:"absolute",right:0,cursor:"pointer" }} />
+                                <DeleteOutlineIcon id="icon" onClick={() => { handleDelete(item?._id) }} variant={"filled"} sx={{ fontSize: matches1?20:30, marginLeft: matches1 ? "0px" : 20,position:"absolute",right:0,cursor:"pointer" }} />
                             </Grid>
                             <Box
                                 style={{
@@ -176,7 +204,7 @@ const handleRemove = async (item) => {
                                         marginBottom:matches1?2:0
                                     }}
                                 >
-                                    ₹&nbsp;{item.offerprice}{" "}
+                                    ₹&nbsp;{item?.offerprice}{" "}
                                 </Typography>
                                 <Typography
                                     style={{
@@ -188,7 +216,7 @@ const handleRemove = async (item) => {
                                         textAlign: "left",
                                     }}
                                 >
-                                    <s>₹&nbsp;{item.price}</s>
+                                    <s>₹&nbsp;{item?.price}</s>
                                 </Typography>
                             </Box>
                             <Box
@@ -218,9 +246,9 @@ const handleRemove = async (item) => {
                                             color: "#000000",
                                         }}
                                     >
-                                        {cartProducts.map((items) => {
-                                            if (item._id == items.productId) {
-                                                return items.count
+                                        {cartProducts?.map((items) => {
+                                            if (item?._id == items?.productId) {
+                                                return items?.count
                                             }
                                         })}
                                     </Typography>

@@ -54,7 +54,7 @@ const [getCategoryData, setCategoryData] = useState([]);
   const [getDescription3, setDescrition3] = useState("");
   const [getDescription4, setDescrition4] = useState("");
   const [productId,setProductId]=useState('')
-  
+  const [customizable, setCustomizable] = useState(false);
   const [uploadName, setUploadName] = useState(false);
   const [uploadLogo, setUploadLogo] = useState(false);
   const [uploadDescription, setUploadDescription] = useState(false);
@@ -127,6 +127,7 @@ const handleEdit=(data)=>{
   setHotSelling(data.hotSelling)
   setUploadName(data.uploadName)
   setUploadLogo(data.uploadLogo)
+  setCustomizable(data.customizable)
   setUploadDescription(data.uploadDescription)
   setUploadLink(data.uploadLink)
   setProductId(data._id)
@@ -246,6 +247,7 @@ const handleSubmit = async () => {
     formdata.append("uploadDescription", uploadDescription);
     formdata.append("uploadLogo", uploadLogo);
     formdata.append("uploadLink", uploadLink);
+    formdata.append("customizable",customizable)
    
   formdata.append("hotSelling", hotSelling);
   formdata.append("newArrival", newArrival);
@@ -508,17 +510,20 @@ function EditDailog(){
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={2} >
+          <Grid item xs={1.5} >
           <FormControlLabel sx={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}} control={<Checkbox checked={uploadName==true?true:false} onChange={()=>setUploadName(!uploadName)} />} label="Upload Name" />
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={1.5}>
           <FormControlLabel sx={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}} control={<Checkbox checked={uploadLogo==true?true:false} onChange={()=>setUploadLogo(!uploadLogo)} />} label="Upload Logo" />
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={1.5}>
           <FormControlLabel sx={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}} control={<Checkbox checked={uploadDescription==true?true:false} onChange={()=>setUploadDescription(!uploadDescription)} />} label="Upload Description" />
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={1.5}>
           <FormControlLabel sx={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}} control={<Checkbox checked={uploadLink==true?true:false} onChange={()=>setUploadLink(!uploadLink)} />} label="Upload Link" />
+          </Grid>
+          <Grid item xs={2}>
+          <FormControlLabel sx={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}} control={<Checkbox checked={customizable==true?true:false} onChange={()=>setCustomizable(!customizable)} />} label="Customizable" />
           </Grid>
          
          

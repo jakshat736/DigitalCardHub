@@ -15,6 +15,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import InviteEdgeDrawer from './LoginDrawer';
 const InviteActivationPage = () => {
 
   const {inviteId}=useParams();
@@ -30,8 +31,9 @@ const InviteActivationPage = () => {
     
     const formData=new FormData;
     formData.append("inviteId",inviteId)
-    const response=await postData('/invite/chkInviteId',formData,true)
+    const response=await postData('invite/chkInviteId',formData,true)
     setResult(response.status)
+    console.log(response.status)
     if(response.status=='false'){
       setDisplay('block')
     }
@@ -68,15 +70,8 @@ const InviteActivationPage = () => {
                 Activate your Invitation Card here !
             </Grid>
         <Grid item xs={12} sx={{display:"flex",justifyContent:'center'}} >
-               <Button variant='contained'   onClick={()=>navigate('/invitelogin',{state:{inviteId:inviteId}})} sx={{fontSize:25 , backgroundColor:'#F3B419',marginTop:3,color:"black", "&:hover":{backgroundColor:'#F3B419'}}}><Typography class='font'>Log In</Typography></Button> 
+          <InviteEdgeDrawer tagId={inviteId}/>
             </Grid>
-        <Grid item xs={12} class='font1' sx={{display:"flex",justifyContent:'center',fontSize:32,marginBottom:2,marginTop:2,color:'#000'}}>
-                Don't have an account ?
-            </Grid>
-        <Grid item xs={12} sx={{display:"flex",justifyContent:'center'}}>
-               <Button variant='contained' onClick={()=>navigate('/invitesignup',{state:{inviteId:inviteId}})} sx={{fontSize:20 , backgroundColor:'#F3B419',color:"black", "&:hover":{backgroundColor:'#F3B419'}}}><Typography class='font'>Create Now</Typography></Button> 
-            </Grid>
-
     </Grid>
     </Grid>
   )

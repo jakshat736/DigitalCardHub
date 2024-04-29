@@ -48,6 +48,7 @@ const AddProduct = () => {
   const [uploadLogo, setUploadLogo] = useState(false);
   const [uploadDescription, setUploadDescription] = useState(false);
   const [uploadLink, setUploadLink] = useState(false);
+  const [customizable, setCustomizable] = useState(false);
   const[products,setProducts]=useState([])
 
   const [productData, setProductData] = useState(Array(4).fill(null));
@@ -119,6 +120,7 @@ const AddProduct = () => {
     formdata.append("uploadDescription", uploadDescription);
     formdata.append("uploadLogo", uploadLogo);
     formdata.append("uploadLink", uploadLink);
+    formdata.append("customizable", customizable);
     formdata.append("newArrival", newArrival);
     selectedImages.forEach((image, index) => {
         if (image) {
@@ -169,6 +171,7 @@ const AddProduct = () => {
     setUploadDescription(false);
     setUploadLogo(false);
     setUploadLink(false)
+    setCustomizable(false)
     setSelectedImages(Array(4).fill(null))
     setProductData(Array(4).fill(null))
     
@@ -378,17 +381,20 @@ const AddProduct = () => {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={1.5}>
           <FormControlLabel control={<Checkbox checked={uploadName==true?true:false} onChange={()=>setUploadName(!uploadName)} />} label="Upload Name" />
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={1.5}>
           <FormControlLabel control={<Checkbox checked={uploadLogo==true?true:false} onChange={()=>setUploadLogo(!uploadLogo)} />} label="Upload Logo" />
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={1.5}>
           <FormControlLabel control={<Checkbox checked={uploadDescription==true?true:false} onChange={()=>setUploadDescription(!uploadDescription)} />} label="Upload Description" />
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={1.5}>
           <FormControlLabel control={<Checkbox checked={uploadLink==true?true:false} onChange={()=>setUploadLink(!uploadLink)} />} label="Upload Link" />
+          </Grid>
+          <Grid item xs={2}>
+          <FormControlLabel control={<Checkbox checked={customizable==true?true:false} onChange={()=>setCustomizable(!customizable)} />} label="Customizable" />
           </Grid>
          
           

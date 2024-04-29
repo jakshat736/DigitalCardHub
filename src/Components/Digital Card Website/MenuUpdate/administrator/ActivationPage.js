@@ -15,6 +15,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import MenuEdgeDrawer from './LoginDrawer';
 const ActivationPage = () => {
 
   const {menuId}=useParams();
@@ -30,7 +31,7 @@ const ActivationPage = () => {
    
     const formData=new FormData;
     formData.append("menuId",menuId)
-    const response=await postData('/index/chkTagId',formData,true)
+    const response=await postData('index/chkTagId',formData,true)
     setResult(response.status)
     if(response.status=='false'){
       setDisplay('block')
@@ -68,13 +69,7 @@ const ActivationPage = () => {
                 Activate your Menu here !
             </Grid>
         <Grid item xs={12} sx={{display:"flex",justifyContent:'center'}} >
-               <Button variant='contained'   onClick={()=>navigate('/menulogin',{state:{id:menuId}})} sx={{fontSize:25 , backgroundColor:'#F3B419',marginTop:3,color:"black", "&:hover":{backgroundColor:'#F3B419'}}}><Typography class='font'>Log In</Typography></Button> 
-            </Grid>
-        <Grid item xs={12} class='font1' sx={{display:"flex",justifyContent:'center',fontSize:32,marginBottom:2,marginTop:2,color:'#000'}}>
-                Don't have an account ?
-            </Grid>
-        <Grid item xs={12} sx={{display:"flex",justifyContent:'center'}}>
-               <Button variant='contained' onClick={()=>navigate('/menusignup',{state:{tagId:menuId}})} sx={{fontSize:20 , backgroundColor:'#F3B419',color:"black", "&:hover":{backgroundColor:'#F3B419'}}}><Typography class='font'>Create Now</Typography></Button> 
+            <MenuEdgeDrawer tagId={menuId}/>
             </Grid>
 
     </Grid>

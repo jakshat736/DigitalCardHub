@@ -39,6 +39,7 @@
     "react-parallax-tilt": "^1.7.169",
     "react-player": "^2.12.0",
     "react-pricing": "^0.1.5",
+    "react-resizable": "^3.0.5",
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
     "react-scroll-parallax": "^3.4.2",

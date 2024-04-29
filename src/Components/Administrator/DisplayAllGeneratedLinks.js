@@ -40,6 +40,10 @@ const columns = [
     header: 'Client Name',
     size: 120,
   }),
+  columnHelper.accessor('masterId', {
+    header: 'Master Id',
+    size: 120,
+  }),
 ];
 
 const csvConfig = mkConfig({

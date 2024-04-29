@@ -55,7 +55,22 @@ return(
           <ListItemText>Generated Links</ListItemText>  
         </MenuItem>
         </Link>
-
+        <Link to="/dashboard/displayallvehiclelinks" className={classes.link}>
+        <MenuItem>
+          <ListItemIcon>
+            <RemoveRedEyeIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Display All Vehicle Links</ListItemText>  
+        </MenuItem>
+        </Link>
+        <Link to="/dashboard/displayalldoorlinks" className={classes.link}>
+        <MenuItem>
+          <ListItemIcon>
+            <RemoveRedEyeIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Display All Door Links</ListItemText>  
+        </MenuItem>
+        </Link>
         <Link to="/dashboard/displayallcompanylinks" className={classes.link}>
         <MenuItem>
           <ListItemIcon>
@@ -80,12 +95,28 @@ return(
           <ListItemText>Generated Menu Links</ListItemText>  
         </MenuItem>
         </Link>
-        <Link to="https://digitalcardhub.in/#/linkgenerator" className={classes.link}>
+        <Link to="/dashboard/payment" className={classes.link}>
+        <MenuItem>
+          <ListItemIcon>
+            <RemoveRedEyeIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Payment Link Generator</ListItemText>  
+        </MenuItem>
+        </Link>
+        <Link to="/linkgenerator" className={classes.link}>
         <MenuItem>
           <ListItemIcon>
             <RemoveRedEyeIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText>Link Generator</ListItemText>  
+        </MenuItem>
+        </Link>
+        <Link to="/dashboard/masterid" className={classes.link}>
+        <MenuItem>
+          <ListItemIcon>
+            <RemoveRedEyeIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Create Master Id</ListItemText>  
         </MenuItem>
         </Link>
 
@@ -206,6 +237,24 @@ return(
             <RemoveRedEyeIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText>Standee Tags</ListItemText>
+          
+        </MenuItem>
+        </Link>
+        <Link to="/dashboard/displayallvehicletags" className={classes.link}>
+        <MenuItem >
+          <ListItemIcon>
+            <RemoveRedEyeIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Vehicle Tags</ListItemText>
+          
+        </MenuItem>
+        </Link>
+        <Link to="/dashboard/displayalldoortags" className={classes.link}>
+        <MenuItem >
+          <ListItemIcon>
+            <RemoveRedEyeIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Door Tags</ListItemText>
           
         </MenuItem>
         </Link>

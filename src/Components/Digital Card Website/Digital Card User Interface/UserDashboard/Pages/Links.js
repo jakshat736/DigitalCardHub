@@ -64,7 +64,7 @@ const Links = () => {
         var formData = new FormData()
         formData.append("customerId", userId)
         var result = await postData('carddetails/getcardDetails', formData, true)
-        console.log(result.data)
+        if(result!=false){
         setFbLink(result.data.fbLink)
         setInstaLink(result.data.igLink)
         setLinkedlnLink(result.data.LinkdnLink)
@@ -123,15 +123,16 @@ const Links = () => {
         setGoogleMapLink(result.data.GoogleMapLink)
         setThemeId(result.data.themeid)
         setOtherLink(result.data.links)
-
-        if(result.data!="undefined"){
+    }else{
+        navigate('/userdashboard')
+    }
+        if(result===false || result?.data!=undefined){
             setLoadingAnimation(false)
-        }
+          }
 
 
     }
     React.useEffect(() => {
-
         fetchCardDetail()
     }, [])
 

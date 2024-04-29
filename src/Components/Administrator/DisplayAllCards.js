@@ -124,6 +124,10 @@ export default function DisplayAllCards(props) {
             field: "customerId",
           },
           {
+            title: "Unique Id",
+            field: "companyId",
+          },
+          {
             title: "Company Name",
             field: "companyname",
           },
@@ -156,7 +160,7 @@ export default function DisplayAllCards(props) {
             ),
           },
         ]}
-        actions={[]}
+       
       />
     );
   }

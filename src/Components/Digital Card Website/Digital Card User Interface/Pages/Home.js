@@ -19,6 +19,7 @@ import Aos from "aos";
 import 'aos/dist/aos.css'
 import Lower from '../Components/Lower';
 import { CompanySlider } from '../Components/CompanySlider';
+import Header from '../../NewUpdate/components/administrator/Header';
 export default function Home() {
     const sectionRef = useRef(null);
 
@@ -47,6 +48,7 @@ export default function Home() {
             <Grid sx={{ position: 'fixed', bottom: 0, zIndex: 2 }}>
                 <Lower callParentFunction={parentFunction}/>
             </Grid>
+           
             <Navbar />
             <Container maxWidth={"xl"}>
                 <div data-aos="fade-down"

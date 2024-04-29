@@ -25,6 +25,12 @@ import SelfOrder from "../SelfOrder";
 import DisplayAllGeneratedCompanyLink from "../DisplayAllGeneratedCompanyLink";
 import DisplayAllMenuLinks from "../DisplayAllMenuLinks";
 import DisplayAllInviteLinks from "../DispalyAllInviteLinks";
+import PaymentLink from "../PaymentLink";
+import MasterId from "../MasterId";
+import DisplayAllVehicleTag from "../DisplayAllVehicleTag";
+import DisplayAllVehicleTagLink from "../DisplayAllVehicleTagLink";
+import DisplayAllDoorTagLink from "../DisplayAllDoorTagLink";
+import DisplayAllDoorTag from "../DisplayAllDoorTag";
 export default function DashBoard(props){
     var navigate=useNavigate();
     let Session=window.localStorage.getItem("Session");
@@ -63,7 +69,13 @@ return(
               <Route element={<DisplayAllGeneratedCompanyLink/>} path="/displayallcompanylinks" /> 
               <Route element={<DisplayAllMenuLinks/>} path="/displayallmenulinks" /> 
               <Route element={<DisplayAllInviteLinks/>} path="/displayallinvitelinks" /> 
-  
+              <Route element={<PaymentLink/>} path="/payment" /> 
+              <Route element={<DisplayAllVehicleTag/>} path="/displayallvehicletags" /> 
+              <Route element={<DisplayAllVehicleTagLink/>} path="/displayallvehiclelinks" /> 
+              <Route element={<DisplayAllDoorTagLink/>} path="/displayalldoorlinks" /> 
+              
+              <Route element={<DisplayAllDoorTag/>} path="/displayalldoortags" /> 
+              <Route element={<MasterId/>} path="/masterid" /> 
               <Route path="/selforder" element={<SelfOrder/>} />
        </Routes>
        </Grid>

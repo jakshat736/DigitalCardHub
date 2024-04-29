@@ -8,7 +8,7 @@ import { WhatsApp } from '@mui/icons-material';
 
 export default function Header() {
   return (
-    <Grid>
+    <Grid sx={{zIndex:2}}>
       <Grid container spacing={2}>
 
         <Grid item xs={12} sx={{ bgcolor: '#ffa502', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 50 }}>

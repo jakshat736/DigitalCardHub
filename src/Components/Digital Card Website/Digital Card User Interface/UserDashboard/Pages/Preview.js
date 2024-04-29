@@ -36,16 +36,16 @@ const Preview = () => {
         var formData = new FormData();
         formData.append("customerId", userId)
         var result = await postData('carddetails/getcardDetails', formData, true)
-        if (result.data != undefined) {
-            console.log(result.data.YoutubeVideoLink2 == "undefined");
-            setData(result.data);
-            setProducts(result.data.products);
-            setEcommerce(result.data.ecommerce);
-            setGallery(result.data.gallery);
+        if (result?.data != undefined) {
+            console.log(result?.data?.YoutubeVideoLink2 == "undefined");
+            setData(result?.data);
+            setProducts(result?.data?.products);
+            setEcommerce(result?.data?.ecommerce);
+            setGallery(result?.data?.gallery);
             
 
             
-            updateViewCount(result.data._id, result.data.cardViewCount)
+            updateViewCount(result?.data?._id, result?.data?.cardViewCount)
             setLoadingAnimation(false)
             setShow(true)
         }
@@ -59,13 +59,12 @@ const Preview = () => {
             formData,
             true
         );
-        if (result.status == undefined) {
-            navigate('/digitalcardlogin')
+        if (result === false) {
+            navigate('/userdashboard')
         }
-        if (result.data != undefined) {
-            console.log(result)
-            console.log(result.data.YoutubeVideoLink2 == "undefined");
-            setData(result.data);
+        if (result?.data != undefined) {
+           
+            setData(result?.data);
             
 
           
@@ -101,8 +100,8 @@ const Preview = () => {
                 mt:1
             }} onClick={() =>navigate('/ecommerce')} variant='contained'><NavigateBeforeIcon />Back</Button></Grid>
             <Grid sx={{mt:7}}>
-                {/* {data.themeid == 1 ? <Theme1 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 2 ? <Theme2 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 3 ? <Theme3 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 4 ? <Theme4 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 6 ? <Theme6 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 5 ? <Theme5 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 7 ? <Theme7 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 8 ? <Theme8 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data.themeid == 9 ? <Theme9 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> :data.themeid == 11 ? <Theme11 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> :data.themeid == 10 ? <Theme10 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : ''} */}
-                {show && (data.menuLink == "" ? <Theme3 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>:<Theme9 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>)}
+                {/* {data?.themeid == 1 ? <Theme1 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 2 ? <Theme2 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 3 ? <Theme3 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 4 ? <Theme4 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 6 ? <Theme6 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 5 ? <Theme5 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 7 ? <Theme7 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 8 ? <Theme8 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 9 ? <Theme9 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> :data?.themeid == 11 ? <Theme11 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> :data?.themeid == 10 ? <Theme10 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : ''} */}
+                {show && (data?.menuLink == "" ? <Theme3 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>:<Theme9 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>)}
             </Grid>
             <Grid sx={{ position: "absolute", right: 10, top: {xs:60,sm:65,md:100} }}><Button sx={{
                 borderRadius: 10,

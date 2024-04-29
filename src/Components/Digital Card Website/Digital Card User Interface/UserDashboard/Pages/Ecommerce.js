@@ -43,7 +43,8 @@ const Ecommerce = () => {
         formData.append("customerId", userId);
         var result = await postData("carddetails/getcardDetails", formData, true);
         // console.log(result.data.products);
-        if (result.data.ecommerce.length == 0) {
+        if(result!=false)    
+        {        if (result.data.ecommerce.length == 0) {
             setProductData(Array(4).fill(null));
         } else {
             setData(true);
@@ -76,9 +77,12 @@ const Ecommerce = () => {
 
                 setProductData(newData);
             }
-            });
-            setLoadingAnimation(false)
-        }
+            });}}else{
+                navigate('/userdashboard')
+            }
+            if(result===false || result?.data!=undefined){
+                setLoadingAnimation(false)
+              }
         
 
     };
