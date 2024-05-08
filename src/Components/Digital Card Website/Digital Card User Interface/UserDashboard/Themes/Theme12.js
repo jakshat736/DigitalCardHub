@@ -1202,7 +1202,7 @@ const handleCloseSignup = () => {
                       Passionate student and graphic designer with a strong
                       creative flair and a keen eye for detail. Currently
                       pursuing B.Tech(Information Technology) at Govt.
-                      Engineering College, Ajmer [BTU affliated] .  Proficient
+                      Engineering College, Ajmer [BTU affliated] .Proficient
                       in Adobe Creative Suite (Photoshop, Illustrator, xd,after
                       effects) and experienced in creating visually appealing
                       designs across various
@@ -1210,28 +1210,28 @@ const handleCloseSignup = () => {
                     <br></br>
                     <div>
                       {" "}
-                      platforms.  As a designer, I strive to bring ideas to life
+                      platforms.As a designer, I strive to bring ideas to life
                       through innovative and captivating visuals. I am skilled
                       in creating stunning logo , brochures, social media
                       graphics, and other marketing materials. With a focus on
                       user-centered design, I aim to deliver impactful
-                      experiences that engage and inspire.  Simultaneously, I am
+                      experiences that engage and inspire.Simultaneously, I am
                       a skilled coder, proficient in C,C++,Java and algo. I
                       enjoy building intuitive and functional
                       projects/applications that combine aesthetics with
-                      seamless user experiences.  If you are looking for a
+                      seamless user experiences.If you are looking for a
                       dedicated graphic designer who combines creativity with a
                       strong work ethic, let's connect and explore how we can
                       bring you0r design projects to life!. C,C++,Java and algo.
                       I enjoy building intuitive and functional
                       projects/applications that combine aesthetics with
-                      seamless user experiences.  If you are looking for a
+                      seamless user experiences.If you are looking for a
                       dedicated graphic designer who combines creativity with a
                       strong work ethic, let's connect and explore how we can
                       bring you0r design projects to life!. C,C++,Java and algo.
                       I enjoy building intuitive and functional
                       projects/applications that combine aesthetics with
-                      seamless user experiences.  If you are looking for a
+                      seamless user experiences.If you are looking for a
                       dedicated graphic designer who combines creativity with a
                       strong work ethic, let's connect and explore how we can
                       bring you0r design projects to life!.
