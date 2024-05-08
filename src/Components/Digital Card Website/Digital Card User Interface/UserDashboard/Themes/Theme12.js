@@ -504,6 +504,7 @@ const handleCloseSignup = () => {
                 sx={{
                   border: "1px solid #d2dae2",
                   width: 100,
+                  height:30,
                   backgroundColor: "#4b4b4b",
                   marginLeft: "auto",
                   borderRadius: 20,
