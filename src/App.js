@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-
+import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from './Components/Digital Card Website/Digital Card User Interface/Pages/Home';
 import DCLogin from './Components/Digital Card Website/Digital Card User Interface/Pages/DCLogin';
@@ -18,6 +18,7 @@ import Ecommerce from './Components/Digital Card Website/Digital Card User Inter
 import Gallery from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/Gallery';
 import Theme1 from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/Theme1';
 import Card from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/Card';
+
 import LoadingScreen from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/LoadingScreen';
 import NFCCard from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/NFCCard';
 import { HashRouter } from "react-router-dom";
@@ -120,6 +121,9 @@ import MultiSignUp from './Components/Digital Card Website/Digital Card User Int
 import MultiLogIn from './Components/Digital Card Website/Digital Card User Interface/MultiLink.js/LogIn';
 import MultiHome from './Components/Digital Card Website/Digital Card User Interface/MultiLink.js/MultiHome';
 import Instaredirect from './Components/DemoPage/Instaredirect';
+import Theme12 from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/Theme12';
+import Theme13 from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/Theme13';
+import ThemeLogin from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/ThemeLogin';
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -134,6 +138,9 @@ function App() {
 						<HashRouter>
 							<Routes>
 								{/* DIGITAL CARD WEBSITE ROUTER START */}
+								<Route element={<Theme12/>} path="/theme12" />
+								<Route element={<Theme13/>} path="/theme13" />
+								<Route element={<ThemeLogin/>} path="/loginpage" />
 								<Route element={<HomePage />} path="/home" />
 								<Route element={<Instaredirect />} path="/aradhyarana" />
 								<Route element={<Home />} path="/home1" />
