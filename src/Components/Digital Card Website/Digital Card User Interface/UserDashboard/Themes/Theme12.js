@@ -1,5 +1,4 @@
-
-import HelpIcon from '@mui/icons-material/Help';
+import HelpIcon from "@mui/icons-material/Help";
 import {
   Box,
   Button,
@@ -8,9 +7,9 @@ import {
   Grid,
   IconButton,
   Stack,
-  TextField
+  TextField,
 } from "@mui/material";
-import InputBase from '@mui/material/InputBase';
+import InputBase from "@mui/material/InputBase";
 import * as React from "react";
 import { IoIosCreate } from "react-icons/io";
 import { MdFeedback } from "react-icons/md";
@@ -23,8 +22,7 @@ import eye from "../Themes/ThemeAssets/eye.png";
 import key from "../Themes/ThemeAssets/key.png";
 import menubar from "../Themes/ThemeAssets/menu bar.png";
 
-
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
 import ShareIcon from "@mui/icons-material/Share";
 import SpeedDial from "@mui/material/SpeedDial";
@@ -48,7 +46,8 @@ import link from "../Themes/ThemeAssets/link.png";
 import gmail from "../Themes/ThemeAssets/mail.png";
 import whatapp from "../Themes/ThemeAssets/whatapp.png";
 
-import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContentText from "@mui/material/DialogContentText";
@@ -62,7 +61,6 @@ import "slick-carousel/slick/slick.css";
 import { postData, serverURL } from "../../../../Services/NodeServices";
 import bannerone from "../Themes/ThemeAssets/banner1.png";
 import banner2 from "../Themes/ThemeAssets/banner2.png";
-
 
 const actions = [
   { icon: <FileCopyIcon />, name: "Copy" },
@@ -95,13 +93,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const matches = useMediaQuery("(max-width:600px)");
   // const [homePage, setHomePage] = useState(true)
   const [about, setAbout] = useState(false);
-  const [href, setHref] = useState('');
-  const [smsHref, setSmsHref] = useState('');
-  const [name, setName] = React.useState('');
-  const [phoneNo, setPhoneNo] = React.useState('');
-  const [query, setQuery] = React.useState('');
+  const [href, setHref] = useState("");
+  const [smsHref, setSmsHref] = useState("");
+  const [name, setName] = React.useState("");
+  const [phoneNo, setPhoneNo] = React.useState("");
+  const [query, setQuery] = React.useState("");
 
-  console.log(data)
+  console.log(data);
 
   const handleAbout = () => {
     setAbout(!about);
@@ -109,7 +107,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     if (about === false) {
       var section = document.getElementById("work");
       if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
+        section.scrollIntoView({ behavior: "smooth" });
       }
     }
   };
@@ -243,8 +241,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       await navigator.share({
         title,
         url,
-        text: 'Check out this link!',
-
+        text: "Check out this link!",
       });
     } catch (error) {
       console.error("Error sharing:", error);
@@ -290,7 +287,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     handleContactUpdate();
   };
 
-
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -309,26 +305,25 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     );
     setSmsHref(
       `sms:+91${e.target.value}?body=https://digitalcardhub.in/%23/${data?.companyId}`
-    )
+    );
   };
 
   const handleSubmit = async (customerId) => {
-    let formData = new FormData
-    formData.append('cardId', customerId)
-    formData.append('name', name)
-    formData.append('number', phoneNo)
-    formData.append('query', query)
+    let formData = new FormData();
+    formData.append("cardId", customerId);
+    formData.append("name", name);
+    formData.append("number", phoneNo);
+    formData.append("query", query);
 
     let response = await postData("enquiry/addcardenquiry", formData, true);
 
     if (response?.status) {
-      setName('')
-      setPhoneNo('')
-      setQuery('')
-      enqueueSnackbar('Enquiry Send Successfully')
-      setOpenContact(false)
-      setOpenLogin(false)
-
+      setName("");
+      setPhoneNo("");
+      setQuery("");
+      enqueueSnackbar("Enquiry Send Successfully");
+      setOpenContact(false);
+      setOpenLogin(false);
     }
   };
 
@@ -339,14 +334,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
         open={openB}
         onClose={handleCloseButton}
       >
-        <DialogTitle
-          style={{ background: "#ecf0f1" }}
-        >
-          ENQUIRY NOW
-        </DialogTitle>
-        <DialogContent
-          style={{ background: "#ecf0f1" }}
-        >
+        <DialogTitle style={{ background: "#ecf0f1" }}>ENQUIRY NOW</DialogTitle>
+        <DialogContent style={{ background: "#ecf0f1" }}>
           <Stack>
             <TextField
               required
@@ -356,19 +345,19 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               variant="standard"
               onChange={(e) => handleMessage(e)}
             />
-            <Stack direction='row' spacing={2}>
-              <Button sx={{ color: 'green' }} href={href}>
+            <Stack direction="row" spacing={2}>
+              <Button sx={{ color: "green" }} href={href}>
                 Send on WhatsApp
               </Button>
-              <Button sx={{ color: 'blue' }} href={smsHref}>
+              <Button sx={{ color: "blue" }} href={smsHref}>
                 Send on Sms
               </Button>
             </Stack>
           </Stack>
         </DialogContent>
       </Dialog>
-    )
-  }
+    );
+  };
 
   const EnquiryFormDialog = () => {
     return (
@@ -377,14 +366,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
         open={openContact}
         onClose={handleCloseContact}
       >
-        <DialogTitle
-          style={{ background: "#ecf0f1" }}
-        >
-          Connect
-        </DialogTitle>
-        <DialogContent
-          style={{ background: "#ecf0f1" }}
-        >
+        <DialogTitle style={{ background: "#ecf0f1" }}>Connect</DialogTitle>
+        <DialogContent style={{ background: "#ecf0f1" }}>
           <DialogContentText>
             Share Your Query With {data?.fullname}
           </DialogContentText>
@@ -444,22 +427,23 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               }}
               variant="outlined"
             >
-              <Grid style={{ marginLeft: "4%" }} onClick={() => handleSubmit(data?.customerId)}>Submit</Grid>
+              <Grid
+                style={{ marginLeft: "4%" }}
+                onClick={() => handleSubmit(data?.customerId)}
+              >
+                Submit
+              </Grid>
             </Button>
           </DialogContentText>
         </DialogContent>
-        <DialogActions
-          style={{ background: "#ecf0f1" }}
-        >
+        <DialogActions style={{ background: "#ecf0f1" }}>
           <Button onClick={handleCloseContact}>
-            <RxCrossCircled
-              style={{ fontSize: "24px", color: "#000" }}
-            />
+            <RxCrossCircled style={{ fontSize: "24px", color: "#000" }} />
           </Button>
         </DialogActions>
       </Dialog>
-    )
-  }
+    );
+  };
 
   const list = (anchor) => (
     <Box
@@ -611,14 +595,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     } else if (name == "Print") {
       handleClickOpenContact();
     } else if (name == "Copy") {
-      handleSave()
+      handleSave();
     } else {
       handleClickOpenButton();
     }
   };
-
-
-
 
   const [openLogin, setOpenLogin] = useState(false);
 
@@ -627,12 +608,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   };
 
   React.useEffect(() => {
-    handleClickOpenLogin()
-  }, [])
+    handleClickOpenLogin();
+  }, []);
   const handleCloseLogin = () => {
     setOpenLogin(false);
   };
-
 
   const [openSignup, setOpenSignup] = useState(false);
 
@@ -644,12 +624,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   };
 
   const arrayBufferToBase64 = (buffer) => {
-    var binary = '';
+    var binary = "";
     var bytes = [].slice.call(new Uint8Array(buffer));
     bytes.forEach((b) => (binary += String.fromCharCode(b)));
     return window.btoa(binary);
   };
-
 
   const handleWhatsappUpdate = async () => {
     var formData = new FormData();
@@ -660,9 +639,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       formData,
       true
     );
-    window.open(`https://wa.me/+91${data?.phoneNumber}?text=`)
+    window.open(`https://wa.me/+91${data?.phoneNumber}?text=`);
   };
-
 
   const handleFbUpdate = async () => {
     var formData = new FormData();
@@ -673,7 +651,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       formData,
       true
     );
-    window.open(`https://www.facebook.com/${data?.fbLink}`)
+    window.open(`https://www.facebook.com/${data?.fbLink}`);
   };
 
   const handleInstaUpdate = async () => {
@@ -685,7 +663,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       formData,
       true
     );
-    window.open(`https://www.instagram.com/${data?.igLink}`)
+    window.open(`https://www.instagram.com/${data?.igLink}`);
   };
 
   return (
@@ -696,7 +674,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
         width: "100%",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
       }}
     >
       <Grid
@@ -706,43 +684,42 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           height: "100%",
           marginTop: 0,
           marginLeft: 0.3,
-          position: 'relative'
+          position: "relative",
         }}
       >
-
-        {data?.coverVideo != '' ? <Grid
-          id="hero"
-          xs={12}
-
-          sx={{
-            display: "flex",
-            color: "#fff",
-            width: { xs: "100vw", sm: "70%", md: "40%" },
-            minHeight: { xs: 200 },
-            paddingLeft: -5,
-            overflow: "hidden", // Ensures the video doesn't overflow the Grid
-
-          }}
-        >
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            style={{
-              objectFit: 'cover',
-              width: "100%",
-              height: 250,
-              borderTopRightRadius: 5,
-              borderTopLeftRadius: 5,
-
-
-
+        {data?.coverVideo != "" ? (
+          <Grid
+            id="hero"
+            xs={12}
+            sx={{
+              display: "flex",
+              color: "#fff",
+              width: { xs: "100vw", sm: "70%", md: "40%" },
+              minHeight: { xs: 200 },
+              paddingLeft: -5,
+              overflow: "hidden", // Ensures the video doesn't overflow the Grid
             }}
           >
-            <source src={`${serverURL}/images/${data?.coverVideo}`} type="video/mp4" />
-          </video>
-        </Grid> :
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{
+                objectFit: "cover",
+                width: "100%",
+                height: 250,
+                borderTopRightRadius: 5,
+                borderTopLeftRadius: 5,
+              }}
+            >
+              <source
+                src={`${serverURL}/images/${data?.coverVideo}`}
+                type="video/mp4"
+              />
+            </video>
+          </Grid>
+        ) : (
           <Grid
             id="hero"
             item
@@ -750,24 +727,35 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             md={12}
             sx={{
               color: "#fff",
-              backgroundImage: data?.companyCoverImage ? `url('data:image/png;base64,${arrayBufferToBase64(data?.companyCoverImage.data?.data)}')` : 'radial-gradient(#353b48, #000) ',
+              backgroundImage: data?.companyCoverImage
+                ? `url('data:image/png;base64,${arrayBufferToBase64(
+                    data?.companyCoverImage.data?.data
+                  )}')`
+                : "radial-gradient(#353b48, #000) ",
               backgroundSize: "cover",
               width: "100%",
               minHeight: { xs: 260 },
               borderTopRightRadius: 5,
               borderTopLeftRadius: 5,
-
             }}
           >
             {" "}
-          </Grid>}
-        <Grid sx={{ width: '100%', height: matches ? 250 : 270, position: 'absolute', zIndex: 1 }}>
+          </Grid>
+        )}
+        <Grid
+          sx={{
+            width: "100%",
+            height: matches ? 250 : 270,
+            position: "absolute",
+            zIndex: 1,
+          }}
+        >
           {/*for cover photo */}
           <Grid
             sx={{
               display: "flex",
               alignItems: "center",
-              justifyContent: 'space-between',
+              justifyContent: "space-between",
               padding: 2,
             }}
           >
@@ -852,7 +840,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   marginLeft: "auto",
                 }}
               >
-                <Grid sx={{ fontsize: "10px", fontWeight: 600, marginLeft: '4%' }}>Work</Grid>
+                <Grid
+                  sx={{ fontsize: "10px", fontWeight: 600, marginLeft: "4%" }}
+                >
+                  Work
+                </Grid>
                 {openDrawer ? (
                   <ExpandLess fontSize="medium" />
                 ) : (
@@ -863,7 +855,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
 
             <Grid
               style={{
-                backgroundImage: data?.companylogo ? `url('data:image/jpeg;base64,${arrayBufferToBase64(data?.companylogo.data?.data)}')` : "radial-gradient(#dcdde1,#95a5a6)",
+                backgroundImage: data?.companylogo
+                  ? `url('data:image/jpeg;base64,${arrayBufferToBase64(
+                      data?.companylogo.data?.data
+                    )}')`
+                  : "radial-gradient(#dcdde1,#95a5a6)",
                 marginLeft: "5%",
                 position: "absolute",
                 top: matches ? -93 : -100,
@@ -873,7 +869,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: "95px",
-                backgroundSize: 'cover',
+                backgroundSize: "cover",
               }}
             ></Grid>
           </Grid>
@@ -952,13 +948,12 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           </Grid>
         </Grid>
 
-
         <Dialog
           PaperProps={{
             style: {
-              position: 'fixed',
+              position: "fixed",
               bottom: -38,
-              width: '100%',
+              width: "100%",
               // Dialog ko page ke bottom me set karein
             },
           }}
@@ -967,16 +962,19 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle style={{ fontSize: 16, background: "#ecf0f1" }} id="alert-dialog-title">
+          <DialogTitle
+            style={{ fontSize: 16, background: "#ecf0f1" }}
+            id="alert-dialog-title"
+          >
             {"Login to Find the Bussiness Profile"}
             <IconButton
               onClick={handleCloseLogin}
               aria-label="close"
               sx={{
-                position: 'absolute',
+                position: "absolute",
                 right: 8,
                 top: 8,
-                color: 'inherit',
+                color: "inherit",
               }}
             >
               <CloseIcon />
@@ -1034,18 +1032,14 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               </Button>
             </DialogContentText>
           </DialogContent>
-
         </Dialog>
-
-
-
 
         <Dialog
           PaperProps={{
             style: {
-              position: 'fixed',
+              position: "fixed",
               bottom: -38,
-              width: '100%',
+              width: "100%",
               // Dialog ko page ke bottom me set karein
             },
           }}
@@ -1059,48 +1053,88 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               onClick={handleCloseSignup}
               aria-label="close"
               sx={{
-                position: 'absolute',
+                position: "absolute",
                 right: 8,
                 top: 8,
-                color: 'inherit',
+                color: "inherit",
               }}
             >
               <CloseIcon />
             </IconButton>
           </DialogTitle>
-          <DialogContent sx={{ background: '#ecf0f1' }}>
-
-
-            <Grid style={{ display: 'flex', justifyContent: 'center', flexDirection: "column", alignItems: 'center' }}>
-              <Grid sx={{ fontSize: '28px', fontWeight: 700, color: '#000', marginTop: '5%' }}>
+          <DialogContent sx={{ background: "#ecf0f1" }}>
+            <Grid
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Grid
+                sx={{
+                  fontSize: "28px",
+                  fontWeight: 700,
+                  color: "#000",
+                  marginTop: "5%",
+                }}
+              >
                 Login/SignUp
               </Grid>
-              <Grid sx={{ fontSize: 16, color: '#636e72', marginTop: '2%' }}>
+              <Grid sx={{ fontSize: 16, color: "#636e72", marginTop: "2%" }}>
                 Activate your Profile here !
               </Grid>
             </Grid>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '6%' }}>
-              <div style={{ border: '1px solid #b2bec3', background: '#dfe6e9', borderRadius: 6, width: '90%' }}>
-                <IconButton sx={{ p: '10px' }} aria-label="menu">
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: "6%",
+              }}
+            >
+              <div
+                style={{
+                  border: "1px solid #b2bec3",
+                  background: "#dfe6e9",
+                  borderRadius: 6,
+                  width: "90%",
+                }}
+              >
+                <IconButton sx={{ p: "10px" }} aria-label="menu">
                   <img src={Emaillogo} width={20}></img>
                 </IconButton>
                 <InputBase
                   sx={{ ml: 1, flex: 1 }}
                   placeholder="Email Address or number"
-                  inputProps={{ 'aria-label': 'search google maps' }}
+                  inputProps={{ "aria-label": "search google maps" }}
                 />
               </div>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '6%' }}>
-              <div style={{ border: '1px solid #b2bec3', background: '#dfe6e9', borderRadius: 6, width: '90%' }}>
-                <IconButton sx={{ p: '10px' }} aria-label="menu">
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: "6%",
+              }}
+            >
+              <div
+                style={{
+                  border: "1px solid #b2bec3",
+                  background: "#dfe6e9",
+                  borderRadius: 6,
+                  width: "90%",
+                }}
+              >
+                <IconButton sx={{ p: "10px" }} aria-label="menu">
                   <img src={key} width={20}></img>
                 </IconButton>
                 <InputBase
-                  sx={{ width: '52%' }}
+                  sx={{ width: "52%" }}
                   placeholder="Enter OTP"
-                  inputProps={{ 'aria-label': 'search google maps' }}
+                  inputProps={{ "aria-label": "search google maps" }}
                 />
                 <IconButton type="button" aria-label="search">
                   <div
@@ -1116,7 +1150,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                       color: "#fff",
                       fontSize: 10,
                       borderRadius: 8,
-
                     }}
                   >
                     Get OTP
@@ -1124,11 +1157,18 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 </IconButton>
               </div>
             </div>
-            <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "7%", }}>
+            <Grid
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: "7%",
+              }}
+            >
               <Grid
                 sx={{
                   border: "1px solid #000",
-                  width: '90%',
+                  width: "90%",
                   backgroundColor: "#000",
                   borderRadius: 2,
                   display: "flex",
@@ -1136,19 +1176,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   alignItems: "center",
                   padding: 1.3,
                   color: "#fff",
-
-
                 }}
               >
                 <Grid sx={{ fontsize: "10px", fontWeight: 700 }}>LOGIN</Grid>
               </Grid>
             </Grid>
-
-
           </DialogContent>
-
         </Dialog>
-
 
         {about ? (
           <>
@@ -1196,9 +1230,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                       padding: 8,
                     }}
                   >
-                    {
-                      data?.AboutUs
-                    }
+                    {data?.AboutUs}
                   </Grid>
                 </Grid>
 
@@ -1249,9 +1281,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 marginTop: "3%",
                 justifyContent: "center",
                 padding: 0.2,
-                cursor: 'pointer'
+                cursor: "pointer",
               }}
-              onClick={() => { window.open(`tel:${data?.phoneNumber}`) }}
+              onClick={() => {
+                window.open(`tel:${data?.phoneNumber}`);
+              }}
             >
               <Grid sx={{ marginTop: "2%" }}>
                 <img src={call} />
@@ -1279,7 +1313,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 justifyContent: "center",
                 marginTop: "3%",
                 padding: 0.2,
-                cursor: 'pointer'
+                cursor: "pointer",
               }}
               onClick={() => handleWhatsappUpdate()}
             >
@@ -1321,12 +1355,16 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 padding: 0.3,
                 marginTop: "3%",
                 justifyContent: "center",
-                cursor: 'pointer'
+                cursor: "pointer",
               }}
-              onClick={() => { window.open(`mailto:${data?.Email}?body=Query%20About%20Business`) }}
+              onClick={() => {
+                window.open(
+                  `mailto:${data?.Email}?body=Query%20About%20Business`
+                );
+              }}
             >
               <Grid sx={{ marginTop: "2%" }}>
-                <img src={gmail} ></img>
+                <img src={gmail}></img>
               </Grid>
               <Grid
                 sx={{
@@ -1351,9 +1389,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
 
                 marginTop: "3%",
                 justifyContent: "center",
-                cursor: 'pointer'
+                cursor: "pointer",
               }}
-              onClick={() => { window.open(`https://www.linkedin.com/in/${data?.LinkdnLink}`) }}
+              onClick={() => {
+                window.open(`https://www.linkedin.com/in/${data?.LinkdnLink}`);
+              }}
             >
               <Grid sx={{ marginTop: "2%" }}>
                 <img src={link}></img>
@@ -1391,7 +1431,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 padding: 0.8,
                 marginTop: "3%",
                 justifyContent: "center",
-                cursor: 'pointer'
+                cursor: "pointer",
               }}
               onClick={() => handleFbUpdate()}
             >
@@ -1422,7 +1462,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 alignItems: "center",
                 marginTop: "3%",
                 justifyContent: "center",
-                cursor: 'pointer'
+                cursor: "pointer",
               }}
               onClick={() => handleInstaUpdate()}
             >
@@ -1464,7 +1504,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 padding: 0.8,
                 marginTop: "3%",
                 justifyContent: "center",
-                cursor: 'pointer'
+                cursor: "pointer",
               }}
               onClick={() => handleFbUpdate()}
             >
@@ -1495,7 +1535,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 alignItems: "center",
                 marginTop: "3%",
                 justifyContent: "center",
-                cursor: 'pointer'
+                cursor: "pointer",
               }}
               onClick={() => handleInstaUpdate()}
             >
@@ -1575,7 +1615,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             </Grid>
           </Grid>
 
-          <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Grid
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <Divider
               style={{
                 height: "1px",
@@ -1607,7 +1653,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               flexDirection: "column",
             }}
           >
-
             <Grid style={{ fontSize: "22px", fontWeight: 700 }}>
               Work / Products
             </Grid>
@@ -1634,7 +1679,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             padding: 1,
           }}
         >
-
           <Grid style={{ marginLeft: "7%" }}>
             <Grid style={{ fontSize: "20px", fontWeight: 600 }}>
               LOGO DESIGN WORK
@@ -1645,9 +1689,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             >
               We have different variety of Design in logo of different companies
             </Grid>
-
           </Grid>
-          <div id='work'></div>
+          <div id="work"></div>
           <Grid style={{ display: "flex" }}>
             <Grid
               sx={{
@@ -1664,7 +1707,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 marginLeft: "6%",
               }}
             >
-              <Grid sx={{ fontsize: "10px", fontWeight: 500 }}>Enquiry Now</Grid>
+              <Grid sx={{ fontsize: "10px", fontWeight: 500 }}>
+                Enquiry Now
+              </Grid>
             </Grid>
             <Grid
               style={{
@@ -1681,7 +1726,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               </Grid>
             </Grid>
           </Grid>
-          <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Grid
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <Divider
               style={{
                 height: "1px",
@@ -1734,7 +1785,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               <source src="https://www.youtube.com/live/f12GSyMjesw?si=BXfTXjRkrAa9Fv23" />
             </video>
           </Grid>
-          <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Grid
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <Divider
               style={{
                 height: "1px",
@@ -1776,14 +1833,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   textTransform: "none",
                   padding: 5,
                   borderRadius: 20,
-                  marginTop: "3%", fontSize: "16px", fontWeight: 400
+                  marginTop: "3%",
+                  fontSize: "16px",
+                  fontWeight: 400,
                 }}
                 variant="outlined"
               >
-
-
                 Give Us Review
-
               </Button>
               <Dialog
                 open={open}
@@ -1792,7 +1848,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 aria-describedby="alert-dialog-description"
               >
                 <DialogContent
-                  style={{ backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)" }}
+                  style={{
+                    backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)",
+                  }}
                 >
                   <DialogContentText id="alert-dialog-description">
                     <Grid
@@ -1877,9 +1935,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     </Grid>
                   </DialogContentText>
                 </DialogContent>
-                <DialogActions
-                  style={{ background: "#ecf0f1" }}
-                >
+                <DialogActions style={{ background: "#ecf0f1" }}>
                   <Button onClick={handleClose}>
                     <RxCrossCircled
                       style={{ fontSize: "24px", color: "#000" }}
@@ -1931,7 +1987,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             sx={{
               background: `linear-gradient(to bottom, #FD0000 0%, #F5C92B 20%, #2FF52B 40%, #2BE9F5 60%, #2B3FF5 80%, #D92BF5 100%)`,
               marginLeft: matches ? "66%" : "20%",
-              position: 'fixed',
+              position: "fixed",
               bottom: matches ? 0 : 0,
               width: matches ? "90px" : "90px",
               height: matches ? "90px" : "90px",
@@ -1939,12 +1995,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               alignItems: "center",
               justifyContent: "center",
               borderRadius: "95px ",
-              marginBottom: '4%',
-              cursor: 'pointer',
-              borderColor: '#000'
+              marginBottom: "4%",
+              cursor: "pointer",
+              borderColor: "#000",
             }}
           >
-
             <Grid
               sx={{
                 // background: 'linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3)',
@@ -1954,23 +2009,26 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: "95px",
-                cursor: 'pointer',
+                cursor: "pointer",
                 backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-
-
-
               }}
             >
-              <Grid sx={{ fontSize: "16px", fontWeight: 600, textAlign: 'center', color: '#000' }}>Create<br></br> Your</Grid>
-
+              <Grid
+                sx={{
+                  fontSize: "16px",
+                  fontWeight: 600,
+                  textAlign: "center",
+                  color: "#000",
+                }}
+              >
+                Create<br></br> Your
+              </Grid>
             </Grid>
           </Grid>
-
-
         </Grid>
       </Grid>
       {enquiryDialog()}
       {EnquiryFormDialog()}
-    </Grid >
+    </Grid>
   );
-} 
+}
