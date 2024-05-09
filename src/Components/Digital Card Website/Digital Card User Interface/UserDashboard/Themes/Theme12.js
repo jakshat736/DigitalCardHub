@@ -1,92 +1,67 @@
-import { Email, GridView, Margin, Padding } from "@mui/icons-material";
+
+import HelpIcon from '@mui/icons-material/Help';
 import {
   Box,
   Button,
-  Container,
   DialogContent,
   Divider,
   Grid,
   IconButton,
-  InputAdornment,
-  TextField,
-  colors,
-  useTheme,
+  Stack,
+  TextField
 } from "@mui/material";
-import menubar from "../Themes/ThemeAssets/menu bar.png";
-import digital from "../Themes/ThemeAssets/digitallogo.png";
-import eye from "../Themes/ThemeAssets/eye.png";
-import HelpIcon from '@mui/icons-material/Help';
-import { PiSquaresFour } from "react-icons/pi";
 import InputBase from '@mui/material/InputBase';
-import { RxCrossCircled } from "react-icons/rx";
-import {
-  ExpandLess,
-  ExpandMore,
-  Inbox,
-  Mail,
-  StarBorder,
-} from "@mui/icons-material";
-import { IoIosArrowUp } from "react-icons/io";
-import { CiLocationArrow1 } from "react-icons/ci";
-import send from "../Themes/ThemeAssets/send.png";
-import { IoIosContact } from "react-icons/io";
-import { IoIosCreate } from "react-icons/io";
-import inquery from "../Themes/ThemeAssets/inquery.png";
-import inquery100 from "../Themes/ThemeAssets/enquery100.png";
-import call from "../Themes/ThemeAssets/call.png";
-
 import * as React from "react";
+import { IoIosCreate } from "react-icons/io";
 import { MdFeedback } from "react-icons/md";
-
-import Emaillogo from "../Themes/ThemeAssets/email1234.png"
-import whatapp from "../Themes/ThemeAssets/whatapp.png";
-import fb from "../Themes/ThemeAssets/fb.png";
-import insta from "../Themes/ThemeAssets/insta.png";
-import link from "../Themes/ThemeAssets/link.png";
+import { PiSquaresFour } from "react-icons/pi";
+import { RxCrossCircled } from "react-icons/rx";
+import call from "../Themes/ThemeAssets/call.png";
+import digital from "../Themes/ThemeAssets/digitallogo.png";
+import Emaillogo from "../Themes/ThemeAssets/email1234.png";
+import eye from "../Themes/ThemeAssets/eye.png";
+import key from "../Themes/ThemeAssets/key.png";
+import menubar from "../Themes/ThemeAssets/menu bar.png";
 
 
 import CloseIcon from '@mui/icons-material/Close';
-import { useState } from "react";
-import SpeedDial from "@mui/material/SpeedDial";
-import SpeedDialIcon from "@mui/material/SpeedDialIcon";
-import SpeedDialAction from "@mui/material/SpeedDialAction";
 import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
-import SaveIcon from "@mui/icons-material/Save";
-import PrintIcon from "@mui/icons-material/Print";
 import ShareIcon from "@mui/icons-material/Share";
-import key from "../Themes/ThemeAssets/key.png"
-import { PiGreaterThanThin } from "react-icons/pi";
-import enquery11 from "../Themes/ThemeAssets/enquery11.webp";
-import { FcRatings } from "react-icons/fc";
-import { useNavigate } from "react-router-dom";
-import { AiFillHome } from "react-icons/ai";
-import { TbLogin2 } from "react-icons/tb";
-import gmail from "../Themes/ThemeAssets/mail.png";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import SpeedDial from "@mui/material/SpeedDial";
+import SpeedDialAction from "@mui/material/SpeedDialAction";
+import { useState } from "react";
+
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { IoIosArrowDown } from "react-icons/io";
-import { PiDeviceMobileFill } from "react-icons/pi";
+import Rating from "@mui/material/Rating";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { AiFillHome } from "react-icons/ai";
+import { PiDeviceMobileFill, PiGreaterThanThin } from "react-icons/pi";
+import { TbLogin2 } from "react-icons/tb";
+import fb from "../Themes/ThemeAssets/fb.png";
+import insta from "../Themes/ThemeAssets/insta.png";
+import link from "../Themes/ThemeAssets/link.png";
+import gmail from "../Themes/ThemeAssets/mail.png";
+import whatapp from "../Themes/ThemeAssets/whatapp.png";
 
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import { FaShopify } from "react-icons/fa";
-import "slick-carousel/slick/slick-theme.css";
-import bannerone from "../Themes/ThemeAssets/banner1.png";
-import banner2 from "../Themes/ThemeAssets/banner2.png";
-import { makeStyles } from "@mui/styles";
-import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { FaShareNodes } from "react-icons/fa6";
-import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import { makeStyles } from "@mui/styles";
+import { enqueueSnackbar } from "notistack";
+import { FaShopify } from "react-icons/fa";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import { postData, serverURL } from "../../../../Services/NodeServices";
+import bannerone from "../Themes/ThemeAssets/banner1.png";
+import banner2 from "../Themes/ThemeAssets/banner2.png";
 
 
 const actions = [
@@ -116,15 +91,22 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Theme12() {
+export default function Theme12({ data, products, gallery, ecommerce }) {
   const matches = useMediaQuery("(max-width:600px)");
   // const [homePage, setHomePage] = useState(true)
   const [about, setAbout] = useState(false);
+  const [href, setHref] = useState('');
+  const [smsHref, setSmsHref] = useState('');
+  const [name, setName] = React.useState('');
+  const [phoneNo, setPhoneNo] = React.useState('');
+  const [query, setQuery] = React.useState('');
+
+  console.log(data)
 
   const handleAbout = () => {
     setAbout(!about);
     setOpenDrawer(!openDrawer);
-    if(about === false){
+    if (about === false) {
       var section = document.getElementById("work");
       if (section) {
         section.scrollIntoView({ behavior: 'smooth' });
@@ -164,7 +146,7 @@ export default function Theme12() {
     });
   };
 
-  var data = [
+  var data1 = [
     {
       id: 0,
       name: "Ankit Singh",
@@ -187,7 +169,7 @@ export default function Theme12() {
     },
   ];
   const showReview = () => {
-    return data.map((item) => {
+    return data1.map((item) => {
       return (
         <div
           style={{
@@ -256,6 +238,59 @@ export default function Theme12() {
 
   const [openDrawer, setOpenDrawer] = useState(false);
 
+  const handleClick = async (title, url) => {
+    try {
+      await navigator.share({
+        title,
+        url,
+        text: 'Check out this link!',
+
+      });
+    } catch (error) {
+      console.error("Error sharing:", error);
+    }
+  };
+
+  const handleContactUpdate = async () => {
+    var formData = new FormData();
+    formData.append("_id", data?._id);
+    formData.append("contactDownloadCount", data?.contactDownloadCount + 1);
+    var result = await postData(
+      "carddetails/updateContactDownloadCount",
+      formData,
+      true
+    );
+  };
+
+  const handleSave = () => {
+    var vCardData =
+      "BEGIN:VCARD\r\n" +
+      "VERSION:3.0\r\n" +
+      "FN:" +
+      data?.fullname +
+      "\r\n" +
+      "N:" +
+      data?.fullname +
+      ";;;\r\n" +
+      "EMAIL;TYPE=INTERNET:" +
+      data?.Email +
+      "\r\n" +
+      "TEL;TYPE=CELL:" +
+      data?.phoneNumber +
+      "\r\n" +
+      "END:VCARD";
+    var blob = new Blob([vCardData], { type: "text/vcard" });
+    var downloadLink = document.createElement("a");
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = "contact.vcf";
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+    handleContactUpdate();
+  };
+
+
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -266,6 +301,165 @@ export default function Theme12() {
 
     setState({ ...state, [anchor]: open });
   };
+
+  const handleMessage = (e) => {
+    setHref(
+      `https://api.whatsapp.com/send?phone=+91${e.target.value}&text=https://digitalcardhub.in/%23/${data?.companyId}`
+      // `https://wa.me/+91${e.target.value}?text=https://digitalcardhub.in/#/${data?.companyId}`
+    );
+    setSmsHref(
+      `sms:+91${e.target.value}?body=https://digitalcardhub.in/%23/${data?.companyId}`
+    )
+  };
+
+  const handleSubmit = async (customerId) => {
+    let formData = new FormData
+    formData.append('cardId', customerId)
+    formData.append('name', name)
+    formData.append('number', phoneNo)
+    formData.append('query', query)
+
+    let response = await postData("enquiry/addcardenquiry", formData, true);
+
+    if (response?.status) {
+      setName('')
+      setPhoneNo('')
+      setQuery('')
+      enqueueSnackbar('Enquiry Send Successfully')
+      setOpenContact(false)
+      setOpenLogin(false)
+
+    }
+  };
+
+  const enquiryDialog = () => {
+    return (
+      <Dialog
+        sx={{ borderRadius: 10 }}
+        open={openB}
+        onClose={handleCloseButton}
+      >
+        <DialogTitle
+          style={{ background: "#ecf0f1" }}
+        >
+          ENQUIRY NOW
+        </DialogTitle>
+        <DialogContent
+          style={{ background: "#ecf0f1" }}
+        >
+          <Stack>
+            <TextField
+              required
+              margin="dense"
+              label="Enter Number"
+              style={{ width: matches ? "60vw" : "20vw" }}
+              variant="standard"
+              onChange={(e) => handleMessage(e)}
+            />
+            <Stack direction='row' spacing={2}>
+              <Button sx={{ color: 'green' }} href={href}>
+                Send on WhatsApp
+              </Button>
+              <Button sx={{ color: 'blue' }} href={smsHref}>
+                Send on Sms
+              </Button>
+            </Stack>
+          </Stack>
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  const EnquiryFormDialog = () => {
+    return (
+      <Dialog
+        style={{ borderRadius: 40 }}
+        open={openContact}
+        onClose={handleCloseContact}
+      >
+        <DialogTitle
+          style={{ background: "#ecf0f1" }}
+        >
+          Connect
+        </DialogTitle>
+        <DialogContent
+          style={{ background: "#ecf0f1" }}
+        >
+          <DialogContentText>
+            Share Your Query With {data?.fullname}
+          </DialogContentText>
+          <DialogContentText>
+            <TextField
+              required
+              margin="dense"
+              label="Your Name"
+              type="email"
+              fullWidth
+              variant="standard"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </DialogContentText>
+          <TextField
+            required
+            margin="dense"
+            fullWidth
+            label="Your Mobile Number"
+            type="email"
+            variant="standard"
+            value={phoneNo}
+            onChange={(e) => setPhoneNo(e.target.value)}
+          />
+          <TextField
+            required
+            margin="dense"
+            fullWidth
+            label="Query"
+            type="email"
+            variant="standard"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <DialogContentText
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Button
+              style={{
+                borderColor: "#39FF14",
+                width: "28%",
+                background: "#39FF14",
+                color: "#000",
+                fontSize: "13px",
+                fontWeight: 400,
+                textTransform: "none",
+                borderRadius: 20,
+                display: "flex",
+                marginTop: "4%",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              variant="outlined"
+            >
+              <Grid style={{ marginLeft: "4%" }} onClick={() => handleSubmit(data?.customerId)}>Submit</Grid>
+            </Button>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions
+          style={{ background: "#ecf0f1" }}
+        >
+          <Button onClick={handleCloseContact}>
+            <RxCrossCircled
+              style={{ fontSize: "24px", color: "#000" }}
+            />
+          </Button>
+        </DialogActions>
+      </Dialog>
+    )
+  }
 
   const list = (anchor) => (
     <Box
@@ -413,42 +607,96 @@ export default function Theme12() {
 
   const handleClickIcon = (name) => {
     if (name == "Share") {
-      handleClickOpenButton();
+      handleClick();
     } else if (name == "Print") {
       handleClickOpenContact();
+    } else if (name == "Copy") {
+      handleSave()
+    } else {
+      handleClickOpenButton();
     }
   };
 
 
 
 
-const [openLogin, setOpenLogin] = useState(false);
+  const [openLogin, setOpenLogin] = useState(false);
 
-const handleClickOpenLogin = () => {
-  setOpenLogin(true);
-};
-const handleCloseLogin = () => {
-  setOpenLogin(false);
-};
+  const handleClickOpenLogin = () => {
+    setOpenLogin(true);
+  };
+
+  React.useEffect(() => {
+    handleClickOpenLogin()
+  }, [])
+  const handleCloseLogin = () => {
+    setOpenLogin(false);
+  };
 
 
-const [openSignup, setOpenSignup] = useState(false);
+  const [openSignup, setOpenSignup] = useState(false);
 
-const handleClickSignup = () => {
-  setOpenSignup(true);
-};
-const handleCloseSignup = () => {
-  setOpenSignup(false);
-};
+  const handleClickSignup = () => {
+    setOpenSignup(true);
+  };
+  const handleCloseSignup = () => {
+    setOpenSignup(false);
+  };
+
+  const arrayBufferToBase64 = (buffer) => {
+    var binary = '';
+    var bytes = [].slice.call(new Uint8Array(buffer));
+    bytes.forEach((b) => (binary += String.fromCharCode(b)));
+    return window.btoa(binary);
+  };
+
+
+  const handleWhatsappUpdate = async () => {
+    var formData = new FormData();
+    formData.append("_id", data?._id);
+    formData.append("whatsappClickCount", data?.whatsappClickCount + 1);
+    var result = await postData(
+      "carddetails/updateWhatsappClickCount",
+      formData,
+      true
+    );
+    window.open(`https://wa.me/+91${data?.phoneNumber}?text=`)
+  };
+
+
+  const handleFbUpdate = async () => {
+    var formData = new FormData();
+    formData.append("_id", data?._id);
+    formData.append("fbClickCount", data?.fbClickCount + 1);
+    var result = await postData(
+      "carddetails/updateFbClickCount",
+      formData,
+      true
+    );
+    window.open(`https://www.facebook.com/${data?.fbLink}`)
+  };
+
+  const handleInstaUpdate = async () => {
+    var formData = new FormData();
+    formData.append("_id", data?._id);
+    formData.append("instaClickCount", data?.whatsappClickCount + 1);
+    var result = await postData(
+      "carddetails/updateInstaClickCount",
+      formData,
+      true
+    );
+    window.open(`https://www.instagram.com/${data?.igLink}`)
+  };
+
   return (
     <Grid
       style={{
-        backgroundColor: "#bdc3c7",
-        height: "auto",
+        backgroundColor: "wheat",
+        height: "100%",
         width: "100%",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "center"
       }}
     >
       <Grid
@@ -456,10 +704,113 @@ const handleCloseSignup = () => {
         sx={{
           width: { xs: "100vw", sm: "70%", md: "37%" },
           height: "100%",
-          background: "#fff",
-          position: "relative",
+          marginTop: 0,
+          marginLeft: 0.3,
+          position: 'relative'
         }}
       >
+
+        {data?.coverVideo != '' ? <Grid
+          id="hero"
+          xs={12}
+
+          sx={{
+            display: "flex",
+            color: "#fff",
+            width: { xs: "100vw", sm: "70%", md: "40%" },
+            minHeight: { xs: 200 },
+            paddingLeft: -5,
+            overflow: "hidden", // Ensures the video doesn't overflow the Grid
+
+          }}
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              objectFit: 'cover',
+              width: "100%",
+              height: 250,
+              borderTopRightRadius: 5,
+              borderTopLeftRadius: 5,
+
+
+
+            }}
+          >
+            <source src={`${serverURL}/images/${data?.coverVideo}`} type="video/mp4" />
+          </video>
+        </Grid> :
+          <Grid
+            id="hero"
+            item
+            xs={12}
+            md={12}
+            sx={{
+              color: "#fff",
+              backgroundImage: data?.companyCoverImage ? `url('data:image/png;base64,${arrayBufferToBase64(data?.companyCoverImage.data?.data)}')` : 'radial-gradient(#353b48, #000) ',
+              backgroundSize: "cover",
+              width: "100%",
+              minHeight: { xs: 260 },
+              borderTopRightRadius: 5,
+              borderTopLeftRadius: 5,
+
+            }}
+          >
+            {" "}
+          </Grid>}
+        <Grid sx={{ width: '100%', height: matches ? 250 : 270, position: 'absolute', zIndex: 1 }}>
+          {/*for cover photo */}
+          <Grid
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: 'space-between',
+              padding: 2,
+            }}
+          >
+            <Grid sx={{ marginLeft: "2%" }}>
+              <Grid key={"left"} style={{ cursor: "pointer" }}>
+                <img
+                  src={menubar}
+                  onClick={toggleDrawer("left", true)}
+                  sx={{ color: "#fff" }}
+                ></img>
+                <Drawer
+                  anchor={"left"}
+                  open={state["left"]}
+                  onClose={toggleDrawer("left", false)}
+                  sx={{ backgroundColor: "black" }}
+                >
+                  {list("left")}
+                </Drawer>
+              </Grid>
+            </Grid>
+            <Grid
+              sx={{
+                border: "1px solid #d2dae2",
+                width: 100,
+                height: 30,
+                backgroundColor: "#4b4b4b",
+                borderRadius: 20,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: 0.2,
+              }}
+            >
+              <Grid sx={{ marginTop: "2%" }}>
+                <img src={eye}></img>
+              </Grid>
+              <Grid sx={{ marginLeft: "10%", color: "#fff", fontsize: 14 }}>
+                {data?.cardViewCount}
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+
         <Grid
           item
           xs={12}
@@ -470,60 +821,6 @@ const handleCloseSignup = () => {
             flexDirection: "column",
           }}
         >
-          {/* for cover photo */}
-          <Grid style={{ width: "100%", height: matches ? 250 : 270 }}>
-          {/*for cover photo */}
-            <Grid
-              sx={{
-                height: 80,
-                width: "100%",
-                display: "flex",
-                alignItems: "center",
-                padding: 2,
-              }}
-            >
-              <Grid sx={{ marginLeft: "2%" }}>
-                <Grid key={"left"} style={{ cursor: "pointer" }}>
-                  <img
-                    src={menubar}
-                    onClick={toggleDrawer("left", true)}
-                    sx={{ colors: "#fff" }}
-                  ></img>
-                  <Drawer
-                    anchor={"left"}
-                    open={state["left"]}
-                    onClose={toggleDrawer("left", false)}
-                    sx={{ backgroundColor: "transparent" }}
-                  >
-                    {list("left")}
-                  </Drawer>
-                </Grid>
-              </Grid>
-              <Grid
-                item
-                sx={{
-                  border: "1px solid #d2dae2",
-                  width: 100,
-                  height:30,
-                  backgroundColor: "#4b4b4b",
-                  marginLeft: "auto",
-                  borderRadius: 20,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: 0.2,
-                }}
-              >
-                <Grid sx={{ marginTop: "2%" }}>
-                  <img src={eye}></img>
-                </Grid>
-                <Grid sx={{ marginLeft: "10%", color: "#fff", fontsize: 14 }}>
-                  68842
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-
           <Grid
             style={{
               width: "100%",
@@ -538,203 +835,35 @@ const handleCloseSignup = () => {
                 marginTop: matches ? "8%" : "4%",
                 padding: 14,
                 display: "flex",
-                marginLeft: "auto",
               }}
             >
-              <React.Fragment style={{ borderRadius: 40 }}>
-                {/* <Grid
-                  onClick={handleClickOpenButton}
-                  style={{
-                    width: "15%",
-                    border: "1px solid #bdc3c7",
-                    borderRadius: 20,
-                    marginLeft: "60%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexDirection: "row",
-                    backgroundImage: "radial-gradient(#fff,#f5f6fa )",
-                    cursor: "pointer",
-                  }}
-                >
-                  <FaShareNodes
-                    style={{ fontSize: "25px", color: "#0abde3" }}
-                  />
-                </Grid> */}
-                <Dialog
-                  style={{ borderRadius: 40 }}
-                  open={openB}
-                  onClose={handleCloseButton}
-                >
-                  <DialogTitle
-                 style={{background:"#ecf0f1"}}
-                  >
-                    ENQUIRY NOW
-                  </DialogTitle>
-                  <DialogContent
-                  style={{background:"#ecf0f1"}}
-                  >
-                    <TextField
-                      required
-                      margin="dense"
-                      label="Enter Number"
-                      type="email"
-                      style={{ width: matches ? "60vw" : "20vw" }}
-                      variant="standard"
-                    />
-                    <Grid
-                sx={{
-                border: "1px solid #39FF14",
-                width: 80,
-                backgroundColor: "#39FF14",
-                borderRadius: 2,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: 1,
-                color: "#fff",
-                marginTop: "3%",
-                
-              }}
-            >
-              <Grid sx={{ color:'#2c3e50' }}>Send</Grid>
-            </Grid>
-                    <DialogContentText style={{ display: "flex" }}>
-                      <div
-                        style={{
-                          color: "#000",
-                          border: "1px solid #000",
-                          marginTop: "6%",
-                          width: "24%",
-                          display: "flex",
-                          padding: 0,
-                          justifyContent: "center",
-                          alignItems: "center",
-                          borderRadius: 5,
-                        }}
-                      >
-                        <b style={{ padding: 2 }}>OR</b>
-                      </div>{" "}
-                      <span
-                        style={{
-                          color: "#000",
-                          marginLeft: "4%",
-                          marginTop: "6%",
-                        }}
-                      >
-                        By Other Link{" "}
-                        <span style={{ color: "#0652DD" }}>
-                          http://localhost
-                        </span>
-                      </span>
-                    </DialogContentText>
-                  </DialogContent>
-                  <DialogActions
-                    style={{background:"#ecf0f1"}}
-                    >
-                      <Button onClick={handleCloseButton}>
-                        <RxCrossCircled
-                          style={{ fontSize: "24px", color: "#000" }}
-                        />
-                      </Button>
-                    </DialogActions>
-
-                  {/* <DialogActions
-                 style={{background:"#ecf0f1"}}
-                  >
-                    <Button onClick={handleCloseButton}>Cancel</Button>
-                  </DialogActions> */}
-                </Dialog>
-              </React.Fragment>
-
-
               <Grid
                 onClick={handleAbout}
-              sx={{
-                border: "1px solid #000",
-                width: 110,
-                backgroundImage: "radial-gradient(#353b48, #000)",
-                borderRadius: 7,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: 1,
-                color: "#fff",
-                marginLeft: "auto",
-              }}
-            >
-              <Grid sx={{ fontsize: "10px", fontWeight: 600,marginLeft:'4%' }}>Work</Grid>
-                  {openDrawer ? (
-                    <ExpandLess fontSize="medium" />
-                  ) : (
-                    <ExpandMore fontSize="medium" />
-                  )}
-            </Grid>
-              {/* <Button
-                onClick={handleAbout}
-                style={{
-                  borderColor: "#000",
-                  width: "35%",
+                sx={{
+                  border: "1px solid #000",
+                  width: 110,
                   backgroundImage: "radial-gradient(#353b48, #000)",
-                  color: "#ffff",
-                  fontSize: "15px",
-                  fontWeight: 400,
-                  textTransform: "none",
-                  borderRadius: 20,
-                  marginLeft: "auto",
+                  borderRadius: 7,
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                }}
-                variant="outlined"
-              >
-                WORK
-                <Grid
-                  style={{
-                    marginTop: matches ? "10%" : "6%",
-                    color: "#fff",
-                    marginLeft: "5%",
-                  }}
-                >
-                  {openDrawer ? (
-                    <ExpandLess style={{ fontSize: "20px", color: "#fff" }} />
-                  ) : (
-                    <ExpandMore style={{ fontSize: "20px", color: "#fff" }} />
-                  )}
-                </Grid>
-              </Button> */}
-              {/* <Button
-         variant="outlined"
-         onClick={handleAbout}
-             sx={{
-                border: "1px solid #000",
-                  width: 100,
-                  backgroundColor: "#000",
+                  padding: 1,
+                  color: "#fff",
                   marginLeft: "auto",
-                  borderRadius: 20,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: .6
-                  ,marginLeft:'auto',
-                  cursor:'pointer',
-                  textTransform:'none'
-
                 }}
               >
-                <Grid sx={{ marginTop: "2%",color:'#fff',fontSize:12,fontWeight:500 }}   expandIcon={<ExpandMoreIcon style={{color:'#fff'}} />}>
-                   WORK
-                </Grid>
-                <Grid style={{marginTop:'3%',color:'#fff',marginLeft:'4%'}}>
-                <IoIosArrowUp style={{fontSize:16}}/>
-                </Grid>
-              </Button> */}
+                <Grid sx={{ fontsize: "10px", fontWeight: 600, marginLeft: '4%' }}>Work</Grid>
+                {openDrawer ? (
+                  <ExpandLess fontSize="medium" />
+                ) : (
+                  <ExpandMore fontSize="medium" />
+                )}
+              </Grid>
             </Grid>
 
             <Grid
-            onClick={handleClickOpenLogin}
               style={{
-                backgroundImage: "radial-gradient(#dcdde1,#95a5a6)",
+                backgroundImage: data?.companylogo ? `url('data:image/jpeg;base64,${arrayBufferToBase64(data?.companylogo.data?.data)}')` : "radial-gradient(#dcdde1,#95a5a6)",
                 marginLeft: "5%",
                 position: "absolute",
                 top: matches ? -93 : -100,
@@ -744,7 +873,7 @@ const handleCloseSignup = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: "95px",
-                page: "5",
+                backgroundSize: 'cover',
               }}
             ></Grid>
           </Grid>
@@ -759,7 +888,7 @@ const handleCloseSignup = () => {
                   lineHeight: "21.94px",
                 }}
               >
-                Chinmay Sharma
+                {data?.fullname}
               </Grid>
               <Grid
                 style={{
@@ -769,7 +898,7 @@ const handleCloseSignup = () => {
                   marginTop: "1%",
                 }}
               >
-                Freelance Graphic Designer
+                {data?.position}
               </Grid>
               <Grid style={{ display: "flex", flexDirection: "row" }}>
                 <Box
@@ -807,139 +936,6 @@ const handleCloseSignup = () => {
                     ))}
                   </SpeedDial>
                 </Box>
-
-                {/* <Grid style={{marginTop:'6%',color:'#3d3d3d',marginLeft:'5%'}}>
-              <IoIosContact  style={{fontSize:25,}}/>
-           </Grid> */}
-
-                <React.Fragment style={{ borderRadius: 40 }}>
-                  {/* <Grid
-                    onClick={handleClickOpenContact}
-                    sx={{
-                      border: "1px solid #bdc3c7",
-                      width: matches?130:190,
-                      backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                      borderRadius: 25,
-                      display: "flex",
-                      cursor: "pointer",
-                    
-                      padding: matches?0.5:0.8,
-                      marginTop: "3%",
-                    
-                      flexDirection: "row",
-                      marginLeft: matches?"60%":'57%',
-                      marginTop: "-7%",
-                    
-                    }}
-                  >
-                    <Grid
-                      sx={{
-                        color: "#000",
-                        fontWeight: 400,
-                        fontSize:matches?16:20,
-                        display:'flex',
-                        justifyContent:'center',
-                        alignItems:'center'
-                      }}
-                    >
-                      <Grid style={{marginLeft:'20%',fontWeight:400,fontSize:17}}> Enquiry </Grid>
-                      <Grid style={{ marginLeft: "4%" }}>
-                        {" "}
-                       <img src={inquery100} style={{width:'35%'}}></img>
-                      </Grid>
-                    </Grid>
-                  </Grid> */}
-
-                  <Dialog
-                    style={{ borderRadius: 40 }}
-                    open={openContact}
-                    onClose={handleCloseContact}
-                  >
-                    <DialogTitle
-                   style={{background:"#ecf0f1"}}
-                    >
-                      Connect
-                    </DialogTitle>
-                    <DialogContent
-                   style={{background:"#ecf0f1"}}
-                    >
-                      <DialogContentText>
-                        Share Your detail with Ankit
-                      </DialogContentText>
-                      <DialogContentText>
-                        <TextField
-                          required
-                          margin="dense"
-                          label="Your Name"
-                          type="email"
-                          fullWidth
-                          variant="standard"
-                        />
-                      </DialogContentText>
-                      <TextField
-                        required
-                        margin="dense"
-                        fullWidth
-                        label="Your Email"
-                        type="email"
-                        variant="standard"
-                      />
-
-                      <TextField
-                        required
-                        margin="dense"
-                        fullWidth
-                        label="Your Mobile Number"
-                        type="email"
-                        variant="standard"
-                      />
-                      <TextField
-                        required
-                        margin="dense"
-                        fullWidth
-                        label="Aditional info"
-                        type="email"
-                        variant="standard"
-                      />
-                      <DialogContentText
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Button
-                          style={{
-                            borderColor: "#39FF14",
-                            width: "28%",
-                            background: "#39FF14",
-                            color: "#000",
-                            fontSize: "13px",
-                            fontWeight: 400,
-                            textTransform: "none",
-                            borderRadius: 20,
-                            display: "flex",
-                            marginTop: "4%",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                          variant="outlined"
-                        >
-                          <Grid style={{ marginLeft: "4%" }}>Submit</Grid>
-                        </Button>
-                      </DialogContentText>
-                    </DialogContent>
-                    <DialogActions
-                    style={{background:"#ecf0f1"}}
-                    >
-                      <Button onClick={handleCloseContact}>
-                        <RxCrossCircled
-                          style={{ fontSize: "24px", color: "#000" }}
-                        />
-                      </Button>
-                    </DialogActions>
-                  </Dialog>
-                </React.Fragment>
               </Grid>
             </Grid>
             <Grid
@@ -958,198 +954,200 @@ const handleCloseSignup = () => {
 
 
         <Dialog
-        PaperProps={{
-        style: {
-          position: 'fixed',
-          bottom: -38,
-          width:'100%',
-           // Dialog ko page ke bottom me set karein
-        },
-      }}
-        open={openLogin}
-        onClose={handleCloseLogin}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle  style={{fontSize:16,background:"#ecf0f1"}} id="alert-dialog-title">
-          {"Login to Find the Bussiness Profile"}
-          <IconButton
-          onClick={handleCloseLogin}
-          aria-label="close"
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: 'inherit',
+          PaperProps={{
+            style: {
+              position: 'fixed',
+              bottom: -38,
+              width: '100%',
+              // Dialog ko page ke bottom me set karein
+            },
           }}
+          open={openLogin}
+          onClose={handleCloseLogin}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
         >
-          <CloseIcon />
-        </IconButton>
-        </DialogTitle>
-        <DialogContent style={{background:"#ecf0f1"}}>
-          <DialogContentText id="alert-dialog-description">
-          <DialogContentText>
-                        <TextField
-                          required
-                          margin="dense"
-                          label="Your Name"
-                          type="email"
-                          fullWidth
-                          variant="standard"
-                        />
-                      </DialogContentText>
-                      <TextField
-                        required
-                        margin="dense"
-                        fullWidth
-                        label="Enter Mobile No./Email"
-                        type="email"
-                        variant="standard"
-                      />
-          </DialogContentText>
-          <DialogContentText
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Button
-                          style={{
-                            borderColor: "#7ed6df",
-                            width: "28%",
-                            background: "#7ed6df",
-                            color: "#000",
-                            fontSize: "13px",
-                            fontWeight: 400,
-                            textTransform: "none",
-                            borderRadius: 20,
-                            display: "flex",
-                            marginTop: "6%",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                          variant="outlined"
-                        >
-                          <Grid style={{ marginLeft: "4%" }}>Submit</Grid>
-                        </Button>
-                      </DialogContentText>
-        </DialogContent>
-       
-      </Dialog>
-
-
-
-
-      <Dialog
-        PaperProps={{
-        style: {
-          position: 'fixed',
-          bottom: -38,
-          width:'100%',
-           // Dialog ko page ke bottom me set karein
-        },
-      }}
-        open={openSignup}
-        onClose={handleCloseSignup}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle sx={{background:"#ecf0f1"}}  id="alert-dialog-title">
-          <IconButton
-          onClick={handleCloseSignup}
-          aria-label="close"
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: 'inherit',
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-        </DialogTitle>
-        <DialogContent sx={{background:'#ecf0f1'}}>
-        
-        
-        <Grid style={{display:'flex',justifyContent:'center',flexDirection:"column",alignItems:'center'}}>
-        <Grid sx={{fontSize:'28px',fontWeight:700,color:'#000',marginTop:'5%'}}>
-          Login/SignUp
-        </Grid>
-        <Grid sx={{fontSize:16,color:'#636e72',marginTop:'2%'}}>
-        Activate your Profile here !
-        </Grid>
-        </Grid>
-<div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'6%'}}>
-        <div style={{border:'1px solid #b2bec3',background:'#dfe6e9',borderRadius:6,width:'90%'}}>
-      <IconButton sx={{ p: '10px' }} aria-label="menu">
-       <img src={Emaillogo} width={20}></img>
-      </IconButton>
-      <InputBase
-        sx={{ ml: 1, flex: 1 }}
-        placeholder="Email Address or number"
-        inputProps={{ 'aria-label': 'search google maps' }}
-      />
-   </div>   
-</div>
-
-<div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'6%'}}>
-        <div style={{border:'1px solid #b2bec3',background:'#dfe6e9',borderRadius:6,width:'90%'}}>
-      <IconButton sx={{ p: '10px' }} aria-label="menu">
-       <img src={key} width={20}></img>
-      </IconButton>
-      <InputBase
-        sx={{ width:'52%' }}
-        placeholder="Enter OTP"
-        inputProps={{ 'aria-label': 'search google maps' }}
-      />
-       <IconButton type="button"  aria-label="search">
-       <div
+          <DialogTitle style={{ fontSize: 16, background: "#ecf0f1" }} id="alert-dialog-title">
+            {"Login to Find the Bussiness Profile"}
+            <IconButton
+              onClick={handleCloseLogin}
+              aria-label="close"
+              sx={{
+                position: 'absolute',
+                right: 8,
+                top: 8,
+                color: 'inherit',
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent style={{ background: "#ecf0f1" }}>
+            <DialogContentText id="alert-dialog-description">
+              <DialogContentText>
+                <TextField
+                  required
+                  margin="dense"
+                  label="Your Name"
+                  type="email"
+                  fullWidth
+                  variant="standard"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </DialogContentText>
+              <TextField
+                required
+                margin="dense"
+                fullWidth
+                label="Enter Mobile Number"
+                type="email"
+                variant="standard"
+                onChange={(e) => setPhoneNo(e.target.value)}
+              />
+            </DialogContentText>
+            <DialogContentText
               style={{
-                border: "1px solid #000",
-                width: 70,
-                backgroundColor: "#000",
-                borderRadius: 2,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                padding: 7,
-                color: "#fff",
-                fontSize:10,
-                borderRadius:8,
-                marginLeft:'auto'
-              
               }}
             >
-             Get OTP
+              <Button
+                style={{
+                  borderColor: "#7ed6df",
+                  width: "28%",
+                  background: "#7ed6df",
+                  color: "#000",
+                  fontSize: "13px",
+                  fontWeight: 400,
+                  textTransform: "none",
+                  borderRadius: 20,
+                  display: "flex",
+                  marginTop: "6%",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                variant="outlined"
+                onClick={() => handleSubmit(data?.customerId)}
+              >
+                Submit
+              </Button>
+            </DialogContentText>
+          </DialogContent>
+
+        </Dialog>
+
+
+
+
+        <Dialog
+          PaperProps={{
+            style: {
+              position: 'fixed',
+              bottom: -38,
+              width: '100%',
+              // Dialog ko page ke bottom me set karein
+            },
+          }}
+          open={openSignup}
+          onClose={handleCloseSignup}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle sx={{ background: "#ecf0f1" }} id="alert-dialog-title">
+            <IconButton
+              onClick={handleCloseSignup}
+              aria-label="close"
+              sx={{
+                position: 'absolute',
+                right: 8,
+                top: 8,
+                color: 'inherit',
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent sx={{ background: '#ecf0f1' }}>
+
+
+            <Grid style={{ display: 'flex', justifyContent: 'center', flexDirection: "column", alignItems: 'center' }}>
+              <Grid sx={{ fontSize: '28px', fontWeight: 700, color: '#000', marginTop: '5%' }}>
+                Login/SignUp
+              </Grid>
+              <Grid sx={{ fontSize: 16, color: '#636e72', marginTop: '2%' }}>
+                Activate your Profile here !
+              </Grid>
+            </Grid>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '6%' }}>
+              <div style={{ border: '1px solid #b2bec3', background: '#dfe6e9', borderRadius: 6, width: '90%' }}>
+                <IconButton sx={{ p: '10px' }} aria-label="menu">
+                  <img src={Emaillogo} width={20}></img>
+                </IconButton>
+                <InputBase
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="Email Address or number"
+                  inputProps={{ 'aria-label': 'search google maps' }}
+                />
+              </div>
             </div>
-      </IconButton>
-   </div>   
-</div>
-<Grid style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop: "7%",}}>
-<Grid
-       sx={{
-                border: "1px solid #000",
-                width: '90%',
-                backgroundColor: "#000",
-                borderRadius: 2,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: 1.3,
-                color: "#fff",
-                
-               
-              }}
-            >
-              <Grid sx={{ fontsize: "10px", fontWeight: 700 }}>LOGIN</Grid>
-            </Grid>
+
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '6%' }}>
+              <div style={{ border: '1px solid #b2bec3', background: '#dfe6e9', borderRadius: 6, width: '90%' }}>
+                <IconButton sx={{ p: '10px' }} aria-label="menu">
+                  <img src={key} width={20}></img>
+                </IconButton>
+                <InputBase
+                  sx={{ width: '52%' }}
+                  placeholder="Enter OTP"
+                  inputProps={{ 'aria-label': 'search google maps' }}
+                />
+                <IconButton type="button" aria-label="search">
+                  <div
+                    style={{
+                      border: "1px solid #000",
+                      width: 70,
+                      backgroundColor: "#000",
+                      borderRadius: 2,
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      padding: 7,
+                      color: "#fff",
+                      fontSize: 10,
+                      borderRadius: 8,
+
+                    }}
+                  >
+                    Get OTP
+                  </div>
+                </IconButton>
+              </div>
+            </div>
+            <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "7%", }}>
+              <Grid
+                sx={{
+                  border: "1px solid #000",
+                  width: '90%',
+                  backgroundColor: "#000",
+                  borderRadius: 2,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 1.3,
+                  color: "#fff",
+
+
+                }}
+              >
+                <Grid sx={{ fontsize: "10px", fontWeight: 700 }}>LOGIN</Grid>
+              </Grid>
             </Grid>
 
 
-        </DialogContent>
-       
-      </Dialog>
+          </DialogContent>
+
+        </Dialog>
 
 
         {about ? (
@@ -1183,7 +1181,7 @@ const handleCloseSignup = () => {
                   style={{
                     border: "1px solid #000",
                     width: "94%",
-                    height: 260,
+                    maxHeight: 260,
                     padding: 6,
                     display: "flex",
                     flexDirection: "column",
@@ -1198,44 +1196,9 @@ const handleCloseSignup = () => {
                       padding: 8,
                     }}
                   >
-                    <div>
-                      Passionate student and graphic designer with a strong
-                      creative flair and a keen eye for detail. Currently
-                      pursuing B.Tech(Information Technology) at Govt.
-                      Engineering College, Ajmer [BTU affliated] .  Proficient
-                      in Adobe Creative Suite (Photoshop, Illustrator, xd,after
-                      effects) and experienced in creating visually appealing
-                      designs across various
-                    </div>
-                    <br></br>
-                    <div>
-                      {" "}
-                      platforms.  As a designer, I strive to bring ideas to life
-                      through innovative and captivating visuals. I am skilled
-                      in creating stunning logo , brochures, social media
-                      graphics, and other marketing materials. With a focus on
-                      user-centered design, I aim to deliver impactful
-                      experiences that engage and inspire.  Simultaneously, I am
-                      a skilled coder, proficient in C,C++,Java and algo. I
-                      enjoy building intuitive and functional
-                      projects/applications that combine aesthetics with
-                      seamless user experiences.  If you are looking for a
-                      dedicated graphic designer who combines creativity with a
-                      strong work ethic, let's connect and explore how we can
-                      bring you0r design projects to life!. C,C++,Java and algo.
-                      I enjoy building intuitive and functional
-                      projects/applications that combine aesthetics with
-                      seamless user experiences.  If you are looking for a
-                      dedicated graphic designer who combines creativity with a
-                      strong work ethic, let's connect and explore how we can
-                      bring you0r design projects to life!. C,C++,Java and algo.
-                      I enjoy building intuitive and functional
-                      projects/applications that combine aesthetics with
-                      seamless user experiences.  If you are looking for a
-                      dedicated graphic designer who combines creativity with a
-                      strong work ethic, let's connect and explore how we can
-                      bring you0r design projects to life!.
-                    </div>
+                    {
+                      data?.AboutUs
+                    }
                   </Grid>
                 </Grid>
 
@@ -1262,7 +1225,6 @@ const handleCloseSignup = () => {
           sx={{
             display: "flex",
             backgroundColor: "#fff",
-            height: matches ? 290 : 340,
             flexDirection: "column",
             padding: 1.7,
           }}
@@ -1282,15 +1244,17 @@ const handleCloseSignup = () => {
                 width: 230,
                 backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
                 borderRadius: 25,
-                display: "flex",
+                display: data?.phoneNumber == null ? "none" : "flex",
                 alignItems: "center",
                 marginTop: "3%",
                 justifyContent: "center",
                 padding: 0.2,
+                cursor: 'pointer'
               }}
+              onClick={() => { window.open(`tel:${data?.phoneNumber}`) }}
             >
               <Grid sx={{ marginTop: "2%" }}>
-                <img src={call}></img>
+                <img src={call} />
               </Grid>
               <Grid
                 sx={{
@@ -1315,7 +1279,9 @@ const handleCloseSignup = () => {
                 justifyContent: "center",
                 marginTop: "3%",
                 padding: 0.2,
+                cursor: 'pointer'
               }}
+              onClick={() => handleWhatsappUpdate()}
             >
               <Grid
                 sx={{ marginTop: "2%", marginLeft: matches ? "5%" : "10%" }}
@@ -1350,12 +1316,14 @@ const handleCloseSignup = () => {
                 width: 230,
                 backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
                 borderRadius: 25,
-                display: "flex",
+                display: data?.Email == "" ? "none" : "flex",
                 alignItems: "center",
                 padding: 0.3,
                 marginTop: "3%",
                 justifyContent: "center",
+                cursor: 'pointer'
               }}
+              onClick={() => { window.open(`mailto:${data?.Email}?body=Query%20About%20Business`) }}
             >
               <Grid sx={{ marginTop: "2%" }}>
                 <img src={gmail} ></img>
@@ -1378,12 +1346,14 @@ const handleCloseSignup = () => {
                 width: 230,
                 backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
                 borderRadius: 25,
-                display: "flex",
+                display: data?.LinkdnLink == "" ? "none" : "flex",
                 alignItems: "center",
 
                 marginTop: "3%",
                 justifyContent: "center",
+                cursor: 'pointer'
               }}
+              onClick={() => { window.open(`https://www.linkedin.com/in/${data?.LinkdnLink}`) }}
             >
               <Grid sx={{ marginTop: "2%" }}>
                 <img src={link}></img>
@@ -1396,7 +1366,7 @@ const handleCloseSignup = () => {
                   fontSize: matches ? 17 : 20,
                 }}
               >
-                linkIn
+                Linkedin
               </Grid>
             </Grid>
           </Grid>
@@ -1416,12 +1386,14 @@ const handleCloseSignup = () => {
                 width: 230,
                 backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
                 borderRadius: 25,
-                display: "flex",
+                display: data?.fbLink == "" ? "none" : "flex",
                 alignItems: "center",
                 padding: 0.8,
                 marginTop: "3%",
                 justifyContent: "center",
+                cursor: 'pointer'
               }}
+              onClick={() => handleFbUpdate()}
             >
               <Grid
                 sx={{ marginTop: "2%", marginLeft: matches ? "5%" : "10%" }}
@@ -1446,12 +1418,86 @@ const handleCloseSignup = () => {
                 width: 230,
                 backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
                 borderRadius: 25,
-                display: "flex",
+                display: data?.igLink == "" ? "none" : "flex",
                 alignItems: "center",
-
                 marginTop: "3%",
                 justifyContent: "center",
+                cursor: 'pointer'
               }}
+              onClick={() => handleInstaUpdate()}
+            >
+              <Grid
+                sx={{ marginTop: "2%", marginLeft: matches ? "5%" : "10%" }}
+              >
+                <img src={insta}></img>
+              </Grid>
+              <Grid
+                sx={{
+                  marginLeft: matches ? "9%" : "18%",
+                  color: "#000",
+                  fontWeight: 400,
+                  fontSize: matches ? 17 : 20,
+                }}
+              >
+                Instagram
+              </Grid>
+            </Grid>
+          </Grid>
+
+          <Grid
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              gap: 22,
+              marginTop: "3%",
+            }}
+          >
+            <Grid
+              sx={{
+                border: "1px solid #bdc3c7",
+                width: 230,
+                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                borderRadius: 25,
+                display: data?.fbLink == "" ? "none" : "flex",
+                alignItems: "center",
+                padding: 0.8,
+                marginTop: "3%",
+                justifyContent: "center",
+                cursor: 'pointer'
+              }}
+              onClick={() => handleFbUpdate()}
+            >
+              <Grid
+                sx={{ marginTop: "2%", marginLeft: matches ? "5%" : "10%" }}
+              >
+                <img src={fb}></img>
+              </Grid>
+              <Grid
+                sx={{
+                  marginLeft: matches ? "9%" : "18%",
+                  color: "#000",
+                  fontWeight: 400,
+                  fontSize: matches ? 17 : 20,
+                }}
+              >
+                Facebook
+              </Grid>
+            </Grid>
+
+            <Grid
+              sx={{
+                border: "1px solid #bdc3c7",
+                width: 230,
+                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                borderRadius: 25,
+                display: data?.igLink == "" ? "none" : "flex",
+                alignItems: "center",
+                marginTop: "3%",
+                justifyContent: "center",
+                cursor: 'pointer'
+              }}
+              onClick={() => handleInstaUpdate()}
             >
               <Grid
                 sx={{ marginTop: "2%", marginLeft: matches ? "5%" : "10%" }}
@@ -1529,7 +1575,7 @@ const handleCloseSignup = () => {
             </Grid>
           </Grid>
 
-          <Grid sx={{ display:'flex',justifyContent:'center',alignItems:'center' }}>
+          <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Divider
               style={{
                 height: "1px",
@@ -1541,7 +1587,7 @@ const handleCloseSignup = () => {
           </Grid>
         </Grid>
 
-       <Grid
+        <Grid
           item
           xs={12}
           sx={{
@@ -1561,7 +1607,7 @@ const handleCloseSignup = () => {
               flexDirection: "column",
             }}
           >
-           
+
             <Grid style={{ fontSize: "22px", fontWeight: 700 }}>
               Work / Products
             </Grid>
@@ -1588,18 +1634,18 @@ const handleCloseSignup = () => {
             padding: 1,
           }}
         >
-          
+
           <Grid style={{ marginLeft: "7%" }}>
             <Grid style={{ fontSize: "20px", fontWeight: 600 }}>
               LOGO DESIGN WORK
             </Grid>
-            
+
             <Grid
               style={{ fontSize: "14px", color: "#2d3436", marginTop: "2%" }}
             >
               We have different variety of Design in logo of different companies
             </Grid>
-           
+
           </Grid>
           <div id='work'></div>
           <Grid style={{ display: "flex" }}>
@@ -1635,7 +1681,7 @@ const handleCloseSignup = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+          <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Divider
               style={{
                 height: "1px",
@@ -1688,7 +1734,7 @@ const handleCloseSignup = () => {
               <source src="https://www.youtube.com/live/f12GSyMjesw?si=BXfTXjRkrAa9Fv23" />
             </video>
           </Grid>
-          <Grid style={{ display:'flex',justifyContent:'center',alignItems:'center' }}>
+          <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Divider
               style={{
                 height: "1px",
@@ -1730,14 +1776,14 @@ const handleCloseSignup = () => {
                   textTransform: "none",
                   padding: 5,
                   borderRadius: 20,
-                  marginTop: "3%",fontSize: "16px", fontWeight: 400 
+                  marginTop: "3%", fontSize: "16px", fontWeight: 400
                 }}
                 variant="outlined"
               >
-              
-              
-                  Give Us Review
-               
+
+
+                Give Us Review
+
               </Button>
               <Dialog
                 open={open}
@@ -1832,14 +1878,14 @@ const handleCloseSignup = () => {
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions
-                    style={{background:"#ecf0f1"}}
-                    >
-                      <Button onClick={handleClose}>
-                        <RxCrossCircled
-                          style={{ fontSize: "24px", color: "#000" }}
-                        />
-                      </Button>
-                    </DialogActions>
+                  style={{ background: "#ecf0f1" }}
+                >
+                  <Button onClick={handleClose}>
+                    <RxCrossCircled
+                      style={{ fontSize: "24px", color: "#000" }}
+                    />
+                  </Button>
+                </DialogActions>
                 {/* <DialogActions
                   style={{ backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)" }}
                 >
@@ -1879,54 +1925,52 @@ const handleCloseSignup = () => {
           <Grid style={{ fontSize: 12, color: "#2d3436", marginTop: "2%" }}>
             Powered By IndiaBuzz
           </Grid>
-          
+
           <Grid
-          onClick={handleClickSignup}
+            onClick={handleClickSignup}
             sx={{
               background: `linear-gradient(to bottom, #FD0000 0%, #F5C92B 20%, #2FF52B 40%, #2BE9F5 60%, #2B3FF5 80%, #D92BF5 100%)`,
-              //  background:"#fff",
-              marginLeft: matches?"66%":"20%",
-              position:'fixed',
+              marginLeft: matches ? "66%" : "20%",
+              position: 'fixed',
               bottom: matches ? 0 : 0,
               width: matches ? "90px" : "90px",
               height: matches ? "90px" : "90px",
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
-              borderRadius: "95px",
-              marginBottom:'4%',
-              cursor:'pointer',
-              borderColor:'#000'
-          
-              
-
+              borderRadius: "95px ",
+              marginBottom: '4%',
+              cursor: 'pointer',
+              borderColor: '#000'
             }}
           >
 
-<Grid
-      sx={{
-            // background: 'linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3)',
-              width: matches ? "77px" : "77px",
-              height: matches ? "77px" : "77px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: "95px",
-              cursor:'pointer',
-              backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-          
-              
+            <Grid
+              sx={{
+                // background: 'linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3)',
+                width: matches ? "77px" : "77px",
+                height: matches ? "77px" : "77px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "95px",
+                cursor: 'pointer',
+                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
 
-            }}
-          > 
-             <Grid sx={{fontSize:"16px",fontWeight:600,textAlign:'center',color:'#000'}}>Create<br></br> Your</Grid>
-            
+
+
+              }}
+            >
+              <Grid sx={{ fontSize: "16px", fontWeight: 600, textAlign: 'center', color: '#000' }}>Create<br></br> Your</Grid>
+
             </Grid>
-        </Grid>
+          </Grid>
 
 
         </Grid>
       </Grid>
-    </Grid>
+      {enquiryDialog()}
+      {EnquiryFormDialog()}
+    </Grid >
   );
-}
+} 
