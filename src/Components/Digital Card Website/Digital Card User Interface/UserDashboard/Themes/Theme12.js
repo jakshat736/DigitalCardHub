@@ -34,10 +34,15 @@ import { IoIosCreate } from "react-icons/io";
 import inquery from "../Themes/ThemeAssets/inquery.png";
 import inquery100 from "../Themes/ThemeAssets/enquery100.png";
 import call from "../Themes/ThemeAssets/call.png";
+
 import * as React from "react";
 import { MdFeedback } from "react-icons/md";
+
 import Emaillogo from "../Themes/ThemeAssets/email1234.png"
-import key from "../Themes/ThemeAssets/key.png"
+import whatapp from "../Themes/ThemeAssets/whatapp.png";
+import fb from "../Themes/ThemeAssets/fb.png";
+import insta from "../Themes/ThemeAssets/insta.png";
+import link from "../Themes/ThemeAssets/link.png";
 
 
 import CloseIcon from '@mui/icons-material/Close';
@@ -49,19 +54,14 @@ import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
 import SaveIcon from "@mui/icons-material/Save";
 import PrintIcon from "@mui/icons-material/Print";
 import ShareIcon from "@mui/icons-material/Share";
-
+import key from "../Themes/ThemeAssets/key.png"
 import { PiGreaterThanThin } from "react-icons/pi";
-import whatapp from "../Themes/ThemeAssets/whatapp.png";
-import fb from "../Themes/ThemeAssets/fb.png";
-import Rating from "@mui/material/Rating";
 import enquery11 from "../Themes/ThemeAssets/enquery11.webp";
 import { FcRatings } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { TbLogin2 } from "react-icons/tb";
 import gmail from "../Themes/ThemeAssets/mail.png";
-import insta from "../Themes/ThemeAssets/insta.png";
-import link from "../Themes/ThemeAssets/link.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -1358,7 +1358,7 @@ const handleCloseSignup = () => {
               }}
             >
               <Grid sx={{ marginTop: "2%" }}>
-                <img src={gmail}></img>
+                <img src={gmail} ></img>
               </Grid>
               <Grid
                 sx={{
