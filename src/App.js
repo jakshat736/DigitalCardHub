@@ -122,8 +122,7 @@ import MultiLogIn from './Components/Digital Card Website/Digital Card User Inte
 import MultiHome from './Components/Digital Card Website/Digital Card User Interface/MultiLink.js/MultiHome';
 import Instaredirect from './Components/DemoPage/Instaredirect';
 import Theme12 from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/Theme12';
-import Theme13 from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/Theme13';
-import ThemeLogin from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/ThemeLogin';
+import MenuTheme from './Components/Digital Card Website/MenuUpdate/administrator/MenuTheme';
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -139,8 +138,6 @@ function App() {
 							<Routes>
 								{/* DIGITAL CARD WEBSITE ROUTER START */}
 								<Route element={<Theme12/>} path="/theme12" />
-								<Route element={<Theme13/>} path="/theme13" />
-								<Route element={<ThemeLogin/>} path="/loginpage" />
 								<Route element={<HomePage />} path="/home" />
 								<Route element={<Instaredirect />} path="/aradhyarana" />
 								<Route element={<Home />} path="/home1" />
@@ -228,6 +225,7 @@ function App() {
 
 								<Route path="/box" element={<Box />} />
 								<Route path="/menus/:menuId" element={<Menu />} />
+								<Route element={<MenuTheme/>} path="/menutheme" />
 								<Route path="/menuDashboard/:menuId" element={<MenuDashBoard />} />
 								<Route path="/addmenu" element={<AddMenu />} />
 								<Route path="/vieworder" element={<ViewOrder />} />
