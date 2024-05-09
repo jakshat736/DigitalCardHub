@@ -10,25 +10,26 @@ import {
   TextField,
 } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
+import groups from "../Themes/ThemeAssets/group.png"
 import * as React from "react";
 import { IoIosCreate } from "react-icons/io";
+import  WhatsApp1  from "../Themes/ThemeAssets/whatsapp1.png";
 import { MdFeedback } from "react-icons/md";
 import { PiSquaresFour } from "react-icons/pi";
 import { RxCrossCircled } from "react-icons/rx";
 import call from "../Themes/ThemeAssets/call.png";
+import msg from "../Themes/ThemeAssets/msg.webp"
 import digital from "../Themes/ThemeAssets/digitallogo.png";
 import Emaillogo from "../Themes/ThemeAssets/email1234.png";
 import eye from "../Themes/ThemeAssets/eye.png";
 import key from "../Themes/ThemeAssets/key.png";
 import menubar from "../Themes/ThemeAssets/menu bar.png";
-
 import CloseIcon from "@mui/icons-material/Close";
 import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
 import ShareIcon from "@mui/icons-material/Share";
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import { useState } from "react";
-
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -45,7 +46,6 @@ import insta from "../Themes/ThemeAssets/insta.png";
 import link from "../Themes/ThemeAssets/link.png";
 import gmail from "../Themes/ThemeAssets/mail.png";
 import whatapp from "../Themes/ThemeAssets/whatapp.png";
-
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import Dialog from "@mui/material/Dialog";
@@ -54,6 +54,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { makeStyles } from "@mui/styles";
 import { enqueueSnackbar } from "notistack";
+import { RiUserSharedFill } from "react-icons/ri";
 import { FaShopify } from "react-icons/fa";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
@@ -62,10 +63,11 @@ import { postData, serverURL } from "../../../../Services/NodeServices";
 import bannerone from "../Themes/ThemeAssets/banner1.png";
 import banner2 from "../Themes/ThemeAssets/banner2.png";
 
+
 const actions = [
   { icon: <FileCopyIcon />, name: "Copy" },
-  { icon: <CloudDownloadIcon />, name: "Save" },
-  { icon: <HelpIcon />, name: "Print" },
+  { icon: <RiUserSharedFill style={{fontSize:'20px'}}/>, name: "Shareno" },
+  { icon: <HelpIcon />, name: "Enquery" },
   { icon: <ShareIcon />, name: "Share" },
 ];
 
@@ -89,17 +91,131 @@ const useStyles = makeStyles({
   },
 });
 
+
 export default function Theme12({ data, products, gallery, ecommerce }) {
+
+// All states
+
   const matches = useMediaQuery("(max-width:600px)");
-  // const [homePage, setHomePage] = useState(true)
   const [about, setAbout] = useState(false);
   const [href, setHref] = useState("");
   const [smsHref, setSmsHref] = useState("");
   const [name, setName] = React.useState("");
   const [phoneNo, setPhoneNo] = React.useState("");
   const [query, setQuery] = React.useState("");
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const [openSignup, setOpenSignup] = useState(false);
+  const [openLogin, setOpenLogin] = useState(false);
+  const [openB, setOpenB] = React.useState(false);
+  const [openContact, setOpenContact] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
 
   console.log(data);
+
+// All handleClickFunctions
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleClickOpenButton = () => {
+    setOpenB(true);
+  };
+
+  const handleCloseButton = () => {
+    setOpenB(false);
+  };
+  
+  const handleClickOpenContact = () => {
+    setOpenContact(true);
+  };
+
+  const handleCloseContact = () => {
+    setOpenContact(false);
+  };
+
+  const handleClickIcon = (name) => {
+    if (name == "Share") {
+      handleClick();
+    } else if (name == "Enquery") {
+      handleClickOpenContact();
+    } else if (name == "Copy") {
+      handleSave();
+    } else {
+      handleClickOpenButton();
+    }
+  };
+
+  const handleClickOpenLogin = () => {
+    setOpenLogin(true);
+  };
+
+  React.useEffect(() => {
+    handleClickOpenLogin();
+  }, []);
+  const handleCloseLogin = () => {
+    setOpenLogin(false);
+  };
+
+  const handleClickSignup = () => {
+    setOpenSignup(true);
+  };
+  const handleCloseSignup = () => {
+    setOpenSignup(false);
+  };
+
+  const arrayBufferToBase64 = (buffer) => {
+    var binary = "";
+    var bytes = [].slice.call(new Uint8Array(buffer));
+    bytes.forEach((b) => (binary += String.fromCharCode(b)));
+    return window.btoa(binary);
+  };
+
+  const handleWhatsappUpdate = async () => {
+    var formData = new FormData();
+    formData.append("_id", data?._id);
+    formData.append("whatsappClickCount", data?.whatsappClickCount + 1);
+    var result = await postData(
+      "carddetails/updateWhatsappClickCount",
+      formData,
+      true
+    );
+    window.open(`https://wa.me/+91${data?.phoneNumber}?text=`);
+  };
+
+  const handleFbUpdate = async () => {
+    var formData = new FormData();
+    formData.append("_id", data?._id);
+    formData.append("fbClickCount", data?.fbClickCount + 1);
+    var result = await postData(
+      "carddetails/updateFbClickCount",
+      formData,
+      true
+    );
+    window.open(`https://www.facebook.com/${data?.fbLink}`);
+  };
+
+  const handleInstaUpdate = async () => {
+    var formData = new FormData();
+    formData.append("_id", data?._id);
+    formData.append("instaClickCount", data?.whatsappClickCount + 1);
+    var result = await postData(
+      "carddetails/updateInstaClickCount",
+      formData,
+      true
+    );
+    window.open(`https://www.instagram.com/${data?.igLink}`);
+  };
 
   const handleAbout = () => {
     setAbout(!about);
@@ -111,130 +227,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       }
     }
   };
-
-  var useStyle = useStyles();
-  var settings = {
-    infinite: true,
-    speed: 500,
-    dots: matches ? false : true,
-    slidesToShow: 1,
-    autoplay: "true",
-    autospeed: 1,
-    slidesToScroll: 1,
-    arrows: false,
-  };
-
-  var settingsreview = {
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    autoplay: "true",
-    autospeed: 1,
-    slidesToScroll: 1,
-    arrows: false,
-  };
-  var datas = [bannerone, banner2, bannerone];
-  const showSlider = () => {
-    return datas.map((items) => {
-      return (
-        <div>
-          <img src={items} style={{ width: "100%" }} />
-        </div>
-      );
-    });
-  };
-
-  var data1 = [
-    {
-      id: 0,
-      name: "Ankit Singh",
-      Comments:
-        "Supporting staff n well house keeping infotech solution give best software and website service in gwalior",
-      rating: 5,
-    },
-    {
-      id: 0,
-      name: "Harshit jain",
-      Comments:
-        "Supporting staff n well house keeping solution give best software",
-      rating: 5,
-    },
-    {
-      id: 0,
-      name: "Satyveer Singh",
-      Comments: "Supporting staff n well house keeping",
-      rating: 5,
-    },
-  ];
-  const showReview = () => {
-    return data1.map((item) => {
-      return (
-        <div
-          style={{
-            display: "center",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Grid
-            style={{
-              border: "1px solid #c8d6e5",
-              width: "100%",
-              marginTop: "3%",
-              height: 200,
-              padding: 20,
-              display: "flex",
-              flexDirection: "column",
-              borderRadius: 5,
-            }}
-          >
-            <Grid style={{ marginTop: "1%" }}>
-              <Grid
-                style={{
-                  marginTop: "2%",
-                  color: "#000",
-                  fontSize: "20px",
-                  fontWeight: 400,
-                }}
-              >
-                {item.name}
-              </Grid>
-            </Grid>
-            <Grid style={{ marginTop: "5%" }}>
-              <Rating
-                size="large"
-                style={{ fontSize: 30 }}
-                color="green"
-                name="simple-controlled"
-                value={4.5}
-              />
-            </Grid>
-            <Grid style={{ marginTop: "4%" }}>
-              <Grid
-                style={{
-                  marginTop: "2%",
-                  color: "#000",
-                  fontSize: "16px",
-                  fontWeight: 400,
-                }}
-              >
-                {item.Comments}
-              </Grid>
-            </Grid>
-          </Grid>
-        </div>
-      );
-    });
-  };
-
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
-
-  const [openDrawer, setOpenDrawer] = useState(false);
 
   const handleClick = async (title, url) => {
     try {
@@ -287,16 +279,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     handleContactUpdate();
   };
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
 
   const handleMessage = (e) => {
     setHref(
@@ -327,6 +309,398 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     }
   };
 
+// Dialog 
+
+const RatingDialog=()=>{
+  return( <Dialog
+    open={open}
+    onClose={handleClose}
+    aria-labelledby="alert-dialog-title"
+    aria-describedby="alert-dialog-description"
+  >
+    <DialogTitle   style={{
+        backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)",
+      }}> <IconButton
+              onClick={handleClose}
+              aria-label="close"
+              sx={{
+                position: "absolute",
+                right: 8,
+                top: 8,
+                color: "inherit",
+              }}
+            >
+              <CloseIcon />
+            </IconButton></DialogTitle>
+    <DialogContent
+      style={{
+        backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)",
+      }}
+      
+    >
+      <DialogContentText id="alert-dialog-description">
+        <Grid
+          style={{
+            border: "1px solid #95a5a6",
+            width: "100%",
+            marginTop: "3%",
+            height: 260,
+            padding: 20,
+            display: "flex",
+            flexDirection: "column",
+            borderRadius: 5,
+          }}
+        >
+          <Grid style={{ marginTop: "1%" }}>
+            <Grid
+              style={{
+                fontSize: 14,
+                color: "#000",
+                fontWeight: 400,
+              }}
+            >
+              Name
+            </Grid>
+            <TextField
+              id="standard-password-input"
+              type="Name"
+              autoComplete="Enter Your Name"
+              placeholder="Enter Your Name"
+              variant="standard"
+              size="small"
+              style={{
+                width: matches ? "60vw" : "25vw",
+                marginTop: "1%",
+                background: "#fff",
+                backgroundImage:
+                  "radial-gradient(#ecf0f1, #ecf0f1)",
+              }}
+            />
+          </Grid>
+          <Grid style={{ marginTop: "6%" }}>
+            <Grid
+              style={{
+                fontSize: 14,
+                color: "#000",
+                fontWeight: 400,
+              }}
+            >
+              Rate Us
+            </Grid>
+            <Rating
+              size="large"
+              style={{ fontSize: 30 }}
+              color="green"
+              name="simple-controlled"
+              value={5}
+            />
+          </Grid>
+          <Grid style={{ marginTop: "6%" }}>
+            <Grid
+              style={{
+                fontSize: 14,
+                color: "#000",
+                fontWeight: 400,
+              }}
+            >
+              Review
+            </Grid>
+            <TextField
+              placeholder="Help Us To Review"
+              size="small"
+              style={{
+                width: matches ? "60vw" : "25vw",
+                marginTop: "1%",
+                background: "#fff",
+                borderColor: "#000",
+                backgroundImage:
+                  "radial-gradient(#ecf0f1, #ecf0f1)",
+              }}
+            />
+          </Grid>
+        </Grid>
+      </DialogContentText>
+      <DialogContentText
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Button
+          style={{
+            borderColor: "#7ed6df",
+            width: "32%",
+            background: "#7ed6df",
+            color: "#000",
+            fontSize: "13px",
+            fontWeight: 400,
+            textTransform: "none",
+            borderRadius: 8,
+            display: "flex",
+            marginTop: "6%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          variant="outlined"
+        >
+          Submit
+        </Button>
+      </DialogContentText>
+    </DialogContent>
+    {/* <DialogActions
+      style={{ backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)" }}
+    >
+      <Button onClick={handleClose}>Close</Button>
+    </DialogActions> */}
+  </Dialog>)
+}
+
+
+const loginSignup=()=>{
+  return(  <Dialog
+    PaperProps={{
+      style: {
+        position: "fixed",
+        bottom: -38,
+        width: "100%",
+        // Dialog ko page ke bottom me set karein
+      },
+    }}
+    open={openSignup}
+    onClose={handleCloseSignup}
+    aria-labelledby="alert-dialog-title"
+    aria-describedby="alert-dialog-description"
+  >
+    <DialogTitle sx={{ background: "#ecf0f1" }} id="alert-dialog-title">
+      <IconButton
+        onClick={handleCloseSignup}
+        aria-label="close"
+        sx={{
+          position: "absolute",
+          right: 8,
+          top: 8,
+          color: "inherit",
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
+    </DialogTitle>
+    <DialogContent sx={{ background: "#ecf0f1" }}>
+      <Grid
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Grid
+          sx={{
+            fontSize: "28px",
+            fontWeight: 700,
+            color: "#000",
+            marginTop: "5%",
+          }}
+        >
+          Login/SignUp
+        </Grid>
+        <Grid sx={{ fontSize: 16, color: "#636e72", marginTop: "2%" }}>
+          Activate your Profile here !
+        </Grid>
+      </Grid>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "6%",
+        }}
+      >
+        <div
+          style={{
+            border: "1px solid #b2bec3",
+            background: "#dfe6e9",
+            borderRadius: 6,
+            width: "90%",
+          }}
+        >
+          <IconButton sx={{ p: "10px" }} aria-label="menu">
+            <img src={Emaillogo} width={20}></img>
+          </IconButton>
+          <InputBase
+            sx={{ ml: 1, flex: 1 }}
+            placeholder="Email Address or number"
+            inputProps={{ "aria-label": "search google maps" }}
+          />
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "6%",
+        }}
+      >
+        <div
+          style={{
+            border: "1px solid #b2bec3",
+            background: "#dfe6e9",
+            borderRadius: 6,
+            width: "90%",
+          }}
+        >
+          <IconButton sx={{ p: "10px" }} aria-label="menu">
+            <img src={key} width={20}></img>
+          </IconButton>
+          <InputBase
+            sx={{ width: "52%" }}
+            placeholder="Enter OTP"
+            inputProps={{ "aria-label": "search google maps" }}
+          />
+          <IconButton type="button" aria-label="search">
+            <div
+              style={{
+                border: "1px solid #000",
+                width: 70,
+                backgroundColor: "#000",
+                borderRadius: 2,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: 7,
+                color: "#fff",
+                fontSize: 10,
+                borderRadius: 8,
+              }}
+            >
+              Get OTP
+            </div>
+          </IconButton>
+        </div>
+      </div>
+      <Grid
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "7%",
+        }}
+      >
+        <Grid
+          sx={{
+            border: "1px solid #000",
+            width: "90%",
+            backgroundColor: "#000",
+            borderRadius: 2,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 1.3,
+            color: "#fff",
+          }}
+        >
+          <Grid sx={{ fontsize: "10px", fontWeight: 700 }}>LOGIN</Grid>
+        </Grid>
+      </Grid>
+    </DialogContent>
+  </Dialog>)
+}
+
+
+
+const loginBussiness=()=>{
+  return( <Dialog
+    PaperProps={{
+      style: {
+        position: "fixed",
+        bottom: -38,
+        width: "100%",
+        // Dialog ko page ke bottom me set karein
+      },
+    }}
+    open={openLogin}
+    onClose={handleCloseLogin}
+    aria-labelledby="alert-dialog-title"
+    aria-describedby="alert-dialog-description"
+  >
+    <DialogTitle
+      style={{ fontSize: 16, background: "#ecf0f1" }}
+      id="alert-dialog-title"
+    >
+      {"Login to Find the Bussiness Profile"}
+      <IconButton
+        onClick={handleCloseLogin}
+        aria-label="close"
+        sx={{
+          position: "absolute",
+          right: 8,
+          top: 8,
+          color: "inherit",
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
+    </DialogTitle>
+    <DialogContent style={{ background: "#ecf0f1" }}>
+      <DialogContentText id="alert-dialog-description">
+        <DialogContentText>
+          <TextField
+            required
+            margin="dense"
+            label="Your Name"
+            type="email"
+            fullWidth
+            variant="standard"
+            onChange={(e) => setName(e.target.value)}
+          />
+        </DialogContentText>
+        <TextField
+          required
+          margin="dense"
+          fullWidth
+          label="Enter Mobile Number"
+          type="email"
+          variant="standard"
+          onChange={(e) => setPhoneNo(e.target.value)}
+        />
+      </DialogContentText>
+      <DialogContentText
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Button
+          style={{
+            borderColor: "#7ed6df",
+            width: "28%",
+            background: "#7ed6df",
+            color: "#000",
+            fontSize: "13px",
+            fontWeight: 400,
+            textTransform: "none",
+            borderRadius: 20,
+            display: "flex",
+            marginTop: "6%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          variant="outlined"
+          onClick={() => handleSubmit(data?.customerId)}
+        >
+          Submit
+        </Button>
+      </DialogContentText>
+    </DialogContent>
+  </Dialog>
+)
+}
+
+
   const enquiryDialog = () => {
     return (
       <Dialog
@@ -334,24 +708,92 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
         open={openB}
         onClose={handleCloseButton}
       >
-        <DialogTitle style={{ background: "#ecf0f1" }}>ENQUIRY NOW</DialogTitle>
+        <DialogTitle style={{ background: "#ecf0f1" }}>ENQUIRY NOW
+        <IconButton
+              onClick={handleCloseButton}
+              aria-label="close"
+              sx={{
+                position: "absolute",
+                right: 8,
+                top: 8,
+                color: "inherit",
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+        </DialogTitle>
         <DialogContent style={{ background: "#ecf0f1" }}>
           <Stack>
             <TextField
               required
               margin="dense"
               label="Enter Number"
-              style={{ width: matches ? "60vw" : "20vw" }}
+              style={{ width: matches ? "66vw" : "20vw" }}
               variant="standard"
               onChange={(e) => handleMessage(e)}
             />
             <Stack direction="row" spacing={2}>
-              <Button sx={{ color: "green" }} href={href}>
+              {/* <Button sx={{ color: "green" }} href={href}>
                 Send on WhatsApp
               </Button>
               <Button sx={{ color: "blue" }} href={smsHref}>
                 Send on Sms
-              </Button>
+              </Button> */}
+              <Button
+              href={href}
+              style={{
+                borderColor: "#D0D0D0 ",
+                width: "18%",
+                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                color: "#ffff",
+                fontSize: "13px",
+                fontWeight: 400,
+                textTransform: "none",
+                borderRadius: 50,
+                display: "flex",
+                marginTop: "4%",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              variant="outlined"
+            >
+              <Grid
+                sx={{display: "flex",
+                alignItems: "center",
+                justifyContent: "center",}}
+                onClick={() => handleSubmit(data?.customerId)}
+              >
+                
+               <img src={WhatsApp1} style={{width:'120%'}}></img>
+
+              </Grid>
+            </Button>
+            <Button
+             href={smsHref}
+              style={{
+                borderColor: "#D0D0D0 ",
+                width: "18%",
+                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                color: "#fff",
+                fontSize: "13px",
+                fontWeight: 400,
+                textTransform: "none",
+                borderRadius: 50,
+                display: "flex",
+                marginTop: "4%",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              variant="outlined"
+            >
+              <Grid sx={{display: "flex",
+                alignItems: "center",
+                justifyContent: "center",}}
+                onClick={() => handleSubmit(data?.customerId)}
+              >
+                <img src={msg} style={{width:'120%'}}></img>
+              </Grid>
+            </Button>
             </Stack>
           </Stack>
         </DialogContent>
@@ -366,7 +808,20 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
         open={openContact}
         onClose={handleCloseContact}
       >
-        <DialogTitle style={{ background: "#ecf0f1" }}>Connect</DialogTitle>
+        <DialogTitle style={{ background: "#ecf0f1" }}>Connect
+        <IconButton
+              onClick={handleCloseContact}
+              aria-label="close"
+              sx={{
+                position: "absolute",
+                right: 8,
+                top: 8,
+                color: "inherit",
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+        </DialogTitle>
         <DialogContent style={{ background: "#ecf0f1" }}>
           <DialogContentText>
             Share Your Query With {data?.fullname}
@@ -412,14 +867,14 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           >
             <Button
               style={{
-                borderColor: "#39FF14",
+                borderColor: "#000",
                 width: "28%",
-                background: "#39FF14",
-                color: "#000",
+                background: "#000",
+                color: "#fff",
                 fontSize: "13px",
                 fontWeight: 400,
                 textTransform: "none",
-                borderRadius: 20,
+                borderRadius: 6,
                 display: "flex",
                 marginTop: "4%",
                 alignItems: "center",
@@ -436,15 +891,22 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             </Button>
           </DialogContentText>
         </DialogContent>
-        <DialogActions style={{ background: "#ecf0f1" }}>
-          <Button onClick={handleCloseContact}>
-            <RxCrossCircled style={{ fontSize: "24px", color: "#000" }} />
-          </Button>
-        </DialogActions>
       </Dialog>
     );
   };
 
+  // Menuslider
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+  
   const list = (anchor) => (
     <Box
       sx={{
@@ -559,112 +1021,131 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     </Box>
   );
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
+  // Sliders
+  
+  var data1 = [
+    {
+      id: 0,
+      name: "Ankit Singh",
+      Comments:
+        "Supporting staff n well house keeping infotech solution give best software and website service in gwalior",
+      rating: 5,
+    },
+    {
+      id: 0,
+      name: "Harshit jain",
+      Comments:
+        "Supporting staff n well house keeping solution give best software",
+      rating: 5,
+    },
+    {
+      id: 0,
+      name: "Satyveer Singh",
+      Comments: "Supporting staff n well house keeping",
+      rating: 5,
+    },
+  ];
+  const showReview = () => {
+    return data1.map((item) => {
+      return (
+        <div
+          style={{
+            display: "center",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Grid
+            style={{
+              border: "1px solid #c8d6e5",
+              width: "100%",
+              marginTop: "3%",
+              height: 200,
+              padding: 20,
+              display: "flex",
+              flexDirection: "column",
+              borderRadius: 5,
+            }}
+          >
+            <Grid style={{ marginTop: "1%" }}>
+              <Grid
+                style={{
+                  marginTop: "2%",
+                  color: "#000",
+                  fontSize: "20px",
+                  fontWeight: 400,
+                }}
+              >
+                {item.name}
+              </Grid>
+            </Grid>
+            <Grid style={{ marginTop: "5%" }}>
+              <Rating
+                size="large"
+                style={{ fontSize: 30 }}
+                color="green"
+                name="simple-controlled"
+                value={4.5}
+              />
+            </Grid>
+            <Grid style={{ marginTop: "4%" }}>
+              <Grid
+                style={{
+                  marginTop: "2%",
+                  color: "#000",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
+              >
+                {item.Comments}
+              </Grid>
+            </Grid>
+          </Grid>
+        </div>
+      );
+    });
   };
 
-  const handleClose = () => {
-    setOpen(false);
+
+  // makesStyle
+
+
+  var useStyle = useStyles();
+  var settings = {
+    infinite: true,
+    speed: 500,
+    dots: matches ? false : true,
+    slidesToShow: 1,
+    autoplay: "true",
+    autospeed: 1,
+    slidesToScroll: 1,
+    arrows: false,
   };
 
-  const [openB, setOpenB] = React.useState(false);
-
-  const handleClickOpenButton = () => {
-    setOpenB(true);
+  var settingsreview = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    autoplay: "true",
+    autospeed: 1,
+    slidesToScroll: 1,
+    arrows: false,
   };
 
-  const handleCloseButton = () => {
-    setOpenB(false);
+
+
+  var datas = [bannerone, banner2, bannerone];
+  const showSlider = () => {
+    return datas.map((items) => {
+      return (
+        <div>
+          <img src={items} style={{ width: "100%" }} />
+        </div>
+      );
+    });
   };
 
-  const [openContact, setOpenContact] = React.useState(false);
 
-  const handleClickOpenContact = () => {
-    setOpenContact(true);
-  };
-
-  const handleCloseContact = () => {
-    setOpenContact(false);
-  };
-
-  const handleClickIcon = (name) => {
-    if (name == "Share") {
-      handleClick();
-    } else if (name == "Print") {
-      handleClickOpenContact();
-    } else if (name == "Copy") {
-      handleSave();
-    } else {
-      handleClickOpenButton();
-    }
-  };
-
-  const [openLogin, setOpenLogin] = useState(false);
-
-  const handleClickOpenLogin = () => {
-    setOpenLogin(true);
-  };
-
-  React.useEffect(() => {
-    handleClickOpenLogin();
-  }, []);
-  const handleCloseLogin = () => {
-    setOpenLogin(false);
-  };
-
-  const [openSignup, setOpenSignup] = useState(false);
-
-  const handleClickSignup = () => {
-    setOpenSignup(true);
-  };
-  const handleCloseSignup = () => {
-    setOpenSignup(false);
-  };
-
-  const arrayBufferToBase64 = (buffer) => {
-    var binary = "";
-    var bytes = [].slice.call(new Uint8Array(buffer));
-    bytes.forEach((b) => (binary += String.fromCharCode(b)));
-    return window.btoa(binary);
-  };
-
-  const handleWhatsappUpdate = async () => {
-    var formData = new FormData();
-    formData.append("_id", data?._id);
-    formData.append("whatsappClickCount", data?.whatsappClickCount + 1);
-    var result = await postData(
-      "carddetails/updateWhatsappClickCount",
-      formData,
-      true
-    );
-    window.open(`https://wa.me/+91${data?.phoneNumber}?text=`);
-  };
-
-  const handleFbUpdate = async () => {
-    var formData = new FormData();
-    formData.append("_id", data?._id);
-    formData.append("fbClickCount", data?.fbClickCount + 1);
-    var result = await postData(
-      "carddetails/updateFbClickCount",
-      formData,
-      true
-    );
-    window.open(`https://www.facebook.com/${data?.fbLink}`);
-  };
-
-  const handleInstaUpdate = async () => {
-    var formData = new FormData();
-    formData.append("_id", data?._id);
-    formData.append("instaClickCount", data?.whatsappClickCount + 1);
-    var result = await postData(
-      "carddetails/updateInstaClickCount",
-      formData,
-      true
-    );
-    window.open(`https://www.instagram.com/${data?.igLink}`);
-  };
 
   return (
     <Grid
@@ -778,10 +1259,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             </Grid>
             <Grid
               sx={{
-                border: "1px solid #d2dae2",
+                border: "1px solid #2d3436",
                 width: 100,
                 height: 30,
-                backgroundColor: "#4b4b4b",
+                backgroundImage: "radial-gradient(#636e72,#2d3436 )",
                 borderRadius: 20,
                 display: "flex",
                 justifyContent: "center",
@@ -804,7 +1285,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           xs={12}
           sx={{
             display: "flex",
-            backgroundImage: "radial-gradient(#353b48, #000)",
+           background:'#fff',
             height: "auto",
             flexDirection: "column",
           }}
@@ -816,6 +1297,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               position: "relative",
               background: "#fff",
               borderRadius: "15px 15px 0px  0px",
+              marginTop:'-5%'
             }}
           >
             <Grid
@@ -948,241 +1430,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           </Grid>
         </Grid>
 
-        <Dialog
-          PaperProps={{
-            style: {
-              position: "fixed",
-              bottom: -38,
-              width: "100%",
-              // Dialog ko page ke bottom me set karein
-            },
-          }}
-          open={openLogin}
-          onClose={handleCloseLogin}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle
-            style={{ fontSize: 16, background: "#ecf0f1" }}
-            id="alert-dialog-title"
-          >
-            {"Login to Find the Bussiness Profile"}
-            <IconButton
-              onClick={handleCloseLogin}
-              aria-label="close"
-              sx={{
-                position: "absolute",
-                right: 8,
-                top: 8,
-                color: "inherit",
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-          </DialogTitle>
-          <DialogContent style={{ background: "#ecf0f1" }}>
-            <DialogContentText id="alert-dialog-description">
-              <DialogContentText>
-                <TextField
-                  required
-                  margin="dense"
-                  label="Your Name"
-                  type="email"
-                  fullWidth
-                  variant="standard"
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </DialogContentText>
-              <TextField
-                required
-                margin="dense"
-                fullWidth
-                label="Enter Mobile Number"
-                type="email"
-                variant="standard"
-                onChange={(e) => setPhoneNo(e.target.value)}
-              />
-            </DialogContentText>
-            <DialogContentText
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Button
-                style={{
-                  borderColor: "#7ed6df",
-                  width: "28%",
-                  background: "#7ed6df",
-                  color: "#000",
-                  fontSize: "13px",
-                  fontWeight: 400,
-                  textTransform: "none",
-                  borderRadius: 20,
-                  display: "flex",
-                  marginTop: "6%",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                variant="outlined"
-                onClick={() => handleSubmit(data?.customerId)}
-              >
-                Submit
-              </Button>
-            </DialogContentText>
-          </DialogContent>
-        </Dialog>
-
-        <Dialog
-          PaperProps={{
-            style: {
-              position: "fixed",
-              bottom: -38,
-              width: "100%",
-              // Dialog ko page ke bottom me set karein
-            },
-          }}
-          open={openSignup}
-          onClose={handleCloseSignup}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle sx={{ background: "#ecf0f1" }} id="alert-dialog-title">
-            <IconButton
-              onClick={handleCloseSignup}
-              aria-label="close"
-              sx={{
-                position: "absolute",
-                right: 8,
-                top: 8,
-                color: "inherit",
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-          </DialogTitle>
-          <DialogContent sx={{ background: "#ecf0f1" }}>
-            <Grid
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Grid
-                sx={{
-                  fontSize: "28px",
-                  fontWeight: 700,
-                  color: "#000",
-                  marginTop: "5%",
-                }}
-              >
-                Login/SignUp
-              </Grid>
-              <Grid sx={{ fontSize: 16, color: "#636e72", marginTop: "2%" }}>
-                Activate your Profile here !
-              </Grid>
-            </Grid>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: "6%",
-              }}
-            >
-              <div
-                style={{
-                  border: "1px solid #b2bec3",
-                  background: "#dfe6e9",
-                  borderRadius: 6,
-                  width: "90%",
-                }}
-              >
-                <IconButton sx={{ p: "10px" }} aria-label="menu">
-                  <img src={Emaillogo} width={20}></img>
-                </IconButton>
-                <InputBase
-                  sx={{ ml: 1, flex: 1 }}
-                  placeholder="Email Address or number"
-                  inputProps={{ "aria-label": "search google maps" }}
-                />
-              </div>
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: "6%",
-              }}
-            >
-              <div
-                style={{
-                  border: "1px solid #b2bec3",
-                  background: "#dfe6e9",
-                  borderRadius: 6,
-                  width: "90%",
-                }}
-              >
-                <IconButton sx={{ p: "10px" }} aria-label="menu">
-                  <img src={key} width={20}></img>
-                </IconButton>
-                <InputBase
-                  sx={{ width: "52%" }}
-                  placeholder="Enter OTP"
-                  inputProps={{ "aria-label": "search google maps" }}
-                />
-                <IconButton type="button" aria-label="search">
-                  <div
-                    style={{
-                      border: "1px solid #000",
-                      width: 70,
-                      backgroundColor: "#000",
-                      borderRadius: 2,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      padding: 7,
-                      color: "#fff",
-                      fontSize: 10,
-                      borderRadius: 8,
-                    }}
-                  >
-                    Get OTP
-                  </div>
-                </IconButton>
-              </div>
-            </div>
-            <Grid
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: "7%",
-              }}
-            >
-              <Grid
-                sx={{
-                  border: "1px solid #000",
-                  width: "90%",
-                  backgroundColor: "#000",
-                  borderRadius: 2,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: 1.3,
-                  color: "#fff",
-                }}
-              >
-                <Grid sx={{ fontsize: "10px", fontWeight: 700 }}>LOGIN</Grid>
-              </Grid>
-            </Grid>
-          </DialogContent>
-        </Dialog>
 
         {about ? (
           <>
@@ -1265,34 +1512,42 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "center",
-              gap: 22,
+              alignItems:'center',
+              gap: 18,
               marginTop: "2%",
             }}
           >
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                borderRadius: 25,
-                display: data?.phoneNumber == null ? "none" : "flex",
-                alignItems: "center",
-                marginTop: "3%",
-                justifyContent: "center",
-                padding: 0.2,
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                window.open(`tel:${data?.phoneNumber}`);
-              }}
-            >
-              <Grid sx={{ marginTop: "2%" }}>
+
+          <Button
+                sx={{
+                  borderColor: "#bdc3c7",
+                  border:'#bdc3c7',
+                  width: 230,
+                  height:36,
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  color: "#2c3e50",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  padding: 2.6,
+                  display: data?.phoneNumber == null ? "none" : "flex",
+                  justifyContent:"flex-start",
+                  borderRadius: 20,
+                  marginTop: "3%",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
+                
+
+                onClick={() => {
+                  window.open(`tel:${data?.phoneNumber}`);
+                }}
+              >
+                <Grid sx={{marginTop:'3%',}}>
                 <img src={call} />
               </Grid>
               <Grid
                 sx={{
-                  marginLeft: matches ? "10%" : "18%",
+                  marginLeft: 1.9,
                   color: "#000",
                   fontWeight: 400,
                   fontSize: matches ? 17 : 20,
@@ -1300,75 +1555,86 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               >
                 Call
               </Grid>
-            </Grid>
+              </Button>
 
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                borderRadius: 25,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                marginTop: "3%",
-                padding: 0.2,
-                cursor: "pointer",
-              }}
-              onClick={() => handleWhatsappUpdate()}
-            >
-              <Grid
-                sx={{ marginTop: "2%", marginLeft: matches ? "5%" : "10%" }}
+          
+
+              <Button
+                sx={{
+                  borderColor: "#bdc3c7",
+                  width: 230,
+                  height:36,
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  color: "#2c3e50",
+                  justifyContent:"flex-start",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  padding: 2.6,
+                  display:"flex",
+                  borderRadius: 20,
+                  marginTop: "3%",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
+               
+
+                onClick={() => handleWhatsappUpdate()}
               >
+                <Grid sx={{marginTop:'5%'}} >
                 <img src={whatapp}></img>
               </Grid>
               <Grid
                 sx={{
-                  marginLeft: matches ? "9%" : "18%",
+                  marginLeft: 1.7,
                   color: "#000",
                   fontWeight: 400,
                   fontSize: matches ? 17 : 20,
                 }}
               >
-                Whatsapp
+              Whatsapp
               </Grid>
-            </Grid>
-          </Grid>
+              </Button>
+          </Grid> 
 
           <Grid
             style={{
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              gap: 22,
+              gap: 18,
               marginTop: "3%",
-            }}
-          >
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                borderRadius: 25,
-                display: data?.Email == "" ? "none" : "flex",
-                alignItems: "center",
-                padding: 0.3,
-                marginTop: "3%",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                window.open(
-                  `mailto:${data?.Email}?body=Query%20About%20Business`
-                );
-              }}
-            >
-              <Grid sx={{ marginTop: "2%" }}>
+            }}>
+         <Button
+          sx={{
+                  borderColor: "#bdc3c7",
+                  width: 230,
+                  height:36,
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  color: "#2c3e50",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  padding: 2.6,
+                  justifyContent:"flex-start",
+                  display: data?.phoneNumber == null ? "none" : "flex",
+                  borderRadius: 20,
+                  marginTop: "3%",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
+               
+
+                onClick={() => {
+                  window.open(
+                    `mailto:${data?.Email}?body=Query%20About%20Business`
+                  );
+                }}
+              >
+                <Grid sx={{marginTop:'5%',}}>
                 <img src={gmail}></img>
               </Grid>
               <Grid
                 sx={{
-                  marginLeft: matches ? "10%" : "18%",
+                  marginLeft: 1.9,
                   color: "#000",
                   fontWeight: 400,
                   fontSize: matches ? 17 : 20,
@@ -1376,39 +1642,47 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               >
                 Email
               </Grid>
-            </Grid>
+              </Button>
 
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                borderRadius: 25,
-                display: data?.LinkdnLink == "" ? "none" : "flex",
-                alignItems: "center",
+          
 
-                marginTop: "3%",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                window.open(`https://www.linkedin.com/in/${data?.LinkdnLink}`);
-              }}
-            >
-              <Grid sx={{ marginTop: "2%" }}>
+              <Button
+                sx={{
+                  borderColor: "#bdc3c7",
+                  width: 230,
+                  height:36,
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  color: "#2c3e50",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  padding: 2.6,
+                  justifyContent:"flex-start",
+                  display: data?.phoneNumber == null ? "none" : "flex",
+                  borderRadius: 20,
+                  marginTop: "3%",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
+               
+
+                onClick={() => {
+                  window.open(`https://www.linkedin.com/in/${data?.LinkdnLink}`);
+                }}
+              >
+                <Grid sx={{marginTop:'5%'}} >
                 <img src={link}></img>
               </Grid>
               <Grid
                 sx={{
-                  marginLeft: matches ? "10%" : "18%",
+                  marginLeft: 1.9,
                   color: "#000",
                   fontWeight: 400,
                   fontSize: matches ? 17 : 20,
                 }}
               >
-                Linkedin
+              Linkin
               </Grid>
-            </Grid>
+              </Button>
           </Grid>
 
           <Grid
@@ -1416,33 +1690,38 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              gap: 22,
+              gap: 18,
               marginTop: "3%",
             }}
           >
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                borderRadius: 25,
-                display: data?.fbLink == "" ? "none" : "flex",
-                alignItems: "center",
-                padding: 0.8,
-                marginTop: "3%",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-              onClick={() => handleFbUpdate()}
-            >
-              <Grid
-                sx={{ marginTop: "2%", marginLeft: matches ? "5%" : "10%" }}
+
+         <Button
+          sx={{
+                  borderColor: "#bdc3c7",
+                  width: 230,
+                  height:36,
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  color: "#2c3e50",
+                  fontWeight: "bold",
+                  justifyContent:"flex-start",
+                  textTransform: "none",
+                  padding: 2.6,
+                  display: data?.phoneNumber == null ? "none" : "flex",
+                  borderRadius: 20,
+                  marginTop: "3%",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
+               
+
+                onClick={() => handleFbUpdate()}
               >
+                <Grid sx={{marginTop:'6%'}}>
                 <img src={fb}></img>
               </Grid>
               <Grid
                 sx={{
-                  marginLeft: matches ? "9%" : "18%",
+                  marginLeft: 1.9,
                   color: "#000",
                   fontWeight: 400,
                   fontSize: matches ? 17 : 20,
@@ -1450,169 +1729,89 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               >
                 Facebook
               </Grid>
-            </Grid>
+              </Button>
 
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                borderRadius: 25,
-                display: data?.igLink == "" ? "none" : "flex",
-                alignItems: "center",
-                marginTop: "3%",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-              onClick={() => handleInstaUpdate()}
-            >
-              <Grid
-                sx={{ marginTop: "2%", marginLeft: matches ? "5%" : "10%" }}
+          
+
+              <Button
+                sx={{
+                  borderColor: "#bdc3c7",
+                  width: 230,
+                  height:36,
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  color: "#2c3e50",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  padding: 2.6,
+                  justifyContent:"flex-start",
+                  display: data?.phoneNumber == null ? "none" : "flex",
+                  borderRadius: 20,
+                  marginTop: "3%",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
+               
+
+                onClick={() => handleInstaUpdate()}
               >
+                <Grid sx={{marginTop:'6%'}} >
                 <img src={insta}></img>
               </Grid>
               <Grid
                 sx={{
-                  marginLeft: matches ? "9%" : "18%",
+                  marginLeft: 1.9,
                   color: "#000",
                   fontWeight: 400,
                   fontSize: matches ? 17 : 20,
                 }}
               >
-                Instagram
+              Instagram
               </Grid>
+              </Button>
             </Grid>
-          </Grid>
 
           <Grid
             style={{
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              gap: 22,
-              marginTop: "3%",
-            }}
-          >
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                borderRadius: 25,
-                display: data?.fbLink == "" ? "none" : "flex",
-                alignItems: "center",
-                padding: 0.8,
-                marginTop: "3%",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-              onClick={() => handleFbUpdate()}
-            >
-              <Grid
-                sx={{ marginTop: "2%", marginLeft: matches ? "5%" : "10%" }}
-              >
-                <img src={fb}></img>
-              </Grid>
-              <Grid
-                sx={{
-                  marginLeft: matches ? "9%" : "18%",
-                  color: "#000",
-                  fontWeight: 400,
-                  fontSize: matches ? 17 : 20,
-                }}
-              >
-                Facebook
-              </Grid>
-            </Grid>
-
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                borderRadius: 25,
-                display: data?.igLink == "" ? "none" : "flex",
-                alignItems: "center",
-                marginTop: "3%",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-              onClick={() => handleInstaUpdate()}
-            >
-              <Grid
-                sx={{ marginTop: "2%", marginLeft: matches ? "5%" : "10%" }}
-              >
-                <img src={insta}></img>
-              </Grid>
-              <Grid
-                sx={{
-                  marginLeft: matches ? "9%" : "18%",
-                  color: "#000",
-                  fontWeight: 400,
-                  fontSize: matches ? 17 : 20,
-                }}
-              >
-                Instagram
-              </Grid>
-            </Grid>
-          </Grid>
-
-          <Grid
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              gap: 22,
               marginTop: "4%",
             }}
           >
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                backgroundImage: "radial-gradient(#fff,#7f8c8d )",
-                borderRadius: 25,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: 0.8,
-                marginTop: "3%",
-              }}
-            >
+             <Button
+                sx={{
+                  borderColor: "#bdc3c7",
+                  width: 200,
+                  height:36,
+                  backgroundImage: "radial-gradient(#f5f6fa,#b2bec3 )",
+                  color: "#2c3e50",
+                  justifyContent:"flex-start",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  padding: 2.6,
+                  display:"flex",
+                  borderRadius: 20,
+                  marginTop: "3%",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
+               
+              >
+                <Grid sx={{marginTop:'5%'}} >
+                <img src={groups}></img>
+              </Grid>
               <Grid
                 sx={{
+                  marginLeft: .6,
                   color: "#000",
                   fontWeight: 400,
                   fontSize: matches ? 17 : 20,
                 }}
               >
-                Add To Contacts
+              Add To Contact
               </Grid>
-            </Grid>
-
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                backgroundImage: "radial-gradient(#fff,#7f8c8d  )",
-                borderRadius: 25,
-                display: "flex",
-                alignItems: "center",
-                padding: 0.8,
-                marginTop: "3%",
-                justifyContent: "center",
-              }}
-            >
-              <Grid
-                sx={{
-                  color: "#000",
-                  fontWeight: 400,
-                  fontSize: matches ? 17 : 20,
-                }}
-              >
-                Add to Contacts
-              </Grid>
-            </Grid>
+              </Button>
+          
           </Grid>
 
           <Grid
@@ -1692,25 +1891,30 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           </Grid>
           <div id="work"></div>
           <Grid style={{ display: "flex" }}>
-            <Grid
-              sx={{
-                border: "1px solid #000",
-                width: 120,
-                backgroundColor: "#000",
-                borderRadius: 2,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: 1,
+          <Button
+              style={{
+                borderColor: "#000",
+                width: "32%",
+                background: "#000",
                 color: "#fff",
-                marginTop: "3%",
-                marginLeft: "6%",
+                fontSize: "13px",
+                fontWeight: 400,
+                marginLeft:'7%',
+                textTransform: "none",
+                borderRadius: 6,
+                display: "flex",
+                marginTop: "4%",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              <Grid sx={{ fontsize: "10px", fontWeight: 500 }}>
-                Enquiry Now
+              <Grid
+                style={{ marginLeft: "4%",color:12 }}
+                
+              >
+             Enquery Now
               </Grid>
-            </Grid>
+            </Button>
             <Grid
               style={{
                 marginLeft: "3%",
@@ -1825,9 +2029,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               <Button
                 onClick={handleClickOpen}
                 style={{
-                  borderColor: "#39FF14",
+                  borderColor: "#7ed6df",
                   width: matches ? "50%" : "35%",
-                  backgroundImage: "radial-gradient(#39FF14, #39FF14)",
+                  backgroundImage: "radial-gradient(#7ed6df, #7ed6df)",
                   color: "#2c3e50",
                   fontWeight: "bold",
                   textTransform: "none",
@@ -1841,113 +2045,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               >
                 Give Us Review
               </Button>
-              <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-              >
-                <DialogContent
-                  style={{
-                    backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)",
-                  }}
-                >
-                  <DialogContentText id="alert-dialog-description">
-                    <Grid
-                      style={{
-                        border: "1px solid #95a5a6",
-                        width: "100%",
-                        marginTop: "3%",
-                        height: 260,
-                        padding: 20,
-                        display: "flex",
-                        flexDirection: "column",
-                        borderRadius: 5,
-                      }}
-                    >
-                      <Grid style={{ marginTop: "1%" }}>
-                        <Grid
-                          style={{
-                            fontSize: 14,
-                            color: "#000",
-                            fontWeight: 400,
-                          }}
-                        >
-                          Name
-                        </Grid>
-                        <TextField
-                          id="standard-password-input"
-                          type="Name"
-                          autoComplete="Enter Your Name"
-                          placeholder="Enter Your Name"
-                          variant="standard"
-                          size="small"
-                          style={{
-                            width: matches ? "60vw" : "25vw",
-                            marginTop: "1%",
-                            background: "#fff",
-                            backgroundImage:
-                              "radial-gradient(#ecf0f1, #ecf0f1)",
-                          }}
-                        />
-                      </Grid>
-                      <Grid style={{ marginTop: "6%" }}>
-                        <Grid
-                          style={{
-                            fontSize: 14,
-                            color: "#000",
-                            fontWeight: 400,
-                          }}
-                        >
-                          Rate Us
-                        </Grid>
-                        <Rating
-                          size="large"
-                          style={{ fontSize: 30 }}
-                          color="green"
-                          name="simple-controlled"
-                          value={5}
-                        />
-                      </Grid>
-                      <Grid style={{ marginTop: "6%" }}>
-                        <Grid
-                          style={{
-                            fontSize: 14,
-                            color: "#000",
-                            fontWeight: 400,
-                          }}
-                        >
-                          Review
-                        </Grid>
-                        <TextField
-                          placeholder="Help Us To Review"
-                          size="small"
-                          style={{
-                            width: matches ? "60vw" : "25vw",
-                            marginTop: "1%",
-                            background: "#fff",
-                            borderColor: "#000",
-                            backgroundImage:
-                              "radial-gradient(#ecf0f1, #ecf0f1)",
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions style={{ background: "#ecf0f1" }}>
-                  <Button onClick={handleClose}>
-                    <RxCrossCircled
-                      style={{ fontSize: "24px", color: "#000" }}
-                    />
-                  </Button>
-                </DialogActions>
-                {/* <DialogActions
-                  style={{ backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)" }}
-                >
-                  <Button onClick={handleClose}>Close</Button>
-                </DialogActions> */}
-              </Dialog>
             </React.Fragment>
           </Grid>
           <Grid
@@ -2029,6 +2126,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       </Grid>
       {enquiryDialog()}
       {EnquiryFormDialog()}
+      {loginBussiness()}
+      {loginSignup()}
+      {RatingDialog()}
     </Grid>
   );
 }

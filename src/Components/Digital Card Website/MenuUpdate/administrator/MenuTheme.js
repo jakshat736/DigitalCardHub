@@ -7,8 +7,10 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
+import digital from "../assets/digitallogo.png";
 import ListItemIcon from '@mui/material/ListItemIcon';
 import food from "../assets/food.png"
+import groups from "../assets/group.png"
 import { IoMdAdd } from "react-icons/io";
 import { MdFeedback } from "react-icons/md";
 import { FaShopify } from "react-icons/fa";
@@ -30,6 +32,7 @@ import {
   } from "@mui/icons-material";
 import { IoIosCreate } from "react-icons/io";
 import Rating from "@mui/material/Rating";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import gmail from "../assets/mail.png";
 import call from "../assets/call.png"
 import whatapp from "../assets/whatapp.png";
@@ -41,7 +44,7 @@ import link from "../assets/link.png";;
 
 export default function MenuTheme()
 {
- 
+  const matches = useMediaQuery("(max-width:600px)");
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -339,74 +342,90 @@ export default function MenuTheme()
                 }}
               />
             </Grid>
-
             <Grid
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "center",
+              alignItems:'center',
               gap: 18,
-              marginTop: "5%",
+              marginTop: "2%",
             }}
           >
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                height:36,
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                borderRadius: 25,
-                display: "flex",
-                alignItems: "center",
-                marginTop: "3%",
-              
-              }}
-            >
-              <Grid sx={{ marginTop: "2%",marginLeft:'15%' }}>
-                <img src={call}></img>
+
+          <Button
+                sx={{
+                  borderColor: "#bdc3c7",
+                  border:'#bdc3c7',
+                  width: 230,
+                  height:36,
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  color: "#2c3e50",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  padding: 2.6,
+                  display:  "flex",
+                  justifyContent:"flex-start",
+                  borderRadius: 20,
+                  marginTop: "3%",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
+                
+
+              >
+                <Grid sx={{marginTop:'3%',}}>
+                <img src={call} />
               </Grid>
               <Grid
                 sx={{
-                  marginLeft:  "9%",
+                  marginLeft: 1.9,
                   color: "#000",
                   fontWeight: 400,
-                  fontSize: 17 ,
+                  fontSize: matches ? 17 : 20,
                 }}
               >
                 Call
               </Grid>
-            </Grid>
+              </Button>
 
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                height:36,
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                borderRadius: 25,
-                display: "flex",
-                alignItems: "center",
-              
-                marginTop: "3%",
-              }}
-            >
-              <Grid
-                sx={{ marginTop: "2%",marginLeft:'15%' }}
+          
+
+              <Button
+                sx={{
+                  borderColor: "#bdc3c7",
+                  width: 230,
+                  height:36,
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  color: "#2c3e50",
+                  justifyContent:"flex-start",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  padding: 2.6,
+                  display:"flex",
+                  borderRadius: 20,
+                  marginTop: "3%",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
+               
+
+             
               >
+                <Grid sx={{marginTop:'5%'}} >
                 <img src={whatapp}></img>
               </Grid>
               <Grid
                 sx={{
-                  marginLeft:  "9%",
+                  marginLeft: 1.7,
                   color: "#000",
                   fontWeight: 400,
-                  fontSize: 17 ,
+                  fontSize: matches ? 17 : 20,
                 }}
               >
-                Whatsapp
+              Whatsapp
               </Grid>
-            </Grid>
-          </Grid>
+              </Button>
+          </Grid> 
 
           <Grid
             style={{
@@ -415,64 +434,81 @@ export default function MenuTheme()
               justifyContent: "center",
               gap: 18,
               marginTop: "3%",
-            }}
-          >
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                height:36,
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                borderRadius: 25,
-                display: "flex",
-                alignItems: "center",
-                marginTop: "3%",
+            }}>
+         <Button
+          sx={{
+                  borderColor: "#bdc3c7",
+                  width: 230,
+                  height:36,
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  color: "#2c3e50",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  padding: 2.6,
+                  justifyContent:"flex-start",
+                  display:  "flex",
+                  borderRadius: 20,
+                  marginTop: "3%",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
                
-              }}
-            >
-              <Grid sx={{ marginTop: "2%",marginLeft:'15%' }}>
-                <img src={gmail} ></img>
+
+              >
+                <Grid sx={{marginTop:'5%',}}>
+                <img src={gmail}></img>
               </Grid>
               <Grid
                 sx={{
-                  marginLeft: "9%",
+                  marginLeft: 1.9,
                   color: "#000",
                   fontWeight: 400,
-                  fontSize: 17,
+                  fontSize: matches ? 17 : 20,
                 }}
               >
                 Email
               </Grid>
-            </Grid>
+              </Button>
 
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                height:36,
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                borderRadius: 25,
-                display: "flex",
-                alignItems: "center",
-                marginTop: "3%",
-              }}
-            >
-              <Grid sx={{ marginTop: "2%",marginLeft:'15%' }}>
+          
+
+              <Button
+                sx={{
+                  borderColor: "#bdc3c7",
+                  width: 230,
+                  height:36,
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  color: "#2c3e50",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  padding: 2.6,
+                  justifyContent:"flex-start",
+                  display:  "flex",
+                  borderRadius: 20,
+                  marginTop: "3%",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
+               
+
+            
+              >
+                <Grid sx={{marginTop:'5%'}} >
                 <img src={link}></img>
               </Grid>
               <Grid
                 sx={{
-                  marginLeft: "9%",
+                  marginLeft: 1.9,
                   color: "#000",
                   fontWeight: 400,
-                  fontSize: 17 ,
+                  fontSize: matches ? 17 : 20,
                 }}
               >
-                linkIn
+              Linkin
               </Grid>
-            </Grid>
+              </Button>
           </Grid>
-          
+
           <Grid
             style={{
               display: "flex",
@@ -482,94 +518,124 @@ export default function MenuTheme()
               marginTop: "3%",
             }}
           >
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                height:36,
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                borderRadius: 25,
-                display: "flex",
-                alignItems: "center",
-                padding: 0.8,
-                marginTop: "3%",
+
+         <Button
+          sx={{
+                  borderColor: "#bdc3c7",
+                  width: 230,
+                  height:36,
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  color: "#2c3e50",
+                  fontWeight: "bold",
+                  justifyContent:"flex-start",
+                  textTransform: "none",
+                  padding: 2.6,
+                  display:  "flex",
+                  borderRadius: 20,
+                  marginTop: "3%",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
                
-              }}
-            >
-              <Grid
-                sx={{ marginTop: "2%",marginLeft:'15%' }}
+
+               
               >
+                <Grid sx={{marginTop:'6%'}}>
                 <img src={fb}></img>
               </Grid>
               <Grid
                 sx={{
-                  marginLeft:  "9%" ,
+                  marginLeft: 1.9,
                   color: "#000",
                   fontWeight: 400,
-                  fontSize: 17 ,
+                  fontSize: matches ? 17 : 20,
                 }}
               >
                 Facebook
               </Grid>
-            </Grid>
+              </Button>
 
-            <Grid
-              sx={{
-                border: "1px solid #bdc3c7",
-                width: 230,
-                height:36,
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                borderRadius: 25,
-                display: "flex",
-                alignItems: "center",
+          
 
-                marginTop: "3%",
-              
-              }}
-            >
-              <Grid
-                sx={{ marginTop: "2%",marginLeft:'15%' }}
+              <Button
+                sx={{
+                  borderColor: "#bdc3c7",
+                  width: 230,
+                  height:36,
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  color: "#2c3e50",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  padding: 2.6,
+                  justifyContent:"flex-start",
+                  display: "flex",
+                  borderRadius: 20,
+                  marginTop: "3%",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
+               
+
               >
+                <Grid sx={{marginTop:'6%'}} >
                 <img src={insta}></img>
               </Grid>
               <Grid
                 sx={{
-                  marginLeft:"9%",
+                  marginLeft: 1.9,
                   color: "#000",
                   fontWeight: 400,
-                  fontSize: 17,
+                  fontSize: matches ? 17 : 20,
                 }}
               >
-                Instagram
+              Instagram
               </Grid>
+              </Button>
             </Grid>
-          </Grid>
 
           <Grid
-              sx={{
-                border: "1px solid #95a5a6",
-                width: 160,
-                height:36,
-                backgroundImage: "radial-gradient(#fff,#bdc3c7 )",
-                borderRadius: 25,
-                display: "flex",
-                alignItems: "center",
-                marginTop: "5%",
-                justifyContent: "center",
-                marginLeft:'25%'
-              }}
-            >
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              marginTop: "4%",
+            }}
+          >
+             <Button
+                sx={{
+                  borderColor: "#bdc3c7",
+                  width: 200,
+                  height:36,
+                  backgroundImage: "radial-gradient(#f5f6fa,#b2bec3 )",
+                  color: "#2c3e50",
+                  justifyContent:"flex-start",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  padding: 2.6,
+                  display:"flex",
+                  borderRadius: 20,
+                  marginTop: "3%",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
+               
+              >
+                <Grid sx={{marginTop:'5%'}} >
+                <img src={groups}></img>
+              </Grid>
               <Grid
                 sx={{
-                  marginLeft:  "10%",
+                  marginLeft: .6,
                   color: "#000",
                   fontWeight: 400,
-                  fontSize: 17 ,
+                  fontSize: matches ? 17 : 20,
                 }}
               >
-                Add To Contact
+              Add To Contact
               </Grid>
-            </Grid>
+              </Button>
+          
+          </Grid>
 
             <Grid style={{ marginTop: "7%" }}>
                    <Divider
@@ -585,7 +651,7 @@ export default function MenuTheme()
                   </Grid>    
         
         <Grid item xs={12}>
-         <Grid sx={{background:'#fff',padding:2,height:400}}>
+         <Grid sx={{background:'#fff',padding:2,maxHeight:800}}>
          <Grid sx={{fontSize:'22px',fontWeight:700}}>
                         Menu
                     </Grid>
@@ -627,13 +693,14 @@ export default function MenuTheme()
              <Grid sx={{ fontSize:12,color:'#95a5a6',marginTop:'2%'}}>
              ₹ 220 
              </Grid>
-             <Grid sx={{ marginTop:'2%'}}>
-             <span><Rating
+             <Grid sx={{ marginTop:'2%',display:'flex'}}>
+             <Grid><Rating
                           size="small"
                           color="green"
                           name="simple-controlled"
                           value={4} 
-                        /></span>
+                        /></Grid>
+                        <Grid sx={{color:'#636e72',fontSize:11,marginTop:'2%'}}>11</Grid>
              </Grid>
              <Grid sx={{ fontSize:12,color:'#95a5a6',marginTop:'2%'}}>
               <span>[veg Preparation] Spring mix plant based organic </span><span style={{fontSize:14,fontWeight:400,color:'#34495e'}}>...read more</span>
@@ -668,16 +735,321 @@ export default function MenuTheme()
               </Grid>
             </Grid>
             </Grid>
+       </Grid>
+</Grid>
 
 
+
+<Grid sx={{marginTop:'3%'}}>
+<Grid sx={{background:'#fff',display:'flex',height:120,width:'100%'}}>
+                <Grid sx={{marginTop:'4%',width:'60%'}}>
+             <Grid sx={{ fontSize: "18px",fontWeight: 500,lineHeight: "21.94px"}}>
+                Plant Protien Bowl
+             </Grid>
+             <Grid sx={{ fontSize:12,color:'#95a5a6',marginTop:'2%'}}>
+             ₹ 220 
+             </Grid>
+             <Grid sx={{ marginTop:'2%',display:'flex'}}>
+             <Grid><Rating
+                          size="small"
+                          color="green"
+                          name="simple-controlled"
+                          value={4} 
+                        /></Grid>
+                        <Grid sx={{color:'#636e72',fontSize:11,marginTop:'2%'}}>11</Grid>
+             </Grid>
+             <Grid sx={{ fontSize:12,color:'#95a5a6',marginTop:'2%'}}>
+              <span>[veg Preparation] Spring mix plant based organic </span><span style={{fontSize:14,fontWeight:400,color:'#34495e'}}>...read more</span>
+             </Grid>
+             </Grid>
+         <Grid sx={{width:'40%',marginTop:'5%'}}>
+            <Grid sx={{position:'relative'}}>
+            <img src={food} style={{marginLeft:"30%"}}></img>
+            </Grid>
+            <Grid sx={{position:'absolute'}}>
+            <Grid
+                style={{
+                  border: "1px solid #000",
+                  width: 60,
+                  height:30,
+                  marginTop:'-32%',
+                  backgroundColor: "#000",
+                  marginLeft: "92%",
+                  borderRadius: 3,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  
+                }}
+              >
+                <Grid style={{ marginLeft: "10%", color: "#fff", fontsize: 18 }}>
+                  ADD
+                </Grid>
+                <Grid style={{ marginTop: "-2%" }}>
+                <IoMdAdd style={{fontSize:'12px',color:'#fff'}}/>  
+                </Grid>
+              </Grid>
+            </Grid>
+            </Grid>
             </Grid>
 </Grid>
 
 
 
+<Grid sx={{marginTop:'3%'}}>
+<Grid sx={{background:'#fff',display:'flex',height:120,width:'100%'}}>
+                <Grid sx={{marginTop:'4%',width:'60%'}}>
+             <Grid sx={{ fontSize: "18px",fontWeight: 500,lineHeight: "21.94px"}}>
+                Plant Protien Bowl
+             </Grid>
+             <Grid sx={{ fontSize:12,color:'#95a5a6',marginTop:'2%'}}>
+             ₹ 220 
+             </Grid>
+             <Grid sx={{ marginTop:'2%',display:'flex'}}>
+             <Grid><Rating
+                          size="small"
+                          color="green"
+                          name="simple-controlled"
+                          value={4} 
+                        /></Grid>
+                        <Grid sx={{color:'#636e72',fontSize:11,marginTop:'2%'}}>11</Grid>
+             </Grid>
+             <Grid sx={{ fontSize:12,color:'#95a5a6',marginTop:'2%'}}>
+              <span>[veg Preparation] Spring mix plant based organic </span><span style={{fontSize:14,fontWeight:400,color:'#34495e'}}>...read more</span>
+             </Grid>
+             </Grid>
+         <Grid sx={{width:'40%',marginTop:'5%'}}>
+            <Grid sx={{position:'relative'}}>
+            <img src={food} style={{marginLeft:"30%"}}></img>
+            </Grid>
+            <Grid sx={{position:'absolute'}}>
+            <Grid
+                style={{
+                  border: "1px solid #000",
+                  width: 60,
+                  height:30,
+                  marginTop:'-32%',
+                  backgroundColor: "#000",
+                  marginLeft: "92%",
+                  borderRadius: 3,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  
+                }}
+              >
+                <Grid style={{ marginLeft: "10%", color: "#fff", fontsize: 18 }}>
+                  ADD
+                </Grid>
+                <Grid style={{ marginTop: "-2%" }}>
+                <IoMdAdd style={{fontSize:'12px',color:'#fff'}}/>  
+                </Grid>
+              </Grid>
+            </Grid>
+            </Grid>
+            </Grid>
+</Grid>
 
+
+
+<Grid sx={{marginTop:'3%'}}>
+<Grid sx={{background:'#fff',display:'flex',height:120,width:'100%'}}>
+                <Grid sx={{marginTop:'4%',width:'60%'}}>
+             <Grid sx={{ fontSize: "18px",fontWeight: 500,lineHeight: "21.94px"}}>
+                Plant Protien Bowl
+             </Grid>
+             <Grid sx={{ fontSize:12,color:'#95a5a6',marginTop:'2%'}}>
+             ₹ 220 
+             </Grid>
+             <Grid sx={{ marginTop:'2%',display:'flex'}}>
+             <Grid><Rating
+                          size="small"
+                          color="green"
+                          name="simple-controlled"
+                          value={4} 
+                        /></Grid>
+                        <Grid sx={{color:'#636e72',fontSize:11,marginTop:'2%'}}>11</Grid>
+             </Grid>
+             <Grid sx={{ fontSize:12,color:'#95a5a6',marginTop:'2%'}}>
+              <span>[veg Preparation] Spring mix plant based organic </span><span style={{fontSize:14,fontWeight:400,color:'#34495e'}}>...read more</span>
+             </Grid>
+             </Grid>
+         <Grid sx={{width:'40%',marginTop:'5%'}}>
+            <Grid sx={{position:'relative'}}>
+            <img src={food} style={{marginLeft:"30%"}}></img>
+            </Grid>
+            <Grid sx={{position:'absolute'}}>
+            <Grid
+                style={{
+                  border: "1px solid #000",
+                  width: 60,
+                  height:30,
+                  marginTop:'-32%',
+                  backgroundColor: "#000",
+                  marginLeft: "92%",
+                  borderRadius: 3,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  
+                }}
+              >
+                <Grid style={{ marginLeft: "10%", color: "#fff", fontsize: 18 }}>
+                  ADD
+                </Grid>
+                <Grid style={{ marginTop: "-2%" }}>
+                <IoMdAdd style={{fontSize:'12px',color:'#fff'}}/>  
+                </Grid>
+              </Grid>
+            </Grid>
+            </Grid>
+            </Grid>
+</Grid>
+
+<Grid style={{ marginTop: "7%" }}>
+                   <Divider
+                  style={{
+                  height: "1px",
+                  backgroundColor: "#AAAAAA",
+                  width: "100%",
+                }}
+              />
+            </Grid>
          </Grid>
         </Grid>
+
+        <Grid item xs={12}>
+        <Grid sx={{background:'#fff',padding:2,maxHeight:500}}>
+          <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',color:'#000',fontSize:'20px',fontWeight:'700',marginTop:'5%'}}>
+          GIVE REVIEW !
+          </Grid>
+        <Grid>
+        <Grid
+          style={{
+            border: "1px solid #95a5a6",
+            width: "100%",
+            marginTop: "3%",
+            height: 260,
+            padding: 20,
+            display: "flex",
+            flexDirection: "column",
+            borderRadius: 5,
+          }}
+        >
+          <Grid style={{ marginTop: "1%" }}>
+            <Grid
+              style={{
+                fontSize: 14,
+                color: "#000",
+                fontWeight: 500,
+              }}
+            >
+              Name
+            </Grid>
+            <TextField
+              id="standard-password-input"
+              type="Name"
+              autoComplete="Enter Your Name"
+              placeholder="Enter Your Name"
+              variant="standard"
+              fullWidth
+              size="small"
+              style={{
+               
+                marginTop: "1%",
+                background: "#fff",
+             backgroundColor:'#fff'
+              }}
+            />
+          </Grid>
+          <Grid style={{ marginTop: "6%" }}>
+            <Grid
+              style={{
+                fontSize: 14,
+                color: "#000",
+                fontWeight: 500,
+              }}
+            >
+              Rate Us
+            </Grid>
+            <Rating
+              size="large"
+              style={{ fontSize: 30 }}
+              color="green"
+              name="simple-controlled"
+              value={0}
+            />
+          </Grid>
+          <Grid style={{ marginTop: "4%" }}>
+            <Grid
+              style={{
+                fontSize: 16,
+                color: "#000",
+                fontWeight: 500,
+              }}
+            >
+              Review
+            </Grid>
+            <TextField
+              placeholder="Help Us To Review"
+              size="small"
+              fullWidth
+              style={{
+              
+                marginTop: "1%",
+                background: "#fff",
+                borderColor: "#000",
+                backgroundColor:'#fff'
+              }}
+            />
+          </Grid>
+        </Grid>
+        <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+        <Button
+          style={{
+            borderColor: "#7ed6df",
+            width: "90%",
+            background: "#7ed6df",
+            color: "#000",
+            fontSize: "16px",
+            fontWeight: 500,
+            textTransform: "none",
+            borderRadius: 8,
+            display: "flex",
+            marginTop: "6%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          variant="outlined"
+        >
+          Submit
+        </Button>
+        </Grid> 
+        <Grid style={{ marginTop: "7%" }}>
+                   <Divider
+                  style={{
+                  height: "1px",
+                  backgroundColor: "#AAAAAA",
+                  width: "100%",
+                }}
+              />
+            </Grid>
+          </Grid>   
+          </Grid>
+          </Grid>
+
+          <Grid item xs={12}>
+        <Grid sx={{background:'#fff',padding:2,maxHeight:450}}>
+          <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'3%',flexDirection:'column'}}>
+          <img src={digital} style={{ width: "15%" }}></img>
+          <Grid style={{ fontSize: 12, color: "#2d3436", marginTop: "2%" }}>
+            Powered By IndiaBuzz
+          </Grid>
+          </Grid>
+          </Grid>
+          </Grid>
+
+
 
          </Grid>
          </Grid>
