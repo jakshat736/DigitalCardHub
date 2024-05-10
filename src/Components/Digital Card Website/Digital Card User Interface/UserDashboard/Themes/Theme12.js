@@ -6,14 +6,16 @@ import {
   Divider,
   Grid,
   IconButton,
+  Paper,
   Stack,
   TextField,
+  Typography,
 } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import groups from "../Themes/ThemeAssets/group.png"
 import * as React from "react";
 import { IoIosCreate } from "react-icons/io";
-import  WhatsApp1  from "../Themes/ThemeAssets/whatsapp1.png";
+import WhatsApp1 from "../Themes/ThemeAssets/whatsapp1.png";
 import { MdFeedback } from "react-icons/md";
 import { PiSquaresFour } from "react-icons/pi";
 import { RxCrossCircled } from "react-icons/rx";
@@ -62,11 +64,12 @@ import "slick-carousel/slick/slick.css";
 import { postData, serverURL } from "../../../../Services/NodeServices";
 import bannerone from "../Themes/ThemeAssets/banner1.png";
 import banner2 from "../Themes/ThemeAssets/banner2.png";
+import ReactPlayer from "react-player";
 
 
 const actions = [
   { icon: <FileCopyIcon />, name: "Copy" },
-  { icon: <RiUserSharedFill style={{fontSize:'20px'}}/>, name: "Shareno" },
+  { icon: <RiUserSharedFill style={{ fontSize: '20px' }} />, name: "Shareno" },
   { icon: <HelpIcon />, name: "Enquery" },
   { icon: <ShareIcon />, name: "Share" },
 ];
@@ -94,7 +97,7 @@ const useStyles = makeStyles({
 
 export default function Theme12({ data, products, gallery, ecommerce }) {
 
-// All states
+  // All states
 
   const matches = useMediaQuery("(max-width:600px)");
   const [about, setAbout] = useState(false);
@@ -106,6 +109,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openSignup, setOpenSignup] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
+  const [showMore, setShowMore] = useState(false);
   const [openB, setOpenB] = React.useState(false);
   const [openContact, setOpenContact] = React.useState(false);
   const [open, setOpen] = React.useState(false);
@@ -118,7 +122,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
 
   console.log(data);
 
-// All handleClickFunctions
+  // All handleClickFunctions
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -135,7 +139,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const handleCloseButton = () => {
     setOpenB(false);
   };
-  
+
   const handleClickOpenContact = () => {
     setOpenContact(true);
   };
@@ -309,396 +313,396 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     }
   };
 
-// Dialog 
+  // Dialog 
 
-const RatingDialog=()=>{
-  return( <Dialog
-    open={open}
-    onClose={handleClose}
-    aria-labelledby="alert-dialog-title"
-    aria-describedby="alert-dialog-description"
-  >
-    <DialogTitle   style={{
+  const RatingDialog = () => {
+    return (<Dialog
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle style={{
         backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)",
       }}> <IconButton
-              onClick={handleClose}
-              aria-label="close"
-              sx={{
-                position: "absolute",
-                right: 8,
-                top: 8,
-                color: "inherit",
-              }}
-            >
-              <CloseIcon />
-            </IconButton></DialogTitle>
-    <DialogContent
-      style={{
-        backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)",
-      }}
-      
-    >
-      <DialogContentText id="alert-dialog-description">
-        <Grid
-          style={{
-            border: "1px solid #95a5a6",
-            width: "100%",
-            marginTop: "3%",
-            height: 260,
-            padding: 20,
-            display: "flex",
-            flexDirection: "column",
-            borderRadius: 5,
-          }}
-        >
-          <Grid style={{ marginTop: "1%" }}>
-            <Grid
-              style={{
-                fontSize: 14,
-                color: "#000",
-                fontWeight: 400,
-              }}
-            >
-              Name
-            </Grid>
-            <TextField
-              id="standard-password-input"
-              type="Name"
-              autoComplete="Enter Your Name"
-              placeholder="Enter Your Name"
-              variant="standard"
-              size="small"
-              style={{
-                width: matches ? "60vw" : "25vw",
-                marginTop: "1%",
-                background: "#fff",
-                backgroundImage:
-                  "radial-gradient(#ecf0f1, #ecf0f1)",
-              }}
-            />
-          </Grid>
-          <Grid style={{ marginTop: "6%" }}>
-            <Grid
-              style={{
-                fontSize: 14,
-                color: "#000",
-                fontWeight: 400,
-              }}
-            >
-              Rate Us
-            </Grid>
-            <Rating
-              size="large"
-              style={{ fontSize: 30 }}
-              color="green"
-              name="simple-controlled"
-              value={5}
-            />
-          </Grid>
-          <Grid style={{ marginTop: "6%" }}>
-            <Grid
-              style={{
-                fontSize: 14,
-                color: "#000",
-                fontWeight: 400,
-              }}
-            >
-              Review
-            </Grid>
-            <TextField
-              placeholder="Help Us To Review"
-              size="small"
-              style={{
-                width: matches ? "60vw" : "25vw",
-                marginTop: "1%",
-                background: "#fff",
-                borderColor: "#000",
-                backgroundImage:
-                  "radial-gradient(#ecf0f1, #ecf0f1)",
-              }}
-            />
-          </Grid>
-        </Grid>
-      </DialogContentText>
-      <DialogContentText
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+        onClick={handleClose}
+        aria-label="close"
+        sx={{
+          position: "absolute",
+          right: 8,
+          top: 8,
+          color: "inherit",
         }}
       >
-        <Button
+          <CloseIcon />
+        </IconButton></DialogTitle>
+      <DialogContent
+        style={{
+          backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)",
+        }}
+
+      >
+        <DialogContentText id="alert-dialog-description">
+          <Grid
+            style={{
+              border: "1px solid #95a5a6",
+              width: "100%",
+              marginTop: "3%",
+              height: 260,
+              padding: 20,
+              display: "flex",
+              flexDirection: "column",
+              borderRadius: 5,
+            }}
+          >
+            <Grid style={{ marginTop: "1%" }}>
+              <Grid
+                style={{
+                  fontSize: 14,
+                  color: "#000",
+                  fontWeight: 400,
+                }}
+              >
+                Name
+              </Grid>
+              <TextField
+                id="standard-password-input"
+                type="Name"
+                autoComplete="Enter Your Name"
+                placeholder="Enter Your Name"
+                variant="standard"
+                size="small"
+                style={{
+                  width: matches ? "60vw" : "25vw",
+                  marginTop: "1%",
+                  background: "#fff",
+                  backgroundImage:
+                    "radial-gradient(#ecf0f1, #ecf0f1)",
+                }}
+              />
+            </Grid>
+            <Grid style={{ marginTop: "6%" }}>
+              <Grid
+                style={{
+                  fontSize: 14,
+                  color: "#000",
+                  fontWeight: 400,
+                }}
+              >
+                Rate Us
+              </Grid>
+              <Rating
+                size="large"
+                style={{ fontSize: 30 }}
+                color="green"
+                name="simple-controlled"
+                value={5}
+              />
+            </Grid>
+            <Grid style={{ marginTop: "6%" }}>
+              <Grid
+                style={{
+                  fontSize: 14,
+                  color: "#000",
+                  fontWeight: 400,
+                }}
+              >
+                Review
+              </Grid>
+              <TextField
+                placeholder="Help Us To Review"
+                size="small"
+                style={{
+                  width: matches ? "60vw" : "25vw",
+                  marginTop: "1%",
+                  background: "#fff",
+                  borderColor: "#000",
+                  backgroundImage:
+                    "radial-gradient(#ecf0f1, #ecf0f1)",
+                }}
+              />
+            </Grid>
+          </Grid>
+        </DialogContentText>
+        <DialogContentText
           style={{
-            borderColor: "#7ed6df",
-            width: "32%",
-            background: "#7ed6df",
-            color: "#000",
-            fontSize: "13px",
-            fontWeight: 400,
-            textTransform: "none",
-            borderRadius: 8,
             display: "flex",
-            marginTop: "6%",
-            alignItems: "center",
             justifyContent: "center",
+            alignItems: "center",
           }}
-          variant="outlined"
         >
-          Submit
-        </Button>
-      </DialogContentText>
-    </DialogContent>
-    {/* <DialogActions
+          <Button
+            style={{
+              borderColor: "#7ed6df",
+              width: "32%",
+              background: "#7ed6df",
+              color: "#000",
+              fontSize: "13px",
+              fontWeight: 400,
+              textTransform: "none",
+              borderRadius: 8,
+              display: "flex",
+              marginTop: "6%",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            variant="outlined"
+          >
+            Submit
+          </Button>
+        </DialogContentText>
+      </DialogContent>
+      {/* <DialogActions
       style={{ backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)" }}
     >
       <Button onClick={handleClose}>Close</Button>
     </DialogActions> */}
-  </Dialog>)
-}
+    </Dialog>)
+  }
 
 
-const loginSignup=()=>{
-  return(  <Dialog
-    PaperProps={{
-      style: {
-        position: "fixed",
-        bottom: -38,
-        width: "100%",
-        // Dialog ko page ke bottom me set karein
-      },
-    }}
-    open={openSignup}
-    onClose={handleCloseSignup}
-    aria-labelledby="alert-dialog-title"
-    aria-describedby="alert-dialog-description"
-  >
-    <DialogTitle sx={{ background: "#ecf0f1" }} id="alert-dialog-title">
-      <IconButton
-        onClick={handleCloseSignup}
-        aria-label="close"
-        sx={{
-          position: "absolute",
-          right: 8,
-          top: 8,
-          color: "inherit",
-        }}
-      >
-        <CloseIcon />
-      </IconButton>
-    </DialogTitle>
-    <DialogContent sx={{ background: "#ecf0f1" }}>
-      <Grid
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Grid
+  const loginSignup = () => {
+    return (<Dialog
+      PaperProps={{
+        style: {
+          position: "fixed",
+          bottom: -38,
+          width: "100%",
+          // Dialog ko page ke bottom me set karein
+        },
+      }}
+      open={openSignup}
+      onClose={handleCloseSignup}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle sx={{ background: "#ecf0f1" }} id="alert-dialog-title">
+        <IconButton
+          onClick={handleCloseSignup}
+          aria-label="close"
           sx={{
-            fontSize: "28px",
-            fontWeight: 700,
-            color: "#000",
-            marginTop: "5%",
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: "inherit",
           }}
         >
-          Login/SignUp
+          <CloseIcon />
+        </IconButton>
+      </DialogTitle>
+      <DialogContent sx={{ background: "#ecf0f1" }}>
+        <Grid
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Grid
+            sx={{
+              fontSize: "28px",
+              fontWeight: 700,
+              color: "#000",
+              marginTop: "5%",
+            }}
+          >
+            Login/SignUp
+          </Grid>
+          <Grid sx={{ fontSize: 16, color: "#636e72", marginTop: "2%" }}>
+            Activate your Profile here !
+          </Grid>
         </Grid>
-        <Grid sx={{ fontSize: 16, color: "#636e72", marginTop: "2%" }}>
-          Activate your Profile here !
-        </Grid>
-      </Grid>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "6%",
-        }}
-      >
         <div
           style={{
-            border: "1px solid #b2bec3",
-            background: "#dfe6e9",
-            borderRadius: 6,
-            width: "90%",
-          }}
-        >
-          <IconButton sx={{ p: "10px" }} aria-label="menu">
-            <img src={Emaillogo} width={20}></img>
-          </IconButton>
-          <InputBase
-            sx={{ ml: 1, flex: 1 }}
-            placeholder="Email Address or number"
-            inputProps={{ "aria-label": "search google maps" }}
-          />
-        </div>
-      </div>
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "6%",
-        }}
-      >
-        <div
-          style={{
-            border: "1px solid #b2bec3",
-            background: "#dfe6e9",
-            borderRadius: 6,
-            width: "90%",
-          }}
-        >
-          <IconButton sx={{ p: "10px" }} aria-label="menu">
-            <img src={key} width={20}></img>
-          </IconButton>
-          <InputBase
-            sx={{ width: "52%" }}
-            placeholder="Enter OTP"
-            inputProps={{ "aria-label": "search google maps" }}
-          />
-          <IconButton type="button" aria-label="search">
-            <div
-              style={{
-                border: "1px solid #000",
-                width: 70,
-                backgroundColor: "#000",
-                borderRadius: 2,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: 7,
-                color: "#fff",
-                fontSize: 10,
-                borderRadius: 8,
-              }}
-            >
-              Get OTP
-            </div>
-          </IconButton>
-        </div>
-      </div>
-      <Grid
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "7%",
-        }}
-      >
-        <Grid
-          sx={{
-            border: "1px solid #000",
-            width: "90%",
-            backgroundColor: "#000",
-            borderRadius: 2,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            padding: 1.3,
-            color: "#fff",
+            marginTop: "6%",
           }}
         >
-          <Grid sx={{ fontsize: "10px", fontWeight: 700 }}>LOGIN</Grid>
+          <div
+            style={{
+              border: "1px solid #b2bec3",
+              background: "#dfe6e9",
+              borderRadius: 6,
+              width: "90%",
+            }}
+          >
+            <IconButton sx={{ p: "10px" }} aria-label="menu">
+              <img src={Emaillogo} width={20}></img>
+            </IconButton>
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Email Address or number"
+              inputProps={{ "aria-label": "search google maps" }}
+            />
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "6%",
+          }}
+        >
+          <div
+            style={{
+              border: "1px solid #b2bec3",
+              background: "#dfe6e9",
+              borderRadius: 6,
+              width: "90%",
+            }}
+          >
+            <IconButton sx={{ p: "10px" }} aria-label="menu">
+              <img src={key} width={20}></img>
+            </IconButton>
+            <InputBase
+              sx={{ width: "52%" }}
+              placeholder="Enter OTP"
+              inputProps={{ "aria-label": "search google maps" }}
+            />
+            <IconButton type="button" aria-label="search">
+              <div
+                style={{
+                  border: "1px solid #000",
+                  width: 70,
+                  backgroundColor: "#000",
+                  borderRadius: 2,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 7,
+                  color: "#fff",
+                  fontSize: 10,
+                  borderRadius: 8,
+                }}
+              >
+                Get OTP
+              </div>
+            </IconButton>
+          </div>
+        </div>
+        <Grid
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "7%",
+          }}
+        >
+          <Grid
+            sx={{
+              border: "1px solid #000",
+              width: "90%",
+              backgroundColor: "#000",
+              borderRadius: 2,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: 1.3,
+              color: "#fff",
+            }}
+          >
+            <Grid sx={{ fontsize: "10px", fontWeight: 700 }}>LOGIN</Grid>
+          </Grid>
         </Grid>
-      </Grid>
-    </DialogContent>
-  </Dialog>)
-}
+      </DialogContent>
+    </Dialog>)
+  }
 
 
 
-const loginBussiness=()=>{
-  return( <Dialog
-    PaperProps={{
-      style: {
-        position: "fixed",
-        bottom: -38,
-        width: "100%",
-        // Dialog ko page ke bottom me set karein
-      },
-    }}
-    open={openLogin}
-    onClose={handleCloseLogin}
-    aria-labelledby="alert-dialog-title"
-    aria-describedby="alert-dialog-description"
-  >
-    <DialogTitle
-      style={{ fontSize: 16, background: "#ecf0f1" }}
-      id="alert-dialog-title"
+  const loginBussiness = () => {
+    return (<Dialog
+      PaperProps={{
+        style: {
+          position: "fixed",
+          bottom: -38,
+          width: "100%",
+          // Dialog ko page ke bottom me set karein
+        },
+      }}
+      open={openLogin}
+      onClose={handleCloseLogin}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
     >
-      {"Login to Find the Bussiness Profile"}
-      <IconButton
-        onClick={handleCloseLogin}
-        aria-label="close"
-        sx={{
-          position: "absolute",
-          right: 8,
-          top: 8,
-          color: "inherit",
-        }}
+      <DialogTitle
+        style={{ fontSize: 16, background: "#ecf0f1" }}
+        id="alert-dialog-title"
       >
-        <CloseIcon />
-      </IconButton>
-    </DialogTitle>
-    <DialogContent style={{ background: "#ecf0f1" }}>
-      <DialogContentText id="alert-dialog-description">
-        <DialogContentText>
+        {"Greetings"}
+        <IconButton
+          onClick={handleCloseLogin}
+          aria-label="close"
+          sx={{
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: "inherit",
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      </DialogTitle>
+      <DialogContent style={{ background: "#ecf0f1" }}>
+        <DialogContentText id="alert-dialog-description">
+          <DialogContentText>
+            <TextField
+              required
+              margin="dense"
+              label="Your Name"
+              type="email"
+              fullWidth
+              variant="standard"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </DialogContentText>
           <TextField
             required
             margin="dense"
-            label="Your Name"
-            type="email"
             fullWidth
+            label="Enter Mobile Number"
+            type="email"
             variant="standard"
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setPhoneNo(e.target.value)}
           />
         </DialogContentText>
-        <TextField
-          required
-          margin="dense"
-          fullWidth
-          label="Enter Mobile Number"
-          type="email"
-          variant="standard"
-          onChange={(e) => setPhoneNo(e.target.value)}
-        />
-      </DialogContentText>
-      <DialogContentText
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Button
+        <DialogContentText
           style={{
-            borderColor: "#7ed6df",
-            width: "28%",
-            background: "#7ed6df",
-            color: "#000",
-            fontSize: "13px",
-            fontWeight: 400,
-            textTransform: "none",
-            borderRadius: 20,
             display: "flex",
-            marginTop: "6%",
-            alignItems: "center",
             justifyContent: "center",
+            alignItems: "center",
           }}
-          variant="outlined"
-          onClick={() => handleSubmit(data?.customerId)}
         >
-          Submit
-        </Button>
-      </DialogContentText>
-    </DialogContent>
-  </Dialog>
-)
-}
+          <Button
+            style={{
+              borderColor: "#7ed6df",
+              width: "28%",
+              background: "#7ed6df",
+              color: "#000",
+              fontSize: "13px",
+              fontWeight: 400,
+              textTransform: "none",
+              borderRadius: 20,
+              display: "flex",
+              marginTop: "6%",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            variant="outlined"
+            onClick={() => handleSubmit(data?.customerId)}
+          >
+            Submit
+          </Button>
+        </DialogContentText>
+      </DialogContent>
+    </Dialog>
+    )
+  }
 
 
   const enquiryDialog = () => {
@@ -709,18 +713,18 @@ const loginBussiness=()=>{
         onClose={handleCloseButton}
       >
         <DialogTitle style={{ background: "#ecf0f1" }}>ENQUIRY NOW
-        <IconButton
-              onClick={handleCloseButton}
-              aria-label="close"
-              sx={{
-                position: "absolute",
-                right: 8,
-                top: 8,
-                color: "inherit",
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
+          <IconButton
+            onClick={handleCloseButton}
+            aria-label="close"
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: "inherit",
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
         </DialogTitle>
         <DialogContent style={{ background: "#ecf0f1" }}>
           <Stack>
@@ -740,60 +744,64 @@ const loginBussiness=()=>{
                 Send on Sms
               </Button> */}
               <Button
-              href={href}
-              style={{
-                borderColor: "#D0D0D0 ",
-                width: "18%",
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                color: "#ffff",
-                fontSize: "13px",
-                fontWeight: 400,
-                textTransform: "none",
-                borderRadius: 50,
-                display: "flex",
-                marginTop: "4%",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              variant="outlined"
-            >
-              <Grid
-                sx={{display: "flex",
-                alignItems: "center",
-                justifyContent: "center",}}
-                onClick={() => handleSubmit(data?.customerId)}
+                href={href}
+                style={{
+                  borderColor: "#D0D0D0 ",
+                  width: "18%",
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  color: "#ffff",
+                  fontSize: "13px",
+                  fontWeight: 400,
+                  textTransform: "none",
+                  borderRadius: 50,
+                  display: "flex",
+                  marginTop: "4%",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                variant="outlined"
               >
-                
-               <img src={WhatsApp1} style={{width:'120%'}}></img>
+                <Grid
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  onClick={() => handleSubmit(data?.customerId)}
+                >
 
-              </Grid>
-            </Button>
-            <Button
-             href={smsHref}
-              style={{
-                borderColor: "#D0D0D0 ",
-                width: "18%",
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                color: "#fff",
-                fontSize: "13px",
-                fontWeight: 400,
-                textTransform: "none",
-                borderRadius: 50,
-                display: "flex",
-                marginTop: "4%",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              variant="outlined"
-            >
-              <Grid sx={{display: "flex",
-                alignItems: "center",
-                justifyContent: "center",}}
-                onClick={() => handleSubmit(data?.customerId)}
+                  <img src={WhatsApp1} style={{ width: '120%' }}></img>
+
+                </Grid>
+              </Button>
+              <Button
+                href={smsHref}
+                style={{
+                  borderColor: "#D0D0D0 ",
+                  width: "18%",
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  color: "#fff",
+                  fontSize: "13px",
+                  fontWeight: 400,
+                  textTransform: "none",
+                  borderRadius: 50,
+                  display: "flex",
+                  marginTop: "4%",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                variant="outlined"
               >
-                <img src={msg} style={{width:'120%'}}></img>
-              </Grid>
-            </Button>
+                <Grid sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                  onClick={() => handleSubmit(data?.customerId)}
+                >
+                  <img src={msg} style={{ width: '120%' }}></img>
+                </Grid>
+              </Button>
             </Stack>
           </Stack>
         </DialogContent>
@@ -809,18 +817,18 @@ const loginBussiness=()=>{
         onClose={handleCloseContact}
       >
         <DialogTitle style={{ background: "#ecf0f1" }}>Connect
-        <IconButton
-              onClick={handleCloseContact}
-              aria-label="close"
-              sx={{
-                position: "absolute",
-                right: 8,
-                top: 8,
-                color: "inherit",
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
+          <IconButton
+            onClick={handleCloseContact}
+            aria-label="close"
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: "inherit",
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
         </DialogTitle>
         <DialogContent style={{ background: "#ecf0f1" }}>
           <DialogContentText>
@@ -906,7 +914,7 @@ const loginBussiness=()=>{
 
     setState({ ...state, [anchor]: open });
   };
-  
+
   const list = (anchor) => (
     <Box
       sx={{
@@ -1022,7 +1030,7 @@ const loginBussiness=()=>{
   );
 
   // Sliders
-  
+
   var data1 = [
     {
       id: 0,
@@ -1133,15 +1141,110 @@ const loginBussiness=()=>{
   };
 
 
-
+  console.log(ecommerce)
   var datas = [bannerone, banner2, bannerone];
   const showSlider = () => {
-    return datas.map((items) => {
-      return (
-        <div>
-          <img src={items} style={{ width: "100%" }} />
-        </div>
-      );
+    return ecommerce.map((item) => {
+      if (item?.productimg != '') {
+        return (
+          <Grid item xs={12} sx={{  width: '100%',
+          position: 'relative',
+          paddingBottom: '100%', // 1:1 aspect ratio
+          overflow: 'hidden',}}>
+            <Paper
+              elevation={12}
+              sx={{
+                border: 1,
+                backgroundColor: "#ffffff",
+                borderStyle: "solid",
+                borderColor: "white",
+                display: item.productimg == '' ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                mb: "15px",
+                marginX: "15px",
+                p: 0,
+              }}
+            >
+    <img src={`${serverURL}/images/${item.productimg}`} style={{position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '75%',
+    objectFit: 'cover'}} />
+              <br />
+              {/* <Typography
+                sx={{
+                  fontWeight: 500,
+                  fontSize: "1.4rem",
+                  color: "#000000",
+                  textAlign: "center",
+                  display: item.productname == '' ? "none" : "block"
+                }}
+              >
+                {item.productname}
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <s>
+                  <Typography
+                    sx={{
+                      fontWeight: 500,
+                      fontSize: "1.1rem",
+                      color: "#000000",
+                      textAlign: "center",
+                      display: item.price == '' ? "none" : "block"
+                    }}
+                  >
+                    ₹{item.price}
+                  </Typography>
+                </s>
+                &nbsp;&nbsp;
+                <Typography
+                  sx={{
+                    fontWeight: 500,
+                    fontSize: "1.3rem",
+                    color: "#000000",
+                    textAlign: "center",
+                    display: item.offerprice == '' ? "none" : "block"
+                  }}
+                >
+                  ₹{item.offerprice}
+                </Typography>
+              </Box>
+              <br />
+              <Button
+                variant="contained"
+                sx={{
+                  paddingX: "20px",
+                  bgcolor: "#FFDE59",
+                  color: "#000000",
+                  fontWeight: 600,
+                  border: "1px solid #000000",
+                  "&:hover": {
+                    bgcolor: "#FFDE59",
+                    color: "#000000",
+                  },
+                  display: item.show == "true" ? "block" : "none"
+                }}
+                onClick={() =>
+                  window.open(
+                    `https://wa.me/+91${data?.WhatsappNo}?text=I Want To Buy Your ${item.productname}`
+                  )
+                }
+              >
+                BUY NOW
+              </Button> */}
+            </Paper>
+          </Grid>
+        );
+      }
     });
   };
 
@@ -1150,7 +1253,7 @@ const loginBussiness=()=>{
   return (
     <Grid
       style={{
-        backgroundColor: "wheat",
+        backgroundColor: "#f5f6fa",
         height: "100%",
         width: "100%",
         display: "flex",
@@ -1210,8 +1313,8 @@ const loginBussiness=()=>{
               color: "#fff",
               backgroundImage: data?.companyCoverImage
                 ? `url('data:image/png;base64,${arrayBufferToBase64(
-                    data?.companyCoverImage.data?.data
-                  )}')`
+                  data?.companyCoverImage.data?.data
+                )}')`
                 : "radial-gradient(#353b48, #000) ",
               backgroundSize: "cover",
               width: "100%",
@@ -1251,7 +1354,7 @@ const loginBussiness=()=>{
                   anchor={"left"}
                   open={state["left"]}
                   onClose={toggleDrawer("left", false)}
-                  sx={{ backgroundColor: "black" }}
+                  
                 >
                   {list("left")}
                 </Drawer>
@@ -1285,7 +1388,7 @@ const loginBussiness=()=>{
           xs={12}
           sx={{
             display: "flex",
-           background:'#fff',
+            background: '#fff',
             height: "auto",
             flexDirection: "column",
           }}
@@ -1297,7 +1400,6 @@ const loginBussiness=()=>{
               position: "relative",
               background: "#fff",
               borderRadius: "15px 15px 0px  0px",
-              marginTop:'-5%'
             }}
           >
             <Grid
@@ -1312,15 +1414,18 @@ const loginBussiness=()=>{
                 sx={{
                   border: "1px solid #000",
                   width: 110,
+                  height:36,
                   backgroundImage: "radial-gradient(#353b48, #000)",
-                  borderRadius: 7,
+                  borderRadius: 8,
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
                   padding: 1,
                   color: "#fff",
                   marginLeft: "auto",
-                  cursor:'pointer'
+                  cursor:'pointer',
+                  marginTop:matches?'-8%':'-4%',
+
                 }}
               >
                 <Grid
@@ -1340,8 +1445,8 @@ const loginBussiness=()=>{
               style={{
                 backgroundImage: data?.companylogo
                   ? `url('data:image/jpeg;base64,${arrayBufferToBase64(
-                      data?.companylogo.data?.data
-                    )}')`
+                    data?.companylogo.data?.data
+                  )}')`
                   : "radial-gradient(#dcdde1,#95a5a6)",
                 marginLeft: "5%",
                 position: "absolute",
@@ -1441,7 +1546,7 @@ const loginBussiness=()=>{
               sx={{
                 display: "flex",
                 backgroundColor: "#fff",
-                height: 335,
+                minHeight:"auto",
                 flexDirection: "column",
                 padding: 0,
               }}
@@ -1482,13 +1587,12 @@ const loginBussiness=()=>{
                   </Grid>
                 </Grid>
 
-                <Grid style={{ marginTop: "20%" }}>
+                <Grid style={{ marginTop: "10%" }}>
                   <Divider
                     style={{
-                      height: "2px",
+                      height: "1px",
                       backgroundColor: "#AAAAAA",
                       width: "94%",
-                      marginTop: "20%",
                     }}
                   />
                 </Grid>
@@ -1513,38 +1617,40 @@ const loginBussiness=()=>{
             style={{
               display: "flex",
               flexDirection: "row",
-              alignItems:'center',
+              alignItems: 'center',
               justifyContent:'center',
               gap: matches?18:35,
               marginTop: "2%",
             }}
           >
 
-          <Button
-                sx={{
-                  borderColor: "#bdc3c7",
-                  border:'#bdc3c7',
-                  width: 230,
-                  height:36,
-                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                  color: "#2c3e50",
-                  fontWeight: "bold",
-                  textTransform: "none",
-                  padding: 2.6,
-                  display: data?.phoneNumber == null ? "none" : "flex",
-                  justifyContent:"flex-start",
-                  borderRadius: 20,
-                  marginTop: "3%",
-                  fontSize: "16px",
-                  fontWeight: 400,
-                }}
-                
 
-                onClick={() => {
-                  window.open(`tel:${data?.phoneNumber}`);
-                }}
-              >
-                <Grid sx={{marginTop:'3%',}}>
+
+            <Button
+              sx={{
+                borderColor: "#bdc3c7",
+                border: '#bdc3c7',
+                width: 230,
+                height: 36,
+                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                color: "#2c3e50",
+                fontWeight: "bold",
+                textTransform: "none",
+                padding: 2.6,
+                display: data?.phoneNumber == null ? "none" : "flex",
+                justifyContent: "flex-start",
+                borderRadius: 20,
+                marginTop: "3%",
+                fontSize: "16px",
+                fontWeight: 400,
+              }}
+
+
+              onClick={() => {
+                window.open(`tel:${data?.phoneNumber}`);
+              }}
+            >
+              <Grid sx={{ marginTop: '3%', }}>
                 <img src={call} />
               </Grid>
               <Grid
@@ -1557,32 +1663,33 @@ const loginBussiness=()=>{
               >
                 Call
               </Grid>
-              </Button>
+            </Button>
 
-          
 
-              <Button
-                sx={{
-                  borderColor: "#bdc3c7",
-                  width: 230,
-                  height:36,
-                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                  color: "#2c3e50",
-                  justifyContent:"flex-start",
-                  fontWeight: "bold",
-                  textTransform: "none",
-                  padding: 2.6,
-                  display:"flex",
-                  borderRadius: 20,
-                  marginTop: "3%",
-                  fontSize: "16px",
-                  fontWeight: 400,
-                }}
-               
 
-                onClick={() => handleWhatsappUpdate()}
-              >
-                <Grid sx={{marginTop:'5%'}} >
+
+            <Button
+              sx={{
+                borderColor: "#bdc3c7",
+                width: 230,
+                height: 36,
+                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                color: "#2c3e50",
+                justifyContent: "flex-start",
+                fontWeight: "bold",
+                textTransform: "none",
+                padding: 2.6,
+                display: "flex",
+                borderRadius: 20,
+                marginTop: "3%",
+                fontSize: "16px",
+                fontWeight: 400,
+              }}
+
+
+              onClick={() => handleWhatsappUpdate()}
+            >
+              <Grid sx={{ marginTop: '5%' }} >
                 <img src={whatapp}></img>
               </Grid>
               <Grid
@@ -1593,10 +1700,10 @@ const loginBussiness=()=>{
                   fontSize: matches ? 17 : 20,
                 }}
               >
-              Whatsapp
+                Whatsapp
               </Grid>
-              </Button>
-          </Grid> 
+            </Button>
+          </Grid>
 
           <Grid
             style={{
@@ -1606,32 +1713,32 @@ const loginBussiness=()=>{
               gap: matches?18:35,
               marginTop: "3%",
             }}>
-         <Button
-          sx={{
-                  borderColor: "#bdc3c7",
-                  width: 230,
-                  height:36,
-                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                  color: "#2c3e50",
-                  fontWeight: "bold",
-                  textTransform: "none",
-                  padding: 2.6,
-                  justifyContent:"flex-start",
-                  display: data?.phoneNumber == null ? "none" : "flex",
-                  borderRadius: 20,
-                  marginTop: "3%",
-                  fontSize: "16px",
-                  fontWeight: 400,
-                }}
-               
+            <Button
+              sx={{
+                borderColor: "#bdc3c7",
+                width: 230,
+                height: 36,
+                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                color: "#2c3e50",
+                fontWeight: "bold",
+                textTransform: "none",
+                padding: 2.6,
+                justifyContent: "flex-start",
+                display: data?.Email == null ? "none" : "flex",
+                borderRadius: 20,
+                marginTop: "3%",
+                fontSize: "16px",
+                fontWeight: 400,
+              }}
 
-                onClick={() => {
-                  window.open(
-                    `mailto:${data?.Email}?body=Query%20About%20Business`
-                  );
-                }}
-              >
-                <Grid sx={{marginTop:'5%',}}>
+
+              onClick={() => {
+                window.open(
+                  `mailto:${data?.Email}?body=Query%20About%20Business`
+                );
+              }}
+            >
+              <Grid sx={{ marginTop: '5%', }}>
                 <img src={gmail}></img>
               </Grid>
               <Grid
@@ -1644,34 +1751,34 @@ const loginBussiness=()=>{
               >
                 Email
               </Grid>
-              </Button>
+            </Button>
 
-          
 
-              <Button
-                sx={{
-                  borderColor: "#bdc3c7",
-                  width: 230,
-                  height:36,
-                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                  color: "#2c3e50",
-                  fontWeight: "bold",
-                  textTransform: "none",
-                  padding: 2.6,
-                  justifyContent:"flex-start",
-                  display: data?.phoneNumber == null ? "none" : "flex",
-                  borderRadius: 20,
-                  marginTop: "3%",
-                  fontSize: "16px",
-                  fontWeight: 400,
-                }}
-               
 
-                onClick={() => {
-                  window.open(`https://www.linkedin.com/in/${data?.LinkdnLink}`);
-                }}
-              >
-                <Grid sx={{marginTop:'5%'}} >
+            <Button
+              sx={{
+                borderColor: "#bdc3c7",
+                width: 230,
+                height: 36,
+                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                color: "#2c3e50",
+                fontWeight: "bold",
+                textTransform: "none",
+                padding: 2.6,
+                justifyContent: "flex-start",
+                display: data?.LinkdnLink == null ? "none" : "flex",
+                borderRadius: 20,
+                marginTop: "3%",
+                fontSize: "16px",
+                fontWeight: 400,
+              }}
+
+
+              onClick={() => {
+                window.open(`https://www.linkedin.com/in/${data?.LinkdnLink}`);
+              }}
+            >
+              <Grid sx={{ marginTop: '5%' }} >
                 <img src={link}></img>
               </Grid>
               <Grid
@@ -1682,9 +1789,9 @@ const loginBussiness=()=>{
                   fontSize: matches ? 17 : 20,
                 }}
               >
-              Linkin
+                Linkin
               </Grid>
-              </Button>
+            </Button>
           </Grid>
 
           <Grid
@@ -1697,28 +1804,28 @@ const loginBussiness=()=>{
             }}
           >
 
-         <Button
-          sx={{
-                  borderColor: "#bdc3c7",
-                  width: 230,
-                  height:36,
-                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                  color: "#2c3e50",
-                  fontWeight: "bold",
-                  justifyContent:"flex-start",
-                  textTransform: "none",
-                  padding: 2.6,
-                  display: data?.phoneNumber == null ? "none" : "flex",
-                  borderRadius: 20,
-                  marginTop: "3%",
-                  fontSize: "16px",
-                  fontWeight: 400,
-                }}
-               
+            <Button
+              sx={{
+                borderColor: "#bdc3c7",
+                width: 230,
+                height: 36,
+                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                color: "#2c3e50",
+                fontWeight: "bold",
+                justifyContent: "flex-start",
+                textTransform: "none",
+                padding: 2.6,
+                display: data?.fbLink == null ? "none" : "flex",
+                borderRadius: 20,
+                marginTop: "3%",
+                fontSize: "16px",
+                fontWeight: 400,
+              }}
 
-                onClick={() => handleFbUpdate()}
-              >
-                <Grid sx={{marginTop:'6%'}}>
+
+              onClick={() => handleFbUpdate()}
+            >
+              <Grid sx={{ marginTop: '6%' }}>
                 <img src={fb}></img>
               </Grid>
               <Grid
@@ -1731,32 +1838,32 @@ const loginBussiness=()=>{
               >
                 Facebook
               </Grid>
-              </Button>
+            </Button>
 
-          
 
-              <Button
-                sx={{
-                  borderColor: "#bdc3c7",
-                  width: 230,
-                  height:36,
-                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                  color: "#2c3e50",
-                  fontWeight: "bold",
-                  textTransform: "none",
-                  padding: 2.6,
-                  justifyContent:"flex-start",
-                  display: data?.phoneNumber == null ? "none" : "flex",
-                  borderRadius: 20,
-                  marginTop: "3%",
-                  fontSize: "16px",
-                  fontWeight: 400,
-                }}
-               
 
-                onClick={() => handleInstaUpdate()}
-              >
-                <Grid sx={{marginTop:'6%'}} >
+            <Button
+              sx={{
+                borderColor: "#bdc3c7",
+                width: 230,
+                height: 36,
+                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                color: "#2c3e50",
+                fontWeight: "bold",
+                textTransform: "none",
+                padding: 2.6,
+                justifyContent: "flex-start",
+                display: data?.igLink == null ? "none" : "flex",
+                borderRadius: 20,
+                marginTop: "3%",
+                fontSize: "16px",
+                fontWeight: 400,
+              }}
+
+
+              onClick={() => handleInstaUpdate()}
+            >
+              <Grid sx={{ marginTop: '6%' }}>
                 <img src={insta}></img>
               </Grid>
               <Grid
@@ -1767,54 +1874,231 @@ const loginBussiness=()=>{
                   fontSize: matches ? 17 : 20,
                 }}
               >
-              Instagram
+                Instagram
               </Grid>
-              </Button>
-            </Grid>
-
-          <Grid
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              marginTop: "4%",
-            }}
-          >
-             <Button
-                sx={{
-                  borderColor: "#bdc3c7",
-                  width: matches?200:240,
-                  height:36,
-                  backgroundImage: "radial-gradient(#f5f6fa,#b2bec3 )",
-                  color: "#2c3e50",
-                  justifyContent:"flex-start",
-                  fontWeight: "bold",
-                  textTransform: "none",
-                  padding: 2.6,
-                  display:"flex",
-                  borderRadius: 20,
-                  marginTop: "3%",
-                  fontSize: "16px",
-                  fontWeight: 400,
-                }}
-               
-              >
-                <Grid sx={{marginTop:'5%'}} >
-                <img src={groups}></img>
-              </Grid>
-              <Grid
-                sx={{
-                  marginLeft: .6,
-                  color: "#000",
-                  fontWeight: 400,
-                  fontSize: matches ? 17 : 20,
-                }}
-              >
-              Add To Contact
-              </Grid>
-              </Button>
-          
+            </Button>
           </Grid>
+          {
+                data?.links.map((item)=>{
+                  return(
+                    <Grid
+                    item
+                    xs={12}
+                    md={12}
+                   
+                   
+                  >
+                     {item.title === "GitHub" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Githubgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Telegram" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Telegramgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Discord" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Discordgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "PayPal" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Paypalgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Snapchat" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Snapchatgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Skype" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Skypegif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Reddit" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Redditgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Google drive" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Drivegif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Dropbox" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Dropboxgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Pinterest" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                      >
+                        {/* <img src={Pinterestgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Behance" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Behancegif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Others" &&(
+                          <Grid
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            alignItems:'center',
+                            gap: matches?18:35,
+                            marginTop: "3%",
+                          }}>
+                          <Button
+                            sx={{
+                              borderColor: "#bdc3c7",
+                              width: 230,
+                              height: 36,
+                              backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                              color: "#2c3e50",
+                              fontWeight: "bold",
+                              textTransform: "none",
+                              padding: 2.6,
+                              justifyContent: "center",
+                              display: data?.phoneNumber == null ? "none" : "flex",
+                              borderRadius: 20,
+                              marginTop: "3%",
+                              fontSize: "16px",
+                              fontWeight: 400,
+                            }}
+              
+                            href={`${item.link}`}
+                          >
+                            <Grid
+                              sx={{
+                               
+                                color: "#000",
+                                fontWeight: 400,
+                                fontSize: matches ? 14 : 20,
+                              }}
+                            >
+                              {item.customTitle}
+                            </Grid>
+                          </Button>
+              
+              
+              
+                          <Button
+                            sx={{
+                              borderColor: "#bdc3c7",
+                              width: 230,
+                              height: 36,
+                              backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                              color: "#2c3e50",
+                              fontWeight: "bold",
+                              textTransform: "none",
+                              padding: 2.6,
+                              justifyContent: "center",
+                              alignItems:'center',
+                              display: data?.phoneNumber == null ? "none" : "flex",
+                              borderRadius: 20,
+                              marginTop: "3%",
+                              fontSize: "16px",
+                              fontWeight: 400,
+                            }}
+              
+                          >
+                          
+                            <Grid
+                              sx={{
+                               
+                                color: "#000",
+                                fontWeight: 400,
+                                fontSize: matches ? 14 : 20,
+                              }}
+                            >
+                              Dynamic Button
+                            </Grid>
+                          </Button>
+                        </Grid>
+                     )
+                    }
+                  </Grid>
+                  
+                  )
+                })
+              }
+
+
+
+
+
+
+
 
           <Grid
             sx={{
@@ -1840,11 +2124,12 @@ const loginBussiness=()=>{
           sx={{
             display: "flex",
             backgroundColor: "#fff",
-            height: matches ? 280 : 400,
+            height:'auto',
             flexDirection: "column",
             padding: 1,
           }}
         >
+          
           <Grid
             style={{
               marginTop: "4%",
@@ -1857,9 +2142,9 @@ const loginBussiness=()=>{
             <Grid style={{ fontSize: "22px", fontWeight: 700 }}>
               Work / Products
             </Grid>
-            <Grid style={{ width: "100%" }}>
+            <Grid sx={{ width: "100%", mt: 3,display:'flex',justifyContent:'center',alignItems:'center' }}>
               <Slider
-                style={{ width: "100%" }}
+                style={{ width: "88%" }}
                 {...settings}
                 className={useStyle.dots}
               >
@@ -1868,131 +2153,295 @@ const loginBussiness=()=>{
             </Grid>
           </Grid>
         </Grid>
-
+        <div id="work"></div>
         <Grid
           item
           xs={12}
+          md={12}
           sx={{
-            display: "flex",
+            display:
+              (data?.YoutubeVideoLink1 != "" ||
+                data?.YoutubeVideoLink2 != "" ||
+                data?.YoutubeVideoLink3 != "" ||
+                data?.YoutubeVideoLink4 != "" ||
+                data?.YoutubeVideoLink5 != "")
+                ? "block"
+                : "none",
+            color: "#fff",
             backgroundColor: "#fff",
-            height: matches ? 170 : 220,
-            flexDirection: "column",
-            padding: 1,
+            width: "100%",
+            minHeight: { xs: "auto", sm: "auto", md: "auto" },
           }}
         >
-          <Grid style={{ marginLeft: "7%" }}>
-            <Grid style={{ fontSize: "20px", fontWeight: 600 }}>
-              LOGO DESIGN WORK
-            </Grid>
-
-            <Grid
-              style={{ fontSize: "14px", color: "#2d3436", marginTop: "2%" }}
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 2,
+            }}
+          >
+            <Typography
+              textAlign={"center"}
+              sx={{ fontSize: "23px", fontWeight: 700,color:'#000' }}
             >
-              We have different variety of Design in logo of different companies
-            </Grid>
-          </Grid>
-          <div id="work"></div>
-          <Grid style={{ display: "flex" }}>
-          <Button
+              See Our Videos
+        
+            </Typography>
+            <Grid
+              item
+              xs={11}
+              md={11}
               style={{
-                borderColor: "#000",
-                width: "32%",
-                background: "#000",
-                color: "#fff",
-                fontSize: "13px",
-                fontWeight: 400,
-                marginLeft:'7%',
-                textTransform: "none",
-                borderRadius: 6,
-                display: "flex",
-                marginTop: "4%",
-                alignItems: "center",
+                margin: 10,
+                display: data?.YoutubeVideoLink1 == "" ? "none" : "flex",
                 justifyContent: "center",
+                flexDirection: "column",
               }}
             >
               <Grid
-                style={{ marginLeft: "4%",color:12 }}
-                
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
               >
-             Enquery Now
-              </Grid>
-            </Button>
-            <Grid
-              style={{
-                marginLeft: "3%",
-                marginTop: "3%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Grid style={{ fontSize: 14, marginTop: "-2%" }}>See more </Grid>
-              <Grid style={{ marginTop: "4%" }}>
-                <PiGreaterThanThin style={{ fontsize: 10 }} />
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink1} />
               </Grid>
             </Grid>
-          </Grid>
-          <Grid
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Divider
-              style={{
-                height: "1px",
-                backgroundColor: "#bdc3c7",
-                width: matches ? "96%" : "100%",
-                marginTop: "10%",
-              }}
-            />
-          </Grid>
-        </Grid>
 
-        <Grid
-          item
-          xs={12}
-          sx={{
-            display: "flex",
-            backgroundColor: "#fff",
-            height: "auto",
-            flexDirection: "column",
-            padding: 3,
-          }}
-        >
-          <Grid style={{ fontSize: "20px", fontWeight: 600 }}>
-            SEE OUR VEDIOS
-          </Grid>
-          <Grid style={{ marginTop: "5%" }}>
-            <video
-              autoplay
-              controls
-              style={{ borderRadius: "4%", width: "100%" }}
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: data?.YoutubeVideoLink2 == "" ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
             >
-              <source src="https://www.youtube.com/live/f12GSyMjesw?si=BXfTXjRkrAa9Fv23" />
-            </video>
-          </Grid>
-          <Grid style={{ marginTop: "5%" }}>
-            <video
-              autoplay
-              controls
-              style={{ borderRadius: "4%", width: "100%" }}
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink2} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: data?.YoutubeVideoLink3 == "" ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
             >
-              <source src="https://www.youtube.com/live/f12GSyMjesw?si=BXfTXjRkrAa9Fv23" />
-            </video>
-          </Grid>
-          <Grid style={{ marginTop: "5%" }}>
-            <video
-              autoplay
-              controls
-              style={{ borderRadius: "4%", width: "100%" }}
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink3} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: data?.YoutubeVideoLink4 == "" ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
             >
-              <source src="https://www.youtube.com/live/f12GSyMjesw?si=BXfTXjRkrAa9Fv23" />
-            </video>
-          </Grid>
-          <Grid
-            style={{
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink4} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: (data?.YoutubeVideoLink5 == "" || showMore === false) ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink5} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: (data?.YoutubeVideoLink6 == "" || showMore === false) ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink6} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: (data?.YoutubeVideoLink7 == "" || showMore === false) ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink7} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: (data?.YoutubeVideoLink8 == "" || showMore === false) ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink8} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: (data?.YoutubeVideoLink9 == "" || showMore === false) ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink9} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: (data?.YoutubeVideoLink10 == "" || showMore === false) ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink10} />
+              </Grid>
+            </Grid>
+
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: data?.YoutubeVideoLink4 == "" ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                onClick={() => setShowMore(!showMore)}
+              >
+                <Button variant='contained'>
+                  {showMore ? "Show Less" : "Show More"}
+                </Button>
+              </Grid>
+            </Grid>
+
+            <Grid
+             item
+             xs={11}
+             md={11}
+            sx={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -2002,10 +2451,12 @@ const loginBussiness=()=>{
               style={{
                 height: "1px",
                 backgroundColor: "#bdc3c7",
-                width: matches ? "104%" : "94%",
-                marginTop: "10%",
+                width:"100%",
+                marginTop: "6%",
               }}
             />
+          </Grid>
+
           </Grid>
         </Grid>
 
@@ -2039,7 +2490,7 @@ const loginBussiness=()=>{
                   textTransform: "none",
                   padding: 5,
                   borderRadius: 20,
-                  marginTop: "3%",
+                  marginTop: "8%",
                   fontSize: "16px",
                   fontWeight: 400,
                 }}
