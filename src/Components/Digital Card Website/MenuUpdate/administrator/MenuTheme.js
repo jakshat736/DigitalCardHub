@@ -347,7 +347,8 @@ export default function MenuTheme()
               display: "flex",
               flexDirection: "row",
               alignItems:'center',
-              gap: 18,
+              justifyContent:'center',
+              gap:matches?18:36,
               marginTop: "2%",
             }}
           >
@@ -432,7 +433,7 @@ export default function MenuTheme()
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              gap: 18,
+              gap:matches?18:36,
               marginTop: "3%",
             }}>
          <Button
@@ -514,7 +515,7 @@ export default function MenuTheme()
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              gap: 18,
+              gap:matches?18:36,
               marginTop: "3%",
             }}
           >
@@ -604,7 +605,7 @@ export default function MenuTheme()
              <Button
                 sx={{
                   borderColor: "#bdc3c7",
-                  width: 200,
+                  width: matches?200:240,
                   height:36,
                   backgroundImage: "radial-gradient(#f5f6fa,#b2bec3 )",
                   color: "#2c3e50",
