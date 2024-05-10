@@ -1320,6 +1320,7 @@ const loginBussiness=()=>{
                   padding: 1,
                   color: "#fff",
                   marginLeft: "auto",
+                  cursor:'pointer'
                 }}
               >
                 <Grid
@@ -1513,7 +1514,8 @@ const loginBussiness=()=>{
               display: "flex",
               flexDirection: "row",
               alignItems:'center',
-              gap: 18,
+              justifyContent:'center',
+              gap: matches?18:35,
               marginTop: "2%",
             }}
           >
@@ -1601,7 +1603,7 @@ const loginBussiness=()=>{
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              gap: 18,
+              gap: matches?18:35,
               marginTop: "3%",
             }}>
          <Button
@@ -1690,7 +1692,7 @@ const loginBussiness=()=>{
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              gap: 18,
+              gap: matches?18:35,
               marginTop: "3%",
             }}
           >
@@ -1781,7 +1783,7 @@ const loginBussiness=()=>{
              <Button
                 sx={{
                   borderColor: "#bdc3c7",
-                  width: 200,
+                  width: matches?200:240,
                   height:36,
                   backgroundImage: "radial-gradient(#f5f6fa,#b2bec3 )",
                   color: "#2c3e50",
