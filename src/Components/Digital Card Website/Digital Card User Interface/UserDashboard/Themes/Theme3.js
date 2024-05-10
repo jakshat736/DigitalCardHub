@@ -1010,7 +1010,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 <img src={Googlegif} style={{width:70,}}/>
               </IconButton>
             </Grid>
-
+            
             {
                 data?.links.map((item)=>{
                   return(
