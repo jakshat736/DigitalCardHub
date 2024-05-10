@@ -1147,7 +1147,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     return ecommerce.map((item) => {
       if (item?.productimg != '') {
         return (
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{  width: '100%',
+          position: 'relative',
+          paddingBottom: '100%', // 1:1 aspect ratio
+          overflow: 'hidden',}}>
             <Paper
               elevation={12}
               sx={{
@@ -1163,9 +1166,14 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 p: 0,
               }}
             >
-              <img src={`${serverURL}/images/${item.productimg}`} />
+    <img src={`${serverURL}/images/${item.productimg}`} style={{position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '75%',
+    objectFit: 'cover'}} />
               <br />
-              <Typography
+              {/* <Typography
                 sx={{
                   fontWeight: 500,
                   fontSize: "1.4rem",
@@ -1232,7 +1240,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 }
               >
                 BUY NOW
-              </Button>
+              </Button> */}
             </Paper>
           </Grid>
         );
@@ -1245,7 +1253,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   return (
     <Grid
       style={{
-        backgroundColor: "wheat",
+        backgroundColor: "#f5f6fa",
         height: "100%",
         width: "100%",
         display: "flex",
@@ -1346,7 +1354,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   anchor={"left"}
                   open={state["left"]}
                   onClose={toggleDrawer("left", false)}
-                  sx={{ backgroundColor: "black" }}
+                  
                 >
                   {list("left")}
                 </Drawer>
@@ -1392,7 +1400,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               position: "relative",
               background: "#fff",
               borderRadius: "15px 15px 0px  0px",
-              marginTop: '-5%'
             }}
           >
             <Grid
@@ -1407,14 +1414,18 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 sx={{
                   border: "1px solid #000",
                   width: 110,
+                  height:36,
                   backgroundImage: "radial-gradient(#353b48, #000)",
-                  borderRadius: 7,
+                  borderRadius: 8,
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
                   padding: 1,
                   color: "#fff",
                   marginLeft: "auto",
+                  cursor:'pointer',
+                  marginTop:matches?'-8%':'-4%',
+
                 }}
               >
                 <Grid
@@ -1535,7 +1546,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               sx={{
                 display: "flex",
                 backgroundColor: "#fff",
-                height: 335,
+                minHeight:"auto",
                 flexDirection: "column",
                 padding: 0,
               }}
@@ -1576,13 +1587,12 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   </Grid>
                 </Grid>
 
-                <Grid style={{ marginTop: "20%" }}>
+                <Grid style={{ marginTop: "10%" }}>
                   <Divider
                     style={{
-                      height: "2px",
+                      height: "1px",
                       backgroundColor: "#AAAAAA",
                       width: "94%",
-                      marginTop: "20%",
                     }}
                   />
                 </Grid>
@@ -1608,10 +1618,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               display: "flex",
               flexDirection: "row",
               alignItems: 'center',
-              gap: 18,
+              justifyContent:'center',
+              gap: matches?18:35,
               marginTop: "2%",
             }}
           >
+
+
 
             <Button
               sx={{
@@ -1651,6 +1664,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 Call
               </Grid>
             </Button>
+
 
 
 
@@ -1696,7 +1710,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              gap: 18,
+              gap: matches?18:35,
               marginTop: "3%",
             }}>
             <Button
@@ -1710,7 +1724,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 textTransform: "none",
                 padding: 2.6,
                 justifyContent: "flex-start",
-                display: data?.phoneNumber == null ? "none" : "flex",
+                display: data?.Email == null ? "none" : "flex",
                 borderRadius: 20,
                 marginTop: "3%",
                 fontSize: "16px",
@@ -1752,7 +1766,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 textTransform: "none",
                 padding: 2.6,
                 justifyContent: "flex-start",
-                display: data?.phoneNumber == null ? "none" : "flex",
+                display: data?.LinkdnLink == null ? "none" : "flex",
                 borderRadius: 20,
                 marginTop: "3%",
                 fontSize: "16px",
@@ -1785,7 +1799,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              gap: 18,
+              gap: matches?18:35,
               marginTop: "3%",
             }}
           >
@@ -1801,7 +1815,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 justifyContent: "flex-start",
                 textTransform: "none",
                 padding: 2.6,
-                display: data?.phoneNumber == null ? "none" : "flex",
+                display: data?.fbLink == null ? "none" : "flex",
                 borderRadius: 20,
                 marginTop: "3%",
                 fontSize: "16px",
@@ -1839,7 +1853,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 textTransform: "none",
                 padding: 2.6,
                 justifyContent: "flex-start",
-                display: data?.phoneNumber == null ? "none" : "flex",
+                display: data?.igLink == null ? "none" : "flex",
                 borderRadius: 20,
                 marginTop: "3%",
                 fontSize: "16px",
@@ -1849,7 +1863,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
 
               onClick={() => handleInstaUpdate()}
             >
-              <Grid sx={{ marginTop: '6%' }} >
+              <Grid sx={{ marginTop: '6%' }}>
                 <img src={insta}></img>
               </Grid>
               <Grid
@@ -1864,50 +1878,227 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               </Grid>
             </Button>
           </Grid>
+          {
+                data?.links.map((item)=>{
+                  return(
+                    <Grid
+                    item
+                    xs={12}
+                    md={12}
+                   
+                   
+                  >
+                     {item.title === "GitHub" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Githubgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Telegram" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Telegramgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Discord" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Discordgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "PayPal" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Paypalgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Snapchat" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Snapchatgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Skype" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Skypegif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Reddit" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Redditgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Google drive" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Drivegif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Dropbox" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Dropboxgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Pinterest" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                      >
+                        {/* <img src={Pinterestgif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Behance" &&(
+                        <IconButton
+                        href={`${item.link}`}
+                        // onClick={() => handleLinkdinUpdate()}
+                        
+                      >
+                        {/* <img src={Behancegif} style={{width:70,}}/> */}
+                      </IconButton>
+                       
+                     )
+                    }
+                     {item.title === "Others" &&(
+                          <Grid
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            alignItems:'center',
+                            gap: matches?18:35,
+                            marginTop: "3%",
+                          }}>
+                          <Button
+                            sx={{
+                              borderColor: "#bdc3c7",
+                              width: 230,
+                              height: 36,
+                              backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                              color: "#2c3e50",
+                              fontWeight: "bold",
+                              textTransform: "none",
+                              padding: 2.6,
+                              justifyContent: "center",
+                              display: data?.phoneNumber == null ? "none" : "flex",
+                              borderRadius: 20,
+                              marginTop: "3%",
+                              fontSize: "16px",
+                              fontWeight: 400,
+                            }}
+              
+                            href={`${item.link}`}
+                          >
+                            <Grid
+                              sx={{
+                               
+                                color: "#000",
+                                fontWeight: 400,
+                                fontSize: matches ? 14 : 20,
+                              }}
+                            >
+                              {item.customTitle}
+                            </Grid>
+                          </Button>
+              
+              
+              
+                          <Button
+                            sx={{
+                              borderColor: "#bdc3c7",
+                              width: 230,
+                              height: 36,
+                              backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                              color: "#2c3e50",
+                              fontWeight: "bold",
+                              textTransform: "none",
+                              padding: 2.6,
+                              justifyContent: "center",
+                              alignItems:'center',
+                              display: data?.phoneNumber == null ? "none" : "flex",
+                              borderRadius: 20,
+                              marginTop: "3%",
+                              fontSize: "16px",
+                              fontWeight: 400,
+                            }}
+              
+                          >
+                          
+                            <Grid
+                              sx={{
+                               
+                                color: "#000",
+                                fontWeight: 400,
+                                fontSize: matches ? 14 : 20,
+                              }}
+                            >
+                              Dynamic Button
+                            </Grid>
+                          </Button>
+                        </Grid>
+                     )
+                    }
+                  </Grid>
+                  
+                  )
+                })
+              }
 
-          <Grid
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              marginTop: "4%",
-            }}
-          >
-            <Button
-              sx={{
-                borderColor: "#bdc3c7",
-                width: 200,
-                height: 36,
-                backgroundImage: "radial-gradient(#f5f6fa,#b2bec3 )",
-                color: "#2c3e50",
-                justifyContent: "flex-start",
-                fontWeight: "bold",
-                textTransform: "none",
-                padding: 2.6,
-                display: "flex",
-                borderRadius: 20,
-                marginTop: "3%",
-                fontSize: "16px",
-                fontWeight: 400,
-              }}
 
-            >
-              <Grid sx={{ marginTop: '5%' }} >
-                <img src={groups}></img>
-              </Grid>
-              <Grid
-                sx={{
-                  marginLeft: .6,
-                  color: "#000",
-                  fontWeight: 400,
-                  fontSize: matches ? 17 : 20,
-                }}
-              >
-                Add To Contact
-              </Grid>
-            </Button>
 
-          </Grid>
+
+
+
+
 
           <Grid
             sx={{
@@ -1933,11 +2124,12 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           sx={{
             display: "flex",
             backgroundColor: "#fff",
-            height: matches ? 280 : 400,
+            height:'auto',
             flexDirection: "column",
             padding: 1,
           }}
         >
+          
           <Grid
             style={{
               marginTop: "4%",
@@ -1950,9 +2142,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <Grid style={{ fontSize: "22px", fontWeight: 700 }}>
               Work / Products
             </Grid>
-            <Grid sx={{ width: "100%", mt: 3 }}>
+            <Grid sx={{ width: "100%", mt: 3,display:'flex',justifyContent:'center',alignItems:'center' }}>
               <Slider
-                style={{ width: "100%" }}
+                style={{ width: "88%" }}
                 {...settings}
                 className={useStyle.dots}
               >
@@ -1961,8 +2153,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             </Grid>
           </Grid>
         </Grid>
-
-
+        <div id="work"></div>
         <Grid
           item
           xs={12}
@@ -1977,10 +2168,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 ? "block"
                 : "none",
             color: "#fff",
-            backgroundColor: "#ebebeb",
+            backgroundColor: "#fff",
             width: "100%",
-            minHeight: { xs: "auto", sm: "100%", md: "auto" },
-            mt: 15,
+            minHeight: { xs: "auto", sm: "auto", md: "auto" },
           }}
         >
           <Grid
@@ -1995,9 +2185,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           >
             <Typography
               textAlign={"center"}
-              sx={{ fontSize: 25, color: "#000" }}
+              sx={{ fontSize: "23px", fontWeight: 700,color:'#000' }}
             >
               See Our Videos
+        
             </Typography>
             <Grid
               item
@@ -2015,11 +2206,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   display: "flex",
                   justifyContent: "flex-start",
                   alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
                 }}
               >
-                <ReactPlayer height="300px" url={data?.YoutubeVideoLink1} />
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink1} />
               </Grid>
             </Grid>
+
             <Grid
               item
               xs={11}
@@ -2036,9 +2229,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   display: "flex",
                   justifyContent: "flex-start",
                   alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
                 }}
               >
-                <ReactPlayer height="300px" url={data?.YoutubeVideoLink2} />
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink2} />
               </Grid>
             </Grid>
             <Grid
@@ -2057,9 +2251,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   display: "flex",
                   justifyContent: "flex-start",
                   alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
                 }}
               >
-                <ReactPlayer height="300px" url={data?.YoutubeVideoLink3} />
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink3} />
               </Grid>
             </Grid>
             <Grid
@@ -2078,9 +2273,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   display: "flex",
                   justifyContent: "flex-start",
                   alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
                 }}
               >
-                <ReactPlayer height="300px" url={data?.YoutubeVideoLink4} />
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink4} />
               </Grid>
             </Grid>
             <Grid
@@ -2099,9 +2295,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   display: "flex",
                   justifyContent: "flex-start",
                   alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
                 }}
               >
-                <ReactPlayer height="300px" url={data?.YoutubeVideoLink5} />
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink5} />
               </Grid>
             </Grid>
             <Grid
@@ -2120,9 +2317,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   display: "flex",
                   justifyContent: "flex-start",
                   alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
                 }}
               >
-                <ReactPlayer height="300px" url={data?.YoutubeVideoLink6} />
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink6} />
               </Grid>
             </Grid>
             <Grid
@@ -2141,9 +2339,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   display: "flex",
                   justifyContent: "flex-start",
                   alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
                 }}
               >
-                <ReactPlayer height="300px" url={data?.YoutubeVideoLink7} />
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink7} />
               </Grid>
             </Grid>
             <Grid
@@ -2162,9 +2361,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   display: "flex",
                   justifyContent: "flex-start",
                   alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
                 }}
               >
-                <ReactPlayer height="300px" url={data?.YoutubeVideoLink8} />
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink8} />
               </Grid>
             </Grid>
             <Grid
@@ -2183,9 +2383,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   display: "flex",
                   justifyContent: "flex-start",
                   alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
                 }}
               >
-                <ReactPlayer height="300px" url={data?.YoutubeVideoLink9} />
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink9} />
               </Grid>
             </Grid>
             <Grid
@@ -2204,11 +2405,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   display: "flex",
                   justifyContent: "flex-start",
                   alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
                 }}
               >
-                <ReactPlayer height="300px" url={data?.YoutubeVideoLink10} />
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink10} />
               </Grid>
             </Grid>
+
             <Grid
               item
               xs={11}
@@ -2233,6 +2436,27 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 </Button>
               </Grid>
             </Grid>
+
+            <Grid
+             item
+             xs={11}
+             md={11}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Divider
+              style={{
+                height: "1px",
+                backgroundColor: "#bdc3c7",
+                width:"100%",
+                marginTop: "6%",
+              }}
+            />
+          </Grid>
+
           </Grid>
         </Grid>
 
@@ -2266,7 +2490,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   textTransform: "none",
                   padding: 5,
                   borderRadius: 20,
-                  marginTop: "3%",
+                  marginTop: "8%",
                   fontSize: "16px",
                   fontWeight: 400,
                 }}
