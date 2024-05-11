@@ -11,8 +11,15 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import fram1 from "../Themes/ThemeAssets/frame1.png"
+import fram2 from "../Themes/ThemeAssets/frame2.png"
+import MoreIcon from '@mui/icons-material/MoreVert';
+import fram3 from "../Themes/ThemeAssets/frame3.png"
+import menubarbold from "../Themes/ThemeAssets/menubarbold.png"
+import { IoIosContact } from "react-icons/io";
 import InputBase from "@mui/material/InputBase";
 import groups from "../Themes/ThemeAssets/group.png"
+import { MdKeyboardArrowRight } from "react-icons/md";
 import * as React from "react";
 import { IoIosCreate } from "react-icons/io";
 import WhatsApp1 from "../Themes/ThemeAssets/whatsapp1.png";
@@ -65,11 +72,13 @@ import { postData, serverURL } from "../../../../Services/NodeServices";
 import bannerone from "../Themes/ThemeAssets/banner1.png";
 import banner2 from "../Themes/ThemeAssets/banner2.png";
 import ReactPlayer from "react-player";
+import { FaShare } from "react-icons/fa";
+
 
 
 const actions = [
-  { icon: <FileCopyIcon />, name: "Copy" },
-  { icon: <RiUserSharedFill style={{ fontSize: '20px' }} />, name: "Shareno" },
+  { icon: <IoIosContact style={{ fontSize: '26px' }}/>, name: "Copy" },
+  { icon: <FaShare style={{ fontSize: '20px' }} />, name: "Shareno" },
   { icon: <HelpIcon />, name: "Enquery" },
   { icon: <ShareIcon />, name: "Share" },
 ];
@@ -109,6 +118,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openSignup, setOpenSignup] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
+  const [openMore, setOpenMore] = useState(false);
   const [showMore, setShowMore] = useState(false);
   const [openB, setOpenB] = React.useState(false);
   const [openContact, setOpenContact] = React.useState(false);
@@ -132,6 +142,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     setOpen(false);
   };
 
+  const handleClickSeeMore = () => {
+    setOpenMore(true);
+  };
+
+  const handleCloseSeeMore = () => {
+    setOpenMore(false);
+  };
   const handleClickOpenButton = () => {
     setOpenB(true);
   };
@@ -254,6 +271,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       true
     );
   };
+const [scroll,setScroll]=useState(false)
+
+setTimeout(()=>{
+  setScroll(!scroll)
+},5000)
 
   const handleSave = () => {
     var vCardData =
@@ -317,14 +339,24 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
 
   const RatingDialog = () => {
     return (<Dialog
+      PaperProps={{
+        style: {
+          position: "fixed",
+          bottom:-32,
+          width: "100%",
+          // Dialog ko page ke bottom me set karein
+        },
+      }}
       open={open}
       onClose={handleClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle style={{
-        backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)",
-      }}> <IconButton
+      <DialogTitle>
+      <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',color:'#000',fontSize:'20px',fontWeight:'700',marginTop:'5%'}}>
+          GIVE REVIEW !
+          </Grid>
+         <IconButton
         onClick={handleClose}
         aria-label="close"
         sx={{
@@ -336,122 +368,199 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       >
           <CloseIcon />
         </IconButton></DialogTitle>
-      <DialogContent
-        style={{
-          backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)",
-        }}
-
-      >
-        <DialogContentText id="alert-dialog-description">
-          <Grid
-            style={{
-              border: "1px solid #95a5a6",
-              width: "100%",
-              marginTop: "3%",
-              height: 260,
-              padding: 20,
-              display: "flex",
-              flexDirection: "column",
-              borderRadius: 5,
-            }}
-          >
-            <Grid style={{ marginTop: "1%" }}>
-              <Grid
-                style={{
-                  fontSize: 14,
-                  color: "#000",
-                  fontWeight: 400,
-                }}
-              >
-                Name
-              </Grid>
-              <TextField
-                id="standard-password-input"
-                type="Name"
-                autoComplete="Enter Your Name"
-                placeholder="Enter Your Name"
-                variant="standard"
-                size="small"
-                style={{
-                  width: matches ? "60vw" : "25vw",
-                  marginTop: "1%",
-                  background: "#fff",
-                  backgroundImage:
-                    "radial-gradient(#ecf0f1, #ecf0f1)",
-                }}
-              />
-            </Grid>
-            <Grid style={{ marginTop: "6%" }}>
-              <Grid
-                style={{
-                  fontSize: 14,
-                  color: "#000",
-                  fontWeight: 400,
-                }}
-              >
-                Rate Us
-              </Grid>
-              <Rating
-                size="large"
-                style={{ fontSize: 30 }}
-                color="green"
-                name="simple-controlled"
-                value={5}
-              />
-            </Grid>
-            <Grid style={{ marginTop: "6%" }}>
-              <Grid
-                style={{
-                  fontSize: 14,
-                  color: "#000",
-                  fontWeight: 400,
-                }}
-              >
-                Review
-              </Grid>
-              <TextField
-                placeholder="Help Us To Review"
-                size="small"
-                style={{
-                  width: matches ? "60vw" : "25vw",
-                  marginTop: "1%",
-                  background: "#fff",
-                  borderColor: "#000",
-                  backgroundImage:
-                    "radial-gradient(#ecf0f1, #ecf0f1)",
-                }}
-              />
-            </Grid>
-          </Grid>
-        </DialogContentText>
-        <DialogContentText
+        <Grid item xs={12}>
+        <Grid sx={{background:'#fff',padding:2,maxHeight:500}}>
+        <Grid>
+        <Grid
           style={{
+            border: "1px solid #95a5a6",
+            width: "100%",
+            height: 'auto',
+            padding: 20,
             display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            flexDirection: "column",
+            borderRadius: 5,
           }}
         >
-          <Button
-            style={{
-              borderColor: "#7ed6df",
-              width: "32%",
-              background: "#7ed6df",
-              color: "#000",
-              fontSize: "13px",
-              fontWeight: 400,
-              textTransform: "none",
-              borderRadius: 8,
-              display: "flex",
-              marginTop: "6%",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            variant="outlined"
-          >
-            Submit
-          </Button>
-        </DialogContentText>
-      </DialogContent>
+          <Grid style={{ marginTop: "1%" }}>
+            <Grid
+              style={{
+                fontSize: 14,
+                color: "#000",
+                fontWeight: 500,
+              }}
+            >
+              Name
+            </Grid>
+            <TextField
+              id="standard-password-input"
+              type="Name"
+              autoComplete="Enter Your Name"
+              placeholder="Enter Your Name"
+              variant="standard"
+              fullWidth
+              size="small"
+              style={{
+               
+                marginTop: "1%",
+                background: "#fff",
+             backgroundColor:'#fff'
+              }}
+            />
+          </Grid>
+          <Grid style={{ marginTop: "6%" }}>
+            <Grid
+              style={{
+                fontSize: 14,
+                color: "#000",
+                fontWeight: 500,
+              }}
+            >
+              Rate Us
+            </Grid>
+            <Rating
+              size="large"
+              style={{ fontSize: 30 }}
+              color="green"
+              name="simple-controlled"
+              value={0}
+            />
+          </Grid>
+          <Grid style={{ marginTop: "4%" }}>
+            <Grid
+              style={{
+                fontSize: 16,
+                color: "#000",
+                fontWeight: 500,
+              }}
+            >
+              Review
+            </Grid>
+            <TextField
+              placeholder="Help Us To Review"
+              size="small"
+              fullWidth
+              style={{
+              
+                marginTop: "1%",
+                background: "#fff",
+                borderColor: "#000",
+                backgroundColor:'#fff'
+              }}
+            />
+          </Grid>
+        </Grid>
+        <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+        <Button
+          style={{
+            borderColor: "#7ed6df",
+            width: "90%",
+            background: "#7ed6df",
+            color: "#000",
+            fontSize: "16px",
+            fontWeight: 500,
+            textTransform: "none",
+            borderRadius: 8,
+            display: "flex",
+            marginTop: "6%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          variant="outlined"
+        >
+          Submit
+        </Button>
+        </Grid> 
+          </Grid>   
+          </Grid>
+          </Grid>
+
+      {/* <DialogActions
+      style={{ backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)" }}
+    >
+      <Button onClick={handleClose}>Close</Button>
+    </DialogActions> */}
+    </Dialog>)
+  }
+
+
+  const SeeMoreDialog = () => {
+    return (<Dialog
+      PaperProps={{
+        style: {
+          position: "fixed",
+          height:'100%',
+          width: "100%",
+          // Dialog ko page ke bottom me set karein
+        },
+      }}
+      open={openMore}
+      onClose={handleCloseSeeMore}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle>
+      <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',color:'#000',fontSize:'20px',fontWeight:'700',marginTop:'5%'}}>
+          More
+          </Grid>
+         <IconButton
+        onClick={handleCloseSeeMore}
+        aria-label="close"
+        sx={{
+          position: "absolute",
+          right: 8,
+          top: 8,
+          color: "inherit",
+        }}
+      >
+          <CloseIcon />
+        </IconButton>
+        </DialogTitle>
+        <Grid item xs={10}>
+        <Grid sx={{background:'#fff',height:'auto',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
+       <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'1%',flexDirection:'column'}}><img src={fram1}></img>
+       <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
+         <Grid sx={{fontSize:'22px',fontWeight:700,display:'flex',justifyContent:'center',alignItems:'center'}}>
+        LOGO DESIGN
+         </Grid>
+         <Grid sx={{fontSize:'15px',fontWeight:400,marginTop:'1%',display:'flex',justifyContent:'center',alignItems:'center',textAlign:'center'}}>
+         Sorem ipsum dolor sit amet, consectetur adipiscing elitadipiscing elit adipiscing.
+         </Grid>
+       </Grid>
+       </Grid>
+
+
+
+       <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'6%',flexDirection:'column'}}><img src={fram2}></img>
+       <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
+         <Grid sx={{fontSize:'22px',fontWeight:700,display:'flex',justifyContent:'center',alignItems:'center'}}>
+        LOGO DESIGN
+         </Grid>
+         <Grid sx={{fontSize:'15px',fontWeight:400,marginTop:'1%',display:'flex',justifyContent:'center',alignItems:'center',textAlign:'center'}}>
+         Sorem ipsum dolor sit amet, consectetur adipiscing elitadipiscing elit adipiscing.
+         </Grid>
+       </Grid>
+       </Grid>
+
+
+
+       <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'6%',flexDirection:'column'}}><img src={fram3}></img>
+       <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
+         <Grid sx={{fontSize:'22px',fontWeight:700,display:'flex',justifyContent:'center',alignItems:'center'}}>
+        LOGO DESIGN
+         </Grid>
+         <Grid sx={{fontSize:'15px',fontWeight:400,marginTop:'1%',display:'flex',justifyContent:'center',alignItems:'center',textAlign:'center'}}>
+         Sorem ipsum dolor sit amet, consectetur adipiscing elitadipiscing elit adipiscing.
+         </Grid>
+       </Grid>
+       </Grid>
+
+
+
+         
+          </Grid>
+          </Grid>
+
       {/* <DialogActions
       style={{ backgroundImage: "radial-gradient(#ecf0f1, #ecf0f1)" }}
     >
@@ -1142,111 +1251,69 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
 
 
   console.log(ecommerce)
-  var datas = [bannerone, banner2, bannerone];
+  
+  // var datas=[{id:0,picture:[bannerone],productname:'LOGO DESIGN WORK',price:2000.00,offerprice:1000.00},
+  // {id:0,picture:[banner2],productname:'FULL STACK DEVELOPER',price:3300.00,offerprice:2200.00},
+  // {id:0,picture:[bannerone],productname:'GRAPHIC DESIGNER LOGO',price:2200.00,offerprice:1000.00}]
+
   const showSlider = () => {
     return ecommerce.map((item) => {
-      if (item?.productimg != '') {
-        return (
-          <Grid item xs={12} sx={{  width: '100%',
-          position: 'relative',
-          paddingBottom: '100%', // 1:1 aspect ratio
-          overflow: 'hidden',}}>
-            <Paper
-              elevation={12}
-              sx={{
-                border: 1,
-                backgroundColor: "#ffffff",
-                borderStyle: "solid",
-                borderColor: "white",
-                display: item.productimg == '' ? "none" : "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-                mb: "15px",
-                marginX: "15px",
-                p: 0,
-              }}
-            >
-    <img src={`${serverURL}/images/${item.productimg}`} style={{position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '75%',
-    objectFit: 'cover'}} />
-              <br />
-              {/* <Typography
-                sx={{
-                  fontWeight: 500,
-                  fontSize: "1.4rem",
-                  color: "#000000",
-                  textAlign: "center",
-                  display: item.productname == '' ? "none" : "block"
-                }}
-              >
-                {item.productname}
-              </Typography>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <s>
-                  <Typography
-                    sx={{
-                      fontWeight: 500,
-                      fontSize: "1.1rem",
-                      color: "#000000",
-                      textAlign: "center",
-                      display: item.price == '' ? "none" : "block"
-                    }}
-                  >
-                    ₹{item.price}
-                  </Typography>
-                </s>
-                &nbsp;&nbsp;
-                <Typography
-                  sx={{
-                    fontWeight: 500,
-                    fontSize: "1.3rem",
-                    color: "#000000",
-                    textAlign: "center",
-                    display: item.offerprice == '' ? "none" : "block"
-                  }}
-                >
-                  ₹{item.offerprice}
-                </Typography>
-              </Box>
-              <br />
-              <Button
-                variant="contained"
-                sx={{
-                  paddingX: "20px",
-                  bgcolor: "#FFDE59",
-                  color: "#000000",
-                  fontWeight: 600,
-                  border: "1px solid #000000",
-                  "&:hover": {
-                    bgcolor: "#FFDE59",
-                    color: "#000000",
-                  },
-                  display: item.show == "true" ? "block" : "none"
-                }}
-                onClick={() =>
-                  window.open(
-                    `https://wa.me/+91${data?.WhatsappNo}?text=I Want To Buy Your ${item.productname}`
-                  )
-                }
-              >
-                BUY NOW
-              </Button> */}
-            </Paper>
+         if (item != null) {
+      return(<Grid item xs={12} sx={{display:'flex'}}>
+
+         <Grid sx={{width: '100%',marginLeft:'6%'}}>
+         <img src={`${serverURL}/images/${item.productimg}`} style={{ width: matches?300:470, height:matches?220:300,
+    paddingBottom: '8%', 
+    position: 'relative',}}/>
+         </Grid>
+         <Grid sx={{display:'flex',marginTop:'-5%',flexDirection:'column',marginLeft:'6%'}}>
+         <Grid sx={{fontSize:'22px',fontWeight:700}}>
+         {item.productname}
+         </Grid>
+         <Grid sx={{fontSize:'15px',fontWeight:400,marginTop:'1%'}}>
+         Sorem ipsum dolor sit amet, consectetur adipiscing elitadipiscing elit adipiscing.
+         </Grid>
+         <Grid sx={{alignItems:'center',marginTop:'-3%',display:'flex',width:'100%'}}>
+        <Button
+          style={{
+            borderColor: "#000",
+            width:130,
+            height:40,
+            background: "#000",
+            color: "#fff",
+            fontSize: "14px",
+            fontWeight: 400,
+            textTransform: "none",
+            borderRadius: 8,
+            display:item.show=="true"?"block":"none",
+            marginTop: "6%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          variant="outlined"
+          onClick={() =>
+            window.open(
+              `https://wa.me/+91${data?.WhatsappNo}?text=I Want To Buy Your ${item.productname}`
+            )
+          }
+        >
+          Enquery Now
+        </Button>
+        <Grid>
+        <Grid sx={{display:'flex',flexDirection:'column',marginLeft:'10%',marginTop:'7%',width:'300%'}}>
+       <Grid sx={{fontSize:'20px',fontWeight:600,color:'#FF0000',marginTop:'7%',marginLeft:'3%'}}>₹ {item.offerprice}  </Grid><Grid sx={{fontSize:'12px',fontWeight:500,color:'#4A4A4A',marginLeft:'3%'}}>(Inc. all taxes)</Grid>
+          </Grid> 
+        </Grid>
+        </Grid>
+        <Grid sx={{marginTop:'3%',marginLeft:'1%'}}>
+        <Grid onClick={handleClickSeeMore} sx={{display:'flex',flexDirection:'row',color:'#4A4A4A',cursor:'pointer'}}>
+       <Grid sx={{fontSize:13}}>See More</Grid><Grid sx={{fontSize:"15px",marginTop:'.2%'}}><MdKeyboardArrowRight /></Grid>
           </Grid>
-        );
-      }
-    });
-  };
+          </Grid>
+         </Grid>
+      </Grid>)
+    }})
+  }
 
 
 
@@ -1346,9 +1413,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <Grid sx={{ marginLeft: "2%" }}>
               <Grid key={"left"} style={{ cursor: "pointer" }}>
                 <img
-                  src={menubar}
+                  src={menubarbold}
                   onClick={toggleDrawer("left", true)}
-                  sx={{ color: "#fff" }}
+                  style={{ color: "#fff",width:'18%' }}
                 ></img>
                 <Drawer
                   anchor={"left"}
@@ -1360,12 +1427,14 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 </Drawer>
               </Grid>
             </Grid>
-            <Grid
+            
+            <Paper
+              elevation={25}
               sx={{
-                border: "1px solid #2d3436",
+                border: "1px solid #7f8c8d",
                 width: 100,
                 height: 30,
-                backgroundImage: "radial-gradient(#636e72,#2d3436 )",
+                background: 'rgba(142, 142, 142, 0.5)',
                 borderRadius: 20,
                 display: "flex",
                 justifyContent: "center",
@@ -1379,7 +1448,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               <Grid sx={{ marginLeft: "10%", color: "#fff", fontsize: 14 }}>
                 {data?.cardViewCount}
               </Grid>
-            </Grid>
+            </Paper>
           </Grid>
         </Grid>
 
@@ -1400,6 +1469,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               position: "relative",
               background: "#fff",
               borderRadius: "15px 15px 0px  0px",
+              marginTop:'-3%'
             }}
           >
             <Grid
@@ -2088,16 +2158,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                      )
                     }
                   </Grid>
-                  
                   )
                 })
               }
-
-
-
-
-
-
 
 
           <Grid
@@ -2109,7 +2172,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           >
             <Divider
               style={{
-                height: "1px",
+               
                 backgroundColor: "#bdc3c7",
                 width: matches ? "97%" : "100%",
                 marginTop: "10%",
@@ -2142,17 +2205,39 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <Grid style={{ fontSize: "22px", fontWeight: 700 }}>
               Work / Products
             </Grid>
-            <Grid sx={{ width: "100%", mt: 3,display:'flex',justifyContent:'center',alignItems:'center' }}>
+            <Grid sx={{ width: "100%", display:'flex',justifyContent:'center',alignItems:'center',marginTop:'3%' }}>
               <Slider
-                style={{ width: "88%" }}
+                style={{ width: "100%" }}
                 {...settings}
-                className={useStyle.dots}
               >
                 {showSlider()}
               </Slider>
             </Grid>
+           
+
           </Grid>
+          <Grid
+             item
+             xs={12}
+             md={12}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Divider
+              style={{
+                height: "1px",
+                backgroundColor: "#bdc3c7",
+                width:"94%",
+                marginTop: "5%",
+              }}
+            />
+          </Grid>
+
         </Grid>
+       
         <div id="work"></div>
         <Grid
           item
@@ -2180,7 +2265,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              marginTop: 2,
+              marginTop: '4%',
             }}
           >
             <Typography
@@ -2460,13 +2545,262 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           </Grid>
         </Grid>
 
+   <Grid
+         item
+          xs={12}
+          sx={{
+            display: "flex",
+            justifyContent:'center',
+            alignItems:'center',
+            padding: 1,
+            background:'#fff',
+            flexDirection:'column',
+            height:'auto'
+            }}>
+              <Grid sx={{fontSize:'20px',fontWeight:700,marginTop:'4%'}}>SEE OUR REVIEW !</Grid>
+           <Grid
+          //  className="marquee-container"
+             style={{
+              border: "1px solid #fff",
+              width: "100%",
+              maxHeight: 330,
+              display: "flex",
+              flexDirection: "column",
+              borderRadius: 10,
+              marginTop:'2%',
+              overflowY:'scroll',
+              scrollbarWidth:'none',
+              // scrollMarginBlockEnd:scroll?""
+              scrollSnapAlign:"end"
+ }}>
+              <Box
+              // className="marquee"
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        '& > :not(style)': {
+          m: 1,
+          marginTop:2,
+          width: matches?400:520,
+          height: 82,
+         
+        },
+      }}
+    >
+      <Paper elevation={3} sx={{padding:1.3}}>
+      <Grid sx={{display:'flex'}}>
+      <Grid sx={{fontSize:'18px',fontWeight:500}}>Ankit Narwariya</Grid>
+      <Grid sx={{marginLeft:'auto'}}>
+      <IconButton
+            size="small"
+            aria-label="display more actions"
+            edge="end"
+            color="#000"
+            sx={{color:"#000"}}
+          >
+            <MoreIcon />
+          </IconButton>
+      </Grid>
+      </Grid>
+      <Grid sx={{marginTop:matches?'-4%':'-3%',display:'flex'}}>
+             <Grid><Rating
+                          size="small"
+                          color="green"
+                          name="simple-controlled"
+                          value={4} 
+                        /></Grid>
+                    <Grid sx={{color:'#636e72',fontSize:14,color:'#636e72',marginLeft:'2%',marginTop:'.7%'}}>3 min ago</Grid>
+             </Grid>
+             <Grid sx={{fontSize:10,color:'#2d3436'}}>
+             Sorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.-
+             </Grid>
+      </Paper>
+      
+      <Paper elevation={3} sx={{padding:1.3}}>
+      <Grid sx={{display:'flex'}}>
+      <Grid sx={{fontSize:'18px',fontWeight:500}}>Ankit Narwariya</Grid>
+      <Grid sx={{marginLeft:'auto'}}>
+      <IconButton
+            size="small"
+            aria-label="display more actions"
+            edge="end"
+            color="#000"
+            sx={{color:"#000"}}
+          >
+            <MoreIcon />
+          </IconButton>
+      </Grid>
+      </Grid>
+      <Grid sx={{marginTop:matches?'-4%':'-3%',display:'flex'}}>
+             <Grid><Rating
+                          size="small"
+                          color="green"
+                          name="simple-controlled"
+                          value={4} 
+                        /></Grid>
+                    <Grid sx={{color:'#636e72',fontSize:14,color:'#636e72',marginLeft:'2%',marginTop:'.7%'}}>3 min ago</Grid>
+             </Grid>
+             <Grid sx={{fontSize:10,color:'#2d3436'}}>
+             Sorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.-
+             </Grid>
+      </Paper>
+
+      <Paper elevation={3} sx={{padding:1.3}}>
+      <Grid sx={{display:'flex'}}>
+      <Grid sx={{fontSize:'18px',fontWeight:500}}>Ankit Narwariya</Grid>
+      <Grid sx={{marginLeft:'auto'}}>
+      <IconButton
+            size="small"
+            aria-label="display more actions"
+            edge="end"
+            color="#000"
+            sx={{color:"#000"}}
+          >
+            <MoreIcon />
+          </IconButton>
+      </Grid>
+      </Grid>
+      <Grid sx={{ marginTop:matches?'-4%':'-3%',display:'flex'}}>
+             <Grid><Rating
+                          size="small"
+                          color="green"
+                          name="simple-controlled"
+                          value={4} 
+                        /></Grid>
+                    <Grid sx={{color:'#636e72',fontSize:14,color:'#636e72',marginLeft:'2%',marginTop:'.7%'}}>3 min ago</Grid>
+             </Grid>
+             <Grid sx={{fontSize:10,color:'#2d3436'}}>
+             Sorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.-
+             </Grid>
+      </Paper>
+
+       <Paper elevation={3} sx={{padding:1.3}}>
+      <Grid sx={{display:'flex'}}>
+      <Grid sx={{fontSize:'18px',fontWeight:500}}>Ankit Narwariya</Grid>
+      <Grid sx={{marginLeft:'auto'}}>
+      <IconButton
+            size="small"
+            aria-label="display more actions"
+            edge="end"
+            color="#000"
+            sx={{color:"#000"}}
+          >
+            <MoreIcon />
+          </IconButton>
+      </Grid>
+      </Grid>
+      <Grid sx={{ marginTop:matches?'-4%':'-3%',display:'flex'}}>
+             <Grid><Rating
+                          size="small"
+                          color="green"
+                          name="simple-controlled"
+                          value={4} 
+                        /></Grid>
+                    <Grid sx={{color:'#636e72',fontSize:14,color:'#636e72',marginLeft:'2%',marginTop:'.7%'}}>3 min ago</Grid>
+             </Grid>
+             <Grid sx={{fontSize:10,color:'#2d3436'}}>
+             Sorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.-
+             </Grid>
+      </Paper>
+
+       <Paper elevation={3} sx={{padding:1.3}}>
+      <Grid sx={{display:'flex'}}>
+      <Grid sx={{fontSize:'18px',fontWeight:500}}>Ankit Narwariya</Grid>
+      <Grid sx={{marginLeft:'auto'}}>
+      <IconButton
+            size="small"
+            aria-label="display more actions"
+            edge="end"
+            color="#000"
+            sx={{color:"#000"}}
+          >
+            <MoreIcon />
+          </IconButton>
+      </Grid>
+      </Grid>
+      <Grid sx={{ marginTop:matches?'-4%':'-3%',display:'flex'}}>
+             <Grid><Rating
+                          size="small"
+                          color="green"
+                          name="simple-controlled"
+                          value={4} 
+                        /></Grid>
+                    <Grid sx={{color:'#636e72',fontSize:14,color:'#636e72',marginLeft:'2%',marginTop:'.7%'}}>3 min ago</Grid>
+             </Grid>
+             <Grid sx={{fontSize:10,color:'#2d3436'}}>
+             Sorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.-
+             </Grid>
+      </Paper>
+
+       <Paper elevation={3} sx={{padding:1.3}}>
+      <Grid sx={{display:'flex'}}>
+      <Grid sx={{fontSize:'18px',fontWeight:500}}>Ankit Narwariya</Grid>
+      <Grid sx={{marginLeft:'auto'}}>
+      <IconButton
+            size="small"
+            aria-label="display more actions"
+            edge="end"
+            color="#000"
+            sx={{color:"#000"}}
+          >
+            <MoreIcon />
+          </IconButton>
+      </Grid>
+      </Grid>
+      <Grid sx={{ marginTop:matches?'-4%':'-3%',display:'flex'}}>
+             <Grid><Rating
+                          size="small"
+                          color="green"
+                          name="simple-controlled"
+                          value={4} 
+                        /></Grid>
+                    <Grid sx={{color:'#636e72',fontSize:14,color:'#636e72',marginLeft:'2%',marginTop:'.7%'}}>3 min ago</Grid>
+             </Grid>
+             <Grid sx={{fontSize:10,color:'#2d3436'}}>
+             Sorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.-
+             </Grid>
+      </Paper>
+
+       <Paper elevation={3} sx={{padding:1.3}}>
+      <Grid sx={{display:'flex'}}>
+      <Grid sx={{fontSize:'18px',fontWeight:500}}>Ankit Narwariya</Grid>
+      <Grid sx={{marginLeft:'auto'}}>
+      <IconButton
+            size="small"
+            aria-label="display more actions"
+            edge="end"
+            color="#000"
+            sx={{color:"#000"}}
+          >
+            <MoreIcon />
+          </IconButton>
+      </Grid>
+      </Grid>
+      <Grid sx={{marginTop:matches?'-4%':'-3%',display:'flex'}}>
+             <Grid><Rating
+                          size="small"
+                          color="green"
+                          name="simple-controlled"
+                          value={4} 
+                        /></Grid>
+                    <Grid sx={{color:'#636e72',fontSize:14,color:'#636e72',marginLeft:'2%',marginTop:'.7%'}}>3 min ago</Grid>
+             </Grid>
+             <Grid sx={{fontSize:10,color:'#2d3436'}}>
+             Sorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.-
+             </Grid>
+      </Paper> 
+    </Box>
+           </Grid>
+        </Grid>
+
+
         <Grid
           item
           xs={12}
           sx={{
             display: "flex",
             backgroundColor: "#fff",
-            height: matches ? 300 : 380,
+            height: 'auto',
             flexDirection: "column",
             padding: 1,
           }}
@@ -2482,37 +2816,26 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               <Button
                 onClick={handleClickOpen}
                 style={{
-                  borderColor: "#7ed6df",
-                  width: matches ? "50%" : "35%",
-                  backgroundImage: "radial-gradient(#7ed6df, #7ed6df)",
-                  color: "#2c3e50",
+                  borderColor: "#000",
+                  width: matches ? "94%" : "100%",
+                  background:'#000',
+                  color: "#fff",
                   fontWeight: "bold",
                   textTransform: "none",
                   padding: 5,
-                  borderRadius: 20,
-                  marginTop: "8%",
-                  fontSize: "16px",
-                  fontWeight: 400,
+                  borderRadius: 8,
+                  marginTop: "1%",
+                  fontSize: "18px",
+                  fontWeight: 600,
                 }}
                 variant="outlined"
               >
-                Give Us Review
+                Write Your Review
               </Button>
             </React.Fragment>
           </Grid>
-          <Grid
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: "2%",
-            }}
-          >
-            <Slider style={{ width: "90%" }} {...settingsreview}>
-              {showReview()}
-            </Slider>
-          </Grid>
         </Grid>
+
 
         <Grid
           item
@@ -2582,6 +2905,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       {loginBussiness()}
       {loginSignup()}
       {RatingDialog()}
+     {SeeMoreDialog()}
     </Grid>
   );
 }

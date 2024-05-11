@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.marquee-container {
+  width: 40px; /* Width of the container */
+  height: 300px; /* Height of the container */
+  overflow: hidden; /* Hide the overflowing content */
+  position: relative;
+}
+
+.marquee {
+  position: absolute;
+  top: 100%; /* Start below the container */
+  animation: marquee 10s linear infinite; /* Animation for scrolling */
+}
+
+@keyframes marquee {
+  
+  from {
+    top: -100%;
+  }
+  to {
+     top: 100%;
+  }
+}
