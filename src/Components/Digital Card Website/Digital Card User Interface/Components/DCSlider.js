@@ -1,17 +1,17 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
+import { Autoplay, EffectCoverflow, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from 'swiper/react';
 import Img1 from "../../Digital Card Assets/phone 1.png";
 import Img2 from "../../Digital Card Assets/phone 2.png";
 import Img3 from "../../Digital Card Assets/phone 3.png";
 import Img4 from "../../Digital Card Assets/phone 4.png";
 import Img5 from "../../Digital Card Assets/phone 5.png";
 import Img6 from "../../Digital Card Assets/phone 6.png";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Pagination, Navigation, EffectFlip, Autoplay } from "swiper";
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import "./styles.css";
 
 const data = [

@@ -1,4 +1,16 @@
 import {
+    ArrowDropDownSharp,
+    ArrowDropUpSharp,
+    FacebookOutlined,
+    Instagram,
+    LinkedIn,
+    Save,
+    Share,
+    WhatsApp,
+    YouTube
+} from "@mui/icons-material";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import {
     Box,
     Button,
     Container,
@@ -12,34 +24,12 @@ import {
     useTheme,
 } from "@mui/material";
 import React from "react";
-import './Theme4.css'
-import review from "./ThemeAssets/reviewicon.png"
-import {
-    ArrowDownwardSharp,
-    ArrowDropDownSharp,
-    ArrowDropUpSharp,
-    Email,
-    FacebookOutlined,
-    Instagram,
-    LinkedIn,
-    Save,
-    Share,
-    WhatsApp,
-    YouTube,
-} from "@mui/icons-material";
-import coverImg from "./ThemeAssets/back.jpg";
-import logo from "./ThemeAssets/instagram.png";
-import { serverURL } from "../../../../Services/NodeServices";
-import { useNavigate } from "react-router-dom";
-import ReactPlayer from "react-player";
 import Clock from 'react-live-clock';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import { postData } from "../../../../Services/NodeServices";
-import phonepe from './ThemeAssets/phonepe.png'
-import paytm from './ThemeAssets/paytm.png'
-import gpay from './ThemeAssets/gpay.png'
-import RateReviewIcon from '@mui/icons-material/RateReview';
-import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import ReactPlayer from "react-player";
+import { useNavigate } from "react-router-dom";
+import { postData, serverURL } from "../../../../Services/NodeServices";
+import './Theme4.css';
+import review from "./ThemeAssets/reviewicon.png";
 export default function Theme4({ data, products, gallery, ecommerce }) {
     const theme = useTheme();
     const mobile = useMediaQuery(theme.breakpoints.down(600));

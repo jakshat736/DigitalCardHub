@@ -1,10 +1,9 @@
-import { Grid, Typography, useMediaQuery, useTheme } from '@mui/material'
-import React from 'react'
+import { Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
+import React from 'react';
 
 const Footer = () => {
     const theme = useTheme();
     const mobile = useMediaQuery(theme.breakpoints.down(600));
-    const tablet = useMediaQuery(theme.breakpoints.down(960));
 
     return (
         <>
