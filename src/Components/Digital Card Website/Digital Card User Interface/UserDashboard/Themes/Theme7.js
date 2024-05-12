@@ -1,48 +1,24 @@
-import React, { useState } from "react";
-import bg from "../Themes/ThemeAssets/theme1back.jpeg";
-import { Button, Divider, Grid, TextField, Typography } from "@mui/material";
-import theme1 from "../Themes/ThemeAssets/theme.png";
-import { useNavigate, useParams } from "react-router-dom";
-import { postData, serverURL } from "../../../../Services/NodeServices";
-import phoneIcon from "./ThemeAssets/phone number icon.png";
-import address from "./ThemeAssets/address icon.png";
-import email from "./ThemeAssets/email icon.png";
-import website from "./ThemeAssets/website icon.png";
-import { InputAdornment } from "@mui/material";
-import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import { IconButton } from "@mui/material";
-import sendIcon from "./ThemeAssets/sendIcon.png";
-import themePage from "./ThemeAssets/theme1page.jpg";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import Instagram from "./ThemeAssets/instagram.png";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import PinterestIcon from "@mui/icons-material/Pinterest";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import { Phone, YouTube, YoutubeSearchedFor } from "@mui/icons-material";
-import Saveimg from "./ThemeAssets/save.png";
-import Shareimg from "./ThemeAssets/share.png";
-import ReactPlayer from "react-player";
-import branding from "./ThemeAssets/branding.png";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import Clock from "react-live-clock";
-import review from "./ThemeAssets/reviewicon.png"
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import { FixedSizeGrid } from "react-window";
-import Avatar from "@mui/material/Avatar";
-import CameraAltIcon from "@mui/icons-material/CameraAlt";
-import { useMediaQuery, Box, Paper, useTheme } from "@mui/material";
-import EmailIcon from "@mui/icons-material/Email";
+import { WhatsApp, YouTube } from "@mui/icons-material";
 import CallIcon from "@mui/icons-material/Call";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { WhatsApp } from "@mui/icons-material";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import EmailIcon from "@mui/icons-material/Email";
+import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import phonepe from './ThemeAssets/phonepe.png'
-import paytm from './ThemeAssets/paytm.png'
-import gpay from './ThemeAssets/gpay.png'
-import RateReviewIcon from '@mui/icons-material/RateReview';
-import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-import './Theme9.css'
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { Box, Button, Divider, Grid, IconButton, InputAdornment, Paper, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import React from "react";
+import Clock from "react-live-clock";
+import ReactPlayer from "react-player";
+import { useNavigate } from "react-router-dom";
+import { serverURL } from "../../../../Services/NodeServices";
+import bg from "../Themes/ThemeAssets/theme1back.jpeg";
+import './Theme9.css';
+import branding from "./ThemeAssets/branding.png";
+import review from "./ThemeAssets/reviewicon.png";
+import themePage from "./ThemeAssets/theme1page.jpg";
 const Theme7 = ({ data, products, gallery, ecommerce }) => {
   const navigate = useNavigate();
   const theme = useTheme();

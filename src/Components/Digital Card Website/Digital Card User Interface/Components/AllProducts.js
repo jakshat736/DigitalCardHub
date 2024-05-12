@@ -1,31 +1,12 @@
-import React from 'react'
-import r1 from '../../Digital Card Assets/r1.png'
-import r2 from '../../Digital Card Assets/r2.png'
-import r3 from '../../Digital Card Assets/r3.png'
-import r4 from '../../Digital Card Assets/r4.png'
-import r5 from '../../Digital Card Assets/r5.png'
-import r6 from '../../Digital Card Assets/r6.png'
-import r7 from '../../Digital Card Assets/r7.png'
-import r8 from '../../Digital Card Assets/r8.png'
-import r9 from '../../Digital Card Assets/r9.png'
-import r10 from '../../Digital Card Assets/r10.png'
 import { Box, Divider, Grid, Paper, Typography } from '@mui/material'
+import React from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import Navbar from './Navbar'
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import bg from "../../Digital Card Assets/footer.png";
-import Footer from "./Footer";
-import { getData, postData, serverURL } from '../../../Services/NodeServices'
-import { useEffect } from 'react'
-import { useState } from 'react'
-import { LocalTaxi } from '@mui/icons-material'
+import { useEffect, useState } from 'react'
+import { getData, serverURL } from '../../../Services/NodeServices'
+import bg from "../../Digital Card Assets/footer.png"
+import Footer from "./Footer"
 import Lower from './Lower'
 import Preloader from './Preloader'
 

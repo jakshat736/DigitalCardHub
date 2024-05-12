@@ -1,7 +1,10 @@
 import {
+  LocationOn,
+  Share
+} from "@mui/icons-material";
+import {
   Box,
   Button,
-  Container,
   Grid,
   IconButton,
   InputAdornment,
@@ -9,48 +12,23 @@ import {
   TextField,
   Typography,
   useMediaQuery,
-  useTheme,
+  useTheme
 } from "@mui/material";
-import review from "./ThemeAssets/reviewicon.png"
 import React from "react";
-import {
-  ArrowDownwardSharp,
-  ArrowDropDownSharp,
-  ArrowDropUpSharp,
-  Email,
-  Facebook,
-  FacebookOutlined,
-  Instagram,
-  LinkedIn,
-  LocationOn,
-  MapSharp,
-  Save,
-  SaveAlt,
-  Share,
-  WhatsApp,
-} from "@mui/icons-material";
-import './Theme9.css'
-import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import './Theme9.css';
+import review from "./ThemeAssets/reviewicon.png";
 
-import { serverURL } from "../../../../Services/NodeServices";
-import { useNavigate } from "react-router-dom";
-import ReactPlayer from "react-player";
-import bg from "./ThemeAssets/theme6.jpg";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import EmailIcon from "@mui/icons-material/Email";
 import CallIcon from "@mui/icons-material/Call";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import EmailIcon from "@mui/icons-material/Email";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import Clock from "react-live-clock";
+import InstagramIcon from "@mui/icons-material/Instagram";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { postData } from "../../../../Services/NodeServices";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import phonepe from './ThemeAssets/phonepe.png'
-import paytm from './ThemeAssets/paytm.png'
-import gpay from './ThemeAssets/gpay.png'
-import ShareIcon from '@mui/icons-material/Share';
-import RateReviewIcon from '@mui/icons-material/RateReview';
+import Clock from "react-live-clock";
+import ReactPlayer from "react-player";
+import { useNavigate } from "react-router-dom";
+import { postData, serverURL } from "../../../../Services/NodeServices";
 export default function Theme8({ data, products, gallery, ecommerce }) {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down(600));

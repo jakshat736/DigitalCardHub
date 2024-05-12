@@ -1,20 +1,17 @@
 import {
   Box,
-  Button,
   Grid,
   Typography,
   useMediaQuery,
-  useTheme,
+  useTheme
 } from "@mui/material";
-import React, { useEffect } from "react";
-import Car from "../../Digital Card Assets/MobileCard.png";
-import bg from "../../Digital Card Assets/3.png";
-import Play from "../../Digital Card Assets/Play.jpg";
-import Icon from "../../Digital Card Assets/hexa_icon.png";
-import { useNavigate } from "react-router-dom";
-import Tilt from 'react-parallax-tilt';
 import Aos from "aos";
 import 'aos/dist/aos.css';
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import bg from "../../Digital Card Assets/3.png";
+import Car from "../../Digital Card Assets/MobileCard.png";
+import Icon from "../../Digital Card Assets/hexa_icon.png";
 const data = [
   // { option: "35 Premium themes" },
   { option: " Share cards with anyone, Unlimited times" },

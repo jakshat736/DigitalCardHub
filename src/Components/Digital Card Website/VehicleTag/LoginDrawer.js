@@ -6,13 +6,12 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Typography from '@mui/material/Typography';
 import { grey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
-import { useSnackbar } from 'notistack';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import logo1 from '../Digital Card Assets/dchlogo.png'
 import { postData } from '../../Services/NodeServices';
+import logo1 from '../Digital Card Assets/dchlogo.png';
 import OtpGenerator from '../Digital Card User Interface/ReviewTag/OtpGenerator';
 
 const drawerBleeding = 150;
@@ -27,22 +26,11 @@ const StyledBox = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
 }));
 
-const Puller = styled('div')(({ theme }) => ({
-    width: 30,
-    height: 6,
-    backgroundColor: theme.palette.mode === 'light' ? grey[300] : grey[900],
-    borderRadius: 3,
-    position: 'absolute',
-    top: 8,
-    left: 'calc(50% - 15px)',
-}));
+
 
 function VehicleEdgeDrawer(props) {
     const { windows } = props;
-    const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
-    const location = useLocation();
-    let goahead = (location?.state?.goahead !== undefined && location?.state?.goahead !== null) ? location.state.goahead : true;
 
     const [open, setOpen] = React.useState(false);
     const [phoneNo, setPhoneNo] = React.useState("");
@@ -55,7 +43,7 @@ function VehicleEdgeDrawer(props) {
 
     const handleSubmit = async () => {
 
-        var formData = new FormData
+        var formData = new FormData()
 
         formData.append('phone', phoneNo)
         // formData.append('password', password)
@@ -66,16 +54,16 @@ function VehicleEdgeDrawer(props) {
 
         if (result.status) {
             window.localStorage.setItem("userId", result.data._id)
-            var formData = new FormData()
-            formData.append('tagId', props?.tagId)
-        
-            formData.append('phone', result.data.phone)
-           
+            var formData1 = new FormData()
+            formData1.append('tagId', props?.tagId)
+
+            formData1.append('phone', result.data.phone)
 
 
-            var response = await postData('vehicle/customerLogin', formData, true)
 
-            if (response.status == 'true') {
+            var response = await postData('vehicle/customerLogin', formData1, true)
+
+            if (response.status === 'true') {
 
 
                 Swal.fire({
@@ -96,7 +84,7 @@ function VehicleEdgeDrawer(props) {
                 window.localStorage.setItem("User", true)
                 window.localStorage.removeItem('data')
                 window.localStorage.setItem("data", JSON.stringify(result.data))
-            } else if (response.status == 'exist') {
+            } else if (response.status === 'exist') {
                 Swal.fire({
                     title: 'You already have an Vehicle with Number',
                     showDenyButton: true,
@@ -126,8 +114,8 @@ function VehicleEdgeDrawer(props) {
     // This is used only for the example
     const container = windows !== undefined ? () => window().document.body : undefined;
     const handleOtp = (value) => {
-        if (value.length == 4) {
-            if (otp == value) {
+        if (value.length === 4) {
+            if (otp === value) {
                 // setMessage("")
                 setVerified(true)
                 handleSubmit()
@@ -146,13 +134,13 @@ function VehicleEdgeDrawer(props) {
 
     const handleopenotpdailog = async () => {
 
-        if (phoneNo != '') {
+        if (phoneNo !== '') {
             var otpval = OtpGenerator()
 
             setOtp(otpval)
 
             const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
-            const response = await postData('otp/api', { url: apiUrl })
+            await postData('otp/api', { url: apiUrl })
             // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41
         } else {
             Swal.fire({
@@ -231,10 +219,10 @@ function VehicleEdgeDrawer(props) {
 
                         </Grid>
                         <Grid item xs={12}>
-                            OTP not received ? <a style={{ cursor: 'pointer' }} onClick={handleopenotpdailog}>Resend</a>
+                            OTP not received ? <div style={{ cursor: 'pointer' }} onClick={handleopenotpdailog}>Resend</div>
                         </Grid>
                         <Grid item xs={12}>
-                            {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
+                            {verified === true ? "Verified" : verified === false ? "Not Verified" : ""}
                         </Grid>
                     </Grid>
                 </StyledBox>
