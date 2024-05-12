@@ -1,44 +1,39 @@
-import { Grid } from "@mui/material";
-import * as React from 'react';
+import {
+  ExpandLess,
+  ExpandMore,
+} from "@mui/icons-material";
+import Search from '@mui/icons-material/Search';
+import { Grid, InputAdornment, TextField } from "@mui/material";
 import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import digital from "../assets/digitallogo.png";
 import ListItemIcon from '@mui/material/ListItemIcon';
-import food from "../assets/food.png"
-import groups from "../assets/group.png"
-import { IoMdAdd } from "react-icons/io";
-import { MdFeedback } from "react-icons/md";
-import { FaShopify } from "react-icons/fa";
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import menubar from "../assets/menu bar.png";
-import eye from "../assets/eye.png";
-import { TextField,InputAdornment, withTheme } from "@mui/material";
-import Search from '@mui/icons-material/Search';
-import { IoMdStar } from "react-icons/io";
-import { useState } from "react";
-import { AiFillHome } from "react-icons/ai";
-import { TbLogin2 } from "react-icons/tb";
-import { PiDeviceMobileFill } from "react-icons/pi";
-import {
-    ExpandLess,
-    ExpandMore,
-  } from "@mui/icons-material";
-import { IoIosCreate } from "react-icons/io";
 import Rating from "@mui/material/Rating";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import gmail from "../assets/mail.png";
-import call from "../assets/call.png"
-import whatapp from "../assets/whatapp.png";
-import fb from "../assets/whatapp.png";
+import * as React from 'react';
+import { useState } from "react";
+// import { AiFillHome } from "react-icons/ai";
+// import { FaShopify } from "react-icons/fa";
+// import { IoIosCreate, IoMdAdd, IoMdStar } from "react-icons/io";
+// import { MdFeedback } from "react-icons/md";
+// import { PiDeviceMobileFill } from "react-icons/pi";
+// import { TbLogin2 } from "react-icons/tb";
+import call from "../assets/call.png";
+import digital from "../assets/digitallogo.png";
+import eye from "../assets/eye.png";
+import food from "../assets/food.png";
+import groups from "../assets/group.png";
 import insta from "../assets/insta.png";
-import link from "../assets/link.png";;
+import link from "../assets/link.png";
+import gmail from "../assets/mail.png";
+import menubar from "../assets/menu bar.png";
+import { default as fb, default as whatapp } from "../assets/whatapp.png";
+;
 
 
 
@@ -79,7 +74,7 @@ export default function MenuTheme()
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <AiFillHome style={{ fontSize: "25px", color: "#000" }} />
+              {/* <AiFillHome style={{ fontSize: "25px", color: "#000" }} /> */}
             </ListItemIcon>
             <ListItemText
               primaryTypographyProps={{
@@ -95,7 +90,7 @@ export default function MenuTheme()
         <ListItem disablePadding style={{ marginTop: "5%" }}>
           <ListItemButton>
             <ListItemIcon>
-              <PiDeviceMobileFill style={{ fontSize: "25px", color: "#000" }} />
+              {/* <PiDeviceMobileFill style={{ fontSize: "25px", color: "#000" }} /> */}
             </ListItemIcon>
             <ListItemText
               primaryTypographyProps={{
@@ -111,7 +106,7 @@ export default function MenuTheme()
         <ListItem disablePadding style={{ marginTop: "5%" }}>
           <ListItemButton>
             <ListItemIcon>
-              <IoIosCreate style={{ fontSize: "25px", color: "#000" }} />
+              {/* <IoIosCreate style={{ fontSize: "25px", color: "#000" }} /> */}
             </ListItemIcon>
             <ListItemText
               primaryTypographyProps={{
@@ -127,7 +122,7 @@ export default function MenuTheme()
         <ListItem disablePadding style={{ marginTop: "5%" }}>
           <ListItemButton>
             <ListItemIcon>
-              <MdFeedback style={{ fontSize: "25px", color: "#000" }} />
+              {/* <MdFeedback style={{ fontSize: "25px", color: "#000" }} /> */}
             </ListItemIcon>
             <ListItemText
               primaryTypographyProps={{
@@ -143,7 +138,7 @@ export default function MenuTheme()
         <ListItem disablePadding style={{ marginTop: "5%" }}>
           <ListItemButton>
             <ListItemIcon>
-              <TbLogin2 style={{ fontSize: "25px", color: "#000" }} />
+              {/* <TbLogin2 style={{ fontSize: "25px", color: "#000" }} /> */}
             </ListItemIcon>
             <ListItemText
               primaryTypographyProps={{
@@ -159,7 +154,7 @@ export default function MenuTheme()
         <ListItem disablePadding style={{ marginTop: "5%" }}>
           <ListItemButton>
             <ListItemIcon>
-              <FaShopify style={{ fontSize: "25px", color: "#000" }} />
+              {/* <FaShopify style={{ fontSize: "25px", color: "#000" }} /> */}
             </ListItemIcon>
             <ListItemText
               primaryTypographyProps={{
@@ -319,7 +314,7 @@ export default function MenuTheme()
                           marginLeft:'auto', 
                         }}
                       ><Grid style={{display:'flex'}}>
-                        <span style={{color:'#fff',fontSize:13}}>4.2</span><span style={{marginLeft:'4%'}}><IoMdStar color="#fff"/></span><br></br>
+                        {/* <span style={{color:'#fff',fontSize:13}}>4.2</span><span style={{marginLeft:'4%'}}><IoMdStar color="#fff"/></span><br></br> */}
                         </Grid> 
                         <Grid sx={{fontSize:8}}>
                           DELIVERY
@@ -731,7 +726,7 @@ export default function MenuTheme()
                   ADD
                 </Grid>
                 <Grid style={{ marginTop: "-2%" }}>
-                <IoMdAdd style={{fontSize:'12px',color:'#fff'}}/>  
+                {/* <IoMdAdd style={{fontSize:'12px',color:'#fff'}}/>   */}
                 </Grid>
               </Grid>
             </Grid>
@@ -787,7 +782,7 @@ export default function MenuTheme()
                   ADD
                 </Grid>
                 <Grid style={{ marginTop: "-2%" }}>
-                <IoMdAdd style={{fontSize:'12px',color:'#fff'}}/>  
+                {/* <IoMdAdd style={{fontSize:'12px',color:'#fff'}}/>   */}
                 </Grid>
               </Grid>
             </Grid>
@@ -843,7 +838,7 @@ export default function MenuTheme()
                   ADD
                 </Grid>
                 <Grid style={{ marginTop: "-2%" }}>
-                <IoMdAdd style={{fontSize:'12px',color:'#fff'}}/>  
+                {/* <IoMdAdd style={{fontSize:'12px',color:'#fff'}}/>   */}
                 </Grid>
               </Grid>
             </Grid>
@@ -899,7 +894,7 @@ export default function MenuTheme()
                   ADD
                 </Grid>
                 <Grid style={{ marginTop: "-2%" }}>
-                <IoMdAdd style={{fontSize:'12px',color:'#fff'}}/>  
+                {/* <IoMdAdd style={{fontSize:'12px',color:'#fff'}}/>   */}
                 </Grid>
               </Grid>
             </Grid>

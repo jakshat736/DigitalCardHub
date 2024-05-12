@@ -36,12 +36,8 @@ export default function DCLogin() {
         var formData = new FormData()
 
         formData.append('phone', phoneNo)
-        // formData.append('password', password)
-
-
         var result = await postData('customerLogin/chkLogin', formData, true)
         
-
         if (result.status) {
 
             window.localStorage.setItem("userId", result.data._id)

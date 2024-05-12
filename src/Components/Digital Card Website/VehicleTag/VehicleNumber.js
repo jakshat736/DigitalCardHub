@@ -1,16 +1,14 @@
-import { Grid, Button, Divider, Typography, TextField, useTheme, useMediaQuery, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
-import img1 from "../Digital Card Assets/newlogo.png";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { Button, Divider, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import React, { useState, } from "react";
+import img1 from "../Digital Card Assets/newlogo.png";
 
 import { useLocation, useNavigate } from "react-router-dom";
-import OtpGenerator from "../Digital Card User Interface/ReviewTag/OtpGenerator";
 import Swal from "sweetalert2";
 import { postData } from "../../Services/NodeServices";
+import OtpGenerator from "../Digital Card User Interface/ReviewTag/OtpGenerator";
 
 export default function VehicleNumber() {
-  var theme = useTheme()
-  //  var show=useMediaQuery(theme.breakpoints.up("sm"))
   var show = false
   var navigate = useNavigate()
   var location = useLocation()
@@ -21,70 +19,70 @@ export default function VehicleNumber() {
   const [vehicleType, setVehicleType] = useState(data?.vehicleType || "")
   const [otp, setOtp] = useState("")
   const [verified, setVerified] = useState()
-  const [display,setDisplay]=useState(false)
+  const [display, setDisplay] = useState(false)
   const handleopenotpdailog = async () => {
-  
-    if(number!='' && number?.toString().length==10){
-    var otpval = OtpGenerator()
-   
-    setOtp(otpval)
 
-    const apiUrl = `https://soft7.in/api/send?number=91${number}&type=text&message=Your Otp For Vehicle Tag By Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
-    const response=await postData('otp/api',{url:apiUrl})
-    Swal.fire({
-      text:"Otp Sent Successfully",
-      timer:1000
-  })
-  setDisplay(true)
-   
-    }else{
-        Swal.fire({
-            text:"Enter the Number First",
-            timer:1000
-        })
-    }
-}
+    if (number !== '' && number?.toString().length === 10) {
+      var otpval = OtpGenerator()
 
-const handleOtp = (value) => {
-  if (value.length == 4) {
-      if (otp == value) {
-          setVerified(true)
-      } else {
-          setVerified(false)
-      }
-  }
-}
+      setOtp(otpval)
 
-const handleSave=async()=>{
-  if(verified){
-    var formData=new FormData
-    formData.append("_id",data?._id)
-    formData.append("name",name)
-    formData.append("phone",number)
-    formData.append("vehicleType",vehicleType)
-    formData.append("vehicleNumber",vehicleNumber)
-    formData.append("status","Active")
-
-    var res = await postData('vehicle/updateVehicleNumber',formData,true)
-    if(res.status==='true'){
+      const apiUrl = `https://soft7.in/api/send?number=91${number}&type=text&message=Your Otp For Vehicle Tag By Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
+      await postData('otp/api', { url: apiUrl })
       Swal.fire({
-        text:"Saved Successfully",
-        timer:1000
-    })
-    navigate(-1)
+        text: "Otp Sent Successfully",
+        timer: 1000
+      })
+      setDisplay(true)
 
+    } else {
+      Swal.fire({
+        text: "Enter the Number First",
+        timer: 1000
+      })
     }
-  }else if(data?.vehicleNumber===vehicleNumber ){
-    navigate(-1)
-  }
-  else{
-    Swal.fire({
-      text:"First Verify Your Phone Number By OTP",
-      timer:1000
-  })
   }
 
-}
+  const handleOtp = (value) => {
+    if (value.length === 4) {
+      if (otp === value) {
+        setVerified(true)
+      } else {
+        setVerified(false)
+      }
+    }
+  }
+
+  const handleSave = async () => {
+    if (verified) {
+      var formData = new FormData()
+      formData.append("_id", data?._id)
+      formData.append("name", name)
+      formData.append("phone", number)
+      formData.append("vehicleType", vehicleType)
+      formData.append("vehicleNumber", vehicleNumber)
+      formData.append("status", "Active")
+
+      var res = await postData('vehicle/updateVehicleNumber', formData, true)
+      if (res.status === 'true') {
+        Swal.fire({
+          text: "Saved Successfully",
+          timer: 1000
+        })
+        navigate(-1)
+
+      }
+    } else if (data?.vehicleNumber === vehicleNumber) {
+      navigate(-1)
+    }
+    else {
+      Swal.fire({
+        text: "First Verify Your Phone Number By OTP",
+        timer: 1000
+      })
+    }
+
+  }
 
 
   return (
@@ -149,68 +147,72 @@ const handleSave=async()=>{
           </FormControl>
         </Grid>
         <Grid item xs={12}>
-          <TextField 
-          onChange={(e) => setName(e.target.value)} 
-          value={name} 
-          fullWidth 
-          id="outlined-basic" 
-          label="Your Name" 
-          variant="outlined" />
+          <TextField
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            fullWidth
+            id="outlined-basic"
+            label="Your Name"
+            variant="outlined" />
         </Grid>
         <Grid item xs={12}>
-          <TextField 
-          onChange={(e) => setNumber(e.target.value)} 
-          value={number} 
-          fullWidth 
-          id="outlined-basic" 
-          label="Whatsapp Number" 
-          variant="outlined" />
+          <TextField
+            onChange={(e) => setNumber(e.target.value)}
+            value={number}
+            fullWidth
+            id="outlined-basic"
+            label="Whatsapp Number"
+            variant="outlined" />
         </Grid>
 
         <Grid item xs={9}>
-          <TextField 
-          onChange={(e) => setVehicleNumber(e.target.value)}
-          value={vehicleNumber}
-          fullWidth 
-          id="outlined-basic" 
-          label="vehicle plate number" 
-          variant="outlined" 
+          <TextField
+            onChange={(e) => setVehicleNumber(e.target.value)}
+            value={vehicleNumber}
+            fullWidth
+            id="outlined-basic"
+            label="vehicle plate number"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={3}>
-          <Button 
-          onClick={() => handleopenotpdailog()}
-          variant="contained" 
-          fullWidth 
-          sx={{ backgroundColor: '#F3B419', 
-          "&:hover": { backgroundColor: '#F3B419' } }} >
+          <Button
+            onClick={() => handleopenotpdailog()}
+            variant="contained"
+            fullWidth
+            sx={{
+              backgroundColor: '#F3B419',
+              "&:hover": { backgroundColor: '#F3B419' }
+            }} >
             <Typography sx={{ color: 'black', fontFamily: 'poppins', fontSize: 20 }}>
               Send Otp
             </Typography>
           </Button>
         </Grid>
         <Grid item xs={12}>
-          <TextField 
-         onChange={(event) => handleOtp(event.target.value)}
-          fullWidth 
-          id="outlined-basic" 
-          label="Enter Otp" 
-          variant="outlined" 
-          sx={{display:display?"block":'none'}}/>
+          <TextField
+            onChange={(event) => handleOtp(event.target.value)}
+            fullWidth
+            id="outlined-basic"
+            label="Enter Otp"
+            variant="outlined"
+            sx={{ display: display ? "block" : 'none' }} />
         </Grid>
         <Grid item xs={12}>
-           OTP not received ? <a style={{ cursor: 'pointer' }} onClick={handleopenotpdailog}>Resend</a>
+          OTP not received ? <div style={{ cursor: 'pointer' }} onClick={handleopenotpdailog}>Resend</div>
         </Grid>
         <Grid item xs={12}>
-              {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
+          {verified === true ? "Verified" : verified === false ? "Not Verified" : ""}
         </Grid>
         <Grid item xs={12}>
-          <Button 
-          onClick={() => handleSave()}
-          variant="contained" 
-          fullWidth 
-          sx={{ backgroundColor: '#F3B419', 
-          "&:hover": { backgroundColor: '#F3B419' } }} >
+          <Button
+            onClick={() => handleSave()}
+            variant="contained"
+            fullWidth
+            sx={{
+              backgroundColor: '#F3B419',
+              "&:hover": { backgroundColor: '#F3B419' }
+            }} >
             <Typography sx={{ color: 'black', fontFamily: 'poppins', fontSize: 20 }}>
               Save
             </Typography>
