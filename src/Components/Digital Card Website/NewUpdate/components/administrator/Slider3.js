@@ -1,8 +1,8 @@
-import React, { useEffect,forwardRef } from "react";
 import { Grid, Typography } from "@mui/material";
 import AOS from "aos";
-import img from "../../assets/Circle Phone Tag Png banner Image.png";
 import "aos/dist/aos.css"; // Include AOS CSS
+import React, { forwardRef, useEffect } from "react";
+import img from "../../assets/Circle Phone Tag Png banner Image.png";
 const Slider3 = forwardRef((props, ref) => {
   useEffect(() => {
     AOS.init();

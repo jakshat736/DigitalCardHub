@@ -1,19 +1,17 @@
-import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
-import Navbar from "../UserComponents/Navbar";
-import Footer from "../UserComponents/Footer";
+import { useNavigate } from "react-router-dom";
+import { postData } from "../../../../Services/NodeServices";
 import theme1 from "../UserAssets/theme1.png";
 import theme2 from "../UserAssets/theme2.png";
 import theme3 from "../UserAssets/theme3.png";
 import theme4 from "../UserAssets/theme4.png";
 import theme5 from "../UserAssets/theme5.png";
-import theme6 from "../UserAssets/theme6.png";
 import theme7 from "../UserAssets/theme7.png";
-import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { postData } from "../../../../Services/NodeServices";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import Footer from "../UserComponents/Footer";
+import Navbar from "../UserComponents/Navbar";
 
 const themeData = [
     {

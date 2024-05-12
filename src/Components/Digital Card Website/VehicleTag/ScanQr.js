@@ -1,16 +1,12 @@
-import React, { useState } from 'react'
-import { Grid, Button, Typography, TextField, useTheme, useMediaQuery, Divider } from "@mui/material";
-import img1 from "../Digital Card Assets/newlogo.png";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import { Button, Divider, Grid, Typography } from "@mui/material";
 import Checkbox from '@mui/material/Checkbox';
-import { yellow } from '@mui/material/colors';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
+import img1 from "../Digital Card Assets/newlogo.png";
 export default function ScanQr() {
-  var theme = useTheme()
-  // var show = useMediaQuery(theme.breakpoints.up("sm"))
   var show=false
   const location=useLocation()
   var data=location.state.data
