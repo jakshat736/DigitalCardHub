@@ -6,6 +6,12 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import React from 'react';
+import home from "../Themes/ThemeAssets/homenewone.png"
+import comdevice from "../Themes/ThemeAssets/comdevice.png"
+import create from "../Themes/ThemeAssets/create.png"
+import Feedback from "../Themes/ThemeAssets/feedback.png"
+import loginnew from "../Themes/ThemeAssets/loginnew.png"
+import shop from "../Themes/ThemeAssets/shop.png"
 // import { AiFillHome } from "react-icons/ai";
 // import { FaShopify } from "react-icons/fa";
 // import { IoIosCreate } from "react-icons/io";
@@ -14,6 +20,7 @@ import React from 'react';
 // import { TbLogin2 } from "react-icons/tb";
 import { useNavigate } from 'react-router-dom';
 import menubarbold from "../Themes/ThemeAssets/menubarbold.png";
+import { Feed } from '@mui/icons-material';
 
 const SideBar = () => {
     const navigate = useNavigate()
@@ -49,7 +56,7 @@ const SideBar = () => {
                 <ListItem disablePadding onClick={() => navigate('/')}>
                     <ListItemButton>
                         <ListItemIcon>
-                            {/* <AiFillHome style={{ fontSize: "25px", color: "#000" }} /> */}
+                           <img src={home}></img>
                         </ListItemIcon>
                         <ListItemText
                             primaryTypographyProps={{
@@ -65,7 +72,7 @@ const SideBar = () => {
                 <ListItem disablePadding style={{ marginTop: "5%" }} onClick={() => navigate('/compatible-devices')}>
                     <ListItemButton>
                         <ListItemIcon>
-                            {/* <PiDeviceMobileFill style={{ fontSize: "25px", color: "#000" }} /> */}
+                        <img src={comdevice}></img>
                         </ListItemIcon>
                         <ListItemText
                             primaryTypographyProps={{
@@ -81,7 +88,7 @@ const SideBar = () => {
                 <ListItem disablePadding style={{ marginTop: "5%" }} onClick={() => navigate('/how_to_create')}>
                     <ListItemButton>
                         <ListItemIcon>
-                            {/* <IoIosCreate style={{ fontSize: "25px", color: "#000" }} /> */}
+                        <img src={create}></img>
                         </ListItemIcon>
                         <ListItemText
                             primaryTypographyProps={{
@@ -97,7 +104,7 @@ const SideBar = () => {
                 <ListItem disablePadding style={{ marginTop: "5%" }} >
                     <ListItemButton>
                         <ListItemIcon>
-                            {/* <MdFeedback style={{ fontSize: "25px", color: "#000" }} /> */}
+                        <img src={Feedback}></img>
                         </ListItemIcon>
                         <ListItemText
                             primaryTypographyProps={{
@@ -113,7 +120,7 @@ const SideBar = () => {
                 <ListItem disablePadding style={{ marginTop: "5%" }} onClick={() => navigate('/digitalcardlogin')}>
                     <ListItemButton>
                         <ListItemIcon>
-                            {/* <TbLogin2 style={{ fontSize: "25px", color: "#000" }} /> */}
+                        <img src={loginnew}></img>
                         </ListItemIcon>
                         <ListItemText
                             primaryTypographyProps={{
@@ -129,7 +136,7 @@ const SideBar = () => {
                 <ListItem disablePadding style={{ marginTop: "5%" }} onClick={() => navigate('/allproducts')}>
                     <ListItemButton>
                         <ListItemIcon>
-                            {/* <FaShopify style={{ fontSize: "25px", color: "#000" }} /> */}
+                        <img src={shop}></img>
                         </ListItemIcon>
                         <ListItemText
                             primaryTypographyProps={{
