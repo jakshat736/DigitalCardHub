@@ -18,7 +18,8 @@ import {
 import Dialog from "@mui/material/Dialog";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import fourboxicon from "../Themes/ThemeAssets/fourboxicon.png"
 import Rating from "@mui/material/Rating";
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
@@ -64,12 +65,12 @@ import msg from "../Themes/ThemeAssets/msg.webp";
 import whatapp from "../Themes/ThemeAssets/whatapp.png";
 import WhatsApp1 from "../Themes/ThemeAssets/whatsapp1.png";
 import SideBar from "../UserComponents/SideBar";
-
-
+import SendToMobileIcon from '@mui/icons-material/SendToMobile';
+import PhoneIcon from '@mui/icons-material/Phone';
 
 const actions = [
-//   { icon: <IoIosContact style={{ fontSize: '26px' }} />, name: "Copy" },
-//   { icon: <FaShare style={{ fontSize: '20px' }} />, name: "Shareno" },
+  { icon: <PhoneIcon style={{ fontSize: '26px' }} />, name: "Copy" },
+  { icon: <SendToMobileIcon style={{ fontSize: '20px' }} />, name: "Shareno" },
   { icon: <HelpIcon />, name: "Enquery" },
   { icon: <ShareIcon />, name: "Share" },
 ];
@@ -1209,14 +1210,14 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       if (item.productimg != '') {
         return (
           <Grid sx={{ display: "flex", justifyContent: "center", alignItems: 'center', ml: 1 }}>
-            <Grid sx={{ width: '100%', }}>
+            <Grid sx={{ width: '100%',marginLeft: '4%'}}>
               <img src={`${serverURL}/images/${item.productimg}`} style={{
                 width: matches ? 300 : 470, height: matches ? 220 : 300,
                 paddingBottom: '8%',
                 position: 'relative',
               }} />
             </Grid>
-            <Grid sx={{ display: 'flex', marginTop: '-5%', flexDirection: 'column', marginLeft: '6%' }}>
+            <Grid sx={{ display: 'flex', marginTop: '-5%', flexDirection: 'column', marginLeft: '4%' }}>
               <Grid sx={{ fontSize: '22px', fontWeight: 700 }}>
                 {item.productname}
               </Grid>
@@ -1255,10 +1256,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid sx={{ marginTop: '3%', marginLeft: '1%' }}>
-                {/* <Grid onClick={handleClickSeeMore} sx={{ display: 'flex', flexDirection: 'row', color: '#4A4A4A', cursor: 'pointer' }}>
-                  <Grid sx={{ fontSize: 13 }}>See More</Grid><Grid sx={{ fontSize: "15px", marginTop: '.2%' }}><MdKeyboardArrowRight /></Grid>
-                </Grid> */}
+              <Grid sx={{ marginTop: '3%', marginLeft: '2%' }}>
+                <Grid onClick={handleClickSeeMore} sx={{ display: 'flex', flexDirection: 'row', color: '#4A4A4A', cursor: 'pointer' }}>
+                  <Grid sx={{ fontSize: 13 }}>See More</Grid><Grid ><KeyboardArrowRightIcon style={{fontSize:16,marginTop: '1%' }} /></Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>)
@@ -1560,11 +1561,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     direction="left"
                     ariaLabel="SpeedDial basic example"
                     sx={{ position: "absolute", right: 16, bottom: 1 }}
-                    // icon={
-                    //   <PiSquaresFour
-                    //     style={{ fontSize: "30px", color: "#2f3640" }}
-                    //   />
-                    // }
+                    icon={
+                     <img src={fourboxicon} style={{width:'38%'}}></img>
+                    }
                   >
                     {actions.map((action) => (
                       <SpeedDialAction
@@ -2804,7 +2803,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   m: 1,
                   marginTop: 2,
                   width: matches ? 400 : 520,
-                  height: 82,
+                  maxHeight: 82,
+                  overflowY:'scroll',
+                  scrollbarWidth:'none'
 
                 },
               }}
