@@ -1256,11 +1256,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid sx={{ marginTop: '3%', marginLeft: '2%' }}>
-                <Grid onClick={handleClickSeeMore} sx={{ display: 'flex', flexDirection: 'row', color: '#4A4A4A', cursor: 'pointer' }}>
-                  <Grid sx={{ fontSize: 13 }}>See More</Grid><Grid ><KeyboardArrowRightIcon style={{fontSize:16,marginTop: '1%' }} /></Grid>
-                </Grid>
-              </Grid>
             </Grid>
           </Grid>)
       }
