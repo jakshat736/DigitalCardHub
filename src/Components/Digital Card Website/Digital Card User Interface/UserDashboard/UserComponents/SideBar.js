@@ -6,12 +6,12 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import React from 'react';
-import home from "../Themes/ThemeAssets/homenewone.png"
-import comdevice from "../Themes/ThemeAssets/comdevice.png"
-import create from "../Themes/ThemeAssets/create.png"
-import Feedback from "../Themes/ThemeAssets/feedback.png"
-import loginnew from "../Themes/ThemeAssets/loginnew.png"
-import shop from "../Themes/ThemeAssets/shop.png"
+import  Homenew  from "../Themes/ThemeAssets/homenew.png";
+import  box  from "../Themes/ThemeAssets/box.png";
+import  create  from "../Themes/ThemeAssets/create.png";
+import  feedback  from "../Themes/ThemeAssets/feedback.png";
+import  shop  from "../Themes/ThemeAssets/shop.png";
+import  login from "../Themes/ThemeAssets/loginnew.png";
 // import { AiFillHome } from "react-icons/ai";
 // import { FaShopify } from "react-icons/fa";
 // import { IoIosCreate } from "react-icons/io";
@@ -56,7 +56,7 @@ const SideBar = () => {
                 <ListItem disablePadding onClick={() => navigate('/')}>
                     <ListItemButton>
                         <ListItemIcon>
-                           <img src={home}></img>
+                            <img src={Homenew}></img>
                         </ListItemIcon>
                         <ListItemText
                             primaryTypographyProps={{
@@ -72,7 +72,7 @@ const SideBar = () => {
                 <ListItem disablePadding style={{ marginTop: "5%" }} onClick={() => navigate('/compatible-devices')}>
                     <ListItemButton>
                         <ListItemIcon>
-                        <img src={comdevice}></img>
+                        <img src={box}></img>
                         </ListItemIcon>
                         <ListItemText
                             primaryTypographyProps={{
@@ -104,7 +104,7 @@ const SideBar = () => {
                 <ListItem disablePadding style={{ marginTop: "5%" }} >
                     <ListItemButton>
                         <ListItemIcon>
-                        <img src={Feedback}></img>
+                        <img src={feedback}></img>
                         </ListItemIcon>
                         <ListItemText
                             primaryTypographyProps={{
@@ -120,7 +120,7 @@ const SideBar = () => {
                 <ListItem disablePadding style={{ marginTop: "5%" }} onClick={() => navigate('/digitalcardlogin')}>
                     <ListItemButton>
                         <ListItemIcon>
-                        <img src={loginnew}></img>
+                        <img src={login}></img>
                         </ListItemIcon>
                         <ListItemText
                             primaryTypographyProps={{
