@@ -17,10 +17,11 @@ import {
 } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import DialogTitle from "@mui/material/DialogTitle";
 import fourboxicon from "../Themes/ThemeAssets/fourboxicon.png"
 import Rating from "@mui/material/Rating";
+import more from "../Themes/ThemeAssets/more.png"
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -51,18 +52,18 @@ import skype from '../../../Digital Card Assets/skype.png';
 import snapchat from '../../../Digital Card Assets/snapchat.png';
 import telegram from '../../../Digital Card Assets/telegram.png';
 import OtpGenerator from "../../Invite/OtpGenerator";
-import call from "../Themes/ThemeAssets/call.png";
+import call from "../Themes/ThemeAssets/calls.png";
 import digital from "../Themes/ThemeAssets/digitallogo.png";
 import eye from "../Themes/ThemeAssets/eye.png";
-import fb from "../Themes/ThemeAssets/fb.png";
+import fb from "../Themes/ThemeAssets/fbs.png";
 import fram1 from "../Themes/ThemeAssets/frame1.png";
 import fram2 from "../Themes/ThemeAssets/frame2.png";
 import fram3 from "../Themes/ThemeAssets/frame3.png";
-import insta from "../Themes/ThemeAssets/insta.png";
-import link from "../Themes/ThemeAssets/link.png";
-import gmail from "../Themes/ThemeAssets/mail.png";
+import insta from "../Themes/ThemeAssets/instas.png";
+import link from "../Themes/ThemeAssets/linkins.png";
+import gmail from "../Themes/ThemeAssets/gmails.png";
 import msg from "../Themes/ThemeAssets/msg.webp";
-import whatapp from "../Themes/ThemeAssets/whatapp.png";
+import whatapp from "../Themes/ThemeAssets/whatapps.png";
 import WhatsApp1 from "../Themes/ThemeAssets/whatsapp1.png";
 import SideBar from "../UserComponents/SideBar";
 import SendToMobileIcon from '@mui/icons-material/SendToMobile';
@@ -121,8 +122,14 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const [open, setOpen] = React.useState(false);
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [otp, setOtp] = React.useState()
+  const [isVisible, setIsVisible] = useState(true);
   
   // All handleClickFunctions
+
+
+  const handleHideBox = () => {
+    setIsVisible(false);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -368,6 +375,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           position: "fixed",
           bottom: -32,
           width: "100%",
+          borderTopRightRadius: 15,
+          borderTopLeftRadius: 15,
           // Dialog ko page ke bottom me set karein
         },
       }}
@@ -675,6 +684,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           position: "fixed",
           bottom: -38,
           width: "100%",
+          borderTopRightRadius: 15,
+          borderTopLeftRadius: 15,
           // Dialog ko page ke bottom me set karein
         },
       }}
@@ -803,6 +814,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           position: "fixed",
           bottom: -38,
           width: "100%",
+          borderTopRightRadius: 15,
+          borderTopLeftRadius: 15,
+       
           // Dialog ko page ke bottom me set karein
         },
       }}
@@ -889,7 +903,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const enquiryDialog = () => {
     return (
       <Dialog
-        sx={{ borderRadius: 10 }}
+      PaperProps={{
+        style: {
+          width: "86%",
+         borderRadius:15
+          // Dialog ko page ke bottom me set karein
+        },
+      }}
         open={openB}
         onClose={handleCloseButton}
       >
@@ -918,12 +938,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               onChange={(e) => handleMessage(e)}
             />
             <Stack direction="row" spacing={2}>
-              {/* <Button sx={{ color: "green" }} href={href}>
-                Send on WhatsApp
-              </Button>
-              <Button sx={{ color: "blue" }} href={smsHref}>
-                Send on Sms
-              </Button> */}
               <Button
                 href={href}
                 style={{
@@ -993,7 +1007,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const EnquiryFormDialog = () => {
     return (
       <Dialog
-        style={{ borderRadius: 40 }}
+      PaperProps={{
+        style: {
+          width: "86%",
+         borderRadius:15
+          // Dialog ko page ke bottom me set karein
+        },
+      }}
         open={openContact}
         onClose={handleCloseContact}
       >
@@ -1057,7 +1077,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <Button
               style={{
                 borderColor: "#000",
-                width: "28%",
+                width: "36%",
                 background: "#000",
                 color: "#fff",
                 fontSize: "13px",
@@ -1065,7 +1085,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 textTransform: "none",
                 borderRadius: 6,
                 display: "flex",
-                marginTop: "4%",
+                marginTop: "5%",
                 alignItems: "center",
                 justifyContent: "center",
               }}
@@ -1178,17 +1198,29 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   // makesStyle
 
 
-  var useStyle = useStyles();
   var settings = {
     infinite: true,
-    speed: 500,
-    dots: matches ? false : true,
+    speed: 2000,
+    dots: false,
+    slidesToShow: 3,
+    autoplay: "true",
+    autospeed: 1,
+    slidesToScroll: 3,
+    arrows: false,
+    vertical: true,
+  };
+
+  var settingproduct = {
+    infinite: true,
+    speed: 1000,
+    dots: false,
     slidesToShow: 1,
     autoplay: "true",
     autospeed: 1,
     slidesToScroll: 1,
     arrows: false,
   };
+
 
   var settingsreview = {
     infinite: true,
@@ -1210,21 +1242,29 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       if (item.productimg != '') {
         return (
           <Grid sx={{ display: "flex", justifyContent: "center", alignItems: 'center', ml: 1 }}>
-            <Grid sx={{ width: '100%',marginLeft: '4%'}}>
-              <img src={`${serverURL}/images/${item.productimg}`} style={{
-                width: matches ? 300 : 470, height: matches ? 220 : 300,
-                paddingBottom: '8%',
-                position: 'relative',
+            <Grid sx={{
+    position: 'relative',
+    paddingBottom: '60%', // 1:1 aspect ratio
+    overflow: 'hidden',
+    marginLeft: '4%'}}>
+
+  <img src={`${serverURL}/images/${item.productimg}`} style={{
+    position: 'absolute',
+    width: '92%',
+    height: '100%',
+    objectFit: 'cover',
+      boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
+      borderRadius:6,
               }} />
             </Grid>
-            <Grid sx={{ display: 'flex', marginTop: '-5%', flexDirection: 'column', marginLeft: '4%' }}>
+            <Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: '4%',marginTop:'2.5%' }}>
               <Grid sx={{ fontSize: '22px', fontWeight: 700 }}>
                 {item.productname}
               </Grid>
               <Grid sx={{ fontSize: '15px', fontWeight: 400, marginTop: '1%' }}>
                 {item.productdescription}
               </Grid>
-              <Grid sx={{ alignItems: 'center', marginTop: '-3%', display: 'flex', width: '100%' }}>
+              <Grid sx={{ display: 'flex',marginTop:'2%'}}>
                 <Button
                   style={{
                     borderColor: "#000",
@@ -1237,11 +1277,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     textTransform: "none",
                     borderRadius: 8,
                     display: item.show == "true" ? "block" : "none",
-                    marginTop: "6%",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
-                  variant="outlined"
                   onClick={() =>
                     window.open(
                       `https://wa.me/+91${data?.WhatsappNo}?text=I Want To Buy Your ${item.productname}`
@@ -1250,10 +1288,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 >
                   Enquiry Now
                 </Button>
-                <Grid>
-                  <Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: '10%', marginTop: '7%', width: '300%' }}>
-                    <Grid sx={{ fontSize: '20px', fontWeight: 600, color: '#FF0000', marginTop: '7%', marginLeft: '3%' }}>₹ {item.offerprice}  </Grid><Grid sx={{ fontSize: '12px', fontWeight: 500, color: '#4A4A4A', marginLeft: '3%' }}>(Inc. all taxes)</Grid>
-                  </Grid>
+                  <Grid sx={{ display: 'flex', flexDirection: 'column',marginLeft:'4%' }}>
+                    <Grid sx={{ fontSize: '20px', fontWeight: 600, color: '#FF0000' }}>₹ {item.offerprice}  </Grid><Grid sx={{ fontSize: '12px', fontWeight: 500, color: '#4A4A4A'}}>(Inc. all taxes)</Grid>
                 </Grid>
               </Grid>
             </Grid>
@@ -1288,7 +1324,21 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const Reviews = () => {
     return reviewsData?.map((item) => {
       return (
-        <Paper elevation={3} sx={{ padding: 1.3 }}>
+        <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          '& > :not(style)': {
+            m: .5,
+            marginTop: 1,
+            maxHeight: 82,
+            overflowY:'scroll',
+            scrollbarWidth:'none',
+
+          },
+        }}
+      >
+        <Paper elevation={4} sx={{ padding: 1.3 }}>
           <Grid sx={{ display: 'flex' }}>
             <Grid sx={{ fontSize: '18px', fontWeight: 500 }}>{item?.name}</Grid>
           </Grid>
@@ -1307,6 +1357,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             {item.review}
           </Grid>
         </Paper>
+        </Box>
       )
     })
   }
@@ -1318,7 +1369,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       style={{
         backgroundColor: "#f5f6fa",
         height: "100%",
-        width: "100%",
+        width: "99vw",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -1514,8 +1565,48 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             ></Grid>
           </Grid>
           <Grid style={{ background: "#fff" }}>
+          <Grid style={{ display: "flex", flexDirection: "row" }}>
+                <Box
+                  sx={{
+                    height: 50,
+                    transform: "translateZ(100px)",
+                    flexGrow: 1,
+                    position: "relative",
+                    marginTop: matches?"-8.7%":'-5%',
+                  }}
+                >
+                  <SpeedDial
+                   ariaLabel="SpeedDial basic example"
+                   sx={{'& .MuiSpeedDial-fab': { 
+                    boxShadow: 'none', // Remove the box shadow
+                    backgroundColor: '#fff' // Set background color to #fff
+                  },
+                  '& .MuiSpeedDial-fab:hover': {
+                    boxShadow: 'none', 
+                    backgroundColor: '#fff' // Ensure background color remains #fff on hover
+                  },
+                  '&.MuiSpeedDial-open .MuiSpeedDial-fab': {
+                    boxShadow: 'none', 
+                    backgroundColor: '#fff' // Ensure background color remains #fff when open/clicked
+                  },position: "absolute", right: 6, bottom: 1 }}
+                    direction="left"
+                    icon={
+                     <img src={more} width={26}></img>
+                    }
+                  >
+                    {actions.map((action) => (
+                      <SpeedDialAction
+                        key={action.name}
+                        icon={action.icon}
+                        tooltipTitle={action.name}
+                        onClick={() => handleClickIcon(action.name)}
+                      />
+                    ))}
+                  </SpeedDial>
+                </Box>
+              </Grid>
             <Grid
-              style={{ marginLeft: matches ? "4%" : "6%", marginTop: "2%" }}
+              style={{ marginLeft: matches ? "4%" : "6%", marginTop:matches?"-2%":'3%' }}
             >
               <Grid
                 style={{
@@ -1536,50 +1627,16 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               >
                 {data?.position}
               </Grid>
-              <Grid style={{ display: "flex", flexDirection: "row" }}>
-                <Box
-                  sx={{
-                    height: 50,
-                    transform: "translateZ(100px)",
-                    flexGrow: 1,
-                    position: "relative",
-                    marginTop: "-10%",
-                  }}
-                >
-                  <SpeedDial
-                    FabProps={{
-                      // FabProps ka istemal button ke rang ko badalne ke liye
-                      style: {
-                        backgroundColor: 'transparent',
-                      }, // Button ka rang red karne ke liye
-                    }}
-                    direction="left"
-                    ariaLabel="SpeedDial basic example"
-                    sx={{ position: "absolute", right: 16, bottom: 1 }}
-                    icon={
-                     <img src={fourboxicon} style={{width:'38%'}}></img>
-                    }
-                  >
-                    {actions.map((action) => (
-                      <SpeedDialAction
-                        key={action.name}
-                        icon={action.icon}
-                        tooltipTitle={action.name}
-                        onClick={() => handleClickIcon(action.name)}
-                      />
-                    ))}
-                  </SpeedDial>
-                </Box>
-              </Grid>
+
             </Grid>
             <Grid
-              style={{ marginLeft: matches ? "4%" : "6%", marginTop: "1%" }}
+              style={{ marginLeft: matches ? "4%" : "6%", marginTop: "3%" }}
             >
               <Divider
                 style={{
                   height: "1px",
                   backgroundColor: "#AAAAAA",
-                  width: matches ? "52%" : "35%",
+                  width: matches ? "60%" : "35%",
                 }}
               />
             </Grid>
@@ -1669,7 +1726,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <Grid
               item
               xs={6}
-              md={5.6}
+              md={6}
             >
               <Button
                 sx={{
@@ -1694,7 +1751,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 }}
               >
                 <Grid sx={{ marginTop: '3%', }}>
-                  <img src={call} />
+                  <img src={call} width={25}/>
                 </Grid>
                 <Grid
                   sx={{
@@ -1712,7 +1769,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <Grid
               item
               xs={6}
-              md={5.6}
+               md={6}
             >
               <Button
                 sx={{
@@ -1734,7 +1791,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 onClick={() => handleWhatsappUpdate()}
               >
                 <Grid sx={{ marginTop: '5%' }} >
-                  <img src={whatapp}></img>
+                  <img src={whatapp} width={25}></img>
                 </Grid>
                 <Grid
                   sx={{
@@ -1752,7 +1809,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <Grid
               item
               xs={6}
-              md={5.6}
+              md={6}
             >
               <Button
                 sx={{
@@ -1778,7 +1835,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 }}
               >
                 <Grid sx={{ marginTop: '5%', }}>
-                  <img src={gmail}></img>
+                  <img src={gmail}  width={25}></img>
                 </Grid>
                 <Grid
                   sx={{
@@ -1795,7 +1852,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <Grid
               item
               xs={6}
-              md={5.6}
+              md={6}
             >
               <Button
                 sx={{
@@ -1819,7 +1876,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 }}
               >
                 <Grid sx={{ marginTop: '5%' }} >
-                  <img src={link}></img>
+                  <img src={link} width={25}></img>
                 </Grid>
                 <Grid
                   sx={{
@@ -1837,7 +1894,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <Grid
               item
               xs={6}
-              md={5.6}
+              md={6}
             >
 
               <Button
@@ -1860,7 +1917,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 onClick={() => handleFbUpdate()}
               >
                 <Grid sx={{ marginTop: '6%' }}>
-                  <img src={fb}></img>
+                  <img src={fb} width={25}></img>
                 </Grid>
                 <Grid
                   sx={{
@@ -1877,7 +1934,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <Grid
               item
               xs={6}
-              md={5.6}
+              md={6}
             >
               <Button
                 sx={{
@@ -1899,7 +1956,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 fullWidth
               >
                 <Grid sx={{ marginTop: '6%' }}>
-                  <img src={insta}></img>
+                  <img src={insta} width={25}></img>
                 </Grid>
                 <Grid
                   sx={{
@@ -1919,7 +1976,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   <Grid
                     item
                     xs={6}
-                    md={5.6}
+                    md={6}
                   >
                     {item.title === "GitHub" && (
                       <Button
@@ -1956,8 +2013,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           GitHub
                         </Grid>
                       </Button>
-
-                    )
+                    
+                  )
                     }
                     {item.title === "Telegram" && (
                       <Button
@@ -2424,7 +2481,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <Grid sx={{ width: "100%", display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '3%' }}>
               <Slider
                 style={{ width: "100%" }}
-                {...settings}
+                {...settingproduct}
               >
                 {showSlider()}
               </Slider>
@@ -2447,7 +2504,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 height: "1px",
                 backgroundColor: "#bdc3c7",
                 width: "94%",
-                marginTop: "5%",
+                marginTop: "7%",
               }}
             />
           </Grid>
@@ -2733,10 +2790,30 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   justifyContent: "center",
                   alignItems: "center",
                 }}
-                onClick={() => setShowMore(!showMore)}
-              >
-                <Button variant='contained'>
-                  {showMore ? "Show Less" : "Show More"}
+                onClick={() => setShowMore(!showMore)}>
+              <Button           
+                  style={{
+                    borderColor: "#000",
+                    width: 130,
+                    height: 40,
+                    background: "#000",
+                    color: "#fff",
+                    fontSize: "14px",
+                    fontWeight: 400,
+                    textTransform: "none",
+                    borderRadius: 8,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection:'row'
+                  }}
+                >
+                   {showMore ? "Show Less" : "Show More"}
+                   {showMore ? (
+                  <ExpandLess fontSize="medium" />
+                ) : (
+                  <ExpandMore fontSize="medium" />
+                )}
                 </Button>
               </Grid>
             </Grid>
@@ -2756,7 +2833,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   height: "1px",
                   backgroundColor: "#bdc3c7",
                   width: "100%",
-                  marginTop: "6%",
+                  marginTop: "2%",
                 }}
               />
             </Grid>
@@ -2780,33 +2857,18 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           <Grid
             style={{
               border: "1px solid #fff",
-              width: "100%",
-              maxHeight: 330,
               display: "flex",
               flexDirection: "column",
               borderRadius: 10,
-              marginTop: '2%',
+              marginTop: '5%',
               overflowY: 'scroll',
               scrollbarWidth: 'none',
               scrollSnapAlign: "end"
             }}>
-            <Box
-              sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                '& > :not(style)': {
-                  m: 1,
-                  marginTop: 2,
-                  width: matches ? 400 : 520,
-                  maxHeight: 82,
-                  overflowY:'scroll',
-                  scrollbarWidth:'none'
-
-                },
-              }}
-            >
-              <Reviews />
-            </Box>
+             <Slider {...settings}>
+             {Reviews()}    
+             </Slider>
+           
           </Grid>
         </Grid>
 
@@ -2879,8 +2941,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               marginLeft: matches ? "66%" : "20%",
               position: "fixed",
               bottom: matches ? 0 : 0,
-              width: matches ? "90px" : "90px",
-              height: matches ? "90px" : "90px",
+              width: matches ? "82px" : "82px",
+              height: matches ? "82px" : "82px",
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
@@ -2888,13 +2950,14 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               marginBottom: "4%",
               cursor: "pointer",
               borderColor: "#000",
+              boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
             }}
           >
             <Grid
               sx={{
                 // background: 'linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3)',
-                width: matches ? "77px" : "77px",
-                height: matches ? "77px" : "77px",
+                width: matches ? "70px" : "70px",
+                height: matches ? "70px" : "70px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
