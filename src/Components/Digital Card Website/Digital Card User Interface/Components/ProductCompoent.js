@@ -19,6 +19,7 @@ import img5 from '../../Digital Card Assets/icons/5.png';
 import img6 from '../../Digital Card Assets/icons/6.png';
 import img8 from '../../Digital Card Assets/icons/8.png';
 import OtpGenerator from '../ReviewTag/OtpGenerator';
+import PhoneEmailAuth from '../UserDashboard/UserComponents/Phone';
 import Footer from "./Footer";
 import Preloader from './Preloader';
 import Varieties from './Varieties';
@@ -197,10 +198,10 @@ const ProductCompoent = () => {
 
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (number) => {
     var formData = new FormData()
 
-    formData.append('phone', phoneNo)
+    formData.append('phone', number)
     // formData.append('password', password)
 
 
@@ -366,37 +367,8 @@ const ProductCompoent = () => {
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={2} sx={{ p: "8% 5%" }}>
-            <Grid item xs={9}>
-              <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
-            </Grid>
-            <Grid item xs={3} sx={{ display: "flex" }}>
-              <Button
-                fullWidth
-                onClick={handleopenotpdailog}
-                sx={{
-                  background: "#001E3C",
-                  color: "#ffffff",
-                  p: "2% 10%",
-                  fontSize: { xs: "0.6em", md: "0.9em", lg: "0.9em" },
-                  fontWeight: 600,
-                  "&:hover": {
-                    background: "#023569",
-                    color: "#ffffff",
-                  }
-                }}
-              >
-                Get Otp
-              </Button>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
-
-            </Grid>
-            <Grid item xs={12}>
-              OTP not received ? <a style={{ cursor: 'pointer' }} onClick={handleopenotpdailog}>Resend</a>
-            </Grid>
-            <Grid item xs={12}>
-              {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
+            <Grid item xs={12} sx={{ display: "flex", justifyContent: 'center' }}>
+              <PhoneEmailAuth login={(val) => handleSubmit(val)} />
             </Grid>
           </Grid>
         </DialogContent>
@@ -432,9 +404,7 @@ const ProductCompoent = () => {
 
     if (phoneNo != '') {
       var otpval = OtpGenerator()
-
       setOtp(otpval)
-
       const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
       const response = await postData('otp/api', { url: apiUrl })
       // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41

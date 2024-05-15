@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 import logo1 from '../Digital Card Assets/dchlogo.png'
 import { postData } from '../../Services/NodeServices';
 import OtpGenerator from './OtpGenerator';
+import PhoneEmailAuth from '../Digital Card User Interface/UserDashboard/UserComponents/Phone';
 
 const drawerBleeding = 150;
 
@@ -53,12 +54,12 @@ function DoorEdgeDrawer(props) {
         setOpen(newOpen);
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (number) => {
 
 
         var formData = new FormData
 
-        formData.append('phone', phoneNo)
+        formData.append('phone', number)
         // formData.append('password', password)
 
 
@@ -212,7 +213,10 @@ function DoorEdgeDrawer(props) {
                                 Login / Signup
                             </Typography>
                         </Grid>
-                        <Grid item xs={9}>
+                        <Grid item xs={12} sx={{ display: "flex", justifyContent: 'center' }}>
+                            <PhoneEmailAuth login={(val) => handleSubmit(val)} />
+                        </Grid>
+                        {/* <Grid item xs={9}>
                             <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
                         </Grid>
                         <Grid item xs={3} sx={{ display: "flex" }}>
@@ -234,7 +238,7 @@ function DoorEdgeDrawer(props) {
                         </Grid>
                         <Grid item xs={12}>
                             {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
-                        </Grid>
+                        </Grid> */}
                     </Grid>
                 </StyledBox>
             </SwipeableDrawer>
