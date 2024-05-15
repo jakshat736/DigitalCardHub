@@ -70,6 +70,7 @@ import SideBar from "../UserComponents/SideBar";
 import SendToMobileIcon from '@mui/icons-material/SendToMobile';
 import PhoneIcon from '@mui/icons-material/Phone';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
+import PhoneEmailAuth from "../UserComponents/Phone";
 
 const actions = [
   { icon: <SimCardDownloadIcon style={{ fontSize: '22px' }} />, name: "Copy" },
@@ -611,10 +612,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     </Dialog>)
   }
 
-  const handleLogin = async () => {
+  const handleLogin = async (number) => {
     var formData = new FormData()
 
-    formData.append('phone', phoneNumber)
+    formData.append('phone', number)
     var result = await postData('customerLogin/chkLogin', formData, true)
 
     if (result.status) {
@@ -743,7 +744,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             marginTop: "6%",
           }}
         >
-          <div
+          <PhoneEmailAuth login={(num)=>handleLogin(num)}/>
+          {/* <div
             style={{
               background: "#dfe6e9",
               borderRadius: 6,
@@ -784,10 +786,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 )
               }}
             />
-          </div>
+          </div> */}
         </div>
 
-        <div
+        {/* <div
           style={{
             display: "flex",
             justifyContent: "center",
@@ -804,7 +806,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           >
             <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
           </div>
-        </div>
+        </div> */}
       </DialogContent>
     </Dialog>)
   }

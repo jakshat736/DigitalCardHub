@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 import logo1 from '../../Digital Card Assets/dchlogo.png'
 import { postData } from '../../../Services/NodeServices';
 import OtpGenerator from './OtpGenerator';
+import PhoneEmailAuth from '../UserDashboard/UserComponents/Phone';
 
 const drawerBleeding = 150;
 
@@ -53,7 +54,7 @@ function MultiEdgeDrawer(props) {
         setOpen(newOpen);
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (number) => {
 
         var data = new FormData
         data.append("tagId", props?.tagId)
@@ -63,7 +64,7 @@ function MultiEdgeDrawer(props) {
         if (responseData.status) {
             var formData = new FormData
 
-            formData.append('phone', phoneNo)
+            formData.append('phone', number)
 
 
             var result = await postData('customerLogin/chkLogin', formData, true)
@@ -208,28 +209,8 @@ function MultiEdgeDrawer(props) {
                                 Login / Signup
                             </Typography>
                         </Grid>
-                        <Grid item xs={9}>
-                            <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
-                        </Grid>
-                        <Grid item xs={3} sx={{ display: "flex" }}>
-                            <Button
-                                fullWidth
-                                onClick={handleopenotpdailog}
-                                sx={{ fontSize: 25, backgroundColor: '#F3B419', color: "black", "&:hover": { backgroundColor: '#F3B419' } }}>
-                                <Typography class='font'>
-                                    Get Otp
-                                </Typography>
-                            </Button>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
-
-                        </Grid>
-                        <Grid item xs={12}>
-                            OTP not received ? <a style={{ cursor: 'pointer' }} onClick={handleopenotpdailog}>Resend</a>
-                        </Grid>
-                        <Grid item xs={12}>
-                            {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
+                        <Grid item xs={12} sx={{ display: "flex", justifyContent: 'center' }}>
+                            <PhoneEmailAuth login={(val) => handleSubmit(val)} />
                         </Grid>
                     </Grid>
                 </StyledBox>

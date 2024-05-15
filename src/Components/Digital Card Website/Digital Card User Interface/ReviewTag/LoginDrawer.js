@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 import logo1 from '../../Digital Card Assets/dchlogo.png'
 import { postData } from '../../../Services/NodeServices';
 import OtpGenerator from './OtpGenerator';
+import PhoneEmailAuth from '../UserDashboard/UserComponents/Phone';
 
 const drawerBleeding = 150;
 
@@ -53,8 +54,8 @@ function ReviewEdgeDrawer(props) {
         setOpen(newOpen);
     };
 
-    const handleSubmit = async () => {
-        
+    const handleSubmit = async (number) => {
+
         var data = new FormData
         data.append("tagId", props?.tagdId)
         const responseData = await postData('review/getByTagId', data, true)
@@ -63,7 +64,7 @@ function ReviewEdgeDrawer(props) {
         if (responseData.status) {
             var formData = new FormData
 
-            formData.append('phone', phoneNo)
+            formData.append('phone', number)
             // formData.append('password', password)
 
 
@@ -73,7 +74,7 @@ function ReviewEdgeDrawer(props) {
             if (result.status) {
                 window.localStorage.setItem("userId", result.data._id)
                 window.localStorage.setItem("UserNumber", result?.data?.phone)
-                window.localStorage.setItem("UserEmail",  result?.data?.email)
+                window.localStorage.setItem("UserEmail", result?.data?.email)
                 var formData = new FormData
                 formData.append('tagId', props?.tagId)
                 formData.append('phone', result.data.phone)
@@ -211,28 +212,8 @@ function ReviewEdgeDrawer(props) {
                                 Login / Signup
                             </Typography>
                         </Grid>
-                        <Grid item xs={9}>
-                            <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
-                        </Grid>
-                        <Grid item xs={3} sx={{ display: "flex" }}>
-                            <Button
-                                fullWidth
-                                onClick={handleopenotpdailog}
-                                sx={{ fontSize: 25, backgroundColor: '#F3B419', color: "black", "&:hover": { backgroundColor: '#F3B419' } }}>
-                                <Typography class='font'>
-                                    Get Otp
-                                </Typography>
-                            </Button>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
-
-                        </Grid>
-                        <Grid item xs={12}>
-                            OTP not received ? <a style={{ cursor: 'pointer' }} onClick={handleopenotpdailog}>Resend</a>
-                        </Grid>
-                        <Grid item xs={12}>
-                            {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
+                        <Grid item xs={12} sx={{ display: "flex", justifyContent: 'center' }}>
+                            <PhoneEmailAuth login={(val) => handleSubmit(val)} />
                         </Grid>
                     </Grid>
                 </StyledBox>
@@ -248,7 +229,7 @@ ReviewEdgeDrawer.propTypes = {
      * You won't need it on your project.
      */
     windows: PropTypes.func,
-    tagId:PropTypes.string
+    tagId: PropTypes.string
 };
 
 
