@@ -46,7 +46,7 @@ const SideBar = () => {
         <Box
             sx={{
                 width: anchor === "top" || anchor === "bottom" ? "auto" : 330,
-                backgroundImage: "radial-gradient(#ecf0f1, #dcdde1)",
+                backgroundImage: "radial-gradient(#ffff, #bdc3c7)",
                 height: "100%",
             }}
             role="presentation"
