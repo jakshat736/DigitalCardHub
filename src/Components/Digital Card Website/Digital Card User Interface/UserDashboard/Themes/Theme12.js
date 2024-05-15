@@ -966,7 +966,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "center"
                   }}
                   onClick={() => handleSubmit(data?.customerId)}
                 >
@@ -1398,7 +1398,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               width: { xs: "100vw", sm: "70%", md: "40%" },
               minHeight: { xs: 200 },
               paddingLeft: -5,
-              overflow: "hidden", // Ensures the video doesn't overflow the Grid
+              overflow: "hidden",
+              boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.5)', // Ensures the video doesn't overflow the Grid
             }}
           >
             <video
@@ -1412,6 +1413,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 height: 250,
                 borderTopRightRadius: 5,
                 borderTopLeftRadius: 5,
+                boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.5)',
               }}
             >
               <source
@@ -1438,6 +1440,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               minHeight: { xs: 260 },
               borderTopRightRadius: 5,
               borderTopLeftRadius: 5,
+              boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
             }}
           >
             {" "}
@@ -1515,36 +1518,36 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 display: "flex",
               }}
             >
-              <Grid
-                onClick={handleAbout}
-                sx={{
-                  border: "1px solid #000",
-                  width: 110,
-                  height: 36,
-                  backgroundImage: "radial-gradient(#353b48, #000)",
-                  borderRadius: 8,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: 1,
-                  color: "#fff",
-                  marginLeft: "auto",
-                  cursor: 'pointer',
-                  marginTop: matches ? '-8%' : '-4%',
 
-                }}
-              >
-                <Grid
-                  sx={{ fontsize: "10px", fontWeight: 600, marginLeft: "4%" }}
+           <Button      
+                onClick={handleAbout}     
+                  style={{
+                    borderColor: "#000",
+                    width: 110,
+                    height: 32,
+                    backgroundImage: "radial-gradient(#353b48, #000)",
+                    color: "#fff",
+                    fontSize: "15px",
+                    fontWeight: 400,
+                    textTransform: "none",
+                    borderRadius: 14,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection:'row',
+                    marginLeft: "auto",
+                    cursor: 'pointer',
+                    marginTop: matches ? '-8%' : '-4%',
+                    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
+                  }}
                 >
                   Work
-                </Grid>
-                {openDrawer ? (
+                  {openDrawer ? (
                   <ExpandLess fontSize="medium" />
                 ) : (
                   <ExpandMore fontSize="medium" />
                 )}
-              </Grid>
+                </Button>
             </Grid>
 
             <Grid
@@ -1564,6 +1567,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 justifyContent: "center",
                 borderRadius: "95px",
                 backgroundSize: "cover",
+                boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
               }}
             ></Grid>
           </Grid>
@@ -1594,7 +1598,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   },position: "absolute", right: 6, bottom: 1 }}
                     direction="left"
                     icon={
-                     <img src={more} width={26}></img>
+                     <img src={more} width={26} style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',}}></img>
                     }
                   >
                     {actions.map((action) => (
@@ -2508,7 +2512,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
         >
           <Grid
             style={{
-              marginTop: "4%",
+              marginTop: "3%",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -2542,7 +2546,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 height: "1px",
                 backgroundColor: "#bdc3c7",
                 width: "94%",
-                marginTop: "7%",
+                marginTop: "10%",
               }}
             />
           </Grid>
