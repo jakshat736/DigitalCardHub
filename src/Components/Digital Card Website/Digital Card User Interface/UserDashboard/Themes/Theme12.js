@@ -20,6 +20,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import DialogTitle from "@mui/material/DialogTitle";
 import fourboxicon from "../Themes/ThemeAssets/fourboxicon.png"
+import SimCardDownloadIcon from '@mui/icons-material/SimCardDownload';
 import Rating from "@mui/material/Rating";
 import more from "../Themes/ThemeAssets/more.png"
 import SpeedDial from "@mui/material/SpeedDial";
@@ -68,11 +69,12 @@ import WhatsApp1 from "../Themes/ThemeAssets/whatsapp1.png";
 import SideBar from "../UserComponents/SideBar";
 import SendToMobileIcon from '@mui/icons-material/SendToMobile';
 import PhoneIcon from '@mui/icons-material/Phone';
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 
 const actions = [
-  { icon: <PhoneIcon style={{ fontSize: '26px' }} />, name: "Copy" },
+  { icon: <SimCardDownloadIcon style={{ fontSize: '22px' }} />, name: "Copy" },
   { icon: <SendToMobileIcon style={{ fontSize: '20px' }} />, name: "Shareno" },
-  { icon: <HelpIcon />, name: "Enquery" },
+  { icon: <PriorityHighIcon style={{ transform:'rotate(180deg)'}}/>, name: "Enquery" },
   { icon: <ShareIcon />, name: "Share" },
 ];
 
@@ -103,6 +105,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const navigate = useNavigate()
   const matches = useMediaQuery("(max-width:600px)");
   const [about, setAbout] = useState(false);
+  const [work, setWork] = useState(false);
   const [href, setHref] = useState("");
   const [smsHref, setSmsHref] = useState("");
   const [name, setName] = React.useState("");
@@ -237,6 +240,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
 
   const handleAbout = () => {
     setAbout(!about);
+    setWork(!work)
     setOpenDrawer(!openDrawer);
     if (about === false) {
       var section = document.getElementById("work");
@@ -682,8 +686,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       PaperProps={{
         style: {
           position: "fixed",
-          bottom: -38,
-          width: "100%",
+          bottom: -35,
+          width: "100%",height:'40%',
           borderTopRightRadius: 15,
           borderTopLeftRadius: 15,
           // Dialog ko page ke bottom me set karein
@@ -1208,6 +1212,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     slidesToScroll: 3,
     arrows: false,
     vertical: true,
+    autoplaySpeed: 7000,
   };
 
   var settingproduct = {
@@ -1218,7 +1223,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     autoplay: "true",
     autospeed: 1,
     slidesToScroll: 1,
-    arrows: false,
+   
   };
 
 
@@ -1246,18 +1251,17 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     position: 'relative',
     paddingBottom: '60%', // 1:1 aspect ratio
     overflow: 'hidden',
-    marginLeft: '4%'}}>
-
-  <img src={`${serverURL}/images/${item.productimg}`} style={{
+    marginLeft: '2%',}}>
+  <img src={`${serverURL}/images/${item.productimg}`}  style={{
     position: 'absolute',
     width: '92%',
     height: '100%',
     objectFit: 'cover',
-      boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
-      borderRadius:6,
-              }} />
+      boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.5)',
+      borderRadius:8,
+        }} />
             </Grid>
-            <Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: '4%',marginTop:'2.5%' }}>
+            <Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: '2%',marginTop:'2.5%' }}>
               <Grid sx={{ fontSize: '22px', fontWeight: 700 }}>
                 {item.productname}
               </Grid>
@@ -1284,12 +1288,12 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     window.open(
                       `https://wa.me/+91${data?.WhatsappNo}?text=I Want To Buy Your ${item.productname}`
                     )
-                  }
-                >
+            }
+            >
                   Enquiry Now
                 </Button>
                   <Grid sx={{ display: 'flex', flexDirection: 'column',marginLeft:'4%' }}>
-                    <Grid sx={{ fontSize: '20px', fontWeight: 600, color: '#FF0000' }}>₹ {item.offerprice}  </Grid><Grid sx={{ fontSize: '12px', fontWeight: 500, color: '#4A4A4A'}}>(Inc. all taxes)</Grid>
+                    <Grid sx={{ fontSize: '20px', fontWeight: 600, color: '#FF0000'}}>{item.offerprice?<>₹ </>:<></> } {item.offerprice}  </Grid><Grid sx={{ fontSize: '12px', fontWeight: 500, color: '#4A4A4A'}}>{item.offerprice?<>(Inc. all taxes)</>:<></> }</Grid>
                 </Grid>
               </Grid>
             </Grid>
@@ -1362,17 +1366,16 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     })
   }
 
-
-
   return (
     <Grid
       style={{
         backgroundColor: "#f5f6fa",
         height: "100%",
-        width: "99vw",
+        width: "99.9%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+       
       }}
     >
       <Grid
@@ -1380,8 +1383,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
         sx={{
           width: { xs: "100vw", sm: "70%", md: "37%" },
           height: "100%",
-          marginTop: 0,
-          marginLeft: 0.3,
           position: "relative",
         }}
       >
@@ -1686,6 +1687,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     style={{
                       fontSize: 12,
                       color: "#636e72",
+                      fontFamily:'poppins',
                       overflowY: "scroll",
                       padding: 8,
                     }}
@@ -1758,7 +1760,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     marginLeft: 1.9,
                     color: "#000",
                     fontWeight: 400,
-                    fontSize: matches ? 17 : 20,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                   }}
                 >
                   Call
@@ -1798,10 +1801,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     marginLeft: 1.7,
                     color: "#000",
                     fontWeight: 400,
-                    fontSize: matches ? 17 : 20,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                   }}
                 >
-                  Whatsapp
+                  WhatsApp
                 </Grid>
               </Button>
             </Grid>
@@ -1842,7 +1846,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     marginLeft: 1.9,
                     color: "#000",
                     fontWeight: 400,
-                    fontSize: matches ? 17 : 20,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                   }}
                 >
                   Email
@@ -1883,10 +1888,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     marginLeft: 1.9,
                     color: "#000",
                     fontWeight: 400,
-                    fontSize: matches ? 17 : 20,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                   }}
                 >
-                  LinkdIn
+                  LinkedIn
                 </Grid>
               </Button>
             </Grid>
@@ -1924,7 +1930,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     marginLeft: 1.9,
                     color: "#000",
                     fontWeight: 400,
-                    fontSize: matches ? 17 : 20,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                   }}
                 >
                   Facebook
@@ -1963,7 +1970,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     marginLeft: 1.9,
                     color: "#000",
                     fontWeight: 400,
-                    fontSize: matches ? 17 : 20,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                   }}
                 >
                   Instagram
@@ -2006,8 +2014,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           sx={{
                             marginLeft: 1.9,
                             color: "#000",
+                            fontWeight: 500,
                             fontWeight: 400,
-                            fontSize: matches ? 17 : 20,
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily:'poppins'
                           }}
                         >
                           GitHub
@@ -2031,8 +2041,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           justifyContent: "flex-start",
                           borderRadius: 20,
                           marginTop: "3%",
-                          fontSize: "16px",
-                          fontWeight: 400,
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2045,7 +2056,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? 17 : 20,
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily:'poppins'
                           }}
                         >
                           Telegram
@@ -2068,8 +2080,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           justifyContent: "flex-start",
                           borderRadius: 20,
                           marginTop: "3%",
-                          fontSize: "16px",
-                          fontWeight: 400,
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2082,7 +2095,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? 17 : 20,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                           }}
                         >
                           Discord
@@ -2106,8 +2120,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           justifyContent: "flex-start",
                           borderRadius: 20,
                           marginTop: "3%",
-                          fontSize: "16px",
-                          fontWeight: 400,
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2120,7 +2135,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? 17 : 20,
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily:'poppins'
                           }}
                         >
                           PayPal
@@ -2144,8 +2160,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           justifyContent: "flex-start",
                           borderRadius: 20,
                           marginTop: "3%",
-                          fontSize: "16px",
-                          fontWeight: 400,
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2158,7 +2175,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? 17 : 20,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                           }}
                         >
                           Snapchat
@@ -2182,8 +2200,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           justifyContent: "flex-start",
                           borderRadius: 20,
                           marginTop: "3%",
-                          fontSize: "16px",
-                          fontWeight: 400,
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2196,7 +2215,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? 17 : 20,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                           }}
                         >
                           Skype
@@ -2220,8 +2240,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           justifyContent: "flex-start",
                           borderRadius: 20,
                           marginTop: "3%",
-                          fontSize: "16px",
-                          fontWeight: 400,
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2234,7 +2255,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? 17 : 20,
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily:'poppins'
                           }}
                         >
                           Reddit
@@ -2258,8 +2280,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           justifyContent: "flex-start",
                           borderRadius: 20,
                           marginTop: "3%",
-                          fontSize: "16px",
-                          fontWeight: 400,
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2272,7 +2295,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? 17 : 20,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                           }}
                         >
                           Google Drive
@@ -2296,8 +2320,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           justifyContent: "flex-start",
                           borderRadius: 20,
                           marginTop: "3%",
-                          fontSize: "16px",
-                          fontWeight: 400,
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2310,7 +2335,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? 17 : 20,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                           }}
                         >
                           Dropbox
@@ -2334,8 +2360,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           justifyContent: "flex-start",
                           borderRadius: 20,
                           marginTop: "3%",
-                          fontSize: "16px",
-                          fontWeight: 400,
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2348,7 +2375,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? 17 : 20,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                           }}
                         >
                           Pinterest
@@ -2372,8 +2400,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           justifyContent: "flex-start",
                           borderRadius: 20,
                           marginTop: "3%",
-                          fontSize: "16px",
-                          fontWeight: 400,
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2386,7 +2415,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? 17 : 20,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                           }}
                         >
                           Behance
@@ -2421,7 +2451,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? 17 : 20,
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily:'poppins'
                           }}
                         >
                           {item.customTitle}
@@ -2453,7 +2484,15 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             />
           </Grid>
         </Grid>
+      
 
+
+
+
+        <div id="work"></div>
+        {work ? (
+          <>
+            {" "}
         <Grid
           item
           xs={12}
@@ -2465,7 +2504,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             padding: 1,
           }}
         >
-
           <Grid
             style={{
               marginTop: "4%",
@@ -2480,14 +2518,12 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             </Grid>
             <Grid sx={{ width: "100%", display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '3%' }}>
               <Slider
-                style={{ width: "100%" }}
+                style={{ width: "90%" }}
                 {...settingproduct}
               >
                 {showSlider()}
               </Slider>
             </Grid>
-
-
           </Grid>
           <Grid
             item
@@ -2498,7 +2534,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               justifyContent: "center",
               alignItems: "center",
             }}
-          >
+          >            
             <Divider
               style={{
                 height: "1px",
@@ -2508,10 +2544,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               }}
             />
           </Grid>
-
         </Grid>
+      
 
-        <div id="work"></div>
+
+
         <Grid
           item
           xs={12}
@@ -2530,7 +2567,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             width: "100%",
             minHeight: { xs: "auto", sm: "auto", md: "auto" },
           }}
+          
         >
+         
           <Grid
             container
             spacing={2}
@@ -2551,6 +2590,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               See Our Videos
 
             </Typography>
+           
             <Grid
               item
               xs={11}
@@ -2596,6 +2636,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 <ReactPlayer height="210px" url={data?.YoutubeVideoLink2} />
               </Grid>
             </Grid>
+           
             <Grid
               item
               xs={11}
@@ -2617,7 +2658,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
               >
                 <ReactPlayer height="210px" url={data?.YoutubeVideoLink3} />
               </Grid>
+             
             </Grid>
+           
             <Grid
               item
               xs={11}
@@ -2673,6 +2716,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 flexDirection: "column",
               }}
             >
+              
               <Grid
                 style={{
                   display: "flex",
@@ -2817,7 +2861,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 </Button>
               </Grid>
             </Grid>
-
+          
             <Grid
               item
               xs={11}
@@ -2914,8 +2958,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             </React.Fragment>
           </Grid>
         </Grid>
-
-
+        </>
+        ) : (
+          <></>
+        )}
+  
         <Grid
           item
           xs={12}

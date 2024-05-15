@@ -20,26 +20,26 @@ export default function Lower(props) {
   };
   return (
     <Grid>
-      <Paper sx={{ borderTopLeftRadius: '20', borderTopRightRadius: '20',width:{xs:"100vw"},backgroundColor:'white' }}>
+      <Paper sx={{ borderTopLeftRadius: 15, borderTopRightRadius: 15,width:{xs:"100vw"},backgroundColor:'#0c5273' }}>
         <Grid container spacing={2}>
           <Grid
             item
             xs={12}
-            sx={{ display: { md: 'none', xs: 'flex' }, justifyContent:'space-around' }}
+            sx={{ display: { md: 'none', xs: 'flex' }, justifyContent:'space-around'}}
           >
-            <IconButton sx={{display:"flex",flexDirection:'column'}} onClick={()=>navigate('/shop')}>
+            <IconButton sx={{display:"flex",flexDirection:'column',color:'#fff',}} onClick={()=>navigate('/shop')}>
               <StoreIcon />
               <Typography>Shop</Typography>
             </IconButton >
-            <IconButton sx={{display:"flex",flexDirection:'column'}} onClick={handleButtonClick}>
+            <IconButton sx={{display:"flex",flexDirection:'column',color:'#fff'}} onClick={handleButtonClick}>
               <LoyaltyIcon />
               <Typography>Sale</Typography>
             </IconButton >
-            <IconButton sx={{display:"flex",flexDirection:'column'}} onClick={handleButtonClick}>
+            <IconButton sx={{display:"flex",flexDirection:'column',color:'#fff'}} onClick={handleButtonClick}>
               <FiberNewIcon />
               <Typography>New</Typography>
             </IconButton>
-            <IconButton sx={{display:"flex",flexDirection:'column'}} href='https://youtu.be/dfj0V7aHbCM?si=ED7JFPvgDEAJ4kYX'>
+            <IconButton sx={{display:"flex",flexDirection:'column',color:'#fff'}} href='https://youtu.be/dfj0V7aHbCM?si=ED7JFPvgDEAJ4kYX'>
               <HelpIcon />
               <Typography>Help</Typography>
             </IconButton>
