@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 import { postData } from '../../Services/NodeServices';
 import logo1 from '../Digital Card Assets/dchlogo.png';
 import OtpGenerator from '../Digital Card User Interface/ReviewTag/OtpGenerator';
+import PhoneEmailAuth from '../Digital Card User Interface/UserDashboard/UserComponents/Phone';
 
 const drawerBleeding = 150;
 
@@ -41,11 +42,11 @@ function VehicleEdgeDrawer(props) {
         setOpen(newOpen);
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (number) => {
 
         var formData = new FormData()
 
-        formData.append('phone', phoneNo)
+        formData.append('phone', number)
         // formData.append('password', password)
 
 
@@ -201,7 +202,7 @@ function VehicleEdgeDrawer(props) {
                                 Login / Signup
                             </Typography>
                         </Grid>
-                        <Grid item xs={9}>
+                        {/* <Grid item xs={9}>
                             <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
                         </Grid>
                         <Grid item xs={3} sx={{ display: "flex" }}>
@@ -223,6 +224,9 @@ function VehicleEdgeDrawer(props) {
                         </Grid>
                         <Grid item xs={12}>
                             {verified === true ? "Verified" : verified === false ? "Not Verified" : ""}
+                        </Grid> */}
+                        <Grid item xs={12} sx={{ display: "flex", justifyContent: 'center' }}>
+                            <PhoneEmailAuth login={(val) => handleSubmit(val)} />
                         </Grid>
                     </Grid>
                 </StyledBox>

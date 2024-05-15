@@ -1,32 +1,28 @@
-import { Avatar, Box, Grid, IconButton, Paper, Typography, Button, TextField, DialogActions, DialogContent, DialogTitle, Dialog, useMediaQuery, useTheme, Stack } from '@mui/material'
-import React, { useContext } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
-import Navbar from './Navbar'
+import { Avatar, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, Paper, Stack, TextField, Typography, useMediaQuery, useTheme } from '@mui/material';
+import React, { useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import Navbar from './Navbar';
 
-import bg from "../../Digital Card Assets/footer.png";
-import Footer from "./Footer";
 import { Add, FiberManualRecord, Remove } from '@mui/icons-material';
-import { useState } from 'react';
-import img1 from '../../Digital Card Assets/icons/1.png'
-import img2 from '../../Digital Card Assets/icons/2.png'
-import img3 from '../../Digital Card Assets/icons/3.png'
-import img4 from '../../Digital Card Assets/icons/4.png'
-import img5 from '../../Digital Card Assets/icons/5.png'
-import img6 from '../../Digital Card Assets/icons/6.png'
-import img7 from '../../Digital Card Assets/icons/7.png'
-import img8 from '../../Digital Card Assets/icons/8.png'
-import img9 from '../../Digital Card Assets/icons/9.png'
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import { postData, serverURL } from '../../../Services/NodeServices';
 import Slider from 'react-slick';
 import Swal from 'sweetalert2';
+import { postData, serverURL } from '../../../Services/NodeServices';
 import { SessionContext } from '../../../Services/SessionContext';
+import logo1 from '../../Digital Card Assets/dchlogo.png';
+import bg from "../../Digital Card Assets/footer.png";
+import img1 from '../../Digital Card Assets/icons/1.png';
+import img2 from '../../Digital Card Assets/icons/2.png';
+import img4 from '../../Digital Card Assets/icons/4.png';
+import img5 from '../../Digital Card Assets/icons/5.png';
+import img6 from '../../Digital Card Assets/icons/6.png';
+import img8 from '../../Digital Card Assets/icons/8.png';
 import OtpGenerator from '../ReviewTag/OtpGenerator';
-import logo1 from '../../Digital Card Assets/dchlogo.png'
-import { makeStyles } from '@mui/styles';
-import Varieties from './Varieties';
+import PhoneEmailAuth from '../UserDashboard/UserComponents/Phone';
+import Footer from "./Footer";
 import Preloader from './Preloader';
+import Varieties from './Varieties';
 
 
 
@@ -202,10 +198,10 @@ const ProductCompoent = () => {
 
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (number) => {
     var formData = new FormData()
 
-    formData.append('phone', phoneNo)
+    formData.append('phone', number)
     // formData.append('password', password)
 
 
@@ -371,37 +367,8 @@ const ProductCompoent = () => {
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={2} sx={{ p: "8% 5%" }}>
-            <Grid item xs={9}>
-              <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
-            </Grid>
-            <Grid item xs={3} sx={{ display: "flex" }}>
-              <Button
-                fullWidth
-                onClick={handleopenotpdailog}
-                sx={{
-                  background: "#001E3C",
-                  color: "#ffffff",
-                  p: "2% 10%",
-                  fontSize: { xs: "0.6em", md: "0.9em", lg: "0.9em" },
-                  fontWeight: 600,
-                  "&:hover": {
-                    background: "#023569",
-                    color: "#ffffff",
-                  }
-                }}
-              >
-                Get Otp
-              </Button>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
-
-            </Grid>
-            <Grid item xs={12}>
-              OTP not received ? <a style={{ cursor: 'pointer' }} onClick={handleopenotpdailog}>Resend</a>
-            </Grid>
-            <Grid item xs={12}>
-              {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
+            <Grid item xs={12} sx={{ display: "flex", justifyContent: 'center' }}>
+              <PhoneEmailAuth login={(val) => handleSubmit(val)} />
             </Grid>
           </Grid>
         </DialogContent>
@@ -416,42 +383,40 @@ const ProductCompoent = () => {
 
   const handleOtp = (value) => {
     if (value.length == 4) {
-        if (otp == value) {
-            // setMessage("")
-            setVerified(true)
-            handleSubmit()
-        } else {
-            setVerified(false)
-            Swal.fire({
-                position: 'center',
-                icon: 'error',
-                title: 'Wrong Otp',
-                showConfirmButton: false,
-                timer: 1500
-            })
-        }
+      if (otp == value) {
+        // setMessage("")
+        setVerified(true)
+        handleSubmit()
+      } else {
+        setVerified(false)
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Wrong Otp',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
     }
-}
+  }
 
-const handleopenotpdailog = async () => {
+  const handleopenotpdailog = async () => {
 
     if (phoneNo != '') {
-        var otpval = OtpGenerator()
-
-        setOtp(otpval)
-
-        const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
-        const response = await postData('otp/api', { url: apiUrl })
-        // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41
+      var otpval = OtpGenerator()
+      setOtp(otpval)
+      const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
+      const response = await postData('otp/api', { url: apiUrl })
+      // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41
     } else {
-        Swal.fire({
-            text: "Enter the Number First",
-            timer: 1000
-        })
+      Swal.fire({
+        text: "Enter the Number First",
+        timer: 1000
+      })
     }
 
-    
-}
+
+  }
 
   const SignUpComponent = () => {
     return (
@@ -557,7 +522,7 @@ const handleopenotpdailog = async () => {
 
 
 
-  const handleClick = async (Token1,phone) => {
+  const handleClick = async (Token1, phone) => {
 
     if (Token1) {
       var formdata = new FormData();

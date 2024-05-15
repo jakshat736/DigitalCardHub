@@ -8,6 +8,7 @@ import logo from "../../Digital Card Assets/IndiaBuzz.png";
 import bg from "../../Digital Card Assets/login_img.png";
 import Navbar from '../Components/Navbar';
 import OtpGenerator from '../ReviewTag/OtpGenerator';
+import PhoneEmailAuth from '../UserDashboard/UserComponents/Phone';
 export default function DCLogin() {
     const theme = useTheme();
     const mobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -32,18 +33,18 @@ export default function DCLogin() {
     const [verified, setVerified] = useState()
     // const handleClickShowPassword = () => setShowPassword(!showPassword);
     // const handleMouseDownPassword = () => setShowPassword(!showPassword);
-    const handleSubmit = async () => {
+    const handleSubmit = async (number) => {
         var formData = new FormData()
 
-        formData.append('phone', phoneNo)
+        formData.append('phone', number)
         var result = await postData('customerLogin/chkLogin', formData, true)
-        
+
         if (result.status) {
 
             window.localStorage.setItem("userId", result.data._id)
             window.localStorage.setItem("UserNumber", result?.data?.phone)
-            window.localStorage.setItem("UserEmail",  result?.data?.email)
-       
+            window.localStorage.setItem("UserEmail", result?.data?.email)
+
 
             enqueueSnackbar('Successfully Logged In!');
             navigate('/userdashboard')
@@ -191,7 +192,7 @@ export default function DCLogin() {
             })
         }
 
-        
+
     }
 
     // const dialogComponent = () => {
@@ -273,7 +274,10 @@ export default function DCLogin() {
                                 Welcome Back
                             </Typography>
                             <Grid container spacing={2} sx={{ p: "8% 5%" }}>
-                                <Grid item xs={9}>
+                                <Grid item xs={12} sx={{ display: "flex", justifyContent: 'center' }}>
+                                    <PhoneEmailAuth login={(val) => handleSubmit(val)} />
+                                </Grid>
+                                {/* <Grid item xs={9}>
                                     <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
                                 </Grid>
                                 <Grid item xs={3} sx={{ display: "flex" }}>
@@ -304,7 +308,8 @@ export default function DCLogin() {
                                 </Grid>
                                 <Grid item xs={12}>
                                     {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
-                                </Grid>
+                                </Grid> */}
+
                                 {/* <Grid item xs={12}>
                                     <TextField label="Password" type={showPassword ? "text" : "password"} // <-- This is where the magic happens
                                         InputProps={{ // <-- This is where the toggle button is added.
