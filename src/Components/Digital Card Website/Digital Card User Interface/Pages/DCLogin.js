@@ -1,10 +1,11 @@
-import { Box, Button, Container, Grid, TextField, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Container, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { postData } from '../../../Services/NodeServices';
 import logo from "../../Digital Card Assets/IndiaBuzz.png";
+import logo1 from '../../Digital Card Assets/dchlogo.png';
 import bg from "../../Digital Card Assets/login_img.png";
 import Navbar from '../Components/Navbar';
 import OtpGenerator from '../ReviewTag/OtpGenerator';
@@ -46,7 +47,20 @@ export default function DCLogin() {
             window.localStorage.setItem("UserEmail", result?.data?.email)
 
 
-            enqueueSnackbar('Successfully Logged In!');
+            Swal.fire({
+                title: 'Successfully Logged In!',
+                imageUrl: logo1,
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: 'Custom image',
+                background: '#001e3c',
+                timer: 1500,
+                width: 500,
+                padding: 15,
+                color: '#fff',
+                showConfirmButton: false,
+
+            })
             navigate('/userdashboard')
             window.localStorage.setItem("User", true)
             window.localStorage.removeItem('data')

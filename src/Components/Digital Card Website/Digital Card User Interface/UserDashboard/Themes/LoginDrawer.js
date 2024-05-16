@@ -1,19 +1,18 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
 import { Global } from '@emotion/react';
-import { styled } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { grey } from '@mui/material/colors';
+import { Grid } from '@mui/material';
 import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
-import Typography from '@mui/material/Typography';
+import CssBaseline from '@mui/material/CssBaseline';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import { Grid, TextField } from '@mui/material';
-import { postData } from '../../../../Services/NodeServices';
-import { useLocation, useNavigate } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
+import { grey } from '@mui/material/colors';
+import { styled } from '@mui/material/styles';
 import { useSnackbar } from 'notistack';
+import PropTypes from 'prop-types';
+import * as React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { postData } from '../../../../Services/NodeServices';
+import logo1 from '../../../Digital Card Assets/dchlogo.png';
 import OtpGenerator from '../../ReviewTag/OtpGenerator';
 import PhoneEmailAuth from '../UserComponents/Phone';
 
@@ -69,9 +68,20 @@ function SwipeableEdgeDrawer(props) {
 
             window.localStorage.setItem("userId", result.data._id)
             window.localStorage.setItem("UserNumber", result?.data?.phone)
+            Swal.fire({
+                title: 'Successfully Logged In!',
+                imageUrl: logo1,
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: 'Custom image',
+                background: '#001e3c',
+                timer: 1500,
+                width: 500,
+                padding: 15,
+                color: '#fff',
+                showConfirmButton: false,
 
-
-            enqueueSnackbar('Successfully Logged In!');
+            })
             navigate('/userdashboard')
             window.localStorage.setItem("User", true)
             window.localStorage.removeItem('data')
