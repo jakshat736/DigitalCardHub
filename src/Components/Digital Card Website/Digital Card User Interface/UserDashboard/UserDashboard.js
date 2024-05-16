@@ -107,7 +107,6 @@ const UserDashboard = () => {
     var formData = new FormData();
     formData.append("phone", data?.phone)
     const response = await postData('index/getTagsByPhone', formData, true);
-    console.log(response?.data)
     if (response.status == true) {
       setMenuDisplay("flex")
 
@@ -144,7 +143,6 @@ const UserDashboard = () => {
     var formData = new FormData();
     formData.append("phone", data?.phone)
     const response = await postData('door/getTagsByPhone', formData, true);
-    console.log("Hello", response.data)
     if (response.status == true) {
       setDoorTags(response.data)
       setDoorTagDisplay("flex")
@@ -168,7 +166,6 @@ const UserDashboard = () => {
         const response1 = await postData('standee/updateLink', formData1, true);
       }
       setStandeeTag([response.data])
-      console.log(response.data)
 
     }
   }
@@ -256,10 +253,6 @@ const UserDashboard = () => {
     }
   }, [createdDate]);
 
-
-
-
-  console.log(" jsbj", standeeTag.length)
   const handleClickOpen = () => {
     if (amount != 499) { setOpen(true); }
     else {
@@ -493,10 +486,8 @@ const UserDashboard = () => {
 
     }
     setMultiEdit(false)
-    console.log(multiLinks)
   }
   const handleMultiLinkEditDialog = () => {
-    console.log(multiLinks)
     setMultiLink('')
     setMultiLinkTitle('')
     setMultiLinkIndex('')
@@ -972,14 +963,12 @@ const UserDashboard = () => {
       },
     };
     const response = await postData("api/proxy", requestBody);
-    console.log("bodyyyyyy", response);
 
     navigate(response.data.instrumentResponse.redirectInfo.url);
     handleCheck("DIGITALCARDONLINE", randomString);
   };
   const handleCheck = async (merchantId, transactinId) => {
     const response = await getData(`/check-status?tmid=${transactinId}`);
-    console.log("bodyyyyyy", response);
   };
 
   const handleChange = async (id, status) => {
