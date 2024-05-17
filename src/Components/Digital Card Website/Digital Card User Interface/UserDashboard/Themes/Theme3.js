@@ -79,6 +79,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
     const section = document.getElementById("hero");
     section.scrollIntoView({ behavior: 'instant' });
   },[])
+  
   const handleClick = async (title, url) => {
     try {
       await navigator.share({
