@@ -19,6 +19,7 @@ import Theme9 from '../Themes/Theme9'
 import Theme11 from '../Themes/Theme11'
 import Theme10 from '../Themes/Theme10'
 import Preloader from '../../Components/Preloader'
+import Theme12 from '../Themes/Theme12'
 const Preview = () => {
     let navigate = useNavigate()
 
@@ -101,7 +102,7 @@ const Preview = () => {
             }} onClick={() =>navigate('/ecommerce')} variant='contained'><NavigateBeforeIcon />Back</Button></Grid>
             <Grid sx={{mt:7}}>
                 {/* {data?.themeid == 1 ? <Theme1 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 2 ? <Theme2 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 3 ? <Theme3 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 4 ? <Theme4 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 6 ? <Theme6 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 5 ? <Theme5 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 7 ? <Theme7 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 8 ? <Theme8 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : data?.themeid == 9 ? <Theme9 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> :data?.themeid == 11 ? <Theme11 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> :data?.themeid == 10 ? <Theme10 data={data} products={products} gallery={gallery} ecommerce={ecommerce} /> : ''} */}
-                {show && (data?.menuLink == "" ? <Theme3 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>:<Theme9 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>)}
+                {show && (data?.menuLink == "" ? <Theme12 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>:<Theme9 data={data} products={products} gallery={gallery} ecommerce={ecommerce}/>)}
             </Grid>
             <Grid sx={{ position: "absolute", right: 10, top: {xs:60,sm:65,md:100} }}><Button sx={{
                 borderRadius: 10,

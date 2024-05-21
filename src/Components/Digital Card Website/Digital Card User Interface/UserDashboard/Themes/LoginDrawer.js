@@ -1,5 +1,5 @@
 import { Global } from '@emotion/react';
-import { Grid } from '@mui/material';
+import { Grid, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
@@ -14,7 +14,6 @@ import Swal from 'sweetalert2';
 import { postData } from '../../../../Services/NodeServices';
 import logo1 from '../../../Digital Card Assets/dchlogo.png';
 import OtpGenerator from '../../ReviewTag/OtpGenerator';
-import PhoneEmailAuth from '../UserComponents/Phone';
 
 const drawerBleeding = 150;
 
@@ -54,49 +53,54 @@ function SwipeableEdgeDrawer(props) {
         setOpen(newOpen);
     };
 
-    const handleSubmit = async (number) => {
-        var formData = new FormData()
+    const handleSubmit = async () => {
+        if (phoneNo !== '') {
+            var formData = new FormData()
+            formData.append('phone', phoneNo)
+            // formData.append('password', password)
+            var result = await postData('customerLogin/chkLogin', formData, true)
+            if (result.status) {
 
-        formData.append('phone', number)
-        // formData.append('password', password)
+                window.localStorage.setItem("userId", result.data._id)
+                window.localStorage.setItem("UserNumber", result?.data?.phone)
+                Swal.fire({
+                    title: 'Successfully Logged In!',
+                    imageUrl: logo1,
+                    imageWidth: 200,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                    background: '#001e3c',
+                    timer: 1500,
+                    width: 500,
+                    padding: 15,
+                    color: '#fff',
+                    showConfirmButton: false,
 
+                })
+                navigate('/userdashboard')
+                window.localStorage.setItem("User", true)
+                window.localStorage.removeItem('data')
+                window.localStorage.setItem("data", JSON.stringify(result.data))
 
-        var result = await postData('customerLogin/chkLogin', formData, true)
+            }
+            else {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Fail to Login',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
 
-
-        if (result.status) {
-
-            window.localStorage.setItem("userId", result.data._id)
-            window.localStorage.setItem("UserNumber", result?.data?.phone)
-            Swal.fire({
-                title: 'Successfully Logged In!',
-                imageUrl: logo1,
-                imageWidth: 200,
-                imageHeight: 200,
-                imageAlt: 'Custom image',
-                background: '#001e3c',
-                timer: 1500,
-                width: 500,
-                padding: 15,
-                color: '#fff',
-                showConfirmButton: false,
-
-            })
-            navigate('/userdashboard')
-            window.localStorage.setItem("User", true)
-            window.localStorage.removeItem('data')
-            window.localStorage.setItem("data", JSON.stringify(result.data))
-
-        }
-        else {
+            }
+        } else {
             Swal.fire({
                 position: 'center',
                 icon: 'error',
-                title: 'Fail to Login',
+                title: 'Enter Number First',
                 showConfirmButton: false,
                 timer: 1500
             })
-
         }
 
     }
@@ -214,8 +218,27 @@ function SwipeableEdgeDrawer(props) {
                         <Grid item xs={12}>
                             {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
                         </Grid> */}
-                        <Grid item xs={12} sx={{ display: "flex", justifyContent: 'center' }}>
-                            <PhoneEmailAuth login={(val) => handleSubmit(val)} />
+                        <Grid item xs={9}>
+                            <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
+                        </Grid>
+                        <Grid item xs={3} sx={{ display: "flex" }}>
+                            <Button
+                                fullWidth
+                                onClick={handleSubmit}
+                                sx={{
+                                    background: "#001E3C",
+                                    color: "#ffffff",
+                                    p: "2% 10%",
+                                    fontSize: { xs: "0.6em", md: "0.9em", lg: "0.9em" },
+                                    fontWeight: 600,
+                                    "&:hover": {
+                                        background: "#023569",
+                                        color: "#ffffff",
+                                    }
+                                }}
+                            >
+                                Login
+                            </Button>
                         </Grid>
                     </Grid>
                 </StyledBox>
