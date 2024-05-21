@@ -17,12 +17,14 @@ import {
 } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContentText from "@mui/material/DialogContentText";
+import morenewone from "../Themes/ThemeAssets/morenewone.png"
+import snapchatnew from "../Themes/ThemeAssets/snapchatnew.png"
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import DialogTitle from "@mui/material/DialogTitle";
 import fourboxicon from "../Themes/ThemeAssets/fourboxicon.png"
 import SimCardDownloadIcon from '@mui/icons-material/SimCardDownload';
 import Rating from "@mui/material/Rating";
-import more from "../Themes/ThemeAssets/more.png"
+import more11 from "../Themes/ThemeAssets/more11.png"
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -73,6 +75,7 @@ import SendToMobileIcon from '@mui/icons-material/SendToMobile';
 import PhoneIcon from '@mui/icons-material/Phone';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import PhoneEmailAuth from "../UserComponents/Phone";
+import moreicons from "../Themes/ThemeAssets/moreicon.png"
 
 const actions = [
   { icon: <SimCardDownloadIcon style={{ fontSize: '22px' }} />, name: "Copy" },
@@ -1601,7 +1604,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   },position: "absolute", right: 6, bottom: 1 }}
                     direction="left"
                     icon={
-                     <img src={more} width={26} style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',}}></img>
+                     <img src={moreicons} width={40}></img>
                     }
                   >
                     {actions.map((action) => (
@@ -1993,8 +1996,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   <Grid
                     item
                     xs={6}
-                    md={6}
-                  >
+                    md={6}>
                     {item.title === "GitHub" && (
                       <Button
                         sx={{
@@ -2032,8 +2034,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           GitHub
                         </Grid>
                       </Button>
-                    
-                  )
+                      )
                     }
                     {item.title === "Telegram" && (
                       <Button
@@ -2176,12 +2177,12 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                         fullWidth
                         href={`${item.link}`}
                       >
-                        <Grid sx={{ marginTop: '6%' }}>
-                          <img src={snapchat} width={25}></img>
+                        <Grid sx={{ marginTop: '6%',marginLeft:'-2%' }}>
+                          <img src={snapchatnew} width={38}></img>
                         </Grid>
                         <Grid
                           sx={{
-                            marginLeft: 1.9,
+                            marginLeft: .7,
                             color: "#000",
                             fontWeight: 400,
                     fontSize: matches ? "15px" : 20,
@@ -2308,7 +2309,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     fontFamily:'poppins'
                           }}
                         >
-                          Google Drive
+                          G Drive
                         </Grid>
                       </Button>
 
@@ -2446,7 +2447,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           textTransform: "none",
                           padding: 2.6,
                           display: data?.phoneNumber == null ? "none" : "flex",
-                          justifyContent: "flex-start",
+                          justifyContent: "center",
                           borderRadius: 20,
                           marginTop: "3%",
                           fontSize: "16px",
@@ -2457,7 +2458,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                       >
                         <Grid
                           sx={{
-                            marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
                             fontSize: matches ? "15px" : 20,
