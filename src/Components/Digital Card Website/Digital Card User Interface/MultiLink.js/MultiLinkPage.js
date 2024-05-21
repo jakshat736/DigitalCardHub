@@ -8,7 +8,7 @@ const MultiLinkPage = ({ data }) => {
         <Grid item xs={12}  sx={{ display: "flex",alignItems:'center', justifyContent: 'center', fontSize: 60, marginBottom: 3, color: '#000' ,height:'100%'}}>
             <Grid>
                 <Grid item xs={12} class='welcome1' sx={{ display: "flex", justifyContent: 'center', fontSize: 60, marginBottom: 3, color: '#fff' }}>
-                    Welcome
+                    Welcome 
                 </Grid>
                 <Stack spacing={2}>
                     {

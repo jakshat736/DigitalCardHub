@@ -1,7 +1,7 @@
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
+import HelpIcon from "@mui/icons-material/Help";
 import ShareIcon from "@mui/icons-material/Share";
-import SimCardDownloadIcon from '@mui/icons-material/SimCardDownload';
 import {
   Box,
   Button,
@@ -9,15 +9,22 @@ import {
   Divider,
   Grid,
   IconButton,
+  InputAdornment,
   Paper,
   Stack,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContentText from "@mui/material/DialogContentText";
+import morenewone from "../Themes/ThemeAssets/morenewone.png"
+import snapchatnew from "../Themes/ThemeAssets/snapchatnew.png"
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import DialogTitle from "@mui/material/DialogTitle";
+import fourboxicon from "../Themes/ThemeAssets/fourboxicon.png"
+import SimCardDownloadIcon from '@mui/icons-material/SimCardDownload';
 import Rating from "@mui/material/Rating";
+import more11 from "../Themes/ThemeAssets/more11.png"
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -25,10 +32,10 @@ import { makeStyles } from "@mui/styles";
 import { enqueueSnackbar } from "notistack";
 import * as React from "react";
 import { useState } from "react";
-import logo1 from '../../../Digital Card Assets/dchlogo.png';
-import more from "../Themes/ThemeAssets/more.png";
-import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
-import SendToMobileIcon from '@mui/icons-material/SendToMobile';
+// import { FaShare } from "react-icons/fa";
+// import { IoIosContact } from "react-icons/io";
+// import { MdKeyboardArrowRight } from "react-icons/md";
+// import { PiSquaresFour } from "react-icons/pi";
 import ReactPlayer from "react-player";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
@@ -36,6 +43,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import Swal from "sweetalert2";
 import { postData, serverURL } from "../../../../Services/NodeServices";
+
 import behance from '../../../Digital Card Assets/behance.png';
 import discord from '../../../Digital Card Assets/discord.png';
 import gdrive from '../../../Digital Card Assets/drive.png';
@@ -47,6 +55,7 @@ import reddit from '../../../Digital Card Assets/reddit.png';
 import skype from '../../../Digital Card Assets/skype.png';
 import snapchat from '../../../Digital Card Assets/snapchat.png';
 import telegram from '../../../Digital Card Assets/telegram.png';
+
 import OtpGenerator from "../../Invite/OtpGenerator";
 import call from "../Themes/ThemeAssets/calls.png";
 import digital from "../Themes/ThemeAssets/digitallogo.png";
@@ -55,19 +64,23 @@ import fb from "../Themes/ThemeAssets/fbs.png";
 import fram1 from "../Themes/ThemeAssets/frame1.png";
 import fram2 from "../Themes/ThemeAssets/frame2.png";
 import fram3 from "../Themes/ThemeAssets/frame3.png";
-import gmail from "../Themes/ThemeAssets/gmails.png";
 import insta from "../Themes/ThemeAssets/instas.png";
 import link from "../Themes/ThemeAssets/linkins.png";
+import gmail from "../Themes/ThemeAssets/gmails.png";
 import msg from "../Themes/ThemeAssets/msg.webp";
 import whatapp from "../Themes/ThemeAssets/whatapps.png";
 import WhatsApp1 from "../Themes/ThemeAssets/whatsapp1.png";
-import PhoneEmailAuth from "../UserComponents/Phone";
 import SideBar from "../UserComponents/SideBar";
+import SendToMobileIcon from '@mui/icons-material/SendToMobile';
+import PhoneIcon from '@mui/icons-material/Phone';
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
+import PhoneEmailAuth from "../UserComponents/Phone";
+import moreicons from "../Themes/ThemeAssets/moreicon.png"
 
 const actions = [
   { icon: <SimCardDownloadIcon style={{ fontSize: '22px' }} />, name: "Copy" },
   { icon: <SendToMobileIcon style={{ fontSize: '20px' }} />, name: "Shareno" },
-  { icon: <PriorityHighIcon style={{ transform: 'rotate(180deg)' }} />, name: "Enquery" },
+  { icon: <PriorityHighIcon style={{ transform:'rotate(180deg)'}}/>, name: "Enquery" },
   { icon: <ShareIcon />, name: "Share" },
 ];
 
@@ -112,14 +125,14 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const [openLogin, setOpenLogin] = useState(false);
   const [reviews, setReviews] = useState(false);
   const [openMore, setOpenMore] = useState(false);
-  const [showMore, setShowMore] = useState(false);
+
   const [openB, setOpenB] = React.useState(false);
   const [openContact, setOpenContact] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [otp, setOtp] = React.useState()
   const [isVisible, setIsVisible] = useState(true);
-
+  const [showMore, setShowMore] = useState(false);
   // All handleClickFunctions
 
 
@@ -235,7 +248,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     setAbout(!about);
     setWork(!work)
     setOpenDrawer(!openDrawer);
-    if (about === false || work === false) {
+    if (about === false) {
       var section = document.getElementById("work");
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
@@ -265,6 +278,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       true
     );
   };
+
   const [scroll, setScroll] = useState(false)
 
   setTimeout(() => {
@@ -350,7 +364,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     formData.append("review", review);
     formData.append("rating", rating);
     formData.append("submitAt", new Date());
-
+    
     let response = await postData("enquiry/addcardreview", formData, true);
 
     if (response?.status) {
@@ -605,55 +619,36 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   }
 
   const handleLogin = async (number) => {
+    var formData = new FormData()
 
-    const current_user = window.localStorage.getItem('UserNumber')
-    if (current_user !== number) {
-      var formData = new FormData()
-      formData.append('phone', number)
-      var result = await postData('customerLogin/chkLogin', formData, true)
+    formData.append('phone', number)
+    var result = await postData('customerLogin/chkLogin', formData, true)
 
-      if (result.status) {
+    if (result.status) {
 
-        window.localStorage.setItem("userId", result.data._id)
-        window.localStorage.setItem("UserNumber", result?.data?.phone)
-        window.localStorage.setItem("UserEmail", result?.data?.email)
+      window.localStorage.setItem("userId", result.data._id)
+      window.localStorage.setItem("UserNumber", result?.data?.phone)
+      window.localStorage.setItem("UserEmail", result?.data?.email)
 
-        Swal.fire({
-          title: 'Successfully Logged In!',
-          imageUrl: logo1,
-          imageWidth: 200,
-          imageHeight: 200,
-          imageAlt: 'Custom image',
-          background: '#001e3c',
-          timer: 1500,
-          width: 500,
-          padding: 15,
-          color: '#fff',
-          showConfirmButton: false,
 
-        })
-
-        navigate('/userdashboard')
-        window.localStorage.setItem("User", true)
-        window.localStorage.removeItem('data')
-        window.localStorage.setItem("data", JSON.stringify(result.data))
-
-      }
-      else {
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Fail to Login',
-          showConfirmButton: false,
-          timer: 1500
-        })
-
-      }
-    }
-    else {
+      enqueueSnackbar('Successfully Logged In!');
       navigate('/userdashboard')
       window.localStorage.setItem("User", true)
+      window.localStorage.removeItem('data')
+      window.localStorage.setItem("data", JSON.stringify(result.data))
+
     }
+    else {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Fail to Login',
+        showConfirmButton: false,
+        timer: 1500
+      })
+
+    }
+
   }
 
   const handleOtp = (value) => {
@@ -699,7 +694,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
         style: {
           position: "fixed",
           bottom: -35,
-          width: "100%", height: '40%',
+          width: "100%",height:'40%',
           borderTopRightRadius: 15,
           borderTopLeftRadius: 15,
           // Dialog ko page ke bottom me set karein
@@ -755,7 +750,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             marginTop: "6%",
           }}
         >
-          <PhoneEmailAuth login={(num) => handleLogin(num)} />
+          <PhoneEmailAuth login={(num)=>handleLogin(num)}/>
           {/* <div
             style={{
               background: "#dfe6e9",
@@ -833,7 +828,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           width: "100%",
           borderTopRightRadius: 15,
           borderTopLeftRadius: 15,
-
+       
           // Dialog ko page ke bottom me set karein
         },
       }}
@@ -920,13 +915,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const enquiryDialog = () => {
     return (
       <Dialog
-        PaperProps={{
-          style: {
-            width: "86%",
-            borderRadius: 15
-            // Dialog ko page ke bottom me set karein
-          },
-        }}
+      PaperProps={{
+        style: {
+          width: "86%",
+         borderRadius:15
+          // Dialog ko page ke bottom me set karein
+        },
+      }}
         open={openB}
         onClose={handleCloseButton}
       >
@@ -1024,13 +1019,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const EnquiryFormDialog = () => {
     return (
       <Dialog
-        PaperProps={{
-          style: {
-            width: "86%",
-            borderRadius: 15
-            // Dialog ko page ke bottom me set karein
-          },
-        }}
+      PaperProps={{
+        style: {
+          width: "86%",
+         borderRadius:15
+          // Dialog ko page ke bottom me set karein
+        },
+      }}
         open={openContact}
         onClose={handleCloseContact}
       >
@@ -1236,7 +1231,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     autoplay: "true",
     autospeed: 1,
     slidesToScroll: 1,
-
+   
   };
 
 
@@ -1261,28 +1256,27 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
         return (
           <Grid sx={{ display: "flex", justifyContent: "center", alignItems: 'center', ml: 1 }}>
             <Grid sx={{
-              position: 'relative',
-              paddingBottom: '60%', // 1:1 aspect ratio
-              overflow: 'hidden',
-              marginLeft: '2%',
-            }}>
-              <img src={`${serverURL}/images/${item.productimg}`} style={{
-                position: 'absolute',
-                width: '92%',
-                height: '100%',
-                objectFit: 'cover',
-                boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.5)',
-                borderRadius: 8,
-              }} />
+    position: 'relative',
+    paddingBottom: '60%', // 1:1 aspect ratio
+    overflow: 'hidden',
+    marginLeft: '2%',}}>
+  <img src={`${serverURL}/images/${item.productimg}`}  style={{
+    position: 'absolute',
+    width: '92%',
+    height: '100%',
+    objectFit: 'cover',
+      boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.5)',
+      borderRadius:8,
+        }} />
             </Grid>
-            <Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: '2%', marginTop: '2.5%' }}>
+            <Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: '2%',marginTop:'2.5%' }}>
               <Grid sx={{ fontSize: '22px', fontWeight: 700 }}>
                 {item.productname}
               </Grid>
               <Grid sx={{ fontSize: '15px', fontWeight: 400, marginTop: '1%' }}>
                 {item.productdescription}
               </Grid>
-              <Grid sx={{ display: 'flex', marginTop: '2%' }}>
+              <Grid sx={{ display: 'flex',marginTop:'2%'}}>
                 <Button
                   style={{
                     borderColor: "#000",
@@ -1302,12 +1296,12 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     window.open(
                       `https://wa.me/+91${data?.WhatsappNo}?text=I Want To Buy Your ${item.productname}`
                     )
-                  }
-                >
+            }
+            >
                   Enquiry Now
                 </Button>
-                <Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: '4%' }}>
-                  <Grid sx={{ fontSize: '20px', fontWeight: 600, color: '#FF0000' }}>{item.offerprice ? <>₹ </> : <></>} {item.offerprice}  </Grid><Grid sx={{ fontSize: '12px', fontWeight: 500, color: '#4A4A4A' }}>{item.offerprice ? <>(Inc. all taxes)</> : <></>}</Grid>
+                  <Grid sx={{ display: 'flex', flexDirection: 'column',marginLeft:'4%' }}>
+                    <Grid sx={{ fontSize: '20px', fontWeight: 600, color: '#FF0000'}}>{item.offerprice?<>₹ </>:<></> } {item.offerprice}  </Grid><Grid sx={{ fontSize: '12px', fontWeight: 500, color: '#4A4A4A'}}>{item.offerprice?<>(Inc. all taxes)</>:<></> }</Grid>
                 </Grid>
               </Grid>
             </Grid>
@@ -1343,38 +1337,38 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     return reviewsData?.map((item) => {
       return (
         <Box
-          sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            '& > :not(style)': {
-              m: .5,
-              marginTop: 1,
-              maxHeight: 82,
-              overflowY: 'scroll',
-              scrollbarWidth: 'none',
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          '& > :not(style)': {
+            m: .5,
+            marginTop: 1,
+            maxHeight: 82,
+            overflowY:'scroll',
+            scrollbarWidth:'none',
 
-            },
-          }}
-        >
-          <Paper elevation={4} sx={{ padding: 1.3 }}>
-            <Grid sx={{ display: 'flex' }}>
-              <Grid sx={{ fontSize: '18px', fontWeight: 500 }}>{item?.name}</Grid>
+          },
+        }}
+      >
+        <Paper elevation={4} sx={{ padding: 1.3 }}>
+          <Grid sx={{ display: 'flex' }}>
+            <Grid sx={{ fontSize: '18px', fontWeight: 500 }}>{item?.name}</Grid>
+          </Grid>
+          <Grid sx={{ display: 'flex' }}>
+            <Grid>
+              <Rating
+                size="small"
+                color="green"
+                name="simple-controlled"
+                value={item.rating}
+              />
             </Grid>
-            <Grid sx={{ display: 'flex' }}>
-              <Grid>
-                <Rating
-                  size="small"
-                  color="green"
-                  name="simple-controlled"
-                  value={item.rating}
-                />
-              </Grid>
-              <Grid sx={{ color: '#636e72', fontSize: 14, color: '#636e72', marginLeft: '2%', marginTop: '.7%' }}>{getDuration(item?.submitAt)}</Grid>
-            </Grid>
-            <Grid sx={{ fontSize: 10, color: '#2d3436' }}>
-              {item.review}
-            </Grid>
-          </Paper>
+            <Grid sx={{ color: '#636e72', fontSize: 14, color: '#636e72', marginLeft: '2%', marginTop: '.7%' }}>{getDuration(item?.submitAt)}</Grid>
+          </Grid>
+          <Grid sx={{ fontSize: 10, color: '#2d3436' }}>
+            {item.review}
+          </Grid>
+        </Paper>
         </Box>
       )
     })
@@ -1389,7 +1383,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-
+       
       }}
     >
       <Grid
@@ -1480,6 +1474,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             </Grid>
 
             <Paper
+              elevation={25}
               sx={{
                 border: "1px solid #7f8c8d",
                 width: 100,
@@ -1529,36 +1524,36 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 display: "flex",
               }}
             >
-
-              <Button
-                onClick={handleAbout}
-                style={{
-                  borderColor: "#000",
-                  width: 110,
-                  height: 32,
-                  backgroundImage: "radial-gradient(#353b48, #000)",
-                  color: "#fff",
-                  fontSize: "15px",
-                  fontWeight: 400,
-                  textTransform: "none",
-                  borderRadius: 14,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: 'row',
-                  marginLeft: "auto",
-                  cursor: 'pointer',
-                  marginTop: matches ? '-8%' : '-4%',
-                  boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
-                }}
-              >
-                Work
-                {openDrawer ? (
+           <Button 
+                onClick={handleAbout}     
+                  style={{
+                    borderColor: "#000",
+                    width: 110,
+                    height: 32,
+                    backgroundImage: "radial-gradient(#353b48, #000)",
+                    color: "#fff",
+                    fontSize: "15px",
+                    fontWeight: 400,
+                    textTransform: "none",
+                    borderRadius: 14,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection:'row',
+                    marginLeft: "auto",
+                    cursor: 'pointer',
+                    marginTop: matches ? '-8%' : '-4%',
+                    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
+                  }}
+                >              
+                  Work
+                  {openDrawer ? (
                   <ExpandLess fontSize="medium" />
                 ) : (
                   <ExpandMore fontSize="medium" />
                 )}
-              </Button>
+                </Button>
+               
             </Grid>
 
             <Grid
@@ -1583,50 +1578,48 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             ></Grid>
           </Grid>
           <Grid style={{ background: "#fff" }}>
-            <Grid style={{ display: "flex", flexDirection: "row" }}>
-              <Box
-                sx={{
-                  height: 50,
-                  transform: "translateZ(100px)",
-                  flexGrow: 1,
-                  position: "relative",
-                  marginTop: matches ? "-8.7%" : '-5%',
-                }}
-              >
-                <SpeedDial
-                  ariaLabel="SpeedDial basic example"
+          <Grid style={{ display: "flex", flexDirection: "row" }}>
+                <Box
                   sx={{
-                    '& .MuiSpeedDial-fab': {
-                      boxShadow: 'none', // Remove the box shadow
-                      backgroundColor: '#fff' // Set background color to #fff
-                    },
-                    '& .MuiSpeedDial-fab:hover': {
-                      boxShadow: 'none',
-                      backgroundColor: '#fff' // Ensure background color remains #fff on hover
-                    },
-                    '&.MuiSpeedDial-open .MuiSpeedDial-fab': {
-                      boxShadow: 'none',
-                      backgroundColor: '#fff' // Ensure background color remains #fff when open/clicked
-                    }, position: "absolute", right: 6, bottom: 1
+                    height: 50,
+                    transform: "translateZ(100px)",
+                    flexGrow: 1,
+                    position: "relative",
+                    marginTop: matches?"-8.7%":'-5%',
                   }}
-                  direction="left"
-                  icon={
-                    <img src={more} width={26} style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)', }}></img>
-                  }
                 >
-                  {actions.map((action) => (
-                    <SpeedDialAction
-                      key={action.name}
-                      icon={action.icon}
-                      tooltipTitle={action.name}
-                      onClick={() => handleClickIcon(action.name)}
-                    />
-                  ))}
-                </SpeedDial>
-              </Box>
-            </Grid>
+                  <SpeedDial
+                   ariaLabel="SpeedDial basic example"
+                   sx={{'& .MuiSpeedDial-fab': { 
+                    boxShadow: 'none', // Remove the box shadow
+                    backgroundColor: '#fff' // Set background color to #fff
+                  },
+                  '& .MuiSpeedDial-fab:hover': {
+                    boxShadow: 'none', 
+                    backgroundColor: '#fff' // Ensure background color remains #fff on hover
+                  },
+                  '&.MuiSpeedDial-open .MuiSpeedDial-fab': {
+                    boxShadow: 'none', 
+                    backgroundColor: '#fff' // Ensure background color remains #fff when open/clicked
+                  },position: "absolute", right: 6, bottom: 1 }}
+                    direction="left"
+                    icon={
+                     <img src={moreicons} width={40}></img>
+                    }
+                  >
+                    {actions.map((action) => (
+                      <SpeedDialAction
+                        key={action.name}
+                        icon={action.icon}
+                        tooltipTitle={action.name}
+                        onClick={() => handleClickIcon(action.name)}
+                      />
+                    ))}
+                  </SpeedDial>
+                </Box>
+              </Grid>
             <Grid
-              style={{ marginLeft: matches ? "4%" : "6%", marginTop: matches ? "-2%" : '3%' }}
+              style={{ marginLeft: matches ? "4%" : "6%", marginTop:matches?"-2%":'3%' }}
             >
               <Grid
                 style={{
@@ -1706,7 +1699,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     style={{
                       fontSize: 12,
                       color: "#636e72",
-                      fontFamily: 'poppins',
+                      fontFamily:'poppins',
                       overflowY: "scroll",
                       padding: 8,
                     }}
@@ -1772,7 +1765,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 }}
               >
                 <Grid sx={{ marginTop: '3%', }}>
-                  <img src={call} width={25} />
+                  <img src={call} width={25}/>
                 </Grid>
                 <Grid
                   sx={{
@@ -1780,7 +1773,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     color: "#000",
                     fontWeight: 400,
                     fontSize: matches ? "15px" : 20,
-                    fontFamily: 'poppins'
+                    fontFamily:'poppins'
                   }}
                 >
                   Call
@@ -1791,7 +1784,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <Grid
               item
               xs={6}
-              md={6}
+               md={6}
             >
               <Button
                 sx={{
@@ -1821,7 +1814,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     color: "#000",
                     fontWeight: 400,
                     fontSize: matches ? "15px" : 20,
-                    fontFamily: 'poppins'
+                    fontFamily:'poppins'
                   }}
                 >
                   WhatsApp
@@ -1858,7 +1851,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 }}
               >
                 <Grid sx={{ marginTop: '5%', }}>
-                  <img src={gmail} width={25}></img>
+                  <img src={gmail}  width={25}></img>
                 </Grid>
                 <Grid
                   sx={{
@@ -1866,7 +1859,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     color: "#000",
                     fontWeight: 400,
                     fontSize: matches ? "15px" : 20,
-                    fontFamily: 'poppins'
+                    fontFamily:'poppins'
                   }}
                 >
                   Email
@@ -1908,7 +1901,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     color: "#000",
                     fontWeight: 400,
                     fontSize: matches ? "15px" : 20,
-                    fontFamily: 'poppins'
+                    fontFamily:'poppins'
                   }}
                 >
                   LinkedIn
@@ -1950,7 +1943,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     color: "#000",
                     fontWeight: 400,
                     fontSize: matches ? "15px" : 20,
-                    fontFamily: 'poppins'
+                    fontFamily:'poppins'
                   }}
                 >
                   Facebook
@@ -1990,7 +1983,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     color: "#000",
                     fontWeight: 400,
                     fontSize: matches ? "15px" : 20,
-                    fontFamily: 'poppins'
+                    fontFamily:'poppins'
                   }}
                 >
                   Instagram
@@ -2003,8 +1996,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   <Grid
                     item
                     xs={6}
-                    md={6}
-                  >
+                    md={6}>
                     {item.title === "GitHub" && (
                       <Button
                         sx={{
@@ -2036,14 +2028,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             fontWeight: 500,
                             fontWeight: 400,
                             fontSize: matches ? "15px" : 20,
-                            fontFamily: 'poppins'
+                            fontFamily:'poppins'
                           }}
                         >
                           GitHub
                         </Grid>
                       </Button>
-
-                    )
+                      )
                     }
                     {item.title === "Telegram" && (
                       <Button
@@ -2062,7 +2053,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily: 'poppins'
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2076,7 +2067,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             color: "#000",
                             fontWeight: 400,
                             fontSize: matches ? "15px" : 20,
-                            fontFamily: 'poppins'
+                            fontFamily:'poppins'
                           }}
                         >
                           Telegram
@@ -2101,7 +2092,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily: 'poppins'
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2114,8 +2105,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? "15px" : 20,
-                            fontFamily: 'poppins'
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                           }}
                         >
                           Discord
@@ -2141,7 +2132,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily: 'poppins'
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2155,7 +2146,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             color: "#000",
                             fontWeight: 400,
                             fontSize: matches ? "15px" : 20,
-                            fontFamily: 'poppins'
+                            fontFamily:'poppins'
                           }}
                         >
                           PayPal
@@ -2181,21 +2172,21 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily: 'poppins'
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
                       >
-                        <Grid sx={{ marginTop: '6%' }}>
-                          <img src={snapchat} width={25}></img>
+                        <Grid sx={{ marginTop: '6%',marginLeft:'-2%' }}>
+                          <img src={snapchatnew} width={38}></img>
                         </Grid>
                         <Grid
                           sx={{
-                            marginLeft: 1.9,
+                            marginLeft: .7,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? "15px" : 20,
-                            fontFamily: 'poppins'
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                           }}
                         >
                           Snapchat
@@ -2221,7 +2212,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily: 'poppins'
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2234,8 +2225,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? "15px" : 20,
-                            fontFamily: 'poppins'
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                           }}
                         >
                           Skype
@@ -2261,7 +2252,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily: 'poppins'
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2275,7 +2266,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             color: "#000",
                             fontWeight: 400,
                             fontSize: matches ? "15px" : 20,
-                            fontFamily: 'poppins'
+                            fontFamily:'poppins'
                           }}
                         >
                           Reddit
@@ -2301,7 +2292,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily: 'poppins'
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2314,11 +2305,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? "15px" : 20,
-                            fontFamily: 'poppins'
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                           }}
                         >
-                          Google Drive
+                          G Drive
                         </Grid>
                       </Button>
 
@@ -2341,7 +2332,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily: 'poppins'
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2354,8 +2345,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? "15px" : 20,
-                            fontFamily: 'poppins'
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                           }}
                         >
                           Dropbox
@@ -2381,7 +2372,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily: 'poppins'
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2394,8 +2385,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? "15px" : 20,
-                            fontFamily: 'poppins'
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                           }}
                         >
                           Pinterest
@@ -2421,7 +2412,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily: 'poppins'
+                          fontFamily:'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2434,8 +2425,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                            fontSize: matches ? "15px" : 20,
-                            fontFamily: 'poppins'
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
                           }}
                         >
                           Behance
@@ -2456,7 +2447,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           textTransform: "none",
                           padding: 2.6,
                           display: data?.phoneNumber == null ? "none" : "flex",
-                          justifyContent: "flex-start",
+                          justifyContent: "center",
                           borderRadius: 20,
                           marginTop: "3%",
                           fontSize: "16px",
@@ -2467,11 +2458,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                       >
                         <Grid
                           sx={{
-                            marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
                             fontSize: matches ? "15px" : 20,
-                            fontFamily: 'poppins'
+                            fontFamily:'poppins'
                           }}
                         >
                           {item.customTitle}
@@ -2503,479 +2493,434 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             />
           </Grid>
         </Grid>
+      
         <div id="work"></div>
         {work ? (
           <>
             {" "}
+        <Grid
+          item
+          xs={12}
+          sx={{
+            display: "flex",
+            backgroundColor: "#fff",
+            height: 'auto',
+            flexDirection: "column",
+            padding: 1,
+          }}
+        >      
+          <Grid
+            style={{
+              marginTop: "3%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+            }}
+          >
+            <Grid style={{ fontSize: "22px", fontWeight: 700 }}>
+              Work / Products
+            </Grid>
+            <Grid sx={{ width: "100%", display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '3%' }}>
+              <Slider
+                style={{ width: "90%" }}
+                {...settingproduct}
+              >
+                {showSlider()}
+              </Slider>
+            </Grid>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={12}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >            
+            <Divider
+              style={{
+                height: "1px",
+                backgroundColor: "#bdc3c7",
+                width: "94%",
+                marginTop: "10%",
+              }}
+            />
+          </Grid>
+        </Grid>
+      
+
+
+
+        <Grid
+          item
+          xs={12}
+          md={12}
+          sx={{
+            display:
+              (data?.YoutubeVideoLink1 != "" ||
+                data?.YoutubeVideoLink2 != "" ||
+                data?.YoutubeVideoLink3 != "" ||
+                data?.YoutubeVideoLink4 != "" ||
+                data?.YoutubeVideoLink5 != "")
+                ? "block"
+                : "none",
+            color: "#fff",
+            backgroundColor: "#fff",
+            width: "100%",
+            minHeight: { xs: "auto", sm: "auto", md: "auto" },
+          }}
+          
+        >
+         
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              display: (data?.YoutubeVideoLink1 != "" ||
+                data?.YoutubeVideoLink2 != "" ||
+                data?.YoutubeVideoLink3 != "" ||
+                data?.YoutubeVideoLink4 != "") ? "flex" : "none",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: '4%',
+            }}
+          >
+            <Typography
+              textAlign={"center"}
+              sx={{ fontSize: "23px", fontWeight: 700, color: '#000' }}
+            >
+              See Our Videos
+
+            </Typography>
+           
             <Grid
               item
-              xs={12}
-              sx={{
-                display: "flex",
-                backgroundColor: "#fff",
-                height: 'auto',
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: data?.YoutubeVideoLink1 == "" ? "none" : "flex",
+                justifyContent: "center",
                 flexDirection: "column",
-                padding: 1,
               }}
             >
               <Grid
                 style={{
-                  marginTop: "3%",
                   display: "flex",
-                  justifyContent: "center",
+                  justifyContent: "flex-start",
                   alignItems: "center",
-                  flexDirection: "column",
+                  borderRadius: '15px', overflow: 'hidden'
                 }}
               >
-                <Grid style={{ fontSize: "22px", fontWeight: 700 }}>
-                  Work / Products
-                </Grid>
-                <Grid sx={{ width: "100%", display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '3%' }}>
-                  <Slider
-                    style={{ width: "90%" }}
-                    {...settingproduct}
-                  >
-                    {showSlider()}
-                  </Slider>
-                </Grid>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={12}
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Divider
-                  style={{
-                    height: "1px",
-                    backgroundColor: "#bdc3c7",
-                    width: "94%",
-                    marginTop: "10%",
-                  }}
-                />
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink1} />
               </Grid>
             </Grid>
 
-
-
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: data?.YoutubeVideoLink2 == "" ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink2} />
+              </Grid>
+            </Grid>
+           
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: data?.YoutubeVideoLink3 == "" ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink3} />
+              </Grid>
+             
+            </Grid>
+           
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: data?.YoutubeVideoLink4 == "" ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink4} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: (data?.YoutubeVideoLink5 == "" || showMore === false) ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink5} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: (data?.YoutubeVideoLink6 == "" || showMore === false) ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink6} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: (data?.YoutubeVideoLink7 == "" || showMore === false) ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink7} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: (data?.YoutubeVideoLink8 == "" || showMore === false) ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink8} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: (data?.YoutubeVideoLink9 == "" || showMore === false) ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink9} />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: (data?.YoutubeVideoLink10 == "" || showMore === false) ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: '15px', overflow: 'hidden'
+                }}
+              >
+                <ReactPlayer height="210px" url={data?.YoutubeVideoLink10} />
+              </Grid>
+            </Grid>
 
             <Grid
               item
-              xs={12}
-              md={12}
-              sx={{
-                display:
-                  (data?.YoutubeVideoLink1 != "" ||
-                    data?.YoutubeVideoLink2 != "" ||
-                    data?.YoutubeVideoLink3 != "" ||
-                    data?.YoutubeVideoLink4 != "" ||
-                    data?.YoutubeVideoLink5 != "")
-                    ? "block"
-                    : "none",
-                color: "#fff",
-                backgroundColor: "#fff",
-                width: "100%",
-                minHeight: { xs: "auto", sm: "auto", md: "auto" },
+              xs={11}
+              md={11}
+              style={{
+                margin: 10,
+                display: data?.YoutubeVideoLink4 == "" ? "none" : "flex",
+                justifyContent: "center",
+                flexDirection: "column",
               }}
-
             >
-
               <Grid
-                container
-                spacing={2}
-                sx={{
-                  display: (data?.YoutubeVideoLink1 != "" ||
-                    data?.YoutubeVideoLink2 != "" ||
-                    data?.YoutubeVideoLink3 != "" ||
-                    data?.YoutubeVideoLink4 != "") ? "flex" : "none",
+                style={{
+                  display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  marginTop: '4%',
                 }}
-              >
-                <Typography
-                  textAlign={"center"}
-                  sx={{ fontSize: "23px", fontWeight: 700, color: '#000' }}
-                >
-                  See Our Videos
-
-                </Typography>
-
-                <Grid
-                  item
-                  xs={11}
-                  md={11}
+                onClick={() => setShowMore(!showMore)}>
+              <Button           
                   style={{
-                    margin: 10,
-                    display: data?.YoutubeVideoLink1 == "" ? "none" : "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Grid
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                      borderRadius: '15px', overflow: 'hidden'
-                    }}
-                  >
-                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink1} />
-                  </Grid>
-                </Grid>
-
-                <Grid
-                  item
-                  xs={11}
-                  md={11}
-                  style={{
-                    margin: 10,
-                    display: data?.YoutubeVideoLink2 == "" ? "none" : "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Grid
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                      borderRadius: '15px', overflow: 'hidden'
-                    }}
-                  >
-                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink2} />
-                  </Grid>
-                </Grid>
-
-                <Grid
-                  item
-                  xs={11}
-                  md={11}
-                  style={{
-                    margin: 10,
-                    display: data?.YoutubeVideoLink3 == "" ? "none" : "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Grid
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                      borderRadius: '15px', overflow: 'hidden'
-                    }}
-                  >
-                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink3} />
-                  </Grid>
-
-                </Grid>
-
-                <Grid
-                  item
-                  xs={11}
-                  md={11}
-                  style={{
-                    margin: 10,
-                    display: data?.YoutubeVideoLink4 == "" ? "none" : "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Grid
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                      borderRadius: '15px', overflow: 'hidden'
-                    }}
-                  >
-                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink4} />
-                  </Grid>
-                </Grid>
-                <Grid
-                  item
-                  xs={11}
-                  md={11}
-                  style={{
-                    margin: 10,
-                    display: (data?.YoutubeVideoLink5 == "" || showMore === false) ? "none" : "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Grid
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                      borderRadius: '15px', overflow: 'hidden'
-                    }}
-                  >
-                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink5} />
-                  </Grid>
-                </Grid>
-                <Grid
-                  item
-                  xs={11}
-                  md={11}
-                  style={{
-                    margin: 10,
-                    display: (data?.YoutubeVideoLink6 == "" || showMore === false) ? "none" : "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
-
-                  <Grid
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                      borderRadius: '15px', overflow: 'hidden'
-                    }}
-                  >
-                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink6} />
-                  </Grid>
-                </Grid>
-                <Grid
-                  item
-                  xs={11}
-                  md={11}
-                  style={{
-                    margin: 10,
-                    display: (data?.YoutubeVideoLink7 == "" || showMore === false) ? "none" : "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Grid
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                      borderRadius: '15px', overflow: 'hidden'
-                    }}
-                  >
-                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink7} />
-                  </Grid>
-                </Grid>
-                <Grid
-                  item
-                  xs={11}
-                  md={11}
-                  style={{
-                    margin: 10,
-                    display: (data?.YoutubeVideoLink8 == "" || showMore === false) ? "none" : "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Grid
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                      borderRadius: '15px', overflow: 'hidden'
-                    }}
-                  >
-                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink8} />
-                  </Grid>
-                </Grid>
-                <Grid
-                  item
-                  xs={11}
-                  md={11}
-                  style={{
-                    margin: 10,
-                    display: (data?.YoutubeVideoLink9 == "" || showMore === false) ? "none" : "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Grid
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                      borderRadius: '15px', overflow: 'hidden'
-                    }}
-                  >
-                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink9} />
-                  </Grid>
-                </Grid>
-                <Grid
-                  item
-                  xs={11}
-                  md={11}
-                  style={{
-                    margin: 10,
-                    display: (data?.YoutubeVideoLink10 == "" || showMore === false) ? "none" : "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Grid
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                      borderRadius: '15px', overflow: 'hidden'
-                    }}
-                  >
-                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink10} />
-                  </Grid>
-                </Grid>
-
-                <Grid
-                  item
-                  xs={11}
-                  md={11}
-                  style={{
-                    margin: 10,
-                    display: data?.YoutubeVideoLink4 == "" ? "none" : "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Grid
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                    onClick={() => setShowMore(!showMore)}>
-                    <Button
-                      style={{
-                        borderColor: "#000",
-                        width: 130,
-                        height: 40,
-                        background: "#000",
-                        color: "#fff",
-                        fontSize: "14px",
-                        fontWeight: 400,
-                        textTransform: "none",
-                        borderRadius: 8,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexDirection: 'row'
-                      }}
-                    >
-                      {showMore ? "Show Less" : "Show More"}
-                      {showMore ? (
-                        <ExpandLess fontSize="medium" />
-                      ) : (
-                        <ExpandMore fontSize="medium" />
-                      )}
-                    </Button>
-                  </Grid>
-                </Grid>
-
-                <Grid
-                  item
-                  xs={11}
-                  md={11}
-                  sx={{
+                    borderColor: "#000",
+                    width: 130,
+                    height: 40,
+                    background: "#000",
+                    color: "#fff",
+                    fontSize: "14px",
+                    fontWeight: 400,
+                    textTransform: "none",
+                    borderRadius: 8,
                     display: "flex",
-                    justifyContent: "center",
                     alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection:'row'
                   }}
                 >
-                  <Divider
-                    style={{
-                      height: "1px",
-                      backgroundColor: "#bdc3c7",
-                      width: "100%",
-                      marginTop: "2%",
-                    }}
-                  />
-                </Grid>
-
+                   {showMore ? "Show Less" : "Show More"}
+                   {showMore ? (
+                  <ExpandLess fontSize="medium" />
+                ) : (
+                  <ExpandMore fontSize="medium" />
+                )}
+                </Button>
               </Grid>
             </Grid>
-
+          
             <Grid
               item
-              xs={12}
-              sx={{
-                display: reviewsData?.length > 0 ? "flex" : 'none',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: 1,
-                background: '#fff',
-                flexDirection: 'column',
-                height: 'auto'
-              }}>
-              <Grid sx={{ fontSize: '20px', fontWeight: 700, marginTop: '4%' }}>SEE OUR REVIEW !</Grid>
-              <Grid
-                style={{
-                  border: "1px solid #fff",
-                  display: "flex",
-                  flexDirection: "column",
-                  borderRadius: 10,
-                  marginTop: '5%',
-                  overflowY: 'scroll',
-                  scrollbarWidth: 'none',
-                  scrollSnapAlign: "end"
-                }}>
-                <Slider {...settings}>
-                  {Reviews()}
-                </Slider>
-
-              </Grid>
-            </Grid>
-
-
-            <Grid
-              item
-              xs={12}
+              xs={11}
+              md={11}
               sx={{
                 display: "flex",
-                backgroundColor: "#fff",
-                height: 'auto',
-                flexDirection: "column",
-                padding: 1,
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              <Grid
+              <Divider
                 style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
+                  height: "1px",
+                  backgroundColor: "#bdc3c7",
+                  width: "100%",
+                  marginTop: "2%",
                 }}
-              >
-                <React.Fragment>
-                  <Button
-                    onClick={handleClickOpen}
-                    style={{
-                      borderColor: "#000",
-                      width: matches ? "94%" : "100%",
-                      background: '#000',
-                      color: "#fff",
-                      fontWeight: "bold",
-                      textTransform: "none",
-                      padding: 5,
-                      borderRadius: 8,
-                      marginTop: "1%",
-                      fontSize: "18px",
-                      fontWeight: 600,
-                    }}
-                    variant="outlined"
-                  >
-                    Write Your Review
-                  </Button>
-                </React.Fragment>
-              </Grid>
+              />
             </Grid>
-          </>
-        ) : (
-          <></>
-        )}
+
+          </Grid>
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          sx={{
+            display: reviewsData?.length > 0 ? "flex" : 'none',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 1,
+            background: '#fff',
+            flexDirection: 'column',
+            height: 'auto'
+          }}>
+          <Grid sx={{ fontSize: '20px', fontWeight: 700, marginTop: '4%' }}>SEE OUR REVIEW !</Grid>
+          <Grid
+            style={{
+              border: "1px solid #fff",
+              display: "flex",
+              flexDirection: "column",
+              borderRadius: 10,
+              marginTop: '5%',
+              overflowY: 'scroll',
+              scrollbarWidth: 'none',
+              scrollSnapAlign: "end"
+            }}>
+             <Slider {...settings}>
+             {Reviews()}    
+             </Slider>
+           
+          </Grid>
+        </Grid>
+
 
         <Grid
           item
@@ -2983,7 +2928,53 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           sx={{
             display: "flex",
             backgroundColor: "#fff",
-            height: 70,
+            height: 'auto',
+            flexDirection: "column",
+            padding: 1,
+          }}
+        >
+          <Grid
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <React.Fragment>
+              <Button
+                onClick={handleClickOpen}
+                style={{
+                  borderColor: "#000",
+                  width: matches ? "94%" : "100%",
+                  background: '#000',
+                  color: "#fff",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  padding: 5,
+                  borderRadius: 8,
+                  marginTop: "1%",
+                  fontSize: "18px",
+                  fontWeight: 600,
+                }}
+                variant="outlined"
+              >
+                Write Your Review
+              </Button>
+            </React.Fragment>
+          </Grid>
+        </Grid>
+        </>
+        ) : (
+          <></>
+        )}
+  
+        <Grid
+          item
+          xs={12}
+          sx={{
+            display: "flex",
+            backgroundColor: "#fff",
+            height: 50,
             flexDirection: "column",
             padding: 6,
             alignItems: "center",
@@ -3040,6 +3031,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             </Grid>
           </Grid>
         </Grid>
+
       </Grid>
       {enquiryDialog()}
       {EnquiryFormDialog()}
