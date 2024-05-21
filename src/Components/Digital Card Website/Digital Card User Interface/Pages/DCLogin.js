@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Button, Container, Grid, TextField, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -9,7 +9,6 @@ import logo1 from '../../Digital Card Assets/dchlogo.png';
 import bg from "../../Digital Card Assets/login_img.png";
 import Navbar from '../Components/Navbar';
 import OtpGenerator from '../ReviewTag/OtpGenerator';
-import PhoneEmailAuth from '../UserDashboard/UserComponents/Phone';
 export default function DCLogin() {
     const theme = useTheme();
     const mobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -34,48 +33,56 @@ export default function DCLogin() {
     const [verified, setVerified] = useState()
     // const handleClickShowPassword = () => setShowPassword(!showPassword);
     // const handleMouseDownPassword = () => setShowPassword(!showPassword);
-    const handleSubmit = async (number) => {
-        var formData = new FormData()
+    const handleSubmit = async () => {
+        if (phoneNo !== '') {
+            var formData = new FormData()
+            formData.append('phone', phoneNo)
+            var result = await postData('customerLogin/chkLogin', formData, true)
+            if (result.status) {
 
-        formData.append('phone', number)
-        var result = await postData('customerLogin/chkLogin', formData, true)
-
-        if (result.status) {
-
-            window.localStorage.setItem("userId", result.data._id)
-            window.localStorage.setItem("UserNumber", result?.data?.phone)
-            window.localStorage.setItem("UserEmail", result?.data?.email)
+                window.localStorage.setItem("userId", result.data._id)
+                window.localStorage.setItem("UserNumber", result?.data?.phone)
+                window.localStorage.setItem("UserEmail", result?.data?.email)
 
 
-            Swal.fire({
-                title: 'Successfully Logged In!',
-                imageUrl: logo1,
-                imageWidth: 200,
-                imageHeight: 200,
-                imageAlt: 'Custom image',
-                background: '#001e3c',
-                timer: 1500,
-                width: 500,
-                padding: 15,
-                color: '#fff',
-                showConfirmButton: false,
+                Swal.fire({
+                    title: 'Successfully Logged In!',
+                    imageUrl: logo1,
+                    imageWidth: 200,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                    background: '#001e3c',
+                    timer: 1500,
+                    width: 500,
+                    padding: 15,
+                    color: '#fff',
+                    showConfirmButton: false,
 
-            })
-            navigate('/userdashboard')
-            window.localStorage.setItem("User", true)
-            window.localStorage.removeItem('data')
-            window.localStorage.setItem("data", JSON.stringify(result.data))
+                })
+                navigate('/userdashboard')
+                window.localStorage.setItem("User", true)
+                window.localStorage.removeItem('data')
+                window.localStorage.setItem("data", JSON.stringify(result.data))
 
-        }
-        else {
+            }
+            else {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Fail to Login',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+            }
+        } else {
             Swal.fire({
                 position: 'center',
                 icon: 'error',
-                title: 'Fail to Login',
+                title: 'Enter Number First',
                 showConfirmButton: false,
                 timer: 1500
             })
-
         }
 
     }
@@ -196,7 +203,7 @@ export default function DCLogin() {
 
             setOtp(otpval)
 
-            const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
+            const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=664B22EF6F9A8&access_token=6642f3cf318c6`;
             const response = await postData('otp/api', { url: apiUrl })
             // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41
         } else {
@@ -288,10 +295,29 @@ export default function DCLogin() {
                                 Welcome Back
                             </Typography>
                             <Grid container spacing={2} sx={{ p: "8% 5%" }}>
-                                <Grid item xs={12} sx={{ display: "flex", justifyContent: 'center' }}>
-                                    <PhoneEmailAuth login={(val) => handleSubmit(val)} />
-                                </Grid>
                                 {/* <Grid item xs={9}>
+                                    <TextField label="Registered Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
+                                </Grid>
+                                <Grid item xs={3} sx={{ display: "flex" }}>
+                                    <Button
+                                        fullWidth
+                                        onClick={handleSubmit}
+                                        sx={{
+                                            background: "#001E3C",
+                                            color: "#ffffff",
+                                            p: "2% 10%",
+                                            fontSize: { xs: "0.6em", md: "0.9em", lg: "0.9em" },
+                                            fontWeight: 600,
+                                            "&:hover": {
+                                                background: "#023569",
+                                                color: "#ffffff",
+                                            }
+                                        }}
+                                    >
+                                        Login
+                                    </Button>
+                                </Grid> */}
+                                <Grid item xs={9}>
                                     <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
                                 </Grid>
                                 <Grid item xs={3} sx={{ display: "flex" }}>
@@ -322,7 +348,7 @@ export default function DCLogin() {
                                 </Grid>
                                 <Grid item xs={12}>
                                     {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
-                                </Grid> */}
+                                </Grid>
 
                                 {/* <Grid item xs={12}>
                                     <TextField label="Password" type={showPassword ? "text" : "password"} // <-- This is where the magic happens
