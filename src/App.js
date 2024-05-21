@@ -115,6 +115,7 @@ import VerifyNumber from './Components/Digital Card Website/VehicleTag/VerifyNum
 import MasterLogin from './Components/MasterDashboard/LogIn';
 import MasterDashboard from './Components/MasterDashboard/MasterDashboard';
 import { SessionContext } from './Components/Services/SessionContext';
+import MenuTheme2 from "./Components/Digital Card Website/MenuUpdate/administrator/MenuTheme2";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -215,6 +216,7 @@ function App() {
 								<Route path="/box" element={<Box />} />
 								<Route path="/menus/:menuId" element={<Menu />} />
 								<Route element={<MenuTheme />} path="/menutheme" />
+								<Route element={<MenuTheme2/>} path="/menu2" />
 								<Route path="/menuDashboard/:menuId" element={<MenuDashBoard />} />
 								<Route path="/addmenu" element={<AddMenu />} />
 								<Route path="/vieworder" element={<ViewOrder />} />

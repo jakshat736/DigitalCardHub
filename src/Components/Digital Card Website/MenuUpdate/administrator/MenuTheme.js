@@ -1,4 +1,5 @@
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import Radio from "@mui/material/Radio";
 import Search from "@mui/icons-material/Search";
 import { FormGroup, Grid, InputAdornment, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
@@ -7,31 +8,30 @@ import CloseIcon from "@mui/icons-material/Close";
 import more from "../assets/more.png";
 import Slider from "react-slick";
 import StarIcon from "@mui/icons-material/Star";
+import arrow from "../assets/arrow.png";
 import SpeedDial from "@mui/material/SpeedDial";
+import { useNavigate } from "react-router-dom";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
+import RemoveIcon from "@mui/icons-material/Remove";
 import "slick-carousel/slick/slick-theme.css";
-import cross from "../assets/cross.png";
 import crosses from "../assets/crosses.png";
+import shopping from "../assets/shopping.png";
 import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 import "slick-carousel/slick/slick.css";
 import { IconButton, Paper } from "@mui/material";
-import veg1 from "../assets/veg1.png";
+import vegss from "../assets/vegss.png";
 import { postData, serverURL } from "../../../Services/NodeServices";
 import Dialog from "@mui/material/Dialog";
-import DialogContentText from "@mui/material/DialogContentText";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import DialogTitle from "@mui/material/DialogTitle";
 import menulogo from "../assets/menulogo.png";
 import { enqueueSnackbar } from "notistack";
 import AddIcon from "@mui/icons-material/Add";
 import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import vegone from "../assets/vegone.png";
 import ListItemButton from "@mui/material/ListItemButton";
 import Fab from "@mui/material/Fab";
-import veg from "../assets/veg.jpg";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Rating from "@mui/material/Rating";
@@ -56,11 +56,9 @@ import SimCardDownloadIcon from "@mui/icons-material/SimCardDownload";
 import { styled } from "@mui/material/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch, { SwitchProps } from "@mui/material/Switch";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 import ShareIcon from "@mui/icons-material/Share";
-import SideBar from "../../Digital Card User Interface/UserDashboard/UserComponents/SideBar"
-import vegmain from "../assets/vegmain.png"
+import SideBar from "../../Digital Card User Interface/UserDashboard/UserComponents/SideBar";
+import vegmain from "../assets/vegmain.png";
 
 const actions = [
   { icon: <SimCardDownloadIcon style={{ fontSize: "22px" }} />, name: "Copy" },
@@ -72,7 +70,7 @@ const actions = [
 ];
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-  width: 60,
+  width: 92,
   height: 34,
   padding: 7,
   marginLeft: "auto",
@@ -83,13 +81,13 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     transform: "translateX(6px)",
     "&.Mui-checked": {
       color: "#fff",
-      transform: "translateX(22px)",
+      transform: "translateX(54px)",
       "& .MuiSwitch-thumb:before": {
-        backgroundImage: `url(${vegone})`,
+        backgroundImage: `url(${vegss})`,
       },
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
+        backgroundColor: theme.palette.mode === "dark" ? "#44bd32" : "#44bd32",
       },
     },
   },
@@ -109,7 +107,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       top: 0,
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
-      backgroundImage: `url(${vegone})`,
+      backgroundImage: `url(${vegss})`,
     },
   },
   "& .MuiSwitch-track": {
@@ -120,7 +118,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 const MaterialUISwitch2 = styled(Switch)(({ theme }) => ({
-  width: 60,
+  width: 92,
   height: 34,
   padding: 7,
   marginLeft: "auto",
@@ -131,13 +129,13 @@ const MaterialUISwitch2 = styled(Switch)(({ theme }) => ({
     transform: "translateX(6px)",
     "&.Mui-checked": {
       color: "#fff",
-      transform: "translateX(22px)",
+      transform: "translateX(54px)",
       "& .MuiSwitch-thumb:before": {
         backgroundImage: `url(${vegone})`,
       },
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
+        backgroundColor: theme.palette.mode === "dark" ? "#FF0000" : "#FF0000",
       },
     },
   },
@@ -168,13 +166,14 @@ const MaterialUISwitch2 = styled(Switch)(({ theme }) => ({
 }));
 
 export default function MenuTheme({ data }) {
-
   const [checked, setChecked] = React.useState(true);
   const [reviewsData, setReviewsData] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const [review, setReview] = React.useState("");
   const [menu, setMenu] = useState(false);
   const [category, setCategory] = useState(false);
+  const [customer, setCustomer] = useState(false);
+  const [customer2, setCustomer2] = useState(false);
   const [menuList, setMenuList] = useState(false);
   const [about, setAbout] = useState(false);
   const [rating, setRating] = React.useState(0);
@@ -182,10 +181,33 @@ export default function MenuTheme({ data }) {
   const [showMore, setShowMore] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openDrawer2, setOpenDrawer2] = useState(false);
+  const [add, setAdd] = useState(false);
+
+  const [count, setCount] = useState(0);
+
+  const handleClickAdd = () => {
+    setAdd(true);
+    var c = count + 1;
+    setCount(c);
+  };
+  const handleMinus = () => {
+    var c = count - 1;
+    if (c >= 0) {
+      setCount(c);
+    }
+  };
 
   const matches = useMediaQuery("(max-width:600px)");
+  var navigate = useNavigate();
 
-  
+  const handleNavigate = () => {
+    navigate("/menu2");
+  };
+
+  const handleClickBill = () => {
+    navigate("/menu2");
+  };
+
   const handleClickMenu = () => {
     setMenuList(true);
   };
@@ -193,21 +215,35 @@ export default function MenuTheme({ data }) {
     setMenuList(false);
   };
 
+  // const handleAdd = () => {
+  //   setAdd(true);
+  // };
 
   const handleCloseCategory = () => {
     setCategory(false);
   };
 
+  const handleCloseCustomer = () => {
+    setCustomer(false);
+  };
+  const handleClickCustomer = () => {
+    setCustomer(true);
+  };
 
-  // React.useEffect(() => {
-  //   setCategory(true);
-  // }, []);
+  const handleCloseCustomer2 = () => {
+    setCustomer2(false);
+  };
+  const handleClickCustomer2 = () => {
+    setCustomer2(true);
+  };
 
+  React.useEffect(() => {
+    setCategory(true);
+  }, []);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
-
 
   const handleMenu = () => {
     setMenu(!menu);
@@ -267,9 +303,6 @@ export default function MenuTheme({ data }) {
     setOpen(false);
   };
 
-
-
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -298,7 +331,6 @@ export default function MenuTheme({ data }) {
       return `${days} day${days !== 1 ? "s" : ""} ago`;
     }
   };
-
 
   ////////////////Review Slider///////////////////////
 
@@ -351,8 +383,7 @@ export default function MenuTheme({ data }) {
       );
     });
   };
-//////////////////////////////////////////////////////////////////////////
-
+  //////////////////////////////////////////////////////////////////////////
 
   ////////////Dialogs/////////////////////////////////////////////////////
 
@@ -361,8 +392,9 @@ export default function MenuTheme({ data }) {
       <Dialog
         PaperProps={{
           style: {
-            width: "85%",
+            width: matches?"85%":'20%',
             borderRadius: 10,
+            backgroundImage: "radial-gradient(#ffff,#f5f6fa)",
           },
         }}
         open={category}
@@ -565,7 +597,7 @@ export default function MenuTheme({ data }) {
               style={{
                 borderColor: "#000",
                 width: "100%",
-                background: "#fff",
+                backgroundImage: "radial-gradient(#ffff,#f5f6fa)",
                 color: "#000",
                 fontSize: "16px",
                 fontWeight: 500,
@@ -587,17 +619,488 @@ export default function MenuTheme({ data }) {
     );
   };
 
+  const CustomerAsPerTast = () => {
+    return (
+      <Dialog
+        PaperProps={{
+          style: {
+            position: "fixed",
+            bottom: -35,
+            width: "100%",
+            height: "40%",
+            borderTopRightRadius: 15,
+            borderTopLeftRadius: 15,
+            backgroundImage: "radial-gradient(#ffff, #f5f6fa)",
+          },
+        }}
+        open={customer}
+        onClose={handleCloseCustomer}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <IconButton
+          onClick={handleCloseCustomer}
+          aria-label="close"
+          sx={{
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: "inherit",
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <Grid sx={{ display: "flex", flexDirection: "column", padding: 3 }}>
+          <Grid sx={{ fontSize: 14 }}>Panner Pizza</Grid>
+          <Grid
+            sx={{
+              fontSize: "16px",
+              fontWeight: 700,
+              color: "#000",
+              marginTop: "3%",
+            }}
+          >
+            Customise as per your taste.
+          </Grid>
+          <Divider
+            style={{
+              backgroundColor: "#AAAAAA",
+              width: "100%",
+              marginTop: "3%",
+            }}
+          />
+          <Grid
+            sx={{
+              fontSize: "14px",
+              fontWeight: 600,
+              color: "#000",
+              marginTop: "3%",
+            }}
+          >
+            Quantity
+          </Grid>
+          <Grid
+            sx={{
+              marginTop: "1%",
+              border: "1px solid #353535",
+              background: "#fff",
+              width: "100%",
+              height: 100,
+              borderRadius: 5,
+            }}
+          >
+            <Grid
+              sx={{
+                height: 50,
+                display: "flex",
+                alignItems: "center",
+                padding: 1.4,
+              }}
+            >
+              <Grid sx={{ display: "flex", width: 240, alignItems: "center" }}>
+                <img
+                  src={vegmain}
+                  style={{
+                    width: "10%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                ></img>
+                <Grid sx={{ marginLeft: "4%" }}>
+                  Medium [ 8 inches , 4 slice ]
+                </Grid>
+              </Grid>
+              <Grid sx={{ marginLeft: "auto", display: "flex", gap: 2 }}>
+                <Radio
+                  value="a"
+                  name="radio-buttons"
+                  inputProps={{ "aria-label": "A" }}
+                  style={{ color: "green" }}
+                />
+              </Grid>
+            </Grid>
+            <Divider
+              style={{
+                backgroundColor: "#AAAAAA",
+                width: "100%",
+              }}
+            />{" "}
+            <Grid
+              sx={{
+                height: 50,
+                display: "flex",
+                alignItems: "center",
+                padding: 1.4,
+              }}
+            >
+              <Grid sx={{ display: "flex", width: 240, alignItems: "center" }}>
+                <img
+                  src={vegmain}
+                  style={{
+                    width: "10%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                ></img>
+                <Grid sx={{ marginLeft: "4%" }}>
+                  Jumbo [ 12 inches , 8 slice ]
+                </Grid>
+              </Grid>
+              <Grid sx={{ marginLeft: "auto", display: "flex", gap: 2 }}>
+                <Radio
+                  value="a"
+                  name="radio-buttons"
+                  inputProps={{ "aria-label": "A" }}
+                  style={{ color: "green" }}
+                />
+              </Grid>
+            </Grid>
+          </Grid>
+
+          <Grid sx={{ marginTop: "6%", display: "flex" }}>
+            <Grid sx={{ fontSize: "18px", fontWeight: 700, marginTop: "3%" }}>
+              Step 1/2
+            </Grid>
+            <Button
+              onClick={handleClickCustomer2}
+              style={{
+                borderColor: "#000",
+                width: 150,
+                height: 35,
+                background: "#000",
+                color: "#fff",
+                fontSize: "14px",
+                fontWeight: 400,
+                textTransform: "none",
+                borderRadius: 4,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginLeft: "auto",
+              }}
+            >
+              Continue
+            </Button>
+          </Grid>
+        </Grid>
+      </Dialog>
+    );
+  };
+
+  const CustomerAsPerTast2 = () => {
+    return (
+      <Dialog
+        PaperProps={{
+          style: {
+            position: "fixed",
+            bottom: -35,
+            width: "100%",
+            height: "42%",
+            borderTopRightRadius: 15,
+            borderTopLeftRadius: 15,
+            backgroundImage: "radial-gradient(#ffff,#f5f6fa)",
+          },
+        }}
+        open={customer2}
+        onClose={handleCloseCustomer2}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <IconButton
+          onClick={handleCloseCustomer2}
+          aria-label="close"
+          sx={{
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: "inherit",
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <Grid sx={{ display: "flex", flexDirection: "column", padding: 3 }}>
+          <Grid sx={{ fontSize: 14 }}>Panner Pizza</Grid>
+          <Grid
+            sx={{
+              fontSize: "16px",
+              fontWeight: 700,
+              color: "#000",
+              marginTop: "3%",
+            }}
+          >
+            Customise as per your taste.
+          </Grid>
+          <Divider
+            style={{
+              backgroundColor: "#AAAAAA",
+              width: "100%",
+              marginTop: "3%",
+            }}
+          />
+          <Grid
+            sx={{
+              fontSize: "14px",
+              fontWeight: 600,
+              color: "#000",
+              marginTop: "3%",
+            }}
+          >
+            Add Topping
+          </Grid>
+          <Grid
+            sx={{
+              marginTop: "1%",
+              background: "#fff",
+              width: "100%",
+              maxHeight: 120,
+              borderRadius: 3,
+              overflow: "scroll",
+              scrollbarWidth: "none",
+            }}
+          >
+            <Grid
+              sx={{
+                height: 30,
+                display: "flex",
+                alignItems: "center",
+                padding: 1.4,
+              }}
+            >
+              <Grid sx={{ display: "flex", width: 240, alignItems: "center" }}>
+                <img
+                  src={vegmain}
+                  style={{
+                    width: "8%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                ></img>
+                <Grid sx={{ marginLeft: "4%", fontSize: 12 }}>
+                  Extra cheese
+                </Grid>
+              </Grid>
+              <Grid sx={{ marginLeft: "auto", display: "flex", gap: 2 }}>
+                <Grid
+                  sx={{
+                    fontSize: "12px",
+                    fontWeight: 200,
+                    color: "#636e72",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  ₹28
+                </Grid>
+                <Radio
+                  value="a"
+                  name="radio-buttons"
+                  inputProps={{ "aria-label": "A" }}
+                  sx={{ marginLeft: "1%" }}
+                  style={{ color: "green" }}
+                />
+              </Grid>
+            </Grid>
+            <Divider
+              style={{
+                backgroundColor: "#AAAAAA",
+                width: "100%",
+              }}
+            />
+            <Grid
+              sx={{
+                height: 30,
+                display: "flex",
+                alignItems: "center",
+                padding: 1.4,
+              }}
+            >
+              <Grid sx={{ display: "flex", width: 240, alignItems: "center" }}>
+                <img
+                  src={vegmain}
+                  style={{
+                    width: "8%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                ></img>
+                <Grid sx={{ marginLeft: "4%", fontSize: 12 }}>
+                  Extra cheese
+                </Grid>
+              </Grid>
+              <Grid sx={{ marginLeft: "auto", display: "flex", gap: 2 }}>
+                <Grid
+                  sx={{
+                    fontSize: "12px",
+                    fontWeight: 200,
+                    color: "#636e72",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  ₹28
+                </Grid>
+                <Radio
+                  value="a"
+                  name="radio-buttons"
+                  inputProps={{ "aria-label": "A" }}
+                  sx={{ marginLeft: "1%" }}
+                  style={{ color: "green" }}
+                />
+              </Grid>
+            </Grid>
+            <Divider
+              style={{
+                backgroundColor: "#AAAAAA",
+                width: "100%",
+              }}
+            />{" "}
+            <Grid
+              sx={{
+                height: 30,
+                display: "flex",
+                alignItems: "center",
+                padding: 1.4,
+              }}
+            >
+              <Grid sx={{ display: "flex", width: 240, alignItems: "center" }}>
+                <img
+                  src={vegmain}
+                  style={{
+                    width: "8%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                ></img>
+                <Grid sx={{ marginLeft: "4%", fontSize: 12 }}>
+                  Extra cheese
+                </Grid>
+              </Grid>
+              <Grid sx={{ marginLeft: "auto", display: "flex", gap: 2 }}>
+                <Grid
+                  sx={{
+                    fontSize: "12px",
+                    fontWeight: 200,
+                    color: "#636e72",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  ₹28
+                </Grid>
+                <Radio
+                  value="a"
+                  name="radio-buttons"
+                  inputProps={{ "aria-label": "A" }}
+                  sx={{ marginLeft: "1%" }}
+                  style={{ color: "green" }}
+                />
+              </Grid>
+            </Grid>
+            <Divider
+              style={{
+                backgroundColor: "#AAAAAA",
+                width: "100%",
+              }}
+            />{" "}
+            <Grid
+              sx={{
+                height: 30,
+                display: "flex",
+                alignItems: "center",
+                padding: 1.4,
+              }}
+            >
+              <Grid sx={{ display: "flex", width: 240, alignItems: "center" }}>
+                <img
+                  src={vegmain}
+                  style={{
+                    width: "8%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                ></img>
+                <Grid sx={{ marginLeft: "4%", fontSize: 12 }}>
+                  Extra cheese
+                </Grid>
+              </Grid>
+              <Grid sx={{ marginLeft: "auto", display: "flex", gap: 2 }}>
+                <Grid
+                  sx={{
+                    fontSize: "12px",
+                    fontWeight: 200,
+                    color: "#636e72",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  ₹28
+                </Grid>
+                <Radio
+                  value="a"
+                  name="radio-buttons"
+                  inputProps={{ "aria-label": "A" }}
+                  sx={{ marginLeft: "1%" }}
+                  style={{ color: "green" }}
+                />
+              </Grid>
+            </Grid>
+            <Divider
+              style={{
+                backgroundColor: "#AAAAAA",
+                width: "100%",
+              }}
+            />
+          </Grid>
+
+          <Grid sx={{ marginTop: "6%", display: "flex" }}>
+            <Grid sx={{ fontSize: "18px", fontWeight: 700, marginTop: "3%" }}>
+              Step 2/2
+            </Grid>
+            <Button
+              onClick={handleClickBill}
+              style={{
+                borderColor: "#000",
+                width: 150,
+                height: 35,
+                background: "#000",
+                color: "#fff",
+                fontSize: "14px",
+                fontWeight: 400,
+                textTransform: "none",
+                borderRadius: 4,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginLeft: "auto",
+              }}
+            >
+              Continue
+            </Button>
+          </Grid>
+        </Grid>
+      </Dialog>
+    );
+  };
+
   const MenuDialog = () => {
     return (
       <Dialog
         PaperProps={{
           style: {
             position: "fixed",
-            bottom: 14,
+            bottom: 92,
             width: "75%",
-            height: "50%",
+            height: "45%",
             borderRadius: 10,
             background: "#000",
+            overflow: "scroll",
+            scrollbarWidth: "none",
             // Dialog ko page ke bottom me set karein
           },
         }}
@@ -791,7 +1294,6 @@ export default function MenuTheme({ data }) {
     );
   };
 
-
   const RatingDialog = () => {
     return (
       <Dialog
@@ -956,11 +1458,9 @@ export default function MenuTheme({ data }) {
       </Dialog>
     );
   };
- 
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-  
   var settings = {
     infinite: true,
     speed: 2000,
@@ -973,10 +1473,6 @@ export default function MenuTheme({ data }) {
     vertical: true,
     autoplaySpeed: 7000,
   };
-
-
-
-
 
   const [state, setState] = React.useState({
     top: false,
@@ -1132,19 +1628,19 @@ export default function MenuTheme({ data }) {
         <Grid
           item
           xs={12}
-          sx={{ backgroundImage: "radial-gradient(#353b48, #000)" }}
+          sx={{ background: "radial-gradient( #414141,#171717)" }}
         >
           <Grid
             sx={{
               height: 250,
-              backgroundImage: "radial-gradient(#353b48, #000)",
+              background: "radial-gradient( #414141,#171717)",
               width: "100%",
               position: "relative",
             }}
           >
             <Grid sx={{ padding: 2, display: "flex" }}>
               <Grid sx={{ cursor: "pointer" }}>
-                  <SideBar />
+                <SideBar />
               </Grid>
 
               <Grid
@@ -1202,7 +1698,7 @@ export default function MenuTheme({ data }) {
                 borderColor: "#000",
                 width: 100,
                 height: 32,
-                backgroundImage: "radial-gradient(#353b48, #000)",
+                background: "radial-gradient( #414141,#171717)",
                 color: "#fff",
                 fontSize: "15px",
                 fontWeight: 400,
@@ -1316,7 +1812,7 @@ export default function MenuTheme({ data }) {
                     borderColor: "#000",
                     width: 110,
                     height: 32,
-                    backgroundImage: "radial-gradient(#353b48, #000)",
+                    background: "radial-gradient( #414141,#171717)",
                     color: "#fff",
                     fontSize: "15px",
                     fontWeight: 400,
@@ -1334,60 +1830,46 @@ export default function MenuTheme({ data }) {
                     <ExpandMore fontSize="medium" />
                   )}
                 </Button>
-                {about ? (
-                  <></>
-                ) : (
-                  <>
-                    <Box
-                      sx={{
-                        height: 35,
-                        transform: "translateZ(100px)",
-                        flexGrow: 1,
-                        position: "relative",
-                        marginTop: "10%",
-                      }}
-                    >
-                      <SpeedDial
-                        ariaLabel="SpeedDial basic example"
-                        sx={{
-                          "& .MuiSpeedDial-fab": {
-                            boxShadow: "none", // Remove the box shadow
-                            backgroundColor: "#fff", // Set background color to #fff
-                          },
-                          "& .MuiSpeedDial-fab:hover": {
-                            boxShadow: "none",
-                            backgroundColor: "#fff", // Ensure background color remains #fff on hover
-                          },
-                          "&.MuiSpeedDial-open .MuiSpeedDial-fab": {
-                            boxShadow: "none",
-                            backgroundColor: "#fff", // Ensure background color remains #fff when open/clicked
-                          },
-                          position: "absolute",
-                          left: matches?-12:165,
-                          bottom: 1,
-                        }}
-                        direction="left"
-                        icon={
-                          <img
-                            src={more}
-                            width={26}
-                            style={{
-                              boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
-                            }}
-                          ></img>
-                        }
-                      >
-                        {actions.map((action) => (
-                          <SpeedDialAction
-                            key={action.name}
-                            icon={action.icon}
-                            tooltipTitle={action.name}
-                          />
-                        ))}
-                      </SpeedDial>
-                    </Box>
-                  </>
-                )}
+                <Box
+                  sx={{
+                    height: 35,
+                    transform: "translateZ(100px)",
+                    flexGrow: 1,
+                    position: "relative",
+                    marginTop: "6%",
+                  }}
+                >
+                  <SpeedDial
+                    ariaLabel="SpeedDial basic example"
+                    sx={{
+                      "& .MuiSpeedDial-fab": {
+                        boxShadow: "none", // Remove the box shadow
+                        backgroundColor: "#fff", // Set background color to #fff
+                      },
+                      "& .MuiSpeedDial-fab:hover": {
+                        boxShadow: "none",
+                        backgroundColor: "#fff", // Ensure background color remains #fff on hover
+                      },
+                      "&.MuiSpeedDial-open .MuiSpeedDial-fab": {
+                        boxShadow: "none",
+                        backgroundColor: "#fff", // Ensure background color remains #fff when open/clicked
+                      },
+                      position: "absolute",
+                      left: matches ? -12 : 165,
+                      bottom: 1,
+                    }}
+                    direction="left"
+                    icon={<img src={more} width={26}></img>}
+                  >
+                    {actions.map((action) => (
+                      <SpeedDialAction
+                        key={action.name}
+                        icon={action.icon}
+                        tooltipTitle={action.name}
+                      />
+                    ))}
+                  </SpeedDial>
+                </Box>
               </Grid>
 
               {about ? (
@@ -1401,7 +1883,6 @@ export default function MenuTheme({ data }) {
                       display: "flex",
                       flexDirection: "column",
                       borderRadius: 10,
-                      marginTop: "3%",
                     }}
                   >
                     <Grid
@@ -1466,27 +1947,40 @@ export default function MenuTheme({ data }) {
                 alignItems: "center",
                 justifyContent: "space-between",
                 marginTop: "7%",
+                zIndex: 10,
               }}
             >
               <Fab
-                style={{ backgroundImage: "radial-gradient(#fff,#D0D0D0 )" }}
+                style={{
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  zIndex: 10,
+                }}
               >
                 <img src={call} />
               </Fab>
 
               <Fab
-                style={{ backgroundImage: "radial-gradient(#fff,#D0D0D0 )" }}
+                style={{
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  zIndex: 10,
+                }}
               >
                 <img src={whatapp} />
               </Fab>
               <Fab
-                style={{ backgroundImage: "radial-gradient(#fff,#D0D0D0 )" }}
+                style={{
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  zIndex: 10,
+                }}
               >
                 <img src={gmail} />
               </Fab>
 
               <Fab
-                style={{ backgroundImage: "radial-gradient(#fff,#D0D0D0 )" }}
+                style={{
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  zIndex: 10,
+                }}
               >
                 <img src={link} />
               </Fab>
@@ -1502,19 +1996,28 @@ export default function MenuTheme({ data }) {
               }}
             >
               <Fab
-                style={{ backgroundImage: "radial-gradient(#fff,#D0D0D0 )" }}
+                style={{
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  zIndex: 10,
+                }}
               >
                 <img src={fb} />
               </Fab>
 
               <Fab
-                style={{ backgroundImage: "radial-gradient(#fff,#D0D0D0 )" }}
+                style={{
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  zIndex: 10,
+                }}
               >
                 <img src={insta} />
               </Fab>
 
               <Fab
-                style={{ backgroundImage: "radial-gradient(#fff,#D0D0D0 )" }}
+                style={{
+                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                  zIndex: 10,
+                }}
               >
                 <img src={groups} />
               </Fab>
@@ -1548,8 +2051,8 @@ export default function MenuTheme({ data }) {
               <Grid sx={{ background: "#fff", padding: 2, height: "auto" }}>
                 <Grid
                   sx={{
-                    fontSize: "20px",
-                    fontWeight: 500,
+                    fontSize: "18px",
+                    fontWeight: 600,
                     display: "flex",
                     justifyContent: "center",
                     alignContent: "center",
@@ -1557,7 +2060,7 @@ export default function MenuTheme({ data }) {
                   }}
                 >
                   <img src={menulogo}></img>{" "}
-                  <Grid sx={{ marginTop: "1%" }}>Menu</Grid>
+                  <Grid sx={{ marginTop: "2%" }}>Menu</Grid>
                   <img src={menulogo}></img>
                 </Grid>
                 <Grid sx={{ marginTop: "5%" }}>
@@ -1573,7 +2076,7 @@ export default function MenuTheme({ data }) {
                       startAdornment: (
                         <InputAdornment position="end">
                           <Search
-                            style={{ cursor: "pointer", marginLeft: "-20%" }}
+                            style={{ cursor: "pointer", marginLeft: "-40%" }}
                           />
                           <Divider
                             sx={{ height: 30, m: 0.5, color: "#fff" }}
@@ -1611,30 +2114,232 @@ export default function MenuTheme({ data }) {
                   </Grid>
                 </Grid>
 
-                <Grid sx={{ marginTop: "7%" }}>
+                <Grid sx={{ marginTop: "3%" }}>
                   <Grid
                     sx={{
                       background: "#fff",
                       display: "flex",
-                      height: matches?170:210,
+                      height: matches ? 170 : 210,
                       width: "100%",
+                      justifyContent: "space-between",
                     }}
                   >
-                    <Grid sx={{ marginTop: "4%", width: "60%" }}>
-                      <Grid sx={{display:'flex'}}>
-                      
-                     <img src={vegmain} style={{width:'16%',background:'red'}}></img>
-                     
-                      <Grid sx={{border:'1px solid #FFA030',background:'#FFA030',color:'#fff',padding:.1,display:'flex',justifyContent:'center',alignItems:'center',borderRadius:1,fontSize:12,fontWeight:400,width:80,marginLeft:'4%',height:26}}>
-                       Bestseller
-                      </Grid>
+                    <Grid sx={{ marginTop: "4%" }}>
+                      <Grid sx={{ display: "flex", alignItems: "center" }}>
+                        <img src={vegmain} style={{ width: "13%" }}></img>
+
+                        <Grid
+                          sx={{
+                            border: "1px solid #FFA030",
+                            background: "#FFA030",
+                            color: "#fff",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: 1,
+                            fontSize: 12,
+                            fontWeight: 400,
+                            width: 80,
+                            marginLeft: "4%",
+                            height: 26,
+                          }}
+                        >
+                          Bestseller
+                        </Grid>
                       </Grid>
                       <Grid
                         sx={{
                           fontSize: "18px",
                           fontWeight: 500,
                           lineHeight: "21.94px",
-                          marginTop:'3%'
+                          marginTop: "3%",
+                          fontFamily: "poppins",
+                        }}
+                      >
+                        Masala Dosa
+                      </Grid>
+                      <Grid sx={{ marginTop: "2%", display: "flex" }}>
+                        <Grid
+                          sx={{
+                            border: "1px solid #bdc3c7",
+                            padding: 0.2,
+                            borderRadius: 1,
+                            height: 20,
+                          }}
+                        >
+                          <Rating
+                            style={{ marginTop: "-2%" }}
+                            size="small"
+                            color="green"
+                            name="simple-controlled"
+                            value={4}
+                          />
+                        </Grid>
+                        <Grid
+                          sx={{
+                            color: "#636e72",
+                            fontSize: 12,
+                            marginTop: "2%",
+                            marginLeft: "2%",
+                            fontWeight: 300,
+                          }}
+                        >
+                          48 rating
+                        </Grid>
+                      </Grid>
+                      <Grid
+                        sx={{
+                          fontSize: 18,
+                          fontWeight: 500,
+                          color: "#000",
+                          marginTop: "3%",
+                          fontFamily: "poppins",
+                        }}
+                      >
+                        ₹ 179
+                      </Grid>
+
+                      <Grid
+                        sx={{
+                          fontSize: 12,
+                          color: "#34495e",
+                          marginTop: "1%",
+                          width: "80%",
+                        }}
+                      >
+                        [veg Preparation] Spring mix plant based organic spaicy.
+                      </Grid>
+                    </Grid>
+
+                    <Grid sx={{ marginTop: "8%" }}>
+                      <Grid sx={{ position: "relative" }}>
+                        <img src={food}></img>
+
+                        {count == 0 ? (
+                          <Button
+                            onClick={handleClickAdd}
+                            style={{
+                              borderColor: "#000",
+                              width: 70,
+                              height: 28,
+                              background: "#000",
+                              color: "#fff",
+                              fontSize: "12px",
+                              fontWeight: 400,
+                              textTransform: "none",
+                              borderRadius: 4,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              position: "absolute",
+                              top: 76,
+                              marginLeft: "10%",
+                            }}
+                          >
+                            <Grid
+                              sx={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                            >
+                              {" "}
+                              ADD
+                              <AddIcon
+                                style={{ marginLeft: "2%", fontSize: "14px" }}
+                              />
+                            </Grid>
+                          </Button>
+                        ) : (
+                          <Button
+                            style={{
+                              borderColor: "#000",
+                              width: 70,
+                              height: 28,
+                              background: "#000",
+                              color: "#fff",
+                              fontSize: "12px",
+                              fontWeight: 400,
+                              textTransform: "none",
+                              borderRadius: 4,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              position: "absolute",
+                              top: 76,
+                              marginLeft: "10%",
+                            }}
+                          >
+                            <Grid
+                              sx={{ gap: 1, display: "flex", marginTop: "5%" }}
+                            >
+                              <Grid
+                                onClick={handleMinus}
+                                sx={{ marginTop: "4%" }}
+                              >
+                                <RemoveIcon
+                                  style={{ color: "#fff", fontSize: 14 }}
+                                />
+                              </Grid>
+                              <Grid style={{ fontSize: 12, color: "#fff" }}>
+                                {count}
+                              </Grid>
+                              <Grid
+                                onClick={handleClickAdd}
+                                sx={{ marginTop: "5%" }}
+                              >
+                                <AddIcon
+                                  style={{ color: "#fff", fontSize: 14 }}
+                                />
+                              </Grid>
+                            </Grid>
+                          </Button>
+                        )}
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+
+                <Grid sx={{ marginTop: "7%" }}>
+                  <Grid
+                    sx={{
+                      background: "#fff",
+                      display: "flex",
+                      height: matches ? 170 : 210,
+                      width: "100%",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Grid sx={{ marginTop: "4%" }}>
+                      <Grid sx={{ display: "flex", alignItems: "center" }}>
+                        <img src={vegmain} style={{ width: "13%" }}></img>
+
+                        <Grid
+                          sx={{
+                            border: "1px solid #FFA030",
+                            background: "#FFA030",
+                            color: "#fff",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: 1,
+                            fontSize: 12,
+                            fontWeight: 400,
+                            width: 80,
+                            marginLeft: "4%",
+                            height: 26,
+                          }}
+                        >
+                          Bestseller
+                        </Grid>
+                      </Grid>
+                      <Grid
+                        sx={{
+                          fontSize: "18px",
+                          fontWeight: 500,
+                          lineHeight: "21.94px",
+                          marginTop: "3%",
+                          fontFamily: "poppins",
                         }}
                       >
                         Plant Protien Bowl
@@ -1681,18 +2386,23 @@ export default function MenuTheme({ data }) {
                       </Grid>
 
                       <Grid
-                        sx={{ fontSize: 12, color: "#34495e", marginTop: "1%" }}
+                        sx={{
+                          fontSize: 12,
+                          color: "#34495e",
+                          marginTop: "1%",
+                          width: "80%",
+                        }}
                       >
-                        [veg Preparation] Spring mix plant based organic spaicy
-                        and tasty and soo soft
+                        [veg Preparation] Spring mix plant based organic spaicy.
                       </Grid>
                     </Grid>
 
-                    <Grid sx={{ width: "40%", marginTop: "5%" }}>
-                      <Grid sx={{ position: "relative", marginLeft:matches? "30%":'56%' }}>
+                    <Grid sx={{ marginTop: "8%" }}>
+                      <Grid sx={{ position: "relative" }}>
                         <img src={food}></img>
 
                         <Button
+                          onClick={handleClickCustomer}
                           style={{
                             borderColor: "#000",
                             width: 70,
@@ -1721,34 +2431,49 @@ export default function MenuTheme({ data }) {
                   </Grid>
                 </Grid>
 
-                <Grid sx={{ marginTop: "3%" }}>
+                <Grid sx={{ marginTop: "7%" }}>
                   <Grid
                     sx={{
                       background: "#fff",
                       display: "flex",
-                      height: matches?170:210,
+                      height: matches ? 170 : 210,
                       width: "100%",
+                      justifyContent: "space-between",
                     }}
                   >
-                    
-                    <Grid sx={{ marginTop: "5%", width: "60%" }}>
-                    <Grid sx={{display:'flex'}}>
-                      
-                      <img src={vegmain} style={{width:'16%',background:'red'}}></img>
-                      
-                       <Grid sx={{border:'1px solid #FFA030',background:'#FFA030',color:'#fff',padding:.1,display:'flex',justifyContent:'center',alignItems:'center',borderRadius:1,fontSize:12,fontWeight:400,width:80,marginLeft:'4%',height:26}}>
-                        Bestseller
-                       </Grid>
-                       </Grid>
+                    <Grid sx={{ marginTop: "4%" }}>
+                      <Grid sx={{ display: "flex", alignItems: "center" }}>
+                        <img src={vegmain} style={{ width: "13%" }}></img>
+
+                        <Grid
+                          sx={{
+                            border: "1px solid #FFA030",
+                            background: "#FFA030",
+                            color: "#fff",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: 1,
+                            fontSize: 12,
+                            fontWeight: 400,
+                            width: 80,
+                            marginLeft: "4%",
+                            height: 26,
+                          }}
+                        >
+                          Bestseller
+                        </Grid>
+                      </Grid>
                       <Grid
                         sx={{
                           fontSize: "18px",
                           fontWeight: 500,
                           lineHeight: "21.94px",
-                          marginTop:'3%'
+                          marginTop: "3%",
+                          fontFamily: "poppins",
                         }}
                       >
-                        Masala Dosa
+                        Singapuri Chawmin
                       </Grid>
                       <Grid sx={{ marginTop: "2%", display: "flex" }}>
                         <Grid
@@ -1788,77 +2513,153 @@ export default function MenuTheme({ data }) {
                           fontFamily: "poppins",
                         }}
                       >
-                        ₹ 79
+                        ₹ 179
                       </Grid>
 
                       <Grid
-                        sx={{ fontSize: 12, color: "#34495e", marginTop: "1%" }}
+                        sx={{
+                          fontSize: 12,
+                          color: "#34495e",
+                          marginTop: "1%",
+                          width: "80%",
+                        }}
                       >
-                        [veg Preparation] Spring mix plant based organic spaicy
-                        and tasty and soo soft
+                        [veg Preparation] Spring mix plant based organic spaicy.
                       </Grid>
                     </Grid>
 
-                    <Grid sx={{ width: "40%", marginTop: "5%" }}>
-                      <Grid sx={{ position: "relative",marginLeft:matches? "30%":'56%' }}>
+                    <Grid sx={{ marginTop: "8%" }}>
+                      <Grid sx={{ position: "relative" }}>
                         <img src={food}></img>
 
-                        <Button
-                          style={{
-                            borderColor: "#000",
-                            width: 70,
-                            height: 28,
-                            background: "#000",
-                            color: "#fff",
-                            fontSize: "12px",
-                            fontWeight: 400,
-                            textTransform: "none",
-                            borderRadius: 4,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            position: "absolute",
-                            top: 76,
-                            marginLeft: "10%",
-                          }}
-                        >
-                          ADD{" "}
-                          <AddIcon
-                            style={{ marginLeft: "1%", fontSize: "14px" }}
-                          />
-                        </Button>
+                        {count == 0 ? (
+                          <Button
+                            onClick={handleClickAdd}
+                            style={{
+                              borderColor: "#000",
+                              width: 70,
+                              height: 28,
+                              background: "#000",
+                              color: "#fff",
+                              fontSize: "12px",
+                              fontWeight: 400,
+                              textTransform: "none",
+                              borderRadius: 4,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              position: "absolute",
+                              top: 76,
+                              marginLeft: "10%",
+                            }}
+                          >
+                            <Grid
+                              sx={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                            >
+                              {" "}
+                              ADD
+                              <AddIcon
+                                style={{ marginLeft: "2%", fontSize: "14px" }}
+                              />
+                            </Grid>
+                          </Button>
+                        ) : (
+                          <Button
+                            style={{
+                              borderColor: "#000",
+                              width: 70,
+                              height: 28,
+                              background: "#000",
+                              color: "#fff",
+                              fontSize: "12px",
+                              fontWeight: 400,
+                              textTransform: "none",
+                              borderRadius: 4,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              position: "absolute",
+                              top: 76,
+                              marginLeft: "10%",
+                            }}
+                          >
+                            <Grid
+                              sx={{ gap: 1, display: "flex", marginTop: "5%" }}
+                            >
+                              <Grid
+                                onClick={handleMinus}
+                                sx={{ marginTop: "4%" }}
+                              >
+                                <RemoveIcon
+                                  style={{ color: "#fff", fontSize: 14 }}
+                                />
+                              </Grid>
+                              <Grid style={{ fontSize: 12, color: "#fff" }}>
+                                {count}
+                              </Grid>
+                              <Grid
+                                onClick={handleClickAdd}
+                                sx={{ marginTop: "5%" }}
+                              >
+                                <AddIcon
+                                  style={{ color: "#fff", fontSize: 14 }}
+                                />
+                              </Grid>
+                            </Grid>
+                          </Button>
+                        )}
                       </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
 
-                <Grid sx={{ marginTop: "3%" }}>
+                <Grid sx={{ marginTop: "7%" }}>
                   <Grid
                     sx={{
                       background: "#fff",
                       display: "flex",
-                      height: matches?170:210,
+                      height: matches ? 170 : 210,
                       width: "100%",
+                      justifyContent: "space-between",
                     }}
                   >
-                    <Grid sx={{ marginTop: "5%", width: "60%" }}>
-                    <Grid sx={{display:'flex'}}>
-                      
-                      <img src={vegmain} style={{width:'16%',background:'red'}}></img>
-                      
-                       <Grid sx={{border:'1px solid #FFA030',background:'#FFA030',color:'#fff',padding:.1,display:'flex',justifyContent:'center',alignItems:'center',borderRadius:1,fontSize:12,fontWeight:400,width:80,marginLeft:'4%',height:26}}>
-                        Bestseller
-                       </Grid>
-                       </Grid>
+                    <Grid sx={{ marginTop: "4%" }}>
+                      <Grid sx={{ display: "flex", alignItems: "center" }}>
+                        <img src={vegmain} style={{ width: "13%" }}></img>
+
+                        <Grid
+                          sx={{
+                            border: "1px solid #FFA030",
+                            background: "#FFA030",
+                            color: "#fff",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: 1,
+                            fontSize: 12,
+                            fontWeight: 400,
+                            width: 80,
+                            marginLeft: "4%",
+                            height: 26,
+                          }}
+                        >
+                          Bestseller
+                        </Grid>
+                      </Grid>
                       <Grid
                         sx={{
                           fontSize: "18px",
                           fontWeight: 500,
                           lineHeight: "21.94px",
-                          marginTop:'3%'
+                          marginTop: "3%",
+                          fontFamily: "poppins",
                         }}
                       >
-                        Chowmin
+                        Plant Protien
                       </Grid>
                       <Grid sx={{ marginTop: "2%", display: "flex" }}>
                         <Grid
@@ -1898,77 +2699,153 @@ export default function MenuTheme({ data }) {
                           fontFamily: "poppins",
                         }}
                       >
-                        ₹ 180
+                        ₹ 179
                       </Grid>
 
                       <Grid
-                        sx={{ fontSize: 12, color: "#34495e", marginTop: "1%" }}
+                        sx={{
+                          fontSize: 12,
+                          color: "#34495e",
+                          marginTop: "1%",
+                          width: "80%",
+                        }}
                       >
-                        [veg Preparation] Spring mix plant based organic spaicy
-                        and tasty and soo soft
+                        [veg Preparation] Spring mix plant based organic spaicy.
                       </Grid>
                     </Grid>
 
-                    <Grid sx={{ width: "40%", marginTop: "5%" }}>
-                      <Grid sx={{ position: "relative",marginLeft:matches? "30%":'56%' }}>
+                    <Grid sx={{ marginTop: "8%" }}>
+                      <Grid sx={{ position: "relative" }}>
                         <img src={food}></img>
 
-                        <Button
-                          style={{
-                            borderColor: "#000",
-                            width: 70,
-                            height: 28,
-                            background: "#000",
-                            color: "#fff",
-                            fontSize: "12px",
-                            fontWeight: 400,
-                            textTransform: "none",
-                            borderRadius: 4,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            position: "absolute",
-                            top: 76,
-                            marginLeft: "10%",
-                          }}
-                        >
-                          ADD{" "}
-                          <AddIcon
-                            style={{ marginLeft: "1%", fontSize: "14px" }}
-                          />
-                        </Button>
+                        {count == 0 ? (
+                          <Button
+                            onClick={handleClickAdd}
+                            style={{
+                              borderColor: "#000",
+                              width: 70,
+                              height: 28,
+                              background: "#000",
+                              color: "#fff",
+                              fontSize: "12px",
+                              fontWeight: 400,
+                              textTransform: "none",
+                              borderRadius: 4,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              position: "absolute",
+                              top: 76,
+                              marginLeft: "10%",
+                            }}
+                          >
+                            <Grid
+                              sx={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                            >
+                              {" "}
+                              ADD
+                              <AddIcon
+                                style={{ marginLeft: "2%", fontSize: "14px" }}
+                              />
+                            </Grid>
+                          </Button>
+                        ) : (
+                          <Button
+                            style={{
+                              borderColor: "#000",
+                              width: 70,
+                              height: 28,
+                              background: "#000",
+                              color: "#fff",
+                              fontSize: "12px",
+                              fontWeight: 400,
+                              textTransform: "none",
+                              borderRadius: 4,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              position: "absolute",
+                              top: 76,
+                              marginLeft: "10%",
+                            }}
+                          >
+                            <Grid
+                              sx={{ gap: 1, display: "flex", marginTop: "5%" }}
+                            >
+                              <Grid
+                                onClick={handleMinus}
+                                sx={{ marginTop: "4%" }}
+                              >
+                                <RemoveIcon
+                                  style={{ color: "#fff", fontSize: 14 }}
+                                />
+                              </Grid>
+                              <Grid style={{ fontSize: 12, color: "#fff" }}>
+                                {count}
+                              </Grid>
+                              <Grid
+                                onClick={handleClickAdd}
+                                sx={{ marginTop: "5%" }}
+                              >
+                                <AddIcon
+                                  style={{ color: "#fff", fontSize: 14 }}
+                                />
+                              </Grid>
+                            </Grid>
+                          </Button>
+                        )}
                       </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
 
-                <Grid sx={{ marginTop: "3%" }}>
+                <Grid sx={{ marginTop: "7%" }}>
                   <Grid
                     sx={{
                       background: "#fff",
                       display: "flex",
-                      height: matches?170:210,
+                      height: matches ? 170 : 210,
                       width: "100%",
+                      justifyContent: "space-between",
                     }}
                   >
-                    <Grid sx={{ marginTop: "5%", width: "60%" }}>
-                    <Grid sx={{display:'flex'}}>
-                      
-                      <img src={vegmain} style={{width:'16%',background:'red'}}></img>
-                      
-                       <Grid sx={{border:'1px solid #FFA030',background:'#FFA030',color:'#fff',padding:.1,display:'flex',justifyContent:'center',alignItems:'center',borderRadius:1,fontSize:12,fontWeight:400,width:80,marginLeft:'4%',height:26}}>
-                        Bestseller
-                       </Grid>
-                       </Grid>
+                    <Grid sx={{ marginTop: "4%" }}>
+                      <Grid sx={{ display: "flex", alignItems: "center" }}>
+                        <img src={vegmain} style={{ width: "13%" }}></img>
+
+                        <Grid
+                          sx={{
+                            border: "1px solid #FFA030",
+                            background: "#FFA030",
+                            color: "#fff",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: 1,
+                            fontSize: 12,
+                            fontWeight: 400,
+                            width: 80,
+                            marginLeft: "4%",
+                            height: 26,
+                          }}
+                        >
+                          Bestseller
+                        </Grid>
+                      </Grid>
                       <Grid
                         sx={{
                           fontSize: "18px",
                           fontWeight: 500,
                           lineHeight: "21.94px",
-                          marginTop:'3%'
+                          marginTop: "3%",
+                          fontFamily: "poppins",
                         }}
                       >
-                        Singapuri Chowmin
+                        Plane Dosa
                       </Grid>
                       <Grid sx={{ marginTop: "2%", display: "flex" }}>
                         <Grid
@@ -2008,155 +2885,121 @@ export default function MenuTheme({ data }) {
                           fontFamily: "poppins",
                         }}
                       >
-                        ₹ 209
+                        ₹ 179
                       </Grid>
 
-                      <Grid
-                        sx={{ fontSize: 12, color: "#34495e", marginTop: "1%" }}
-                      >
-                        [veg Preparation] Spring mix plant based organic spaicy
-                        and tasty and soo soft
-                      </Grid>
-                    </Grid>
-
-                    <Grid sx={{ width: "40%", marginTop: "5%" }}>
-                      <Grid sx={{ position: "relative",marginLeft:matches? "30%":'56%' }}>
-                        <img src={food}></img>
-
-                        <Button
-                          style={{
-                            borderColor: "#000",
-                            width: 70,
-                            height: 28,
-                            background: "#000",
-                            color: "#fff",
-                            fontSize: "12px",
-                            fontWeight: 400,
-                            textTransform: "none",
-                            borderRadius: 4,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            position: "absolute",
-                            top: 76,
-                            marginLeft: "10%",
-                          }}
-                        >
-                          ADD{" "}
-                          <AddIcon
-                            style={{ marginLeft: "1%", fontSize: "14px" }}
-                          />
-                        </Button>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Grid>
-
-                <Grid sx={{ marginTop: "3%" }}>
-                  <Grid
-                    sx={{
-                      background: "#fff",
-                      display: "flex",
-                      height: matches?170:210,
-                      width: "100%",
-                    }}
-                  >
-                    <Grid sx={{ marginTop: "5%", width: "60%" }}>
-                    <Grid sx={{display:'flex'}}>
-                      
-                      <img src={vegmain} style={{width:'16%',background:'red'}}></img>
-                      
-                       <Grid sx={{border:'1px solid #FFA030',background:'#FFA030',color:'#fff',padding:.1,display:'flex',justifyContent:'center',alignItems:'center',borderRadius:1,fontSize:12,fontWeight:400,width:80,marginLeft:'4%',height:26}}>
-                        Bestseller
-                       </Grid>
-                       </Grid>
                       <Grid
                         sx={{
-                          fontSize: "18px",
-                          fontWeight: 500,
-                          lineHeight: "21.94px",
-                          marginTop:'3%'
+                          fontSize: 12,
+                          color: "#34495e",
+                          marginTop: "1%",
+                          width: "80%",
                         }}
                       >
-                        Plant Protien soup
-                      </Grid>
-                      <Grid sx={{ marginTop: "2%", display: "flex" }}>
-                        <Grid
-                          sx={{
-                            border: "1px solid #bdc3c7",
-                            padding: 0.2,
-                            borderRadius: 1,
-                            height: 20,
-                          }}
-                        >
-                          <Rating
-                            style={{ marginTop: "-2%" }}
-                            size="small"
-                            color="green"
-                            name="simple-controlled"
-                            value={4}
-                          />
-                        </Grid>
-                        <Grid
-                          sx={{
-                            color: "#636e72",
-                            fontSize: 12,
-                            marginTop: "2%",
-                            marginLeft: "2%",
-                            fontWeight: 300,
-                          }}
-                        >
-                          48 rating
-                        </Grid>
-                      </Grid>
-                      <Grid
-                        sx={{
-                          fontSize: 18,
-                          fontWeight: 500,
-                          color: "#000",
-                          marginTop: "3%",
-                          fontFamily: "poppins",
-                        }}
-                      >
-                        ₹ 170
-                      </Grid>
-
-                      <Grid
-                        sx={{ fontSize: 12, color: "#34495e", marginTop: "1%" }}
-                      >
-                        [veg Preparation] Spring mix plant based organic spaicy
-                        and tasty and soo soft
+                        [veg Preparation] Spring mix plant based organic spaicy.
                       </Grid>
                     </Grid>
 
-                    <Grid sx={{ width: "40%", marginTop: "5%" }}>
-                      <Grid sx={{ position: "relative", marginLeft:matches? "30%":'56%' }}>
+                    <Grid sx={{ marginTop: "8%" }}>
+                      <Grid sx={{ position: "relative" }}>
                         <img src={food}></img>
 
-                        <Button
-                          style={{
-                            borderColor: "#000",
-                            width: 70,
-                            height: 28,
-                            background: "#000",
-                            color: "#fff",
-                            fontSize: "12px",
-                            fontWeight: 400,
-                            textTransform: "none",
-                            borderRadius: 4,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            position: "absolute",
-                            top: 76,
-                            marginLeft: "10%",
-                          }}
-                        >
-                          ADD{" "}
-                          <AddIcon
-                            style={{ marginLeft: "1%", fontSize: "14px" }}
-                          />
-                        </Button>
+                        {count == 0 ? (
+                          <Button
+                            onClick={handleClickAdd}
+                            style={{
+                              borderColor: "#000",
+                              width: 70,
+                              height: 28,
+                              background: "#000",
+                              color: "#fff",
+                              fontSize: "12px",
+                              fontWeight: 400,
+                              textTransform: "none",
+                              borderRadius: 4,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              position: "absolute",
+                              top: 76,
+                              marginLeft: "10%",
+                            }}
+                          >
+                            <Grid
+                              sx={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                            >
+                              {" "}
+                              ADD
+                              <AddIcon
+                                style={{ marginLeft: "2%", fontSize: "14px" }}
+                              />
+                            </Grid>
+                          </Button>
+                        ) : (
+                          <Button
+                            style={{
+                              borderColor: "#000",
+                              width: 70,
+                              height: 28,
+                              background: "#000",
+                              color: "#fff",
+                              fontSize: "12px",
+                              fontWeight: 400,
+                              textTransform: "none",
+                              borderRadius: 4,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              position: "absolute",
+                              top: 76,
+                              marginLeft: "10%",
+                            }}
+                          >
+                            <Grid
+                              sx={{ gap: 1, display: "flex", marginTop: "5%" }}
+                            >
+                              <Grid
+                                onClick={handleMinus}
+                                sx={{ marginTop: "4%" }}
+                              >
+                                <RemoveIcon
+                                  style={{ color: "#fff", fontSize: 14 }}
+                                />
+                              </Grid>
+                              <Grid style={{ fontSize: 12, color: "#fff" }}>
+                                {count}
+                              </Grid>
+                              <Grid
+                                onClick={handleClickAdd}
+                                sx={{ marginTop: "5%" }}
+                              >
+                                <AddIcon
+                                  style={{ color: "#fff", fontSize: 14 }}
+                                />
+                              </Grid>
+                            </Grid>
+                          </Button>
+                        )}
+                        {/* {count==0?
+      <div style={{display:'flex',width:"100%"}}>
+      <Button onClick={handleAdd} style={{borderColor:'#fff',width:"30%",background:"#353535",color:'#ffff',fontWeight:'bold',textTransform:'none',padding:"6px 40px00",borderRadius:10}} variant="outlined">Add to Cart</Button>
+      <Button onClick={handleAdd} style={{borderColor:'#12DAA8',width:"30%",background:"#12DAA8",marginLeft:'5%',color:'#000',fontWeight:'bold',textTransform:'none',padding:"6px 40px00",borderRadius:10}} variant="outlined">Buy Now</Button>
+      </div>:
+      <div style={{gap:2}}>
+      <Grid onClick={handleMinus} size="small" >
+        <RemoveIcon fontSize="small"/>
+      </Grid>
+      <Grid onClick={handleAdd} size="small">
+        <AddIcon fontSize="small" />
+      </Grid>
+      </div>}
+      {props.screen=='cart'?<></>:
+      <Button onClick={handleContinue} style={{borderColor:'#fff',height:40,width:"35%",marginLeft:'4%',background:"#353535",color:'#ffff',fontWeight:'bold',textTransform:'none',borderRadius:10}} variant="outlined">Continue Shopping</Button>}
+      </div>} */}
                       </Grid>
                     </Grid>
                   </Grid>
@@ -2306,16 +3149,16 @@ export default function MenuTheme({ data }) {
                 <>
                   <Grid
                     sx={{
-                      marginLeft: matches?"70%":'30%',
+                      marginLeft: matches ? "70%" : "30%",
                       position: "fixed",
-                      bottom: 15,
+                      bottom: 90,
                       zIndex: 40,
                     }}
                   >
                     <Fab
                       onClick={handleClickMenu}
                       style={{
-                        backgroundImage: "radial-gradient(#353b48, #000)",
+                        background: "#000000",
                         width: 70,
                         height: 70,
                         display: "flex",
@@ -2342,6 +3185,101 @@ export default function MenuTheme({ data }) {
               ) : (
                 <></>
               )}
+
+              {count == 0 ? (
+                <></>
+              ) : (
+                <Grid
+                  sx={{
+                    position: "fixed",
+                    bottom: -2,
+                    zIndex: 40,
+                  }}
+                >
+                  <Grid
+                    sx={{
+                      width: 330,
+                      height: 60,
+                      background: "radial-gradient( #414141,#171717)",
+                      borderRadius: 3,
+                    }}
+                  >
+                    <Grid
+                      sx={{
+                        width: "100%",
+                        height: 17,
+                        background: "#2d3436",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: 3,
+                        fontSize: 11,
+                        color: "#fff",
+                      }}
+                    >
+                      Welcome to Eat Healthy , Save upto 30% on every Meal
+                    </Grid>
+                    <Grid
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: 35,
+                        gap: 1,
+                      }}
+                    >
+                      <Grid
+                        sx={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Grid
+                          sx={{
+                            fontSize: "15px",
+                            fontWeight: 400,
+                            color: "#fff",
+                            fontFamily: "poppins",
+                          }}
+                        >
+                          1 item Added
+                        </Grid>
+                        <img
+                          src={arrow}
+                          style={{ width: "13%", marginLeft: "5%" }}
+                        ></img>
+                      </Grid>
+                      <Grid sx={{ color: "#fff", marginLeft: "3%" }}>|</Grid>
+                      <Grid
+                        onClick={handleNavigate}
+                        sx={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Grid
+                          sx={{
+                            fontSize: "15px",
+                            fontWeight: 400,
+                            color: "#fff",
+                            fontFamily: "poppins",
+                          }}
+                        >
+                          View Cart
+                        </Grid>
+                        <img
+                          src={shopping}
+                          style={{ width: "13%", marginLeft: "5%" }}
+                        ></img>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              )}
             </Grid>
           </Grid>
         </Grid>
@@ -2349,6 +3287,8 @@ export default function MenuTheme({ data }) {
       {RatingDialog()}
       {categoryDialog()}
       {MenuDialog()}
+      {CustomerAsPerTast()}
+      {CustomerAsPerTast2()}
     </Grid>
   );
 }
