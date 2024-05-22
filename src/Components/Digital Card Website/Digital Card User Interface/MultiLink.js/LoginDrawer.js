@@ -11,10 +11,9 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import logo1 from '../../Digital Card Assets/dchlogo.png'
 import { postData } from '../../../Services/NodeServices';
+import logo1 from '../../Digital Card Assets/dchlogo.png';
 import OtpGenerator from './OtpGenerator';
-import PhoneEmailAuth from '../UserDashboard/UserComponents/Phone';
 
 const drawerBleeding = 150;
 
@@ -54,68 +53,76 @@ function MultiEdgeDrawer(props) {
         setOpen(newOpen);
     };
 
-    const handleSubmit = async (number) => {
+    const handleSubmit = async () => {
 
-        var data = new FormData
-        data.append("tagId", props?.tagId)
-        const responseData = await postData('multi/getByTagId', data, true)
-
-
-        if (responseData.status) {
-            var formData = new FormData
-
-            formData.append('phone', number)
-
-
-            var result = await postData('customerLogin/chkLogin', formData, true)
-
-
-            if (result.status) {
-                window.localStorage.setItem("userId", result.data._id)
+        if (phoneNo !== '') {
+            var data = new FormData
+            data.append("tagId", props?.tagId)
+            const responseData = await postData('multi/getByTagId', data, true)
+            if (responseData.status) {
                 var formData = new FormData
-                formData.append('tagId', props?.tagId)
-                formData.append('phone', result.data.phone)
-                formData.append('masterId', responseData?.data?.masterId)
+
+                formData.append('phone', phoneNo)
 
 
-                var response = await postData('multi/customerLogin', formData, true)
-
-                if (response.status == 'true') {
+                var result = await postData('customerLogin/chkLogin', formData, true)
 
 
+                if (result.status) {
+                    window.localStorage.setItem("userId", result.data._id)
+                    var formData = new FormData
+                    formData.append('tagId', props?.tagId)
+                    formData.append('phone', result.data.phone)
+                    formData.append('masterId', responseData?.data?.masterId)
+
+
+                    var response = await postData('multi/customerLogin', formData, true)
+
+                    if (response.status == 'true') {
+
+
+                        Swal.fire({
+                            title: 'Successfully Logged In!',
+                            imageUrl: logo1,
+                            imageWidth: 200,
+                            imageHeight: 200,
+                            imageAlt: 'Custom image',
+                            background: '#001e3c',
+                            timer: 1500,
+                            width: 500,
+                            padding: 15,
+                            color: '#fff',
+                            showConfirmButton: false,
+
+                        })
+                        navigate('/userdashboard')
+                        window.localStorage.setItem("User", true)
+                        window.localStorage.removeItem('data')
+                        window.localStorage.setItem("data", JSON.stringify(result.data))
+                    }
+
+
+                }
+                else {
                     Swal.fire({
-                        title: 'Successfully Logged In!',
-                        imageUrl: logo1,
-                        imageWidth: 200,
-                        imageHeight: 200,
-                        imageAlt: 'Custom image',
-                        background: '#001e3c',
-                        timer: 1500,
-                        width: 500,
-                        padding: 15,
-                        color: '#fff',
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Fail to Login',
                         showConfirmButton: false,
-
+                        timer: 1500
                     })
-                    navigate('/userdashboard')
-                    window.localStorage.setItem("User", true)
-                    window.localStorage.removeItem('data')
-                    window.localStorage.setItem("data", JSON.stringify(result.data))
+
                 }
 
-
             }
-            else {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: 'Fail to Login',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-
-            }
-
+        } else {
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Enter Number First',
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
 
@@ -209,8 +216,27 @@ function MultiEdgeDrawer(props) {
                                 Login / Signup
                             </Typography>
                         </Grid>
-                        <Grid item xs={12} sx={{ display: "flex", justifyContent: 'center' }}>
-                            <PhoneEmailAuth login={(val) => handleSubmit(val)} />
+                        <Grid item xs={9}>
+                            <TextField label="Registered Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
+                        </Grid>
+                        <Grid item xs={3} sx={{ display: "flex" }}>
+                            <Button
+                                fullWidth
+                                onClick={handleSubmit}
+                                sx={{
+                                    background: "#001E3C",
+                                    color: "#ffffff",
+                                    p: "2% 10%",
+                                    fontSize: { xs: "0.6em", md: "0.9em", lg: "0.9em" },
+                                    fontWeight: 600,
+                                    "&:hover": {
+                                        background: "#023569",
+                                        color: "#ffffff",
+                                    }
+                                }}
+                            >
+                                Login
+                            </Button>
                         </Grid>
                     </Grid>
                 </StyledBox>
