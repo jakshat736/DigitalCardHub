@@ -295,7 +295,7 @@ export default function DCLogin() {
                                 Welcome Back
                             </Typography>
                             <Grid container spacing={2} sx={{ p: "8% 5%" }}>
-                                {/* <Grid item xs={9}>
+                                <Grid item xs={9}>
                                     <TextField label="Registered Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
                                 </Grid>
                                 <Grid item xs={3} sx={{ display: "flex" }}>
@@ -316,8 +316,8 @@ export default function DCLogin() {
                                     >
                                         Login
                                     </Button>
-                                </Grid> */}
-                                <Grid item xs={9}>
+                                </Grid>
+                                {/* <Grid item xs={9}>
                                     <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
                                 </Grid>
                                 <Grid item xs={3} sx={{ display: "flex" }}>
@@ -348,7 +348,7 @@ export default function DCLogin() {
                                 </Grid>
                                 <Grid item xs={12}>
                                     {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
-                                </Grid>
+                                </Grid> */}
 
                                 {/* <Grid item xs={12}>
                                     <TextField label="Password" type={showPassword ? "text" : "password"} // <-- This is where the magic happens
