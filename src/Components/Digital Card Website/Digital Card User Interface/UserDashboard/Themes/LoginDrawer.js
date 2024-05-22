@@ -157,7 +157,17 @@ function SwipeableEdgeDrawer(props) {
                 }}
             />
 
-            <Button onClick={toggleDrawer(true)} variant='contained' sx={{ fontSize: 25, backgroundColor: '#F3B419', color: "black", "&:hover": { backgroundColor: '#F3B419' } }}><Typography class='font'>Get Started</Typography></Button>
+            <Button onClick={toggleDrawer(true)} sx={{ fontSize: 25,borderColor:'#171717',borderRadius:0,     borderColor: "#000",
+                    width: 200,
+                    height: 50,
+                    color: "#fff",
+                    fontSize: "22px",
+                    fontWeight: 500,
+                    textTransform: "none",
+                    display:"flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)', backgroundColor: '#171717', fontFamily:'poppins', color: "#fff", "&:hover": { backgroundColor: '#171717' } }}><Typography class='font'>Get Started</Typography></Button>
             <SwipeableDrawer
                 container={container}
                 anchor="bottom"
@@ -169,28 +179,31 @@ function SwipeableEdgeDrawer(props) {
                 ModalProps={{
                     keepMounted: true,
                 }}
-                sx={{ borderRadius: 4 }}
+                sx={{ borderRadius: 4, }}
             >
                 <StyledBox
                     sx={{
-                        position: 'absolute',
-                        borderTopLeftRadius: 8,
-                        borderTopRightRadius: 8,
-                        visibility: 'visible',
+                        position: "fixed",
+                        bottom: -35,
+                        width: "100%",
+                        height: "40%",
+                        
                         right: 0,
                         left: 0,
+                        background: "radial-gradient( #414141,#171717)"
                     }}
                 >
-                    <Grid container spacing={2} sx={{ p: 2 }}>
-                        <Grid item xs={12}>
+                    <Grid container spacing={2} sx={{ p: 2}}>
+                        <Grid item xs={12} >
                             <Typography sx={{
                                 fontSize: { xs: "1.5em", md: "2.6em", lg: "2.4em" },
                                 fontWeight: 700,
                                 fontFamily: "OXANIUM",
-                                color: "#000000",
+                                color: "#fff",
                                 letterSpacing: "-0.2px",
                                 mb: "2.5vh",
-                                textAlign: "center"
+                                textAlign: "center",
+                               
                             }}>
                                 Login / Signup
                             </Typography>
