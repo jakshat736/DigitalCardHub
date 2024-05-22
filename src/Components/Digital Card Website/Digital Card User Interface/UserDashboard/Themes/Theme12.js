@@ -1,7 +1,8 @@
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
-import HelpIcon from "@mui/icons-material/Help";
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import ShareIcon from "@mui/icons-material/Share";
+import SimCardDownloadIcon from '@mui/icons-material/SimCardDownload';
 import {
   Box,
   Button,
@@ -17,14 +18,8 @@ import {
 } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContentText from "@mui/material/DialogContentText";
-import morenewone from "../Themes/ThemeAssets/morenewone.png"
-import snapchatnew from "../Themes/ThemeAssets/snapchatnew.png"
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import DialogTitle from "@mui/material/DialogTitle";
-import fourboxicon from "../Themes/ThemeAssets/fourboxicon.png"
-import SimCardDownloadIcon from '@mui/icons-material/SimCardDownload';
 import Rating from "@mui/material/Rating";
-import more11 from "../Themes/ThemeAssets/more11.png"
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -32,10 +27,6 @@ import { makeStyles } from "@mui/styles";
 import { enqueueSnackbar } from "notistack";
 import * as React from "react";
 import { useState } from "react";
-// import { FaShare } from "react-icons/fa";
-// import { IoIosContact } from "react-icons/io";
-// import { MdKeyboardArrowRight } from "react-icons/md";
-// import { PiSquaresFour } from "react-icons/pi";
 import ReactPlayer from "react-player";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
@@ -43,8 +34,10 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import Swal from "sweetalert2";
 import { postData, serverURL } from "../../../../Services/NodeServices";
+import snapchatnew from "../Themes/ThemeAssets/snapchatnew.png";
 
 import behance from '../../../Digital Card Assets/behance.png';
+import logo1 from '../../../Digital Card Assets/dchlogo.png';
 import discord from '../../../Digital Card Assets/discord.png';
 import gdrive from '../../../Digital Card Assets/drive.png';
 import dropbox from '../../../Digital Card Assets/dropbox.png';
@@ -53,29 +46,25 @@ import paypal from '../../../Digital Card Assets/paypal.png';
 import pinterest from '../../../Digital Card Assets/pinterest.png';
 import reddit from '../../../Digital Card Assets/reddit.png';
 import skype from '../../../Digital Card Assets/skype.png';
-import snapchat from '../../../Digital Card Assets/snapchat.png';
 import telegram from '../../../Digital Card Assets/telegram.png';
 
+import SendToMobileIcon from '@mui/icons-material/SendToMobile';
 import OtpGenerator from "../../Invite/OtpGenerator";
 import call from "../Themes/ThemeAssets/calls.png";
 import digital from "../Themes/ThemeAssets/digitallogo.png";
 import eye from "../Themes/ThemeAssets/eye.png";
 import fb from "../Themes/ThemeAssets/fbs.png";
+import gmail from "../Themes/ThemeAssets/gmails.png";
 import fram1 from "../Themes/ThemeAssets/frame1.png";
 import fram2 from "../Themes/ThemeAssets/frame2.png";
 import fram3 from "../Themes/ThemeAssets/frame3.png";
 import insta from "../Themes/ThemeAssets/instas.png";
 import link from "../Themes/ThemeAssets/linkins.png";
-import gmail from "../Themes/ThemeAssets/gmails.png";
+import moreicons from "../Themes/ThemeAssets/moreicon.png";
 import msg from "../Themes/ThemeAssets/msg.webp";
 import whatapp from "../Themes/ThemeAssets/whatapps.png";
 import WhatsApp1 from "../Themes/ThemeAssets/whatsapp1.png";
 import SideBar from "../UserComponents/SideBar";
-import SendToMobileIcon from '@mui/icons-material/SendToMobile';
-import PhoneIcon from '@mui/icons-material/Phone';
-import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
-import PhoneEmailAuth from "../UserComponents/Phone";
-import moreicons from "../Themes/ThemeAssets/moreicon.png"
 
 const actions = [
   { icon: <SimCardDownloadIcon style={{ fontSize: '22px' }} />, name: "Copy" },
@@ -618,11 +607,12 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     </Dialog>)
   }
 
-  const handleLogin = async (number) => {
-    var formData = new FormData()
+  const handleLogin = async () => {
 
-    formData.append('phone', number)
-    var result = await postData('customerLogin/chkLogin', formData, true)
+    if (phoneNumber !== '') {
+      var formData = new FormData()
+      formData.append('phone', phoneNumber)
+      var result = await postData('customerLogin/chkLogin', formData, true)
 
     if (result.status) {
 
@@ -630,25 +620,46 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       window.localStorage.setItem("UserNumber", result?.data?.phone)
       window.localStorage.setItem("UserEmail", result?.data?.email)
 
+        Swal.fire({
+          title: 'Successfully Logged In!',
+          imageUrl: logo1,
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: 'Custom image',
+          background: '#001e3c',
+          timer: 1500,
+          width: 500,
+          padding: 15,
+          color: '#fff',
+          showConfirmButton: false,
 
-      enqueueSnackbar('Successfully Logged In!');
-      navigate('/userdashboard')
-      window.localStorage.setItem("User", true)
-      window.localStorage.removeItem('data')
-      window.localStorage.setItem("data", JSON.stringify(result.data))
+        })
 
-    }
-    else {
+        navigate('/userdashboard')
+        window.localStorage.setItem("User", true)
+        window.localStorage.removeItem('data')
+        window.localStorage.setItem("data", JSON.stringify(result.data))
+
+      }
+      else {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Fail to Login',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
+      }
+    } else {
       Swal.fire({
         position: 'center',
         icon: 'error',
-        title: 'Fail to Login',
+        title: 'Enter Number First',
         showConfirmButton: false,
         timer: 1500
       })
-
     }
-
   }
 
   const handleOtp = (value) => {
@@ -674,7 +685,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
 
       setOtp(otpval)
 
-      const apiUrl = `https://soft7.in/api/send?number=91${phoneNumber}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
+      const apiUrl = `https://soft7.in/api/send?number=91${phoneNumber}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=664B22EF6F9A8&access_token=6642f3cf318c6`;
       const response = await postData('otp/api', { url: apiUrl })
       // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41
     } else {
@@ -750,8 +761,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             marginTop: "6%",
           }}
         >
-          <PhoneEmailAuth login={(num)=>handleLogin(num)}/>
-          {/* <div
+          <div
             style={{
               background: "#dfe6e9",
               borderRadius: 6,
@@ -761,8 +771,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <TextField
               fullWidth
               id="input-with-icon-textfield"
-              placeholder="Whatsapp Number"
-              value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)}
+              placeholder="Registered Number"
+              value={phoneNumber}
+              onChange={(event) => setPhoneNumber(event.target.value)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -786,16 +797,16 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                         borderRadius: 8,
                       }}
                     >
-                      Get OTP
+                      Get Otp
                     </div>
                   </IconButton>
                 )
               }}
             />
-          </div> */}
+          </div>
         </div>
 
-        {/* <div
+        <div
           style={{
             display: "flex",
             justifyContent: "center",
@@ -812,7 +823,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           >
             <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
           </div>
-        </div> */}
+        </div>
       </DialogContent>
     </Dialog>)
   }
@@ -1522,6 +1533,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 marginTop: matches ? "8%" : "4%",
                 padding: 14,
                 display: "flex",
+                cursor:"pointer"
               }}
             >
            <Button 
@@ -1541,7 +1553,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     justifyContent: "center",
                     flexDirection:'row',
                     marginLeft: "auto",
-                    cursor: 'pointer',
                     marginTop: matches ? '-8%' : '-4%',
                     boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
                   }}
