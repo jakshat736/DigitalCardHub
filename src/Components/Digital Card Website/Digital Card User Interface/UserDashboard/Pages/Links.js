@@ -59,6 +59,7 @@ const Links = () => {
     const [otherLink, setOtherLink] = useState(Array(0).fill(null));
     const [age, setAge] = useState('');
     const [loadingAnimation,setLoadingAnimation]=useState(true)
+    
     const fetchCardDetail = async () => {
         setLoadingAnimation(true)
         var formData = new FormData()
@@ -403,7 +404,6 @@ const Links = () => {
                                     <TextField value={otherLink[index]?.link || ""} onChange={(event) =>
                                         handleLinkChange(index, event.target.value)
                                     } sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }} label='Link' />
-
                                 </Grid>
                             </>
                         ))

@@ -12,9 +12,7 @@ import {
   IconButton,
   InputAdornment,
   Paper,
-  Stack,
-  TextField,
-  Typography,
+  Stack,TextField,Typography,
 } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContentText from "@mui/material/DialogContentText";
@@ -320,7 +318,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     formData.append("number", phoneNo);
     formData.append("query", query);
 
-    let response = await postData("enquiry/addcardenquiry", formData, true);
+  let response = await postData("enquiry/addcardenquiry", formData, true);
 
     if (response?.status) {
       setName("");

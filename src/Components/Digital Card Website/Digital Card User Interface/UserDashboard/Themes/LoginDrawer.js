@@ -193,16 +193,17 @@ function SwipeableEdgeDrawer(props) {
                         background: "radial-gradient( #414141,#171717)"
                     }}
                 >
-                    <Grid container spacing={2} sx={{ p: 2}}>
+                    <Grid container spacing={2} sx={{ p: 2,display:'flex',flexDirection:'column'}}>
                         <Grid item xs={12} >
                             <Typography sx={{
-                                fontSize: { xs: "1.5em", md: "2.6em", lg: "2.4em" },
+                                fontSize: { xs: "1.3em", md: "2.6em", lg: "2.4em" },
                                 fontWeight: 700,
                                 fontFamily: "OXANIUM",
                                 color: "#fff",
                                 letterSpacing: "-0.2px",
                                 mb: "2.5vh",
                                 textAlign: "center",
+                                marginTop:'2%'
                                
                             }}>
                                 Login / Signup
@@ -231,10 +232,25 @@ function SwipeableEdgeDrawer(props) {
                         <Grid item xs={12}>
                             {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
                         </Grid> */}
-                        <Grid item xs={9}>
-                            <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
+                        <Grid item xs={12} sx={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'-2%'}}>
+                            <TextField  InputProps={{
+                         style: { color: 'black' } // Setting text color to black
+                        }}  label="Whatsapp Number" size='small' type='tel' fullWidth   value={phoneNo}  style={{background:'#dcdde1',color:'#fff',display:'flex',justifyContent:'center',alignItems:'center',width:'80%', borderColor: '#fff'}} onChange={(event) => setPhoneNo(event.target.value)} />
                         </Grid>
-                        <Grid item xs={3} sx={{ display: "flex" }}>
+                        <Grid item xs={12} sx={{ display: "flex",justifyContent:'center',alignItems:'center' }}>
+
+                        <Button  onClick={handleSubmit} sx={{ fontSize: 25,borderColor:'#171717',borderRadius:0,borderColor: "#000",
+                    width: 120,
+                    height: 38,
+                    color: "#fff",
+                    fontSize: "16px",
+                    fontWeight: 400,
+                    textTransform: "none",
+                    display:"flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)', backgroundColor: '#171717', fontFamily:'poppins', color: "#fff", "&:hover": { backgroundColor: '#171717' } }}><Typography class='font'>Login</Typography></Button>
+                        {/* <Typography>
                             <Button
                                 fullWidth
                                 onClick={handleSubmit}
@@ -252,6 +268,7 @@ function SwipeableEdgeDrawer(props) {
                             >
                                 Login
                             </Button>
+                            </Typography> */}
                         </Grid>
                     </Grid>
                 </StyledBox>
