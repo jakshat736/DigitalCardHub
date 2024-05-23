@@ -7,31 +7,127 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import img1 from "../assets/dch logooo.png";
-
-
 import { PhotoCamera } from '@mui/icons-material';
 import { getData, postData } from "../../../Services/NodeServices";
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import addon from "../assets/addon.png"
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 export default function AddMenu() {
   const location = useLocation()
   const navigate = useNavigate()
   const menuId = location.state.menuId
+
+  const [rate1, setRate1] = useState('')
+  const [rate2, setRate2] = useState('')
+  const [rate3, setRate3] = useState('')
+  const [rate4, setRate4] = useState('')
+  const [rate5, setRate5] = useState('')
+  const [rate6, setRate6] = useState('')
+  const [rate7, setRate7] = useState('')
+  const [rate8, setRate8] = useState('')
+  const [rate9, setRate9] = useState('')
+  const [rate10, setRate10] = useState('')
+
+  const [addOn1, setAddOn1] = useState('')
+  const [addOn2, setAddOn2] = useState('')
+  const [add2, setAdd2] = useState('none')
+  const [addOn3, setAddOn3] = useState('')
+  const [add3, setAdd3] = useState('none')
+  const [addOn4, setAddOn4] = useState('')
+  const [add4, setAdd4] = useState('none')
+  const [addOn5, setAddOn5] = useState('')
+  const [add5, setAdd5] = useState('none')
+  const [addOn6, setAddOn6] = useState('')
+  const [add6, setAdd6] = useState('none')
+  const [addOn7, setAddOn7] = useState('')
+  const [add7, setAdd7] = useState('none')
+  const [addOn8, setAddOn8] = useState('')
+  const [add8, setAdd8] = useState('none')
+  const [addOn9, setAddOn9] = useState('')
+  const [add9, setAdd9] = useState('none')
+  const [addOn10, setAddOn10] = useState('')
+  const [add10, setAdd10] = useState('none')
+  const [count, setCount] = useState(1);
+
+
   const [Dish, setDish] = useState("")
   const [Price, setPrice] = useState("")
   const [Halfprice, setHalfprice] = useState("")
-
   const [rating, setRating] = useState("")
   const [Sorting, setSorting] = useState("")
   const [Stock, setStock] = useState("")
   const [Description, setDescription] = useState("")
   const [foodType, setFoodType] = useState("");
-  // const [data, setData] = useState([]);
   const [Image, setImage] = useState({
     fileName: "",
     bytes: "",
   });
+
+  const [categoryId, setCategoryId] = React.useState('');
+  //Akshat bhaiya look this comment code one time this helps you 
+  // const fetchAllCategory = async () => {
+  //   var result = await getData("category/all_category");
+  //   setcategoryList(result.data);
+  // };
+
+  // useEffect(function () {
+  //   fetchAllCategory();
+  // }, []);
+
+  // const fillAllCategory = () => {
+  //   return categoryList.map((item) => {
+  //     return <MenuItem value={item.categoryid}>{item.categoryname}</MenuItem>;
+  //   });
+  // };
+
+
+
+  const handleAdd = (n) => {
+
+    if (n == 1) {
+        setAdd2('flex')
+        setCount(n + 1)
+    }
+    if (n == 2) {
+      setAdd3('flex')
+        setCount(n + 1)
+    }
+    if (n == 3) {
+      setAdd4('flex')
+        setCount(n + 1)
+    }
+    if (n == 4) {
+      setAdd5('flex')
+        setCount(n + 1)
+    }
+    if (n == 5) {
+      setAdd6('flex')
+        setCount(n + 1)
+    }
+    if (n == 6) {
+      setAdd7('flex')
+        setCount(n + 1)
+    }
+    if (n == 7) {
+      setAdd8('flex')
+        setCount(n + 1)
+    }
+    if (n == 8) {
+      setAdd9('flex')
+        setCount(n + 1)
+    }
+    if (n == 9) {
+      setAdd10('flex')
+        setCount(n + 1)
+    }
+
+}
+
+
 
   const handleFoodTypeChange = (event) => {
     setFoodType(event.target.value);
@@ -87,6 +183,7 @@ export default function AddMenu() {
 
   };
 
+
   // useEffect(() => {
   //   fetchData(); // Fetch data when the component mounts
   // }, []);
@@ -132,6 +229,22 @@ export default function AddMenu() {
 
         <Divider sx={{ backgroundColor: 'black', height: '1px', width: '100%', }} />
 
+        <Grid item xs={12}>
+        <FormControl fullWidth>
+        <InputLabel>Category</InputLabel>
+        <Select
+          value={categoryId}
+          label="Category"
+          onChange={(event) => setCategoryId(event.target.value)} 
+        >
+           {/* {fillAllCategory()} */}
+          <MenuItem value={8}>South India</MenuItem>
+          <MenuItem value={9}>North India</MenuItem>
+          <MenuItem value={10}>Chinese</MenuItem>
+        </Select>
+      </FormControl>
+        </Grid>
+
         <Grid item xs={6}>
           <TextField onChange={(e) => setDish(e.target.value)} value={Dish} id="outlined-basic" fullWidth label="DishName" variant="outlined" />
         </Grid>
@@ -145,10 +258,10 @@ export default function AddMenu() {
         <Grid item xs={6}>
           <TextField onChange={(e) => setHalfprice(e.target.value)} value={Halfprice} id="outlined-basic" label="Halfprice" variant="outlined" />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} sx={{display:'flex',justifyContent:'center',marginTop:'2%'}}>
 
           <FormControl>
-            <FormLabel id="demo-row-radio-buttons-group-label">Food Type</FormLabel>
+            <FormLabel id="demo-row-radio-buttons-group-label" sx={{display:'flex',justifyContent:'center',fontWeight: 600,color:'#f3b419',fontSize:16}}>Food Type</FormLabel>
             <RadioGroup
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
@@ -162,8 +275,70 @@ export default function AddMenu() {
 
             </RadioGroup>
           </FormControl>
-
         </Grid>
+
+
+
+
+        <Grid item xs={12}>
+                        <Grid sx={{ fontSize: { xs: 14, md: 20 }, fontWeight: 600,color:'#f3b419',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'row',gap:.5 }}><img src={addon} width={26}></img>AddOn</Grid>
+                    </Grid>
+                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8,gap:15 }}>
+                        <TextField value={addOn1} onChange={(e) => setAddOn1(e.target.value)}  label='Add On 1(Optional)' />
+                        <TextField value={rate1} onChange={(e) => setRate1(e.target.value)}  label='Rate 1' />
+                    </Grid>
+                    <Grid item xs={12} style={{ display: add2, justifyContent: "center", marginBottom: 8,gap:15  }}>
+                        <TextField value={addOn2} onChange={(e) => setAddOn2(e.target.value)}  label='Add On 2(Optional)' />
+                        <TextField value={rate2} onChange={(e) => setRate2(e.target.value)}  label='Rate 2' />
+                    </Grid>
+                    <Grid item xs={12} style={{ display: add3, justifyContent: "center", marginBottom: 8,gap:15  }}>
+                        <TextField value={addOn3} onChange={(e) => setAddOn3(e.target.value)}  label='Add On 3(Optional)' />
+                        <TextField value={rate3} onChange={(e) => setRate3(e.target.value)}  label='Rate 3' />
+                    </Grid>
+                    <Grid item xs={12} style={{ display: add4, justifyContent: "center", marginBottom: 8,gap:15  }}>
+                        <TextField value={addOn4} onChange={(e) => setAddOn4(e.target.value)}  label='Add On 4(Optional)' />
+                        <TextField value={rate4} onChange={(e) => setRate4(e.target.value)}  label='Rate 4' />
+                    </Grid>
+                    <Grid item xs={12} style={{ display: add5, justifyContent: "center", marginBottom: 8,gap:15  }}>
+                        <TextField value={addOn5} onChange={(e) => setAddOn5(e.target.value)}  label='Add On 5(Optional)' />
+                        <TextField value={rate5} onChange={(e) => setRate5(e.target.value)}  label='Rate 5' />
+                    </Grid>
+                    <Grid item xs={12} style={{ display: add6, justifyContent: "center", marginBottom: 8,gap:15  }}>
+                        <TextField value={addOn6} onChange={(e) => setAddOn6(e.target.value)}  label='Add On 6(Optional)' />
+                        <TextField value={rate6} onChange={(e) => setRate6(e.target.value)}  label='Rate 6' />
+                    </Grid>
+                    <Grid item xs={12} style={{ display: add7, justifyContent: "center", marginBottom: 8,gap:15  }}>
+                        <TextField value={addOn7} onChange={(e) => setAddOn7(e.target.value)}  label='Add On 7(Optional)' />
+                        <TextField value={rate7} onChange={(e) => setRate7(e.target.value)}  label='Rate 7' />
+                    </Grid>
+                    <Grid item xs={12} style={{ display: add8, justifyContent: "center", marginBottom: 8,gap:15  }}>
+                        <TextField value={addOn8} onChange={(e) => setAddOn8(e.target.value)}  label='Add On 8(Optional)' />
+                        <TextField value={rate8} onChange={(e) => setRate8(e.target.value)}  label='Rate 8' />
+                    </Grid>
+                    <Grid item xs={12} style={{ display: add9, justifyContent: "center", marginBottom: 8 ,gap:15 }}>
+                        <TextField value={addOn9} onChange={(e) => setAddOn9(e.target.value)}  label='Add On 9(Optional)' />
+                        <TextField value={rate9} onChange={(e) => setRate9(e.target.value)}  label='Rate 9' />
+                    </Grid>
+                    <Grid item xs={12} style={{ display: add10, justifyContent: "center", marginBottom: 8,gap:15  }}>
+                        <TextField value={addOn10} onChange={(e) => setAddOn10(e.target.value)}  label='Add On 10(Optional)' />
+                        <TextField value={rate10} onChange={(e) => setRate10(e.target.value)}  label='Rate 10' />
+                    </Grid>
+                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8,gap:15  }}>
+                        <Button sx={{
+                            borderRadius: 10,
+                            backgroundImage: "linear-gradient(to top left,#ffa502,#f3b419)",
+                            display: "flex",
+                            flexDirection: "row",
+                            color:'#000',
+                            justifyContent: "space-evenly",
+                            paddingX: "30px",
+                            textAlign: "center",
+                            alignItems: "center",
+                        }} variant='contained' onClick={() => handleAdd(count)}>Add More Add On</Button>
+                    </Grid>
+
+
+
         <Grid item xs={6}>
           <Typography sx={{ textAlign: 'left', fontSize: 12 }}>Sorting Order</Typography>
           <Typography sx={{ textAlign: 'left', fontSize: 12 }}>Higher order will be shown first.</Typography>
