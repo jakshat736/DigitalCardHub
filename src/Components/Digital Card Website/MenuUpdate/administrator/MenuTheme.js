@@ -9,6 +9,7 @@ import more from "../assets/more.png";
 import Slider from "react-slick";
 import StarIcon from "@mui/icons-material/Star";
 import arrow from "../assets/arrow.png";
+import moreicon from "../assets/moreicon.png"
 import SpeedDial from "@mui/material/SpeedDial";
 import { useNavigate } from "react-router-dom";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
@@ -190,6 +191,7 @@ export default function MenuTheme({ data }) {
     var c = count + 1;
     setCount(c);
   };
+
   const handleMinus = () => {
     var c = count - 1;
     if (c >= 0) {
@@ -256,11 +258,13 @@ export default function MenuTheme({ data }) {
     }
   };
 
+
   const handleAbout = () => {
     setAbout(!about);
     setOpenDrawer(!openDrawer);
   };
 
+  
   const handleReviewSubmit = async (customerId) => {
     let formData = new FormData();
     formData.append("cardId", customerId);
@@ -1820,7 +1824,7 @@ export default function MenuTheme({ data }) {
                     borderRadius: 14,
                     cursor: "pointer",
                     boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
-                    marginTop: "2%",
+                    marginTop: "4%",
                   }}
                 >
                   About
@@ -1836,7 +1840,7 @@ export default function MenuTheme({ data }) {
                     transform: "translateZ(100px)",
                     flexGrow: 1,
                     position: "relative",
-                    marginTop: "6%",
+                    marginTop: "8%",
                   }}
                 >
                   <SpeedDial
@@ -1859,7 +1863,7 @@ export default function MenuTheme({ data }) {
                       bottom: 1,
                     }}
                     direction="left"
-                    icon={<img src={more} width={26}></img>}
+                    icon={<img src={moreicon} width={40}></img>}
                   >
                     {actions.map((action) => (
                       <SpeedDialAction
