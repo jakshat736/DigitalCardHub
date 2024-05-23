@@ -14,7 +14,7 @@ import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import img1 from "../assets/dch logooo.png";
-
+import CategoryIcon from '@mui/icons-material/Category';
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import { useNavigate, useParams } from "react-router-dom";
 import { postData } from '../../../Services/NodeServices';
@@ -68,9 +68,7 @@ export default function MenuDashBoard() {
      
      <Grid container spacing={2} sx={{display:'flex',justifyContent:'center',alignItems:'center',width:{xs:"100%",md:400},}}>
       <Grid item xs={6} sx={{display:'flex',flexDirection:'row',}}>
-     <img src={img1} alt="Masala Grill" width={120} />
-        
-    
+     <img src={img1} alt="Masala Grill" width={120} />  
 </Grid>
 
 <Grid item xs={6} sx={{}}>
@@ -94,6 +92,10 @@ export default function MenuDashBoard() {
         <NotificationsIcon sx={{mr:{xs:5,md:0}}}/>
       </ListItem>
       <Divider />
+      <ListItem button divider>
+        <ListItemText  onClick={()=>navigate('/Category',{state:{menuId:menuId}})} primary="Categorys" />
+        <CategoryIcon sx={{mr:{xs:5,md:0}}}/>
+      </ListItem>
       <ListItem button divider>
         <ListItemText  onClick={()=>navigate('/AddMenu',{state:{menuId:menuId}})} primary="Add Menu Items" />
         <SoupKitchenIcon sx={{mr:{xs:5,md:0}}}/>
