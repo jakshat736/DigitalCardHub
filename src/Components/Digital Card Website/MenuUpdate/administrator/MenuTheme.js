@@ -247,16 +247,19 @@ export default function MenuTheme({ data }) {
     setChecked(event.target.checked);
   };
 
+
   const handleMenu = () => {
     setMenu(!menu);
     setOpenDrawer2(!openDrawer2);
+    setTimeout(() => {
     if (menu === false) {
       var section = document.getElementById("menu");
       if (section) {
         section.scrollIntoView({ behavior: "smooth", position: "fixed" });
       }
     }
-  };
+  }, 100);
+  }
 
 
   const handleAbout = () => {
@@ -1896,8 +1899,7 @@ export default function MenuTheme({ data }) {
                         fontFamily: "poppins",
                         overflowY: "scroll",
                         padding: 8,
-                      }}
-                    >
+                      }}>
                       CHAT AI GPT- Free Unlimited Chat GPT The AI-powered
                       chatbot, Chat AI GPT, employs an intricate system of
                       artificial intelligence and neural networks to produce
@@ -2035,7 +2037,6 @@ export default function MenuTheme({ data }) {
                 <img src={telegram} width={25} />
               </Fab>
             </Grid>
-            <div id="menu"></div>
 
             <Grid style={{ marginTop: "10%" }}>
               <Divider
@@ -2049,9 +2050,11 @@ export default function MenuTheme({ data }) {
           </Grid>
         </Grid>
 
+
         {menu ? (
           <>
             <Grid item xs={12}>
+            <div id="menu"></div>
               <Grid sx={{ background: "#fff", padding: 2, height: "auto" }}>
                 <Grid
                   sx={{
