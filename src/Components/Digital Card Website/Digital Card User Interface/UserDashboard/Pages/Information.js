@@ -734,8 +734,9 @@ const handleUpdate = async (verify) => {
               fullWidth
               variant="rounded"
               alt="Remy Sharp"
+             
               src={'data:image/jpeg;base64,' + logo1}
-              sx={{ width: 120, height: 120, borderRadius: '60%' }}
+              sx={{ width: 128, height: 128, borderRadius: '60%' }}
             />}
           </Grid>
           <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }} >
@@ -752,8 +753,7 @@ const handleUpdate = async (verify) => {
                 color="primary"
                 aria-label="upload picture"
                 variant='contained'
-                component="span"
-              >
+                component="span">
                 Upload Logo
               </Button>
             </label>

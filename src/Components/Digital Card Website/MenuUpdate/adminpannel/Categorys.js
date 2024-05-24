@@ -6,11 +6,13 @@ import { PhotoCamera } from '@mui/icons-material';
 import { getData, postData } from "../../../Services/NodeServices";
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function Categorys()
 {  
+     const matches = useMediaQuery("(max-width:600px)");
      const location = useLocation()
-    const navigate = useNavigate()
+     const navigate = useNavigate()
 
     const [CategoryName,setCategoryName]=useState('')
     const [Image, setImage] = useState({
@@ -26,7 +28,6 @@ export default function Categorys()
         });
     };
     
-
    const handleReset=()=>{
     setCategoryName('')
     setImage({bytes:'',fileName:''})
@@ -58,24 +59,19 @@ export default function Categorys()
     }
 
      
-    return( <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    return( <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center',padding:matches?2:0 }}>
 
     <Grid container spacing={2} sx={{ width: 400 }}>
       <Grid item xs={6} sx={{ display: 'flex', flexDirection: 'row', }}>
         <img src={img1} alt="Masala Grill" width={120} />
       </Grid>
 
-      <Grid item xs={6} sx={{}}>
+      <Grid item xs={6} >
         <Button variant="outlined" sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"},mt:2}}><WhatsAppIcon />Live support</Button>
       </Grid>
-      <Divider
-        sx={{
-          backgroundColor: 'black',
-          height: '1px',
-          width: '100%',
-          mt: 1
-        }}
-      />
+      <Grid item xs={12} sx={{ display:'flex',justifyContent:'center',alignItems:'center'}}>
+      <Divider sx={{ backgroundColor: 'black', width: '98%',marginTop:'2%',display:'flex',justifyContent:'center',alignItems:'center' }} />
+      </Grid>
       <Grid item xs={3}>
         <Button
           onClick={() => navigate(`/menudashboard/${menuId}`)}
@@ -85,13 +81,13 @@ export default function Categorys()
           Back
         </Button>
       </Grid>
-      <Grid item xs={12} sx={{ mt: 2 }}>
-        <Typography sx={{ fontFamily: 'poppins', fontSize: 30 }}>Fill Category</Typography>
+      <Grid item xs={12} sx={{ mt: matches?0:1 }}>
+        <Typography sx={{ fontFamily: 'poppins', fontSize: matches?25:30,fontWeight:400 }}>Fill Category</Typography>
       </Grid>
-
-      <Divider sx={{ backgroundColor: 'black', height: '1px', width: '100%',marginTop:'2%' }} />
-
-      <Grid item xs={12} sx={{marginTop:'2%'}}>
+      <Grid item xs={12} sx={{ display:'flex',justifyContent:'center',alignItems:'center'}}>
+      <Divider sx={{ backgroundColor: 'black', width: '98%',marginTop:'1%',display:'flex',justifyContent:'center',alignItems:'center' }} />
+      </Grid>
+      <Grid item xs={12} sx={{marginTop:'3%'}}>
         <TextField onChange={(event) => setCategoryName(event.target.value)} value={CategoryName} id="outlined-basic" fullWidth label="Category Name" variant="outlined" />
       </Grid>
 
@@ -100,14 +96,14 @@ export default function Categorys()
   alt="Remy Sharp"
   variant="circular"
   src={Image.fileName}
-  sx={{ width: 70, height: 70, m: 1 ,marginLeft:'10%'}}
+  sx={{ width: matches?50:70, height: matches?50:70, m: 1 ,marginLeft:'10%'}}
   />
 <Button
   color="primary"
   aria-label="upload picture"
   component="label"
   variant='contained'
-  sx={{bgcolor:"#f3b419",marginLeft:'auto',width:'46%',color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}
+  sx={{bgcolor:"#f3b419",marginLeft:'auto',width:matches?'55%':'46%',color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}
 >
   <input
       hidden
@@ -124,7 +120,7 @@ export default function Categorys()
       <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center',gap:3 }}>
       <Grid item xs={6}>
         <Button  sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}} onClick={handleSubmit} fullWidth variant="contained" disableElevation>
-          Submit category
+          Submit 
         </Button>
         </Grid>
         <Grid item xs={6}>
