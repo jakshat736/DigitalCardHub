@@ -15,11 +15,13 @@ import addon from "../assets/addon.png"
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function AddMenu() {
   const location = useLocation()
   const navigate = useNavigate()
   const menuId = location.state.menuId
+  const matches = useMediaQuery("(max-width:600px)");
 
   const [rate1, setRate1] = useState('')
   const [rate2, setRate2] = useState('')
@@ -52,7 +54,6 @@ export default function AddMenu() {
   const [addOn10, setAddOn10] = useState('')
   const [add10, setAdd10] = useState('none')
   const [count, setCount] = useState(1);
-
 
   const [Dish, setDish] = useState("")
   const [Price, setPrice] = useState("")
@@ -190,7 +191,7 @@ export default function AddMenu() {
 
 
   return (
-    <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center',padding:2 }}>
 
       <Grid container spacing={2} sx={{ width: 400 }}>
         <Grid item xs={6} sx={{ display: 'flex', flexDirection: 'row', }}>
@@ -201,17 +202,10 @@ export default function AddMenu() {
         <Grid item xs={6} sx={{}}>
           <Button variant="outlined" sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"},mt:2}}><WhatsAppIcon />Live support</Button>
         </Grid>
-        <Divider
-          sx={{
-            backgroundColor: 'black',
-            height: '1px',
-            width: '100%',
-            mt: 1
-          }}
-        />
+        <Grid item xs={12} sx={{ display:'flex',justifyContent:'center',alignItems:'center'}}>
+      <Divider sx={{ backgroundColor: 'black', width: '100%',marginTop:'1%',display:'flex',justifyContent:'center',alignItems:'center' }} />
+      </Grid>
         <Grid item xs={3}>
-
-
           <Button
             onClick={() => navigate(`/menudashboard/${menuId}`)}
             variant='contained'
@@ -223,11 +217,13 @@ export default function AddMenu() {
         </Grid>
         {/* {data.map((item) => (
         <React.Fragment key={item.id}> */}
-        <Grid item xs={12} sx={{ mt: 2 }}>
+        <Grid item xs={12} sx={{ mt:matches?0:2,display:'flex',justifyContent:'center',alignItems:'center' }}>
           <Typography sx={{ fontFamily: 'poppins', fontSize: 30, textAlign: 'left' }}>Update Menu Items</Typography>
         </Grid>
 
-        <Divider sx={{ backgroundColor: 'black', height: '1px', width: '100%', }} />
+        <Grid item xs={12} sx={{ display:'flex',justifyContent:'center',alignItems:'center'}}>
+      <Divider sx={{ backgroundColor: 'black', width: '100%',marginTop:matches?'0':'1%',display:'flex',justifyContent:'center',alignItems:'center' }} />
+      </Grid>
 
         <Grid item xs={12}>
         <FormControl fullWidth>
@@ -340,13 +336,13 @@ export default function AddMenu() {
 
 
         <Grid item xs={6}>
-          <Typography sx={{ textAlign: 'left', fontSize: 12 }}>Sorting Order</Typography>
-          <Typography sx={{ textAlign: 'left', fontSize: 12 }}>Higher order will be shown first.</Typography>
+          <Typography sx={{ textAlign: 'left', fontSize: 15,fontWeight:400,color:'#2c3e50' }}>Sorting Order</Typography>
+          <Typography sx={{ textAlign: 'left', fontSize: 10 }}>Higher order will be shown first.</Typography>
           <TextField onChange={(e) => setSorting(e.target.value)} value={Sorting} id="outlined-basic"variant="outlined" />
         </Grid>
         <Grid item xs={6}>
-          <Typography sx={{ textAlign: 'left', fontSize: 12 }}> Stock</Typography>
-          <Typography sx={{ textAlign: 'left', fontSize: 12 }}>If left 0 will not track.</Typography>
+          <Typography sx={{ textAlign: 'left', fontSize: 15,fontWeight:400,color:'#2c3e50'  }}> Stock</Typography>
+          <Typography sx={{ textAlign: 'left', fontSize: 10 }}>If left 0 will not track.</Typography>
           <TextField onChange={(e) => setStock(e.target.value)} value={Stock} id="outlined-basic"  variant="outlined" />
         </Grid>
         <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
@@ -355,7 +351,7 @@ export default function AddMenu() {
     alt="Remy Sharp"
     variant="rounded"
     src={Image.fileName}
-    sx={{ width: 80, height: 80, m: 1 }}
+    sx={{ width: matches?50:80, height: matches?50:80, m: 1 }}
 />
 <Button
 
@@ -376,7 +372,7 @@ export default function AddMenu() {
 </Button>
 
 
-</Grid>
+      </Grid>
         <Grid item xs={12}>
           <TextField onChange={(e) => setDescription(e.target.value)} value={Description} multiline minRows={4} id="outlined-basic" label="Descrption" variant="outlined" fullWidth />
         </Grid>
@@ -384,21 +380,11 @@ export default function AddMenu() {
         {/* </React.Fragment>
       ))} */}
 
-
         <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-
           <Button  sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}} onClick={handleSubmit} fullWidth variant="contained" disableElevation>
             Save item
           </Button>
-
         </Grid>
-
-
-
-
-
-
-
       </Grid>
 
 
