@@ -1267,7 +1267,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   // {id:0,picture:[bannerone],productname:'GRAPHIC DESIGNER LOGO',price:2200.00,offerprice:1000.00}]
 
   const showSlider = () => {
-    return ecommerce.map((item) => {
+    return ecommerce?.map((item) => {
       if (item.productimg != '') {
         return (
           <Grid sx={{ display: "flex", justifyContent: "center", alignItems: 'center', ml: 1 }}>
