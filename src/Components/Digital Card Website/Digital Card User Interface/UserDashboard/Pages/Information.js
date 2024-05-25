@@ -756,8 +756,7 @@ const handleUpdate = async (verify) => {
                 color="primary"
                 aria-label="upload picture"
                 variant='contained'
-                component="span"
-              >
+                component="span">
                 Upload Logo
               </Button>
             </label>
