@@ -240,12 +240,14 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     setAbout(!about);
     setWork(!work)
     setOpenDrawer(!openDrawer);
+    setTimeout(() => {
     if (about === false) {
       var section = document.getElementById("work");
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
       }
     }
+  }, 100);
   };
 
   const handleClick = async (title, url) => {
@@ -1536,7 +1538,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 marginTop: matches ? "8%" : "4%",
                 padding: 14,
                 display: "flex",
-                cursor:"pointer"
               }}
             >
            <Button 
@@ -2512,10 +2513,10 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           </Grid>
         </Grid>
       
-        <div id="work"></div>
         {work ? (
           <>
             {" "}
+           
         <Grid
           item
           xs={12}
@@ -2526,7 +2527,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             flexDirection: "column",
             padding: 1,
           }}
-        >      
+        >   
+         <div id="work"></div>   
           <Grid
             style={{
               marginTop: "3%",
