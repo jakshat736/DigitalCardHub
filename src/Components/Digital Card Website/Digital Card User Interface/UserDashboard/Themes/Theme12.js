@@ -118,7 +118,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const [open, setOpen] = React.useState(false);
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [otp, setOtp] = React.useState()
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [showMore, setShowMore] = useState(false);
   // All handleClickFunctions
 
@@ -175,7 +175,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   };
 
   React.useEffect(() => {
-    handleClickOpenLogin();
+    if(data?.enquiry=='true'){
+      handleClickOpenLogin();
+    }
   }, []);
   const handleCloseLogin = () => {
     setOpenLogin(false);
@@ -189,9 +191,12 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   };
 
   const arrayBufferToBase64 = (buffer) => {
-    var binary = "";
-    var bytes = [].slice.call(new Uint8Array(buffer));
-    bytes.forEach((b) => (binary += String.fromCharCode(b)));
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
     return window.btoa(binary);
   };
 
@@ -779,7 +784,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   </InputAdornment>
                 ),
                 endAdornment: (
-                  <IconButton type="button" aria-label="search" onClick={handleopenotpdailog}>
+                  <IconButton type="button" aria-label="search" onClick={handleLogin}>
                     <div
                       style={{
                         border: "1px solid #000",
@@ -795,7 +800,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                         borderRadius: 8,
                       }}
                     >
-                      Get Otp
+                     Login
                     </div>
                   </IconButton>
                 )
@@ -804,7 +809,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           </div>
         </div>
 
-        <div
+        {/* <div
           style={{
             display: "flex",
             justifyContent: "center",
@@ -821,7 +826,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           >
             <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
           </div>
-        </div>
+        </div> */}
       </DialogContent>
     </Dialog>)
   }
@@ -841,7 +846,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           // Dialog ko page ke bottom me set karein
         },
       }}
-      // open={openLogin}
+      open={openLogin}
       onClose={handleCloseLogin}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
@@ -1568,9 +1573,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <Grid
               style={{
                 backgroundImage: data?.companylogo
-                  ? `url('data:image/jpeg;base64,${arrayBufferToBase64(
-                    data?.companylogo.data?.data
-                  )}')`
+                  ? `url('${serverURL}/images/${data?.companylogo}')`
                   : "radial-gradient(#dcdde1,#95a5a6)",
                 marginLeft: "5%",
                 position: "absolute",
@@ -1580,8 +1583,14 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
-                borderRadius: "95px",
-                backgroundSize: "cover",
+                borderRadius: "95px", 
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                imageRendering: '-webkit-optimize-contrast', // Chrome, Safari
+                WebkitImageRendering: 'optimize-contrast', // Ensuring cross-browser compatibility
+                imageRendering: 'crisp-edges', // Firefox
+              
                 boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
               }}
             ></Grid>

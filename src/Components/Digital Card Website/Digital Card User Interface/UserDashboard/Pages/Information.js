@@ -88,6 +88,7 @@ const Information = () => {
   const [phonePeNumber, setPhonePeNumber] = useState('')
   const [googleMapLink, setGoogleMapLink] = useState('');
   const [coverVideo, setCoverVideo] = useState({ url: "", bytes: "" })
+  const [companyLogo, setCompanyLogo] = useState({ url: "", bytes: "" })
   const [show, setShow] = useState(false)
   const [edited, setEdited] = useState(false)
   const [edited1, setEdited1] = useState(false)
@@ -119,17 +120,7 @@ const Information = () => {
     setEditor1(editor);
   };
   //convet FILE form URL
-  const DataURLtoFile = (dataurl, filename) => {
-    let arr = dataurl.split(','),
-      mime = arr[0].match(/:(.*?);/)[1],
-      bstr = atob(arr[1]),
-      n = bstr.length,
-      u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], filename, { type: mime });
-  };
+ 
   //canvert the data Buffer Array into image
   const arrayBufferToBase64 = (buffer) => {
     var binary = '';
@@ -141,26 +132,36 @@ const Information = () => {
   const submit = (e) => {
     e.preventDefault();
     if (Editor) {
-      const url = Editor.getImageScaledToCanvas().toDataURL();
+      const url = Editor.getImageScaledToCanvas().toDataURL('image/jpeg', 1.0);
       setimage1(url);
       // alert(url)
 
       setfile(DataURLtoFile(url, name1));
-      console.log('jhhbdeb', DataURLtoFile(url, name1));
     }
     setEdited(true)
     setShow(false)
     setOpen(false)
   };
+  const DataURLtoFile = (dataurl, filename) => {
+    let arr = dataurl.split(','),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]),
+        n = bstr.length,
+        u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+  };
+
   const submit1 = (e) => {
     e.preventDefault();
     if (Editor1) {
-      const url1 = Editor1.getImageScaledToCanvas().toDataURL();
+      const url1 = Editor1.getImageScaledToCanvas().toDataURL('image/jpeg', 1.0);
       setLogo1(url1);
       // alert(url1)
 
       setfile1(DataURLtoFile(url1, logoName));
-      console.log('jhhbdeb', DataURLtoFile(url1, name1));
     }
     setEdited1(true)
 
@@ -249,7 +250,7 @@ const Information = () => {
             border={50}
             color={[128, 128, 128]}
             borderRadius={50}
-            scale={1.2}
+            scale={1}
             rotate={0}
           />)}
         </DialogContent>
@@ -267,8 +268,6 @@ const Information = () => {
     var formData = new FormData()
     formData.append("customerId", userId)
     var result = await postData('carddetails/getcardDetails', formData, true)
-    console.log(result.data)
-    var result = await postData("carddetails/getcardDetails", formData, true);
         if (result.data != undefined) {
             setCompanyName(result.data.companyname);
             setCompanyName1(result.data.companyname);
@@ -309,6 +308,7 @@ const Information = () => {
     setCompanyEstDate(result.data.CompanyEstDate)
     setAbout(result.data.AboutUs)
     setIcon({ url: `${serverURL}/images/${result.data.companylogo}`, bytes: " " });
+    setCompanyLogo({ url: `${serverURL}/images/${result.data.companylogo}`, bytes: " " });
     if (result.data.coverVideo != '') {
       setCoverVideo({ url: `${serverURL}/images/${result.data.coverVideo}`, bytes: " " });
       setShow(true)
@@ -317,7 +317,7 @@ const Information = () => {
     //  console.log(result.data.companylogo.data.data)
     if (result.data.companyCoverImage != undefined) {
       setimage1(arrayBufferToBase64(result.data.companyCoverImage.data.data));
-      setLogo1(arrayBufferToBase64(result.data.companylogo.data.data));
+      setLogo1(result.data.companylogo);
       setDBimage(arrayBufferToBase64(result.data.companyCoverImage.data.data));
     }
     setThemeId(result.data.themeid)
@@ -463,7 +463,7 @@ const handleUpdate = async (verify) => {
       setLoadingAnimation(true)
     var formData = new FormData()
     formData.append('_id', cardId)
-    formData.append('companylogo', file1)
+    formData.append('companylogo', companyLogo.bytes)
     formData.append('coverVideo', coverVideo.bytes)
     // alert(file)
     formData.append('companyCover', file)
@@ -529,9 +529,13 @@ const handleUpdate = async (verify) => {
       url: URL.createObjectURL(event.target.files[0]),
       bytes: event.target.files[0],
     });
-    setLogo(event.target.files[0]);
-    setLogoName(event.target.files[0].name)
-    setOpen1(true)
+    setCompanyLogo({
+      url: URL.createObjectURL(event.target.files[0]),
+      bytes: event.target.files[0],
+    });
+    // setLogo(event.target.files[0]);
+    // setLogoName(event.target.files[0].name)
+    // setOpen1(true)
   };
   const handleCover = (event) => {
     if (event.target.files[0].type.slice(event.target.files[0].type.length - 3) == "mp4") {
@@ -728,13 +732,13 @@ const handleUpdate = async (verify) => {
               fullWidth
               variant="rounded"
               alt="Remy Sharp"
-              src={logo1}
+              src={companyLogo?.url}
               sx={{ width: 120, height: 120, borderRadius: '60%' }}
             /> : <Avatar
               fullWidth
               variant="rounded"
               alt="Remy Sharp"
-              src={'data:image/jpeg;base64,' + logo1}
+              src={companyLogo?.url}
               sx={{ width: 120, height: 120, borderRadius: '60%' }}
             />}
           </Grid>
