@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import more from "../assets/more.png";
 import Slider from "react-slick";
+import menuveg from "../assets/menuveg.png"
 import StarIcon from "@mui/icons-material/Star";
 import arrow from "../assets/arrow.png";
 import moreicon from "../assets/moreicon.png"
@@ -172,6 +173,7 @@ export default function MenuTheme({ data }) {
   const [open, setOpen] = React.useState(false);
   const [review, setReview] = React.useState("");
   const [menu, setMenu] = useState(false);
+  const [categoryOpen, setCategoryOpen] = useState(false);
   const [category, setCategory] = useState(false);
   const [customer, setCustomer] = useState(false);
   const [customer2, setCustomer2] = useState(false);
@@ -250,6 +252,8 @@ export default function MenuTheme({ data }) {
 
   const handleMenu = () => {
     setMenu(!menu);
+    setCategoryOpen(!categoryOpen);
+    handleCloseCategory(false)
     setOpenDrawer2(!openDrawer2);
     setTimeout(() => {
     if (menu === false) {
@@ -448,7 +452,7 @@ export default function MenuTheme({ data }) {
               marginTop: "1%",
             }}
           >
-            <Grid
+            <Grid  onClick={handleMenu}
               sx={{
                 border: "1px solid #bdc3c7",
                 fontSize: 15,
@@ -459,7 +463,7 @@ export default function MenuTheme({ data }) {
             >
               Burger
             </Grid>
-            <Grid
+            <Grid  onClick={handleMenu}
               sx={{
                 border: "1px solid #bdc3c7",
                 fontSize: 15,
@@ -478,7 +482,7 @@ export default function MenuTheme({ data }) {
               marginTop: "3%",
             }}
           >
-            <Grid
+            <Grid  onClick={handleMenu}
               sx={{
                 border: "1px solid #bdc3c7",
                 fontSize: 15,
@@ -489,7 +493,7 @@ export default function MenuTheme({ data }) {
             >
               Chiken
             </Grid>
-            <Grid
+            <Grid  onClick={handleMenu}
               sx={{
                 border: "1px solid #bdc3c7",
                 fontSize: 15,
@@ -508,7 +512,7 @@ export default function MenuTheme({ data }) {
               marginTop: "3%",
             }}
           >
-            <Grid
+            <Grid  onClick={handleMenu}
               sx={{
                 border: "1px solid #bdc3c7",
                 fontSize: 15,
@@ -519,7 +523,7 @@ export default function MenuTheme({ data }) {
             >
               Mojita
             </Grid>
-            <Grid
+            <Grid  onClick={handleMenu}
               sx={{
                 border: "1px solid #bdc3c7",
                 fontSize: 15,
@@ -1827,7 +1831,7 @@ export default function MenuTheme({ data }) {
                     borderRadius: 14,
                     cursor: "pointer",
                     boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
-                    marginTop: "4%",
+                    marginTop: "3%",
                   }}
                 >
                   About
@@ -1843,7 +1847,7 @@ export default function MenuTheme({ data }) {
                     transform: "translateZ(100px)",
                     flexGrow: 1,
                     position: "relative",
-                    marginTop: "8%",
+                    marginTop: "12%",
                   }}
                 >
                   <SpeedDial
@@ -1878,10 +1882,36 @@ export default function MenuTheme({ data }) {
                   </SpeedDial>
                 </Box>
               </Grid>
-
+              </Grid>
+              </Grid>
+              {about?<></>:<><Grid
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "-2%",
+            }}
+          >
+            <Divider
+              style={{
+                backgroundColor: "#AAAAAA",
+                width: "92%",
+              }}
+            />
+          </Grid></>}
+        </Grid>
               {about ? (
                 <>
                   {" "}
+                  <Grid item xs={12}>
+          <Grid
+            sx={{
+              background: "#fff",
+              display: "flex",
+              height: "auto",
+              marginTop: matches?"-8%":"-4%",
+              padding: 2,
+            }}
+          >
                   <Grid
                     style={{
                       border: "1px solid #000",
@@ -1913,17 +1943,12 @@ export default function MenuTheme({ data }) {
                       and unlimited.
                     </Grid>
                   </Grid>
-                </>
-              ) : (
-                <></>
-              )}
-            </Grid>
-          </Grid>
-          <Grid
+                  </Grid>
+                  <Grid
             style={{
               display: "flex",
               justifyContent: "center",
-              marginTop: "-1%",
+              marginTop: "2%",
             }}
           >
             <Divider
@@ -1934,7 +1959,13 @@ export default function MenuTheme({ data }) {
               }}
             />
           </Grid>
-        </Grid>
+                  </Grid>
+                </>
+              ) : (
+                <></>
+              )}
+           
+        
 
         <Grid item xs={12}>
           <Grid
@@ -2067,7 +2098,7 @@ export default function MenuTheme({ data }) {
                   }}
                 >
                   <img src={menulogo}></img>{" "}
-                  <Grid sx={{ marginTop: "2%" }}>Menu</Grid>
+                  <Grid sx={{ marginTop: "2%",fontFamily:'Okra, Helvetica, sans-serif' }}>Menu</Grid>
                   <img src={menulogo}></img>
                 </Grid>
                 <Grid sx={{ marginTop: "5%" }}>
@@ -2120,8 +2151,10 @@ export default function MenuTheme({ data }) {
                     </FormGroup>
                   </Grid>
                 </Grid>
-
-                <Grid sx={{ marginTop: "3%" }}>
+                <Grid sx={{fontFamily:'Okra, Helvetica, sans-serif',fontWeight:600,fontSize:'1.4rem',marginTop:'3%'}}>
+                  Best in Pizza
+                </Grid>
+                <Grid sx={{ marginTop: "2%" }}>
                   <Grid
                     sx={{
                       background: "#fff",
@@ -2133,7 +2166,7 @@ export default function MenuTheme({ data }) {
                   >
                     <Grid sx={{ marginTop: "4%" }}>
                       <Grid sx={{ display: "flex", alignItems: "center" }}>
-                        <img src={vegmain} style={{ width: "13%" }}></img>
+                        <img src={menuveg} width={25}></img>
 
                         <Grid
                           sx={{
@@ -2148,7 +2181,7 @@ export default function MenuTheme({ data }) {
                             fontWeight: 400,
                             width: 80,
                             marginLeft: "4%",
-                            height: 26,
+                            height: 22,
                           }}
                         >
                           Bestseller
@@ -2168,14 +2201,15 @@ export default function MenuTheme({ data }) {
                       <Grid sx={{ marginTop: "2%", display: "flex" }}>
                         <Grid
                           sx={{
-                            border: "1px solid #bdc3c7",
+                            border: "1px solid #eccc68",
                             padding: 0.2,
                             borderRadius: 1,
                             height: 20,
+                            display:'flex',justifyContent:'center',alignItems:'center'
                           }}
                         >
                           <Rating
-                            style={{ marginTop: "-2%" }}
+                
                             size="small"
                             color="green"
                             name="simple-controlled"
@@ -2319,7 +2353,7 @@ export default function MenuTheme({ data }) {
                   >
                     <Grid sx={{ marginTop: "4%" }}>
                       <Grid sx={{ display: "flex", alignItems: "center" }}>
-                        <img src={vegmain} style={{ width: "13%" }}></img>
+                      <img src={menuveg} width={25}></img>
 
                         <Grid
                           sx={{
@@ -2334,7 +2368,7 @@ export default function MenuTheme({ data }) {
                             fontWeight: 400,
                             width: 80,
                             marginLeft: "4%",
-                            height: 26,
+                            height: 22,
                           }}
                         >
                           Bestseller
@@ -2354,14 +2388,14 @@ export default function MenuTheme({ data }) {
                       <Grid sx={{ marginTop: "2%", display: "flex" }}>
                         <Grid
                           sx={{
-                            border: "1px solid #bdc3c7",
+                            border: "1px solid  #eccc68",
                             padding: 0.2,
                             borderRadius: 1,
                             height: 20,
+                            display:'flex',justifyContent:'center',alignItems:'center'
                           }}
                         >
                           <Rating
-                            style={{ marginTop: "-2%" }}
                             size="small"
                             color="green"
                             name="simple-controlled"
@@ -2450,7 +2484,7 @@ export default function MenuTheme({ data }) {
                   >
                     <Grid sx={{ marginTop: "4%" }}>
                       <Grid sx={{ display: "flex", alignItems: "center" }}>
-                        <img src={vegmain} style={{ width: "13%" }}></img>
+                      <img src={menuveg} width={25}></img>
 
                         <Grid
                           sx={{
@@ -2465,7 +2499,7 @@ export default function MenuTheme({ data }) {
                             fontWeight: 400,
                             width: 80,
                             marginLeft: "4%",
-                            height: 26,
+                            height: 22,
                           }}
                         >
                           Bestseller
@@ -2485,14 +2519,14 @@ export default function MenuTheme({ data }) {
                       <Grid sx={{ marginTop: "2%", display: "flex" }}>
                         <Grid
                           sx={{
-                            border: "1px solid #bdc3c7",
+                            border: "1px solid #eccc68",
                             padding: 0.2,
                             borderRadius: 1,
-                            height: 20,
+                            height: 20, display:'flex',justifyContent:'center',alignItems:'center'
                           }}
                         >
                           <Rating
-                            style={{ marginTop: "-2%" }}
+                            
                             size="small"
                             color="green"
                             name="simple-controlled"
@@ -2636,8 +2670,7 @@ export default function MenuTheme({ data }) {
                   >
                     <Grid sx={{ marginTop: "4%" }}>
                       <Grid sx={{ display: "flex", alignItems: "center" }}>
-                        <img src={vegmain} style={{ width: "13%" }}></img>
-
+                      <img src={menuveg} width={25}></img>
                         <Grid
                           sx={{
                             border: "1px solid #FFA030",
@@ -2651,7 +2684,7 @@ export default function MenuTheme({ data }) {
                             fontWeight: 400,
                             width: 80,
                             marginLeft: "4%",
-                            height: 26,
+                            height: 22,
                           }}
                         >
                           Bestseller
@@ -2671,14 +2704,14 @@ export default function MenuTheme({ data }) {
                       <Grid sx={{ marginTop: "2%", display: "flex" }}>
                         <Grid
                           sx={{
-                            border: "1px solid #bdc3c7",
+                            border: "1px solid #eccc68",
                             padding: 0.2,
                             borderRadius: 1,
-                            height: 20,
+                            height: 20,display:'flex',justifyContent:'center',alignItems:'center'
                           }}
                         >
                           <Rating
-                            style={{ marginTop: "-2%" }}
+                        
                             size="small"
                             color="green"
                             name="simple-controlled"
@@ -2822,7 +2855,7 @@ export default function MenuTheme({ data }) {
                   >
                     <Grid sx={{ marginTop: "4%" }}>
                       <Grid sx={{ display: "flex", alignItems: "center" }}>
-                        <img src={vegmain} style={{ width: "13%" }}></img>
+                      <img src={menuveg} width={25}></img>
 
                         <Grid
                           sx={{
@@ -2837,7 +2870,7 @@ export default function MenuTheme({ data }) {
                             fontWeight: 400,
                             width: 80,
                             marginLeft: "4%",
-                            height: 26,
+                            height: 22,
                           }}
                         >
                           Bestseller
@@ -2857,14 +2890,16 @@ export default function MenuTheme({ data }) {
                       <Grid sx={{ marginTop: "2%", display: "flex" }}>
                         <Grid
                           sx={{
-                            border: "1px solid #bdc3c7",
+                            border: "1px solid #eccc68",
                             padding: 0.2,
                             borderRadius: 1,
-                            height: 20,
+                            height: 20,display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center"
                           }}
                         >
                           <Rating
-                            style={{ marginTop: "-2%" }}
+                            
                             size="small"
                             color="green"
                             name="simple-controlled"
