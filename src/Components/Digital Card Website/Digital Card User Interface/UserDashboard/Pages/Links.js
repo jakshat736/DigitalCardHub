@@ -380,14 +380,10 @@ const Links = () => {
                                             <MenuItem value={"Others"}>Others</MenuItem>
                                         </Select>
                                     </FormControl>
-
-
-
                                     {/* <TextField value={otherLink[index]?.title ||""}  onChange={(event) =>
                                         handleTitleChange(index, event.target.value)
                                     } sx={{ width: mobile ? "65%" : tablet ? "100%" : '56%' }} label='Title'/> */}
-
-
+                                    
                                     <IconButton onClick={() => handleDeleteLink(index)}><Delete /></IconButton>
                                 </Grid>
                                 <Grid item xs={12} style={{ display: otherLink[index]?.title === "Others"? "flex" : "none", justifyContent: "center", marginBottom: 8, flexDirection: 'column', alignItems: "center" }}>
