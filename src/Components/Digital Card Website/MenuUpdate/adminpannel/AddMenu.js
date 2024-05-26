@@ -16,6 +16,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { Delete } from '@mui/icons-material'
 
 export default function AddMenu() {
   const location = useLocation()
@@ -55,6 +56,16 @@ export default function AddMenu() {
   const [add10, setAdd10] = useState('none')
   const [count, setCount] = useState(1);
 
+  const [count2, setCount2] = useState(1);
+  const [count3, setCount3] = useState(2);
+  const [count4, setCount4] = useState(3);
+  const [count5, setCount5] = useState(4);
+  const [count6, setCount6] = useState(5);
+  const [count7, setCount7] = useState(6);
+  const [count8, setCount8] = useState(7);
+  const [count9, setCount9] = useState(8);
+  const [count10, setCount10] = useState(9);
+
   const [Dish, setDish] = useState("")
   const [Price, setPrice] = useState("")
   const [Halfprice, setHalfprice] = useState("")
@@ -85,7 +96,43 @@ export default function AddMenu() {
   //   });
   // };
 
-
+  const handleDelete= (n) => {
+    if (n == 1) {
+      setAdd2('none')
+  }
+  if (n == 2) {
+    setAdd3('none')
+     
+  }
+  if (n == 3) {
+    setAdd4('none')
+      
+  }
+  if (n == 4) {
+    setAdd5('none')
+     
+  }
+  if (n == 5) {
+    setAdd6('none')
+     
+  }
+  if (n == 6) {
+    setAdd7('none')
+     
+  }
+  if (n == 7) {
+    setAdd8('none')
+      
+  }
+  if (n == 8) {
+    setAdd9('none')
+     
+  }
+  if (n == 9) {
+    setAdd10('none')
+     
+  }
+};
 
   const handleAdd = (n) => {
 
@@ -280,44 +327,53 @@ export default function AddMenu() {
                         <Grid sx={{ fontSize: { xs: 14, md: 20 }, fontWeight: 600,color:'#f3b419',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'row',gap:.5 }}><img src={addon} width={26}></img>AddOn</Grid>
                     </Grid>
                     <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8,gap:15 }}>
-                        <TextField value={addOn1} onChange={(e) => setAddOn1(e.target.value)}  label='Add On 1(Optional)' />
-                        <TextField value={rate1} onChange={(e) => setRate1(e.target.value)}  label='Rate 1' />
+                        <TextField value={addOn1} onChange={(e) => setAddOn1(e.target.value)}  label='Add On(Optional)' />
+                        <TextField value={rate1} onChange={(e) => setRate1(e.target.value)}  label='Rate' />
                     </Grid>
                     <Grid item xs={12} style={{ display: add2, justifyContent: "center", marginBottom: 8,gap:15  }}>
-                        <TextField value={addOn2} onChange={(e) => setAddOn2(e.target.value)}  label='Add On 2(Optional)' />
-                        <TextField value={rate2} onChange={(e) => setRate2(e.target.value)}  label='Rate 2' />
+                        <TextField value={addOn2} onChange={(e) => setAddOn2(e.target.value)}  label='Add On(Optional)' />
+                        <TextField value={rate2} onChange={(e) => setRate2(e.target.value)}  label='Rate' />
+                        <IconButton onClick={() => handleDelete(count2)}><Delete /></IconButton>
                     </Grid>
                     <Grid item xs={12} style={{ display: add3, justifyContent: "center", marginBottom: 8,gap:15  }}>
-                        <TextField value={addOn3} onChange={(e) => setAddOn3(e.target.value)}  label='Add On 3(Optional)' />
-                        <TextField value={rate3} onChange={(e) => setRate3(e.target.value)}  label='Rate 3' />
+                        <TextField value={addOn3} onChange={(e) => setAddOn3(e.target.value)}  label='Add On(Optional)' />
+                        <TextField value={rate3} onChange={(e) => setRate3(e.target.value)}  label='Rate' />
+                        <IconButton onClick={() => handleDelete(count3)}><Delete /></IconButton>
                     </Grid>
                     <Grid item xs={12} style={{ display: add4, justifyContent: "center", marginBottom: 8,gap:15  }}>
-                        <TextField value={addOn4} onChange={(e) => setAddOn4(e.target.value)}  label='Add On 4(Optional)' />
-                        <TextField value={rate4} onChange={(e) => setRate4(e.target.value)}  label='Rate 4' />
+                        <TextField value={addOn4} onChange={(e) => setAddOn4(e.target.value)}  label='Add On(Optional)' />
+                        <TextField value={rate4} onChange={(e) => setRate4(e.target.value)}  label='Rate' />
+                        <IconButton onClick={() => handleDelete(count4)}><Delete /></IconButton>
                     </Grid>
                     <Grid item xs={12} style={{ display: add5, justifyContent: "center", marginBottom: 8,gap:15  }}>
-                        <TextField value={addOn5} onChange={(e) => setAddOn5(e.target.value)}  label='Add On 5(Optional)' />
-                        <TextField value={rate5} onChange={(e) => setRate5(e.target.value)}  label='Rate 5' />
+                        <TextField value={addOn5} onChange={(e) => setAddOn5(e.target.value)}  label='Add On(Optional)' />
+                        <TextField value={rate5} onChange={(e) => setRate5(e.target.value)}  label='Rate' />
+                        <IconButton onClick={() => handleDelete(count5)}><Delete /></IconButton>
                     </Grid>
                     <Grid item xs={12} style={{ display: add6, justifyContent: "center", marginBottom: 8,gap:15  }}>
-                        <TextField value={addOn6} onChange={(e) => setAddOn6(e.target.value)}  label='Add On 6(Optional)' />
-                        <TextField value={rate6} onChange={(e) => setRate6(e.target.value)}  label='Rate 6' />
+                        <TextField value={addOn6} onChange={(e) => setAddOn6(e.target.value)}  label='Add On(Optional)' />
+                        <TextField value={rate6} onChange={(e) => setRate6(e.target.value)}  label='Rate' />
+                        <IconButton onClick={() => handleDelete(count6)}><Delete /></IconButton>
                     </Grid>
                     <Grid item xs={12} style={{ display: add7, justifyContent: "center", marginBottom: 8,gap:15  }}>
-                        <TextField value={addOn7} onChange={(e) => setAddOn7(e.target.value)}  label='Add On 7(Optional)' />
-                        <TextField value={rate7} onChange={(e) => setRate7(e.target.value)}  label='Rate 7' />
+                        <TextField value={addOn7} onChange={(e) => setAddOn7(e.target.value)}  label='Add On(Optional)' />
+                        <TextField value={rate7} onChange={(e) => setRate7(e.target.value)}  label='Rate' />
+                        <IconButton onClick={() => handleDelete(count7)}><Delete /></IconButton>
                     </Grid>
                     <Grid item xs={12} style={{ display: add8, justifyContent: "center", marginBottom: 8,gap:15  }}>
-                        <TextField value={addOn8} onChange={(e) => setAddOn8(e.target.value)}  label='Add On 8(Optional)' />
-                        <TextField value={rate8} onChange={(e) => setRate8(e.target.value)}  label='Rate 8' />
+                        <TextField value={addOn8} onChange={(e) => setAddOn8(e.target.value)}  label='Add On (Optional)' />
+                        <TextField value={rate8} onChange={(e) => setRate8(e.target.value)}  label='Rate ' />
+                        <IconButton onClick={() => handleDelete(count8)}><Delete /></IconButton>
                     </Grid>
                     <Grid item xs={12} style={{ display: add9, justifyContent: "center", marginBottom: 8 ,gap:15 }}>
-                        <TextField value={addOn9} onChange={(e) => setAddOn9(e.target.value)}  label='Add On 9(Optional)' />
-                        <TextField value={rate9} onChange={(e) => setRate9(e.target.value)}  label='Rate 9' />
+                        <TextField value={addOn9} onChange={(e) => setAddOn9(e.target.value)}  label='Add On(Optional)' />
+                        <TextField value={rate9} onChange={(e) => setRate9(e.target.value)}  label='Rate' />
+                        <IconButton onClick={() => handleDelete(count9)}><Delete /></IconButton>
                     </Grid>
                     <Grid item xs={12} style={{ display: add10, justifyContent: "center", marginBottom: 8,gap:15  }}>
-                        <TextField value={addOn10} onChange={(e) => setAddOn10(e.target.value)}  label='Add On 10(Optional)' />
-                        <TextField value={rate10} onChange={(e) => setRate10(e.target.value)}  label='Rate 10' />
+                        <TextField value={addOn10} onChange={(e) => setAddOn10(e.target.value)}  label='Add On(Optional)' />
+                        <TextField value={rate10} onChange={(e) => setRate10(e.target.value)}  label='Rate' />
+                        <IconButton onClick={() => handleDelete(count10)}><Delete /></IconButton>
                     </Grid>
                     <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8,gap:15  }}>
                         <Button sx={{
@@ -370,7 +426,6 @@ export default function AddMenu() {
     />
     Upload Image<PhotoCamera />
 </Button>
-
 
       </Grid>
         <Grid item xs={12}>

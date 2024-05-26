@@ -72,7 +72,7 @@ export default function Categorys()
       <Grid item xs={12} sx={{ display:'flex',justifyContent:'center',alignItems:'center'}}>
       <Divider sx={{ backgroundColor: 'black', width: '98%',marginTop:'2%',display:'flex',justifyContent:'center',alignItems:'center' }} />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} sx={{display:'flex'}}>
         <Button
           onClick={() => navigate(`/menudashboard/${menuId}`)}
           variant='contained'
@@ -80,6 +80,15 @@ export default function Categorys()
         >
           Back
         </Button>
+        <Grid sx={{marginLeft:'auto'}}>
+        <Button
+        onClick={()=>navigate('/displayallthecategory',{state:{menuId:menuId}})}
+          variant='contained'
+          sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}
+        >
+          View Category
+        </Button>
+        </Grid>
       </Grid>
       <Grid item xs={12} sx={{ mt: matches?0:1 }}>
         <Typography sx={{ fontFamily: 'poppins', fontSize: matches?25:30,fontWeight:400 }}>Fill Category</Typography>
