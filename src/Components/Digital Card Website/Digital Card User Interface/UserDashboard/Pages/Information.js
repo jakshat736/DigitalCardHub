@@ -762,10 +762,6 @@ const handleUpdate = async (verify) => {
             <Typography textAlign='center' sx={{ fontSize: { xs: 14, md: 28 } }}>Personel Details</Typography>
           </Grid>
 
-
-
-
-
               <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
                 <TextField value={fullName} onChange={(e) => setFullName(e.target.value)} sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }} label='Full Name' />
               </Grid>

@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 import { postData } from '../../../../Services/NodeServices';
 import logo1 from '../../../Digital Card Assets/dchlogo.png';
 import OtpGenerator from '../../ReviewTag/OtpGenerator';
-
+import useMediaQuery from "@mui/material/useMediaQuery";
 const drawerBleeding = 150;
 
 const Root = styled('div')(({ theme }) => ({
@@ -145,7 +145,7 @@ function SwipeableEdgeDrawer(props) {
 
 
     }
-
+    const matches = useMediaQuery("(max-width:600px)");
     return (
         <Root>
             <CssBaseline />
@@ -232,10 +232,10 @@ function SwipeableEdgeDrawer(props) {
                         <Grid item xs={12}>
                             {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
                         </Grid> */}
-                        <Grid item xs={12} sx={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'-2%'}}>
+                        <Grid item xs={12} sx={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:matches?'-2%':'0%'}}>
                             <TextField  InputProps={{
                          style: { color: 'black' } // Setting text color to black
-                        }}  label="Whatsapp Number" size='small' type='tel' fullWidth   value={phoneNo}  style={{background:'#dcdde1',color:'#fff',display:'flex',justifyContent:'center',alignItems:'center',width:'80%', borderColor: '#fff'}} onChange={(event) => setPhoneNo(event.target.value)} />
+                        }}  label="Whatsapp Number" size='small' type='tel' fullWidth   value={phoneNo}  style={{background:'#dcdde1',color:'#fff',display:'flex',justifyContent:'center',alignItems:'center',width:matches?'80%':'17%', borderColor: '#fff'}} onChange={(event) => setPhoneNo(event.target.value)} />
                         </Grid>
                         <Grid item xs={12} sx={{ display: "flex",justifyContent:'center',alignItems:'center' }}>
 

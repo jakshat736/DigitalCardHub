@@ -117,6 +117,7 @@ import MasterDashboard from './Components/MasterDashboard/MasterDashboard';
 import { SessionContext } from './Components/Services/SessionContext';
 import MenuTheme2 from "./Components/Digital Card Website/MenuUpdate/administrator/MenuTheme2";
 import Categorys from "./Components/Digital Card Website/MenuUpdate/adminpannel/Categorys";
+import DispalyAllTheCategory from "./Components/Digital Card Website/MenuUpdate/adminpannel/DispalyAllTheCategory";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -221,6 +222,7 @@ function App() {
 								<Route path="/menuDashboard/:menuId" element={<MenuDashBoard />} />
 								<Route path="/addmenu" element={<AddMenu />} />
 								<Route path="/category" element={<Categorys/>} />
+								<Route path="/displayallthecategory" element={<DispalyAllTheCategory/>} />
 								<Route path="/vieworder" element={<ViewOrder />} />
 								<Route path="/orderdetail" element={<OrderDetail />} />
 								<Route path="/button" element={<MyComponent />} />
