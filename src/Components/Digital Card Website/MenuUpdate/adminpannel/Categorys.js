@@ -8,25 +8,26 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+
+import MaterialTable from "@material-table/core";
+import { useEffect } from "react";
+import categoryimg from "../assets/category.png"
+import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
+
 export default function Categorys()
 {  
      const matches = useMediaQuery("(max-width:600px)");
      const location = useLocation()
+     const menuId = location.state.menuId
      const navigate = useNavigate()
-
+     const [category,setCategory]=useState([])
     const [CategoryName,setCategoryName]=useState('')
     const [Image, setImage] = useState({
         fileName: "",
         bytes: "",
       });
     
-    const menuId = location.state.menuId
-    const handleCategoryImage = (event) => {
-        setImage({
-          fileName: URL.createObjectURL(event.target.files[0]),
-          bytes: event.target.files[0],
-        });
-    };
+
     
    const handleReset=()=>{
     setCategoryName('')
@@ -58,7 +59,54 @@ export default function Categorys()
     }
     }
 
-     
+    
+ const handleDelete=(rowData)=>{
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor:'#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then(async(result) => {
+    if (result.isConfirmed) {
+  var result=await postData("")
+    if(result.status)
+    {
+      Swal.fire(
+        'Deleted!',
+        'category has been deleted.',
+        'success'
+      )
+      fetchAllCategory()
+    }
+    else
+    {
+      Swal.fire(
+        'Deleted!',
+        'category does not deleted',
+        'error'
+      )
+    }
+  }
+  })
+ }
+
+ 
+ const fetchAllCategory=async()=>{
+  var response=await getData('category/display_all_category')
+  setCategory(response.data)
+ }
+ 
+   useEffect(function(){
+       
+   fetchAllCategory()
+
+   },[])
+
+
+
     return( <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center',padding:matches?2:0 }}>
 
     <Grid container spacing={2} sx={{ width: 400 }}>
@@ -70,9 +118,9 @@ export default function Categorys()
         <Button variant="outlined" sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"},mt:2}}><WhatsAppIcon />Live support</Button>
       </Grid>
       <Grid item xs={12} sx={{ display:'flex',justifyContent:'center',alignItems:'center'}}>
-      <Divider sx={{ backgroundColor: 'black', width: '98%',marginTop:'2%',display:'flex',justifyContent:'center',alignItems:'center' }} />
+      <Divider sx={{ backgroundColor: 'black', width: '98%',marginTop:'1%',display:'flex',justifyContent:'center',alignItems:'center' }} />
       </Grid>
-      <Grid item xs={12} sx={{display:'flex'}}>
+      <Grid item xs={12} sx={{display:'flex',gap:3}}>
         <Button
           onClick={() => navigate(`/menudashboard/${menuId}`)}
           variant='contained'
@@ -80,18 +128,12 @@ export default function Categorys()
         >
           Back
         </Button>
-        <Grid sx={{marginLeft:'auto'}}>
-        <Button
-        onClick={()=>navigate('/displayallthecategory',{state:{menuId:menuId}})}
-          variant='contained'
-          sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}
-        >
-          View Category
-        </Button>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} sx={{ mt: matches?0:1 }}>
+    
+
+    
+      <Grid>
         <Typography sx={{ fontFamily: 'poppins', fontSize: matches?25:30,fontWeight:400 }}>Fill Category</Typography>
+      </Grid>
       </Grid>
       <Grid item xs={12} sx={{ display:'flex',justifyContent:'center',alignItems:'center'}}>
       <Divider sx={{ backgroundColor: 'black', width: '98%',marginTop:'1%',display:'flex',justifyContent:'center',alignItems:'center' }} />
@@ -99,34 +141,7 @@ export default function Categorys()
       <Grid item xs={12} sx={{marginTop:'3%'}}>
         <TextField onChange={(event) => setCategoryName(event.target.value)} value={CategoryName} id="outlined-basic" fullWidth label="Category Name" variant="outlined" />
       </Grid>
-
-  <Grid item xs={12} sx={{ display: "flex",  flexDirection: "row", alignItems: "center" }}>
-  <Avatar
-  alt="Remy Sharp"
-  variant="circular"
-  src={Image.fileName}
-  sx={{ width: matches?50:70, height: matches?50:70, m: 1 ,marginLeft:'10%'}}
-  />
-<Button
-  color="primary"
-  aria-label="upload picture"
-  component="label"
-  variant='contained'
-  sx={{bgcolor:"#f3b419",marginLeft:'auto',width:matches?'55%':'46%',color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}}
->
-  <input
-      hidden
-      accept="image/*"
-      type="file"
-      onChange={handleCategoryImage}   
-  />
-  Upload Image<PhotoCamera />
-</Button>
-
-
-</Grid>
-   
-      <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center',gap:3 }}>
+      <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center',gap:3,marginTop:'3%' }}>
       <Grid item xs={6}>
         <Button  sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}} onClick={handleSubmit} fullWidth variant="contained" disableElevation>
           Submit 
@@ -135,22 +150,39 @@ export default function Categorys()
         <Grid item xs={6}>
             <Button fullWidth variant="contained" sx={{bgcolor:"#f3b419",color:"black","&:hover":{ bgcolor:"#f3b419",color:"black"}}} onClick={handleReset} disableElevation>Reset</Button>
         </Grid>
-
       </Grid>
 
+      <Grid item xs={12} sx={{ mt: matches?1:1 }}>
+        <Typography sx={{ fontFamily: 'poppins', fontSize: matches?25:30,fontWeight:400 }}>View Category</Typography>
+      </Grid>
+      <Grid item xs={12} sx={{ display:'flex',justifyContent:'center',alignItems:'center',marginTop:'-2%'}}>
+      <Divider sx={{ backgroundColor: 'black', width: '98%',display:'flex',justifyContent:'center',alignItems:'center' }} />
+      </Grid>
 
-
-
-
-
-
+      <MaterialTable style={{marginTop:'1%'}}
+            title={<Grid sx={{display:"flex",flexDirection:"row"}}>
+            <Grid>
+             <img src={categoryimg} width="25"/>
+            </Grid>
+            </Grid>}
+            columns={[
+              { title: 'Categoryid', field: 'categoryid' },
+              { title: 'Categoryname', field: 'categoryname' },          
+            ]}
+            data={category}
+            actions={[
+              {
+                icon: 'edit',
+                tooltip: 'edit Category',
+                onClick: (event, rowData) =>(rowData)
+              },
+              {
+              icon: 'delete',
+                tooltip: 'delete Category',
+                onClick: (event, rowData) => handleDelete(rowData)
+              },
+            ]}
+          />  
     </Grid>
-
-
-
-
-
-
-
   </Grid>)
 }

@@ -229,7 +229,7 @@ function App() {
 								<Route path="/printrecipt" element={<PrintRecipt />} />
 								<Route path="/allmenu" element={<AllMenu />} />
 								<Route path="/form" element={<Form />} />
-								<Route path="/editmenu" element={<EditMenu />} />
+								<Route path="/editmenu" element={<EditMenu />}/>
 								<Route path="/kitchen" element={<Kitchen />} />
 								<Route path="/selectqy" element={<Selectqy />} />
 								<Route path="/floatingmenu" element={<FloatingMenu />} />

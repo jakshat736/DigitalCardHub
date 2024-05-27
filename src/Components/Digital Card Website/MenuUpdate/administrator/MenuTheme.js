@@ -3242,7 +3242,7 @@ export default function MenuTheme({ data }) {
                     sx={{
                       width: 330,
                       height: 60,
-                      background: "radial-gradient( #414141,#171717)",
+                     background:'#000',
                       borderRadius: 3,
                     }}
                   >
