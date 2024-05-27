@@ -64,6 +64,14 @@ import whatapp from "../Themes/ThemeAssets/whatapps.png";
 import WhatsApp1 from "../Themes/ThemeAssets/whatsapp1.png";
 import SideBar from "../UserComponents/SideBar";
 
+import indiamart from "../Themes/ThemeAssets/indiamart.png"
+import justdial from "../Themes/ThemeAssets/indiamart.png"
+import amazon from "../Themes/ThemeAssets/indiamart.png"
+import pdf from "../Themes/ThemeAssets/indiamart.png"
+import location from "../Themes/ThemeAssets/indiamart.png"
+import Flipkard from "../Themes/ThemeAssets/flipcard.webp"
+import meesho from "../Themes/ThemeAssets/meesho.png"
+
 const actions = [
   { icon: <SimCardDownloadIcon style={{ fontSize: '22px' }} />, name: "Copy" },
   { icon: <SendToMobileIcon style={{ fontSize: '20px' }} />, name: "Shareno" },
@@ -1242,6 +1250,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     autoplay: "true",
     autospeed: 1,
     slidesToScroll: 1,
+    arrows:false
    
   };
 
@@ -1265,8 +1274,20 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     return ecommerce.map((item) => {
       if (item.productimg != '') {
         return (
-          <Grid sx={{ display: "flex", justifyContent: "center", alignItems: 'center', ml: 1 }}>
-            <Grid sx={{
+          <Grid sx={{ display: "flex", justifyContent: "center", alignItems: 'center' }}>
+         <Grid sx={{ display: "flex", justifyContent: "center", alignItems: 'center',marginLeft: '2%'}}>
+          <Grid sx={{width:'100%',height:'100%'}}>
+          <img src={`${serverURL}/images/${item.productimg}`}  style={{
+        width: '98%',
+        height:matches?300:360,
+        borderRadius:8,
+        }} />
+          </Grid>
+
+         </Grid>
+     
+            
+            {/* <Grid sx={{
     position: 'relative',
     paddingBottom: '60%', // 1:1 aspect ratio
     overflow: 'hidden',
@@ -1279,7 +1300,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.5)',
       borderRadius:8,
         }} />
-            </Grid>
+            </Grid> */}
             <Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: '2%',marginTop:'2.5%' }}>
               <Grid sx={{ fontSize: '22px', fontWeight: 700 }}>
                 {item.productname}
@@ -2000,6 +2021,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 </Grid>
               </Button>
             </Grid>
+
             {
               data?.links.map((item) => {
                 return (
@@ -2405,6 +2427,9 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
 
                     )
                     }
+
+
+
                     {item.title === "Behance" && (
                       <Button
                         sx={{
@@ -2445,6 +2470,289 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
 
                     )
                     }
+
+
+                 {item.title === "Indiamart" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={indiamart} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                          IndiaMart
+                        </Grid>
+                      </Button>
+                    )
+                    }
+                     {item.title === "Justdial" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={justdial} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                          Justdial
+                        </Grid>
+                      </Button>
+
+                    )
+                    }
+                     {item.title === "Amazon" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={amazon} width={100}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                          Amazon
+                        </Grid>
+                      </Button>
+
+                    )
+                    }
+
+                     {item.title === "Flipkard" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={Flipkard} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                          Flipkard
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+                     {item.title === "Meesho" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={meesho} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                          Meesho
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+                     {item.title === "PDF" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={pdf} width={100}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                          PDF
+                        </Grid>
+                      </Button>
+
+                    )
+                    }
+                     {item.title === "Location" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={location} width={100}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                          Location
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+
                     {item.title === "Others" && (
                       <Button
                         sx={{
@@ -2534,7 +2842,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             </Grid>
             <Grid sx={{ width: "100%", display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '3%' }}>
               <Slider
-                style={{ width: "90%" }}
+                style={{ width: "95%" }}
                 {...settingproduct}
               >
                 {showSlider()}
