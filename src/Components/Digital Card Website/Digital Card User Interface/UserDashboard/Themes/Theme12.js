@@ -2048,7 +2048,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontWeight: 400,
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://github.com/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
                           <img src={github} width={25}></img>
@@ -2088,7 +2088,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontFamily:'poppins'
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://t.me/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
                           <img src={telegram} width={25}></img>
@@ -2127,7 +2127,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontFamily:'poppins'
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://discord.com/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
                           <img src={discord} width={25}></img>
@@ -2167,7 +2167,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontFamily:'poppins'
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://www.paypal.com/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
                           <img src={paypal} width={25}></img>
@@ -2207,7 +2207,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontFamily:'poppins'
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://www.snapchat.com/add/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%',marginLeft:'-2%' }}>
                           <img src={snapchatnew} width={38}></img>
@@ -2247,7 +2247,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontFamily:'poppins'
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://www.skype.com/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
                           <img src={skype} width={25}></img>
@@ -2287,7 +2287,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontFamily:'poppins'
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://www.reddit.com/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
                           <img src={reddit} width={25}></img>
@@ -2327,7 +2327,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontFamily:'poppins'
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://drive.google.com/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
                           <img src={gdrive} width={25}></img>
@@ -2367,7 +2367,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontFamily:'poppins'
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://www.dropbox.com/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
                           <img src={dropbox} width={25}></img>
@@ -2407,7 +2407,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontFamily:'poppins'
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://in.pinterest.com/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
                           <img src={pinterest} width={25}></img>
@@ -2450,7 +2450,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontFamily:'poppins'
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://www.behance.net/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
                           <img src={behance} width={25}></img>
@@ -2492,7 +2492,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontFamily:'poppins'
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://www.indiamart.com/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
                           <img src={indiamart} width={25}></img>
@@ -2531,7 +2531,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontFamily:'poppins'
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://www.justdial.com/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
                           <img src={justdial} width={25}></img>
@@ -2571,7 +2571,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontFamily:'poppins'
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://www.amazon.com/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
                           <img src={amazon} width={100}></img>
@@ -2612,7 +2612,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontFamily:'poppins'
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://www.flipkart.com/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
                           <img src={Flipkard} width={25}></img>
@@ -2652,7 +2652,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           fontFamily:'poppins'
                         }}
                         fullWidth
-                        href={`${item.link}`}
+                        href={`https://www.meesho.com/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
                           <img src={meesho} width={25}></img>
@@ -2709,7 +2709,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           PDF
                         </Grid>
                       </Button>
-
                     )
                     }
                      {item.title === "Location" && (

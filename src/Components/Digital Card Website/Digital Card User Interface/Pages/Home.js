@@ -48,8 +48,7 @@ export default function Home() {
             <Grid sx={{ position: 'fixed', bottom: 0, zIndex: 2 }}>
                 <Lower callParentFunction={parentFunction}/>
             </Grid>
-           
-            <Navbar />
+            <Navbar/>
             <Container maxWidth={"xl"}>
                 <div data-aos="fade-down"
                     data-aos-easing="linear"
