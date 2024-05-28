@@ -34,9 +34,16 @@ export default function AddMenu() {
   const menuId = location.state.menuId;
   const matches = useMediaQuery("(max-width:600px)");
 
-  const [emptyLink, setEmptylLnk] = useState({ title: "", link: "" });
 
-  const [AddOn, setAddOn] = useState(Array(1).fill(emptyLink));
+  const [empty2, setEmpty2] = useState({ title2: "", rate2: "" });
+
+  const [quantity, setQuantity] = useState(Array(1).fill(empty2));
+
+
+
+  const [empty, setEmpty] = useState({ title: "", rate: "" });
+
+  const [AddOn, setAddOn] = useState(Array(1).fill(empty));
 
   const [Dish, setDish] = useState("");
   const [Price, setPrice] = useState("");
@@ -70,16 +77,36 @@ export default function AddMenu() {
 
 
 
+  
+  const handleAddLinkQuantity = () => {
+    setQuantity([...quantity, ...Array(1).fill(empty2)]);
+  };
+
+  const handleQuantityDelete = (index) => { 
+    
+    const updatedQuantity = [...quantity];
+
+    updatedQuantity.splice(index, 1);
+
+    setQuantity(updatedQuantity);
+  };
+
+  const handleQuantityChange = (index, value) => {
+    const newData = [...quantity];
+    newData[index] = { ...newData[index], title: value };
+
+    setQuantity(newData);
+  };
+
   const handleAddLink = () => {
     // const emptyLink = {
     //     title: '',
     //     link: '',
     // };
-    setAddOn([...AddOn, ...Array(1).fill(emptyLink)]);
+    setAddOn([...AddOn, ...Array(1).fill(empty)]);
   };
 
   const handleAddOnDelete = (index) => {
-
     const updatedAddOn = [...AddOn];
 
     updatedAddOn.splice(index, 1);
@@ -398,6 +425,84 @@ export default function AddMenu() {
             />
           </Grid>
         </Grid>
+
+        <Grid item xs={12}>
+          <Grid
+            sx={{
+              fontSize: { xs: 14, md: 20 },
+              fontWeight: 600,
+              color: "#f3b419",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "row",
+              gap: 0.5,
+            }}
+          >
+            <img src={addon} width={26}></img>Quantity
+          </Grid>
+        </Grid>
+        {quantity.map((item, index) => (
+          <Grid
+            item
+            xs={12}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: 8,
+              gap: 15,
+            }}
+          >
+            <TextField
+              value={item[index]?.title2 || ""}
+              onChange={(event) => handleQuantityChange(index, event.target.value)}
+              label="Quantity"
+            />
+            <TextField
+              value={item[index]?.rate2 || ""}
+              onChange={(event) => handleQuantityChange(index, event.target.value)}
+              label="Rate"
+            />
+            <IconButton onClick={() => handleQuantityDelete(index)}>
+              <Delete />
+            </IconButton>
+          </Grid>
+        ))}
+
+        <Grid
+          item
+          xs={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: 8,
+            gap: 15,
+          }}
+        >
+          <Button
+            sx={{
+              borderRadius: 10,
+              backgroundImage: "linear-gradient(to top left,#ffa502,#f3b419)",
+              display: "flex",
+              flexDirection: "row",
+              color: "#000",
+              justifyContent: "space-evenly",
+              paddingX: "30px",
+              textAlign: "center",
+              alignItems: "center",
+            }}
+            variant="contained"
+            onClick={() => handleAddLinkQuantity()}
+          >
+            Add More Quantity
+          </Button>
+        </Grid>
+
+
+
+
+
+
         <Grid item xs={12}>
           <Grid
             sx={{
@@ -431,7 +536,7 @@ export default function AddMenu() {
               label="Add On(Optional)"
             />
             <TextField
-              value={item[index]?.title || ""}
+              value={item[index]?.rate || ""}
               onChange={(event) => handleAddOnChange(index, event.target.value)}
               label="Rate"
             />
@@ -469,6 +574,9 @@ export default function AddMenu() {
             Add More Add On
           </Button>
         </Grid>
+
+
+
 
         <Grid item xs={6}>
           <Typography
