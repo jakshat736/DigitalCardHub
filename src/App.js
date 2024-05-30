@@ -118,6 +118,7 @@ import { SessionContext } from './Components/Services/SessionContext';
 import MenuTheme2 from "./Components/Digital Card Website/MenuUpdate/administrator/MenuTheme2";
 import Categorys from "./Components/Digital Card Website/MenuUpdate/adminpannel/Categorys";
 import DispalyAllTheCategory from "./Components/Digital Card Website/MenuUpdate/adminpannel/DispalyAllTheCategory";
+import NewHome from "./Components/Digital Card Website/Digital Card User Interface/Pages/NewHome";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -133,6 +134,7 @@ function App() {
 							<Routes>
 								{/* DIGITAL CARD WEBSITE ROUTER START */}
 								<Route element={<HomePage />} path="/home" />
+								<Route element={<NewHome/>} path="/newhome" />
 								<Route element={<Instaredirect />} path="/aradhyarana" />
 								<Route element={<Home />} path="/home1" />
 								<Route element={<DCLogin />} path="/digitalcardlogin" />
