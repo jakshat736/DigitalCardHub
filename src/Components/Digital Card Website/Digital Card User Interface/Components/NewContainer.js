@@ -65,22 +65,22 @@ export default function NewContainer()
           })
       }
 
-    return(<Grid sx={{padding:2,color:'#fff',background:'#070707',height:'100vh'}}>
+    return(<Grid sx={{padding:2,color:'#fff',height:'auto'}}>
          <Grid sx={{marginLeft:matches?"0%":'5.5%',width:matches?'100%':'94%',display:'flex',flexDirection:matches?"column":'row',justifyContent:matches?'center':'none',alignItems:matches?'center':'none'}}>
             <Grid sx={{marginLeft:matches?'0%':'3%',position:'relative',width:matches?"99%":'40%',marginTop:'-2%'}}>
               {matches?<></>:<> <img src={backgroundimg} style={{width:'70%'}}></img></>}
                {matches?<><Grid sx={{display:matches?'flex':'none',justifyContent:matches?'center':'normal',alignItems:matches?'center':"normal"}}>
-                <img src={backgroundimg} style={{width:'70%'}}></img>
+                <img src={backgroundimg} style={{width:matchesA ? '100%':'70%',marginTop:matchesA ? '-15%':'0%' }}></img>
                 </Grid></>:<></>}
-                <Grid sx={{marginTop:"-62%",zIndex:40,width:'100%',display:matches?'flex':'',justifyContent:matches?'center':'normal',flexDirection:'column',alignContent:matches?'center':"normal"}}>
-                    <Grid sx={{fontSize:matchesA ? '24px' : matches ? '30px' : '2.8vw',fontWeight:700,lineHeight:matches?'34px':'52px',fontFamily:'Montserrat',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",textAlign:matches?'center':"normal"}}>
+                <Grid sx={{marginTop:matchesA ? '-100%':"-62%",zIndex:40,width:'100%',display:matches?'flex':'',justifyContent:matches?'center':'normal',flexDirection:'column',alignContent:matches?'center':"normal"}}>
+                    <Grid sx={{fontSize:matchesA ? '22px' : matches ? '30px' : '2.8vw',fontWeight:700,lineHeight:matches?'30px':'52px',fontFamily:'Montserrat',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",textAlign:matches?'center':"normal"}}>
                      MAKE YOUR  BUSSINES DIGITAL WITH US.
                     </Grid>
-                    <Grid sx={{fontSize:matches?20:'1.6vw',fontWeight:400,lineHeight:'36px',fontFamily:'Montserrat',marginTop:'1%',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",textAlign:matches?'center':"normal"}}>
+                    <Grid sx={{fontSize:matchesA ? '14px':matches?20:'1.6vw',fontWeight:400,lineHeight:matchesA ? '22px':'36px',fontFamily:'Montserrat',marginTop:'1%',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",textAlign:matches?'center':"normal"}}>
                     digital business card platform makes convienient and reliaeble
                     </Grid>
                     {matches?<><Grid sx={{marginTop:'4%',display:'flex',gap:4,alignItems:'center',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",flexDirection:matches?'column':'row'}}>
-                  <img src={learnmore} width={70}></img>
+                  <img src={learnmore} width={80}></img>
                   </Grid></>:<></>}
                     {matches?<></>:<><Grid sx={{display:'flex',gap:4,alignItems:'center',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",flexDirection:matches?'column':'row'}}>
                     <Button
@@ -111,25 +111,25 @@ export default function NewContainer()
                     </Grid></>}
                 </Grid>
             </Grid>
-           <Grid sx={{marginTop:matches?'10%':'6%',width:matches?'100%':'57%'}}>
-           <Grid sx={{ transform:'rotate(-13deg)',width:'70%'}}>
+           <Grid sx={{marginTop:matchesA ? '8%' :matches?'10%':'6%',width:matches?'100%':'57%'}}>
+           <Grid sx={{ transform:'rotate(-13deg)',width:matchesA ? '80' :'70%'}}>
         <Slider {...settings}>
           {showSlider()}
         </Slider>
     </Grid>
-    <Grid sx={{ transform:'rotate(-13deg)',width:'70%',marginLeft:'auto',marginTop:'-6%'}}>
+    <Grid sx={{ transform:'rotate(-13deg)',width:matchesA ? '80%' :'70%',marginLeft:'auto',marginTop:matchesA ? '5%' :'-6%'}}>
         <Slider {...settings}>
           {showSlider2()}
         </Slider>
     </Grid>
-    <Grid sx={{ transform:'rotate(-13deg)',width:'70%',marginTop:'8%'}}>
+    <Grid sx={{ transform:'rotate(-13deg)',width:matchesA ? '80%' :'70%',marginTop:matchesA ? '13%':'8%'}}>
         <Slider {...settings}>
           {showSlider3()}
         </Slider>
     </Grid>
            </Grid>
 
-{matches?<><Grid sx={{display:'flex',justifyContent:'center',alignContent:'center'}}>
+{matches?<><Grid sx={{display:'flex',justifyContent:'center',alignContent:'center',marginTop:matchesA ? '4%':'0%' }}>
 <Button
                 sx={{
                  border:'3.2px solid #fff',

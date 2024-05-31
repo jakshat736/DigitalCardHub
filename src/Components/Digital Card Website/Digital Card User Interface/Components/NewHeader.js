@@ -21,7 +21,7 @@ export default function NewHeader()
         <AppBar
           position="static"
           style={{
-            background: "#070707",
+            background: "rgba(30, 50, 80, 0.0)",
             height: 80,
             display: "flex",
             zIndex: 5,
@@ -29,11 +29,11 @@ export default function NewHeader()
             padding: 20,
           }}
         >
-          <Toolbar style={{display:'flex',justifyContent:matches?"space-between":'none'}} >
+          <Toolbar style={{display:'flex',justifyContent:matches?"space-between":'none',}} >
           {matches?<><Grid sx={{marginLeft:'1%'}}>
                 <img src={menu} width={28}></img>
             </Grid></>:<></>}
-            <Grid sx={{marginLeft:matches?'0':'3%'}}>
+            <Grid sx={{marginLeft:matches?'0':'6%'}}>
                 <img src={Logo} width={matches?120:140} ></img>
             </Grid>
             {matches?<><Grid >
