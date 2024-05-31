@@ -212,8 +212,6 @@ export default function DCLogin() {
                 timer: 1000
             })
         }
-
-
     }
 
     // const dialogComponent = () => {

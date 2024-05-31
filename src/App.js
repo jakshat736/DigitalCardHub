@@ -119,6 +119,7 @@ import MenuTheme2 from "./Components/Digital Card Website/MenuUpdate/administrat
 import Categorys from "./Components/Digital Card Website/MenuUpdate/adminpannel/Categorys";
 import DispalyAllTheCategory from "./Components/Digital Card Website/MenuUpdate/adminpannel/DispalyAllTheCategory";
 import NewHome from "./Components/Digital Card Website/Digital Card User Interface/Pages/NewHome";
+import DemoOtp from "./Components/Digital Card Website/Digital Card User Interface/Pages/DemoOtp";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -133,6 +134,7 @@ function App() {
 						<HashRouter>
 							<Routes>
 								{/* DIGITAL CARD WEBSITE ROUTER START */}
+								<Route element={<DemoOtp/>} path="/demootp" />  
 								<Route element={<HomePage />} path="/home" />
 								<Route element={<NewHome/>} path="/newhome" />
 								<Route element={<Instaredirect />} path="/aradhyarana" />
