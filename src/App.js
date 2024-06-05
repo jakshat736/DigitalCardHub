@@ -117,6 +117,7 @@ import MasterDashboard from './Components/MasterDashboard/MasterDashboard';
 import { SessionContext } from './Components/Services/SessionContext';
 import MenuTheme2 from "./Components/Digital Card Website/MenuUpdate/administrator/MenuTheme2";
 import Categorys from "./Components/Digital Card Website/MenuUpdate/adminpannel/Categorys";
+import Coupon from "./Components/Digital Card Website/MenuUpdate/adminpannel/coupon";
 import DispalyAllTheCategory from "./Components/Digital Card Website/MenuUpdate/adminpannel/DispalyAllTheCategory";
 import NewHome from "./Components/Digital Card Website/Digital Card User Interface/Pages/NewHome";
 import DemoOtp from "./Components/Digital Card Website/Digital Card User Interface/Pages/DemoOtp";
@@ -225,6 +226,7 @@ function App() {
 								<Route element={<MenuTheme2/>} path="/menu2" />
 								<Route path="/menuDashboard/:menuId" element={<MenuDashBoard />} />
 								<Route path="/addmenu" element={<AddMenu />} />
+								<Route path="/coupon" element={<Coupon/>} />
 								<Route path="/category" element={<Categorys/>} />
 								<Route path="/displayallthecategory" element={<DispalyAllTheCategory/>} />
 								<Route path="/vieworder" element={<ViewOrder />} />

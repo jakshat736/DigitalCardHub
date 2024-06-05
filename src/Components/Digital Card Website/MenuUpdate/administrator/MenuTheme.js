@@ -2086,7 +2086,21 @@ export default function MenuTheme({ data }) {
           <>
             <Grid item xs={12}>
             <div id="menu"></div>
-              <Grid sx={{ background: "#fff", padding: 2, height: "auto" }}>
+              <Grid
+                  sx={{
+                    height:40,
+                    display: "flex",
+                    justifyContent: "center",
+                    background:'#000',
+                    alignItems: "center",fontFamily:'poppins',position:'sticky',top:'0',zIndex:'5'}}>
+                      <Grid sx={{fontSize: "16px",
+                    fontWeight: 500,color:'#fff',display: "flex",
+                    justifyContent: "center"}}>
+                        Flat 10% Off on Entire Now
+                      </Grid>
+                </Grid>
+
+                <Grid sx={{ background: "#fff", padding: 2, height: "auto" }}>
                 <Grid
                   sx={{
                     fontSize: "18px",
@@ -2098,7 +2112,7 @@ export default function MenuTheme({ data }) {
                   }}
                 >
                   <img src={menulogo}></img>{" "}
-                  <Grid sx={{ marginTop: "2%",fontFamily:'Okra, Helvetica, sans-serif' }}>Menu</Grid>
+                  <Grid sx={{ marginTop: "2%",fontFamily:'Okra, Helvetica, sans-serif',fontFamily:'poppins' }}>Menu</Grid>
                   <img src={menulogo}></img>
                 </Grid>
                 <Grid sx={{ marginTop: "5%" }}>

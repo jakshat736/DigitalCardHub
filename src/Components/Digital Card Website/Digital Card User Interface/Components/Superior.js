@@ -1,0 +1,51 @@
+import { Grid } from '@mui/material';
+import lines from "../../Digital Card Assets/lines.png"
+import superior from "../../Digital Card Assets/superior.png"
+import {
+    useMediaQuery,
+  } from "@mui/material";
+
+export default function Superior()
+{
+    const matches = useMediaQuery("(max-width:1100px)");
+    const matchesA = useMediaQuery("(max-width:700px)");
+    const matchesB = useMediaQuery("(max-width:1300px)");
+    return(<Grid sx={{width:'100%',height:'auto',marginTop:matchesA?'18%':'10%',position:'relative'}}>
+            
+             <Grid sx={{display:'flex'}}>
+
+             <Grid sx={{marginTop:'28%',display:'flex',flexDirection:'column',marginLeft:'2%'}}>
+             <Grid sx={{position:'relative',transform:'rotate(14deg)'}}>
+               <img src={lines} style={{width:'33vw'}}  ></img>
+               <Grid>
+               <img src={lines}  style={{position:'absolute',top:matchesA?-25:-55,width:'33vw'}}></img>
+               </Grid>
+             </Grid>
+             </Grid>
+
+             <Grid sx={{display:'flex',flexDirection:'column',marginLeft:matchesB?'25%':matchesA?'23%':'27%'}}>
+             <Grid sx={{position:'relative',transform:'rotate(14deg)'}}>
+               <img src={lines} style={{width:'33vw'}} ></img>
+               <Grid>
+               <img src={lines} width={500} style={{position:'absolute',top:matchesA?-25:-55,width:'33vw'}}></img>
+               </Grid>
+             </Grid>
+             </Grid>
+
+             </Grid>
+
+             <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',position:'absolute',width:'100%',top:matchesA?'-12vw':matches?'-2vw':1,flexDirection:'column'}}>
+                <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',fontSize:matchesA?'18px':'2.8vw',fontWeight:500,lineHeight:'30px',color:'#fff'}}>
+                  WHY WE ARE SUPERIOR ?
+                </Grid>
+                <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'5%'}}>
+              <img src={superior}style={{width:matchesA?'80vw':'66vw'}} ></img>
+              </Grid>
+             </Grid>
+
+             <Grid sx={{height:80,width:'100%'}}>
+
+             </Grid>
+
+    </Grid>)
+}
