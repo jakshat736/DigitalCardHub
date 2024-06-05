@@ -37,6 +37,20 @@ export default function NewContainer()
         autoplaySpeed: 0,
       };
 
+      var setting2 = {
+        dots: false,
+        infinite: true,
+        speed: 5000,
+        autoplay: "true",
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows:false,
+        cssEase: 'linear',
+        pauseOnHover: false,
+        autoplaySpeed: 0,
+        rtl:true
+      };
+
 
       var data=[slider1,slider2,slider3,slider1,slider2,slider3]
       const showSlider=()=>{
@@ -59,13 +73,13 @@ export default function NewContainer()
       var data3=[slider111,slider222,slider333,slider111,slider222,slider333]
       const showSlider3=()=>{
           return data3.map((item)=>{
-              return(<Grid>
+              return(<Grid sx={{zIndex:100}}>
                   <img src={item} style={{width:"95%"}}/>
               </Grid>)
           })
       }
 
-    return(<Grid sx={{padding:2,color:'#fff',height:'auto'}}>
+    return(<Grid sx={{padding:2,color:'#fff',height:matches?'auto':530}}>
          <Grid sx={{marginLeft:matches?"0%":'5.5%',width:matches?'100%':'94%',display:'flex',flexDirection:matches?"column":'row',justifyContent:matches?'center':'none',alignItems:matches?'center':'none'}}>
             <Grid sx={{marginLeft:matches?'0%':'3%',position:'relative',width:matches?"99%":'40%',marginTop:'-2%'}}>
               {matches?<></>:<> <img src={backgroundimg} style={{width:'70%'}}></img></>}
@@ -112,17 +126,17 @@ export default function NewContainer()
                 </Grid>
             </Grid>
            <Grid sx={{marginTop:matchesA ? '8%' :matches?'10%':'6%',width:matches?'100%':'57%'}}>
-           <Grid sx={{ transform:'rotate(-13deg)',width:matchesA ? '80' :'70%'}}>
+           <Grid sx={{ transform:'rotate(-13deg)',width:matchesA ? '80%' :'70%'}}>
         <Slider {...settings}>
           {showSlider()}
         </Slider>
     </Grid>
     <Grid sx={{ transform:'rotate(-13deg)',width:matchesA ? '80%' :'70%',marginLeft:'auto',marginTop:matchesA ? '5%' :'-6%'}}>
-        <Slider {...settings}>
+        <Slider {...setting2}>
           {showSlider2()}
         </Slider>
     </Grid>
-    <Grid sx={{ transform:'rotate(-13deg)',width:matchesA ? '80%' :'70%',marginTop:matchesA ? '13%':'8%'}}>
+    <Grid sx={{ transform:'rotate(-13deg)',width:matchesA ? '80%' :'70%',marginTop:matchesA ? '13%':'8%',zIndex:100}}>
         <Slider {...settings}>
           {showSlider3()}
         </Slider>

@@ -15,13 +15,13 @@ export default function NewHeader()
  {
   const matches = useMediaQuery("(max-width:1000px)");
   return (
-    <Grid style={{ width: "100%" }}>
+    <Grid style={{ width: "100%",fontFamily:'Muli, sans-serif' }}>
     <Grid style={{ position: "sticky" }}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
           position="static"
           style={{
-            background: "rgba(30, 50, 80, 0.0)",
+            backgroundImage: "linear-gradient(to bottom right, #171717,#171717)",
             height: 80,
             display: "flex",
             zIndex: 5,

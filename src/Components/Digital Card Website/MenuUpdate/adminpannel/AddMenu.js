@@ -93,8 +93,9 @@ export default function AddMenu() {
 
   const handleQuantityChange = (index, value) => {
     const newData = [...quantity];
+    console.log(newData[index])
     newData[index] = { ...newData[index], title: value };
-
+    console.log(newData)
     setQuantity(newData);
   };
 
@@ -442,7 +443,7 @@ export default function AddMenu() {
             <img src={addon} width={26}></img>Quantity
           </Grid>
         </Grid>
-        {quantity.map((item, index) => (
+        {quantity?.map((item, index) => (
           <Grid
             item
             xs={12}
@@ -454,12 +455,12 @@ export default function AddMenu() {
             }}
           >
             <TextField
-              value={item[index]?.title2 || ""}
+              value={item[index]?.title || ""}
               onChange={(event) => handleQuantityChange(index, event.target.value)}
               label="Quantity"
             />
             <TextField
-              value={item[index]?.rate2 || ""}
+              value={item[index]?.rate || ""}
               onChange={(event) => handleQuantityChange(index, event.target.value)}
               label="Rate"
             />

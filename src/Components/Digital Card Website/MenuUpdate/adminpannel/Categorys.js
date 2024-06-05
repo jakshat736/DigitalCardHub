@@ -107,9 +107,9 @@ export default function Categorys()
 
 
 
-    return( <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center',padding:matches?2:0 }}>
+    return( <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center',padding:2 }}>
 
-    <Grid container spacing={2} sx={{ width: 400 }}>
+    <Grid container spacing={2} sx={{ width: matches?'100%':400 }}>
       <Grid item xs={6} sx={{ display: 'flex', flexDirection: 'row', }}>
         <img src={img1} alt="Masala Grill" width={120} />
       </Grid>
