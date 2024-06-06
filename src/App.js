@@ -116,6 +116,7 @@ import MasterLogin from './Components/MasterDashboard/LogIn';
 import MasterDashboard from './Components/MasterDashboard/MasterDashboard';
 import { SessionContext } from './Components/Services/SessionContext';
 import MenuTheme2 from "./Components/Digital Card Website/MenuUpdate/administrator/MenuTheme2";
+import MenuTheme3 from "./Components/Digital Card Website/MenuUpdate/administrator/MenuTheme3";
 import Categorys from "./Components/Digital Card Website/MenuUpdate/adminpannel/Categorys";
 import Coupon from "./Components/Digital Card Website/MenuUpdate/adminpannel/coupon";
 import DispalyAllTheCategory from "./Components/Digital Card Website/MenuUpdate/adminpannel/DispalyAllTheCategory";
@@ -224,6 +225,7 @@ function App() {
 								<Route path="/menus/:menuId" element={<Menu />} />
 								<Route element={<MenuTheme />} path="/menutheme" />
 								<Route element={<MenuTheme2/>} path="/menu2" />
+								<Route element={<MenuTheme3/>} path="/menu3" />
 								<Route path="/menuDashboard/:menuId" element={<MenuDashBoard />} />
 								<Route path="/addmenu" element={<AddMenu />} />
 								<Route path="/coupon" element={<Coupon/>} />

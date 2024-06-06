@@ -1,0 +1,26 @@
+.slider-container {
+    width: 80%;
+    margin: auto;
+  }
+  
+  .center .slick-slide {
+    opacity: .5;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .center .slick-center {
+    opacity: 1;
+    transform: scale(1.2); /* Center slide को बड़ा दिखाने के लिए */
+    z-index: 1; /* Center slide को foreground में लाने के लिए */
+    height: 410px;
+    margin-top: 20px;
+  }
+  
+.slick-slide h3 {
+  text-align: center;
+  background: #ccc;
+  padding: 40px;
+  border: 1px solid #ddd;
+  margin: 10px;
+  border-radius: 10px;
+}

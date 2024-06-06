@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
-import lines from "../../Digital Card Assets/lines.png"
-import superior from "../../Digital Card Assets/superior.png"
+import lines from "../../Digital Card Assets/line111.png"
+import superior from "../../Digital Card Assets/superior2.png"
 import {
     useMediaQuery,
   } from "@mui/material";
@@ -10,7 +10,7 @@ export default function Superior()
     const matches = useMediaQuery("(max-width:1100px)");
     const matchesA = useMediaQuery("(max-width:700px)");
     const matchesB = useMediaQuery("(max-width:1300px)");
-    return(<Grid sx={{width:'100%',height:'auto',marginTop:matchesA?'18%':'10%',position:'relative'}}>
+    return(<Grid sx={{width:'100%',height:'auto',marginTop:matchesA?'25%':'10%',position:'relative'}}>
             
              <Grid sx={{display:'flex'}}>
 
@@ -35,7 +35,7 @@ export default function Superior()
              </Grid>
 
              <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',position:'absolute',width:'100%',top:matchesA?'-12vw':matches?'-2vw':1,flexDirection:'column'}}>
-                <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',fontSize:matchesA?'18px':'2.8vw',fontWeight:500,lineHeight:'30px',color:'#fff'}}>
+                <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',fontSize:matchesA?'22px':'2.8vw',fontWeight:700,lineHeight:'30px',color:'#fff'}}>
                   WHY WE ARE SUPERIOR ?
                 </Grid>
                 <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'5%'}}>
@@ -43,9 +43,7 @@ export default function Superior()
               </Grid>
              </Grid>
 
-             <Grid sx={{height:80,width:'100%'}}>
-
-             </Grid>
+          
 
     </Grid>)
 }

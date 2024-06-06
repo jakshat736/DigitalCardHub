@@ -3,9 +3,12 @@ import blurground from "../../Digital Card Assets/blurBackground.png"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import banner1 from "../../Digital Card Assets/banner1.png"
-import banner2 from "../../Digital Card Assets/banner2.png";
-import blur from "../../Digital Card Assets/blur.png"
+import stand1 from "../../Digital Card Assets/stand1.jpg"
+import stand2 from "../../Digital Card Assets/stand2.jpg"
+import stand3 from "../../Digital Card Assets/stand3.jpg"
+import stand4 from "../../Digital Card Assets/stand4.jpg"
+import stand5 from "../../Digital Card Assets/stand5.jpg"
+
 import {
     useMediaQuery,
   } from "@mui/material";
@@ -13,17 +16,15 @@ import {
 
 export default function Introducing()
 {
-
     const matches = useMediaQuery("(max-width:900px)");
     const matchesA = useMediaQuery("(max-width:600px)");
     const matchesB = useMediaQuery("(max-width:500px)");
      var settings = {
         dots: false,
         infinite: true,
-        speed: 1000,
+        speed: 3000,
         autoplay: "true",
         slidesToShow: matchesA ?1:3,
-        slidesToScroll: 1,
         arrows:false,
         cssEase: 'linear',
         pauseOnHover: false,
@@ -31,18 +32,17 @@ export default function Introducing()
       };
 
 
-      var data=[banner1,banner2,banner1,banner2,banner1,banner2]
+      var data=[stand1,stand2,stand3,stand4,stand5,]
       const showSlider=()=>{
           return data.map((item)=>{
               return(<Grid sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-                  <img src={item} style={{width:"100%"}}/>
+                  <img src={item} style={{width:"95%"}}/>
               </Grid>)
           })
       }
 
-
     return(<Grid sx={{width:'100%',marginTop:"8%",marginBottom:'6%'}}>
-       {matchesB?<><Grid sx={{fontSize:matchesB?'22px':matchesA?'18px':'2.8vw',fontWeight:700,lineHeight:matchesA?'28px':matches?"36px":'52px',textAlign:'center',color:'#fff'}}>
+       {matchesB?<><Grid sx={{fontSize:matchesB?'22px':matchesA?'18px':'2.8vw',fontWeight:700,lineHeight:matchesA?'28px':matches?"36px":'52px',textAlign:'center',color:'#fff',padding:1}}>
             INTRODUCING OUR WIDE RANGE OF CARD DESIGNS.
             </Grid></>:<></>}
     <Grid sx={{width:'100%',display:'flex'}}>
@@ -56,10 +56,7 @@ export default function Introducing()
             </Grid>
            </Grid>
           </Grid>
-          <Grid sx={{width:'2%',zIndex:20}}>
-            <img src={blur} style={{width:matchesB?30:50,height:matchesB?265:370,marginTop:'30%',marginLeft:matchesB?-10:matchesA?-20:matches?'-50%':''}}></img>
-          </Grid>
-          <Grid sx={{width:'38%',display:'flex',alignItems:'center',justifyContent:'center',zIndex:10}}>
+          <Grid sx={{width:'40%',display:'flex',alignItems:'center',justifyContent:'center',zIndex:10}}>
            <Grid sx={{width:'100%'}}>
             <Slider  {...settings}>
               {showSlider()}

@@ -1,20 +1,25 @@
 import { Grid,Button } from "@mui/material";
-import backgroundimg from "../../Digital Card Assets/backgroundimg.png"
+import backgroundimg from "../../Digital Card Assets/mobileblur.png"
 import learnmore from "../../Digital Card Assets/learnmore.png"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import slider1 from "../../Digital Card Assets/slider1.jpg";
-import slider2 from "../../Digital Card Assets/slider2.jpg";
-import slider3 from "../../Digital Card Assets/slider3.jpg";
+import slider from "../../Digital Card Assets/Greview.jpg";
+import slider1 from "../../Digital Card Assets/whatapp.jpg";
+import slider2 from "../../Digital Card Assets/insta.jpg";
+import slider3 from "../../Digital Card Assets/fb.jpg";
+import slider4 from "../../Digital Card Assets/in.jpg";
+import slider5 from "../../Digital Card Assets/amazon.jpg";
 
-import slider11 from "../../Digital Card Assets/slider11.jpg";
-import slider22 from "../../Digital Card Assets/slider22.jpg";
-import slider33 from "../../Digital Card Assets/slider33.jpg";
+import slider11 from "../../Digital Card Assets/ankit.jpg";
+import slider22 from "../../Digital Card Assets/raj.jpg";
+import slider33 from "../../Digital Card Assets/abhi.jpg";
 
-import slider111 from "../../Digital Card Assets/slider21.jpg";
-import slider222 from "../../Digital Card Assets/slider32.jpg";
-import slider333 from "../../Digital Card Assets/slider34.jpg";
+import slider111 from "../../Digital Card Assets/rat us.jpg";
+import slider222 from "../../Digital Card Assets/justdial.jpg";
+import slider333 from "../../Digital Card Assets/maketrip.jpg";
+import slider444 from "../../Digital Card Assets/mart.jpg";
+import slider555 from "../../Digital Card Assets/utube.jpg";
 
 import {
     useMediaQuery,
@@ -52,11 +57,11 @@ export default function NewContainer()
       };
 
 
-      var data=[slider1,slider2,slider3,slider1,slider2,slider3]
+      var data=[slider,slider1,slider2,slider3,slider4,slider5]
       const showSlider=()=>{
           return data.map((item)=>{
               return(<Grid>
-                  <img src={item} style={{width:"95%"}}/>
+                  <img src={item} style={{width:"95%",borderRadius:2}}/>
               </Grid>)
           })
       }
@@ -65,16 +70,16 @@ export default function NewContainer()
       const showSlider2=()=>{
           return data2.map((item)=>{
               return(<Grid>
-                  <img src={item} style={{width:"95%"}}/>
+                  <img src={item} style={{width:"95%",borderRadius:2}}/>
               </Grid>)
           })
       }
 
-      var data3=[slider111,slider222,slider333,slider111,slider222,slider333]
+      var data3=[slider111,slider222,slider333,slider444,slider555,slider333]
       const showSlider3=()=>{
           return data3.map((item)=>{
               return(<Grid sx={{zIndex:100}}>
-                  <img src={item} style={{width:"95%"}}/>
+                  <img src={item} style={{width:"95%",borderRadius:2}}/>
               </Grid>)
           })
       }
@@ -82,11 +87,11 @@ export default function NewContainer()
     return(<Grid sx={{padding:2,color:'#fff',height:matches?'auto':530}}>
          <Grid sx={{marginLeft:matches?"0%":'5.5%',width:matches?'100%':'94%',display:'flex',flexDirection:matches?"column":'row',justifyContent:matches?'center':'none',alignItems:matches?'center':'none'}}>
             <Grid sx={{marginLeft:matches?'0%':'3%',position:'relative',width:matches?"99%":'40%',marginTop:'-2%'}}>
-              {matches?<></>:<> <img src={backgroundimg} style={{width:'70%'}}></img></>}
+              {matches?<></>:<> <img src={backgroundimg} style={{width:'82%'}}></img></>}
                {matches?<><Grid sx={{display:matches?'flex':'none',justifyContent:matches?'center':'normal',alignItems:matches?'center':"normal"}}>
                 <img src={backgroundimg} style={{width:matchesA ? '100%':'70%',marginTop:matchesA ? '-15%':'0%' }}></img>
                 </Grid></>:<></>}
-                <Grid sx={{marginTop:matchesA ? '-100%':"-62%",zIndex:40,width:'100%',display:matches?'flex':'',justifyContent:matches?'center':'normal',flexDirection:'column',alignContent:matches?'center':"normal"}}>
+                <Grid sx={{marginTop:matchesA ? '-90%':"-62%",zIndex:40,width:'100%',display:matches?'flex':'',justifyContent:matches?'center':'normal',flexDirection:'column',alignContent:matches?'center':"normal"}}>
                     <Grid sx={{fontSize:matchesA ? '22px' : matches ? '30px' : '2.8vw',fontWeight:700,lineHeight:matches?'30px':'52px',fontFamily:'Montserrat',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",textAlign:matches?'center':"normal"}}>
                      MAKE YOUR  BUSSINES DIGITAL WITH US.
                     </Grid>
