@@ -1,14 +1,14 @@
 import { Grid,Button} from "@mui/material";
-import images from "../../Digital Card Assets/images.png";
+import images from "../../Digital Card Assets/backgroundnew.png";
 import Paper from '@mui/material/Paper';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import arror from "../../Digital Card Assets/arrow.png"
+import arror from "../../Digital Card Assets/arrownew.png"
 import {
     useMediaQuery,
   } from "@mui/material";
-import images2 from "../../Digital Card Assets/images2.png"
-import arrow2 from "../../Digital Card Assets/arrow2.png"
+import images2 from "../../Digital Card Assets/backgroundnew2.png"
+import arrow2 from "../../Digital Card Assets/arrow2new.png"
 export default function ConnectNow()
 {
     

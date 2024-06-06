@@ -1,10 +1,10 @@
 import { Grid } from "@mui/material";
 import {useMediaQuery} from "@mui/material";
-import blurbackgroundEcommerce from "../../Digital Card Assets/blurBackgroundE.png"
-import blurbackgroundEcommerce2 from "../../Digital Card Assets/blurBackgroundE2.png"
+import blurbackgroundEcommerce from "../../Digital Card Assets/background11.png"
+import blurbackgroundEcommerce2 from "../../Digital Card Assets/background22.png"
 import right from "../../Digital Card Assets/righticon.png"
-import mobiles from '../../Digital Card Assets/mobiles.png'
-import mobile11 from "../../Digital Card Assets/ima.png"
+import mobiles from '../../Digital Card Assets/teenphn.png'
+import mobile11 from "../../Digital Card Assets/singlephn.png"
 export default function Ecommerce()
 {
     const matches = useMediaQuery("(max-width:1050px)");

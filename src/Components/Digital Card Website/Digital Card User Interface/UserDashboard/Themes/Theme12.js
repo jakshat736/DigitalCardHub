@@ -1337,6 +1337,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 </Grid>
               </Grid>
             </Grid>
+
+            
           </Grid>)
       }
     })

@@ -29,6 +29,10 @@ export default function MenuTheme2() {
     navigate("/menutheme");
   };
 
+  const handleNavigate2 = () => {
+    navigate("/menu3");
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -546,7 +550,7 @@ export default function MenuTheme2() {
                       }}>
                       <img src={coupon} width={30}></img>
                       <Grid sx={{ marginLeft: "4%" }}>
-                        <input type="text" style={{height:34,borderColor:'#fff',border:'1px solid #fff'}} placeholder="Apply Coupon Code"></input>
+                        <input type="text" style={{height:matches?34:25,borderColor:'#fff',border:'1px solid #fff'}} placeholder="Apply Coupon Code"></input>
                       </Grid>
                       <img src={leftarrow} style={{ marginLeft: "auto" }}></img>
                     </Grid>
@@ -870,6 +874,7 @@ export default function MenuTheme2() {
               />
 
               <Button
+              onClick={handleNavigate2}
                 sx={{
                   borderColor: "#bdc3c7",
                   height: 36,
