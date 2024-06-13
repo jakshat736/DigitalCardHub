@@ -19,6 +19,7 @@ import pay from "../assets/pay.png";
 import leftarrow from "../assets/leftarrow.png";
 import thankyou from "../assets/thankyou.png";
 import hand from "../assets/hand.png";
+import coupon from "../assets/coupon.png"
 
 export default function MenuTheme2() {
   
@@ -26,6 +27,10 @@ export default function MenuTheme2() {
   const matches = useMediaQuery("(max-width:600px)");
   const handleNavigate = () => {
     navigate("/menutheme");
+  };
+
+  const handleNavigate2 = () => {
+    navigate("/menu3");
   };
 
   useEffect(() => {
@@ -408,7 +413,7 @@ export default function MenuTheme2() {
                   padding: 2,
                   "& > :not(style)": {
                     width: "100%",
-                    height: 200,
+                    height: 230,
                   },
                 }}
               >
@@ -509,8 +514,10 @@ export default function MenuTheme2() {
                     sx={{
                       height: 60,
                       display: "flex",
+                      flexDirection:'column',
                       alignItems: "center",
                       padding: 1,
+                      gap:2
                     }}
                   >
                     <Grid
@@ -529,6 +536,26 @@ export default function MenuTheme2() {
                       <Grid sx={{ marginLeft: "4%" }}>Payment Method</Grid>
                       <img src={leftarrow} style={{ marginLeft: "auto" }}></img>
                     </Grid>
+                  
+                    <Grid
+                      sx={{
+                        height: 35,
+                        border: "1px solid #000",
+                        fontSize: "14px",
+                        display: "flex",
+                        alignItems: "center",
+                        borderRadius: 2,
+                        padding: 0.8,
+                        width: "100%",
+                      }}>
+                      <img src={coupon} width={30}></img>
+                      <Grid sx={{ marginLeft: "4%" }}>
+                        <input type="text" style={{height:matches?34:25,borderColor:'#fff',border:'1px solid #fff'}} placeholder="Apply Coupon Code"></input>
+                      </Grid>
+                      <img src={leftarrow} style={{ marginLeft: "auto" }}></img>
+                    </Grid>
+
+
                   </Grid>
                 </Paper>
               </Box>
@@ -847,6 +874,7 @@ export default function MenuTheme2() {
               />
 
               <Button
+              onClick={handleNavigate2}
                 sx={{
                   borderColor: "#bdc3c7",
                   height: 36,
