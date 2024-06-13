@@ -116,8 +116,12 @@ import MasterLogin from './Components/MasterDashboard/LogIn';
 import MasterDashboard from './Components/MasterDashboard/MasterDashboard';
 import { SessionContext } from './Components/Services/SessionContext';
 import MenuTheme2 from "./Components/Digital Card Website/MenuUpdate/administrator/MenuTheme2";
+import MenuTheme3 from "./Components/Digital Card Website/MenuUpdate/administrator/MenuTheme3";
 import Categorys from "./Components/Digital Card Website/MenuUpdate/adminpannel/Categorys";
+import Coupon from "./Components/Digital Card Website/MenuUpdate/adminpannel/coupon";
 import DispalyAllTheCategory from "./Components/Digital Card Website/MenuUpdate/adminpannel/DispalyAllTheCategory";
+import NewHome from "./Components/Digital Card Website/Digital Card User Interface/Pages/NewHome";
+import DemoOtp from "./Components/Digital Card Website/Digital Card User Interface/Pages/DemoOtp";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -132,7 +136,9 @@ function App() {
 						<HashRouter>
 							<Routes>
 								{/* DIGITAL CARD WEBSITE ROUTER START */}
+								<Route element={<DemoOtp/>} path="/demootp" />  
 								<Route element={<HomePage />} path="/home" />
+								<Route element={<NewHome/>} path="/newhome" />
 								<Route element={<Instaredirect />} path="/aradhyarana" />
 								<Route element={<Home />} path="/home1" />
 								<Route element={<DCLogin />} path="/digitalcardlogin" />
@@ -219,8 +225,10 @@ function App() {
 								<Route path="/menus/:menuId" element={<Menu />} />
 								<Route element={<MenuTheme />} path="/menutheme" />
 								<Route element={<MenuTheme2/>} path="/menu2" />
+								<Route element={<MenuTheme3/>} path="/menu3" />
 								<Route path="/menuDashboard/:menuId" element={<MenuDashBoard />} />
 								<Route path="/addmenu" element={<AddMenu />} />
+								<Route path="/coupon" element={<Coupon/>} />
 								<Route path="/category" element={<Categorys/>} />
 								<Route path="/displayallthecategory" element={<DispalyAllTheCategory/>} />
 								<Route path="/vieworder" element={<ViewOrder />} />
@@ -229,7 +237,7 @@ function App() {
 								<Route path="/printrecipt" element={<PrintRecipt />} />
 								<Route path="/allmenu" element={<AllMenu />} />
 								<Route path="/form" element={<Form />} />
-								<Route path="/editmenu" element={<EditMenu />} />
+								<Route path="/editmenu" element={<EditMenu />}/>
 								<Route path="/kitchen" element={<Kitchen />} />
 								<Route path="/selectqy" element={<Selectqy />} />
 								<Route path="/floatingmenu" element={<FloatingMenu />} />

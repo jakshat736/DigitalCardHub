@@ -18,6 +18,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import { useNavigate, useParams } from "react-router-dom";
 import { postData } from '../../../Services/NodeServices';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import { PhoneEnabled } from '@mui/icons-material';
 import Swal from 'sweetalert2';
 export default function MenuDashBoard() {
@@ -99,6 +100,10 @@ export default function MenuDashBoard() {
       <ListItem button divider>
         <ListItemText  onClick={()=>navigate('/AddMenu',{state:{menuId:menuId}})} primary="Add Menu Items" />
         <SoupKitchenIcon sx={{mr:{xs:5,md:0}}}/>
+      </ListItem>
+      <ListItem button divider>
+        <ListItemText  onClick={()=>navigate('/Coupon',{state:{menuId:menuId}})} primary="Coupons" />
+        <CardGiftcardIcon sx={{mr:{xs:5,md:0}}}/>
       </ListItem>
       <ListItem button>
         <ListItemText onClick={()=>navigate('/Allmenu',{state:{menuId:menuId}})} primary="Edit Menu Items" />
