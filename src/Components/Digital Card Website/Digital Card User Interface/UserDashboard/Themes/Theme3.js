@@ -782,8 +782,14 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
           >
             {" "}
             <Grid item xs={12} sx={{ marginBottom: 1, marginTop: -10 }}>
-              <img
+              {/* <img
                 src={'data:image/jpeg;base64,' +arrayBufferToBase64(data?.companylogo.data?.data)}
+                width={120}
+                height={120}
+                style={{ borderRadius: "60%", boxShadow: "2px 2px 15px 2px" }}
+              /> */}
+                <img
+                src={`${serverURL}/images/${data?.companylogo}`}
                 width={120}
                 height={120}
                 style={{ borderRadius: "60%", boxShadow: "2px 2px 15px 2px" }}
