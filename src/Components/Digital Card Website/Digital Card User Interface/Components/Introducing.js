@@ -1,17 +1,16 @@
 import { Grid } from "@mui/material";
-import blurground from "../../Digital Card Assets/blurBackground.png"
-import Slider from "react-slick"
-import "slick-carousel/slick/slick.css";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
-import stand1 from "../../Digital Card Assets/stand1.jpg"
-import stand2 from "../../Digital Card Assets/stand2.jpg"
-import stand3 from "../../Digital Card Assets/stand3.jpg"
-import stand4 from "../../Digital Card Assets/stand4.jpg"
-import stand5 from "../../Digital Card Assets/stand5.jpg"
+import "slick-carousel/slick/slick.css";
+import stand1 from "../../Digital Card Assets/stand1.jpg";
+import stand2 from "../../Digital Card Assets/stand2.jpg";
+import stand3 from "../../Digital Card Assets/stand3.jpg";
+import stand4 from "../../Digital Card Assets/stand4.jpg";
+import stand5 from "../../Digital Card Assets/stand5.jpg";
 
 import {
-    useMediaQuery,
-  } from "@mui/material";
+  useMediaQuery,
+} from "@mui/material";
 
 
 export default function Introducing()
