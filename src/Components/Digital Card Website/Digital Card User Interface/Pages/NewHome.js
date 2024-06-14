@@ -11,6 +11,9 @@ import Superior from '../Components/Superior';
 import Utube from '../Components/Utube';
 import SliderForProducts from '../Components/SliderForProducts';
 import Services from '../Components/Services';
+import NewFeatures from '../Components/NewFeatures';
+import NewCategories from '../Components/NewCategories';
+import Newfooter from '../Components/NewFooter';
 
 export default function NewHome()
 {
@@ -41,13 +44,22 @@ export default function NewHome()
        <Superior/>
     </Grid>
     <Grid>
+     <Services/>
+    </Grid>
+    <Grid>
        <Utube/>
     </Grid>
     <Grid>
       <SliderForProducts/>
     </Grid>
     <Grid>
-     <Services/>
+      <NewCategories/>
+    </Grid>
+    <Grid>
+      <NewFeatures/>
+    </Grid>
+    <Grid>
+        <Newfooter/>
     </Grid>
     </Grid>)
 }

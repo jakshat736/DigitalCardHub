@@ -8,7 +8,7 @@ import stand2 from "../../Digital Card Assets/stand2.jpg"
 import stand3 from "../../Digital Card Assets/stand3.jpg"
 import stand4 from "../../Digital Card Assets/stand4.jpg"
 import stand5 from "../../Digital Card Assets/stand5.jpg"
-
+import blurrectangle from "../../Digital Card Assets/blurrectangle.png"
 import {
     useMediaQuery,
   } from "@mui/material";
@@ -36,7 +36,7 @@ export default function Introducing()
       const showSlider=()=>{
           return data.map((item)=>{
               return(<Grid sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-                  <img src={item} style={{width:"95%"}}/>
+                  <img src={item} style={{width:"90%"}}/>
               </Grid>)
           })
       }
@@ -56,7 +56,10 @@ export default function Introducing()
             </Grid>
            </Grid>
           </Grid>
-          <Grid sx={{width:'40%',display:'flex',alignItems:'center',justifyContent:'center',zIndex:10}}>
+          <Grid sx={{width:'40%',display:'flex',alignItems:'center',justifyContent:"flex-start",zIndex:10,position:'relative'}}>
+            <Grid sx={{position:'absolute',zIndex:30,display:'flex',justifyContent:"flex-start"}}>
+          <img src={blurrectangle}  style={{height:matchesB?'60vw':'19.6vw',width:70,marginLeft:matchesB?"-1%":'',marginTop:matchesB?'-4%':'-3%'}}></img>
+          </Grid>
            <Grid sx={{width:'100%'}}>
             <Slider  {...settings}>
               {showSlider()}
