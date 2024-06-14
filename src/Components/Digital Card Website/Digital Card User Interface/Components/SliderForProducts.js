@@ -2,7 +2,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useMediaQuery from '@mui/material/useMediaQuery';
-import s1 from "../../Digital Card Assets/ss1.jpg"
 import s2 from "../../Digital Card Assets/ss2.jpg"
 import s3 from "../../Digital Card Assets/ss3.jpg"
 import s4 from "../../Digital Card Assets/ss4.jpg"
@@ -55,12 +54,12 @@ export default function SliderForProducts()
   
 
     var useStyle=useStyles()
-   var data=[s7,s8,s6,s5,s4,s3,s2,s1]
+   var data=[s7,s8,s6,s5,s4,s3,s2]
    const ShowSlider=()=>{
     return data.map((item)=>{
-        return(<Grid style={{width:'100%',display:'flex',flexDirection:'column'}}>
-          <Grid style={{width:'90%',height:'90%',borderRadius:'20%',display:'flex',justifyContent:'center',flexDirection:'row',textAlign:'center',margin: '15px',borderrRadius: '10px'}}>
-          <img src={item} style={{width:'98%',margin:4,borderRadius:10}}></img>
+        return(<Grid style={{width:'100%',display:'flex',flexDirection:'column',background:'red'}}>
+          <Grid style={{width:'240px',height:'300px',borderRadius:'24px',display:'flex',justifyContent:'center',flexDirection:'row',textAlign:'center',margin: '15px',borderrRadius: '10px'}}>
+          <img src={item} style={{width:'98%',margin:4,borderRadius:10, objectFit: 'cover'}}></img>
           </Grid>
           <Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: '2%',marginTop:matches?'0%':'2.5%',color:'#fff',justifyContent:'center',alignItems:'center',textAlign:'center',width:'100%' }}>
               <Grid sx={{ fontSize: matches?'16px':'1vw', fontWeight: 700,width:'80%' }}>

@@ -6,14 +6,16 @@
   .center .slick-slide {
     opacity: .5;
     transition: transform 0.5s ease-in-out;
+    width: 80%;
+    height: 100% ;
   }
   
   .center .slick-center {
     opacity: 1;
     transform: scale(1.2); /* Center slide को बड़ा दिखाने के लिए */
     z-index: 1; /* Center slide को foreground में लाने के लिए */
-    height: 410px;
-    margin-top: 20px;
+    height: 450px;
+    margin-top: 25px;
   }
   
 .slick-slide h3 {

@@ -20,7 +20,7 @@ export default function Services()
       };
       const matches = useMediaQuery("(max-width:600px)");
 
-    return(<Grid sx={{width:'100%',display:'flex',justifyContent:"center",alignItems:'center',marginTop:'9%',flexDirection:'column'}}>
+    return(<Grid sx={{width:'100%',display:'flex',justifyContent:"center",alignItems:'center',flexDirection:'column'}}>
         <Grid sx={{alignItems:'center',fontSize:matches?'22px':'2.8vw',fontWeight:700,lineHeight:'30px',color:'#fff'}}>
             SERVICE WE OFFER
         </Grid>
