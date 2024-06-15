@@ -14,6 +14,8 @@ import {
   Paper,
   Stack,TextField,Typography,
 } from "@mui/material";
+import Avatar from '@mui/material/Avatar';
+import AvatarGroup from '@mui/material/AvatarGroup';
 import Dialog from "@mui/material/Dialog";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -45,7 +47,7 @@ import pinterest from '../../../Digital Card Assets/pinterest.png';
 import reddit from '../../../Digital Card Assets/reddit.png';
 import skype from '../../../Digital Card Assets/skype.png';
 import telegram from '../../../Digital Card Assets/telegram.png';
-
+import utube from '../Themes/ThemeAssets/utube.png';
 import SendToMobileIcon from '@mui/icons-material/SendToMobile';
 import OtpGenerator from "../../Invite/OtpGenerator";
 import call from "../Themes/ThemeAssets/calls.png";
@@ -63,15 +65,32 @@ import msg from "../Themes/ThemeAssets/msg.webp";
 import whatapp from "../Themes/ThemeAssets/whatapps.png";
 import WhatsApp1 from "../Themes/ThemeAssets/whatsapp1.png";
 import SideBar from "../UserComponents/SideBar";
-
+import website from "../Themes/ThemeAssets/website.png"
 import indiamart from "../Themes/ThemeAssets/indiamart.png"
-import justdial from "../Themes/ThemeAssets/indiamart.png"
-import amazon from "../Themes/ThemeAssets/indiamart.png"
-import pdf from "../Themes/ThemeAssets/indiamart.png"
-import location from "../Themes/ThemeAssets/indiamart.png"
+import justdial from "../Themes/ThemeAssets/justdial.png"
+import amazon from "../Themes/ThemeAssets/amazon.png"
+import pdf from "../Themes/ThemeAssets/pdf.png"
+import location from "../Themes/ThemeAssets/location.png"
 import Flipkard from "../Themes/ThemeAssets/flipcard.webp"
 import meesho from "../Themes/ThemeAssets/meesho.png"
-
+import Greview from "../Themes/ThemeAssets/review.png"
+import Spotify from "../Themes/ThemeAssets/spotify.png"
+import trip from "../Themes/ThemeAssets/makemytrip.png"
+import agoda from "../Themes/ThemeAssets/agoda.png"
+import tripAdvisor from "../Themes/ThemeAssets/tripAdvisor.png"
+import Goibiboo from "../Themes/ThemeAssets/go.png"
+import oyo from "../Themes/ThemeAssets/oyo.png"
+import linktree from "../Themes/ThemeAssets/linktree.png"
+import f from "../Themes/ThemeAssets/fivver.png"
+import B from "../Themes/ThemeAssets/booking.png"
+import phnpay from "../Themes/ThemeAssets/phnpay.png"
+import gpay from "../Themes/ThemeAssets/gpay.png"
+import ptym from "../Themes/ThemeAssets/paytm.png"
+import Twitter from "../Themes/ThemeAssets/Twitter.png"
+import ankit1 from "../Themes/ThemeAssets/ankit1.jpg"
+import ankit2 from "../Themes/ThemeAssets/ankit2.jpg"
+import ankit3 from "../Themes/ThemeAssets/anki3.jpg"
+import ankit4 from "../Themes/ThemeAssets/ankit4.jpg"
 
 const actions = [
   { icon: <SimCardDownloadIcon style={{ fontSize: '22px' }} />, name: "Copy" },
@@ -125,6 +144,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const [openB, setOpenB] = React.useState(false);
   const [openContact, setOpenContact] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [openMember, setOpenMember] = React.useState(false);
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [otp, setOtp] = React.useState()
   const [isVisible, setIsVisible] = useState(false);
@@ -151,6 +171,15 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const handleCloseSeeMore = () => {
     setOpenMore(false);
   };
+
+  const handleClickMember = () => {
+    setOpenMember(true);
+  };
+
+  const handleCloseMember = () => {
+    setOpenMember(false);
+  };
+
   const handleClickOpenButton = () => {
     setOpenB(true);
   };
@@ -1140,6 +1169,98 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       </Dialog>
     );
   };
+
+
+  const AllMember = () => {
+    return (
+      <Dialog
+      PaperProps={{
+        style: {
+          width: "94%",
+          height:320,
+         borderRadius:15,
+         overflowY: "scroll",
+         background:'#f5f6fa'
+          // Dialog ko page ke bottom me set karein
+        },
+      }}
+        open={openMember}
+        onClose={handleCloseMember}
+      >
+          <IconButton
+            onClick={handleCloseMember}
+            aria-label="close"
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: "inherit",
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+       <Grid sx={{display:'flex',flexDirection:'column',alignItems:'center',marginTop:'8%'}}>
+        <Grid sx={{fontWeight:'Montserrat',fontWeight:500,fontSize:'22px',color:'#2d3436'}}>Meet The <b>Team.</b></Grid>
+        <Grid sx={{width:'100%',display:'flex',justifyContent:'space-between',padding:3,marginTop:'3%'}}>
+       <Grid sx={{width:'50%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}} >
+       <Avatar
+       src={ankit1}
+        sx={{ width: 100, height: 100 }}/> 
+       <Grid sx={{fontWeight:'Montserrat',fontWeight:500,fontSize:'17px',color:'#2d3436',textAlign:'center',lineHeight:'20px',letterSpacing:'-2.4%',marginTop:'10%'}}>
+        Ankit Narwariya
+      </Grid>
+      <Grid sx={{fontWeight:'Montserrat',fontWeight:400,fontSize:'11px',color:'#cd6133',textAlign:'center',lineHeight:'26px',letterSpacing:'-2.4%',marginTop:'1%'}}>
+        Project Manager
+      </Grid>
+       </Grid>
+        <Grid sx={{width:'50%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}} >
+       <Avatar
+       src={ankit2}
+        sx={{ width: 100, height: 100 }}/> 
+       <Grid sx={{fontWeight:'Montserrat',fontWeight:500,fontSize:'17px',color:'#2d3436',textAlign:'center',lineHeight:'20px',letterSpacing:'-2.4%',marginTop:'10%'}}>
+        harshit Jain
+      </Grid>
+      <Grid sx={{fontWeight:'Montserrat',fontWeight:400,fontSize:'11px',color:'#cd6133',textAlign:'center',lineHeight:'26px',letterSpacing:'-2.4%',marginTop:'1%'}}>
+        CEO and Founder
+      </Grid>
+       </Grid>
+        </Grid>
+
+
+        <Grid sx={{width:'100%',display:'flex',justifyContent:'space-between',padding:3}}>
+       <Grid sx={{width:'50%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}} >
+       <Avatar
+       src={ankit3}
+        sx={{ width: 100, height: 100 }}/> 
+       <Grid sx={{fontWeight:'Montserrat',fontWeight:500,fontSize:'17px',color:'#2d3436',textAlign:'center',lineHeight:'20px',letterSpacing:'-2.4%',marginTop:'10%'}}>
+        Juned Solanki
+      </Grid>
+      <Grid sx={{fontWeight:'Montserrat',fontWeight:400,fontSize:'11px',color:'#cd6133',textAlign:'center',lineHeight:'26px',letterSpacing:'-2.4%',marginTop:'1%'}}>
+        Graphic Designer
+      </Grid>
+       </Grid>
+        <Grid sx={{width:'50%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}} >
+       <Avatar
+       src={ankit4}
+        sx={{ width: 100, height: 100 }}/> 
+       <Grid sx={{fontWeight:'Montserrat',fontWeight:500,fontSize:'17px',color:'#2d3436',textAlign:'center',lineHeight:'20px',letterSpacing:'-2.4%',marginTop:'10%'}}>
+        Akshat Jain
+      </Grid>
+      <Grid sx={{fontWeight:'Montserrat',fontWeight:400,fontSize:'11px',color:'#cd6133',textAlign:'center',lineHeight:'26px',letterSpacing:'-2.4%',marginTop:'1%'}}>
+        Head Manager
+      </Grid>
+       </Grid>
+        </Grid>
+
+
+       </Grid>
+      </Dialog>
+    );
+  };
+
+
+
+
 
   // Menuslider
 
@@ -2182,7 +2303,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                         href={`https://www.paypal.com/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
-                          <img src={paypal} width={25}></img>
+                          <img src={paypal} width={23}></img>
                         </Grid>
                         <Grid
                           sx={{
@@ -2545,8 +2666,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                         fullWidth
                         href={`https://www.justdial.com/${item.link}`}
                       >
-                        <Grid sx={{ marginTop: '6%' }}>
-                          <img src={justdial} width={25}></img>
+                        <Grid >
+                          <img src={justdial} width={36}></img>
                         </Grid>
                         <Grid
                           sx={{
@@ -2586,7 +2707,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                         href={`https://www.amazon.com/${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
-                          <img src={amazon} width={100}></img>
+                          <img src={amazon} width={25}></img>
                         </Grid>
                         <Grid
                           sx={{
@@ -2707,7 +2828,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                         href={`${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
-                          <img src={pdf} width={100}></img>
+                          <img src={pdf} width={25}></img>
                         </Grid>
                         <Grid
                           sx={{
@@ -2746,7 +2867,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                         href={`${item.link}`}
                       >
                         <Grid sx={{ marginTop: '6%' }}>
-                          <img src={location} width={100}></img>
+                          <img src={location} width={28}></img>
                         </Grid>
                         <Grid
                           sx={{
@@ -2757,11 +2878,666 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     fontFamily:'poppins'
                           }}
                         >
-                          Location
+                          Find Us
                         </Grid>
                       </Button>
                     )
                     }
+
+                   {item.title === "YouTube" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={utube} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                          YouTube
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+
+                   {item.title === "Website" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={website} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                          Website
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+                 {item.title === "Review" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={Greview} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                          Review Us
+                        </Grid>
+                      </Button>
+                    )
+                    }
+                     {item.title === "Twitter" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '4%' }}>
+                          <img src={Twitter} width={20}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                          Twitter
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+                  {item.title === "Spotify" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={Spotify} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                          Spotify
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+
+                {item.title === "MakeMyTrip" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={trip} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: .3,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                        MakeMyTrip
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+
+                 {item.title === "Agoda" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={agoda} width={35}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                        Agoda
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+                {item.title === "TripAdvisor" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={tripAdvisor} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                        TripAdvisor
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+                 {item.title === "Goiboboo" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={Goibiboo} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                        Goibobo
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+
+                 {item.title === "Oyo" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={oyo} width={30}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                        Oyo
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+             {item.title === "Linktree" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={linktree} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                        LinkTree
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+
+                 {item.title === "Fivver" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={f} width={35}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                        Fivver
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+
+              {item.title === "Booking" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={B} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                        Booking.com
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+
+             {item.title === "Patym" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={ptym} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                        Patym
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+
+               {item.title === "Phone" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={phnpay} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                        Phonepe
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+
+
+            {item.title === "Gpay" && (
+                      <Button
+                        sx={{
+                          borderColor: "#bdc3c7",
+                          border: '#bdc3c7',
+                          height: 36,
+                          backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                          color: "#2c3e50",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          padding: 2.6,
+                          display: data?.phoneNumber == null ? "none" : "flex",
+                          justifyContent: "flex-start",
+                          borderRadius: 20,
+                          marginTop: "3%",
+                          fontSize: "15px",
+                          fontWeight: 500,
+                          fontFamily:'poppins'
+                        }}
+                        fullWidth
+                        href={`${item.link}`}
+                      >
+                        <Grid sx={{ marginTop: '6%' }}>
+                          <img src={gpay} width={25}></img>
+                        </Grid>
+                        <Grid
+                          sx={{
+                            marginLeft: 1.9,
+                            color: "#000",
+                            fontWeight: 400,
+                    fontSize: matches ? "15px" : 20,
+                    fontFamily:'poppins'
+                          }}
+                        >
+                        G pay
+                        </Grid>
+                      </Button>
+                    )
+                    }
+
+
+
+
+
+
+
 
 
                     {item.title === "Others" && (
@@ -2881,7 +3657,6 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           </Grid>
         </Grid>
       
-
 
 
         <Grid
@@ -3220,6 +3995,82 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           </Grid>
         </Grid>
 
+
+
+
+        <Grid
+          item
+          xs={12}
+          sx={{
+            display: "flex",
+            width:'100%',
+            backgroundColor: "#fff",
+            height: 'auto',
+            flexDirection:"column",
+            justifyContent:'center',
+            alignItems:'center',
+            padding: 1,
+          }}
+        >   
+        <Grid sx={{ display: "flex", flexDirection: "row",}}>
+        <Grid sx={{width:'62%',marginTop:'4%'}}>
+        <AvatarGroup  >
+      <Avatar   sx={{ width: 54, height: 54 }} src={ankit1} />
+      <Avatar   sx={{ width: 54, height: 54 }} src={ankit2} />
+      <Avatar  sx={{ width: 54, height: 54 }} src={ankit3} />
+      <Avatar  sx={{ width: 54, height: 54 }} src={ankit4} />
+    </AvatarGroup>
+        </Grid>
+        <Grid sx={{width:'38%',marginTop:'7%',}}>
+          <Grid sx={{fontSize: "18px",lineHeight:'20px',
+                      fontWeight: 600,
+                      fontFamily:'poppins',textAlign:'center',display:'flex',justifyContent:'center',alignItems:'center',color:'#000'}}>
+            Digital card Hub
+          </Grid>
+        </Grid>
+        </Grid>
+
+        <Grid sx={{marginTop:'4%',marginLeft:'auto'}}>
+        <Button 
+               onClick={handleClickMember}
+                  style={{
+                    borderColor: "#D0D0D0",
+                    width: 170,
+                    height: 36,
+                    backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                    color: "#000",
+                    fontSize: "15px",
+                    fontWeight: 400,
+                    textTransform: "none",
+                    borderRadius: 4,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection:'row',
+                    marginLeft: "auto",
+                    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+                  }}
+                >              
+                  View All Members
+                </Button>
+        </Grid>
+
+        <Divider
+              style={{
+                backgroundColor: "#bdc3c7",
+                width: "94%",
+                marginTop: "8%",
+              }}
+            />
+        </Grid>
+
+
+
+
+
+
+
+
         <Grid
           item
           xs={12}
@@ -3369,6 +4220,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       {loginSignup()}
       {RatingDialog()}
       {SeeMoreDialog()}
+      {AllMember()}
     </Grid>
   );
 }
