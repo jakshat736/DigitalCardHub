@@ -1,5 +1,5 @@
 import { Grid,Button } from "@mui/material";
-import backgroundimg from "../../Digital Card Assets/mobileblur.png"
+import backgroundimg from "../../Digital Card Assets/new-mockup1.png"
 import learnmore from "../../Digital Card Assets/learnmore.png"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css";
@@ -15,11 +15,11 @@ import slider11 from "../../Digital Card Assets/ankit.jpg";
 import slider22 from "../../Digital Card Assets/raj.jpg";
 import slider33 from "../../Digital Card Assets/abhi.jpg";
 
-import slider111 from "../../Digital Card Assets/rat us.jpg";
-import slider222 from "../../Digital Card Assets/justdial.jpg";
-import slider333 from "../../Digital Card Assets/maketrip.jpg";
-import slider444 from "../../Digital Card Assets/mart.jpg";
-import slider555 from "../../Digital Card Assets/utube.jpg";
+import slider111 from "../../Digital Card Assets/oyo.jpg";
+import slider222 from "../../Digital Card Assets/flipkard.jpg";
+import slider333 from "../../Digital Card Assets/playstore.jpg";
+import slider444 from "../../Digital Card Assets/swiggy.jpg";
+import slider555 from "../../Digital Card Assets/go.jpg";
 
 import {
     useMediaQuery,
@@ -34,7 +34,7 @@ export default function NewContainer()
         infinite: true,
         speed: 5000,
         autoplay: "true",
-        slidesToShow: 3,
+        slidesToShow:  matchesA?2:3,
         slidesToScroll: 1,
         arrows:false,
         cssEase: 'linear',
@@ -47,7 +47,7 @@ export default function NewContainer()
         infinite: true,
         speed: 5000,
         autoplay: "true",
-        slidesToShow: 3,
+        slidesToShow: matchesA?2:3,
         slidesToScroll: 1,
         arrows:false,
         cssEase: 'linear',
@@ -87,11 +87,11 @@ export default function NewContainer()
     return(<Grid sx={{padding:2,color:'#fff',height:matches?'auto':530}}>
          <Grid sx={{marginLeft:matches?"0%":'5.5%',width:matches?'100%':'94%',display:'flex',flexDirection:matches?"column":'row',justifyContent:matches?'center':'none',alignItems:matches?'center':'none'}}>
             <Grid sx={{marginLeft:matches?'0%':'3%',position:'relative',width:matches?"99%":'40%',marginTop:'-2%'}}>
-              {matches?<></>:<> <img src={backgroundimg} style={{width:'82%'}}></img></>}
+              {matches?<></>:<> <img src={backgroundimg} style={{width:'90%'}}></img></>}
                {matches?<><Grid sx={{display:matches?'flex':'none',justifyContent:matches?'center':'normal',alignItems:matches?'center':"normal"}}>
-                <img src={backgroundimg} style={{width:matchesA ? '100%':'70%',marginTop:matchesA ? '-15%':'0%' }}></img>
+                <img src={backgroundimg} style={{width:matchesA ? '100%':'70%',marginTop:matchesA ? '-12%':'0%' }}></img>
                 </Grid></>:<></>}
-                <Grid sx={{marginTop:matchesA ? '-90%':"-62%",zIndex:40,width:'100%',display:matches?'flex':'',justifyContent:matches?'center':'normal',flexDirection:'column',alignContent:matches?'center':"normal"}}>
+                <Grid sx={{marginTop:matchesA ? '-82%':"-66%",zIndex:40,width:'100%',display:matches?'flex':'',justifyContent:matches?'center':'normal',flexDirection:'column',alignContent:matches?'center':"normal"}}>
                     <Grid sx={{fontSize:matchesA ? '22px' : matches ? '30px' : '2.8vw',fontWeight:700,lineHeight:matches?'30px':'52px',fontFamily:'Montserrat',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",textAlign:matches?'center':"normal"}}>
                      MAKE YOUR  BUSSINES DIGITAL WITH US.
                     </Grid>
@@ -124,7 +124,7 @@ export default function NewContainer()
               >
               Shop Now
               </Button>
-              <Grid sx={{marginTop:'4%'}}>
+              <Grid sx={{marginTop:'4%',marginLeft:'1%'}}>
               <img src={learnmore} width={100}></img>
               </Grid>
                     </Grid></>}

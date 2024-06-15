@@ -59,7 +59,35 @@ const Links = () => {
     const [otherLink, setOtherLink] = useState(Array(0).fill(null));
     const [age, setAge] = useState('');
     const [loadingAnimation,setLoadingAnimation]=useState(true)
+
+    const [emptys, setEmptys] = useState({ title2: "", rate2: "" });
+
+    const [addMember, setAddMember] = useState(Array(1).fill(emptys));
+  
+  
+    const handleAddLinkMember = () => {
+        setAddMember([...addMember, ...Array(1).fill(emptys)]);
+      };
     
+      const handleMemberDelete = (index) => { 
+        
+        const updated = [...addMember];
+    
+        updated.splice(index, 1);
+    
+        setAddMember(updated);
+      };
+    
+      const handleMemberChange = (index, value) => {
+        const newData = [...addMember];
+        console.log(newData[index])
+        newData[index] = { ...newData[index], title: value };
+        console.log(newData)
+        setAddMember(newData);
+      };
+
+
+
     const fetchCardDetail = async () => {
         setLoadingAnimation(true)
         var formData = new FormData()
@@ -367,6 +395,7 @@ const Links = () => {
                                             }
                                         >
                                             <MenuItem value={"GitHub"}>GitHub</MenuItem>
+                                            <MenuItem value={"Twitter"}>Twitter</MenuItem>
                                             <MenuItem value={"Telegram"}>Telegram</MenuItem>
                                             <MenuItem value={"Discord"}>Discord</MenuItem>
                                             <MenuItem value={"PayPal"}>PayPal</MenuItem>
@@ -377,6 +406,28 @@ const Links = () => {
                                             <MenuItem value={"Dropbox"}>Dropbox</MenuItem>
                                             <MenuItem value={"Pinterest"}>Pinterest</MenuItem>
                                             <MenuItem value={"Behance"}>Behance</MenuItem>
+                                            <MenuItem value={"Flipkard"}>Flipkard</MenuItem>
+                                            <MenuItem value={"Indiamart"}>Indiamart</MenuItem>
+                                            <MenuItem value={"Justdial"}>Justdial</MenuItem>
+                                            <MenuItem value={"Amazon"}>Amazon</MenuItem>
+                                            <MenuItem value={"Meesho"}>Meesho</MenuItem>
+                                            <MenuItem value={"Location"}>Location</MenuItem>
+                                            <MenuItem value={"YouTube"}>YouTube</MenuItem>
+                                            <MenuItem value={"Website"}>Website</MenuItem>
+                                            <MenuItem value={"Review"}>Google Review</MenuItem>
+                                            <MenuItem value={"Spotify"}>Spotify</MenuItem>
+                                            <MenuItem value={"MakeMyTrip"}>MakeMyTrip</MenuItem>
+                                            <MenuItem value={"Agoda"}>Agoda</MenuItem>
+                                            <MenuItem value={"TripAdvisor"}>TripAdvisor</MenuItem>
+                                            <MenuItem value={"Goiboboo"}>Goiboboo</MenuItem>
+                                            <MenuItem value={"Oyo"}>Oyo</MenuItem>
+                                            <MenuItem value={"Linktree"}>LinkTree</MenuItem>
+                                            <MenuItem value={"Fivver"}>Fivver</MenuItem>
+                                            <MenuItem value={"Booking"}>Booking</MenuItem>
+                                            <MenuItem value={"Patym"}>Patym</MenuItem>
+                                            <MenuItem value={"Phone"}>Phone Pay</MenuItem>
+                                            <MenuItem value={"Gpay"}>G Pay</MenuItem>
+                                            <MenuItem value={"PDF"}>PDF</MenuItem>
                                             <MenuItem value={"Others"}>Others</MenuItem>
                                         </Select>
                                     </FormControl>
@@ -404,6 +455,57 @@ const Links = () => {
                             </>
                         ))
                     }
+
+
+
+             <Grid item xs={12}>
+                <Typography textAlign='center' sx={{ fontSize: { xs: "1.2rem", md: 28 }, fontWeight: 'bold' }}>Add Company Members</Typography>
+            </Grid>
+            {addMember?.map((item, index) => (
+             <Grid
+            item
+            xs={12}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: 8,
+              gap: 15,
+            }}
+          >
+            <TextField
+              value={item[index]?.rate || ""}
+              onChange={(event) => handleMemberChange(index, event.target.value)}
+              label="Add Your Members" sx={{ width: { xs: '100%', md: '60%' }}}
+            />
+            <IconButton onClick={() => handleMemberDelete(index)}>
+              <Delete />
+            </IconButton>
+          </Grid>
+        ))}
+
+        <Grid
+          item
+          xs={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: 8,
+            gap: 15,
+          }}
+        >
+           <Button sx={{
+                            borderRadius: 10,
+                            backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "space-evenly",
+                            paddingX: "30px",
+                            textAlign: "center",
+                            alignItems: "center",
+            }} variant='contained' onClick={() => handleAddLinkMember()}>Add More Member</Button>
+        </Grid>
+
+
                     <Grid item xs={12}>
                         <Typography textAlign='center' sx={{ fontSize: { xs: "1.2rem", md: 28 }, fontWeight: 'bold' }}>Youtube Video Links</Typography>
                     </Grid>

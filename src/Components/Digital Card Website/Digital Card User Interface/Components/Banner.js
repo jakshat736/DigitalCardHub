@@ -29,14 +29,14 @@ export default function TopBrand()
    const showSlider=()=>{
     return data.map((item)=>{
         return(<div style={{width:'100%'}}>
-          <div style={{width:'90%',height:'90%',borderRadius:'45%',display:'flex',justifyContent:'center',flexDirection:'row'}}>
-          <img src={item} style={{width:'98%',margin:4}}></img>
+          <div style={{width:'95%',height:'95%',borderRadius:'45%',display:'flex',justifyContent:'center',flexDirection:'row'}}>
+          <img src={item} style={{width:'100%',margin:0}}></img>
           </div>
         </div>)
     })
    }
 
-    return(<div style={{width:'100%',marginTop:'-7%'}}>
+    return(<div style={{width:'100%',marginTop:'-9%'}}>
    <Slider {...settings}>
     {showSlider()}    
   </Slider>

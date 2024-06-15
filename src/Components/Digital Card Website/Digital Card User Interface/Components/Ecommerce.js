@@ -12,7 +12,7 @@ export default function Ecommerce()
     const matchesB = useMediaQuery("(max-width:600px)");
 
     return(<Grid>
-    <Grid sx={{width:'100%',height:'auto',background:'#000',boxShadow: '0px 0px 10px rgba(0, 0, 0, 60)',}}>
+    <Grid sx={{width:'100%',height:'auto'}}>
     <Grid sx={{width:'100%',position:'relative',display:'flex'}}>
     <img src={matchesA?blurbackgroundEcommerce2:blurbackgroundEcommerce} style={{width:matches?'100%':'100%',height:'auto'}}></img>
     <Grid sx={{color:'#fff',position:'absolute',width:'100%'}}>
