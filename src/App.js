@@ -126,6 +126,7 @@ import CompitableDevices from "./Components/Digital Card Website/Digital Card Us
 import NewAllProducts from "./Components/Digital Card Website/Digital Card User Interface/Components/NewAllProducts";
 import NewAllProduct2 from "./Components/Digital Card Website/Digital Card User Interface/Components/NewAllProducts2";
 import ProductComponents from "./Components/Digital Card Website/Digital Card User Interface/Components/ProductComponents";
+import NewThemeCard from "./Components/Digital Card Website/Digital Card User Interface/Components/NewThemeCard";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -145,6 +146,7 @@ function App() {
 								<Route element={<NewHome/>} path="/newhome" />
 								<Route element={<Instaredirect />} path="/aradhyarana" />
 								<Route element={<Home />} path="/home1" />
+								<Route element={<NewThemeCard/>} path="/newthemecard" />
 								<Route element={<ProductComponents/>} path="/productcomponents" />
 								<Route element={<NewAllProducts/>} path="/newallproduct" />
 								<Route element={<NewAllProduct2/>} path="/newallproduct2" />

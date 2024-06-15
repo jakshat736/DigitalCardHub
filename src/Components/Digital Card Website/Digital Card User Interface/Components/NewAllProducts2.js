@@ -24,10 +24,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Services from "./Services";
 import Newfooter from "./NewFooter";
-
+import { useNavigate } from "react-router-dom";
 
 export default function NewAllProduct2()
 {  
+  var navigate=useNavigate()
+  const handleNagivate=()=>{
+    navigate('/productcomponents')
+}
 
     const matches = useMediaQuery("(max-width:900px)");
     const matchesA = useMediaQuery("(max-width:1400px)");
@@ -233,7 +237,7 @@ export default function NewAllProduct2()
 
                 <Grid sx={{display:'flex',flexDirection:"column",marginTop:matchesB?'8%':'3%',gap:7}}>
                     <Grid sx={{display:'flex',justifyContent:'space-between',flexDirection:matchesA?"column":'row',alignItems:matchesA?'center':'normal'}}>
-                   <Grid sx={{display:'flex',flexDirection:'column'}}>
+                   <Grid onClick={handleNagivate} sx={{display:'flex',flexDirection:'column',cursor:'pointer'}}>
                     <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'245px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
                         <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
                         <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
@@ -285,8 +289,6 @@ export default function NewAllProduct2()
                     </Grid>
                     </Grid>
                     </Grid>
-
-
                    </Grid>
 
                    <Grid sx={{display:'flex',flexDirection:'column'}}>

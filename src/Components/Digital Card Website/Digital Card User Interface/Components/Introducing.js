@@ -7,7 +7,7 @@ import stand2 from "../../Digital Card Assets/stand2.jpg";
 import stand3 from "../../Digital Card Assets/stand3.jpg";
 import stand4 from "../../Digital Card Assets/stand4.jpg";
 import stand5 from "../../Digital Card Assets/stand5.jpg";
-
+import blurrectangle from "../../Digital Card Assets/blurrectangle.png"
 import {
   useMediaQuery,
 } from "@mui/material";
@@ -18,6 +18,7 @@ export default function Introducing()
     const matches = useMediaQuery("(max-width:900px)");
     const matchesA = useMediaQuery("(max-width:600px)");
     const matchesB = useMediaQuery("(max-width:500px)");
+
      var settings = {
         dots: false,
         infinite: true,
