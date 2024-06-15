@@ -122,6 +122,11 @@ import Coupon from "./Components/Digital Card Website/MenuUpdate/adminpannel/cou
 import DispalyAllTheCategory from "./Components/Digital Card Website/MenuUpdate/adminpannel/DispalyAllTheCategory";
 import NewHome from "./Components/Digital Card Website/Digital Card User Interface/Pages/NewHome";
 import DemoOtp from "./Components/Digital Card Website/Digital Card User Interface/Pages/DemoOtp";
+import CompitableDevices from "./Components/Digital Card Website/Digital Card User Interface/Components/CompitableDevices";
+import NewAllProducts from "./Components/Digital Card Website/Digital Card User Interface/Components/NewAllProducts";
+import NewAllProduct2 from "./Components/Digital Card Website/Digital Card User Interface/Components/NewAllProducts2";
+import ProductComponents from "./Components/Digital Card Website/Digital Card User Interface/Components/ProductComponents";
+import NewThemeCard from "./Components/Digital Card Website/Digital Card User Interface/Components/NewThemeCard";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -141,6 +146,10 @@ function App() {
 								<Route element={<NewHome/>} path="/newhome" />
 								<Route element={<Instaredirect />} path="/aradhyarana" />
 								<Route element={<Home />} path="/home1" />
+								<Route element={<NewThemeCard/>} path="/newthemecard" />
+								<Route element={<ProductComponents/>} path="/productcomponents" />
+								<Route element={<NewAllProducts/>} path="/newallproduct" />
+								<Route element={<NewAllProduct2/>} path="/newallproduct2" />
 								<Route element={<DCLogin />} path="/digitalcardlogin" />
 								<Route element={<DCSignUp />} path="/digitalcardsignup" />
 								<Route element={<UserDashboard />} path="/userdashboard" />
@@ -173,6 +182,7 @@ function App() {
 								<Route path="/addresspage" element={<AddressPage />} />
 								<Route path="/productspage/:_id" element={<ProductsPage />} />
 								<Route path="/allproducts" element={<AllProducts />} />
+								<Route path="/compitable" element={<CompitableDevices/>} />
 								<Route path="/productscomponent/:_id" element={<ProductCompoent />} />
 								<Route path="/orderform" element={<OrderForm />} />
 								<Route path="/ab" element={<ImageUploaderAndCropper />} />

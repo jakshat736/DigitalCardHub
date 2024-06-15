@@ -14,7 +14,7 @@ export default function ConnectNow()
     
     const matches = useMediaQuery("(max-width:900px)");
 
-    return(<Grid sx={{width:'100%',height:'auto',background:'#000', boxShadow: '0px 0px 10px rgba(0, 0, 0, 60)',}}>
+    return(<Grid sx={{width:'100%',height:'auto',}}>
       <Grid sx={{width:'100%',position:'relative',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:matches?"column":'row'}}>
       <img src={matches?images2:images} style={{width:matches?'100%':'100%'}}></img>
       <Grid sx={{color:'#fff',position:'absolute'}}>
@@ -26,17 +26,13 @@ export default function ConnectNow()
        <Paper
       component="form"
       sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: matches?280:350,borderRadius:4,height:matches?38:44 }}>
-      <IconButton sx={{ p: '10px',color:'#070707' }} aria-label="menu">
-        +91
-      </IconButton>
-      <Divider sx={{ height: 28, m: 0.8,color:'#070707',background:'#000' }} orientation="vertical" />
       {/* <InputBase
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search Google Maps"
         inputProps={{ 'aria-label': 'search google maps' }}
       /> */}
-     <IconButton sx={{ p: '10px',color:'#070707', }} aria-label="menu">
-        9856874588
+     <IconButton sx={{ p: '10px',color:'#636e72', }} aria-label="menu">
+     Enter number or email..
       </IconButton>
     </Paper>
     <Grid>

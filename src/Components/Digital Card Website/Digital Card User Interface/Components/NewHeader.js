@@ -3,17 +3,47 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Logo from "../../Digital Card Assets/newdigitalcardhublogo.png";
 import bag from "../../Digital Card Assets/bag.png"
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import menu from "../../Digital Card Assets/menu.png"
 import Toolbar from "@mui/material/Toolbar";
+import { useStyles } from "../../Digital Card User Interface/Components/HoveredCss";
+import { useNavigate } from "react-router-dom";
+import newLogin from "../../Digital Card Assets/loginnew.png"
 import "animate.css";
 import {
   Container,
   useMediaQuery,
 } from "@mui/material";
+import Downarrow from "../../Digital Card Assets/downarrow.png"
 import { Grid } from "@mui/material";
+import { download } from "export-to-csv";
 export default function NewHeader()
  {
+  var navigate=useNavigate()
+
+  const handleNagivate=()=>{
+      navigate('/compitable')
+  }
+  const handleNagivateHome=()=>{
+    navigate('/newhome')
+}
+const handleNagivateProduct=()=>{
+  navigate('/newallproduct')
+}
   const matches = useMediaQuery("(max-width:1000px)");
+
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+
   return (
     <Grid style={{ width: "100%",fontFamily:'Muli, sans-serif' }}>
     <Grid style={{ position: "sticky" }}>
@@ -33,7 +63,7 @@ export default function NewHeader()
           {matches?<><Grid sx={{marginLeft:'1%'}}>
                 <img src={menu} width={28}></img>
             </Grid></>:<></>}
-            <Grid sx={{marginLeft:matches?'0':'6%'}}>
+            <Grid onClick={handleNagivateHome} sx={{marginLeft:matches?'0':'6%',cursor:'pointer'}}>
                 <img src={Logo} width={matches?120:140} ></img>
             </Grid>
             {matches?<><Grid >
@@ -41,23 +71,132 @@ export default function NewHeader()
             </Grid></>:<></>}
 
             {matches?<></>:<Grid sx={{marginLeft:'auto',gap: 7,color: "#fff",fontWeight: 300,fontSize: "15px",display:'flex'}}>
-               <Grid>
+               <Grid  sx={{cursor:'pointer'}}>
                 Home
                </Grid>
-               <Grid>
+               <Grid   onMouseEnter={handleClick} sx={{cursor:'pointer',display:'flex',alignItems:'center',marginTop:'-1%'}}>
                 Shop
+                <img src={Downarrow} width={20} style={{marginTop:'-10%'}}></img>
                </Grid>
-               <Grid >
+               <Menu
+                PaperProps={{
+                  style: {
+                  width:200,
+                  backgroundImage: "linear-gradient(to bottom right, #171717,#171717,#070707,#070707)",
+                  color:'#fff'
+                  },
+                }}
+                      id="basic-menu"
+                      anchorEl={anchorEl}
+                      open={open}
+                      onClose={handleClose}
+                      onMouseLeave={handleClose}
+                      MenuListProps={{
+                        "aria-labelledby": "basic-button",
+                      }}
+                      style={{ marginTop: "1%", marginLeft: "-1%" }}
+                    >
+                      <div onMouseLeave={handleClose}>
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",                          
+                            fontWeight: 500,
+                          }}
+                        >
+                          PVC Cards
+                        </MenuItem>
+
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",                       
+                            fontWeight: 500,
+                          }}
+                          onClick={handleClose}
+                        >
+                          Metal Business Cards
+                        </MenuItem>
+
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",
+                            fontWeight: 500,
+                          }}
+                          onClick={handleClose}
+                        >
+                         Wooden Card
+                        </MenuItem>
+
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",
+                            fontWeight: 500,
+                          }}
+                          onClick={handleClose}
+                        >
+                          Standess
+                        </MenuItem>
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",                          
+                            fontWeight: 500,
+                          }}
+                          onClick={handleClose}
+                        >
+                          Review Stickers
+                        </MenuItem>
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",
+                           
+                            fontWeight: 500,
+                          }}
+                          onClick={handleClose}
+                        >
+                          Google Products
+                        </MenuItem>
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",
+                            fontWeight: 500,
+                          }}
+                          onClick={handleClose}
+                        >
+                         Combos /Bundles
+                        </MenuItem>
+                      </div>
+                    </Menu>
+
+
+
+
+               <Grid   onClick={handleNagivate} sx={{cursor:'pointer'}}>
                 Compitable Device
                </Grid>
-               <Grid>
+               <Grid   sx={{cursor:'pointer'}}>
                 How to create
                </Grid>
-               <Grid>
+               <Grid onClick={handleNagivateProduct} sx={{cursor:'pointer'}}>
                 All Product
                </Grid>
-               <Grid sx={{marginTop:'-1%'}}>
-                <img src={bag} width={20} ></img>
+               <Grid >
+                <img src={newLogin} width={22} ></img>
+            </Grid>
+               <Grid >
+                <img src={bag} width={18} ></img>
             </Grid>
             <Grid sx={{color:'#070707'}}>
                .
