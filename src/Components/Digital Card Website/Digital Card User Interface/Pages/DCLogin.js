@@ -203,7 +203,7 @@ export default function DCLogin() {
 
             setOtp(otpval)
 
-            const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=664B22EF6F9A8&access_token=6642f3cf318c6`;
+            const apiUrl = `https://cloud.soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=666A97D235704&access_token=6665f09c161eb`;
             const response = await postData('otp/api', { url: apiUrl })
             // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41
         } else {

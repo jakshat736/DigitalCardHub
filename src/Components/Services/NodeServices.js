@@ -1,6 +1,6 @@
 import axios from "axios";
-export const serverURL = 'https://api5.indiabuzz.co.in';
-// export const serverURL = 'http://localhost:5005';
+// export const serverURL = 'https://api5.indiabuzz.co.in';
+export const serverURL = 'http://localhost:5005';
 //  export const serverURL='https://dfba-223-229-217-165.ngrok-free.app';
 
 export const getData = async (url) => {

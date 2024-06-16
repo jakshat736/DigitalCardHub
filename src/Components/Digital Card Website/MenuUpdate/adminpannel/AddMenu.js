@@ -34,17 +34,9 @@ export default function AddMenu() {
   const menuId = location.state.menuId;
   const matches = useMediaQuery("(max-width:600px)");
 
-
-  const [empty2, setEmpty2] = useState({ title2: "", rate2: "" });
-
-  const [quantity, setQuantity] = useState(Array(1).fill(empty2));
-
-
-
   const [empty, setEmpty] = useState({ title: "", rate: "" });
-
+  const [quantity, setQuantity] = useState(Array(1).fill({ title: "Full", rate: "0" }));
   const [AddOn, setAddOn] = useState(Array(1).fill(empty));
-
   const [Dish, setDish] = useState("");
   const [Price, setPrice] = useState("");
   const [Halfprice, setHalfprice] = useState("");
@@ -53,6 +45,7 @@ export default function AddMenu() {
   const [Stock, setStock] = useState("");
   const [Description, setDescription] = useState("");
   const [foodType, setFoodType] = useState("");
+  const [category, setCategory] = useState([]);
   const [Image, setImage] = useState({
     fileName: "",
     bytes: "",
@@ -60,30 +53,30 @@ export default function AddMenu() {
 
   const [categoryId, setCategoryId] = React.useState("");
   //Akshat bhaiya look this comment code one time this helps you
-  // const fetchAllCategory = async () => {
-  //   var result = await getData("category/all_category");
-  //   setcategoryList(result.data);
-  // };
 
-  // useEffect(function () {
-  //   fetchAllCategory();
-  // }, []);
-
-  // const fillAllCategory = () => {
-  //   return categoryList.map((item) => {
-  //     return <MenuItem value={item.categoryid}>{item.categoryname}</MenuItem>;
-  //   });
-  // };
-
-
-
-  
-  const handleAddLinkQuantity = () => {
-    setQuantity([...quantity, ...Array(1).fill(empty2)]);
+  const fetchAllCategory = async () => {
+    var formData = new FormData();
+    formData.append('menuId', menuId);
+    var response = await postData('menucategories/display_all_category', formData);
+    setCategory(response.data);
   };
 
-  const handleQuantityDelete = (index) => { 
-    
+  useEffect(function () {
+    fetchAllCategory();
+  }, []);
+
+  const fillAllCategory = () => {
+    return category?.map((item) => {
+      return <MenuItem value={item._id}>{item.categoryName}</MenuItem>;
+    });
+  };
+
+  const handleAddLinkQuantity = () => {
+    setQuantity([...quantity, ...Array(1).fill(empty)]);
+  };
+
+  const handleQuantityDelete = (index) => {
+
     const updatedQuantity = [...quantity];
 
     updatedQuantity.splice(index, 1);
@@ -91,11 +84,19 @@ export default function AddMenu() {
     setQuantity(updatedQuantity);
   };
 
-  const handleQuantityChange = (index, value) => {
+  const handleQuantityTitleChange = (index, event) => {
+    console.log(index, event.target.value)
     const newData = [...quantity];
     console.log(newData[index])
-    newData[index] = { ...newData[index], title: value };
+    newData[index] = { ...newData[index], title: event.target.value };
     console.log(newData)
+    setQuantity(newData);
+  };
+
+  const handleQuantityRateChange = (index, event) => {
+    const newData = [...quantity];
+    console.log(newData[index])
+    newData[index] = { ...newData[index], rate: event.target.value };
     setQuantity(newData);
   };
 
@@ -115,9 +116,15 @@ export default function AddMenu() {
     setAddOn(updatedAddOn);
   };
 
-  const handleAddOnChange = (index, value) => {
+  const handleAddOnTitleChange = (index, value) => {
     const newData = [...AddOn];
     newData[index] = { ...newData[index], title: value };
+
+    setAddOn(newData);
+  };
+  const handleAddOnRateChange = (index, value) => {
+    const newData = [...AddOn];
+    newData[index] = { ...newData[index], rate: value };
 
     setAddOn(newData);
   };
@@ -139,29 +146,32 @@ export default function AddMenu() {
   // };
 
   const handleSubmit = async () => {
+    const selectedCategory = category?.filter((item) => item?._id === categoryId)[0]
+    console.log(selectedCategory)
     var AddMenudata = new FormData();
     if (
       Dish != "" &&
-      Price != "" &&
-      Halfprice != "" &&
       rating != "" &&
       Sorting != "" &&
       Stock != "" &&
       Description != "" &&
       foodType != "" &&
-      Image.fileName != ""
+      Image.fileName != "" &&
+      selectedCategory != null &&
+      quantity[0]?.title != ''
     ) {
       AddMenudata.append("menuId", menuId);
+      AddMenudata.append("categoryId", categoryId);
+      AddMenudata.append("categoryName", selectedCategory?.categoryName);
       AddMenudata.append("dish", Dish);
-      AddMenudata.append("price", Price);
-      AddMenudata.append("Halfprice", Halfprice);
-
       AddMenudata.append("rating", rating);
       AddMenudata.append("sorting", Sorting);
       AddMenudata.append("stock", Stock);
       AddMenudata.append("description", Description);
       AddMenudata.append("foodtype", foodType);
       AddMenudata.append("image", Image.bytes);
+      AddMenudata.append("quantities",JSON.stringify(quantity))
+      AddMenudata.append("addOns",JSON.stringify(AddOn))
       const response = await postData("index/addmenu", AddMenudata, true);
       console.log(response);
 
@@ -294,10 +304,7 @@ export default function AddMenu() {
               label="Category"
               onChange={(event) => setCategoryId(event.target.value)}
             >
-              {/* {fillAllCategory()} */}
-              <MenuItem value={8}>South India</MenuItem>
-              <MenuItem value={9}>North India</MenuItem>
-              <MenuItem value={10}>Chinese</MenuItem>
+              {fillAllCategory()}
             </Select>
           </FormControl>
         </Grid>
@@ -318,25 +325,6 @@ export default function AddMenu() {
             value={rating}
             id="outlined-basic"
             label="Ratings"
-            variant="outlined"
-          />
-        </Grid>
-
-        <Grid item xs={6}>
-          <TextField
-            onChange={(e) => setPrice(e.target.value)}
-            value={Price}
-            id="outlined-basic"
-            label="Price"
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            onChange={(e) => setHalfprice(e.target.value)}
-            value={Halfprice}
-            id="outlined-basic"
-            label="Halfprice"
             variant="outlined"
           />
         </Grid>
@@ -405,11 +393,11 @@ export default function AddMenu() {
           <Grid
             sx={{
               display: "flex",
-              gap: matches?2:0,
+              gap: matches ? 2 : 0,
               justifyContent: "center",
               alignItems: "center",
               marginTop: "1%",
-              flexDirection:matches?"column":"row"
+              flexDirection: matches ? "column" : "row"
             }}
           >
             <FormControlLabel
@@ -421,7 +409,7 @@ export default function AddMenu() {
             <FormControlLabel
               value="end"
               control={<Checkbox />}
-              label="Safe recommended"
+              label="Chef recommended"
               labelPlacement="end"
             />
           </Grid>
@@ -455,14 +443,15 @@ export default function AddMenu() {
             }}
           >
             <TextField
-              value={item[index]?.title || ""}
-              onChange={(event) => handleQuantityChange(index, event.target.value)}
+              value={item?.title || ""}
+              onChange={(event) => handleQuantityTitleChange(index, event)}
               label="Quantity"
             />
             <TextField
-              value={item[index]?.rate || ""}
-              onChange={(event) => handleQuantityChange(index, event.target.value)}
+              value={item?.rate || ""}
+              onChange={(event) => handleQuantityRateChange(index, event)}
               label="Rate"
+              type='number'
             />
             <IconButton onClick={() => handleQuantityDelete(index)}>
               <Delete />
@@ -532,14 +521,15 @@ export default function AddMenu() {
             }}
           >
             <TextField
-              value={item[index]?.title || ""}
-              onChange={(event) => handleAddOnChange(index, event.target.value)}
+              value={item?.title || ""}
+              onChange={(event) => handleAddOnTitleChange(index, event.target.value)}
               label="Add On(Optional)"
             />
             <TextField
-              value={item[index]?.rate || ""}
-              onChange={(event) => handleAddOnChange(index, event.target.value)}
+              value={item?.rate || ""}
+              onChange={(event) => handleAddOnRateChange(index, event.target.value)}
               label="Rate"
+              number
             />
             <IconButton onClick={() => handleAddOnDelete(index)}>
               <Delete />
