@@ -2992,7 +2992,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                         </Grid>
                         <Grid
                           sx={{
-                            marginLeft: 1.9,
+                            marginLeft: .6,
                             color: "#000",
                             fontWeight: 400,
                     fontSize: matches ? "15px" : 20,
