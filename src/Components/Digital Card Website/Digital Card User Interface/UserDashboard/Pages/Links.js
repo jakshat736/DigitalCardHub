@@ -58,33 +58,30 @@ const Links = () => {
     const [menuLink, setMenuLink] = useState('')
     const [otherLink, setOtherLink] = useState(Array(0).fill(null));
     const [age, setAge] = useState('');
-    const [loadingAnimation,setLoadingAnimation]=useState(true)
+    const [loadingAnimation, setLoadingAnimation] = useState(true)
 
-    const [emptys, setEmptys] = useState({ title2: "", rate2: "" });
-
+    const [emptys, setEmptys] = useState({ uniqueId: "" });
+    const [companyName, setCompanyName] = useState('')
     const [addMember, setAddMember] = useState(Array(1).fill(emptys));
-  
-  
+
+
     const handleAddLinkMember = () => {
         setAddMember([...addMember, ...Array(1).fill(emptys)]);
-      };
-    
-      const handleMemberDelete = (index) => { 
-        
+    };
+
+    const handleMemberDelete = (index) => {
         const updated = [...addMember];
-    
         updated.splice(index, 1);
-    
         setAddMember(updated);
-      };
-    
-      const handleMemberChange = (index, value) => {
+    };
+
+    const handleMemberChange = (index, value) => {
         const newData = [...addMember];
         console.log(newData[index])
-        newData[index] = { ...newData[index], title: value };
+        newData[index] = { ...newData[index], uniqueId: value };
         console.log(newData)
         setAddMember(newData);
-      };
+    };
 
 
 
@@ -93,71 +90,73 @@ const Links = () => {
         var formData = new FormData()
         formData.append("customerId", userId)
         var result = await postData('carddetails/getcardDetails', formData, true)
-        if(result!=false){
-        setFbLink(result.data.fbLink)
-        setInstaLink(result.data.igLink)
-        setLinkedlnLink(result.data.LinkdnLink)
-        setPinterestLink(result.data.PinterestLink)
-        setTwitterLink(result.data.TwitterLink)
-        setYoutubeLink(result.data.YoutubeLink)
-        setYoutubeLink1(result.data.YoutubeVideoLink1)
-        setMenuLink(result.data.menuLink)
-        if (result.data.website != 'undefined') { setWebsite(result.data.website) }
-        if (result.data.location != 'undefined') { setLocation(result.data.location) }
-        if (result.data.YoutubeVideoLink2 != '') {
-            setLink2('flex')
-            setCount(count + 1)
+        if (result != false) {
+            setFbLink(result.data.fbLink)
+            setInstaLink(result.data.igLink)
+            setLinkedlnLink(result.data.LinkdnLink)
+            setPinterestLink(result.data.PinterestLink)
+            setTwitterLink(result.data.TwitterLink)
+            setYoutubeLink(result.data.YoutubeLink)
+            setYoutubeLink1(result.data.YoutubeVideoLink1)
+            setMenuLink(result.data.menuLink)
+            if (result.data.website != 'undefined') { setWebsite(result.data.website) }
+            if (result.data.location != 'undefined') { setLocation(result.data.location) }
+            if (result.data.YoutubeVideoLink2 != '') {
+                setLink2('flex')
+                setCount(count + 1)
+            }
+            if (result.data.YoutubeVideoLink3 != '') {
+                setLink3('flex')
+                setCount(count + 1)
+            }
+            if (result.data.YoutubeVideoLink4 != '') {
+                setLink4('flex')
+                setCount(count + 1)
+            }
+            if (result.data.YoutubeVideoLink5 != '') {
+                setLink5('flex')
+                setCount(count + 1)
+            }
+            if (result.data.YoutubeVideoLink6 != '') {
+                setLink6('flex')
+                setCount(count + 1)
+            }
+            if (result.data.YoutubeVideoLink7 != '') {
+                setLink7('flex')
+                setCount(count + 1)
+            }
+            if (result.data.YoutubeVideoLink8 != '') {
+                setLink8('flex')
+                setCount(count + 1)
+            }
+            if (result.data.YoutubeVideoLink9 != '') {
+                setLink9('flex')
+                setCount(count + 1)
+            }
+            if (result.data.YoutubeVideoLink10 != '') {
+                setLink10('flex')
+                setCount(count + 1)
+            }
+            setYoutubeLink2(result.data.YoutubeVideoLink2)
+            setYoutubeLink3(result.data.YoutubeVideoLink3)
+            setYoutubeLink4(result.data.YoutubeVideoLink4)
+            setYoutubeLink5(result.data.YoutubeVideoLink5)
+            setYoutubeLink6(result.data.YoutubeVideoLink6)
+            setYoutubeLink7(result.data.YoutubeVideoLink7)
+            setYoutubeLink8(result.data.YoutubeVideoLink8)
+            setYoutubeLink9(result.data.YoutubeVideoLink9)
+            setYoutubeLink10(result.data.YoutubeVideoLink10)
+            setGoogleMapLink(result.data.GoogleMapLink)
+            setThemeId(result.data.themeid)
+            setOtherLink(result.data.links)
+            setAddMember(result.data.members)
+            setCompanyName(result.data.businessName)
+        } else {
+            navigate('/userdashboard')
         }
-        if (result.data.YoutubeVideoLink3 != '') {
-            setLink3('flex')
-            setCount(count + 1)
-        }
-        if (result.data.YoutubeVideoLink4 != '') {
-            setLink4('flex')
-            setCount(count + 1)
-        }
-        if (result.data.YoutubeVideoLink5 != '') {
-            setLink5('flex')
-            setCount(count + 1)
-        }
-        if (result.data.YoutubeVideoLink6 != '') {
-            setLink6('flex')
-            setCount(count + 1)
-        }
-        if (result.data.YoutubeVideoLink7 != '') {
-            setLink7('flex')
-            setCount(count + 1)
-        }
-        if (result.data.YoutubeVideoLink8 != '') {
-            setLink8('flex')
-            setCount(count + 1)
-        }
-        if (result.data.YoutubeVideoLink9 != '') {
-            setLink9('flex')
-            setCount(count + 1)
-        }
-        if (result.data.YoutubeVideoLink10 != '') {
-            setLink10('flex')
-            setCount(count + 1)
-        }
-        setYoutubeLink2(result.data.YoutubeVideoLink2)
-        setYoutubeLink3(result.data.YoutubeVideoLink3)
-        setYoutubeLink4(result.data.YoutubeVideoLink4)
-        setYoutubeLink5(result.data.YoutubeVideoLink5)
-        setYoutubeLink6(result.data.YoutubeVideoLink6)
-        setYoutubeLink7(result.data.YoutubeVideoLink7)
-        setYoutubeLink8(result.data.YoutubeVideoLink8)
-        setYoutubeLink9(result.data.YoutubeVideoLink9)
-        setYoutubeLink10(result.data.YoutubeVideoLink10)
-        setGoogleMapLink(result.data.GoogleMapLink)
-        setThemeId(result.data.themeid)
-        setOtherLink(result.data.links)
-    }else{
-        navigate('/userdashboard')
-    }
-        if(result===false || result?.data!=undefined){
+        if (result === false || result?.data != undefined) {
             setLoadingAnimation(false)
-          }
+        }
 
 
     }
@@ -190,6 +189,8 @@ const Links = () => {
         formData.append('website', website)
         formData.append('location', location)
         formData.append('links', JSON.stringify(otherLink))
+        formData.append('members', JSON.stringify(addMember))
+        formData.append('businessName', companyName)
 
         var response = await postData("carddetails/updatesociallinks", formData, true);
         if (response.status) {
@@ -250,27 +251,19 @@ const Links = () => {
         setOtherLink([...otherLink, ...Array(1).fill(emptyLink)])
     }
     const handleDeleteLink = (index) => {
-        // Create a copy of the array
         const updatedLinks = [...otherLink];
-
-        // Remove the element at the specified index
         updatedLinks.splice(index, 1);
-
-        // Update the state with the modified array
         setOtherLink(updatedLinks);
     };
     const handleTitleChange = (index, value) => {
         const newData = [...otherLink];
         newData[index] = { ...newData[index], title: value };
-       
-
-       
         setOtherLink(newData);
     };
 
-    const handleCustomTitle=(index,value)=>{
+    const handleCustomTitle = (index, value) => {
         const newData = [...otherLink];
-        if(newData[index].title=="Others"){
+        if (newData[index].title == "Others") {
             newData[index] = { ...newData[index], customTitle: value };
             setOtherLink(newData)
         }
@@ -287,287 +280,289 @@ const Links = () => {
     return (
         <Grid>
             <Navbar />
-            {loadingAnimation==true?
-      <Container maxWidth="xl" sx={{height:"100vh",overflow:'hidden',width:"100vw"}}>
-        <Grid container spacing={2} sx={{display:"flex",justifyContent:"center",alignItems:"center",overflow:'hidden'}}>
-          
-          <Preloader/>
-          </Grid></Container>:
-            <Grid container spacing={2} sx={{ display: 'flex', alignItems: "center", justifyContent: 'center', paddingInline: "20px" }}>
-                <Grid item xs={4} sx={{ marginTop: "2vh", marginBottom: "2vh" }}>
-                    <Button sx={{
-                        borderRadius: 10,
-                        backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "space-evenly",
-                        textAlign: "center",
-                        alignItems: "center",
-                    }} onClick={() => navigate('/information')} variant='contained'><NavigateBeforeIcon />Back</Button>
-                </Grid>
-                <Grid item xs={4} sx={{ display: 'flex', justifyContent: "center", marginTop: "2vh", marginBottom: "2vh" }}>
-                    <Button sx={{
-                        borderRadius: 10,
-                        backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "space-evenly",
-                        textAlign: "center",
-                        alignItems: "center",
-                    }} onClick={() => handleSubmit()} variant='contained'>Save<BeenhereIcon /></Button>
-                </Grid>
-                <Grid item xs={4} style={{ display: 'flex', justifyContent: 'flex-end', marginTop: "2vh", marginBottom: "2vh" }}>
-                    <Button sx={{
-                        borderRadius: 10,
-                        backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "space-evenly",
-                        textAlign: "center",
-                        alignItems: "center",
-                    }} onClick={() => navigate('/ecommerce')} variant='contained'>Skip<NavigateNextIcon /></Button>
-                </Grid>
-                <Grid container spacing={2} sx={{ width: mobile ? "100%" : tablet ? "100%" : '70%', display: mobile ? "flex" : tablet ? "" : "", justifyContent: mobile ? "center" : tablet ? "" : "", alignItems: mobile ? "center" : tablet ? "" : "", flexDirection: mobile ? "column" : tablet ? "" : "" }}>
-                    <Grid item xs={12}>
-                        <Typography textAlign='center' sx={{ fontSize: { xs: "1.3rem", md: 28 }, fontWeight: 'bold' }}>Social Links</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography textAlign='center' sx={{ fontSize: { xs: "1.2rem", md: 28 }, fontWeight: 'bold' }}>Social Media Links</Typography>
-                    </Grid>
-                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={fbLink} onChange={(e) => setFbLink(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Facebook Username(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={twitterLink} onChange={(e) => setTwitterLink(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Twitter Username(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={instaLink} onChange={(e) => setInstaLink(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Instagram Username(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={linkedlnLink} onChange={(e) => setLinkedlnLink(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Linkedln Username(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={youtubeLink} onChange={(e) => setYoutubeLink(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Channel Name(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={googleMapLink} onChange={(e) => setGoogleMapLink(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Review Link(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8, flexDirection: 'column', alignItems: "center" }}>
-                        <TextField value={menuLink} onChange={(e) => setMenuLink(e.target.value)} sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }} label='Menu Link(Optional)' />
+            {loadingAnimation == true ?
+                <Container maxWidth="xl" sx={{ height: "100vh", overflow: 'hidden', width: "100vw" }}>
+                    <Grid container spacing={2} sx={{ display: "flex", justifyContent: "center", alignItems: "center", overflow: 'hidden' }}>
 
-                    </Grid>
-                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={website} onChange={(e) => setWebsite(e.target.value)} sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }} label='Website(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={location} onChange={(e) => setLocation(e.target.value)} sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }} label='Location Link(Optional)' />
-                    </Grid>
-
-                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                        <Preloader />
+                    </Grid></Container> :
+                <Grid container spacing={2} sx={{ display: 'flex', alignItems: "center", justifyContent: 'center', paddingInline: "20px" }}>
+                    <Grid item xs={4} sx={{ marginTop: "2vh", marginBottom: "2vh" }}>
                         <Button sx={{
                             borderRadius: 10,
                             backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
                             display: "flex",
                             flexDirection: "row",
                             justifyContent: "space-evenly",
-                            paddingX: "30px",
                             textAlign: "center",
                             alignItems: "center",
-                        }} variant='contained' onClick={() => handleAddLink()}>Add More Link</Button>
+                        }} onClick={() => navigate('/information')} variant='contained'><NavigateBeforeIcon />Back</Button>
                     </Grid>
-                    {
-                        otherLink.map((item, index) => (
-                            <>
-                                <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8,width: mobile ? "95%" : tablet ? "100%" : '60%' }}>
+                    <Grid item xs={4} sx={{ display: 'flex', justifyContent: "center", marginTop: "2vh", marginBottom: "2vh" }}>
+                        <Button sx={{
+                            borderRadius: 10,
+                            backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "space-evenly",
+                            textAlign: "center",
+                            alignItems: "center",
+                        }} onClick={() => handleSubmit()} variant='contained'>Save<BeenhereIcon /></Button>
+                    </Grid>
+                    <Grid item xs={4} style={{ display: 'flex', justifyContent: 'flex-end', marginTop: "2vh", marginBottom: "2vh" }}>
+                        <Button sx={{
+                            borderRadius: 10,
+                            backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "space-evenly",
+                            textAlign: "center",
+                            alignItems: "center",
+                        }} onClick={() => navigate('/ecommerce')} variant='contained'>Skip<NavigateNextIcon /></Button>
+                    </Grid>
+                    <Grid container spacing={2} sx={{ width: mobile ? "100%" : tablet ? "100%" : '70%', display: mobile ? "flex" : tablet ? "" : "", justifyContent: mobile ? "center" : tablet ? "" : "", alignItems: mobile ? "center" : tablet ? "" : "", flexDirection: mobile ? "column" : tablet ? "" : "" }}>
+                        <Grid item xs={12}>
+                            <Typography textAlign='center' sx={{ fontSize: { xs: "1.3rem", md: 28 }, fontWeight: 'bold' }}>Social Links</Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Typography textAlign='center' sx={{ fontSize: { xs: "1.2rem", md: 28 }, fontWeight: 'bold' }}>Social Media Links</Typography>
+                        </Grid>
+                        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={fbLink} onChange={(e) => setFbLink(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Facebook Username(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={twitterLink} onChange={(e) => setTwitterLink(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Twitter Username(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={instaLink} onChange={(e) => setInstaLink(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Instagram Username(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={linkedlnLink} onChange={(e) => setLinkedlnLink(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Linkedln Username(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={youtubeLink} onChange={(e) => setYoutubeLink(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Channel Name(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={googleMapLink} onChange={(e) => setGoogleMapLink(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Review Link(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8, flexDirection: 'column', alignItems: "center" }}>
+                            <TextField value={menuLink} onChange={(e) => setMenuLink(e.target.value)} sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }} label='Menu Link(Optional)' />
+
+                        </Grid>
+                        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={website} onChange={(e) => setWebsite(e.target.value)} sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }} label='Website(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={location} onChange={(e) => setLocation(e.target.value)} sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }} label='Location Link(Optional)' />
+                        </Grid>
+
+                        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                            <Button sx={{
+                                borderRadius: 10,
+                                backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "space-evenly",
+                                paddingX: "30px",
+                                textAlign: "center",
+                                alignItems: "center",
+                            }} variant='contained' onClick={() => handleAddLink()}>Add More Link</Button>
+                        </Grid>
+                        {
+                            otherLink.map((item, index) => (
+                                <>
+                                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8, width: mobile ? "95%" : tablet ? "100%" : '60%' }}>
 
 
 
-                                    <FormControl fullWidth sx={{ width: mobile ? "55%" : tablet ? "100%" : '56%' }}>
-                                        <InputLabel id="demo-simple-select-label">Choose Title for Link</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
+                                        <FormControl fullWidth sx={{ width: mobile ? "55%" : tablet ? "100%" : '56%' }}>
+                                            <InputLabel id="demo-simple-select-label">Choose Title for Link</InputLabel>
+                                            <Select
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
 
-                                            value={otherLink[index]?.title || ""}
-                                            label="Choose Title for Link"
-                                            onChange={(event) =>
-                                                handleTitleChange(index, event.target.value)
-                                            }
-                                        >
-                                            <MenuItem value={"GitHub"}>GitHub</MenuItem>
-                                            <MenuItem value={"Twitter"}>Twitter</MenuItem>
-                                            <MenuItem value={"Telegram"}>Telegram</MenuItem>
-                                            <MenuItem value={"Discord"}>Discord</MenuItem>
-                                            <MenuItem value={"PayPal"}>PayPal</MenuItem>
-                                            <MenuItem value={"Snapchat"}>Snapchat</MenuItem>
-                                            <MenuItem value={"Skype"}>Skype</MenuItem>
-                                            <MenuItem value={"Reddit"}>Reddit</MenuItem>
-                                            <MenuItem value={"Google drive"}>Google drive</MenuItem>
-                                            <MenuItem value={"Dropbox"}>Dropbox</MenuItem>
-                                            <MenuItem value={"Pinterest"}>Pinterest</MenuItem>
-                                            <MenuItem value={"Behance"}>Behance</MenuItem>
-                                            <MenuItem value={"Flipkard"}>Flipkard</MenuItem>
-                                            <MenuItem value={"Indiamart"}>Indiamart</MenuItem>
-                                            <MenuItem value={"Justdial"}>Justdial</MenuItem>
-                                            <MenuItem value={"Amazon"}>Amazon</MenuItem>
-                                            <MenuItem value={"Meesho"}>Meesho</MenuItem>
-                                            <MenuItem value={"Location"}>Location</MenuItem>
-                                            <MenuItem value={"YouTube"}>YouTube</MenuItem>
-                                            <MenuItem value={"Website"}>Website</MenuItem>
-                                            <MenuItem value={"Review"}>Google Review</MenuItem>
-                                            <MenuItem value={"Spotify"}>Spotify</MenuItem>
-                                            <MenuItem value={"MakeMyTrip"}>MakeMyTrip</MenuItem>
-                                            <MenuItem value={"Agoda"}>Agoda</MenuItem>
-                                            <MenuItem value={"TripAdvisor"}>TripAdvisor</MenuItem>
-                                            <MenuItem value={"Goiboboo"}>Goiboboo</MenuItem>
-                                            <MenuItem value={"Oyo"}>Oyo</MenuItem>
-                                            <MenuItem value={"Linktree"}>LinkTree</MenuItem>
-                                            <MenuItem value={"Fivver"}>Fivver</MenuItem>
-                                            <MenuItem value={"Booking"}>Booking</MenuItem>
-                                            <MenuItem value={"Patym"}>Patym</MenuItem>
-                                            <MenuItem value={"Phone"}>Phone Pay</MenuItem>
-                                            <MenuItem value={"Gpay"}>G Pay</MenuItem>
-                                            <MenuItem value={"PDF"}>PDF</MenuItem>
-                                            <MenuItem value={"Others"}>Others</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                    {/* <TextField value={otherLink[index]?.title ||""}  onChange={(event) =>
+                                                value={otherLink[index]?.title || ""}
+                                                label="Choose Title for Link"
+                                                onChange={(event) =>
+                                                    handleTitleChange(index, event.target.value)
+                                                }
+                                            >
+                                                <MenuItem value={"GitHub"}>GitHub</MenuItem>
+                                                <MenuItem value={"Twitter"}>Twitter</MenuItem>
+                                                <MenuItem value={"Telegram"}>Telegram</MenuItem>
+                                                <MenuItem value={"Discord"}>Discord</MenuItem>
+                                                <MenuItem value={"PayPal"}>PayPal</MenuItem>
+                                                <MenuItem value={"Snapchat"}>Snapchat</MenuItem>
+                                                <MenuItem value={"Skype"}>Skype</MenuItem>
+                                                <MenuItem value={"Reddit"}>Reddit</MenuItem>
+                                                <MenuItem value={"Google drive"}>Google drive</MenuItem>
+                                                <MenuItem value={"Dropbox"}>Dropbox</MenuItem>
+                                                <MenuItem value={"Pinterest"}>Pinterest</MenuItem>
+                                                <MenuItem value={"Behance"}>Behance</MenuItem>
+                                                <MenuItem value={"Flipkard"}>Flipkard</MenuItem>
+                                                <MenuItem value={"Indiamart"}>Indiamart</MenuItem>
+                                                <MenuItem value={"Justdial"}>Justdial</MenuItem>
+                                                <MenuItem value={"Amazon"}>Amazon</MenuItem>
+                                                <MenuItem value={"Meesho"}>Meesho</MenuItem>
+                                                <MenuItem value={"Location"}>Location</MenuItem>
+                                                <MenuItem value={"YouTube"}>YouTube</MenuItem>
+                                                <MenuItem value={"Website"}>Website</MenuItem>
+                                                <MenuItem value={"Review"}>Google Review</MenuItem>
+                                                <MenuItem value={"Spotify"}>Spotify</MenuItem>
+                                                <MenuItem value={"MakeMyTrip"}>MakeMyTrip</MenuItem>
+                                                <MenuItem value={"Agoda"}>Agoda</MenuItem>
+                                                <MenuItem value={"TripAdvisor"}>TripAdvisor</MenuItem>
+                                                <MenuItem value={"Goiboboo"}>Goiboboo</MenuItem>
+                                                <MenuItem value={"Oyo"}>Oyo</MenuItem>
+                                                <MenuItem value={"Linktree"}>LinkTree</MenuItem>
+                                                <MenuItem value={"Fivver"}>Fivver</MenuItem>
+                                                <MenuItem value={"Booking"}>Booking</MenuItem>
+                                                <MenuItem value={"Patym"}>Patym</MenuItem>
+                                                <MenuItem value={"Phone"}>Phone Pay</MenuItem>
+                                                <MenuItem value={"Gpay"}>G Pay</MenuItem>
+                                                <MenuItem value={"PDF"}>PDF</MenuItem>
+                                                <MenuItem value={"Others"}>Others</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                        {/* <TextField value={otherLink[index]?.title ||""}  onChange={(event) =>
                                         handleTitleChange(index, event.target.value)
                                     } sx={{ width: mobile ? "65%" : tablet ? "100%" : '56%' }} label='Title'/> */}
-                                    
-                                    <IconButton onClick={() => handleDeleteLink(index)}><Delete /></IconButton>
-                                </Grid>
-                                <Grid item xs={12} style={{ display: otherLink[index]?.title === "Others"? "flex" : "none", justifyContent: "center", marginBottom: 8, flexDirection: 'column', alignItems: "center" }}>
-                                    <TextField
-                                        value={otherLink[index]?.customTitle || ""}
-                                        onChange={(event) => handleCustomTitle(index, event.target.value)}
-                                        sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }}
-                                        label='Title'
-                                    />
-                                </Grid>
+
+                                        <IconButton onClick={() => handleDeleteLink(index)}><Delete /></IconButton>
+                                    </Grid>
+                                    <Grid item xs={12} style={{ display: otherLink[index]?.title === "Others" ? "flex" : "none", justifyContent: "center", marginBottom: 8, flexDirection: 'column', alignItems: "center" }}>
+                                        <TextField
+                                            value={otherLink[index]?.customTitle || ""}
+                                            onChange={(event) => handleCustomTitle(index, event.target.value)}
+                                            sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }}
+                                            label='Title'
+                                        />
+                                    </Grid>
 
 
-                                <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
-                                    <TextField value={otherLink[index]?.link || ""} onChange={(event) =>
-                                        handleLinkChange(index, event.target.value)
-                                    } sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }} label='Link' />
+                                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                                        <TextField value={otherLink[index]?.link || ""} onChange={(event) =>
+                                            handleLinkChange(index, event.target.value)
+                                        } sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }} label='Link' />
+                                    </Grid>
+                                </>
+                            ))
+                        }
+
+
+
+                        <Grid item xs={12}>
+                            <Typography textAlign='center' sx={{ fontSize: { xs: "1.2rem", md: 28 }, fontWeight: 'bold' }}>Add Company Members</Typography>
+                        </Grid>
+                        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                            <TextField
+                                value={companyName}
+                                onChange={(event) => setCompanyName(event.target.value)}
+                                label="Enter Company Name" sx={{ width: { xs: '100%', md: '60%' } }}
+                            />
+                        </Grid>
+                        {companyName !== '' &&
+                            <>
+                                {addMember?.map((item, index) => (
+                                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8, width: mobile ? "95%" : tablet ? "100%" : '60%' }}>
+                                        <TextField
+                                            value={item?.uniqueId || ""}
+                                            onChange={(event) => handleMemberChange(index, event.target.value)}
+                                            label="Enter Unique Id" sx={{ width: mobile ? "55%" : tablet ? "100%" : '56%' }}
+                                        />
+                                        <IconButton onClick={() => handleMemberDelete(index)}>
+                                            <Delete />
+                                        </IconButton>
+                                    </Grid>
+                                ))}
+
+                                <Grid
+                                    item
+                                    xs={12}
+                                    style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        marginBottom: 8,
+                                        gap: 15,
+                                    }}
+                                >
+                                    <Button sx={{
+                                        borderRadius: 10,
+                                        backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        justifyContent: "space-evenly",
+                                        paddingX: "30px",
+                                        textAlign: "center",
+                                        alignItems: "center",
+                                    }} variant='contained' onClick={() => handleAddLinkMember()}>Add More Member</Button>
                                 </Grid>
                             </>
-                        ))
-                    }
+                        }
+
+
+                        <Grid item xs={12}>
+                            <Typography textAlign='center' sx={{ fontSize: { xs: "1.2rem", md: 28 }, fontWeight: 'bold' }}>Youtube Video Links</Typography>
+                        </Grid>
+                        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={youtubeLink1} onChange={(e) => setYoutubeLink1(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: link2, justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={youtubeLink2} onChange={(e) => setYoutubeLink2(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 2(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: link3, justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={youtubeLink3} onChange={(e) => setYoutubeLink3(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 3(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: link4, justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={youtubeLink4} onChange={(e) => setYoutubeLink4(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 4(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: link5, justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={youtubeLink5} onChange={(e) => setYoutubeLink5(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 5(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: link6, justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={youtubeLink6} onChange={(e) => setYoutubeLink6(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 6(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: link7, justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={youtubeLink7} onChange={(e) => setYoutubeLink7(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 7(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: link8, justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={youtubeLink8} onChange={(e) => setYoutubeLink8(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 8(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: link9, justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={youtubeLink9} onChange={(e) => setYoutubeLink9(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 9(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: link10, justifyContent: "center", marginBottom: 8 }}>
+                            <TextField value={youtubeLink10} onChange={(e) => setYoutubeLink10(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 10(Optional)' />
+                        </Grid>
+                        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                            <Button sx={{
+                                borderRadius: 10,
+                                backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "space-evenly",
+                                paddingX: "30px",
+                                textAlign: "center",
+                                alignItems: "center",
+                            }} variant='contained' onClick={() => handleAdd(count)}>Add More Youtube</Button>
+                        </Grid>
 
 
 
-             <Grid item xs={12}>
-                <Typography textAlign='center' sx={{ fontSize: { xs: "1.2rem", md: 28 }, fontWeight: 'bold' }}>Add Company Members</Typography>
-            </Grid>
-            {addMember?.map((item, index) => (
-             <Grid
-            item
-            xs={12}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginBottom: 8,
-              gap: 15,
-            }}
-          >
-            <TextField
-              value={item[index]?.rate || ""}
-              onChange={(event) => handleMemberChange(index, event.target.value)}
-              label="Add Your Members" sx={{ width: { xs: '100%', md: '60%' }}}
-            />
-            <IconButton onClick={() => handleMemberDelete(index)}>
-              <Delete />
-            </IconButton>
-          </Grid>
-        ))}
-
-        <Grid
-          item
-          xs={12}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: 8,
-            gap: 15,
-          }}
-        >
-           <Button sx={{
-                            borderRadius: 10,
-                            backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "space-evenly",
-                            paddingX: "30px",
-                            textAlign: "center",
-                            alignItems: "center",
-            }} variant='contained' onClick={() => handleAddLinkMember()}>Add More Member</Button>
-        </Grid>
-
-
-                    <Grid item xs={12}>
-                        <Typography textAlign='center' sx={{ fontSize: { xs: "1.2rem", md: 28 }, fontWeight: 'bold' }}>Youtube Video Links</Typography>
+                        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
+                            <Button sx={{
+                                borderRadius: 10,
+                                backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
+                                display: "flex",
+                                paddingX: "30px",
+                                flexDirection: "row",
+                                justifyContent: "space-evenly",
+                                textAlign: "center",
+                                alignItems: "center",
+                            }} variant='contained' onClick={() => handleSubmit()}>Next</Button>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={youtubeLink1} onChange={(e) => setYoutubeLink1(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: link2, justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={youtubeLink2} onChange={(e) => setYoutubeLink2(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 2(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: link3, justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={youtubeLink3} onChange={(e) => setYoutubeLink3(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 3(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: link4, justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={youtubeLink4} onChange={(e) => setYoutubeLink4(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 4(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: link5, justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={youtubeLink5} onChange={(e) => setYoutubeLink5(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 5(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: link6, justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={youtubeLink6} onChange={(e) => setYoutubeLink6(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 6(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: link7, justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={youtubeLink7} onChange={(e) => setYoutubeLink7(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 7(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: link8, justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={youtubeLink8} onChange={(e) => setYoutubeLink8(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 8(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: link9, justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={youtubeLink9} onChange={(e) => setYoutubeLink9(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 9(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: link10, justifyContent: "center", marginBottom: 8 }}>
-                        <TextField value={youtubeLink10} onChange={(e) => setYoutubeLink10(e.target.value)} sx={{ width: { xs: '100%', md: '60%' } }} label='Youtube Video Link 10(Optional)' />
-                    </Grid>
-                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
-                        <Button sx={{
-                            borderRadius: 10,
-                            backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "space-evenly",
-                            paddingX: "30px",
-                            textAlign: "center",
-                            alignItems: "center",
-                        }} variant='contained' onClick={() => handleAdd(count)}>Add More Youtube</Button>
-                    </Grid>
-
-
-
-                    <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
-                        <Button sx={{
-                            borderRadius: 10,
-                            backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
-                            display: "flex",
-                            paddingX: "30px",
-                            flexDirection: "row",
-                            justifyContent: "space-evenly",
-                            textAlign: "center",
-                            alignItems: "center",
-                        }} variant='contained' onClick={() => handleSubmit()}>Next</Button>
-                    </Grid>
-                </Grid>
-            </Grid>}
+                </Grid>}
 
             <Footer />
         </Grid>
