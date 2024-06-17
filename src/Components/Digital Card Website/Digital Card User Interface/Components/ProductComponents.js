@@ -29,12 +29,18 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Newfooter from "./NewFooter";
+import { useNavigate } from "react-router-dom";
 export default function ProductComponents() {
   const matchesB = useMediaQuery("(max-width:500px)");
   const matches = useMediaQuery("(max-width:900px)");
   const matchesA = useMediaQuery("(max-width:1400px)");
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openDrawer2, setOpenDrawer2] = useState(false);
+
+  var navigate=useNavigate()
+  const handleNagivate=()=>{
+    navigate('/newthemecard')
+}
 
   const classes2 = useStyles2()
 
@@ -214,7 +220,7 @@ export default function ProductComponents() {
       >
         <Grid
           sx={{
-            width: "94%",
+            width: "86%",
             height: "auto",
             marginTop: "5%",
             display: "flex",
@@ -223,10 +229,9 @@ export default function ProductComponents() {
           <Grid
             sx={{
               position:'sticky',zIndex:'2',top:100,
-              width: "55%",
+              width: "50%",
               height: 600,
               display: "flex",
-              alignItems: "center",
               flexDirection: "column",
             }}
           >
@@ -253,7 +258,7 @@ export default function ProductComponents() {
                 }}
               />
             </Grid>
-            <Grid sx={{ marginTop: "3%", display: "flex", gap: 2 }}>
+            <Grid sx={{ marginTop: "3%", display: "flex", gap: 2,marginLeft:'4.5%' }}>
               {showSlider()}
             </Grid>
             <Grid>
@@ -270,7 +275,7 @@ export default function ProductComponents() {
 
           <Grid
             sx={{
-              width: "45%",
+              width: "50%",
               height: "auto",
               display: "flex",
               flexDirection: "column",
@@ -281,7 +286,6 @@ export default function ProductComponents() {
                 fontSize: "26px",
                 fontWeight: 700,
                 lineHeight: "40px",
-                width: "70%",
               }}
             >
               Sky White : DCH Instago Review Card
@@ -310,6 +314,7 @@ export default function ProductComponents() {
             </Grid>
             <Grid sx={{ display: "flex", marginTop: "3%" }}>
               <Button
+              onClick={handleNagivate}
                 style={{
                   border: "1px solid #fff",
                   borderColor: "#fff",
@@ -326,6 +331,7 @@ export default function ProductComponents() {
                   justifyContent: "center",
                   gap: 40,
                   background: "#fff",
+                  cursor:'pointer'
                 }}
               >
                 <div style={{ fontSize: "24px", fontWeight: 500 }}>-</div>{" "}

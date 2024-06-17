@@ -4,23 +4,28 @@ import card from "../../Digital Card Assets/cardimage1.png"
 import sub from "../../Digital Card Assets/sub.png"
 import add from "../../Digital Card Assets/add.png"
 import cardphn from "../../Digital Card Assets/cardphn.png"
+import { useNavigate } from "react-router-dom";
 export default function NewThemeCard()
 {
+  var navigate=useNavigate()
+  const handleNagivate=()=>{
+    navigate('/newcheckout')
+}
     return(<Grid sx={{width:'100%',backgroundImage: "linear-gradient(to bottom right, #171717,#171717,#070707,#070707)",fontFamily:'Montserrat'}}>
         <Grid>
             <NewHeader/>
         </Grid>
         <Grid sx={{display:'flex',alignItems:'center',justifyContent:'center',width:'100%',marginTop:'4%',color:'#FFFFFF'}}>
-           <Grid sx={{width:'82%',height:2000,display:'flex',flexDirection:'column'}}>
+           <Grid sx={{width:'82%',height:'auto',display:'flex',flexDirection:'column'}}>
             <Grid sx={{width:'100%',display:'flex'}}>
-            <Grid sx={{width:'60%',height:2000}}>
+            <Grid sx={{width:'60%',height:'auto'}}>
               <Grid sx={{fontSize:'36px',fontWeight:600,lineHeight:'44px',letterSpacing:'-1.4%'}}>
                Your cart
               </Grid>
               <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',letterSpacing:'-1.4%',marginTop:'2%'}}>
               Not ready to checkout? Continue Shopping
               </Grid>
-              <Grid sx={{display:'flex',width:'100%',gap:2,marginTop:'2%',height:160}}>
+              <Grid sx={{display:'flex',width:'100%',gap:2,marginTop:'2%',height:'auto'}}>
                 <Grid sx={{width:'14.2%'}}>
                     <img src={card}  style={{width:'100%'}}></img>
                 </Grid>
@@ -196,8 +201,12 @@ export default function NewThemeCard()
 
       </Grid>
 
+
+
+
        <Grid>
             <Button
+            onClick={handleNagivate}
              style={{
                     border:'1px solid #fff',
                     borderColor:'#fff',
