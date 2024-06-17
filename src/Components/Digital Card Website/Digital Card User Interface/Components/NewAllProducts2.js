@@ -42,7 +42,9 @@ export default function NewAllProduct2()
     const sliderRef3 = useRef(null);
 
 
-/////////////////
+////////////////////////
+
+
   useEffect(() => {
     const slider = sliderRef.current;
 
