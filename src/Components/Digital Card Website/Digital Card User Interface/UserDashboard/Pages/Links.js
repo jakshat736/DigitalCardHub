@@ -454,11 +454,11 @@ const Links = () => {
                         <Grid item xs={12}>
                             <Typography textAlign='center' sx={{ fontSize: { xs: "1.2rem", md: 28 }, fontWeight: 'bold' }}>Add Company Members</Typography>
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
                             <TextField
                                 value={companyName}
                                 onChange={(event) => setCompanyName(event.target.value)}
-                                label="Enter Company Name" sx={{ width: mobile ? "55%" : tablet ? "100%" : '56%' }}
+                                label="Enter Company Name" sx={{ width: { xs: '100%', md: '60%' } }}
                             />
                         </Grid>
                         {companyName !== '' &&
