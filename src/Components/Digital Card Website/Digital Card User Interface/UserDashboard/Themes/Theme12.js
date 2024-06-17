@@ -12,7 +12,7 @@ import {
   IconButton,
   InputAdornment,
   Paper,
-  Stack,TextField,Typography,
+  Stack, TextField, Typography,
 } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
@@ -95,7 +95,7 @@ import ankit4 from "../Themes/ThemeAssets/ankit4.jpg"
 const actions = [
   { icon: <SimCardDownloadIcon style={{ fontSize: '22px' }} />, name: "Copy" },
   { icon: <SendToMobileIcon style={{ fontSize: '20px' }} />, name: "Shareno" },
-  { icon: <PriorityHighIcon style={{ transform:'rotate(180deg)'}}/>, name: "Enquery" },
+  { icon: <PriorityHighIcon style={{ transform: 'rotate(180deg)' }} />, name: "Enquery" },
   { icon: <ShareIcon />, name: "Share" },
 ];
 
@@ -140,7 +140,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const [openLogin, setOpenLogin] = useState(false);
   const [reviews, setReviews] = useState(false);
   const [openMore, setOpenMore] = useState(false);
-
+  const [members, setMembers] = useState([])
   const [openB, setOpenB] = React.useState(false);
   const [openContact, setOpenContact] = React.useState(false);
   const [open, setOpen] = React.useState(false);
@@ -151,6 +151,29 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const [showMore, setShowMore] = useState(false);
   // All handleClickFunctions
 
+
+  const fetchMemberById = async (item) => {
+    var formData = new FormData();
+    formData.append("companyId", item);
+    var result = await postData(
+      "carddetails/getMemberDetailsbycompanyid",
+      formData,
+      true
+    );
+    return result?.data;
+  }
+  React.useEffect(() => {
+    if (data?.members?.length > 0) {
+      const fetchMembers = async () => {
+        const productData = await Promise?.all(
+          data?.members?.map((item) => fetchMemberById(item?.uniqueId))
+        )
+        console.log(productData)
+        setMembers(productData)
+      };
+      fetchMembers();
+    }
+  }, [data]);
 
   const handleHideBox = () => {
     setIsVisible(false);
@@ -213,7 +236,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   };
 
   React.useEffect(() => {
-    if(data?.enquiry=='true'){
+    if (data?.enquiry == 'true') {
       handleClickOpenLogin();
     }
   }, []);
@@ -279,13 +302,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     setWork(!work)
     setOpenDrawer(!openDrawer);
     setTimeout(() => {
-    if (about === false) {
-      var section = document.getElementById("work");
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
+      if (about === false) {
+        var section = document.getElementById("work");
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
       }
-    }
-  }, 100);
+    }, 100);
   };
 
   const handleClick = async (title, url) => {
@@ -363,7 +386,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     formData.append("number", phoneNo);
     formData.append("query", query);
 
-  let response = await postData("enquiry/addcardenquiry", formData, true);
+    let response = await postData("enquiry/addcardenquiry", formData, true);
 
     if (response?.status) {
       setName("");
@@ -396,7 +419,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     formData.append("review", review);
     formData.append("rating", rating);
     formData.append("submitAt", new Date());
-    
+
     let response = await postData("enquiry/addcardreview", formData, true);
 
     if (response?.status) {
@@ -657,11 +680,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       formData.append('phone', phoneNumber)
       var result = await postData('customerLogin/chkLogin', formData, true)
 
-    if (result.status) {
+      if (result.status) {
 
-      window.localStorage.setItem("userId", result.data._id)
-      window.localStorage.setItem("UserNumber", result?.data?.phone)
-      window.localStorage.setItem("UserEmail", result?.data?.email)
+        window.localStorage.setItem("userId", result.data._id)
+        window.localStorage.setItem("UserNumber", result?.data?.phone)
+        window.localStorage.setItem("UserEmail", result?.data?.email)
 
         Swal.fire({
           title: 'Successfully Logged In!',
@@ -748,7 +771,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
         style: {
           position: "fixed",
           bottom: -35,
-          width: "100%",height:'40%',
+          width: "100%", height: '40%',
           borderTopRightRadius: 15,
           borderTopLeftRadius: 15,
           // Dialog ko page ke bottom me set karein
@@ -840,7 +863,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                         borderRadius: 8,
                       }}
                     >
-                     Login
+                      Login
                     </div>
                   </IconButton>
                 )
@@ -882,7 +905,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           width: "100%",
           borderTopRightRadius: 15,
           borderTopLeftRadius: 15,
-       
+
           // Dialog ko page ke bottom me set karein
         },
       }}
@@ -969,13 +992,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const enquiryDialog = () => {
     return (
       <Dialog
-      PaperProps={{
-        style: {
-          width: "86%",
-         borderRadius:15
-          // Dialog ko page ke bottom me set karein
-        },
-      }}
+        PaperProps={{
+          style: {
+            width: "86%",
+            borderRadius: 15
+            // Dialog ko page ke bottom me set karein
+          },
+        }}
         open={openB}
         onClose={handleCloseButton}
       >
@@ -1073,13 +1096,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const EnquiryFormDialog = () => {
     return (
       <Dialog
-      PaperProps={{
-        style: {
-          width: "86%",
-         borderRadius:15
-          // Dialog ko page ke bottom me set karein
-        },
-      }}
+        PaperProps={{
+          style: {
+            width: "86%",
+            borderRadius: 15
+            // Dialog ko page ke bottom me set karein
+          },
+        }}
         open={openContact}
         onClose={handleCloseContact}
       >
@@ -1174,86 +1197,48 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const AllMember = () => {
     return (
       <Dialog
-      PaperProps={{
-        style: {
-          width: "94%",
-          height:320,
-         borderRadius:15,
-         overflowY: "scroll",
-         background:'#f5f6fa'
-          // Dialog ko page ke bottom me set karein
-        },
-      }}
+        PaperProps={{
+          style: {
+            width: "94%",
+            height: 320,
+            borderRadius: 15,
+            overflowY: "scroll",
+            background: '#f5f6fa'
+            // Dialog ko page ke bottom me set karein
+          },
+        }}
         open={openMember}
         onClose={handleCloseMember}
       >
-          <IconButton
-            onClick={handleCloseMember}
-            aria-label="close"
-            sx={{
-              position: "absolute",
-              right: 8,
-              top: 8,
-              color: "inherit",
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-       <Grid sx={{display:'flex',flexDirection:'column',alignItems:'center',marginTop:'8%'}}>
-        <Grid sx={{fontWeight:'Montserrat',fontWeight:500,fontSize:'22px',color:'#2d3436'}}>Meet The <b>Team.</b></Grid>
-        <Grid sx={{width:'100%',display:'flex',justifyContent:'space-between',padding:3,marginTop:'3%'}}>
-       <Grid sx={{width:'50%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}} >
-       <Avatar
-       src={ankit1}
-        sx={{ width: 100, height: 100 }}/> 
-       <Grid sx={{fontWeight:'Montserrat',fontWeight:500,fontSize:'17px',color:'#2d3436',textAlign:'center',lineHeight:'20px',letterSpacing:'-2.4%',marginTop:'10%'}}>
-        Ankit Narwariya
-      </Grid>
-      <Grid sx={{fontWeight:'Montserrat',fontWeight:400,fontSize:'11px',color:'#cd6133',textAlign:'center',lineHeight:'26px',letterSpacing:'-2.4%',marginTop:'1%'}}>
-        Project Manager
-      </Grid>
-       </Grid>
-        <Grid sx={{width:'50%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}} >
-       <Avatar
-       src={ankit2}
-        sx={{ width: 100, height: 100 }}/> 
-       <Grid sx={{fontWeight:'Montserrat',fontWeight:500,fontSize:'17px',color:'#2d3436',textAlign:'center',lineHeight:'20px',letterSpacing:'-2.4%',marginTop:'10%'}}>
-        harshit Jain
-      </Grid>
-      <Grid sx={{fontWeight:'Montserrat',fontWeight:400,fontSize:'11px',color:'#cd6133',textAlign:'center',lineHeight:'26px',letterSpacing:'-2.4%',marginTop:'1%'}}>
-        CEO and Founder
-      </Grid>
-       </Grid>
+        <IconButton
+          onClick={handleCloseMember}
+          aria-label="close"
+          sx={{
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: "inherit",
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <Grid container spacing={2} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '8%' }}>
+          {
+            members?.map((item) =>
+              <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }} >
+                <Avatar
+                  src={`${serverURL}/images/${item?.companylogo}`}
+                  sx={{ width: 100, height: 100 }} />
+                <Grid sx={{ fontWeight: 'Montserrat', fontWeight: 500, fontSize: '17px', color: '#2d3436', textAlign: 'center', lineHeight: '20px', letterSpacing: '-2.4%', marginTop: '10%' }}>
+                  {item?.fullname}
+                </Grid>
+                <Grid sx={{ fontWeight: 'Montserrat', fontWeight: 400, fontSize: '11px', color: '#cd6133', textAlign: 'center', lineHeight: '26px', letterSpacing: '-2.4%', marginTop: '1%' }}>
+                  {item?.position}
+                </Grid>
+              </Grid>
+            )
+          }
         </Grid>
-
-
-        <Grid sx={{width:'100%',display:'flex',justifyContent:'space-between',padding:3}}>
-       <Grid sx={{width:'50%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}} >
-       <Avatar
-       src={ankit3}
-        sx={{ width: 100, height: 100 }}/> 
-       <Grid sx={{fontWeight:'Montserrat',fontWeight:500,fontSize:'17px',color:'#2d3436',textAlign:'center',lineHeight:'20px',letterSpacing:'-2.4%',marginTop:'10%'}}>
-        Juned Solanki
-      </Grid>
-      <Grid sx={{fontWeight:'Montserrat',fontWeight:400,fontSize:'11px',color:'#cd6133',textAlign:'center',lineHeight:'26px',letterSpacing:'-2.4%',marginTop:'1%'}}>
-        Graphic Designer
-      </Grid>
-       </Grid>
-        <Grid sx={{width:'50%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}} >
-       <Avatar
-       src={ankit4}
-        sx={{ width: 100, height: 100 }}/> 
-       <Grid sx={{fontWeight:'Montserrat',fontWeight:500,fontSize:'17px',color:'#2d3436',textAlign:'center',lineHeight:'20px',letterSpacing:'-2.4%',marginTop:'10%'}}>
-        Akshat Jain
-      </Grid>
-      <Grid sx={{fontWeight:'Montserrat',fontWeight:400,fontSize:'11px',color:'#cd6133',textAlign:'center',lineHeight:'26px',letterSpacing:'-2.4%',marginTop:'1%'}}>
-        Head Manager
-      </Grid>
-       </Grid>
-        </Grid>
-
-
-       </Grid>
       </Dialog>
     );
   };
@@ -1377,8 +1362,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     autoplay: "true",
     autospeed: 1,
     slidesToScroll: 1,
-    arrows:false
-   
+    arrows: false
+
   };
 
 
@@ -1392,28 +1377,22 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     arrows: false,
   };
 
-
-  // var datas=[{id:0,picture:[bannerone],productname:'LOGO DESIGN WORK',price:2000.00,offerprice:1000.00},
-  // {id:0,picture:[banner2],productname:'FULL STACK DEVELOPER',price:3300.00,offerprice:2200.00},
-  // {id:0,picture:[bannerone],productname:'GRAPHIC DESIGNER LOGO',price:2200.00,offerprice:1000.00}]
-
   const showSlider = () => {
     return ecommerce?.map((item) => {
       if (item.productimg != '') {
         return (
           <Grid sx={{ display: "flex", justifyContent: "center", alignItems: 'center' }}>
-         <Grid sx={{ display: "flex", justifyContent: "center", alignItems: 'center',marginLeft: '2%'}}>
-          <Grid sx={{width:'100%',height:'100%'}}>
-          <img src={`${serverURL}/images/${item.productimg}`}  style={{
-        width: '98%',
-        height:matches?300:360,
-        borderRadius:8,
-        }} />
-          </Grid>
+            <Grid sx={{ display: "flex", justifyContent: "center", alignItems: 'center', marginLeft: '2%' }}>
+              <Grid sx={{ width: '100%', height: '100%' }}>
+                <img src={`${serverURL}/images/${item.productimg}`} style={{
+                  width: '98%',
+                  height: matches ? 300 : 360,
+                  borderRadius: 8,
+                }} />
+              </Grid>
+            </Grid>
 
-         </Grid>
-     
-            
+
             {/* <Grid sx={{
     position: 'relative',
     paddingBottom: '60%', // 1:1 aspect ratio
@@ -1428,14 +1407,14 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
       borderRadius:8,
         }} />
             </Grid> */}
-            <Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: '2%',marginTop:'2.5%' }}>
+            <Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: '2%', marginTop: '2.5%' }}>
               <Grid sx={{ fontSize: '22px', fontWeight: 700 }}>
                 {item.productname}
               </Grid>
               <Grid sx={{ fontSize: '15px', fontWeight: 400, marginTop: '1%' }}>
                 {item.productdescription}
               </Grid>
-              <Grid sx={{ display: 'flex',marginTop:'2%'}}>
+              <Grid sx={{ display: 'flex', marginTop: '2%' }}>
                 <Button
                   style={{
                     borderColor: "#000",
@@ -1455,17 +1434,17 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     window.open(
                       `https://wa.me/+91${data?.WhatsappNo}?text=I Want To Buy Your ${item.productname}`
                     )
-            }
-            >
+                  }
+                >
                   Enquiry Now
                 </Button>
-                  <Grid sx={{ display: 'flex', flexDirection: 'column',marginLeft:'4%' }}>
-                    <Grid sx={{ fontSize: '20px', fontWeight: 600, color: '#FF0000'}}>{item.offerprice?<>₹ </>:<></> } {item.offerprice}  </Grid><Grid sx={{ fontSize: '12px', fontWeight: 500, color: '#4A4A4A'}}>{item.offerprice?<>(Inc. all taxes)</>:<></> }</Grid>
+                <Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: '4%' }}>
+                  <Grid sx={{ fontSize: '20px', fontWeight: 600, color: '#FF0000' }}>{item.offerprice ? <>₹ </> : <></>} {item.offerprice}  </Grid><Grid sx={{ fontSize: '12px', fontWeight: 500, color: '#4A4A4A' }}>{item.offerprice ? <>(Inc. all taxes)</> : <></>}</Grid>
                 </Grid>
               </Grid>
             </Grid>
 
-            
+
           </Grid>)
       }
     })
@@ -1498,38 +1477,38 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
     return reviewsData?.map((item) => {
       return (
         <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          '& > :not(style)': {
-            m: .5,
-            marginTop: 1,
-            maxHeight: 82,
-            overflowY:'scroll',
-            scrollbarWidth:'none',
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            '& > :not(style)': {
+              m: .5,
+              marginTop: 1,
+              maxHeight: 82,
+              overflowY: 'scroll',
+              scrollbarWidth: 'none',
 
-          },
-        }}
-      >
-        <Paper elevation={4} sx={{ padding: 1.3 }}>
-          <Grid sx={{ display: 'flex' }}>
-            <Grid sx={{ fontSize: '18px', fontWeight: 500 }}>{item?.name}</Grid>
-          </Grid>
-          <Grid sx={{ display: 'flex' }}>
-            <Grid>
-              <Rating
-                size="small"
-                color="green"
-                name="simple-controlled"
-                value={item.rating}
-              />
+            },
+          }}
+        >
+          <Paper elevation={4} sx={{ padding: 1.3 }}>
+            <Grid sx={{ display: 'flex' }}>
+              <Grid sx={{ fontSize: '18px', fontWeight: 500 }}>{item?.name}</Grid>
             </Grid>
-            <Grid sx={{ color: '#636e72', fontSize: 14, color: '#636e72', marginLeft: '2%', marginTop: '.7%' }}>{getDuration(item?.submitAt)}</Grid>
-          </Grid>
-          <Grid sx={{ fontSize: 10, color: '#2d3436' }}>
-            {item.review}
-          </Grid>
-        </Paper>
+            <Grid sx={{ display: 'flex' }}>
+              <Grid>
+                <Rating
+                  size="small"
+                  color="green"
+                  name="simple-controlled"
+                  value={item.rating}
+                />
+              </Grid>
+              <Grid sx={{ color: '#636e72', fontSize: 14, color: '#636e72', marginLeft: '2%', marginTop: '.7%' }}>{getDuration(item?.submitAt)}</Grid>
+            </Grid>
+            <Grid sx={{ fontSize: 10, color: '#2d3436' }}>
+              {item.review}
+            </Grid>
+          </Paper>
         </Box>
       )
     })
@@ -1544,7 +1523,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-       
+
       }}
     >
       <Grid
@@ -1555,64 +1534,65 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           position: "relative",
         }}
       >
-        {data?.coverVideo != "" ? (
-          <Grid
-            id="hero"
-            xs={12}
-            sx={{
-              display: "flex",
-              color: "#fff",
-              width: { xs: "100vw", sm: "70%", md: "40%" },
-              minHeight: { xs: 200 },
-              paddingLeft: -5,
-              overflow: "hidden",
-              boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.5)', // Ensures the video doesn't overflow the Grid
-            }}
-          >
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              style={{
-                objectFit: "cover",
-                width: "100%",
-                height: 250,
-                borderTopRightRadius: 5,
-                borderTopLeftRadius: 5,
-                boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.5)',
+        {data?.coverVideo != "" ?
+          (
+            <Grid
+              id="hero"
+              xs={12}
+              sx={{
+                display: "flex",
+                color: "#fff",
+                width: { xs: "100vw", sm: "70%", md: "40%" },
+                minHeight: { xs: 200 },
+                paddingLeft: -5,
+                overflow: "hidden",
+                boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.5)', // Ensures the video doesn't overflow the Grid
               }}
             >
-              <source
-                src={`${serverURL}/images/${data?.coverVideo}`}
-                type="video/mp4"
-              />
-            </video>
-          </Grid>
-        ) : (
-          <Grid
-            id="hero"
-            item
-            xs={12}
-            md={12}
-            sx={{
-              color: "#fff",
-              backgroundImage: data?.companyCoverImage
-                ? `url('data:image/png;base64,${arrayBufferToBase64(
-                  data?.companyCoverImage.data?.data
-                )}')`
-                : "radial-gradient(#353b48, #000) ",
-              backgroundSize: "cover",
-              width: "100%",
-              minHeight: { xs: 260 },
-              borderTopRightRadius: 5,
-              borderTopLeftRadius: 5,
-              boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
-            }}
-          >
-            {" "}
-          </Grid>
-        )}
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: 250,
+                  borderTopRightRadius: 5,
+                  borderTopLeftRadius: 5,
+                  boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.5)',
+                }}
+              >
+                <source
+                  src={`${serverURL}/images/${data?.coverVideo}`}
+                  type="video/mp4"
+                />
+              </video>
+            </Grid>
+          ) : (
+            <Grid
+              id="hero"
+              item
+              xs={12}
+              md={12}
+              sx={{
+                color: "#fff",
+                backgroundImage: data?.companyCoverImage
+                  ? `url('data:image/png;base64,${arrayBufferToBase64(
+                    data?.companyCoverImage.data?.data
+                  )}')`
+                  : "radial-gradient(#353b48, #000) ",
+                backgroundSize: "cover",
+                width: "100%",
+                minHeight: { xs: 260 },
+                borderTopRightRadius: 5,
+                borderTopLeftRadius: 5,
+                boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
+              }}
+            >
+              {" "}
+            </Grid>
+          )}
         <Grid
           sx={{
             width: "100%",
@@ -1685,35 +1665,35 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 display: "flex",
               }}
             >
-           <Button 
-                onClick={handleAbout}     
-                  style={{
-                    borderColor: "#000",
-                    width: 110,
-                    height: 32,
-                    backgroundImage: "radial-gradient(#353b48, #000)",
-                    color: "#fff",
-                    fontSize: "15px",
-                    fontWeight: 400,
-                    textTransform: "none",
-                    borderRadius: 14,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexDirection:'row',
-                    marginLeft: "auto",
-                    marginTop: matches ? '-8%' : '-4%',
-                    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
-                  }}
-                >              
-                  Work
-                  {openDrawer ? (
+              <Button
+                onClick={handleAbout}
+                style={{
+                  borderColor: "#000",
+                  width: 110,
+                  height: 32,
+                  backgroundImage: "radial-gradient(#353b48, #000)",
+                  color: "#fff",
+                  fontSize: "15px",
+                  fontWeight: 400,
+                  textTransform: "none",
+                  borderRadius: 14,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: 'row',
+                  marginLeft: "auto",
+                  marginTop: matches ? '-8%' : '-4%',
+                  boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
+                }}
+              >
+                Work
+                {openDrawer ? (
                   <ExpandLess fontSize="medium" />
                 ) : (
                   <ExpandMore fontSize="medium" />
                 )}
-                </Button>
-               
+              </Button>
+
             </Grid>
 
             <Grid
@@ -1729,61 +1709,63 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
-                borderRadius: "95px", 
+                borderRadius: "95px",
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
                 imageRendering: '-webkit-optimize-contrast', // Chrome, Safari
                 WebkitImageRendering: 'optimize-contrast', // Ensuring cross-browser compatibility
                 imageRendering: 'crisp-edges', // Firefox
-              
+
                 boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
               }}
             ></Grid>
           </Grid>
           <Grid style={{ background: "#fff" }}>
-          <Grid style={{ display: "flex", flexDirection: "row" }}>
-                <Box
+            <Grid style={{ display: "flex", flexDirection: "row" }}>
+              <Box
+                sx={{
+                  height: 50,
+                  transform: "translateZ(100px)",
+                  flexGrow: 1,
+                  position: "relative",
+                  marginTop: matches ? "-8.7%" : '-5%',
+                }}
+              >
+                <SpeedDial
+                  ariaLabel="SpeedDial basic example"
                   sx={{
-                    height: 50,
-                    transform: "translateZ(100px)",
-                    flexGrow: 1,
-                    position: "relative",
-                    marginTop: matches?"-8.7%":'-5%',
+                    '& .MuiSpeedDial-fab': {
+                      boxShadow: 'none', // Remove the box shadow
+                      backgroundColor: '#fff' // Set background color to #fff
+                    },
+                    '& .MuiSpeedDial-fab:hover': {
+                      boxShadow: 'none',
+                      backgroundColor: '#fff' // Ensure background color remains #fff on hover
+                    },
+                    '&.MuiSpeedDial-open .MuiSpeedDial-fab': {
+                      boxShadow: 'none',
+                      backgroundColor: '#fff' // Ensure background color remains #fff when open/clicked
+                    }, position: "absolute", right: 6, bottom: 1
                   }}
+                  direction="left"
+                  icon={
+                    <img src={moreicons} width={40}></img>
+                  }
                 >
-                  <SpeedDial
-                   ariaLabel="SpeedDial basic example"
-                   sx={{'& .MuiSpeedDial-fab': { 
-                    boxShadow: 'none', // Remove the box shadow
-                    backgroundColor: '#fff' // Set background color to #fff
-                  },
-                  '& .MuiSpeedDial-fab:hover': {
-                    boxShadow: 'none', 
-                    backgroundColor: '#fff' // Ensure background color remains #fff on hover
-                  },
-                  '&.MuiSpeedDial-open .MuiSpeedDial-fab': {
-                    boxShadow: 'none', 
-                    backgroundColor: '#fff' // Ensure background color remains #fff when open/clicked
-                  },position: "absolute", right: 6, bottom: 1 }}
-                    direction="left"
-                    icon={
-                     <img src={moreicons} width={40}></img>
-                    }
-                  >
-                    {actions.map((action) => (
-                      <SpeedDialAction
-                        key={action.name}
-                        icon={action.icon}
-                        tooltipTitle={action.name}
-                        onClick={() => handleClickIcon(action.name)}
-                      />
-                    ))}
-                  </SpeedDial>
-                </Box>
-              </Grid>
+                  {actions.map((action) => (
+                    <SpeedDialAction
+                      key={action.name}
+                      icon={action.icon}
+                      tooltipTitle={action.name}
+                      onClick={() => handleClickIcon(action.name)}
+                    />
+                  ))}
+                </SpeedDial>
+              </Box>
+            </Grid>
             <Grid
-              style={{ marginLeft: matches ? "4%" : "6%", marginTop:matches?"-2%":'3%' }}
+              style={{ marginLeft: matches ? "4%" : "6%", marginTop: matches ? "-2%" : '3%' }}
             >
               <Grid
                 style={{
@@ -1863,7 +1845,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     style={{
                       fontSize: 12,
                       color: "#636e72",
-                      fontFamily:'poppins',
+                      fontFamily: 'poppins',
                       overflowY: "scroll",
                       padding: 8,
                     }}
@@ -1929,7 +1911,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 }}
               >
                 <Grid sx={{ marginTop: '3%', }}>
-                  <img src={call} width={25}/>
+                  <img src={call} width={25} />
                 </Grid>
                 <Grid
                   sx={{
@@ -1937,7 +1919,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     color: "#000",
                     fontWeight: 400,
                     fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                    fontFamily: 'poppins'
                   }}
                 >
                   Call
@@ -1948,7 +1930,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <Grid
               item
               xs={6}
-               md={6}
+              md={6}
             >
               <Button
                 sx={{
@@ -1978,7 +1960,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     color: "#000",
                     fontWeight: 400,
                     fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                    fontFamily: 'poppins'
                   }}
                 >
                   WhatsApp
@@ -2015,7 +1997,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                 }}
               >
                 <Grid sx={{ marginTop: '5%', }}>
-                  <img src={gmail}  width={25}></img>
+                  <img src={gmail} width={25}></img>
                 </Grid>
                 <Grid
                   sx={{
@@ -2023,7 +2005,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     color: "#000",
                     fontWeight: 400,
                     fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                    fontFamily: 'poppins'
                   }}
                 >
                   Email
@@ -2065,7 +2047,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     color: "#000",
                     fontWeight: 400,
                     fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                    fontFamily: 'poppins'
                   }}
                 >
                   LinkedIn
@@ -2107,7 +2089,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     color: "#000",
                     fontWeight: 400,
                     fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                    fontFamily: 'poppins'
                   }}
                 >
                   Facebook
@@ -2147,7 +2129,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     color: "#000",
                     fontWeight: 400,
                     fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                    fontFamily: 'poppins'
                   }}
                 >
                   Instagram
@@ -2193,13 +2175,13 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             fontWeight: 500,
                             fontWeight: 400,
                             fontSize: matches ? "15px" : 20,
-                            fontFamily:'poppins'
+                            fontFamily: 'poppins'
                           }}
                         >
                           GitHub
                         </Grid>
                       </Button>
-                      )
+                    )
                     }
                     {item.title === "Telegram" && (
                       <Button
@@ -2218,7 +2200,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`https://t.me/${item.link}`}
@@ -2232,7 +2214,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             color: "#000",
                             fontWeight: 400,
                             fontSize: matches ? "15px" : 20,
-                            fontFamily:'poppins'
+                            fontFamily: 'poppins'
                           }}
                         >
                           Telegram
@@ -2257,7 +2239,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`https://discord.com/${item.link}`}
@@ -2270,8 +2252,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           Discord
@@ -2297,7 +2279,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`https://www.paypal.com/${item.link}`}
@@ -2311,7 +2293,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             color: "#000",
                             fontWeight: 400,
                             fontSize: matches ? "15px" : 20,
-                            fontFamily:'poppins'
+                            fontFamily: 'poppins'
                           }}
                         >
                           PayPal
@@ -2337,12 +2319,12 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`https://www.snapchat.com/add/${item.link}`}
                       >
-                        <Grid sx={{ marginTop: '6%',marginLeft:'-2%' }}>
+                        <Grid sx={{ marginTop: '6%', marginLeft: '-2%' }}>
                           <img src={snapchatnew} width={38}></img>
                         </Grid>
                         <Grid
@@ -2350,8 +2332,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: .7,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           Snapchat
@@ -2377,7 +2359,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`https://www.skype.com/${item.link}`}
@@ -2390,8 +2372,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           Skype
@@ -2417,7 +2399,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`https://www.reddit.com/${item.link}`}
@@ -2431,7 +2413,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             color: "#000",
                             fontWeight: 400,
                             fontSize: matches ? "15px" : 20,
-                            fontFamily:'poppins'
+                            fontFamily: 'poppins'
                           }}
                         >
                           Reddit
@@ -2457,7 +2439,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`https://drive.google.com/${item.link}`}
@@ -2470,8 +2452,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           G Drive
@@ -2497,7 +2479,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`https://www.dropbox.com/${item.link}`}
@@ -2510,8 +2492,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           Dropbox
@@ -2537,7 +2519,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`https://in.pinterest.com/${item.link}`}
@@ -2550,8 +2532,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           Pinterest
@@ -2580,7 +2562,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`https://www.behance.net/${item.link}`}
@@ -2593,8 +2575,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           Behance
@@ -2605,7 +2587,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     }
 
 
-                 {item.title === "Indiamart" && (
+                    {item.title === "Indiamart" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -2622,7 +2604,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`https://www.indiamart.com/${item.link}`}
@@ -2635,8 +2617,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           IndiaMart
@@ -2644,7 +2626,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                       </Button>
                     )
                     }
-                     {item.title === "Justdial" && (
+                    {item.title === "Justdial" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -2661,7 +2643,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`https://www.justdial.com/${item.link}`}
@@ -2674,8 +2656,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           Justdial
@@ -2684,7 +2666,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
 
                     )
                     }
-                     {item.title === "Amazon" && (
+                    {item.title === "Amazon" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -2701,7 +2683,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`https://www.amazon.com/${item.link}`}
@@ -2714,8 +2696,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           Amazon
@@ -2725,7 +2707,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     )
                     }
 
-                     {item.title === "Flipkard" && (
+                    {item.title === "Flipkard" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -2742,7 +2724,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`https://www.flipkart.com/${item.link}`}
@@ -2755,8 +2737,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           Flipkard
@@ -2765,7 +2747,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     )
                     }
 
-                     {item.title === "Meesho" && (
+                    {item.title === "Meesho" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -2782,7 +2764,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`https://www.meesho.com/${item.link}`}
@@ -2795,8 +2777,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           Meesho
@@ -2805,7 +2787,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     )
                     }
 
-                     {item.title === "PDF" && (
+                    {item.title === "PDF" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -2822,7 +2804,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2835,8 +2817,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           PDF
@@ -2844,7 +2826,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                       </Button>
                     )
                     }
-                     {item.title === "Location" && (
+                    {item.title === "Location" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -2861,7 +2843,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2874,8 +2856,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           Find Us
@@ -2884,7 +2866,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     )
                     }
 
-                   {item.title === "YouTube" && (
+                    {item.title === "YouTube" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -2901,7 +2883,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2914,8 +2896,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           YouTube
@@ -2925,7 +2907,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     }
 
 
-                   {item.title === "Website" && (
+                    {item.title === "Website" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -2942,7 +2924,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2955,8 +2937,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           Website
@@ -2965,7 +2947,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     )
                     }
 
-                 {item.title === "Review" && (
+                    {item.title === "Review" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -2982,7 +2964,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -2995,8 +2977,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: .6,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           Review Us
@@ -3004,7 +2986,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                       </Button>
                     )
                     }
-                     {item.title === "Twitter" && (
+                    {item.title === "Twitter" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -3021,7 +3003,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -3034,8 +3016,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           Twitter
@@ -3044,7 +3026,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     )
                     }
 
-                  {item.title === "Spotify" && (
+                    {item.title === "Spotify" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -3061,7 +3043,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -3074,8 +3056,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
                           Spotify
@@ -3085,7 +3067,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                     }
 
 
-                {item.title === "MakeMyTrip" && (
+                    {item.title === "MakeMyTrip" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -3102,7 +3084,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -3115,18 +3097,18 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: .3,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
-                        MakeMyTrip
+                          MakeMyTrip
                         </Grid>
                       </Button>
                     )
                     }
 
 
-                 {item.title === "Agoda" && (
+                    {item.title === "Agoda" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -3143,7 +3125,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -3156,17 +3138,17 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
-                        Agoda
+                          Agoda
                         </Grid>
                       </Button>
                     )
                     }
 
-                {item.title === "TripAdvisor" && (
+                    {item.title === "TripAdvisor" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -3183,7 +3165,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -3196,17 +3178,17 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
-                        TripAdvisor
+                          TripAdvisor
                         </Grid>
                       </Button>
                     )
                     }
 
-                 {item.title === "Goiboboo" && (
+                    {item.title === "Goiboboo" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -3223,7 +3205,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -3236,18 +3218,18 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
-                        Goibobo
+                          Goibobo
                         </Grid>
                       </Button>
                     )
                     }
 
 
-                 {item.title === "Oyo" && (
+                    {item.title === "Oyo" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -3264,7 +3246,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -3277,17 +3259,17 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
-                        Oyo
+                          Oyo
                         </Grid>
                       </Button>
                     )
                     }
 
-             {item.title === "Linktree" && (
+                    {item.title === "Linktree" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -3304,7 +3286,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -3317,18 +3299,18 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
-                        LinkTree
+                          LinkTree
                         </Grid>
                       </Button>
                     )
                     }
 
 
-                 {item.title === "Fivver" && (
+                    {item.title === "Fivver" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -3345,7 +3327,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -3358,18 +3340,18 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
-                        Fivver
+                          Fivver
                         </Grid>
                       </Button>
                     )
                     }
 
 
-              {item.title === "Booking" && (
+                    {item.title === "Booking" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -3386,7 +3368,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -3398,18 +3380,18 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           sx={{
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
-                        Booking.com
+                          Booking.com
                         </Grid>
                       </Button>
                     )
                     }
 
 
-             {item.title === "Patym" && (
+                    {item.title === "Patym" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -3426,7 +3408,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -3439,18 +3421,18 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
-                        Patym
+                          Patym
                         </Grid>
                       </Button>
                     )
                     }
 
 
-               {item.title === "Phone" && (
+                    {item.title === "Phone" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -3467,7 +3449,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -3480,11 +3462,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
-                        Phonepe
+                          Phonepe
                         </Grid>
                       </Button>
                     )
@@ -3492,7 +3474,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
 
 
 
-            {item.title === "Gpay" && (
+                    {item.title === "Gpay" && (
                       <Button
                         sx={{
                           borderColor: "#bdc3c7",
@@ -3509,7 +3491,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                           marginTop: "3%",
                           fontSize: "15px",
                           fontWeight: 500,
-                          fontFamily:'poppins'
+                          fontFamily: 'poppins'
                         }}
                         fullWidth
                         href={`${item.link}`}
@@ -3522,11 +3504,11 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             marginLeft: 1.9,
                             color: "#000",
                             fontWeight: 400,
-                    fontSize: matches ? "15px" : 20,
-                    fontFamily:'poppins'
+                            fontSize: matches ? "15px" : 20,
+                            fontFamily: 'poppins'
                           }}
                         >
-                        G pay
+                          G pay
                         </Grid>
                       </Button>
                     )
@@ -3566,7 +3548,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                             color: "#000",
                             fontWeight: 400,
                             fontSize: matches ? "15px" : 20,
-                            fontFamily:'poppins'
+                            fontFamily: 'poppins'
                           }}
                         >
                           {item.customTitle}
@@ -3598,344 +3580,512 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             />
           </Grid>
         </Grid>
-      
+
         {work ? (
           <>
             {" "}
-           
-        <Grid
-          item
-          xs={12}
-          sx={{
-            display: "flex",
-            backgroundColor: "#fff",
-            height: 'auto',
-            flexDirection: "column",
-            padding: 1,
-          }}
-        >   
-         <div id="work"></div>   
-          <Grid
-            style={{
-              marginTop: "3%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
-          >
-            <Grid style={{ fontSize: "22px", fontWeight: 700 }}>
-              Work / Products
-            </Grid>
-            <Grid sx={{ width: "100%", display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '3%' }}>
-              <Slider
-                style={{ width: "95%" }}
-                {...settingproduct}
-              >
-                {showSlider()}
-              </Slider>
-            </Grid>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={12}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >            
-            <Divider
-              style={{
-                height: "1px",
-                backgroundColor: "#bdc3c7",
-                width: "94%",
-                marginTop: "10%",
-              }}
-            />
-          </Grid>
-        </Grid>
-      
-
-
-        <Grid
-          item
-          xs={12}
-          md={12}
-          sx={{
-            display:
-              (data?.YoutubeVideoLink1 != "" ||
-                data?.YoutubeVideoLink2 != "" ||
-                data?.YoutubeVideoLink3 != "" ||
-                data?.YoutubeVideoLink4 != "" ||
-                data?.YoutubeVideoLink5 != "")
-                ? "block"
-                : "none",
-            color: "#fff",
-            backgroundColor: "#fff",
-            width: "100%",
-            minHeight: { xs: "auto", sm: "auto", md: "auto" },
-          }}
-          
-        >
-         
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              display: (data?.YoutubeVideoLink1 != "" ||
-                data?.YoutubeVideoLink2 != "" ||
-                data?.YoutubeVideoLink3 != "" ||
-                data?.YoutubeVideoLink4 != "") ? "flex" : "none",
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: '4%',
-            }}
-          >
-            <Typography
-              textAlign={"center"}
-              sx={{ fontSize: "23px", fontWeight: 700, color: '#000' }}
-            >
-              See Our Videos
-
-            </Typography>
-           
-            <Grid
-              item
-              xs={11}
-              md={11}
-              style={{
-                margin: 10,
-                display: data?.YoutubeVideoLink1 == "" ? "none" : "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Grid
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  alignItems: "center",
-                  borderRadius: '15px', overflow: 'hidden'
-                }}
-              >
-                <ReactPlayer height="210px" url={data?.YoutubeVideoLink1} />
-              </Grid>
-            </Grid>
 
             <Grid
               item
-              xs={11}
-              md={11}
-              style={{
-                margin: 10,
-                display: data?.YoutubeVideoLink2 == "" ? "none" : "flex",
-                justifyContent: "center",
+              xs={12}
+              sx={{
+                display: "flex",
+                backgroundColor: "#fff",
+                height: 'auto',
                 flexDirection: "column",
+                padding: 1,
               }}
             >
+              <div id="work"></div>
               <Grid
                 style={{
+                  marginTop: "3%",
                   display: "flex",
-                  justifyContent: "flex-start",
+                  justifyContent: "center",
                   alignItems: "center",
-                  borderRadius: '15px', overflow: 'hidden'
+                  flexDirection: "column",
                 }}
               >
-                <ReactPlayer height="210px" url={data?.YoutubeVideoLink2} />
+                <Grid style={{ fontSize: "22px", fontWeight: 700 }}>
+                  Work / Products
+                </Grid>
+                <Grid sx={{ width: "100%", display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '3%' }}>
+                  <Slider
+                    style={{ width: "95%" }}
+                    {...settingproduct}
+                  >
+                    {showSlider()}
+                  </Slider>
+                </Grid>
               </Grid>
-            </Grid>
-           
-            <Grid
-              item
-              xs={11}
-              md={11}
-              style={{
-                margin: 10,
-                display: data?.YoutubeVideoLink3 == "" ? "none" : "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-              }}
-            >
               <Grid
-                style={{
+                item
+                xs={12}
+                md={12}
+                sx={{
                   display: "flex",
-                  justifyContent: "flex-start",
+                  justifyContent: "center",
                   alignItems: "center",
-                  borderRadius: '15px', overflow: 'hidden'
                 }}
               >
-                <ReactPlayer height="210px" url={data?.YoutubeVideoLink3} />
-              </Grid>
-             
-            </Grid>
-           
-            <Grid
-              item
-              xs={11}
-              md={11}
-              style={{
-                margin: 10,
-                display: data?.YoutubeVideoLink4 == "" ? "none" : "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Grid
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  alignItems: "center",
-                  borderRadius: '15px', overflow: 'hidden'
-                }}
-              >
-                <ReactPlayer height="210px" url={data?.YoutubeVideoLink4} />
-              </Grid>
-            </Grid>
-            <Grid
-              item
-              xs={11}
-              md={11}
-              style={{
-                margin: 10,
-                display: (data?.YoutubeVideoLink5 == "" || showMore === false) ? "none" : "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Grid
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  alignItems: "center",
-                  borderRadius: '15px', overflow: 'hidden'
-                }}
-              >
-                <ReactPlayer height="210px" url={data?.YoutubeVideoLink5} />
-              </Grid>
-            </Grid>
-            <Grid
-              item
-              xs={11}
-              md={11}
-              style={{
-                margin: 10,
-                display: (data?.YoutubeVideoLink6 == "" || showMore === false) ? "none" : "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-              }}
-            >
-              
-              <Grid
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  alignItems: "center",
-                  borderRadius: '15px', overflow: 'hidden'
-                }}
-              >
-                <ReactPlayer height="210px" url={data?.YoutubeVideoLink6} />
-              </Grid>
-            </Grid>
-            <Grid
-              item
-              xs={11}
-              md={11}
-              style={{
-                margin: 10,
-                display: (data?.YoutubeVideoLink7 == "" || showMore === false) ? "none" : "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Grid
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  alignItems: "center",
-                  borderRadius: '15px', overflow: 'hidden'
-                }}
-              >
-                <ReactPlayer height="210px" url={data?.YoutubeVideoLink7} />
-              </Grid>
-            </Grid>
-            <Grid
-              item
-              xs={11}
-              md={11}
-              style={{
-                margin: 10,
-                display: (data?.YoutubeVideoLink8 == "" || showMore === false) ? "none" : "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Grid
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  alignItems: "center",
-                  borderRadius: '15px', overflow: 'hidden'
-                }}
-              >
-                <ReactPlayer height="210px" url={data?.YoutubeVideoLink8} />
-              </Grid>
-            </Grid>
-            <Grid
-              item
-              xs={11}
-              md={11}
-              style={{
-                margin: 10,
-                display: (data?.YoutubeVideoLink9 == "" || showMore === false) ? "none" : "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Grid
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  alignItems: "center",
-                  borderRadius: '15px', overflow: 'hidden'
-                }}
-              >
-                <ReactPlayer height="210px" url={data?.YoutubeVideoLink9} />
-              </Grid>
-            </Grid>
-            <Grid
-              item
-              xs={11}
-              md={11}
-              style={{
-                margin: 10,
-                display: (data?.YoutubeVideoLink10 == "" || showMore === false) ? "none" : "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Grid
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  alignItems: "center",
-                  borderRadius: '15px', overflow: 'hidden'
-                }}
-              >
-                <ReactPlayer height="210px" url={data?.YoutubeVideoLink10} />
+                <Divider
+                  style={{
+                    height: "1px",
+                    backgroundColor: "#bdc3c7",
+                    width: "94%",
+                    marginTop: "10%",
+                  }}
+                />
               </Grid>
             </Grid>
 
+
+
             <Grid
               item
-              xs={11}
-              md={11}
-              style={{
-                margin: 10,
-                display: data?.YoutubeVideoLink4 == "" ? "none" : "flex",
-                justifyContent: "center",
+              xs={12}
+              md={12}
+              sx={{
+                display:
+                  (data?.YoutubeVideoLink1 != "" ||
+                    data?.YoutubeVideoLink2 != "" ||
+                    data?.YoutubeVideoLink3 != "" ||
+                    data?.YoutubeVideoLink4 != "" ||
+                    data?.YoutubeVideoLink5 != "")
+                    ? "block"
+                    : "none",
+                color: "#fff",
+                backgroundColor: "#fff",
+                width: "100%",
+                minHeight: { xs: "auto", sm: "auto", md: "auto" },
+              }}
+
+            >
+
+              <Grid
+                container
+                spacing={2}
+                sx={{
+                  display: (data?.YoutubeVideoLink1 != "" ||
+                    data?.YoutubeVideoLink2 != "" ||
+                    data?.YoutubeVideoLink3 != "" ||
+                    data?.YoutubeVideoLink4 != "") ? "flex" : "none",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginTop: '4%',
+                }}
+              >
+                <Typography
+                  textAlign={"center"}
+                  sx={{ fontSize: "23px", fontWeight: 700, color: '#000' }}
+                >
+                  See Our Videos
+
+                </Typography>
+
+                <Grid
+                  item
+                  xs={11}
+                  md={11}
+                  style={{
+                    margin: 10,
+                    display: data?.YoutubeVideoLink1 == "" ? "none" : "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Grid
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      borderRadius: '15px', overflow: 'hidden'
+                    }}
+                  >
+                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink1} />
+                  </Grid>
+                </Grid>
+
+                <Grid
+                  item
+                  xs={11}
+                  md={11}
+                  style={{
+                    margin: 10,
+                    display: data?.YoutubeVideoLink2 == "" ? "none" : "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Grid
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      borderRadius: '15px', overflow: 'hidden'
+                    }}
+                  >
+                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink2} />
+                  </Grid>
+                </Grid>
+
+                <Grid
+                  item
+                  xs={11}
+                  md={11}
+                  style={{
+                    margin: 10,
+                    display: data?.YoutubeVideoLink3 == "" ? "none" : "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Grid
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      borderRadius: '15px', overflow: 'hidden'
+                    }}
+                  >
+                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink3} />
+                  </Grid>
+
+                </Grid>
+
+                <Grid
+                  item
+                  xs={11}
+                  md={11}
+                  style={{
+                    margin: 10,
+                    display: data?.YoutubeVideoLink4 == "" ? "none" : "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Grid
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      borderRadius: '15px', overflow: 'hidden'
+                    }}
+                  >
+                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink4} />
+                  </Grid>
+                </Grid>
+                <Grid
+                  item
+                  xs={11}
+                  md={11}
+                  style={{
+                    margin: 10,
+                    display: (data?.YoutubeVideoLink5 == "" || showMore === false) ? "none" : "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Grid
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      borderRadius: '15px', overflow: 'hidden'
+                    }}
+                  >
+                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink5} />
+                  </Grid>
+                </Grid>
+                <Grid
+                  item
+                  xs={11}
+                  md={11}
+                  style={{
+                    margin: 10,
+                    display: (data?.YoutubeVideoLink6 == "" || showMore === false) ? "none" : "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
+
+                  <Grid
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      borderRadius: '15px', overflow: 'hidden'
+                    }}
+                  >
+                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink6} />
+                  </Grid>
+                </Grid>
+                <Grid
+                  item
+                  xs={11}
+                  md={11}
+                  style={{
+                    margin: 10,
+                    display: (data?.YoutubeVideoLink7 == "" || showMore === false) ? "none" : "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Grid
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      borderRadius: '15px', overflow: 'hidden'
+                    }}
+                  >
+                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink7} />
+                  </Grid>
+                </Grid>
+                <Grid
+                  item
+                  xs={11}
+                  md={11}
+                  style={{
+                    margin: 10,
+                    display: (data?.YoutubeVideoLink8 == "" || showMore === false) ? "none" : "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Grid
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      borderRadius: '15px', overflow: 'hidden'
+                    }}
+                  >
+                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink8} />
+                  </Grid>
+                </Grid>
+                <Grid
+                  item
+                  xs={11}
+                  md={11}
+                  style={{
+                    margin: 10,
+                    display: (data?.YoutubeVideoLink9 == "" || showMore === false) ? "none" : "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Grid
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      borderRadius: '15px', overflow: 'hidden'
+                    }}
+                  >
+                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink9} />
+                  </Grid>
+                </Grid>
+                <Grid
+                  item
+                  xs={11}
+                  md={11}
+                  style={{
+                    margin: 10,
+                    display: (data?.YoutubeVideoLink10 == "" || showMore === false) ? "none" : "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Grid
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      borderRadius: '15px', overflow: 'hidden'
+                    }}
+                  >
+                    <ReactPlayer height="210px" url={data?.YoutubeVideoLink10} />
+                  </Grid>
+                </Grid>
+
+                <Grid
+                  item
+                  xs={11}
+                  md={11}
+                  style={{
+                    margin: 10,
+                    display: data?.YoutubeVideoLink4 == "" ? "none" : "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Grid
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                    onClick={() => setShowMore(!showMore)}>
+                    <Button
+                      style={{
+                        borderColor: "#000",
+                        width: 130,
+                        height: 40,
+                        background: "#000",
+                        color: "#fff",
+                        fontSize: "14px",
+                        fontWeight: 400,
+                        textTransform: "none",
+                        borderRadius: 8,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexDirection: 'row'
+                      }}
+                    >
+                      {showMore ? "Show Less" : "Show More"}
+                      {showMore ? (
+                        <ExpandLess fontSize="medium" />
+                      ) : (
+                        <ExpandMore fontSize="medium" />
+                      )}
+                    </Button>
+                  </Grid>
+                </Grid>
+
+                <Grid
+                  item
+                  xs={11}
+                  md={11}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Divider
+                    style={{
+                      height: "1px",
+                      backgroundColor: "#bdc3c7",
+                      width: "100%",
+                      marginTop: "2%",
+                    }}
+                  />
+                </Grid>
+
+              </Grid>
+            </Grid>
+
+            {(members?.length > 0 && data?.businessName !== '') &&
+              <Grid
+                item
+                xs={12}
+                sx={{
+                  display: "flex",
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  height: 'auto',
+                  flexDirection: "column",
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  padding: 1,
+                }}
+              >
+                <Grid sx={{ display: "flex", flexDirection: "row", }}>
+                  <Grid sx={{ width: '62%', marginTop: '4%' }}>
+                    <AvatarGroup  >
+                      {
+                        members?.map((item) => <Avatar sx={{ width: 54, height: 54 }} src={`${serverURL}/images/${item?.companylogo}`} />)
+                      }
+                    </AvatarGroup>
+                  </Grid>
+                  <Grid sx={{ width: '38%', marginTop: '7%', }}>
+                    <Grid sx={{
+                      fontSize: "18px", lineHeight: '20px',
+                      fontWeight: 600,
+                      fontFamily: 'poppins', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#000'
+                    }}>
+                      {data?.businessName}
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid sx={{ marginTop: '4%', marginLeft: 'auto' }}>
+                  <Button
+                    onClick={handleClickMember}
+                    style={{
+                      borderColor: "#D0D0D0",
+                      width: 170,
+                      height: 36,
+                      backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                      color: "#000",
+                      fontSize: "15px",
+                      fontWeight: 400,
+                      textTransform: "none",
+                      borderRadius: 4,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexDirection: 'row',
+                      marginLeft: "auto",
+                      boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+                    }}
+                  >
+                    View All Members
+                  </Button>
+                </Grid>
+
+                <Divider
+                  style={{
+                    backgroundColor: "#bdc3c7",
+                    width: "94%",
+                    marginTop: "8%",
+                  }}
+                />
+              </Grid>}
+
+
+            <Grid
+              item
+              xs={12}
+              sx={{
+                display: reviewsData?.length > 0 ? "flex" : 'none',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: 1,
+                background: '#fff',
+                flexDirection: 'column',
+                height: 'auto'
+              }}>
+              <Grid sx={{ fontSize: '20px', fontWeight: 700, marginTop: '4%' }}>SEE OUR REVIEW !</Grid>
+              <Grid
+                style={{
+                  border: "1px solid #fff",
+                  display: "flex",
+                  flexDirection: "column",
+                  borderRadius: 10,
+                  marginTop: '5%',
+                  overflowY: 'scroll',
+                  scrollbarWidth: 'none',
+                  scrollSnapAlign: "end"
+                }}>
+                <Slider {...settings}>
+                  {Reviews()}
+                </Slider>
+
+              </Grid>
+            </Grid>
+
+
+            <Grid
+              item
+              xs={12}
+              sx={{
+                display: "flex",
+                backgroundColor: "#fff",
+                height: 'auto',
                 flexDirection: "column",
+                padding: 1,
               }}
             >
               <Grid
@@ -3944,211 +4094,35 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   justifyContent: "center",
                   alignItems: "center",
                 }}
-                onClick={() => setShowMore(!showMore)}>
-              <Button           
-                  style={{
-                    borderColor: "#000",
-                    width: 130,
-                    height: 40,
-                    background: "#000",
-                    color: "#fff",
-                    fontSize: "14px",
-                    fontWeight: 400,
-                    textTransform: "none",
-                    borderRadius: 8,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexDirection:'row'
-                  }}
-                >
-                   {showMore ? "Show Less" : "Show More"}
-                   {showMore ? (
-                  <ExpandLess fontSize="medium" />
-                ) : (
-                  <ExpandMore fontSize="medium" />
-                )}
-                </Button>
+              >
+                <React.Fragment>
+                  <Button
+                    onClick={handleClickOpen}
+                    style={{
+                      borderColor: "#000",
+                      width: matches ? "94%" : "100%",
+                      background: '#000',
+                      color: "#fff",
+                      fontWeight: "bold",
+                      textTransform: "none",
+                      padding: 5,
+                      borderRadius: 8,
+                      marginTop: "1%",
+                      fontSize: "18px",
+                      fontWeight: 600,
+                    }}
+                    variant="outlined"
+                  >
+                    Write Your Review
+                  </Button>
+                </React.Fragment>
               </Grid>
             </Grid>
-          
-            <Grid
-              item
-              xs={11}
-              md={11}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Divider
-                style={{
-                  height: "1px",
-                  backgroundColor: "#bdc3c7",
-                  width: "100%",
-                  marginTop: "2%",
-                }}
-              />
-            </Grid>
-
-          </Grid>
-        </Grid>
-
-
-
-
-        <Grid
-          item
-          xs={12}
-          sx={{
-            display: "flex",
-            width:'100%',
-            backgroundColor: "#fff",
-            height: 'auto',
-            flexDirection:"column",
-            justifyContent:'center',
-            alignItems:'center',
-            padding: 1,
-          }}
-        >   
-        <Grid sx={{ display: "flex", flexDirection: "row",}}>
-        <Grid sx={{width:'62%',marginTop:'4%'}}>
-        <AvatarGroup  >
-      <Avatar   sx={{ width: 54, height: 54 }} src={ankit1} />
-      <Avatar   sx={{ width: 54, height: 54 }} src={ankit2} />
-      <Avatar  sx={{ width: 54, height: 54 }} src={ankit3} />
-      <Avatar  sx={{ width: 54, height: 54 }} src={ankit4} />
-    </AvatarGroup>
-        </Grid>
-        <Grid sx={{width:'38%',marginTop:'7%',}}>
-          <Grid sx={{fontSize: "18px",lineHeight:'20px',
-                      fontWeight: 600,
-                      fontFamily:'poppins',textAlign:'center',display:'flex',justifyContent:'center',alignItems:'center',color:'#000'}}>
-            Digital card Hub
-          </Grid>
-        </Grid>
-        </Grid>
-
-        <Grid sx={{marginTop:'4%',marginLeft:'auto'}}>
-        <Button 
-               onClick={handleClickMember}
-                  style={{
-                    borderColor: "#D0D0D0",
-                    width: 170,
-                    height: 36,
-                    backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                    color: "#000",
-                    fontSize: "15px",
-                    fontWeight: 400,
-                    textTransform: "none",
-                    borderRadius: 4,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexDirection:'row',
-                    marginLeft: "auto",
-                    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-                  }}
-                >              
-                  View All Members
-                </Button>
-        </Grid>
-
-        <Divider
-              style={{
-                backgroundColor: "#bdc3c7",
-                width: "94%",
-                marginTop: "8%",
-              }}
-            />
-        </Grid>
-
-
-
-
-
-
-
-
-        <Grid
-          item
-          xs={12}
-          sx={{
-            display: reviewsData?.length > 0 ? "flex" : 'none',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: 1,
-            background: '#fff',
-            flexDirection: 'column',
-            height: 'auto'
-          }}>
-          <Grid sx={{ fontSize: '20px', fontWeight: 700, marginTop: '4%' }}>SEE OUR REVIEW !</Grid>
-          <Grid
-            style={{
-              border: "1px solid #fff",
-              display: "flex",
-              flexDirection: "column",
-              borderRadius: 10,
-              marginTop: '5%',
-              overflowY: 'scroll',
-              scrollbarWidth: 'none',
-              scrollSnapAlign: "end"
-            }}>
-             <Slider {...settings}>
-             {Reviews()}    
-             </Slider>
-           
-          </Grid>
-        </Grid>
-
-
-        <Grid
-          item
-          xs={12}
-          sx={{
-            display: "flex",
-            backgroundColor: "#fff",
-            height: 'auto',
-            flexDirection: "column",
-            padding: 1,
-          }}
-        >
-          <Grid
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <React.Fragment>
-              <Button
-                onClick={handleClickOpen}
-                style={{
-                  borderColor: "#000",
-                  width: matches ? "94%" : "100%",
-                  background: '#000',
-                  color: "#fff",
-                  fontWeight: "bold",
-                  textTransform: "none",
-                  padding: 5,
-                  borderRadius: 8,
-                  marginTop: "1%",
-                  fontSize: "18px",
-                  fontWeight: 600,
-                }}
-                variant="outlined"
-              >
-                Write Your Review
-              </Button>
-            </React.Fragment>
-          </Grid>
-        </Grid>
-        </>
+          </>
         ) : (
           <></>
         )}
-  
+
         <Grid
           item
           xs={12}
