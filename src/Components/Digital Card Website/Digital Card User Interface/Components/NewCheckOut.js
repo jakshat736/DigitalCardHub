@@ -5,7 +5,12 @@ import card from "../../Digital Card Assets/cardimage1.png";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
+import useMediaQuery from '@mui/material/useMediaQuery';
 export default function NewCheckOut() {
+  
+  const matches = useMediaQuery("(max-width:1000px)");
+  const matchesA = useMediaQuery("(max-width:600px)");
+
   var navigate=useNavigate()
   const handleNagivate=()=>{
     navigate('/newcheckout2')
@@ -35,10 +40,11 @@ export default function NewCheckOut() {
         }}
       >
         <Grid sx={{ width: "82%", height: 'auto' }}>
+
           <Grid sx={{ display: "flex", alignItems: "center" }}>
             <Grid
               sx={{
-                fontSize: "36px",
+                fontSize:matchesA?'18px':"36px",
                 fontWeight: 600,
                 lineHeight: "44px",
                 letterSpacing: "-1.4%",
@@ -49,14 +55,14 @@ export default function NewCheckOut() {
             <Grid
               sx={{
                 display: "flex",
-                gap: 2,
+                gap:matchesA?1: 2,
                 alignItems: "center",
                 marginLeft: "auto",
               }}
             >
               <Grid
                 sx={{
-                  fontSize: "17px",
+                  fontSize:matchesA?'10px':"17px",
                   fontWeight: 700,
                   lineHeight: "28px",
                   letterSpacing: "-.6%",
@@ -65,11 +71,11 @@ export default function NewCheckOut() {
                 Address
               </Grid>
               <Grid sx={{ display: "flex", alignItems: "center" }}>
-                <img src={line} style={{ width: "100%", height: "1px" }}></img>
+                <img src={line} style={{ width:matchesA?'12px': "100%", height: "1px" }}></img>
               </Grid>
               <Grid
                 sx={{
-                  fontSize: "17px",
+                  fontSize:matchesA?'10px': "17px",
                   fontWeight: 400,
                   lineHeight: "28px",
                   letterSpacing: "-.6%",
@@ -78,12 +84,12 @@ export default function NewCheckOut() {
                 Shipping
               </Grid>
               <Grid sx={{ display: "flex", alignItems: "center" }}>
-                <img src={line} style={{ width: "100%", height: "1px" }}></img>
+                <img src={line} style={{ width:matchesA?'12px': "100%", height: "1px" }}></img>
               </Grid>
               <Grid
               onClick={handleNagivate}
                 sx={{
-                  fontSize: "17px",
+                  fontSize: matchesA?'10px':"17px",
                   fontWeight: 400,
                   lineHeight: "28px",
                   letterSpacing: "-.6%",
@@ -94,21 +100,22 @@ export default function NewCheckOut() {
               </Grid>
             </Grid>
           </Grid>
+          
           <Grid>
             <Divider
               style={{
-                height: "2px",
+                height:matchesA?'1px': "2px",
                 backgroundColor: "#bdc3c7",
                 width: "100%",
                 marginTop: "2%",
               }}
             />
           </Grid>
-          <Grid sx={{ display: "flex", width: "100%" }}>
-            <Grid sx={{ width: "55%", marginTop: "2%" }}>
+          <Grid sx={{ display: "flex", width: "100%",flexDirection:matches?'column':'row',justifyContent:matches?'center':"normal",alignItems:matches?'center':"normal" }}>
+            <Grid sx={{ width: matchesA?'100%':"55%", marginTop: "2%" }}>
               <Grid
                 sx={{
-                  fontSize: "22px",
+                  fontSize:matchesA?'16px': "22px",
                   fontWeight: 400,
                   lineHeight: "28px",
                   letterSpacing: "-.6%",
@@ -126,84 +133,26 @@ export default function NewCheckOut() {
                     height: "auto",
                   }}
                 >
-                  <Grid sx={{ width: "14.2%" }}>
+                  <Grid sx={{ width: matchesA?'38%':"15.5%" }}>
                     <img src={card} style={{ width: "100%" }}></img>
                   </Grid>
-                  <Grid sx={{ width: "85.8%" }}>
-                    <Grid
-                      sx={{
-                        fontSize: "22px",
-                        fontWeight: 600,
-                        lineHeight: "30px",
-                        letterSpacing: "-1.4%",
-                      }}
-                    >
-                      Royal Black : DCH Digital instago Google fastest Review
-                      Card
-                    </Grid>
-                    <Grid
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 400,
-                        lineHeight: "20px",
-                        letterSpacing: "-1.4%",
-                        marginTop: "2%",
-                      }}
-                    >
-                      Size: 80mm x 90mm
-                    </Grid>
-                    <Grid
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 400,
-                        lineHeight: "20px",
-                        letterSpacing: "-1.4%",
-                        marginTop: "2%",
-                      }}
-                    >
-                      Quantity: 1
-                    </Grid>
-                    <Grid
-                      sx={{
-                        display: "flex",
-                        flexDirection: "row",
-                        marginTop: "2%",
-                      }}
-                    >
-                      <Grid
-                        sx={{
-                          fontSize: "22px",
-                          fontWeight: 700,
-                          lineHeight: "26px",
-                          color: "#19B300",
-                        }}
-                      >
-                        ₹ 599
-                      </Grid>
-                      <Grid
-                        sx={{
-                          fontSize: "16px",
-                          fontWeight: 500,
-                          lineHeight: "26px",
-                          color: "#A39C00",
-                          marginLeft: "1%",
-                        }}
-                      >
-                        <s>₹ 1499</s>
-                      </Grid>
-                      <Grid
-                        sx={{
-                          fontSize: "12px",
-                          fontWeight: 400,
-                          lineHeight: "26px",
-                          textDecoration: "underline",
-                          marginLeft: "auto",
-                        }}
-                      >
-                        Remove
-                      </Grid>
-                    </Grid>
+                  <Grid sx={{width:'85.8%'}}>
+                  <Grid sx={{fontSize:matchesA?'16px':'22px',fontWeight:600,lineHeight:matchesA?'23px':'30px',letterSpacing:'-1.4%'}}>
+                  Royal Black : DCH Digital instago  Google fastest 
+                  Review Card
                   </Grid>
+                  <Grid sx={{fontSize:matchesA?'10px':'14px',fontWeight:400,lineHeight:'20px',letterSpacing:'-1.4%',marginTop:'2%'}}>
+                  Size: 80mm x 90mm
+                  </Grid>
+                  <Grid sx={{fontSize:matchesA?'10px':'14px',fontWeight:400,lineHeight:'20px',letterSpacing:'-1.4%',marginTop:matchesA?'0%':'2%'}}>
+                  Quantity: 1
+                  </Grid>
+                  <Grid sx={{display:'flex',flexDirection:'row',marginTop:matchesA?'0%':'2%'}}>
+                        <Grid sx={{fontSize:matchesA?'16px':'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹ 599</Grid>
+                        <Grid sx={{fontSize:matchesA?'10px':'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginLeft:'1%'}}><s>₹ 1499</s></Grid>
+                        <Grid sx={{fontSize:matchesA?'10px':'12px',fontWeight:400,lineHeight:'26px',textDecoration:'underline',marginLeft:'auto'}}>Remove</Grid>
+                </Grid>
+                </Grid>
                 </Grid>
               </Grid>
 
@@ -231,8 +180,8 @@ export default function NewCheckOut() {
                 <InputBase
                   style={{ color: "#fff" }}
                   sx={{ ml: 1, flex: 1 }}
-                  placeholder="Search Google Maps"
-                  inputProps={{ "aria-label": "search google maps" }}
+                  placeholder="Enter coupon code here"
+                  inputProps={{ "aria-label": "Enter coupon code here" }}
                 />
                 <IconButton
                   type="button"
@@ -244,11 +193,11 @@ export default function NewCheckOut() {
                       border: "1px solid #fff",
                       background: "#fff",
                       color: "#000",
-                      fontSize: "15px",
+                      fontSize:matchesA?'12px': "15px",
                       fontWeight: 600,
-                      width: 110,
+                      width:matchesA?80: 110,
                       borderRadius: "5px",
-                      height: 28,
+                      height: matchesA?27:28,
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
@@ -333,8 +282,8 @@ export default function NewCheckOut() {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid sx={{ width: "45%", marginTop: "2.5%", display: "flex" }}>
-              <Grid sx={{ width: "90%", marginLeft: "auto" }}>
+            <Grid sx={{ width:matchesA?'100%': "45%", marginTop: "2.5%", display: "flex",marginTop:matches?'5%':'0%' }}>
+              <Grid sx={{ width:matchesA?'100%': "90%", marginLeft: "auto" }}>
                 <Grid
                   sx={{
                     fontSize: "22px",
@@ -424,7 +373,7 @@ export default function NewCheckOut() {
                         borderRadius: 8,
                         padding: 0.6,
                         background:'transparent',
-                        width:'10vw',
+                        width:matchesA?'20vw':'10vw',
                         color:'#bdc3c7'
                       }}>
                       <option value="Country">County</option>
@@ -441,7 +390,7 @@ export default function NewCheckOut() {
                         borderRadius: 8,
                         padding: 0.6,
                          background:'transparent',
-                        width:'10vw',
+                         width:matchesA?'20vw':'10vw',
                            color:'#bdc3c7'
                       }}
                     >
@@ -487,9 +436,9 @@ export default function NewCheckOut() {
                   border: "1px solid #bdc3c7",
                   borderColor: "#bdc3c7",
                   background:'#fff',
-                  height: "3vw",
+                  height: matchesA?38: "3vw",
                   color: "#000",
-                  fontSize: "1.1vw",
+                  fontSize: matchesA?'14px':"1.1vw",
                   fontWeight: 500,
                  marginTop:'3%',
                   textTransform: "none",
@@ -507,7 +456,7 @@ export default function NewCheckOut() {
           </Grid>
 
         </Grid>
-        <Grid sx={{fontSize:'20px',fontWeight:500 ,lineHeight:'26px',letterSpacing:'-2.4%',marginTop:'5%',marginBottom:'2%'}}>
+        <Grid sx={{fontSize:matches?'14px':'20px',fontWeight:500 ,lineHeight:'26px',letterSpacing:'-2.4%',marginTop:'5%',marginBottom:'2%'}}>
         Copyrights © 2024 Powered By IndiaBuzz
         </Grid>
       </Grid>

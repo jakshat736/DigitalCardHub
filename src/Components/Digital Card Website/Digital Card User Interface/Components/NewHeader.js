@@ -31,6 +31,11 @@ export default function NewHeader()
 const handleNagivateProduct=()=>{
   navigate('/newallproduct')
 }
+
+const handleNagivateProductComponents=()=>{
+  navigate('/newallproduct2')
+}
+
   const matches = useMediaQuery("(max-width:1000px)");
 
   const classes = useStyles();
@@ -74,16 +79,17 @@ const handleNagivateProduct=()=>{
                <Grid  sx={{cursor:'pointer'}}>
                 Home
                </Grid>
-               <Grid   onMouseEnter={handleClick} sx={{cursor:'pointer',display:'flex',alignItems:'center',marginTop:'-1%'}}>
-                Shop
-                <img src={Downarrow} width={20} style={{marginTop:'-10%'}}></img>
+               <Grid    sx={{cursor:'pointer',display:'flex',alignItems:'center',marginTop:'-1%'}}>
+                <div onClick={handleNagivateProductComponents} > Shop </div>
+                <img onMouseEnter={handleClick} src={Downarrow} width={20} style={{marginTop:'-10%'}}></img>
                </Grid>
                <Menu
                 PaperProps={{
                   style: {
                   width:200,
                   backgroundImage: "linear-gradient(to bottom right, #171717,#171717,#070707,#070707)",
-                  color:'#fff'
+                  color:'#fff',
+                  marginLeft:'-2%'
                   },
                 }}
                       id="basic-menu"

@@ -328,16 +328,16 @@ export default function NewAllProducts()
 
 
             <Grid sx={{width:'100%',height:matches?'auto':800,display:'flex',alignItems:'center',flexDirection:"column",color:'#fff',marginTop:matches?'8%':''}}>
-                <Grid sx={{fontSize:matches?'24px':'52px',fontWeight:600,lineHeight:matches?'30px':'52px',letterSpacing:'-2.4%',textAlign:matches?'center':'',}}>
+                <Grid sx={{fontSize:matches?'24px':'52px',fontWeight:600,lineHeight:matches?'30px':'52px',letterSpacing:'-2.4%',textAlign:matches?'center':'',width:matches?'80%':'100%'}}>
                 OUR TOP PROFESSIONALS
                 </Grid>
-                <Grid sx={{fontSize:matches?'18px':'22px',fontWeight:400,lineHeight:matches?'24px':'46px',letterSpacing:'2%',marginTop:'1%',textAlign:matches?'center':''}}>
+                <Grid sx={{fontSize:matches?'16px':'22px',fontWeight:400,lineHeight:matches?'24px':'46px',letterSpacing:'2%',marginTop:'1%',textAlign:matches?'center':''}}>
                 They are our reviews with happy user
                 </Grid>
                 <Grid sx={{marginTop:'5%',display:'flex',width:'100%',justifyContent:'space-between'}}>
                <Grid style={{width:'100%'}}>
                <Slider {...settings}>
-        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
+        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer',marginLeft:matches?'2.5%':''}}>
           <img src={photo4} className={classes2.animatedImage} style={{zIndex:10}}></img>
          <Grid>
          <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>

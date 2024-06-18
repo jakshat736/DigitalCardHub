@@ -156,7 +156,7 @@ function App() {
 								<Route element={<ProductComponents/>} path="/productcomponents" />
 								<Route element={<NewAllProducts/>} path="/newallproduct" />
 								<Route element={<NewAllProduct2/>} path="/newallproduct2" />
-								<Route element={<DCLogin />} path="/digitalcardlogin" />
+								<Route element={<DCLogin/>} path="/digitalcardlogin"/>
 								<Route element={<DCSignUp />} path="/digitalcardsignup" />
 								<Route element={<UserDashboard />} path="/userdashboard" />
 								<Route element={<ChangePassword />} path="/changepassword" />
