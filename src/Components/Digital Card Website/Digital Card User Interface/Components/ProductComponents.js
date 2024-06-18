@@ -24,18 +24,24 @@ import r1 from "../../Digital Card Assets/rr1.png"
 import r2 from "../../Digital Card Assets/rr2.png"
 import r3 from "../../Digital Card Assets/rr3.png"
 import r4 from "../../Digital Card Assets/rr4.png"
+import close from "../../Digital Card Assets/cross.png"
+import right from "../../Digital Card Assets/righticonpopup.png"
 import { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Newfooter from "./NewFooter";
 import { useNavigate } from "react-router-dom";
+import { hover } from "@testing-library/user-event/dist/hover";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
 export default function ProductComponents() {
-  const matchesB = useMediaQuery("(max-width:500px)");
-  const matches = useMediaQuery("(max-width:900px)");
+  const matches = useMediaQuery("(max-width:600px)");
   const matchesA = useMediaQuery("(max-width:1400px)");
+  const matchesB = useMediaQuery("(max-width:500px)");
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openDrawer2, setOpenDrawer2] = useState(false);
+  const [view, setView] = useState(false);
 
   var navigate=useNavigate()
   const handleNagivate=()=>{
@@ -49,7 +55,7 @@ export default function ProductComponents() {
     infinite: true,
     speed: 3000,
     autoplay: "true",
-    slidesToShow: matches ?2:4,
+    slidesToShow: matches ?1:4,
     arrows:false,
     cssEase: 'linear',
     pauseOnHover: false,
@@ -67,15 +73,14 @@ export default function ProductComponents() {
    };
 
   var setting1 = {
-    dots: false,
     infinite: true,
-    speed: 3000,
+    speed: 1000,
+    dots: false,
+    slidesToShow: matches ?1:3,
+    slidesToScroll: matches ?1:3,
     autoplay: "true",
-    slidesToShow: matches ?2:3,
-    arrows:false,
-    cssEase: 'linear',
-    pauseOnHover: false,
-    autoplaySpeed: 0,
+    autospeed: 1,
+    arrows: false,
   };
 
   var data1=[{picture:r1,name:'Ankit Narwariya'},
@@ -118,7 +123,7 @@ export default function ProductComponents() {
   var data=[photo2,photo3,photo4,photo2,photo3,photo4]
   const showProducts=()=>{
       return data.map((item)=>{
-          return( <Grid sx={{display:'flex',flexDirection:'column'}}>
+          return( <Grid sx={{display:'flex',flexDirection:'column',marginLeft:matches?'6%':'14%'}}>
             <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'245px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
                    <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
                    <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
@@ -187,7 +192,7 @@ export default function ProductComponents() {
             src={item}
             style={{
               border: "2px solid #fff",
-              width: 85,
+              width:matches?55:85,
               background: "#fff",
               borderRadius: "10px",
             }}
@@ -196,6 +201,58 @@ export default function ProductComponents() {
       );
     });
   };
+
+
+  const handleViewCard = () => {
+    setView(true);
+  };
+  const handleCloseViewCard = () => {
+    setView(false);
+  };
+
+  const ViewCard = () => {
+    return (
+      <Dialog
+        PaperProps={{
+          style: {
+            width: matches?"40%":'80%',
+            height:300,
+            borderRadius: 10,
+            backgroundImage: "radial-gradient(#ffff,#f5f6fa)",
+          },
+        }}
+        open={view}
+        onClose={handleCloseViewCard}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+      <Grid sx={{width:'100%',height:300}}>
+         <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+          <Grid sx={{width:'100%',height:60,display:'flex',justifyContent:'center',alignItems:'center',border:'1px solid #fff',background:'#fff'}}>
+            <Grid> <img src={right} width={30}></img></Grid>
+            <Grid sx={{fontSize:'20px',fontWeight:600,lineHeight:'36px',color:'#72B344',marginLeft:'2%',marginTop:'-.5%'}}>Added to your successfully</Grid>
+            <Grid  onClick={handleCloseViewCard}
+            aria-label="close"
+            sx={{
+              position: "absolute",
+              right: 10,
+              top: 16,
+              color: "inherit",
+            }}>
+              <img src={close} width={20}></img>
+            </Grid>
+          </Grid>
+         </Grid>
+      </Grid>
+       
+      </Dialog>
+    );
+  };
+
+
+
+
+
   return (
     <Grid
       sx={{
@@ -222,25 +279,28 @@ export default function ProductComponents() {
           sx={{
             width: "86%",
             height: "auto",
-            marginTop: "5%",
+            marginTop: matchesA?'1%':"5%",
             display: "flex",
+            flexDirection:matchesA?'column':'row'
           }}
         >
           <Grid
             sx={{
-              position:'sticky',zIndex:'2',top:100,
-              width: "50%",
-              height: 600,
+              position:matchesA?"-moz-initial":'sticky',zIndex:'2',top:100,
+              width: matchesA?'100%':"50%",
+              height:matches?'auto': 600,
               display: "flex",
               flexDirection: "column",
+              justifyContent:matchesA?'center':'normal',
+              alignItems:matchesA?'center':'normal',
             }}
           >
             <Grid
               sx={{
-                width: 550,
+                width: matches?'90vw':550,
                 border: "1px solid #fff",
                 borderRadius: "10px",
-                height: 360,
+                height:matches?'70vw': 360,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -253,12 +313,12 @@ export default function ProductComponents() {
               <Divider
                 style={{
                   backgroundColor: "#bdc3c7",
-                  width: 550,
+                  width: matches?'90vw':550,
                   marginTop: "4%",
                 }}
               />
             </Grid>
-            <Grid sx={{ marginTop: "3%", display: "flex", gap: 2,marginLeft:'4.5%' }}>
+            <Grid sx={{ marginTop: "3%", display: "flex", gap: 2,marginLeft:matchesA?'':'4.5%' }}>
               {showSlider()}
             </Grid>
             <Grid>
@@ -266,7 +326,7 @@ export default function ProductComponents() {
                 style={{
                   height: "1px",
                   backgroundColor: "#bdc3c7",
-                  width: 550,
+                  width: matches?'90vw':550,
                   marginTop: "4%",
                 }}
               />
@@ -275,10 +335,12 @@ export default function ProductComponents() {
 
           <Grid
             sx={{
-              width: "50%",
+              width:matchesA?'100%': "50%",
               height: "auto",
               display: "flex",
               flexDirection: "column",
+              justifyContent:matchesA?'center':'normal',
+              alignItems:matchesA?'center':'normal'
             }}
           >
             <Grid
@@ -286,11 +348,12 @@ export default function ProductComponents() {
                 fontSize: "26px",
                 fontWeight: 700,
                 lineHeight: "40px",
+                marginTop:matches?'2%':''
               }}
             >
               Sky White : DCH Instago Review Card
             </Grid>
-            <Grid sx={{ display: "flex", gap: 1, marginTop: "2%" }}>
+            <Grid sx={{ display: "flex", gap: 1, marginTop: "2%",marginLeft:matchesB?'-60%':matches?'-70%':'' }}>
               <Grid
                 sx={{
                   fontSize: "22px",
@@ -318,8 +381,8 @@ export default function ProductComponents() {
                 style={{
                   border: "1px solid #fff",
                   borderColor: "#fff",
-                  width: matchesB ? 80 : "13vw",
-                  height: matchesB ? 25 : "2.5vw",
+                  width: matches ? 155 : "13vw",
+                  height: matches ? 35 : "2.5vw",
                   color: "#000",
                   fontSize: matchesB ? "12px" : "1vw",
                   fontWeight: 500,
@@ -339,11 +402,12 @@ export default function ProductComponents() {
                 <div style={{ fontSize: "18px", fontWeight: 500 }}>+</div>
               </Button>
               <Button
+              onClick={handleViewCard}
                 style={{
                   border: "1px solid #fff",
                   borderColor: "#fff",
-                  width: matchesB ? 80 : "13vw",
-                  height: matchesB ? 25 : "2.5vw",
+                  width: matches ? 155 : "13vw",
+                  height: matches ? 35 : "2.5vw",
                   color: "#fff",
                   fontSize: matchesB ? "12px" : ".9vw",
                   fontWeight: 500,
@@ -452,7 +516,7 @@ export default function ProductComponents() {
                   ></input>
                 </Grid>
               </Grid>
-              <Grid sx={{ display: "flex", marginTop: "3%" }}>
+              <Grid sx={{ display: "flex", marginTop: "3%",flexDirection:matchesB?'column':"row" }}>
                 <Grid>
                   <Grid
                     sx={{
@@ -516,7 +580,7 @@ export default function ProductComponents() {
                   <Grid>
                     <Grid
                       sx={{
-                        fontSize: "18px",
+                        fontSize: matches?'10px':"18px",
                         fontWeight: 600,
                         lineHeight: "26px",
                       }}
@@ -527,8 +591,8 @@ export default function ProductComponents() {
                       style={{
                         border: "1px solid #fff",
                         borderColor: "#fff",
-                        width: matchesB ? 80 : "10vw",
-                        height: matchesB ? 25 : "2.3vw",
+                        width: matches ? 100 : "10vw",
+                        height: matches ? 30 : "2.3vw",
                         color: "#fff",
                         fontSize: matchesB ? "12px" : "1vw",
                         fontWeight: 500,
@@ -549,7 +613,7 @@ export default function ProductComponents() {
                           style={{ marginTop: "20%" }}
                         ></img>
                       </div>
-                      <div style={{ fontSize: "12px", fontWeight: 400 }}>
+                      <div style={{ fontSize: matches?'8px':"12px", fontWeight: 400 }}>
                         Choose file
                       </div>
                     </Button>
@@ -559,25 +623,25 @@ export default function ProductComponents() {
             </Grid>
 
             <Grid sx={{ marginTop: "2%" }}>
-              <Button
-                sx={{
-                  borderColor: "#ffff",
-                  height: 40,
-                  color: "#000",
-                  background: "#fff",
-                  justifyContent: "center",
-                  fontWeight: "bold",
-                  textTransform: "none",
-                  padding: 2.6,
-                  display: "flex",
-                  borderRadius: 2,
-                  marginTop: "3%",
-                  fontSize: "20px",
-                  fontWeight: 700,
-                }}
+            <Button
                 fullWidth
+                style={{
+                  border: "1px solid #bdc3c7",
+                  borderColor: "#bdc3c7",
+                  background:'#fff',
+                  height: "2.7vw",
+                  color: "#000",
+                  fontSize: "1.1vw",
+                  fontWeight: 500,
+                 marginTop:'3%',
+                  textTransform: "none",
+                  borderRadius: "10px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
               >
-                Buy Now
+              Buy Now
               </Button>
             </Grid>
             <Grid
@@ -595,7 +659,7 @@ export default function ProductComponents() {
             >
               <div
                 style={{
-                  fontSize: "20px",
+                  fontSize:matches?'12px': "20px",
                   fontWeight: 500,
                   lineHeight: "26px",
                 }}
@@ -822,7 +886,7 @@ export default function ProductComponents() {
                 sx={{
                   marginTop: "4%",
                   width: "100%",
-                  height: "auto",
+                  maxHeight:matches?'300px':'450px',
                   border: "1px solid #fff",
                   borderRadius: "10px",
                   padding: 3,
@@ -830,6 +894,8 @@ export default function ProductComponents() {
                   fontWeight: 400,
                   lineHeight: "30px",
                   letterSpacing: "-2%",
+                  overflowY:'scroll',
+                  scrollbarWidth:'none'
                 }}
               >
                 DISCOVER OUR TAG FOR GOOGLE REVIEWS. Today, customer
@@ -863,9 +929,9 @@ export default function ProductComponents() {
             alignItems:'center',
             flexDirection:'column',
           }}>
-            <Grid sx={{fontSize:'52px',fontWeight:700,lineHeight:'26px'}}>How to use me ?</Grid>
-         <Grid sx={{display:'flex', justifyContent:"space-between",marginTop:'6%'}}>
-         <Grid sx={{width:'25%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
+            <Grid sx={{fontSize:matchesB?'30px':'52px',fontWeight:700,lineHeight:matchesB?'30px':'26px'}}>How to use me ?</Grid>
+         <Grid sx={{display:'flex', justifyContent:matchesB?'center':"space-between",marginTop:'6%',flexDirection:matchesB?'column':'row',alignItems:matchesB?'center':'',gap:matchesB?3:0}}>
+         <Grid sx={{width:matches?'100%':'25%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
          <Grid>
             <img src={use1} width={350}></img>
          </Grid>
@@ -876,7 +942,7 @@ export default function ProductComponents() {
          Norem ipsum dolor sit amet, consectetur adipiscing elit.
          </Grid>
          </Grid>
-         <Grid sx={{width:'25%',height:500,display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
+         <Grid sx={{width:matches?'100%':'25%',height:500,display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
          <Grid>
             <img src={use2} width={100}></img>
          </Grid>
@@ -887,18 +953,18 @@ export default function ProductComponents() {
          Norem ipsum dolor sit amet, consectetur adipiscing elit.
          </Grid>
          </Grid>
-         <Grid sx={{width:'25%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
+         <Grid sx={{width:matches?'100%':'25%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
          <Grid sx={{marginTop:'10%'}}>
             <img src={use3} width={200}></img>
          </Grid>
-         <Grid sx={{fontSize:'32px',fontWeight:700,lineHeight:'26px',marginTop:'25%'}}>
+         <Grid sx={{fontSize:'32px',fontWeight:700,lineHeight:'26px',marginTop:matchesB?'2%':'25%'}}>
          Step 3
          </Grid>
          <Grid sx={{fontSize:'22px',fontWeight:400,lineHeight:'26px',marginTop:'3%',textAlign:'center',width:'80%'}}>
          Norem ipsum dolor sit amet, consectetur adipiscing elit.
          </Grid>
          </Grid>
-         <Grid sx={{width:'25%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
+         <Grid sx={{width:matches?'100%':'25%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
          <Grid>
             <img src={use4} width={160}></img>
          </Grid>
@@ -922,7 +988,7 @@ export default function ProductComponents() {
             flexDirection:'column',
             color:'#fff'
           }}>
-            <Grid sx={{fontSize:'52px',fontWeight:700,lineHeight:'66px',width:'70%',textAlign:'center'}}>Bundle up your purchase And get great offers</Grid>
+            <Grid sx={{fontSize:matches?'30px':'52px',fontWeight:700,lineHeight:matches?'35px':'66px',width:matches?'80%':'70%',textAlign:'center'}}>Bundle up your purchase And get great offers</Grid>
            <Grid sx={{width:'100%',marginTop:'5%'}}>
            <Slider {...setting1}>
           {showProducts()}
@@ -932,17 +998,17 @@ export default function ProductComponents() {
 
 
   
-            <Grid sx={{width:'100%',height:800,display:'flex',alignItems:'center',flexDirection:"column",color:'#fff',marginTop:matchesA?'8%':'7%',justifyContent:'center'}}>
+            <Grid sx={{width:'100%',height:matches?'auto':800,display:'flex',alignItems:'center',flexDirection:"column",color:'#fff',marginTop:matches?'5%':'7%',justifyContent:'center'}}>
                 <Grid sx={{fontSize:matches?'24px':'52px',fontWeight:600,lineHeight:matches?'30px':'52px',letterSpacing:'-2.4%',textAlign:matches?'center':'',width:matchesB?'80%':'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
                 OUR TOP PROFESSIONALS
                 </Grid>
-                <Grid sx={{fontSize:matches?'18px':'22px',fontWeight:400,lineHeight:matches?'24px':'46px',letterSpacing:'2%',marginTop:'1%',textAlign:matches?'center':'',width:matchesB?'85%':'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                <Grid sx={{fontSize:matches?'16px':'22px',fontWeight:400,lineHeight:matches?'24px':'46px',letterSpacing:'2%',marginTop:'1%',textAlign:matches?'center':'',width:matchesB?'85%':'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
                 They are our reviews with happy user
                 </Grid>
                 <Grid sx={{marginTop:'5%',display:'flex',width:'100%',justifyContent:'space-between'}}>
                <Grid style={{width:'100%'}}>
                <Slider {...settings2}>
-        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
+        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer',marginLeft:matchesB?'2.5%':''}}>
           <img src={photo4} className={classes2.animatedImage} style={{zIndex:10}}></img>
          <Grid>
          <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
@@ -955,7 +1021,7 @@ export default function ProductComponents() {
          </Grid> 
         </Grid>
 
-        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
+        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer',marginLeft:matchesB?'2.5%':''}}>
           <img src={photo2} className={classes2.animatedImage} style={{zIndex:10}}></img>
          <Grid> 
          <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
@@ -969,7 +1035,7 @@ export default function ProductComponents() {
         </Grid>
 
 
-        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
+        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer',marginLeft:matchesB?'2.5%':''}}>
           <img src={photo3} className={classes2.animatedImage} style={{zIndex:10}}></img>
          <Grid> 
          <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
@@ -983,7 +1049,7 @@ export default function ProductComponents() {
         </Grid>
 
 
-        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
+        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer',marginLeft:matchesB?'2.5%':''}}>
           <img src={photo4} className={classes2.animatedImage} style={{zIndex:10}}></img>
          <Grid> 
          <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
@@ -997,7 +1063,7 @@ export default function ProductComponents() {
         </Grid>
 
 
-         <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
+         <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer',marginLeft:matchesB?'2.5%':''}}>
           <img src={photo} className={classes2.animatedImage} style={{zIndex:10}}></img>
          <Grid> 
          <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
@@ -1010,7 +1076,7 @@ export default function ProductComponents() {
          </Grid> 
         </Grid>
 
-        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
+        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer',marginLeft:matchesB?'2.5%':''}}>
           <img src={photo} className={classes2.animatedImage} style={{zIndex:10}}></img>
          <Grid> 
          <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
@@ -1028,7 +1094,7 @@ export default function ProductComponents() {
             </Grid>         
 
 
-            <Grid sx={{width:'100%',height:'auto',display:'flex',alignItems:'center',flexDirection:"column",color:'#fff',justifyContent:'center',marginTop:'6%'}}>
+            <Grid sx={{width:'100%',height:'auto',display:'flex',alignItems:'center',flexDirection:"column",color:'#fff',justifyContent:'center',marginTop:matches?'8%':'6%'}}>
             <Grid sx={{fontSize:matches?'24px':'52px',fontWeight:600,lineHeight:matches?'30px':'52px',letterSpacing:'-2.4%',textAlign:matches?'center':'',width:matchesB?'80%':'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
             Customer Reviews
                 </Grid>
@@ -1042,7 +1108,7 @@ export default function ProductComponents() {
 <Grid sx={{marginTop:'14%'}}>
   <Newfooter/>
 </Grid>
-
+{ViewCard()}
     </Grid>
   );
 }

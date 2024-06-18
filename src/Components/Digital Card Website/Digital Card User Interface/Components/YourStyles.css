@@ -13,8 +13,8 @@
   .center .slick-center {
     opacity: 1;
     transform: scale(1.2); /* Center slide को बड़ा दिखाने के लिए */
-    z-index: 1; /* Center slide को foreground में लाने के लिए */
-    height: 450px;
+    z-index: 5; /* Center slide को foreground में लाने के लिए */
+    height:450px;
     margin-top: 25px;
   }
   

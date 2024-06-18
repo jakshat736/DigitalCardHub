@@ -40,7 +40,7 @@ export default function NewAllProduct2()
     const sliderRef = useRef(null);
     const sliderRef2 = useRef(null);
     const sliderRef3 = useRef(null);
-
+    const originalAutoplaySpeed = useRef(1000);
 
 ////////////////////////
 
@@ -115,9 +115,10 @@ export default function NewAllProduct2()
   
   useEffect(() => {
     const slider = sliderRef3.current;
-
+  
     const handleMouseEnter = () => {
       slider.slickPlay();
+   
     };
 
     
@@ -149,6 +150,7 @@ export default function NewAllProduct2()
         fade: true,
         infinite: true,
         speed: 200,
+        autoplaySpeed: originalAutoplaySpeed.current,
         slidesToShow: 1,
         slidesToScroll: 1,
         waitForAnimate: false,
@@ -240,7 +242,7 @@ export default function NewAllProduct2()
                 <Grid sx={{display:'flex',flexDirection:"column",marginTop:matchesB?'8%':'3%',gap:7}}>
                     <Grid sx={{display:'flex',justifyContent:'space-between',flexDirection:matchesA?"column":'row',alignItems:matchesA?'center':'normal'}}>
                    <Grid onClick={handleNagivate} sx={{display:'flex',flexDirection:'column',cursor:'pointer'}}>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'245px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
+                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
                         <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
                         <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
                         <Slider ref={sliderRef} {...settings} style={{display:'flex',alignItems:'center',}}>
@@ -294,7 +296,7 @@ export default function NewAllProduct2()
                    </Grid>
 
                    <Grid sx={{display:'flex',flexDirection:'column'}}>
-                   <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'245px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
+                   <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
                         <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
                         <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
                         <Slider ref={sliderRef2} {...settings} style={{display:'flex',alignItems:'center',}}>
@@ -348,7 +350,7 @@ export default function NewAllProduct2()
                    </Grid>
 
                    <Grid sx={{display:'flex',flexDirection:'column'}}>
-                   <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'245px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
+                   <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
                         <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
                         <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
                         <Slider ref={sliderRef3} {...settings} style={{display:'flex',alignItems:'center',}}>
@@ -408,7 +410,7 @@ export default function NewAllProduct2()
 
           <Grid sx={{display:'flex',justifyContent:'space-between',flexDirection:matchesA?"column":'row',alignItems:matchesA?'center':'normal'}}>
                    <Grid sx={{display:'flex',flexDirection:'column'}}>
-                   <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'245px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
+                   <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
                         <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
                         <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
                         <Slider {...settings} style={{display:'flex',alignItems:'center',}}>
@@ -462,7 +464,7 @@ export default function NewAllProduct2()
                    </Grid>
 
                    <Grid sx={{display:'flex',flexDirection:'column'}}>
-                   <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'245px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
+                   <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
                         <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
                         <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
                         <Slider  {...settings} style={{display:'flex',alignItems:'center',}}>
@@ -516,7 +518,7 @@ export default function NewAllProduct2()
                    </Grid>
 
                    <Grid sx={{display:'flex',flexDirection:'column'}}>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'245px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
+                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
                         <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
                         <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
                         <Slider  {...settings} style={{display:'flex',alignItems:'center',}}>
@@ -575,7 +577,7 @@ export default function NewAllProduct2()
 
           <Grid sx={{display:'flex',justifyContent:'space-between',flexDirection:matchesA?"column":'row',alignItems:matchesA?'center':'normal'}}>
                    <Grid sx={{display:'flex',flexDirection:'column'}}>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'245px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
+                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
                         <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
                         <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
                         <Slider {...settings} style={{display:'flex',alignItems:'center',}}>
@@ -629,7 +631,7 @@ export default function NewAllProduct2()
                    </Grid>
 
                    <Grid sx={{display:'flex',flexDirection:'column'}}>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'245px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
+                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
                         <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
                         <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
                         <Slider  {...settings} style={{display:'flex',alignItems:'center',}}>
@@ -683,7 +685,7 @@ export default function NewAllProduct2()
                    </Grid>
 
                    <Grid sx={{display:'flex',flexDirection:'column'}}>
-                 <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'245px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
+                 <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
                         <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
                         <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
                         <Slider {...settings} style={{display:'flex',alignItems:'center',}}>
@@ -778,7 +780,7 @@ export default function NewAllProduct2()
   
   <Grid>
   <Grid sx={{width:'100%',height:matches?'auto':800,display:'flex',alignItems:'center',flexDirection:"column",color:'#fff',marginTop:matchesA?'8%':'12%'}}>
-                <Grid sx={{fontSize:matches?'24px':'52px',fontWeight:600,lineHeight:matches?'30px':'52px',letterSpacing:'-2.4%',textAlign:matches?'center':'',width:matchesB?'80%':'100%'}}>
+                <Grid sx={{fontSize:matches?'24px':'52px',fontWeight:600,lineHeight:matches?'30px':'52px',letterSpacing:'-2.4%',textAlign:matches?'center':'',width:matchesB?'70%':'100%'}}>
                 OUR TOP PROFESSIONALS
                 </Grid>
                 <Grid sx={{fontSize:matches?'18px':'22px',fontWeight:400,lineHeight:matches?'24px':'46px',letterSpacing:'2%',marginTop:'1%',textAlign:matches?'center':'',width:matchesB?'85%':'100%'}}>
@@ -787,7 +789,7 @@ export default function NewAllProduct2()
                 <Grid sx={{marginTop:'5%',display:'flex',width:'100%',justifyContent:'space-between'}}>
                <Grid style={{width:'100%'}}>
                <Slider {...settings2}>
-        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
+        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer',marginLeft:matchesB?'2.5%':''}}>
           <img src={photo4} className={classes2.animatedImage} style={{zIndex:10}}></img>
          <Grid>
          <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>

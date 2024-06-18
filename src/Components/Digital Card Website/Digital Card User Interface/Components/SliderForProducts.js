@@ -12,24 +12,26 @@ import s8 from "../../Digital Card Assets/ss8.jpg"
 import { Grid,Button } from '@mui/material';
 import "../Components/YourStyles.css"
 import { makeStyles } from "@mui/styles";
-import arrow from "../../Digital Card Assets/arrowBold.png"
-  
+import arrow from "../../Digital Card Assets/arrowBold.png";
+
 const useStyles = makeStyles({
-  
+
   dots:{
     '& .slick-dots li.slick-active button::before': {
       color:'#fff',
-      opacity:1
+      opacity:1,
     },
+
     '& .slick-dots li button::before': {
       color:'#636e72',
       fontSize:'9px',
       opacity:1,
     },
+    
     '& .slick-dots li ':{
-
       margin:'-10px -1px',
     },
+
     marginBottom:10,
 },
 });
@@ -58,7 +60,7 @@ export default function SliderForProducts()
    const ShowSlider=()=>{
     return data.map((item)=>{
         return(<Grid style={{width:'100%',display:'flex',flexDirection:'column',background:'red'}}>
-          <Grid style={{width:'240px',height:'300px',borderRadius:'24px',display:'flex',justifyContent:'center',flexDirection:'row',textAlign:'center',margin: '15px',borderrRadius: '10px'}}>
+          <Grid style={{width:'240px',height:'300px',borderRadius:'24px',display:'flex',justifyContent:'center',flexDirection:'row',textAlign:'center',margin: '15px',borderrRadius: '10px', marginLeft: matches?'-0%':''}}>
           <img src={item} style={{width:'98%',margin:4,borderRadius:10, objectFit: 'cover'}}></img>
           </Grid>
           <Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: '2%',marginTop:matches?'0%':'2.5%',color:'#fff',justifyContent:'center',alignItems:'center',textAlign:'center',width:'100%' }}>
