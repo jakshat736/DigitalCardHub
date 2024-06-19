@@ -53,7 +53,7 @@ export default function Ecommerce()
             </Grid>
         </Grid>
         {matchesB?<></>:<><Grid>
-         <img src={mobiles} width={matches?300:500}></img>
+         <img src={mobiles} width={matches?300:550}></img>
         </Grid></>}
         {matchesB?<><Grid > 
          <img src={mobile11} width={148} ></img>

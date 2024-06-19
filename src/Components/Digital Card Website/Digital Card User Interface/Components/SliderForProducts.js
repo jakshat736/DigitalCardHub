@@ -1,6 +1,7 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import React, { useRef } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import s2 from "../../Digital Card Assets/ss2.jpg"
 import s3 from "../../Digital Card Assets/ss3.jpg"
@@ -39,28 +40,35 @@ const useStyles = makeStyles({
 export default function SliderForProducts()
 {
     const matches = useMediaQuery("(max-width:700px)");
-
+    const sliderRef = useRef(null);
     const settings = {
       className: "center",
       centerMode: true,
-      infinite: true,
       centerPadding: "60px",
       slidesToShow: matches?1:5,
-      speed: 500,
       arrows:false,
-      autoplay: "true",
-      autospeed: 1,
       slidesToScroll: 1,
-      dots:true,
+      dots: true,
+      infinite: true,
+      speed: 500,
+      autoplay:'true',
+      autospeed:1,
     };
   
 
     var useStyle=useStyles()
    var data=[s7,s8,s6,s5,s4,s3,s2]
+
+   const handleImageClick = (index) => {
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(index);
+    }
+  };
+
    const ShowSlider=()=>{
-    return data.map((item)=>{
-        return(<Grid style={{width:'100%',display:'flex',flexDirection:'column',background:'red'}}>
-          <Grid style={{width:'240px',height:'300px',borderRadius:'24px',display:'flex',justifyContent:'center',flexDirection:'row',textAlign:'center',margin: '15px',borderrRadius: '10px', marginLeft: matches?'-0%':''}}>
+    return data.map((item,index)=>{
+        return(<Grid  key={index}  style={{width:'100%',display:'flex',flexDirection:'column',background:'red'}}>
+          <Grid  onClick={() => handleImageClick(index)} style={{width:'240px',height:'300px',borderRadius:'24px',display:'flex',justifyContent:'center',flexDirection:'row',textAlign:'center',margin: '15px',borderrRadius: '10px', marginLeft: matches?'-0%':'8%'}}>
           <img src={item} style={{width:'98%',margin:4,borderRadius:10, objectFit: 'cover'}}></img>
           </Grid>
           <Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: '2%',marginTop:matches?'0%':'2.5%',color:'#fff',justifyContent:'center',alignItems:'center',textAlign:'center',width:'100%' }}>
@@ -88,7 +96,7 @@ export default function SliderForProducts()
                   }}
                  
             >
-                  Enquiry Now
+                  Buy Now
                 </Button>
                   <Grid sx={{ display: 'flex', flexDirection: 'column',marginLeft:'4%' }}>
                     <Grid sx={{ fontSize:matches?'12px': '.9vw', fontWeight: 600, color: '#fff'}}>₹149.00 </Grid><Grid sx={{ fontSize: matches?'10px':'.7vw', fontWeight: 500, color: '#fff'}}><s>₹150.00</s></Grid>
@@ -107,7 +115,7 @@ export default function SliderForProducts()
       Material that elevates the experience
       </Grid>
       <Grid sx={{width:'100%',marginTop:'5%'}} className={useStyle.dots}>
-   <Slider {...settings} >
+   <Slider ref={sliderRef} {...settings} >
     {ShowSlider()}    
   </Slider>
   </Grid>
