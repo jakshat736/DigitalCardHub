@@ -28,11 +28,15 @@ export default function NewHeader()
   const handleNagivateHome=()=>{
     navigate('/newhome')
 }
-const handleNagivateProduct=()=>{
-  navigate('/newallproduct')
+const handleNagivateCooperate=()=>{
+  navigate('/cooperate')
 }
 
 const handleNagivateProductComponents=()=>{
+  navigate('/newallproduct')
+}
+
+const handleProduct=()=>{
   navigate('/newallproduct2')
 }
 
@@ -76,7 +80,7 @@ const handleNagivateProductComponents=()=>{
             </Grid></>:<></>}
 
             {matches?<></>:<Grid sx={{marginLeft:'auto',gap: 7,color: "#fff",fontWeight: 300,fontSize: "15px",display:'flex'}}>
-               <Grid  sx={{cursor:'pointer'}}>
+               <Grid onClick={handleNagivateHome}  sx={{cursor:'pointer'}}>
                 Home
                </Grid>
                <Grid    sx={{cursor:'pointer',display:'flex',alignItems:'center',marginTop:'-1%'}}>
@@ -183,20 +187,32 @@ const handleNagivateProductComponents=()=>{
                         >
                          Combos /Bundles
                         </MenuItem>
+                        <MenuItem
+                        
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",
+                            fontWeight: 500,
+                          }}
+                          onClick={handleProduct}
+                        >
+                        All Product
+                        </MenuItem>
                       </div>
                     </Menu>
 
 
 
 
-               <Grid   onClick={handleNagivate} sx={{cursor:'pointer'}}>
+               <Grid onClick={handleNagivate} sx={{cursor:'pointer'}}>
                 Compitable Device
                </Grid>
                <Grid   sx={{cursor:'pointer'}}>
                 How to create
                </Grid>
-               <Grid onClick={handleNagivateProduct} sx={{cursor:'pointer'}}>
-                All Product
+               <Grid onClick={handleNagivateCooperate} sx={{cursor:'pointer'}}>
+               Cooperate Enquiries
                </Grid>
                <Grid >
                 <img src={newLogin} width={22} ></img>

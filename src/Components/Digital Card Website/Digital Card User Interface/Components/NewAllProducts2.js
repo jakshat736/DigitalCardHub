@@ -6,6 +6,9 @@ import card from "../../Digital Card Assets/card.png"
 import card1 from "../../Digital Card Assets/card1.png"
 import card2 from "../../Digital Card Assets/card2.png"
 import card3 from "../../Digital Card Assets/card3.png"
+import Menu from "@mui/material/Menu";
+import { useStyles } from "../../Digital Card User Interface/Components/HoveredCss";
+import MenuItem from "@mui/material/MenuItem";
 import card4 from "../../Digital Card Assets/card4.png"
 import card5 from "../../Digital Card Assets/card5.png"
 import card6 from "../../Digital Card Assets/card6.png"
@@ -33,6 +36,16 @@ export default function NewAllProduct2()
     navigate('/productcomponents')
 }
 
+
+const classes = useStyles();
+const [anchorEl, setAnchorEl] = React.useState(null);
+const open = Boolean(anchorEl);
+const handleClick = (event) => {
+  setAnchorEl(event.currentTarget);
+};
+const handleClose = () => {
+  setAnchorEl(null);
+};
     const matches = useMediaQuery("(max-width:900px)");
     const matchesA = useMediaQuery("(max-width:1400px)");
     const matchesB = useMediaQuery("(max-width:500px)");
@@ -215,7 +228,8 @@ export default function NewAllProduct2()
                   }}>
                   Creative
                 </Button>
-                <Button 
+                <Button  
+                onMouseEnter={handleClick}
                   style={{
                     border:'1px solid #fff',
                     borderColor:'#fff',
@@ -236,6 +250,108 @@ export default function NewAllProduct2()
                  Sort by
                   <ExpandMore fontSize="medium" style={{marginLeft:'3%'}}/>
                 </Button>
+                <Menu
+                PaperProps={{
+                  style: {
+                  width:200,
+                  backgroundImage: "linear-gradient(to bottom right, #171717,#171717,#070707,#070707)",
+                  color:'#fff',
+                  },
+                }}
+                      id="basic-menu"
+                      anchorEl={anchorEl}
+                      open={open}
+                      onClose={handleClose}
+                      onMouseLeave={handleClose}
+                      MenuListProps={{
+                        "aria-labelledby": "basic-button",
+                      }}
+                      style={{ marginTop: "1%", marginLeft: "-1%" }}
+                    >
+                      <div onMouseLeave={handleClose}>
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",                          
+                            fontWeight: 500,
+                          }}
+                        >
+                       Featured
+                        </MenuItem>
+
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",                       
+                            fontWeight: 500,
+                          }}
+                          onClick={handleClose}
+                        >
+                        Best Selling
+                        </MenuItem>
+
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",
+                            fontWeight: 500,
+                          }}
+                          onClick={handleClose}
+                        >
+                       Price: High to Low
+                        </MenuItem>
+
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",
+                            fontWeight: 500,
+                          }}
+                          onClick={handleClose}
+                        >
+                        Price: Low to High
+                        </MenuItem>
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",                          
+                            fontWeight: 500,
+                          }}
+                          onClick={handleClose}
+                        >
+                         Alphabetically: A-Z
+                        </MenuItem>
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",
+                           
+                            fontWeight: 500,
+                          }}
+                          onClick={handleClose}
+                        >
+                       Alphabetically: Z-A
+                        </MenuItem>
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",
+                            fontWeight: 500,
+                          }}
+                          onClick={handleClose}
+                        >
+                        Combos / Bundles
+                        </MenuItem>
+                      </div>
+                    </Menu>
+
                 </Grid>
 
 

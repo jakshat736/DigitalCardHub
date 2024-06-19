@@ -16,6 +16,7 @@ import use2 from "../../Digital Card Assets/use2.png"
 import use3 from "../../Digital Card Assets/use3.png"
 import use4 from "../../Digital Card Assets/use4.png"
 import photo3 from "../../Digital Card Assets/photo2.jpg"
+import popupcard from "../../Digital Card Assets/popupcard.png"
 import photo2 from "../../Digital Card Assets/photo3.jpg"
 import blur11 from "../../Digital Card Assets/white.png"
 import photo4 from "../../Digital Card Assets/photo4.jpg"
@@ -215,10 +216,10 @@ export default function ProductComponents() {
       <Dialog
         PaperProps={{
           style: {
-            width: matches?"40%":'80%',
-            height:300,
+            width: matches?"100%":'80%',
+            height:matches?'auto':270,
             borderRadius: 10,
-            backgroundImage: "radial-gradient(#ffff,#f5f6fa)",
+            backgroundImage: "radial-gradient(#f5f6fa,#dfe6e9)",
           },
         }}
         open={view}
@@ -226,11 +227,11 @@ export default function ProductComponents() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-      <Grid sx={{width:'100%',height:300}}>
-         <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-          <Grid sx={{width:'100%',height:60,display:'flex',justifyContent:'center',alignItems:'center',border:'1px solid #fff',background:'#fff'}}>
-            <Grid> <img src={right} width={30}></img></Grid>
-            <Grid sx={{fontSize:'20px',fontWeight:600,lineHeight:'36px',color:'#72B344',marginLeft:'2%',marginTop:'-.5%'}}>Added to your successfully</Grid>
+      <Grid sx={{width:'100%',height:matches?'auto':260}}>
+         <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',background:'#dfe6e9'}}>
+          <Grid sx={{width:'100%',height:60,display:'flex',justifyContent:'center',alignItems:'center',border:'1px solid #fff',background:'#f5f6fa'}}>
+            <Grid> <img src={right} width={matches?20:30}></img></Grid>
+            <Grid sx={{fontSize:matches?'15px':'20px',fontWeight:600,lineHeight:'36px',color:'#72B344',marginLeft:'2%',marginTop:'-.5%'}}>Added to your successfully</Grid>
             <Grid  onClick={handleCloseViewCard}
             aria-label="close"
             sx={{
@@ -238,9 +239,65 @@ export default function ProductComponents() {
               right: 10,
               top: 16,
               color: "inherit",
+              cursor:'pointer'
             }}>
-              <img src={close} width={20}></img>
+              <img src={close} width={matches?12:20}></img>
             </Grid>
+          </Grid>
+          <Grid sx={{width:'100%',height:matches?'auto':210,padding:1.8}}>
+          <Grid sx={{display:'flex'}}>
+            <Grid sx={{width:200,height:matches?'auto':136}}>
+              <Grid><img src={popupcard} style={{width:'100%'}}></img></Grid>
+              </Grid>
+              <Grid>
+              <Grid sx={{fontSize:matches?'15px':'18px',fontWeight:600,lineHeight:matches?'18px':'26px',letterSpacing:'-2.4%'}}>
+              Sky white : DCH instago fast review card
+              </Grid>
+              <Grid sx={{fontSize:matches?'14px':'18px',fontWeight:600,lineHeight:matches?'15px':'36px',letterSpacing:'-2.4%'}}>
+              Qty: x2
+              </Grid>
+              <Grid sx={{fontSize:matches?'14px':'18px',fontWeight:600,lineHeight:matches?'15px':'36px',letterSpacing:'-2.4%',color:'#23F900'}}>
+              Rs. 599
+              </Grid>
+              </Grid>
+          </Grid>
+          <Grid sx={{display:'flex',marginTop:'1%',gap:1}}>
+          <Button
+             style={{
+                    border:'1px solid #000',
+                    borderColor:'#dfe6e9',
+                    height:matchesB?25: '2.7vw',
+                    color: "#fff",
+                    fontSize:matchesB?'12px': "1.3vw",
+                    fontWeight: 600,
+                    textTransform: "none",
+                    borderRadius: '6px',
+                    display:"flex",
+                    background:'#485AFF',
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}   fullWidth>
+                 Add More +
+                </Button>
+
+                <Button
+             style={{
+                    border:'1px solid #000',
+                    borderColor:'#dfe6e9',
+                    height:matchesB?25: '2.7vw',
+                    color: "#fff",
+                    fontSize:matchesB?'12px': "1.3vw",
+                    fontWeight: 600,
+                    background:'#FF2626',
+                    textTransform: "none",
+                    borderRadius: '6px',
+                    display:"flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}   fullWidth>
+                 View Cart
+                </Button>
+          </Grid>
           </Grid>
          </Grid>
       </Grid>
