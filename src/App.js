@@ -131,6 +131,7 @@ import NewCheckOut from "./Components/Digital Card Website/Digital Card User Int
 import NewCheckOut2 from "./Components/Digital Card Website/Digital Card User Interface/Components/NewCheckOut2";
 import NewCheckOut3 from "./Components/Digital Card Website/Digital Card User Interface/Components/NewCheckOut3";
 import CooperateEnquiries from "./Components/Digital Card Website/Digital Card User Interface/Components/CooperateEnquiries";
+import CategoryProducts from "./Components/Digital Card Website/Digital Card User Interface/Components/CategoryProducts";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -154,9 +155,10 @@ function App() {
 								<Route element={<NewCheckOut2/>} path="/newcheckout2" />
 								<Route element={<NewCheckOut3/>} path="/newcheckout3" />
 								<Route element={<NewThemeCard/>} path="/newthemecard" />
-								<Route element={<ProductComponents/>} path="/productcomponents" />
+								<Route element={<ProductComponents/>} path="/productcomponents/:_id" />
 								<Route element={<NewAllProducts/>} path="/newallproduct" />
 								<Route element={<NewAllProduct2/>} path="/newallproduct2" />
+								<Route element={<CategoryProducts/>} path="/categoryproducts" />
 								<Route element={<CooperateEnquiries/>} path="/cooperate"/>
 								<Route element={<DCLogin/>} path="/digitalcardlogin"/>
 								<Route element={<DCSignUp />} path="/digitalcardsignup" />

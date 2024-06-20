@@ -40,6 +40,10 @@ const handleProduct=()=>{
   navigate('/newallproduct2')
 }
 
+const handleCategory=()=>{
+  navigate('/categoryproducts')
+}
+
   const matches = useMediaQuery("(max-width:1000px)");
 
   const classes = useStyles();
@@ -108,6 +112,7 @@ const handleProduct=()=>{
                     >
                       <div onMouseLeave={handleClose}>
                         <MenuItem
+                        onClick={handleCategory}
                           className={classes.button1}
                           style={{
                             marginBottom: "3px",

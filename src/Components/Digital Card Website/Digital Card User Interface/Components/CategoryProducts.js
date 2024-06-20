@@ -1,4 +1,4 @@
-import { Grid,Button,Stack,Rating,Typography, Paper, Box } from "@mui/material";
+import { Grid,Button,Stack,Rating,Typography } from "@mui/material";
 import NewHeader from "./NewHeader";
 import headline from "../../Digital Card Assets/headline.png"
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
@@ -27,44 +27,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Services from "./Services";
 import Newfooter from "./NewFooter";
-import { useNavigate , useParams} from "react-router-dom";
-import { getData, serverURL } from '../../../Services/NodeServices'
-import {  useState } from 'react'
-export default function NewAllProduct2()
+import { useNavigate } from "react-router-dom";
+
+export default function CategoryProducts()
 {  
   var navigate=useNavigate()
   const handleNagivate=()=>{
     navigate('/productcomponents')
 }
-
-const { _id } = useParams()
-const [data, setData] = useState([])
-
-const [loading, setLoading] = useState(true)
-
-const fetchProductByCategory = async () => {
-    setLoading(true)
-    const result = await getData('products/displayAllProduct')
-
-    setData(result.data)
-    if (result?.data?.length > 0) {
-        setLoading(false)
-    }
-}
-useEffect(() => {
-    fetchProductByCategory()
-}, [_id])
-
-useEffect(() => {
-    window.scroll({
-        top: 0,
-        left: 0,
-        behavior: 'instant',
-    });
-}, [])
-
-
-
 
 
 const classes = useStyles();
@@ -80,44 +50,113 @@ const handleClose = () => {
     const matchesA = useMediaQuery("(max-width:1400px)");
     const matchesB = useMediaQuery("(max-width:500px)");
     const classes2 = useStyles2()
+    const sliderRef = useRef(null);
+    const sliderRef2 = useRef(null);
+    const sliderRef3 = useRef(null);
     const originalAutoplaySpeed = useRef(1000);
 
 ////////////////////////
 
 
-const sliderRefs = useRef([]);
-
   useEffect(() => {
-    sliderRefs.current.forEach((slider, index) => {
-      if (!slider || !slider.innerSlider || !slider.innerSlider.list) {
+    const slider = sliderRef.current;
+
+
+    if (!slider || !slider.innerSlider || !slider.innerSlider.list) {
         return;
       }
 
-      const handleMouseEnter = () => {
-        slider.slickPlay();
-      };
 
-      const handleMouseLeave = () => {
-        slider.slickPause();
-      };
+    const handleMouseEnter = () => {
+      slider.slickPlay();
+    };
 
-      const sliderList = slider.innerSlider.list;
+    const handleMouseLeave = () => {
+      slider.slickPause();
+    };
 
-      sliderList.addEventListener("mouseenter", handleMouseEnter);
-      sliderList.addEventListener("mouseleave", handleMouseLeave);
+  
 
-      // Clean up function
-      return () => {
-        if (sliderList) {
-          sliderList.removeEventListener("mouseenter", handleMouseEnter);
-          sliderList.removeEventListener("mouseleave", handleMouseLeave);
-        }
-      };
-    });
-  }, [data]);
+    const sliderList = slider.innerSlider.list;
 
+    sliderList.addEventListener("mouseenter", handleMouseEnter);
+    sliderList.addEventListener("mouseleave", handleMouseLeave);
 
+    // Clean up
+    return () => {
+      if (sliderList) {
+        sliderList.removeEventListener("mouseenter", handleMouseEnter);
+        sliderList.removeEventListener("mouseleave", handleMouseLeave);
+      }
+    };
+  }, []);
 
+  //////////////////////////
+
+  useEffect(() => {
+    const slider = sliderRef2.current;
+
+    const handleMouseEnter = () => {
+      slider.slickPlay();
+    };
+
+    
+
+    const handleMouseLeave = () => {
+      slider.slickPause();
+    };
+
+    if (!slider || !slider.innerSlider || !slider.innerSlider.list) {
+        return;
+      }
+
+    const sliderList = slider.innerSlider.list;
+
+    sliderList.addEventListener("mouseenter", handleMouseEnter);
+    sliderList.addEventListener("mouseleave", handleMouseLeave);
+
+    // Clean up
+    return () => {
+      if (sliderList) {
+        sliderList.removeEventListener("mouseenter", handleMouseEnter);
+        sliderList.removeEventListener("mouseleave", handleMouseLeave);
+      }
+    };
+  }, [])
+
+  /////////////////////////////////
+  
+  useEffect(() => {
+    const slider = sliderRef3.current;
+  
+    const handleMouseEnter = () => {
+      slider.slickPlay();
+   
+    };
+
+    
+
+    const handleMouseLeave = () => {
+      slider.slickPause();
+    };
+
+    if (!slider || !slider.innerSlider || !slider.innerSlider.list) {
+        return;
+      }
+
+    const sliderList = slider.innerSlider.list;
+
+    sliderList.addEventListener("mouseenter", handleMouseEnter);
+    sliderList.addEventListener("mouseleave", handleMouseLeave);
+
+    // Clean up
+    return () => {
+      if (sliderList) {
+        sliderList.removeEventListener("mouseenter", handleMouseEnter);
+        sliderList.removeEventListener("mouseleave", handleMouseLeave);
+      }
+    };
+  }, [])
 
   const settings = {
     dots: false,
@@ -142,123 +181,6 @@ const sliderRefs = useRef([]);
     arrows:false
    };
 
-
-   const ProximityComponent = () => {
-       return data?.map((item,index) => {
-           return (
-            <Grid key={item.id} item xs={12} md={3.5} sx={{ display: "flex", justifyContent:"space-between",alignItems:'center',marginTop:'2%' }}>
-               <Grid  sx={{  display: 'flex',flexWrap: 'wrap',flexDirection:'column'}}>
-                    <Grid onClick={() => navigate(`/productcomponents/${item._id}`)} sx={{width:matchesB?'320px':'357px',height:'auto',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column',cursor:'pointer'}}>
-                        <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
-                        <Grid sx={{width:'100%',marginLeft:16}}>
-                        <Slider ref={el => sliderRefs.current[index] = el} {...settings} style={{display:'flex',alignItems:'center',}}>
-                        <div><img src={`${serverURL}/images/${item.images[0]}`} width={"60%"} /></div>
-                        <div><img src={`${serverURL}/images/${item.images[1]}`} width={"60%"} /></div>
-                        <div><img src={`${serverURL}/images/${item.images[2]}`} width={"60%"} /></div>
-                       </Slider>
-                       </Grid>
-                    </Grid>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:'auto',marginTop:'1%'}}>
-                       <Grid sx={{display:'flex',width:'100%'}}>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',width:'75%'}}> {item.productName}</Grid>
-                        <Grid sx={{width:'25%'}}>
-                        <Rating style={{marginLeft:'auto',marginTop:'2%',display:'flex'}}
-                    size="small"
-                    color="green"
-                    name="simple-controlled"
-                    value={5}
-                    />
-                        </Grid>
-                       </Grid>
-                       <Grid sx={{display:'flex',marginTop:'1%',alignItems:'center'}}>
-                       <Grid sx={{display:'flex',flexDirection:'column'}}>
-                        <Grid sx={{fontSize:'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹{item.offerprice}</Grid>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginTop:'-4%'}}><s>₹{item.price}</s></Grid>
-                    </Grid>
-                    <Grid sx={{marginLeft:'auto'}}>
-                    <Button
-                   style={{
-                    border:'1px solid #fff',
-                    borderColor:'#fff',
-                    width:matchesB?'250px': '271px',
-                    height: '34px',
-                    lineHeight:'36px',       
-                    color: "#fff",
-                    marginLeft:'2%',
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    textTransform: "none",
-                    borderRadius: '10px',
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                 Add to cart
-                </Button> 
-                    </Grid>
-                    </Grid>
-                    </Grid>
-                   </Grid>
-            </Grid>
-           )
-
-          })
-      }
-   
-          //      <Grid item xs={12} md={3.8} sx={{ display: "flex", justifyContent: "center",marginTop:'2%' }}>
-          //      <Box
-          //     sx={{
-          //   display: 'flex',
-          //   flexWrap: 'wrap',
-          //   '& > :not(style)': {
-          //    m: 1,
-          //   width: 300,
-          //    height: 'auto',
-          //  },
-          //    }}
-          //   >
-          //  <Paper elevation={15} sx={{background:'#60a3bc',cursor: 'pointer',padding:3}} onClick={() => navigate(`/productscomponent/${item._id}`)}>
-          //                  <Grid sx={{ display: "flex" }}>
-          //                      <img src={`${serverURL}/images/${item.images[0]}`} width={"100%"} />
-          //                  </Grid>
-          //                  <Grid sx={{fontSize:'18px',fontWeight:600,color:'#fff',marginTop:'5%'}}>
-          //                      {item.productName}
-          //                  </Grid>
-          //                  <Grid sx={{display:'flex',marginTop:'5%'}}>
-          //                  <Button
-          //    style={{
-          //      borderColor: "#0078ad",
-             
-          //      background: "#0078ad",
-          //      color: "#fff",
-          //      fontSize: "14px",
-          //      fontWeight: 400,
-          //      textTransform: "none",
-          //      borderRadius: 6,
-          //      display: "flex",
-          //      alignItems: "center",
-          //      justifyContent: "center",
-          //    }}
-          //    variant="outlined"
-          //  >
-          //     Enquiry Now
-          //  </Button>
-          //       <Grid sx={{marginLeft:'4%'}} >
-          //              <Grid sx={{width:'#000080',fontSize:'26px',fontWeight:600}}>₹{item.offerprice}</Grid>
-          //               <Grid sx={{fontSize:12,color:'#2f3640'}}>(inc. all taxes)</Grid>
-          //                  </Grid>
-                        
-          //                  <Grid sx={{width:'#718093',fontSize:'14px',fontWeight:300,marginTop:'3.5%',marginLeft:'-4%'}}><s>₹{item.price}</s></Grid>
-                          
-          //           </Grid>
-          //  </Paper>
-          //       </Box>
-          //      </Grid>
-
-   
-
-
-
   return(<Grid sx={{backgroundImage: "linear-gradient(to bottom right, #171717,#171717,#070707,#070707)",fontFamily:'Montserrat'}}>
   <Grid>
     <NewHeader/>
@@ -267,7 +189,7 @@ const sliderRefs = useRef([]);
     <Grid sx={{width:'100%',marginTop:'3%'}}>
      <img src={headline} style={{width:'100%'}}></img>
     </Grid>
-      <Grid sx={{width:'82%',height:'auto',marginTop:'2%',display:'flex',flexDirection:'column'}}>
+      <Grid sx={{width:'82%',height:matchesA?'auto':1500,marginTop:'2%',display:'flex',flexDirection:'column'}}>
         <Grid sx={{display:'flex'}}>
         <Button
              style={{
@@ -433,13 +355,7 @@ const sliderRefs = useRef([]);
                 </Grid>
 
 
-                <Grid container spacing={2} sx={{display: "flex", justifyContent:"space-between",marginBottom:'8%' }} >
-                    <ProximityComponent />
-
-                </Grid>
-                  
-
-                {/* <Grid sx={{display:'flex',flexDirection:"column",marginTop:matchesB?'8%':'3%',gap:7}}>
+                <Grid sx={{display:'flex',flexDirection:"column",marginTop:matchesB?'8%':'3%',gap:7}}>
                     <Grid sx={{display:'flex',justifyContent:'space-between',flexDirection:matchesA?"column":'row',alignItems:matchesA?'center':'normal'}}>
                    <Grid onClick={handleNagivate} sx={{display:'flex',flexDirection:'column',cursor:'pointer'}}>
                     <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
@@ -494,8 +410,6 @@ const sliderRefs = useRef([]);
                     </Grid>
                     </Grid>
                    </Grid>
-
-
 
                    <Grid sx={{display:'flex',flexDirection:'column'}}>
                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
@@ -944,7 +858,7 @@ const sliderRefs = useRef([]);
 
 
           </Grid>
-        </Grid> */}
+        </Grid>
 
 
         <Button 
@@ -977,9 +891,6 @@ const sliderRefs = useRef([]);
   <Grid sx={{marginTop:'4%'}}>
     <Services/>
   </Grid>
-
-
-  
   <Grid>
   <Grid sx={{width:'100%',height:matches?'auto':800,display:'flex',alignItems:'center',flexDirection:"column",color:'#fff',marginTop:matchesA?'8%':'12%'}}>
                 <Grid sx={{fontSize:matches?'24px':'52px',fontWeight:600,lineHeight:matches?'30px':'52px',letterSpacing:'-2.4%',textAlign:matches?'center':'',width:matchesB?'70%':'100%'}}>

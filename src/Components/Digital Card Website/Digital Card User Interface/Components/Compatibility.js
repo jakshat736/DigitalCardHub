@@ -826,7 +826,7 @@ const Compatibility = () => {
           <Grid item xs={12}>
             <Typography sx={{ margin: 1,fontSize:25,fontStyle:'oblique' }}>{heading.heading}</Typography>
           </Grid>
-          <Grid sx={{display:'flex',flexWrap:'wrap',margin:1,width:'90%'}}>
+          <Grid sx={{display:'flex',flexWrap:'wrap',margin:1,width:'100%',justifyContent:'center',alignItems:'center'}}>
           {
             heading.models.map((model)=>{
                 return(
@@ -839,6 +839,8 @@ const Compatibility = () => {
       );
     });
   };
+
+  
   const AndroidComponent = () => {
     return androidDevices.map((heading) => {
       return (
@@ -869,6 +871,9 @@ const Compatibility = () => {
       );
     });
   };
+
+
+
   return (
     <Grid id='top' sx={{bgcolor:"#001E3C"}}>
         <Navbar/>
