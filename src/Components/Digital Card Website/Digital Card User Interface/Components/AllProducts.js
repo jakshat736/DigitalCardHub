@@ -54,8 +54,8 @@ const AllProducts = () => {
              width: 300,
               height: 'auto',
             },
-              }}
-             >
+              }}>
+                
             <Paper elevation={15} sx={{background:'#60a3bc',cursor: 'pointer',padding:3}} onClick={() => navigate(`/productscomponent/${item._id}`)}>
                             <Grid sx={{ display: "flex" }}>
                                 <img src={`${serverURL}/images/${item.images[0]}`} width={"100%"} />
