@@ -44,6 +44,7 @@ import { postData, serverURL } from '../../../Services/NodeServices';
 import { SessionContext } from '../../../Services/SessionContext';
 import React, { useContext } from 'react';
 import OtpGenerator from '../ReviewTag/OtpGenerator';
+import Preloader from './Preloader'
 
 export default function ProductComponents() {
   
@@ -918,6 +919,13 @@ console.log('error')
       <Grid>
         <NewHeader />
       </Grid>
+
+      {loading ?
+        <Grid container spacing={2} sx={{ display: "flex", justifyContent: 'center', py: 100, bgcolor: "white" }} >
+          <Preloader/>
+        </Grid>
+        :
+        (show &&
       <Grid
         sx={{
           width: "100%",
@@ -963,7 +971,7 @@ console.log('error')
             >
               <Slider asNavFor={nav2} arrows={false} ref={(slider1) => setNav1(slider1)}>
                 
-              {data?.images.map((item) => (
+              {data?.images?.map((item) => (
            
                 <Grid item xs={12} sx={{ ml: { xs: 9, sm: 15, md: 15 } }}>
                   
@@ -985,11 +993,10 @@ console.log('error')
             <Slider
               asNavFor={nav1}
               ref={(slider2) => setNav2(slider2)}
-              slidesToShow={data?.images.length == 2 ? 2 : data?.images.length > 2 ? 3 : 1}
+              slidesToShow={data?.images?.length == 2 ? 2 : data?.images?.length > 2 ? 3 : 1}
               swipeToSlide={true}
-              focusOnSelect={true}
-            >
-              {data?.images.map((item) => (
+              focusOnSelect={true}>
+              {data?.images?.map((item) => (
                 <Grid item xs={12} >
                   <img src={`${serverURL}/images/${item}`} width={"80%"} />
                 </Grid>
@@ -1652,7 +1659,10 @@ console.log('error')
         </Grid>
 </Grid>
         </Grid>
-      </Grid>
+      </Grid>)}
+
+
+
       <Grid     
           sx={{
             width: "99%",

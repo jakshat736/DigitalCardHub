@@ -31,6 +31,7 @@ import DisplayAllVehicleTag from "../DisplayAllVehicleTag";
 import DisplayAllVehicleTagLink from "../DisplayAllVehicleTagLink";
 import DisplayAllDoorTagLink from "../DisplayAllDoorTagLink";
 import DisplayAllDoorTag from "../DisplayAllDoorTag";
+import DisplayAllCooperateEnquiries from "../DisplayAllCooperateEnquiries";
 export default function DashBoard(props){
     var navigate=useNavigate();
     let Session=window.localStorage.getItem("Session");
@@ -57,15 +58,17 @@ return(
               <Route element={<DisplayAllRegistrations/>} path="/displayallregistrations" /> 
               <Route element={<DisplayAllCards/>} path="/displayallcards" /> 
               <Route element={<DisplayAllTags/>} path="/displayalltags" /> 
-              <Route element={<DisplayAllStandee/>} path="/displayallstandee" /> 
-              <Route element={<AddProduct/>} path="/addproduct" /> 
-              <Route element={<AddCategory/>} path="/addcategory" /> 
-              <Route element={<SubCategory/>} path="/addsubcategory" /> 
-              <Route element={<DisplaySubCategory/>} path="/displaysubcategory" /> 
+              <Route element={<DisplayAllStandee/>} path="/displayallstandee"/> 
+              <Route element={<AddProduct/>} path="/addproduct"/>
+              <Route element={<AddCategory/>} path="/addcategory"/> 
+              <Route element={<SubCategory/>} path="/addsubcategory"/> 
+              <Route element={<DisplaySubCategory/>} path="/displaysubcategory"/> 
               <Route element={<DisplayAllCategory/>} path="/displayallcategory" /> 
               <Route element={<DisplayAllProducts/>} path="/displayallproduct" /> 
               <Route element={<Order/>} path="/orders" /> 
-              <Route element={<DisplayAllGeneratedLinks/>} path="/displayalllinks" /> 
+             
+
+              <Route element={<DisplayAllGeneratedLinks/>} path="/displayalllinks"/> 
               <Route element={<DisplayAllGeneratedCompanyLink/>} path="/displayallcompanylinks" /> 
               <Route element={<DisplayAllMenuLinks/>} path="/displayallmenulinks" /> 
               <Route element={<DisplayAllInviteLinks/>} path="/displayallinvitelinks" /> 
@@ -76,6 +79,7 @@ return(
               
               <Route element={<DisplayAllDoorTag/>} path="/displayalldoortags" /> 
               <Route element={<MasterId/>} path="/masterid" /> 
+              <Route element={<DisplayAllCooperateEnquiries/>} path="/CooperateEnquiries" /> 
               <Route path="/selforder" element={<SelfOrder/>} />
        </Routes>
        </Grid>

@@ -282,7 +282,7 @@ export default function NewCheckOut() {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid sx={{ width:matchesA?'100%': "45%", marginTop: "2.5%", display: "flex",marginTop:matches?'5%':'0%' }}>
+            <Grid sx={{ width:matchesA?'100%': "45%", marginTop: "2.5%", display: "flex",marginTop:matches?'5%':'3%' }}>
               <Grid sx={{ width:matchesA?'100%': "90%", marginLeft: "auto" }}>
                 <Grid
                   sx={{
@@ -317,7 +317,7 @@ export default function NewCheckOut() {
                       width: "100%",
                       background: "transparent",
                     }}
-                    placeholder="First Name"
+                    placeholder="last Name"
                   ></input>
                 </Grid>
                 <Grid sx={{ marginTop: "1%", gap: 2, display: "flex" }}>
@@ -394,8 +394,8 @@ export default function NewCheckOut() {
                            color:'#bdc3c7'
                       }}
                     >
-                      <option value="City">gwalior</option>
-                      <option value="MP">Gwalior</option>
+                      <option value="City">City</option>
+                      <option value="City">Gwalior</option>
                     </select>
                   </Grid>
                   <Grid>
