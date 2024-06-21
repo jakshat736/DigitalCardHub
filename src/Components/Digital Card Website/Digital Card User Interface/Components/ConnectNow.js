@@ -9,6 +9,8 @@ import {
   } from "@mui/material";
 import images2 from "../../Digital Card Assets/backgroundnew2.png"
 import arrow2 from "../../Digital Card Assets/arrow2new.png"
+import SearchIcon from '@mui/icons-material/Search';
+import InputBase from '@mui/material/InputBase';
 export default function ConnectNow()
 {
     
@@ -31,9 +33,11 @@ export default function ConnectNow()
         placeholder="Search Google Maps"
         inputProps={{ 'aria-label': 'search google maps' }}
       /> */}
-     <IconButton sx={{ p: '10px',color:'#636e72', }} aria-label="menu">
-     Enter number or email..
-      </IconButton>
+    <InputBase
+        sx={{ ml: 1, flex: 1,color:'#000',fontSize:'18px' }}
+        placeholder="Enter number or email.."
+       
+      />
     </Paper>
     <Grid>
     <Button

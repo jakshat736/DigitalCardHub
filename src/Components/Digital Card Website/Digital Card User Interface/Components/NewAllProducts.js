@@ -327,8 +327,8 @@ export default function NewAllProducts()
             </Grid>    
 
 
-            <Grid sx={{width:'100%',height:matches?'auto':800,display:'flex',alignItems:'center',flexDirection:"column",color:'#fff',marginTop:matches?'8%':''}}>
-                <Grid sx={{fontSize:matches?'24px':'52px',fontWeight:600,lineHeight:matches?'30px':'52px',letterSpacing:'-2.4%',textAlign:matches?'center':'',width:matches?'80%':'100%'}}>
+            <Grid sx={{width:'100%',height:matches?'auto':800,display:'flex',alignItems:'center',flexDirection:"column",color:'#fff',marginTop:matches?'8%':'',}}>
+                <Grid sx={{fontSize:matches?'24px':'52px',fontWeight:600,lineHeight:matches?'30px':'52px',letterSpacing:'-2.4%',textAlign:matches?'center':'',width:matches?'80%':'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
                 OUR TOP PROFESSIONALS
                 </Grid>
                 <Grid sx={{fontSize:matches?'16px':'22px',fontWeight:400,lineHeight:matches?'24px':'46px',letterSpacing:'2%',marginTop:'1%',textAlign:matches?'center':''}}>

@@ -173,7 +173,30 @@ const matchesA = useMediaQuery("(max-width:600px)");
        <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%',marginLeft:'auto'}}>
        $200
        </Grid>
-
+      </Grid>
+      <Grid sx={{display:'flex',marginTop:'3%'}}>
+       <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%'}}>
+       Discount
+       </Grid>
+       <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%',marginLeft:'auto'}}>
+       -600
+       </Grid>
+      </Grid>
+      <Grid sx={{display:'flex',marginTop:'3%'}}>
+       <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%'}}>
+      Delivery Charges
+       </Grid>
+       <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%',marginLeft:'auto'}}>
+       FREE
+       </Grid>
+      </Grid>
+      <Grid sx={{display:'flex',marginTop:'3%'}}>
+       <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%'}}>
+       Estimated Tax
+       </Grid>
+       <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%',marginLeft:'auto'}}>
+       $200
+       </Grid>
       </Grid>
       <Grid sx={{display:'flex',marginTop:'3%'}}>
        <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%'}}>
@@ -191,8 +214,8 @@ const matchesA = useMediaQuery("(max-width:600px)");
                   backgroundColor: "#bdc3c7",
                   width: '100%',
                   marginTop: "3%",
-                }}
-              />
+                }}/>
+                
             </Grid>
             <Grid sx={{display:'flex',marginTop:'3%'}}>
        <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%'}}>

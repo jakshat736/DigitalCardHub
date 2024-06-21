@@ -80,6 +80,8 @@ const ProductCompoent = () => {
     validatePassword(inputValue);
   };
 
+  console.log(otp)
+
   const validatePassword = (value) => {
     // Define the regular expressions to check for lowercase, uppercase, number, and special character.
     const lowercaseRegex = /[a-z]/;

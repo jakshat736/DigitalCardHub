@@ -18,6 +18,8 @@ import blur11 from "../../Digital Card Assets/white.png"
 import photo3 from "../../Digital Card Assets/photo2.jpg"
 import photo2 from "../../Digital Card Assets/photo3.jpg"
 import photo4 from "../../Digital Card Assets/photo4.jpg"
+import add from "../../Digital Card Assets/plus11.png"
+import minus from "../../Digital Card Assets/minus11.png"
 import { useStyles2 } from "../../Digital Card User Interface/Components//AllProductSlider";
 import heart from "../../Digital Card Assets/heart.png"
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -30,8 +32,25 @@ import Newfooter from "./NewFooter";
 import { useNavigate , useParams} from "react-router-dom";
 import { getData, serverURL } from '../../../Services/NodeServices'
 import {  useState } from 'react'
+import Preloader from './Preloader'
 export default function NewAllProduct2()
 {  
+  const [add, setAdd] = useState(false);
+  const [count, setCount] = useState(0);
+
+  const handleClickAdd = () => {
+    setAdd(true);
+    var c = count + 1;
+    setCount(c);
+  };
+
+  const handleMinus = () => {
+    var c = count - 1;
+    if (c >= 0) {
+      setCount(c);
+    }
+  };
+
   var navigate=useNavigate()
   const handleNagivate=()=>{
     navigate('/productcomponents')
@@ -82,7 +101,7 @@ const handleClose = () => {
     const classes2 = useStyles2()
     const originalAutoplaySpeed = useRef(1000);
 
-////////////////////////
+//////////////////////////////////
 
 
 const sliderRefs = useRef([]);
@@ -142,27 +161,28 @@ const sliderRefs = useRef([]);
     arrows:false
    };
 
-
+   console.log(data)
    const ProximityComponent = () => {
        return data?.map((item,index) => {
            return (
-            <Grid key={item.id} item xs={12} md={3.5} sx={{ display: "flex", justifyContent:"space-between",alignItems:'center',marginTop:'2%' }}>
+            <Grid key={item.id} item  md={matchesA?6:3.5} sx={{ display: "flex", justifyContent:matchesA?'center':"space-between",alignItems:'center',marginTop:'2%',width:'100%' }}>
                <Grid  sx={{  display: 'flex',flexWrap: 'wrap',flexDirection:'column'}}>
                     <Grid onClick={() => navigate(`/productcomponents/${item._id}`)} sx={{width:matchesB?'320px':'357px',height:'auto',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column',cursor:'pointer'}}>
                         <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
-                        <Grid sx={{width:'100%',marginLeft:16}}>
-                        <Slider ref={el => sliderRefs.current[index] = el} {...settings} style={{display:'flex',alignItems:'center',}}>
+                        <Grid sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+                        {/* <Slider ref={el => sliderRefs.current[index] = el} {...settings} style={{display:'flex',alignItems:'center',}}>
                         <div><img src={`${serverURL}/images/${item.images[0]}`} width={"60%"} /></div>
                         <div><img src={`${serverURL}/images/${item.images[1]}`} width={"60%"} /></div>
                         <div><img src={`${serverURL}/images/${item.images[2]}`} width={"60%"} /></div>
-                       </Slider>
+                       </Slider> */}
+                       <img src={`${serverURL}/images/${item.images[0]}`} width={"60%"} />
                        </Grid>
                     </Grid>
                     <Grid sx={{width:matchesB?'320px':'357px',height:'auto',marginTop:'1%'}}>
                        <Grid sx={{display:'flex',width:'100%'}}>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',width:'75%'}}> {item.productName}</Grid>
+                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',width:matchesB?'70%':'75%'}}> {item.productName}</Grid>
                         <Grid sx={{width:'25%'}}>
-                        <Rating style={{marginLeft:'auto',marginTop:'2%',display:'flex'}}
+                        <Rating style={{marginLeft:matchesB?'':'auto',marginTop:'2%',display:'flex'}}
                     size="small"
                     color="green"
                     name="simple-controlled"
@@ -176,25 +196,69 @@ const sliderRefs = useRef([]);
                         <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginTop:'-4%'}}><s>₹{item.price}</s></Grid>
                     </Grid>
                     <Grid sx={{marginLeft:'auto'}}>
-                    <Button
-                   style={{
-                    border:'1px solid #fff',
-                    borderColor:'#fff',
-                    width:matchesB?'250px': '271px',
-                    height: '34px',
-                    lineHeight:'36px',       
-                    color: "#fff",
-                    marginLeft:'2%',
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    textTransform: "none",
-                    borderRadius: '10px',
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                 Add to cart
-                </Button> 
+                    {count == 0 ? (
+                           <Button
+                           onClick={handleClickAdd}
+                           style={{
+                            border:'1px solid #fff',
+                            borderColor:'#fff',
+                            width:matchesB?'250px': '271px',
+                            height: '34px',
+                            lineHeight:'36px',       
+                            color: "#fff",
+                            marginLeft:'2%',
+                            fontSize: "16px",
+                            fontWeight: 500,
+                            textTransform: "none",
+                            borderRadius: '10px',
+                            display:"flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            cursor:'-moz-grab'
+                          }}>
+                         Add to cart
+                        </Button> 
+                        ) : (
+                          <div
+                            style={{
+                              border:'1px solid #fff',
+                            borderColor:'#fff',
+                            width:matchesB?'250px': '271px',
+                            height: '34px',
+                            lineHeight:'36px',       
+                            color: "#fff",
+                            marginLeft:'2%',
+                            fontSize: "16px",
+                            fontWeight: 500,
+                            textTransform: "none",
+                            borderRadius: '10px',
+                            display:"flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            padding:2
+                            }}
+                          >
+                            <Grid
+                              sx={{display: "flex",gap:8}}
+                            >
+                              <Grid
+                                onClick={handleMinus}
+                                sx={{ fontSize: '20px',fontWeight:600, color: "#fff",cursor:'pointer' }}
+                              >
+                              -
+                              </Grid>
+                              <Grid sx={{ fontSize: '16px',fontWeight:500, color: "#fff" }}>
+                                {count}
+                              </Grid>
+                              <Grid
+                                onClick={handleClickAdd}
+                                sx={{ fontSize: '18px',fontWeight:600, color: "#fff",cursor:'pointer' }}
+                              >
+                              +
+                              </Grid>
+                            </Grid>
+                          </div>
+                        )}
                     </Grid>
                     </Grid>
                     </Grid>
@@ -205,64 +269,16 @@ const sliderRefs = useRef([]);
           })
       }
    
-          //      <Grid item xs={12} md={3.8} sx={{ display: "flex", justifyContent: "center",marginTop:'2%' }}>
-          //      <Box
-          //     sx={{
-          //   display: 'flex',
-          //   flexWrap: 'wrap',
-          //   '& > :not(style)': {
-          //    m: 1,
-          //   width: 300,
-          //    height: 'auto',
-          //  },
-          //    }}
-          //   >
-          //  <Paper elevation={15} sx={{background:'#60a3bc',cursor: 'pointer',padding:3}} onClick={() => navigate(`/productscomponent/${item._id}`)}>
-          //                  <Grid sx={{ display: "flex" }}>
-          //                      <img src={`${serverURL}/images/${item.images[0]}`} width={"100%"} />
-          //                  </Grid>
-          //                  <Grid sx={{fontSize:'18px',fontWeight:600,color:'#fff',marginTop:'5%'}}>
-          //                      {item.productName}
-          //                  </Grid>
-          //                  <Grid sx={{display:'flex',marginTop:'5%'}}>
-          //                  <Button
-          //    style={{
-          //      borderColor: "#0078ad",
-             
-          //      background: "#0078ad",
-          //      color: "#fff",
-          //      fontSize: "14px",
-          //      fontWeight: 400,
-          //      textTransform: "none",
-          //      borderRadius: 6,
-          //      display: "flex",
-          //      alignItems: "center",
-          //      justifyContent: "center",
-          //    }}
-          //    variant="outlined"
-          //  >
-          //     Enquiry Now
-          //  </Button>
-          //       <Grid sx={{marginLeft:'4%'}} >
-          //              <Grid sx={{width:'#000080',fontSize:'26px',fontWeight:600}}>₹{item.offerprice}</Grid>
-          //               <Grid sx={{fontSize:12,color:'#2f3640'}}>(inc. all taxes)</Grid>
-          //                  </Grid>
-                        
-          //                  <Grid sx={{width:'#718093',fontSize:'14px',fontWeight:300,marginTop:'3.5%',marginLeft:'-4%'}}><s>₹{item.price}</s></Grid>
-                          
-          //           </Grid>
-          //  </Paper>
-          //       </Box>
-          //      </Grid>
-
-   
-
-
 
   return(<Grid sx={{backgroundImage: "linear-gradient(to bottom right, #171717,#171717,#070707,#070707)",fontFamily:'Montserrat'}}>
   <Grid>
     <NewHeader/>
   </Grid>
+  {loading ?
+                <Grid container spacing={2} sx={{ display: "flex", justifyContent: 'center', py: 100, bgcolor: "white" }} >
+                    <Preloader/>
+                </Grid>
+                :
   <Grid sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center',fontFamily:'Montserrat',flexDirection:"column",color:'#fff'}}>
     <Grid sx={{width:'100%',marginTop:'3%'}}>
      <img src={headline} style={{width:'100%'}}></img>
@@ -439,7 +455,175 @@ const sliderRefs = useRef([]);
                 </Grid>
                   
 
-                {/* <Grid sx={{display:'flex',flexDirection:"column",marginTop:matchesB?'8%':'3%',gap:7}}>
+              
+
+        <Button 
+                  style={{
+                    border:'1px solid #fff',
+                    borderColor:'#fff',
+                    width:matchesB?100: '160px',
+                    height: matchesB?25:'40px',
+                    lineHeight:'36px',
+                    color: "#fff",
+                    marginLeft:'2%',
+                    boxShadow: "0px 0px 10px 3px rgba(255, 255, 255, 0.3)",
+                    marginTop:'5%',
+                    textTransform: "none",
+                    borderRadius: '10px',
+                    display:"flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginLeft:'auto'
+                  }}>              
+                 <div style={{   fontSize: "17px",
+                    fontWeight: 600,}}>1</div><div style={{   fontSize: "14px",
+                        fontWeight: 400,marginLeft:'3%'}}>2</div><div style={{   fontSize: "14px",
+                            fontWeight: 400,marginLeft:'3%'}}>3... </div><div style={{   fontSize: "12px",
+                                fontWeight: 400}}>more</div>
+                  
+                </Button>
+      </Grid>
+  </Grid>}
+
+
+
+
+
+
+
+
+  <Grid sx={{marginTop:'4%'}}>
+    <Services/>
+  </Grid>
+  <Grid>
+  <Grid sx={{width:'100%',height:matches?'auto':800,display:'flex',alignItems:'center',flexDirection:"column",color:'#fff',marginTop:matchesA?'8%':'12%'}}>
+                <Grid sx={{fontSize:matches?'24px':'52px',fontWeight:600,lineHeight:matches?'30px':'52px',letterSpacing:'-2.4%',textAlign:matches?'center':'',width:matchesB?'70%':'100%'}}>
+                OUR TOP PROFESSIONALS
+                </Grid>
+                <Grid sx={{fontSize:matches?'18px':'22px',fontWeight:400,lineHeight:matches?'24px':'46px',letterSpacing:'2%',marginTop:'1%',textAlign:matches?'center':'',width:matchesB?'85%':'100%'}}>
+                They are our reviews with happy user
+                </Grid>
+                <Grid sx={{marginTop:'5%',display:'flex',width:'100%',justifyContent:'space-between'}}>
+               <Grid style={{width:'100%'}}>
+               <Slider {...settings2}>
+        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer',marginLeft:matchesB?'2.5%':''}}>
+          <img src={photo4} className={classes2.animatedImage} style={{zIndex:10}}></img>
+         <Grid>
+         <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
+         <Grid className={classes2.animatedImage2} sx={{color:'#0054B6',fontSize:'24px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-16%',marginLeft:'1%'}}>
+         Chinmay Sharma
+         </Grid>
+         <Grid className={classes2.animatedImage3} sx={{color:'#022D60',fontSize:'14px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-1.4%',marginLeft:'1%'}}>
+         Ui/Ux designer at IBuzz Tech
+         </Grid>
+         </Grid> 
+        </Grid>
+
+        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
+          <img src={photo2} className={classes2.animatedImage} style={{zIndex:10}}></img>
+         <Grid> 
+         <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
+         <Grid className={classes2.animatedImage2} sx={{color:'#0054B6',fontSize:'24px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-16%',marginLeft:'1%'}}>
+         Sonam Gupta
+         </Grid>
+         <Grid className={classes2.animatedImage3} sx={{color:'#022D60',fontSize:'14px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-1.4%',marginLeft:'1%'}}>
+         HR at IBuzz Tech
+         </Grid>
+         </Grid> 
+        </Grid>
+
+
+        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
+          <img src={photo3} className={classes2.animatedImage} style={{zIndex:10}}></img>
+         <Grid> 
+         <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
+         <Grid className={classes2.animatedImage2} sx={{color:'#0054B6',fontSize:'24px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-16%',marginLeft:'1%'}}>
+         Ankit Narwariya
+         </Grid>
+         <Grid className={classes2.animatedImage3} sx={{color:'#022D60',fontSize:'14px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-1.4%',marginLeft:'1%'}}>
+         Front-end Developer at IBuzz Tech
+         </Grid>
+         </Grid> 
+        </Grid>
+
+
+        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
+          <img src={photo4} className={classes2.animatedImage} style={{zIndex:10}}></img>
+         <Grid> 
+         <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
+         <Grid className={classes2.animatedImage2} sx={{color:'#0054B6',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-16%',marginLeft:'1%'}}>
+         Junaid Solanki
+         </Grid>
+         <Grid className={classes2.animatedImage3} sx={{color:'#022D60',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-1.4%',marginLeft:'1%'}}>
+         Graphic designer at IBuzz Tech
+         </Grid>
+         </Grid> 
+        </Grid>
+
+
+         <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
+          <img src={photo} className={classes2.animatedImage} style={{zIndex:10}}></img>
+         <Grid> 
+         <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
+         <Grid className={classes2.animatedImage2} sx={{color:'#0054B6',fontSize:'24px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-16%',marginLeft:'1%'}}>
+         Chinmay Sharma
+         </Grid>
+         <Grid className={classes2.animatedImage3} sx={{color:'#022D60',fontSize:'14px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-1.4%',marginLeft:'1%'}}>
+         Ui/Ux designer at IBuzz Tech
+         </Grid>
+         </Grid> 
+        </Grid>
+
+        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
+          <img src={photo} className={classes2.animatedImage} style={{zIndex:10}}></img>
+         <Grid> 
+         <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
+         <Grid className={classes2.animatedImage2} sx={{color:'#0054B6',fontSize:'24px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-16%',marginLeft:'1%'}}>
+         Chinmay Sharma
+         </Grid>
+         <Grid className={classes2.animatedImage3} sx={{color:'#022D60',fontSize:'14px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-1.4%',marginLeft:'1%'}}>
+         Ui/Ux designer at IBuzz Tech
+         </Grid>
+         </Grid> 
+        </Grid>
+      </Slider>
+            </Grid>
+                </Grid>
+            </Grid>         
+  </Grid>
+
+
+
+<Grid sx={{marginTop:matchesA?'12%':'0%'}}>
+    <Newfooter/>
+</Grid>
+  </Grid>)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {/* <Grid sx={{display:'flex',flexDirection:"column",marginTop:matchesB?'8%':'3%',gap:7}}>
                     <Grid sx={{display:'flex',justifyContent:'space-between',flexDirection:matchesA?"column":'row',alignItems:matchesA?'center':'normal'}}>
                    <Grid onClick={handleNagivate} sx={{display:'flex',flexDirection:'column',cursor:'pointer'}}>
                     <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
@@ -945,142 +1129,3 @@ const sliderRefs = useRef([]);
 
           </Grid>
         </Grid> */}
-
-
-        <Button 
-                  style={{
-                    border:'1px solid #fff',
-                    borderColor:'#fff',
-                    width:matchesB?100: '160px',
-                    height: matchesB?25:'40px',
-                    lineHeight:'36px',
-                    color: "#fff",
-                    marginLeft:'2%',
-                    boxShadow: "0px 0px 10px 3px rgba(255, 255, 255, 0.3)",
-                    marginTop:'5%',
-                    textTransform: "none",
-                    borderRadius: '10px',
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginLeft:'auto'
-                  }}>              
-                 <div style={{   fontSize: "17px",
-                    fontWeight: 600,}}>1</div><div style={{   fontSize: "14px",
-                        fontWeight: 400,marginLeft:'3%'}}>2</div><div style={{   fontSize: "14px",
-                            fontWeight: 400,marginLeft:'3%'}}>3... </div><div style={{   fontSize: "12px",
-                                fontWeight: 400}}>more</div>
-                  
-                </Button>
-      </Grid>
-  </Grid>
-  <Grid sx={{marginTop:'4%'}}>
-    <Services/>
-  </Grid>
-
-
-  
-  <Grid>
-  <Grid sx={{width:'100%',height:matches?'auto':800,display:'flex',alignItems:'center',flexDirection:"column",color:'#fff',marginTop:matchesA?'8%':'12%'}}>
-                <Grid sx={{fontSize:matches?'24px':'52px',fontWeight:600,lineHeight:matches?'30px':'52px',letterSpacing:'-2.4%',textAlign:matches?'center':'',width:matchesB?'70%':'100%'}}>
-                OUR TOP PROFESSIONALS
-                </Grid>
-                <Grid sx={{fontSize:matches?'18px':'22px',fontWeight:400,lineHeight:matches?'24px':'46px',letterSpacing:'2%',marginTop:'1%',textAlign:matches?'center':'',width:matchesB?'85%':'100%'}}>
-                They are our reviews with happy user
-                </Grid>
-                <Grid sx={{marginTop:'5%',display:'flex',width:'100%',justifyContent:'space-between'}}>
-               <Grid style={{width:'100%'}}>
-               <Slider {...settings2}>
-        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer',marginLeft:matchesB?'2.5%':''}}>
-          <img src={photo4} className={classes2.animatedImage} style={{zIndex:10}}></img>
-         <Grid>
-         <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
-         <Grid className={classes2.animatedImage2} sx={{color:'#0054B6',fontSize:'24px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-16%',marginLeft:'1%'}}>
-         Chinmay Sharma
-         </Grid>
-         <Grid className={classes2.animatedImage3} sx={{color:'#022D60',fontSize:'14px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-1.4%',marginLeft:'1%'}}>
-         Ui/Ux designer at IBuzz Tech
-         </Grid>
-         </Grid> 
-        </Grid>
-
-        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
-          <img src={photo2} className={classes2.animatedImage} style={{zIndex:10}}></img>
-         <Grid> 
-         <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
-         <Grid className={classes2.animatedImage2} sx={{color:'#0054B6',fontSize:'24px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-16%',marginLeft:'1%'}}>
-         Sonam Gupta
-         </Grid>
-         <Grid className={classes2.animatedImage3} sx={{color:'#022D60',fontSize:'14px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-1.4%',marginLeft:'1%'}}>
-         HR at IBuzz Tech
-         </Grid>
-         </Grid> 
-        </Grid>
-
-
-        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
-          <img src={photo3} className={classes2.animatedImage} style={{zIndex:10}}></img>
-         <Grid> 
-         <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
-         <Grid className={classes2.animatedImage2} sx={{color:'#0054B6',fontSize:'24px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-16%',marginLeft:'1%'}}>
-         Ankit Narwariya
-         </Grid>
-         <Grid className={classes2.animatedImage3} sx={{color:'#022D60',fontSize:'14px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-1.4%',marginLeft:'1%'}}>
-         Front-end Developer at IBuzz Tech
-         </Grid>
-         </Grid> 
-        </Grid>
-
-
-        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
-          <img src={photo4} className={classes2.animatedImage} style={{zIndex:10}}></img>
-         <Grid> 
-         <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
-         <Grid className={classes2.animatedImage2} sx={{color:'#0054B6',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-16%',marginLeft:'1%'}}>
-         Junaid Solanki
-         </Grid>
-         <Grid className={classes2.animatedImage3} sx={{color:'#022D60',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-1.4%',marginLeft:'1%'}}>
-         Graphic designer at IBuzz Tech
-         </Grid>
-         </Grid> 
-        </Grid>
-
-
-         <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
-          <img src={photo} className={classes2.animatedImage} style={{zIndex:10}}></img>
-         <Grid> 
-         <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
-         <Grid className={classes2.animatedImage2} sx={{color:'#0054B6',fontSize:'24px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-16%',marginLeft:'1%'}}>
-         Chinmay Sharma
-         </Grid>
-         <Grid className={classes2.animatedImage3} sx={{color:'#022D60',fontSize:'14px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-1.4%',marginLeft:'1%'}}>
-         Ui/Ux designer at IBuzz Tech
-         </Grid>
-         </Grid> 
-        </Grid>
-
-        <Grid className={classes2.imageContainer} sx={{position:'relative',cursor:'pointer'}}>
-          <img src={photo} className={classes2.animatedImage} style={{zIndex:10}}></img>
-         <Grid> 
-         <img src={blur11} className={classes2.animatedImage4} style={{zIndex:50,marginTop:'-20%'}}></img>
-         <Grid className={classes2.animatedImage2} sx={{color:'#0054B6',fontSize:'24px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-16%',marginLeft:'1%'}}>
-         Chinmay Sharma
-         </Grid>
-         <Grid className={classes2.animatedImage3} sx={{color:'#022D60',fontSize:'14px',fontWeight:700,lineHeight:'28px',zIndex:60,marginTop:'-1.4%',marginLeft:'1%'}}>
-         Ui/Ux designer at IBuzz Tech
-         </Grid>
-         </Grid> 
-        </Grid>
-      </Slider>
-            </Grid>
-                </Grid>
-            </Grid>         
-  </Grid>
-
-
-
-<Grid sx={{marginTop:matchesA?'12%':'0%'}}>
-    <Newfooter/>
-</Grid>
-  </Grid>)
-}
