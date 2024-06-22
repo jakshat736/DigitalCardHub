@@ -174,7 +174,7 @@ export default function NewCheckOut() {
                   color: "#fff",
                   p: "2px 4px",
                   display: "flex",
-                  alignItems: "center",
+                  alignItems: "center"
                 }}
               >
                 <InputBase
