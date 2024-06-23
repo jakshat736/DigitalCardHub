@@ -33,7 +33,6 @@ export default function AddMenu() {
   const navigate = useNavigate();
   const menuId = location.state.menuId;
   const matches = useMediaQuery("(max-width:600px)");
-
   const [empty, setEmpty] = useState({ title: "", rate: "" });
   const [quantity, setQuantity] = useState(Array(1).fill({ title: "Full", rate: "0" }));
   const [AddOn, setAddOn] = useState(Array(1).fill(empty));
@@ -147,7 +146,6 @@ export default function AddMenu() {
 
   const handleSubmit = async () => {
     const selectedCategory = category?.filter((item) => item?._id === categoryId)[0]
-    console.log(selectedCategory)
     var AddMenudata = new FormData();
     if (
       Dish != "" &&
