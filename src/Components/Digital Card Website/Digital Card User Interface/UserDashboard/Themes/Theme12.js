@@ -747,22 +747,19 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
   const handleopenotpdailog = async () => {
 
     if (phoneNumber != '') {
-      var otpval = OtpGenerator()
+        var otpval = OtpGenerator()
 
-      setOtp(otpval)
+        setOtp(otpval)
 
-      const apiUrl = `https://soft7.in/api/send?number=91${phoneNumber}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=664B22EF6F9A8&access_token=6642f3cf318c6`;
-      const response = await postData('otp/api', { url: apiUrl })
-      // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41
+        const apiUrl = `https://cloud.bulkpromo.in/api/send?number=91${phoneNumber}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=6676AB42323B3&access_token=666ff52aa9a38`;
+        const response = await postData('otp/api', { url: apiUrl })
     } else {
-      Swal.fire({
-        text: "Enter the Number First",
-        timer: 1000
-      })
+        Swal.fire({
+            text: "Enter the Number First",
+            timer: 1000
+        })
     }
-
-
-  }
+}
 
 
   const loginSignup = () => {
@@ -847,7 +844,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   </InputAdornment>
                 ),
                 endAdornment: (
-                  <IconButton type="button" aria-label="search" onClick={handleLogin}>
+                  <IconButton type="button" aria-label="search" onClick={handleopenotpdailog}>
                     <div
                       style={{
                         border: "1px solid #000",
@@ -863,7 +860,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                         borderRadius: 8,
                       }}
                     >
-                      Login
+                      Get Otp
                     </div>
                   </IconButton>
                 )
@@ -872,7 +869,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           </div>
         </div>
 
-        {/* <div
+        <div
           style={{
             display: "flex",
             justifyContent: "center",
@@ -889,7 +886,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           >
             <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
           </div>
-        </div> */}
+        </div>
       </DialogContent>
     </Dialog>)
   }
