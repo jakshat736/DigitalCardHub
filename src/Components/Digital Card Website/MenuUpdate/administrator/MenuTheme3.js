@@ -1,37 +1,24 @@
-import {  Grid } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { Grid, IconButton, Paper } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import Divider from "@mui/material/Divider";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import * as React from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import {  Paper } from "@mui/material";
-import Divider from "@mui/material/Divider";
-import * as React from "react";
-import { useState, useEffect } from "react";
-import CloseIcon from "@mui/icons-material/Close";
-import vegmain from "../assets/vegmain.png";
-import rightarrow from "../assets/rightarrow.png";
+import deliver from "../assets/deliver.png";
 import logo from "../assets/logo.png";
-import plus from "../assets/plus.png";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import more from "../assets/moress.png";
+import pending from "../assets/pending.png";
+import rightarrow from "../assets/rightarrow.png";
+import thankyous from "../assets/thankyouss.png";
+import vegmain from "../assets/vegmain.png";
 import waiter from "../assets/waiter.png";
-import { useNavigate } from "react-router-dom";
-import live from "../assets/live.png";
-import pay from "../assets/pay.png";
-import leftarrow from "../assets/leftarrow.png";
-import thankyou from "../assets/thankyou.png";
-import hand from "../assets/hand.png";
-import coupon from "../assets/coupon.png"
-import more from "../assets/moress.png"
-import pending from "../assets/pending.png"
-import deliver from "../assets/deliver.png"
-import Dialog from '@mui/material/Dialog';
-import { IconButton } from "@mui/material";
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Slide from '@mui/material/Slide';
-import thankyous from "../assets/thankyouss.png"
 export default function MenuTheme3() {
   
     const [thankyou, setThankYou] = useState(false);

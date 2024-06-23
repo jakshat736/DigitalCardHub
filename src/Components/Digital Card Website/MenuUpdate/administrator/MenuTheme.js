@@ -1,66 +1,59 @@
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import Radio from "@mui/material/Radio";
+import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from "@mui/icons-material/Close";
+import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
+import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
+import RemoveIcon from "@mui/icons-material/Remove";
 import Search from "@mui/icons-material/Search";
-import { FormGroup, Grid, InputAdornment, TextField } from "@mui/material";
+import ShareIcon from "@mui/icons-material/Share";
+import SimCardDownloadIcon from "@mui/icons-material/SimCardDownload";
+import StarIcon from "@mui/icons-material/Star";
+import { FormGroup, Grid, IconButton, InputAdornment, Paper, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import CloseIcon from "@mui/icons-material/Close";
-import more from "../assets/more.png";
-import Slider from "react-slick";
-import menuveg from "../assets/menuveg.png"
-import StarIcon from "@mui/icons-material/Star";
-import arrow from "../assets/arrow.png";
-import moreicon from "../assets/moreicon.png"
-import SpeedDial from "@mui/material/SpeedDial";
-import { useNavigate } from "react-router-dom";
-import SpeedDialAction from "@mui/material/SpeedDialAction";
-import RemoveIcon from "@mui/icons-material/Remove";
-import "slick-carousel/slick/slick-theme.css";
-import crosses from "../assets/crosses.png";
-import shopping from "../assets/shopping.png";
-import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
-import "slick-carousel/slick/slick.css";
-import { IconButton, Paper } from "@mui/material";
-import vegss from "../assets/vegss.png";
-import { postData, serverURL } from "../../../Services/NodeServices";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
-import menulogo from "../assets/menulogo.png";
-import { enqueueSnackbar } from "notistack";
-import AddIcon from "@mui/icons-material/Add";
 import Divider from "@mui/material/Divider";
+import Fab from "@mui/material/Fab";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import vegone from "../assets/vegone.png";
 import ListItemButton from "@mui/material/ListItemButton";
-import Fab from "@mui/material/Fab";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import Radio from "@mui/material/Radio";
 import Rating from "@mui/material/Rating";
+import SpeedDial from "@mui/material/SpeedDial";
+import SpeedDialAction from "@mui/material/SpeedDialAction";
+import Switch from "@mui/material/Switch";
+import { styled } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
+import { enqueueSnackbar } from "notistack";
 import * as React from "react";
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import { postData } from "../../../Services/NodeServices";
+import SideBar from "../../Digital Card User Interface/UserDashboard/UserComponents/SideBar";
+import arrow from "../assets/arrow.png";
 import call from "../assets/call.png";
+import crosses from "../assets/crosses.png";
 import digital from "../assets/digitallogo.png";
-import eye from "../assets/eye.png";
+import fb from "../assets/fb.png";
 import food from "../assets/food.png";
-import groups from "../assets/group.png";
 import insta from "../assets/insta.png";
 import link from "../assets/link.png";
 import gmail from "../assets/mail.png";
-import menubar from "../assets/menu bar.png";
-import { default as whatapp } from "../assets/whatapp.png";
-import fb from "../assets/fb.png";
-import snapchat from "../../Digital Card Assets/snapchat.png";
-import telegram from "../../Digital Card Assets/telegram.png";
-import SimCardDownloadIcon from "@mui/icons-material/SimCardDownload";
-import { styled } from "@mui/material/styles";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch, { SwitchProps } from "@mui/material/Switch";
-import ShareIcon from "@mui/icons-material/Share";
-import SideBar from "../../Digital Card User Interface/UserDashboard/UserComponents/SideBar";
+import menulogo from "../assets/menulogo.png";
+import menuveg from "../assets/menuveg.png";
+import moreicon from "../assets/moreicon.png";
+import shopping from "../assets/shopping.png";
 import vegmain from "../assets/vegmain.png";
+import vegone from "../assets/vegone.png";
+import vegss from "../assets/vegss.png";
+import { default as whatapp } from "../assets/whatapp.png";
 
 const actions = [
   { icon: <SimCardDownloadIcon style={{ fontSize: "22px" }} />, name: "Copy" },
@@ -168,6 +161,7 @@ const MaterialUISwitch2 = styled(Switch)(({ theme }) => ({
 }));
 
 export default function MenuTheme({ data }) {
+  const { menuId } = useParams()
   const [checked, setChecked] = React.useState(true);
   const [reviewsData, setReviewsData] = React.useState([]);
   const [open, setOpen] = React.useState(false);
@@ -184,9 +178,34 @@ export default function MenuTheme({ data }) {
   const [showMore, setShowMore] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openDrawer2, setOpenDrawer2] = useState(false);
+  const [restaurantDetails, setRestaurantDetails] = useState(null)
   const [add, setAdd] = useState(false);
 
   const [count, setCount] = useState(0);
+
+
+  const fetchData = async () => {
+    var formData = new FormData
+    formData.append('menuId', menuId)
+    const result = await postData("index/getDataById", formData, true);
+    // setData(result.data); // Update the data state with the fetched data
+    // console.log("result", result.data);
+  };
+
+  const fetchRestaurantData = async () => {
+    var formData = new FormData
+    formData.append("menuId", menuId)
+    const response = await postData('index/getRestaurantDetails', formData, true)
+
+      if(response.status==true){
+        setRestaurantDetails(response?.data)
+    }    
+  }
+
+  React.useEffect(() => {
+    fetchRestaurantData()
+    fetchData(); // Fetch data when the component mounts
+  }, []);
 
   const handleClickAdd = () => {
     setAdd(true);
@@ -256,13 +275,13 @@ export default function MenuTheme({ data }) {
     handleCloseCategory(false)
     setOpenDrawer2(!openDrawer2);
     setTimeout(() => {
-    if (menu === false) {
-      var section = document.getElementById("menu");
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth", position: "fixed" });
+      if (menu === false) {
+        var section = document.getElementById("menu");
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth", position: "fixed" });
+        }
       }
-    }
-  }, 100);
+    }, 100);
   }
 
 
@@ -271,7 +290,7 @@ export default function MenuTheme({ data }) {
     setOpenDrawer(!openDrawer);
   };
 
-  
+
   const handleReviewSubmit = async (customerId) => {
     let formData = new FormData();
     formData.append("cardId", customerId);
@@ -325,9 +344,8 @@ export default function MenuTheme({ data }) {
     const durationInSeconds = Math.floor(durationInMilliseconds / 1000);
 
     if (durationInSeconds < 60) {
-      return `${durationInSeconds} second${
-        durationInSeconds !== 1 ? "s" : ""
-      } ago`;
+      return `${durationInSeconds} second${durationInSeconds !== 1 ? "s" : ""
+        } ago`;
     } else if (durationInSeconds < 3600) {
       const minutes = Math.floor(durationInSeconds / 60);
       return `${minutes} minute${minutes !== 1 ? "s" : ""} ago`;
@@ -403,7 +421,7 @@ export default function MenuTheme({ data }) {
       <Dialog
         PaperProps={{
           style: {
-            width: matches?"85%":'20%',
+            width: matches ? "85%" : '20%',
             borderRadius: 10,
             backgroundImage: "radial-gradient(#ffff,#f5f6fa)",
           },
@@ -452,7 +470,7 @@ export default function MenuTheme({ data }) {
               marginTop: "1%",
             }}
           >
-            <Grid  onClick={handleMenu}
+            <Grid onClick={handleMenu}
               sx={{
                 border: "1px solid #bdc3c7",
                 fontSize: 15,
@@ -463,7 +481,7 @@ export default function MenuTheme({ data }) {
             >
               Burger
             </Grid>
-            <Grid  onClick={handleMenu}
+            <Grid onClick={handleMenu}
               sx={{
                 border: "1px solid #bdc3c7",
                 fontSize: 15,
@@ -482,7 +500,7 @@ export default function MenuTheme({ data }) {
               marginTop: "3%",
             }}
           >
-            <Grid  onClick={handleMenu}
+            <Grid onClick={handleMenu}
               sx={{
                 border: "1px solid #bdc3c7",
                 fontSize: 15,
@@ -493,7 +511,7 @@ export default function MenuTheme({ data }) {
             >
               Chiken
             </Grid>
-            <Grid  onClick={handleMenu}
+            <Grid onClick={handleMenu}
               sx={{
                 border: "1px solid #bdc3c7",
                 fontSize: 15,
@@ -512,7 +530,7 @@ export default function MenuTheme({ data }) {
               marginTop: "3%",
             }}
           >
-            <Grid  onClick={handleMenu}
+            <Grid onClick={handleMenu}
               sx={{
                 border: "1px solid #bdc3c7",
                 fontSize: 15,
@@ -523,7 +541,7 @@ export default function MenuTheme({ data }) {
             >
               Mojita
             </Grid>
-            <Grid  onClick={handleMenu}
+            <Grid onClick={handleMenu}
               sx={{
                 border: "1px solid #bdc3c7",
                 fontSize: 15,
@@ -1616,6 +1634,8 @@ export default function MenuTheme({ data }) {
     </Box>
   );
 
+
+
   return (
     <Grid
       style={{
@@ -1652,30 +1672,6 @@ export default function MenuTheme({ data }) {
             <Grid sx={{ padding: 2, display: "flex" }}>
               <Grid sx={{ cursor: "pointer" }}>
                 <SideBar />
-              </Grid>
-
-              <Grid
-                style={{
-                  border: "1px solid #d2dae2",
-                  width: 100,
-                  height: 30,
-                  backgroundColor: "#4b4b4b",
-                  marginLeft: "auto",
-                  borderRadius: 20,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginTop: "2%",
-                }}
-              >
-                <Grid style={{ marginTop: "2%" }}>
-                  <img src={eye}></img>
-                </Grid>
-                <Grid
-                  style={{ marginLeft: "10%", color: "#fff", fontsize: 14 }}
-                >
-                  68842
-                </Grid>
               </Grid>
             </Grid>
           </Grid>
@@ -1882,9 +1878,9 @@ export default function MenuTheme({ data }) {
                   </SpeedDial>
                 </Box>
               </Grid>
-              </Grid>
-              </Grid>
-              {about?<></>:<><Grid
+            </Grid>
+          </Grid>
+          {about ? <></> : <><Grid
             style={{
               display: "flex",
               justifyContent: "center",
@@ -1899,73 +1895,73 @@ export default function MenuTheme({ data }) {
             />
           </Grid></>}
         </Grid>
-              {about ? (
-                <>
-                  {" "}
-                  <Grid item xs={12}>
-          <Grid
-            sx={{
-              background: "#fff",
-              display: "flex",
-              height: "auto",
-              marginTop: matches?"-8%":"-4%",
-              padding: 2,
-            }}
-          >
+        {about ? (
+          <>
+            {" "}
+            <Grid item xs={12}>
+              <Grid
+                sx={{
+                  background: "#fff",
+                  display: "flex",
+                  height: "auto",
+                  marginTop: matches ? "-8%" : "-4%",
+                  padding: 2,
+                }}
+              >
+                <Grid
+                  style={{
+                    border: "1px solid #000",
+                    maxHeight: 260,
+                    padding: 6,
+                    display: "flex",
+                    flexDirection: "column",
+                    borderRadius: 10,
+                  }}
+                >
                   <Grid
                     style={{
-                      border: "1px solid #000",
-                      maxHeight: 260,
-                      padding: 6,
-                      display: "flex",
-                      flexDirection: "column",
-                      borderRadius: 10,
-                    }}
-                  >
-                    <Grid
-                      style={{
-                        fontSize: 12,
-                        color: "#636e72",
-                        fontFamily: "poppins",
-                        overflowY: "scroll",
-                        padding: 8,
-                      }}>
-                      CHAT AI GPT- Free Unlimited Chat GPT The AI-powered
-                      chatbot, Chat AI GPT, employs an intricate system of
-                      artificial intelligence and neural networks to produce
-                      responses that are strikingly resemblant of human
-                      conversation during a simulated dialogue. It employs an
-                      advanced technology known as conversational ChatGPT Free
-                      to interpret and respond to human language naturally. Chat
-                      AI GPT Free is constantly refining its abilities and
-                      broadening its knowledge base, aiming to deliver the
-                      utmost assistance to its users. Here you can Chat GPT free
-                      and unlimited.
-                    </Grid>
+                      fontSize: 12,
+                      color: "#636e72",
+                      fontFamily: "poppins",
+                      overflowY: "scroll",
+                      padding: 8,
+                    }}>
+                    CHAT AI GPT- Free Unlimited Chat GPT The AI-powered
+                    chatbot, Chat AI GPT, employs an intricate system of
+                    artificial intelligence and neural networks to produce
+                    responses that are strikingly resemblant of human
+                    conversation during a simulated dialogue. It employs an
+                    advanced technology known as conversational ChatGPT Free
+                    to interpret and respond to human language naturally. Chat
+                    AI GPT Free is constantly refining its abilities and
+                    broadening its knowledge base, aiming to deliver the
+                    utmost assistance to its users. Here you can Chat GPT free
+                    and unlimited.
                   </Grid>
-                  </Grid>
-                  <Grid
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "2%",
-            }}
-          >
-            <Divider
-              style={{
-                height: "1px",
-                backgroundColor: "#AAAAAA",
-                width: "92%",
-              }}
-            />
-          </Grid>
-                  </Grid>
-                </>
-              ) : (
-                <></>
-              )}
-           
-        
+                </Grid>
+              </Grid>
+              <Grid
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "2%",
+                }}
+              >
+                <Divider
+                  style={{
+                    height: "1px",
+                    backgroundColor: "#AAAAAA",
+                    width: "92%",
+                  }}
+                />
+              </Grid>
+            </Grid>
+          </>
+        ) : (
+          <></>
+        )}
+
+
 
         <Grid item xs={12}>
           <Grid
@@ -2012,15 +2008,6 @@ export default function MenuTheme({ data }) {
               >
                 <img src={gmail} />
               </Fab>
-
-              <Fab
-                style={{
-                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                  zIndex: 10,
-                }}
-              >
-                <img src={link} />
-              </Fab>
             </Grid>
 
             <Grid
@@ -2049,26 +2036,15 @@ export default function MenuTheme({ data }) {
               >
                 <img src={insta} />
               </Fab>
-
               <Fab
                 style={{
                   backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
                   zIndex: 10,
                 }}
               >
-                <img src={groups} />
-              </Fab>
-
-              <Fab
-                style={{
-                  backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                  zIndex: 10,
-                }}
-              >
-                <img src={telegram} width={25} />
+                <img src={link} />
               </Fab>
             </Grid>
-
             <Grid style={{ marginTop: "10%" }}>
               <Divider
                 style={{
@@ -2080,27 +2056,28 @@ export default function MenuTheme({ data }) {
             </Grid>
           </Grid>
         </Grid>
-
-
         {menu ? (
           <>
             <Grid item xs={12}>
-            <div id="menu"></div>
+              <div id="menu"></div>
               <Grid
-                  sx={{
-                    height:40,
-                    display: "flex",
-                    justifyContent: "center",
-                    background:'#000',
-                    alignItems: "center",fontFamily:'poppins',position:'sticky',top:'0',zIndex:'5'}}>
-                      <Grid sx={{fontSize: "16px",
-                    fontWeight: 500,color:'#fff',display: "flex",
-                    justifyContent: "center"}}>
-                        Flat 10% Off on Entire Now
-                      </Grid>
+                sx={{
+                  height: 40,
+                  display: "flex",
+                  justifyContent: "center",
+                  background: '#000',
+                  alignItems: "center", fontFamily: 'poppins', position: 'sticky', top: '0', zIndex: '5'
+                }}>
+                <Grid sx={{
+                  fontSize: "16px",
+                  fontWeight: 500, color: '#fff', display: "flex",
+                  justifyContent: "center"
+                }}>
+                  Flat 10% Off on Entire Now
                 </Grid>
+              </Grid>
 
-                <Grid sx={{ background: "#fff", padding: 2, height: "auto" }}>
+              <Grid sx={{ background: "#fff", padding: 2, height: "auto" }}>
                 <Grid
                   sx={{
                     fontSize: "18px",
@@ -2112,7 +2089,7 @@ export default function MenuTheme({ data }) {
                   }}
                 >
                   <img src={menulogo}></img>{" "}
-                  <Grid sx={{ marginTop: "2%",fontFamily:'Okra, Helvetica, sans-serif',fontFamily:'poppins' }}>Menu</Grid>
+                  <Grid sx={{ marginTop: "2%", fontFamily: 'Okra, Helvetica, sans-serif', fontFamily: 'poppins' }}>Menu</Grid>
                   <img src={menulogo}></img>
                 </Grid>
                 <Grid sx={{ marginTop: "5%" }}>
@@ -2165,7 +2142,7 @@ export default function MenuTheme({ data }) {
                     </FormGroup>
                   </Grid>
                 </Grid>
-                <Grid sx={{fontFamily:'Okra, Helvetica, sans-serif',fontWeight:600,fontSize:'1.4rem',marginTop:'3%'}}>
+                <Grid sx={{ fontFamily: 'Okra, Helvetica, sans-serif', fontWeight: 600, fontSize: '1.4rem', marginTop: '3%' }}>
                   Best in Pizza
                 </Grid>
                 <Grid sx={{ marginTop: "2%" }}>
@@ -2219,11 +2196,11 @@ export default function MenuTheme({ data }) {
                             padding: 0.2,
                             borderRadius: 1,
                             height: 20,
-                            display:'flex',justifyContent:'center',alignItems:'center'
+                            display: 'flex', justifyContent: 'center', alignItems: 'center'
                           }}
                         >
                           <Rating
-                
+
                             size="small"
                             color="green"
                             name="simple-controlled"
@@ -2367,7 +2344,7 @@ export default function MenuTheme({ data }) {
                   >
                     <Grid sx={{ marginTop: "4%" }}>
                       <Grid sx={{ display: "flex", alignItems: "center" }}>
-                      <img src={menuveg} width={25}></img>
+                        <img src={menuveg} width={25}></img>
 
                         <Grid
                           sx={{
@@ -2406,7 +2383,7 @@ export default function MenuTheme({ data }) {
                             padding: 0.2,
                             borderRadius: 1,
                             height: 20,
-                            display:'flex',justifyContent:'center',alignItems:'center'
+                            display: 'flex', justifyContent: 'center', alignItems: 'center'
                           }}
                         >
                           <Rating
@@ -2498,7 +2475,7 @@ export default function MenuTheme({ data }) {
                   >
                     <Grid sx={{ marginTop: "4%" }}>
                       <Grid sx={{ display: "flex", alignItems: "center" }}>
-                      <img src={menuveg} width={25}></img>
+                        <img src={menuveg} width={25}></img>
 
                         <Grid
                           sx={{
@@ -2536,11 +2513,11 @@ export default function MenuTheme({ data }) {
                             border: "1px solid #eccc68",
                             padding: 0.2,
                             borderRadius: 1,
-                            height: 20, display:'flex',justifyContent:'center',alignItems:'center'
+                            height: 20, display: 'flex', justifyContent: 'center', alignItems: 'center'
                           }}
                         >
                           <Rating
-                            
+
                             size="small"
                             color="green"
                             name="simple-controlled"
@@ -2684,7 +2661,7 @@ export default function MenuTheme({ data }) {
                   >
                     <Grid sx={{ marginTop: "4%" }}>
                       <Grid sx={{ display: "flex", alignItems: "center" }}>
-                      <img src={menuveg} width={25}></img>
+                        <img src={menuveg} width={25}></img>
                         <Grid
                           sx={{
                             border: "1px solid #FFA030",
@@ -2721,11 +2698,11 @@ export default function MenuTheme({ data }) {
                             border: "1px solid #eccc68",
                             padding: 0.2,
                             borderRadius: 1,
-                            height: 20,display:'flex',justifyContent:'center',alignItems:'center'
+                            height: 20, display: 'flex', justifyContent: 'center', alignItems: 'center'
                           }}
                         >
                           <Rating
-                        
+
                             size="small"
                             color="green"
                             name="simple-controlled"
@@ -2869,7 +2846,7 @@ export default function MenuTheme({ data }) {
                   >
                     <Grid sx={{ marginTop: "4%" }}>
                       <Grid sx={{ display: "flex", alignItems: "center" }}>
-                      <img src={menuveg} width={25}></img>
+                        <img src={menuveg} width={25}></img>
 
                         <Grid
                           sx={{
@@ -2907,13 +2884,13 @@ export default function MenuTheme({ data }) {
                             border: "1px solid #eccc68",
                             padding: 0.2,
                             borderRadius: 1,
-                            height: 20,display: "flex",
+                            height: 20, display: "flex",
                             alignItems: "center",
                             justifyContent: "center"
                           }}
                         >
                           <Rating
-                            
+
                             size="small"
                             color="green"
                             name="simple-controlled"
@@ -3256,7 +3233,7 @@ export default function MenuTheme({ data }) {
                     sx={{
                       width: 330,
                       height: 60,
-                     background:'#000',
+                      background: '#000',
                       borderRadius: 3,
                     }}
                   >
