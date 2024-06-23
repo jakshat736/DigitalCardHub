@@ -5,45 +5,48 @@ import sub from "../../Digital Card Assets/sub.png"
 import add from "../../Digital Card Assets/add.png"
 import cardphn from "../../Digital Card Assets/cardphn.png"
 import { useNavigate } from "react-router-dom";
+import useMediaQuery from '@mui/material/useMediaQuery';
 export default function NewThemeCard()
 {
   var navigate=useNavigate()
   const handleNagivate=()=>{
     navigate('/newcheckout')
 }
+const matches = useMediaQuery("(max-width:1000px)");
+const matchesA = useMediaQuery("(max-width:600px)");
     return(<Grid sx={{width:'100%',backgroundImage: "linear-gradient(to bottom right, #171717,#171717,#070707,#070707)",fontFamily:'Montserrat'}}>
         <Grid>
             <NewHeader/>
         </Grid>
         <Grid sx={{display:'flex',alignItems:'center',justifyContent:'center',width:'100%',marginTop:'4%',color:'#FFFFFF'}}>
            <Grid sx={{width:'82%',height:'auto',display:'flex',flexDirection:'column'}}>
-            <Grid sx={{width:'100%',display:'flex'}}>
-            <Grid sx={{width:'60%',height:'auto'}}>
-              <Grid sx={{fontSize:'36px',fontWeight:600,lineHeight:'44px',letterSpacing:'-1.4%'}}>
+            <Grid sx={{width:'100%',display:'flex',flexDirection:matches?'column':'row'}}>
+            <Grid sx={{width:matches?'100%':'60%',height:'auto'}}>
+              <Grid sx={{fontSize:matchesA?'26px':'36px',fontWeight:600,lineHeight:'44px',letterSpacing:'-1.4%'}}>
                Your cart
               </Grid>
-              <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',letterSpacing:'-1.4%',marginTop:'2%'}}>
+              <Grid sx={{fontSize:matchesA?'12px':'16px',fontWeight:500,lineHeight:'26px',letterSpacing:'-1.4%',marginTop:'2%'}}>
               Not ready to checkout? Continue Shopping
               </Grid>
               <Grid sx={{display:'flex',width:'100%',gap:2,marginTop:'2%',height:'auto'}}>
-                <Grid sx={{width:'14.2%'}}>
+                <Grid sx={{width:matchesA?'36%':'14.2%'}}>
                     <img src={card}  style={{width:'100%'}}></img>
                 </Grid>
                 <Grid sx={{width:'85.8%'}}>
-                  <Grid sx={{fontSize:'22px',fontWeight:600,lineHeight:'30px',letterSpacing:'-1.4%'}}>
+                  <Grid sx={{fontSize:matchesA?'16px':'22px',fontWeight:600,lineHeight:matchesA?'23px':'30px',letterSpacing:'-1.4%'}}>
                   Royal Black : DCH Digital instago  Google fastest 
                   Review Card
                   </Grid>
-                  <Grid sx={{fontSize:'14px',fontWeight:400,lineHeight:'20px',letterSpacing:'-1.4%',marginTop:'2%'}}>
+                  <Grid sx={{fontSize:matchesA?'10px':'14px',fontWeight:400,lineHeight:'20px',letterSpacing:'-1.4%',marginTop:'2%'}}>
                   Size: 80mm x 90mm
                   </Grid>
-                  <Grid sx={{fontSize:'14px',fontWeight:400,lineHeight:'20px',letterSpacing:'-1.4%',marginTop:'2%'}}>
+                  <Grid sx={{fontSize:matchesA?'10px':'14px',fontWeight:400,lineHeight:'20px',letterSpacing:'-1.4%',marginTop:matchesA?'0%':'2%'}}>
                   Quantity: 1
                   </Grid>
-                  <Grid sx={{display:'flex',flexDirection:'row',marginTop:'2%'}}>
-                        <Grid sx={{fontSize:'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹ 599</Grid>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginLeft:'1%'}}><s>₹ 1499</s></Grid>
-                        <Grid sx={{fontSize:'12px',fontWeight:400,lineHeight:'26px',textDecoration:'underline',marginLeft:'auto'}}>Remove</Grid>
+                  <Grid sx={{display:'flex',flexDirection:'row',marginTop:matchesA?'0%':'2%'}}>
+                        <Grid sx={{fontSize:matchesA?'16px':'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹ 599</Grid>
+                        <Grid sx={{fontSize:matchesA?'10px':'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginLeft:'1%'}}><s>₹ 1499</s></Grid>
+                        <Grid sx={{fontSize:matchesA?'10px':'12px',fontWeight:400,lineHeight:'26px',textDecoration:'underline',marginLeft:'auto'}}>Remove</Grid>
                 </Grid>
                 </Grid>
               </Grid>
@@ -62,9 +65,9 @@ export default function NewThemeCard()
                     border:'1px solid #fff',
                     borderColor:'#fff',
                     width:'100%',
-                    height:'2.7vw',
+                    height:matchesA?35:'2.7vw',
                     color: "#fff",
-                    fontSize: ".8vw",
+                    fontSize: matchesA?'12px':".8vw",
                     marginTop:'4%',
                     fontWeight: 500,
                     textTransform: "none",
@@ -96,10 +99,10 @@ export default function NewThemeCard()
             Return Policy
             </Grid>
             <Grid sx={{marginLeft:'auto'}}>
-            <img src={sub} width={15}style={{marginTop:'180%'}}></img>
+            <img src={sub} width={15}style={{marginTop:matchesA?'60%':'180%'}}></img>
             </Grid>
             </Grid>
-            <Grid sx={{fontSize:'16px',fontWeight:400,lineHeight:'26px',marginTop:'3%'}}>
+            <Grid sx={{fontSize:matchesA?'10px':'16px',fontWeight:400,lineHeight:matchesA?'18px':'26px',marginTop:matchesA?'1%':'3%'}}>
             This is our example return policy which is everything you need to know about our returns.
             </Grid>
             <Grid>
@@ -117,10 +120,10 @@ export default function NewThemeCard()
             Shipping Options
             </Grid>
             <Grid sx={{marginLeft:'auto'}}>
-            <img src={sub} width={15}style={{marginTop:'180%'}}></img>
+            <img src={sub} width={15}style={{marginTop:matchesA?'60%':'180%'}}></img>
             </Grid>
             </Grid>
-            <Grid sx={{fontSize:'16px',fontWeight:400,lineHeight:'26px',marginTop:'3%'}}>
+            <Grid sx={{fontSize:matchesA?'10px':'16px',fontWeight:400,lineHeight:matchesA?'18px':'26px',marginTop:matchesA?'1%':'3%'}}>
             This is our example return policy which is everything you need to know which is everything about our returns.
             </Grid>
             <Grid>
@@ -155,8 +158,8 @@ export default function NewThemeCard()
             </Grid>
             </Grid>
 
-     <Grid sx={{width:'40%',display:'flex'}}>
-        <Grid sx={{display:'flex',width:'80%',marginLeft:'auto',flexDirection:'column',marginTop:'5%'}}>
+     <Grid sx={{width:matches?'100%':'40%',display:'flex'}}>
+        <Grid sx={{display:'flex',width:matches?'100%':'80%',marginLeft:'auto',flexDirection:'column',marginTop:'5%'}}>
       <Grid sx={{fontSize:'22px',fontWeight:600,lineHeight:'44px',letterSpacing:'-2.5%'}}>
       Order Summary
       </Grid>
@@ -170,7 +173,30 @@ export default function NewThemeCard()
        <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%',marginLeft:'auto'}}>
        $200
        </Grid>
-
+      </Grid>
+      <Grid sx={{display:'flex',marginTop:'3%'}}>
+       <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%'}}>
+       Discount
+       </Grid>
+       <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%',marginLeft:'auto'}}>
+       -600
+       </Grid>
+      </Grid>
+      <Grid sx={{display:'flex',marginTop:'3%'}}>
+       <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%'}}>
+      Delivery Charges
+       </Grid>
+       <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%',marginLeft:'auto'}}>
+       FREE
+       </Grid>
+      </Grid>
+      <Grid sx={{display:'flex',marginTop:'3%'}}>
+       <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%'}}>
+       Estimated Tax
+       </Grid>
+       <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%',marginLeft:'auto'}}>
+       $200
+       </Grid>
       </Grid>
       <Grid sx={{display:'flex',marginTop:'3%'}}>
        <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%'}}>
@@ -188,8 +214,8 @@ export default function NewThemeCard()
                   backgroundColor: "#bdc3c7",
                   width: '100%',
                   marginTop: "3%",
-                }}
-              />
+                }}/>
+                
             </Grid>
             <Grid sx={{display:'flex',marginTop:'3%'}}>
        <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%'}}>
@@ -211,9 +237,9 @@ export default function NewThemeCard()
                     border:'1px solid #fff',
                     borderColor:'#fff',
                     width:'100%',
-                    height:'2.7vw',
+                    height:matchesA?38:'2.7vw',
                     color: "#fff",
-                    fontSize: ".8vw",
+                    fontSize:matchesA?'14px':".8vw",
                     marginTop:'5%',
                     fontWeight: 500,
                     textTransform: "none",
@@ -227,7 +253,7 @@ export default function NewThemeCard()
             </Grid> 
 
             <Grid sx={{marginTop:'5%'}}>
-              <img src={cardphn} width={450}></img>
+              <img src={cardphn} width={matchesA?300:450}></img>
             </Grid>
        </Grid>
       </Grid>

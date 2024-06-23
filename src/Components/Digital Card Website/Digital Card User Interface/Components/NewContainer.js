@@ -11,9 +11,9 @@ import slider3 from "../../Digital Card Assets/fb.jpg";
 import slider4 from "../../Digital Card Assets/in.jpg";
 import slider5 from "../../Digital Card Assets/amazon.jpg";
 
-import slider11 from "../../Digital Card Assets/ankit.jpg";
-import slider22 from "../../Digital Card Assets/raj.jpg";
-import slider33 from "../../Digital Card Assets/abhi.jpg";
+import slider11 from "../../Digital Card Assets/bussinesscard1.png";
+import slider22 from "../../Digital Card Assets/bussinesscard4.png";
+import slider33 from "../../Digital Card Assets/bussinesscard3.png";
 
 import slider111 from "../../Digital Card Assets/oyo.jpg";
 import slider222 from "../../Digital Card Assets/flipkard.jpg";
@@ -47,7 +47,7 @@ export default function NewContainer()
         infinite: true,
         speed: 5000,
         autoplay: "true",
-        slidesToShow: matchesA?2:3,
+        slidesToShow: matchesA?3:5,
         slidesToScroll: 1,
         arrows:false,
         cssEase: 'linear',
@@ -70,7 +70,7 @@ export default function NewContainer()
       const showSlider2=()=>{
           return data2.map((item)=>{
               return(<Grid>
-                  <img src={item} style={{width:"95%",borderRadius:2}}/>
+                  <img src={item} style={{width:"85%",borderRadius:2}}/>
               </Grid>)
           })
       }
@@ -125,7 +125,28 @@ export default function NewContainer()
               Shop Now
               </Button>
               <Grid sx={{marginTop:'4%',marginLeft:'1%'}}>
-              <img src={learnmore} width={100}></img>
+              <Button
+                sx={{
+                 border:'2px solid #fff',
+                  height:matches?25: 42,
+                  width:matches?170:'12vw',
+                  background:'#070707',
+                  color: "#fff",
+                  fontWeight: "bold",
+                  justifyContent: "center",
+                  textTransform: "none",
+                  padding: 1,
+                  display: "flex",
+                  borderRadius: 20,
+                  marginTop: "3%",
+                  fontSize: "14px",
+                  fontWeight: 500,
+                  alignItems:'center',
+                  fontFamily:'Montserrat'
+                }}
+              >
+             Create Now
+              </Button>
               </Grid>
                     </Grid></>}
                 </Grid>
@@ -136,12 +157,12 @@ export default function NewContainer()
           {showSlider()}
         </Slider>
     </Grid>
-    <Grid sx={{ transform:'rotate(-13deg)',width:matchesA ? '80%' :'70%',marginLeft:'auto',marginTop:matchesA ? '5%' :'-6%'}}>
+    <Grid sx={{ transform:'rotate(-13deg)',width:matchesA ? '80%' :'70%',marginTop:matchesA ? '-1%' :'-5%',marginLeft:'auto'}}>
         <Slider {...setting2}>
           {showSlider2()}
         </Slider>
     </Grid>
-    <Grid sx={{ transform:'rotate(-13deg)',width:matchesA ? '80%' :'70%',marginTop:matchesA ? '13%':'8%',zIndex:100}}>
+    <Grid sx={{ transform:'rotate(-13deg)',width:matchesA ? '80%' :'70%',marginTop:matchesA ? '8%':'8.8%',zIndex:100}}>
         <Slider {...settings}>
           {showSlider3()}
         </Slider>

@@ -139,12 +139,11 @@ function DisplayDailog(){
          <TableRow  className='row-style'>
               <TableCell variant="head">Description</TableCell>
               <TableCell>{item.Description==""?"Not Available":item.Description}</TableCell>
-            
           </TableRow>
+          
          <TableRow  className='row-style'>
               <TableCell variant="head">Logo</TableCell>
-              <TableCell>{item.Logo==""?"Not Available":<img src={`${serverURL}/images/${item.Logo}`}  width={'100%'}/>}</TableCell>
-            
+              <TableCell>{item.Logo==""?"Not Available":<img src={`${serverURL}/images/${item.Logo}`}  width={'100%'}/>}</TableCell>        
           </TableRow>
           </>
             ))
@@ -185,11 +184,10 @@ const handleChange = async(event,rowData) => {
 
 function displayTable() {
     return (
-     
       <MaterialTable
+
       title={"Order List"}
         data={products}
-        style={{}}
         columns={[
             {
               title: "Order Id",
@@ -203,10 +201,42 @@ function displayTable() {
             {
               title: "Order Date",
               field: "date",
-            },   
+            },
             {
               title: "Payment Status",
               field: "payment",
+            },
+            {
+              title: "Designation",
+              field: "designation",
+            },   
+            {
+              title: "Number",
+              field: "number",
+            },    
+            {
+              title: "Color",
+              field: "color",
+            },    
+            {
+              title: "Logo",
+              field: "Logo",
+            },    
+            {
+              title: "Address",
+              field: "address",
+            },   
+            {
+              title: "Country",
+              field: "country",
+            },   
+            {
+              title: "City",
+              field: "city",
+            },
+            {
+              title: "Code",
+              field: "code",
             },
             {
                 title: "Order Status",
@@ -255,18 +285,12 @@ function displayTable() {
         console.log(result.data)
     }
 
-
-    
-
     return(
-      
-        
         <Grid container spacing={2} style={{  display:"flex",
         justifyContent:'center',
         alignItems:'center'}}>
-          <Grid item xs={12} sm={12} style={{marginTop:20,fontSize:matches?10:20, width:'100%'}}>
+          <Grid item xs={12} sm={12} style={{marginTop:20,fontSize:matches?10:'15px', width:'100%'}}>
         {displayTable()}</Grid>  
-        
         {showData && DisplayDailog()}
       </Grid>
 
