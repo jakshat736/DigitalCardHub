@@ -248,7 +248,7 @@ function App() {
 
 								<Route path="/box" element={<Box />} />
 								<Route path="/menus/:menuId" element={<Menu />} />
-								<Route element={<MenuTheme />} path="/menutheme" />
+								<Route element={<MenuTheme />} path="/menutheme/:menuId" />
 								<Route element={<MenuTheme2/>} path="/menu2" />
 								<Route element={<MenuTheme3/>} path="/menu3" />
 								<Route path="/menuDashboard/:menuId" element={<MenuDashBoard />} />
