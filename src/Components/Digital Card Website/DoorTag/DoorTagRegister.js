@@ -28,7 +28,7 @@ export default function DoorTagRegister() {
    
     setOtp(otpval)
 
-    const apiUrl = `https://soft7.in/api/send?number=91${number}&type=text&message=Your Otp For Door Tag By Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
+    const apiUrl = `https://cloud.bulkpromo.in/api/send?number=91${number}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=6676AB42323B3&access_token=666ff52aa9a38`;
     const response=await postData('otp/api',{url:apiUrl})
     Swal.fire({
       text:"Otp Sent Successfully",

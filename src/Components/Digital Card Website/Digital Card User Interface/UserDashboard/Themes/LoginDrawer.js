@@ -133,17 +133,14 @@ function SwipeableEdgeDrawer(props) {
 
             setOtp(otpval)
 
-            const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
+            const apiUrl = `https://cloud.bulkpromo.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=6676AB42323B3&access_token=666ff52aa9a38`;
             const response = await postData('otp/api', { url: apiUrl })
-            // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41
         } else {
             Swal.fire({
                 text: "Enter the Number First",
                 timer: 1000
             })
         }
-
-
     }
     const matches = useMediaQuery("(max-width:600px)");
     return (
@@ -157,17 +154,19 @@ function SwipeableEdgeDrawer(props) {
                 }}
             />
 
-            <Button onClick={toggleDrawer(true)} sx={{ fontSize: 25,borderColor:'#171717',borderRadius:0,     borderColor: "#000",
-                    width: 200,
-                    height: 50,
-                    color: "#fff",
-                    fontSize: "22px",
-                    fontWeight: 500,
-                    textTransform: "none",
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)', backgroundColor: '#171717', fontFamily:'poppins', color: "#fff", "&:hover": { backgroundColor: '#171717' } }}><Typography class='font'>Get Started</Typography></Button>
+            <Button onClick={toggleDrawer(true)} sx={{
+                fontSize: 25, borderColor: '#171717', borderRadius: 0, borderColor: "#000",
+                width: 200,
+                height: 50,
+                color: "#fff",
+                fontSize: "22px",
+                fontWeight: 500,
+                textTransform: "none",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)', backgroundColor: '#171717', fontFamily: 'poppins', color: "#fff", "&:hover": { backgroundColor: '#171717' }
+            }}><Typography class='font'>Get Started</Typography></Button>
             <SwipeableDrawer
                 container={container}
                 anchor="bottom"
@@ -187,13 +186,13 @@ function SwipeableEdgeDrawer(props) {
                         bottom: -35,
                         width: "100%",
                         height: "40%",
-                        
+
                         right: 0,
                         left: 0,
                         background: "radial-gradient( #414141,#171717)"
                     }}
                 >
-                    <Grid container spacing={2} sx={{ p: 2,display:'flex',flexDirection:'column'}}>
+                    <Grid container spacing={2} sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                         <Grid item xs={12} >
                             <Typography sx={{
                                 fontSize: { xs: "1.3em", md: "2.6em", lg: "2.4em" },
@@ -203,13 +202,13 @@ function SwipeableEdgeDrawer(props) {
                                 letterSpacing: "-0.2px",
                                 mb: "2.5vh",
                                 textAlign: "center",
-                                marginTop:'2%'
-                               
+                                marginTop: '2%'
+
                             }}>
                                 Login / Signup
                             </Typography>
                         </Grid>
-                        {/* <Grid item xs={9}>
+                        <Grid item xs={9}>
                             <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
                         </Grid>
                         <Grid item xs={3} sx={{ display: "flex" }}>
@@ -231,45 +230,8 @@ function SwipeableEdgeDrawer(props) {
                         </Grid>
                         <Grid item xs={12}>
                             {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
-                        </Grid> */}
-                        <Grid item xs={12} sx={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:matches?'-2%':'0%'}}>
-                            <TextField  InputProps={{
-                         style: { color: 'black' } // Setting text color to black
-                        }}  label="Whatsapp Number" size='small' type='tel' fullWidth   value={phoneNo}  style={{background:'#dcdde1',color:'#fff',display:'flex',justifyContent:'center',alignItems:'center',width:matches?'80%':'17%', borderColor: '#fff'}} onChange={(event) => setPhoneNo(event.target.value)} />
                         </Grid>
-                        <Grid item xs={12} sx={{ display: "flex",justifyContent:'center',alignItems:'center' }}>
 
-                        <Button  onClick={handleSubmit} sx={{ fontSize: 25,borderColor:'#171717',borderRadius:0,borderColor: "#000",
-                    width: 120,
-                    height: 38,
-                    color: "#fff",
-                    fontSize: "16px",
-                    fontWeight: 400,
-                    textTransform: "none",
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)', backgroundColor: '#171717', fontFamily:'poppins', color: "#fff", "&:hover": { backgroundColor: '#171717' } }}><Typography class='font'>Login</Typography></Button>
-                        {/* <Typography>
-                            <Button
-                                fullWidth
-                                onClick={handleSubmit}
-                                sx={{
-                                    background: "#001E3C",
-                                    color: "#ffffff",
-                                    p: "2% 10%",
-                                    fontSize: { xs: "0.6em", md: "0.9em", lg: "0.9em" },
-                                    fontWeight: 600,
-                                    "&:hover": {
-                                        background: "#023569",
-                                        color: "#ffffff",
-                                    }
-                                }}
-                            >
-                                Login
-                            </Button>
-                            </Typography> */}
-                        </Grid>
                     </Grid>
                 </StyledBox>
             </SwipeableDrawer>
