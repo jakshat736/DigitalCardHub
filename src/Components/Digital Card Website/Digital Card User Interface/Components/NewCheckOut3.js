@@ -6,7 +6,10 @@ import card2 from "../../Digital Card Assets/checkoutcard.png"
 import pay from "../../../Digital Card Website/MenuUpdate/assets/pay.png";
 import leftarrow from "../../../Digital Card Website/MenuUpdate/assets/leftarrow.png";
 import Chip from '@mui/material/Chip';
+import useMediaQuery from '@mui/material/useMediaQuery';
 export default function NewCheckOut3() {
+  const matches = useMediaQuery("(max-width:1000px)");
+  const matchesA = useMediaQuery("(max-width:600px)");
   return (
     <Grid
       sx={{
@@ -32,10 +35,10 @@ export default function NewCheckOut3() {
         }}
       >
         <Grid sx={{ width: "82%", height: 'auto' }}>
-          <Grid sx={{ display: "flex", alignItems: "center" }}>
+        <Grid sx={{ display: "flex", alignItems: "center" }}>
             <Grid
               sx={{
-                fontSize: "36px",
+                fontSize:matchesA?'18px':"36px",
                 fontWeight: 600,
                 lineHeight: "44px",
                 letterSpacing: "-1.4%",
@@ -46,15 +49,15 @@ export default function NewCheckOut3() {
             <Grid
               sx={{
                 display: "flex",
-                gap: 2,
+                gap:matchesA?1: 2,
                 alignItems: "center",
                 marginLeft: "auto",
               }}
             >
               <Grid
                 sx={{
-                  fontSize: "17px",
-                  fontWeight: 400,
+                  fontSize:matchesA?'10px':"17px",
+                  fontWeight: 700,
                   lineHeight: "28px",
                   letterSpacing: "-.6%",
                 }}
@@ -62,12 +65,12 @@ export default function NewCheckOut3() {
                 Address
               </Grid>
               <Grid sx={{ display: "flex", alignItems: "center" }}>
-                <img src={line} style={{ width: "100%", height: "1px" }}></img>
+                <img src={line} style={{ width:matchesA?'12px': "100%", height: "1px" }}></img>
               </Grid>
               <Grid
                 sx={{
-                  fontSize: "17px",
-                  fontWeight: 700,
+                  fontSize:matchesA?'10px': "17px",
+                  fontWeight: 400,
                   lineHeight: "28px",
                   letterSpacing: "-.6%",
                 }}
@@ -75,20 +78,22 @@ export default function NewCheckOut3() {
                 Shipping
               </Grid>
               <Grid sx={{ display: "flex", alignItems: "center" }}>
-                <img src={line} style={{ width: "100%", height: "1px" }}></img>
+                <img src={line} style={{ width:matchesA?'12px': "100%", height: "1px" }}></img>
               </Grid>
               <Grid
                 sx={{
-                  fontSize: "17px",
+                  fontSize: matchesA?'10px':"17px",
                   fontWeight: 400,
                   lineHeight: "28px",
                   letterSpacing: "-.6%",
+                  cursor:'pointer'
                 }}
               >
                 Payment
               </Grid>
             </Grid>
           </Grid>
+
           <Grid>
             <Divider
               style={{
@@ -99,8 +104,8 @@ export default function NewCheckOut3() {
               }}
             />
           </Grid>
-          <Grid sx={{ display: "flex", width: "100%", }}>
-            <Grid sx={{ width: "55%", marginTop: "4%",gap:3 }}>
+          <Grid sx={{ display: "flex", width: "100%",flexDirection:matches?'column':'row',justifyContent:matches?'center':"normal",alignItems:matches?'center':"normal"  }}>
+            <Grid sx={{ width:matches?'100%':"55%", marginTop: "4%",gap:3 }}>
             
             <Grid sx={{ marginTop: "2%" }}>
                 <Grid
@@ -113,84 +118,29 @@ export default function NewCheckOut3() {
                     
                   }}
                 >
-                  <Grid sx={{ width: "19%" }}>
+                  <Grid sx={{ width: matchesA?'38%':"16%" }}>
                     <img src={card} style={{ width: "100%" }}></img>
                   </Grid>
-                  <Grid sx={{ width: "85.8%" }}>
-                    <Grid
-                      sx={{
-                        fontSize: "22px",
-                        fontWeight: 600,
-                        lineHeight: "30px",
-                        letterSpacing: "-1.4%",
-                      }}
-                    >
-                      Royal Black : DCH Digital instago Google fastest Review
-                      Card
-                    </Grid>
-                    <Grid
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 400,
-                        lineHeight: "20px",
-                        letterSpacing: "-1.4%",
-                        marginTop: "2%",
-                      }}
-                    >
-                      Size: 80mm x 90mm
-                    </Grid>
-                    <Grid
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 400,
-                        lineHeight: "20px",
-                        letterSpacing: "-1.4%",
-                        marginTop: "2%",
-                      }}
-                    >
-                      Quantity: 1
-                    </Grid>
-                    <Grid
-                      sx={{
-                        display: "flex",
-                        flexDirection: "row",
-                        marginTop: "2%",
-                      }}
-                    >
-                      <Grid
-                        sx={{
-                          fontSize: "22px",
-                          fontWeight: 700,
-                          lineHeight: "26px",
-                          color: "#19B300",
-                        }}
-                      >
-                        ₹ 599
-                      </Grid>
-                      <Grid
-                        sx={{
-                          fontSize: "16px",
-                          fontWeight: 500,
-                          lineHeight: "26px",
-                          color: "#A39C00",
-                          marginLeft: "1%",
-                        }}
-                      >
-                        <s>₹ 1499</s>
-                      </Grid>
-                      <Grid
-                        sx={{
-                          fontSize: "12px",
-                          fontWeight: 400,
-                          lineHeight: "26px",
-                          textDecoration: "underline",
-                          marginLeft: "auto",
-                        }}
-                      >
-                        Remove
-                      </Grid>
-                    </Grid>
+                  <Grid sx={{width:'85.8%'}}>
+                  <Grid sx={{fontSize:matchesA?'16px':'22px',fontWeight:600,lineHeight:matchesA?'23px':'30px',letterSpacing:'-1.4%'}}>
+                  Royal Black : DCH Digital instago  Google fastest 
+                  Review Card
                   </Grid>
+                  <Grid sx={{fontSize:matchesA?'10px':'14px',fontWeight:400,lineHeight:'20px',letterSpacing:'-1.4%',marginTop:'2%'}}>
+                  Size: 80mm x 90mm
+                  </Grid>
+                  <Grid sx={{fontSize:matchesA?'10px':'14px',fontWeight:400,lineHeight:'20px',letterSpacing:'-1.4%',marginTop:matchesA?'0%':'2%'}}>
+                  Quantity: 1
+                  </Grid>
+                  <Grid sx={{display:'flex',flexDirection:'row',marginTop:matchesA?'0%':'2%'}}>
+                        <Grid sx={{fontSize:matchesA?'16px':'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹ 599</Grid>
+                        <Grid sx={{fontSize:matchesA?'10px':'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginLeft:'1%'}}><s>₹ 1499</s></Grid>
+                        <Grid sx={{fontSize:matchesA?'10px':'12px',fontWeight:400,lineHeight:'26px',textDecoration:'underline',marginLeft:'auto'}}>Remove</Grid>
+                </Grid>
+                </Grid>
+
+
+
                 </Grid>
               </Grid>
               <Grid sx={{ marginTop: "6%" }}>
@@ -203,91 +153,35 @@ export default function NewCheckOut3() {
                     height: "auto",
                   }}
                 >
-                  <Grid sx={{ width: "20%" }}>
+                 <Grid sx={{ width: matchesA?'38%':"16%" }}>
                     <img src={card2} style={{ width: "100%" }}></img>
                   </Grid>
-                  <Grid sx={{ width: "85.8%" }}>
-                    <Grid
-                      sx={{
-                        fontSize: "22px",
-                        fontWeight: 600,
-                        lineHeight: "30px",
-                        letterSpacing: "-1.4%",
-                      }}
-                    >
-                      Royal Black : DCH Digital instago Google fastest Review
-                      Card
-                    </Grid>
-                    <Grid
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 400,
-                        lineHeight: "20px",
-                        letterSpacing: "-1.4%",
-                        marginTop: "2%",
-                      }}
-                    >
-                      Size: 80mm x 90mm
-                    </Grid>
-                    <Grid
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 400,
-                        lineHeight: "20px",
-                        letterSpacing: "-1.4%",
-                        marginTop: "2%",
-                      }}
-                    >
-                      Quantity: 1
-                    </Grid>
-                    <Grid
-                      sx={{
-                        display: "flex",
-                        flexDirection: "row",
-                        marginTop: "2%",
-                      }}
-                    >
-                      <Grid
-                        sx={{
-                          fontSize: "22px",
-                          fontWeight: 700,
-                          lineHeight: "26px",
-                          color: "#19B300",
-                        }}
-                      >
-                        ₹ 599
-                      </Grid>
-                      <Grid
-                        sx={{
-                          fontSize: "16px",
-                          fontWeight: 500,
-                          lineHeight: "26px",
-                          color: "#A39C00",
-                          marginLeft: "1%",
-                        }}
-                      >
-                        <s>₹ 1499</s>
-                      </Grid>
-                      <Grid
-                        sx={{
-                          fontSize: "12px",
-                          fontWeight: 400,
-                          lineHeight: "26px",
-                          textDecoration: "underline",
-                          marginLeft: "auto",
-                        }}
-                      >
-                        Remove
-                      </Grid>
-                    </Grid>
+                  <Grid sx={{width:'85.8%'}}>
+                  <Grid sx={{fontSize:matchesA?'16px':'22px',fontWeight:600,lineHeight:matchesA?'23px':'30px',letterSpacing:'-1.4%'}}>
+                  Royal Black : DCH Digital instago  Google fastest 
+                  Review Card
                   </Grid>
+                  <Grid sx={{fontSize:matchesA?'10px':'14px',fontWeight:400,lineHeight:'20px',letterSpacing:'-1.4%',marginTop:'2%'}}>
+                  Size: 80mm x 90mm
+                  </Grid>
+                  <Grid sx={{fontSize:matchesA?'10px':'14px',fontWeight:400,lineHeight:'20px',letterSpacing:'-1.4%',marginTop:matchesA?'0%':'2%'}}>
+                  Quantity: 1
+                  </Grid>
+                  <Grid sx={{display:'flex',flexDirection:'row',marginTop:matchesA?'0%':'2%'}}>
+                        <Grid sx={{fontSize:matchesA?'16px':'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹ 599</Grid>
+                        <Grid sx={{fontSize:matchesA?'10px':'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginLeft:'1%'}}><s>₹ 1499</s></Grid>
+                        <Grid sx={{fontSize:matchesA?'10px':'12px',fontWeight:400,lineHeight:'26px',textDecoration:'underline',marginLeft:'auto'}}>Remove</Grid>
+                </Grid>
+                </Grid>
+
+
                 </Grid>
               </Grid>
 
 
             </Grid>
-            <Grid sx={{ width: "45%", marginTop: "2.5%", display: "flex" ,flexDirection:'column'}}>
-                <Grid sx={{marginLeft:'auto',width:'80%',marginTop:'4%'}}>
+            <Grid sx={{ width:matches?'100%':"45%", marginTop: "2.5%", display: "flex" ,flexDirection:'column'}}>
+                <Grid sx={{marginLeft:'auto',width:matches?'100%':'80%',marginTop:'4%'}}>
             <Grid
                       sx={{
                         height: 40,
@@ -347,7 +241,7 @@ export default function NewCheckOut3() {
                         borderRadius: 8,
                         padding: 0.6,
                         background:'transparent',
-                        width:'10vw',
+                        width:matchesA?'24vw':'10vw',
                         color:'#bdc3c7'
                       }}>
                       <option value="Month">Month</option>
@@ -364,7 +258,7 @@ export default function NewCheckOut3() {
                         borderRadius: 8,
                         padding: 0.6,
                          background:'transparent',
-                        width:'10vw',
+                         width:matchesA?'24vw':'10vw',
                            color:'#bdc3c7'
                       }}
                     >
@@ -372,7 +266,7 @@ export default function NewCheckOut3() {
                       <option value="MP">Gwalior</option>
                     </select>
                   </Grid>
-                  <Grid sx={{marginTop: "-1.8%"}}>
+                  <Grid sx={{marginTop:matchesA?'-3.4%':"-2.2%"}}>
                   <input
                     type="text"
                     style={{
@@ -382,7 +276,7 @@ export default function NewCheckOut3() {
                       borderRadius: "10px",
                       width: "100%",
                       background: "transparent",
-                      width:'7vw',
+                      width:matchesA?'24vw':'7vw',
                     }}
                     placeholder="CVC"
                   ></input>
@@ -398,7 +292,7 @@ export default function NewCheckOut3() {
                   border: "1px solid #bdc3c7",
                   borderColor: "#bdc3c7",
                   background:'#0D0D0D',
-                  height: "3vw",
+                  height: matches?38:"3vw",
                   color: "#fff",
                   fontSize: "16px",
                   fontWeight: 500,
@@ -422,7 +316,7 @@ export default function NewCheckOut3() {
           </Grid>
 
         </Grid>
-        <Grid sx={{fontSize:'20px',fontWeight:500 ,lineHeight:'26px',letterSpacing:'-2.4%',marginTop:'5%',marginBottom:'2%'}}>
+        <Grid sx={{fontSize:matches?'14px':'20px',fontWeight:500 ,lineHeight:'26px',letterSpacing:'-2.4%',marginTop:'5%',marginBottom:'2%'}}>
         Copyrights © 2024 Powered By IndiaBuzz
         </Grid>
       </Grid>

@@ -1222,7 +1222,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
         >
           <CloseIcon />
         </IconButton>
-        <Grid container spacing={2} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '8%' }}>
+        <Typography style={{marginTop:'5%'}}><Grid sx={{marginTop:'4%',fontSize:'22px',fontWeight:400,lineHeight:'26px',letterSpacing:'-2.4%',color:'#2d3436'}}>Meet The <b>Team.</b></Grid></Typography>
+        <Grid container spacing={2} sx={{ display: 'flex', marginTop:'4%' }}>
           {
             members?.map((item) =>
               <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }} >
@@ -3992,17 +3993,17 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
                   padding: 1,
                 }}
               >
-                <Grid sx={{ display: "flex", flexDirection: "row", }}>
-                  <Grid sx={{ width: '62%', marginTop: '4%' }}>
-                    <AvatarGroup  >
+                <Grid sx={{ display: "flex", flexDirection: "row",width:'100%' }}>
+                  <Grid sx={{ width: '58%', marginTop: '4%' }}>
+                    <AvatarGroup max={4} >
                       {
                         members?.map((item) => <Avatar sx={{ width: 54, height: 54 }} src={`${serverURL}/images/${item?.companylogo}`} />)
                       }
                     </AvatarGroup>
                   </Grid>
-                  <Grid sx={{ width: '38%', marginTop: '7%', }}>
+                  <Grid sx={{width:'40%', marginTop: '5%',display:'flex',justifyContent:'center',alignItems:'center' }}>
                     <Grid sx={{
-                      fontSize: "18px", lineHeight: '20px',
+                      fontSize: "18px", lineHeight: '18px',
                       fontWeight: 600,
                       fontFamily: 'poppins', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#000'
                     }}>

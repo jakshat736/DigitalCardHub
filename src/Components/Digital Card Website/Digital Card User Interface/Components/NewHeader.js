@@ -28,9 +28,22 @@ export default function NewHeader()
   const handleNagivateHome=()=>{
     navigate('/newhome')
 }
-const handleNagivateProduct=()=>{
+const handleNagivateCooperate=()=>{
+  navigate('/cooperate')
+}
+
+const handleNagivateProductComponents=()=>{
   navigate('/newallproduct')
 }
+
+const handleProduct=()=>{
+  navigate('/newallproduct2')
+}
+
+const handleCategory=()=>{
+  navigate('/categoryproducts')
+}
+
   const matches = useMediaQuery("(max-width:1000px)");
 
   const classes = useStyles();
@@ -71,19 +84,20 @@ const handleNagivateProduct=()=>{
             </Grid></>:<></>}
 
             {matches?<></>:<Grid sx={{marginLeft:'auto',gap: 7,color: "#fff",fontWeight: 300,fontSize: "15px",display:'flex'}}>
-               <Grid  sx={{cursor:'pointer'}}>
+               <Grid onClick={handleNagivateHome}  sx={{cursor:'pointer'}}>
                 Home
                </Grid>
-               <Grid   onMouseEnter={handleClick} sx={{cursor:'pointer',display:'flex',alignItems:'center',marginTop:'-1%'}}>
-                Shop
-                <img src={Downarrow} width={20} style={{marginTop:'-10%'}}></img>
+               <Grid    sx={{cursor:'pointer',display:'flex',alignItems:'center',marginTop:'-1%'}}>
+                <div onClick={handleNagivateProductComponents} > Shop </div>
+                <img onMouseEnter={handleClick} src={Downarrow} width={20} style={{marginTop:'-10%'}}></img>
                </Grid>
                <Menu
                 PaperProps={{
                   style: {
                   width:200,
                   backgroundImage: "linear-gradient(to bottom right, #171717,#171717,#070707,#070707)",
-                  color:'#fff'
+                  color:'#fff',
+                  marginLeft:'-2%'
                   },
                 }}
                       id="basic-menu"
@@ -98,6 +112,7 @@ const handleNagivateProduct=()=>{
                     >
                       <div onMouseLeave={handleClose}>
                         <MenuItem
+                        onClick={handleCategory}
                           className={classes.button1}
                           style={{
                             marginBottom: "3px",
@@ -177,20 +192,32 @@ const handleNagivateProduct=()=>{
                         >
                          Combos /Bundles
                         </MenuItem>
+                        <MenuItem
+                        
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",
+                            fontWeight: 500,
+                          }}
+                          onClick={handleProduct}
+                        >
+                        All Product
+                        </MenuItem>
                       </div>
                     </Menu>
 
 
 
 
-               <Grid   onClick={handleNagivate} sx={{cursor:'pointer'}}>
+               <Grid onClick={handleNagivate} sx={{cursor:'pointer'}}>
                 Compitable Device
                </Grid>
                <Grid   sx={{cursor:'pointer'}}>
                 How to create
                </Grid>
-               <Grid onClick={handleNagivateProduct} sx={{cursor:'pointer'}}>
-                All Product
+               <Grid onClick={handleNagivateCooperate} sx={{cursor:'pointer'}}>
+               Cooperate Enquiries
                </Grid>
                <Grid >
                 <img src={newLogin} width={22} ></img>

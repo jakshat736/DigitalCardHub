@@ -27,10 +27,12 @@ import Varieties from './Varieties';
 
 const ProductCompoent = () => {
   const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.down("sm"))
+
   const { cart, setCart } = useContext(SessionContext);
   const Token = window.localStorage.getItem("Token");
   const User = window.localStorage.getItem("UserNumber")
-  const matches = useMediaQuery(theme.breakpoints.down("sm"))
+
 
 
   const navigate = useNavigate()
@@ -77,6 +79,8 @@ const ProductCompoent = () => {
     setPassword(inputValue);
     validatePassword(inputValue);
   };
+
+  console.log(otp)
 
   const validatePassword = (value) => {
     // Define the regular expressions to check for lowercase, uppercase, number, and special character.
@@ -194,7 +198,6 @@ const ProductCompoent = () => {
       setLoading(false)
       setShow(true)
     }
-
   }
 
   const handleSubmit = async () => {
@@ -249,6 +252,7 @@ const ProductCompoent = () => {
     }
 
   }
+
   const handleClose = () => {
     setOpen(false)
     setOpen1(false)
@@ -613,14 +617,14 @@ const ProductCompoent = () => {
       <Navbar />
       {loading ?
         <Grid container spacing={2} sx={{ display: "flex", justifyContent: 'center', py: 100, bgcolor: "white" }} >
-          <Preloader />
+          <Preloader/>
         </Grid>
         :
         (show && <Grid container spacing={2} sx={{ display: "flex", justifyContent: 'center' }} >
           <Grid item xs={12} sx={{ mt: 15, display: { xs: 'block', md: 'none' } }}>
             <Typography sx={{ fontSize: 25, color: "#fff", textAlign: 'center' }}>{data?.productName}</Typography>
-
           </Grid>
+
           <Grid item xs={10} md={5} sx={{ mt: { xs: 0, md: 15 } }}>
             <Slider asNavFor={nav2} arrows={false} ref={(slider1) => setNav1(slider1)}>
               {data?.images.map((item) => (
@@ -635,7 +639,6 @@ const ProductCompoent = () => {
               slidesToShow={data?.images.length == 2 ? 2 : data?.images.length > 2 ? 3 : 1}
               swipeToSlide={true}
               focusOnSelect={true}
-
             >
               {data?.images.map((item) => (
                 <Grid item xs={12} >

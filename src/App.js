@@ -130,6 +130,11 @@ import NewThemeCard from "./Components/Digital Card Website/Digital Card User In
 import NewCheckOut from "./Components/Digital Card Website/Digital Card User Interface/Components/NewCheckOut";
 import NewCheckOut2 from "./Components/Digital Card Website/Digital Card User Interface/Components/NewCheckOut2";
 import NewCheckOut3 from "./Components/Digital Card Website/Digital Card User Interface/Components/NewCheckOut3";
+import CooperateEnquiries from "./Components/Digital Card Website/Digital Card User Interface/Components/CooperateEnquiries";
+import CategoryProducts from "./Components/Digital Card Website/Digital Card User Interface/Components/CategoryProducts";
+import NewBussinessProfile from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewBussinessProfile";
+import NewProfile from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewProfile";
+import DashboardHome from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewDashboard/DashboardHome";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 	const [cart, setCart] = useState([]);
@@ -144,7 +149,7 @@ function App() {
 						<HashRouter>
 							<Routes>
 								{/* DIGITAL CARD WEBSITE ROUTER START */}
-								<Route element={<DemoOtp/>} path="/demootp" />  
+								<Route element={<DemoOtp/>} path="/demootp"/>  
 								<Route element={<HomePage />} path="/home" />
 								<Route element={<NewHome/>} path="/newhome" />
 								<Route element={<Instaredirect />} path="/aradhyarana" />
@@ -153,10 +158,12 @@ function App() {
 								<Route element={<NewCheckOut2/>} path="/newcheckout2" />
 								<Route element={<NewCheckOut3/>} path="/newcheckout3" />
 								<Route element={<NewThemeCard/>} path="/newthemecard" />
-								<Route element={<ProductComponents/>} path="/productcomponents" />
+								<Route element={<ProductComponents/>} path="/productcomponents/:_id" />
 								<Route element={<NewAllProducts/>} path="/newallproduct" />
 								<Route element={<NewAllProduct2/>} path="/newallproduct2" />
-								<Route element={<DCLogin />} path="/digitalcardlogin" />
+								<Route element={<CategoryProducts/>} path="/categoryproducts" />
+								<Route element={<CooperateEnquiries/>} path="/cooperate"/>
+								<Route element={<DCLogin/>} path="/digitalcardlogin"/>
 								<Route element={<DCSignUp />} path="/digitalcardsignup" />
 								<Route element={<UserDashboard />} path="/userdashboard" />
 								<Route element={<ChangePassword />} path="/changepassword" />
@@ -165,7 +172,9 @@ function App() {
 								<Route element={<Information />} path="/information" />
 								<Route element={<NewThemeInfo />} path="/newthemeinfo" />
 								<Route element={<Links />} path="/links" />
-								<Route element={<HotelLinks />} path="/hotellinks" />
+								<Route element={<NewProfile/>} path="/newprofile"/>
+								<Route element={<DashboardHome/>} path="/dashboardhome" />
+								<Route element={<HotelLinks />} path="/hotellinks"/>
 								<Route element={<MenuLink />} path="/menulink" />
 								<Route element={<Payment />} path="/payment" />
 								<Route element={<Products />} path="/products" />

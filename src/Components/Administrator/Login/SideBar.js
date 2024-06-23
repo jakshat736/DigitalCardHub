@@ -255,9 +255,20 @@ return(
             <RemoveRedEyeIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText>Door Tags</ListItemText>
-          
         </MenuItem>
         </Link>
+
+
+        <Link to="/dashboard/CooperateEnquiries" className={classes.link}>
+        <MenuItem >
+          <ListItemIcon>
+            <RemoveRedEyeIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Display CooperateEnquiries</ListItemText>
+        </MenuItem>
+        </Link>
+
+
         <MenuItem onClick={()=>handleLogout()}>
           <ListItemIcon>
             <RemoveRedEyeIcon fontSize="small" />

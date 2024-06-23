@@ -17,6 +17,7 @@ export default function Services()
         waitForAnimate: false,
         arrows:false,
         autoplay: "true",
+        pauseOnHover: false
       };
       const matches = useMediaQuery("(max-width:600px)");
 
