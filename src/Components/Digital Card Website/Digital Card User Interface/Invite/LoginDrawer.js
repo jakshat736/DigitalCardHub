@@ -52,7 +52,6 @@ function InviteEdgeDrawer(props) {
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
     };
-
     const handleSubmit = async () => {
 
         if (phoneNo !== '') {
@@ -63,7 +62,7 @@ function InviteEdgeDrawer(props) {
             if (result.status) {
                 window.localStorage.setItem("userId", result.data._id)
                 var formData = new FormData()
-                formData.append('inviteId', props?.tagdId)
+                formData.append('inviteId', props?.tagId)
                 formData.append('phone', result.data.phone)
                 var response = await postData('invite/customerLogin', formData, true)
 
@@ -114,7 +113,7 @@ function InviteEdgeDrawer(props) {
     // This is used only for the example
     const container = windows !== undefined ? () => window().document.body : undefined;
     const handleOtp = (value) => {
-        if (value.length == 4) {
+        if (value.length === 4) {
             if (otp == value) {
                 // setMessage("")
                 setVerified(true)
@@ -139,17 +138,14 @@ function InviteEdgeDrawer(props) {
 
             setOtp(otpval)
 
-            const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
+            const apiUrl = `https://cloud.bulkpromo.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=6676AB42323B3&access_token=666ff52aa9a38`;
             const response = await postData('otp/api', { url: apiUrl })
-            // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41
         } else {
             Swal.fire({
                 text: "Enter the Number First",
                 timer: 1000
             })
         }
-
-
     }
 
     return (
@@ -202,12 +198,12 @@ function InviteEdgeDrawer(props) {
                             </Typography>
                         </Grid>
                         <Grid item xs={9}>
-                            <TextField label="Registered Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
+                            <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
                         </Grid>
                         <Grid item xs={3} sx={{ display: "flex" }}>
                             <Button
                                 fullWidth
-                                onClick={handleSubmit}
+                                onClick={handleopenotpdailog}
                                 sx={{
                                     background: "#001E3C",
                                     color: "#ffffff",
@@ -220,8 +216,18 @@ function InviteEdgeDrawer(props) {
                                     }
                                 }}
                             >
-                                Login
+                                Get Otp
                             </Button>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
+
+                        </Grid>
+                        <Grid item xs={12}>
+                            OTP not received ? <a style={{ cursor: 'pointer' }} onClick={handleopenotpdailog}>Resend</a>
+                        </Grid>
+                        <Grid item xs={12}>
+                            {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
                         </Grid>
                     </Grid>
                 </StyledBox>

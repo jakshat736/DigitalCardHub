@@ -17,7 +17,7 @@ export const MessageSend = () => {
     const [vehicleNumber, setVehicleNumber] = useState('')
     const handleSubmit = async () => {
         if (data?.vehicleNumber.slice(-4) === vehicleNumber) {
-            const apiUrl = `https://soft7.in/api/send?number=91${data?.phone}&type=text&message=Your Message From Digital Vehicle Tag - Vehicle Number: *${data?.vehicleNumber?.toUpperCase()}*%0a*${message}*&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
+            const apiUrl = `https://cloud.bulkpromo.in/api/send?number=91${data?.phone}&type=text&message=Your Message From Digital Vehicle Tag - Vehicle Number: *${data?.vehicleNumber?.toUpperCase()}*%0a*${message}*&instance_id=6676AB42323B3&access_token=666ff52aa9a38`;
             await postData('otp/api', { url: apiUrl })
             Swal.fire({
                 title: "Message Send Successfully.Keep Helping Others",
@@ -40,10 +40,7 @@ export const MessageSend = () => {
             {show ? <Grid container spacing={2} sx={{ width: { xs: "100%" } }}>
                 <Grid item xs={6} sx={{ display: 'flex', flexDirection: 'row', }}>
                     <img src={img1} alt="Masala Grill" width={120} />
-
                 </Grid>
-
-
                 <Divider
                     sx={{
 
