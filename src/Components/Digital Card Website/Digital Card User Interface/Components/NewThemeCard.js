@@ -4,16 +4,200 @@ import card from "../../Digital Card Assets/cardimage1.png"
 import sub from "../../Digital Card Assets/sub.png"
 import add from "../../Digital Card Assets/add.png"
 import cardphn from "../../Digital Card Assets/cardphn.png"
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { postData, serverURL } from "../../../Services/NodeServices";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useTheme } from "@mui/material/styles";
 export default function NewThemeCard()
 {
   var navigate=useNavigate()
   const handleNagivate=()=>{
     navigate('/newcheckout')
 }
+const handleAllProduct2=()=>{
+  navigate('/newallproduct2')
+}
+const [about, setAbout] = useState(false);
+const [about2, setAbout2] = useState(false);
+
+const handleAbout = () => {
+  setAbout(!about);
+};
+
+const handleAbout2 = () => {
+  setAbout2(!about2);
+};
+
 const matches = useMediaQuery("(max-width:1000px)");
 const matchesA = useMediaQuery("(max-width:600px)");
+
+const [cartProducts, setCartProducts] = useState([]);
+
+const [subTotal, setSubTotal] = useState(0);
+const [discountPrice, setDiscountPrice] = useState(0);
+const [products, setProducts] = useState([]);
+const User =
+  window?.localStorage?.getItem("UserNumber") == null
+    ? window?.localStorage?.getItem("UserMail")
+    : window?.localStorage?.getItem("UserNumber");
+const func = async (User) => {
+  var formdata = new FormData();
+  formdata?.append("mobile", User);
+  var response = await postData("cart/getAllProducts", formdata, true);
+  if (response) {
+    setCartProducts(response?.products);
+    console?.log(response);
+  }
+};
+
+React?.useEffect(() => {
+  func(User);
+}, []);
+
+const fetchProductById = async (item) => {
+  const formData = new FormData();
+  formData?.append("_id", item);
+  const response = await postData("products/getproductbyid", formData, true);
+  return response?.data;
+};
+React.useEffect(() => {
+  if (cartProducts?.length > 0) {
+    const fetchProducts = async () => {
+      const productData = await Promise?.all(
+        cartProducts?.map((item) => fetchProductById(item?.productId))
+      );
+
+      var price = 0;
+      var discount = 0;
+      cartProducts?.forEach((cartItem) => {
+        const product = productData?.find(
+          (item) => item?._id === cartItem?.productId
+        );
+
+        if (product) {
+          if (product?.customizable) {
+            if (cartItem?.count > 1 && cartItem?.count < 5) {
+              product.offerprice = 499;
+            }
+            if (cartItem?.count > 4 && cartItem?.count < 10) {
+              product.offerprice = 449;
+            }
+            if (cartItem?.count > 9) {
+              product.offerprice = 333;
+            }
+          }
+          const subTotal = product?.price * cartItem?.count;
+          const discountPrice =
+            (product?.price - product?.offerprice) * cartItem?.count;
+          price += subTotal;
+          discount += discountPrice;
+        }
+      });
+      console?.log(productData);
+      setProducts(productData);
+      setSubTotal(price);
+      setDiscountPrice(discount);
+    };
+    fetchProducts();
+  }
+}, [cartProducts]);
+useEffect(() => {
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: "instant",
+  });
+}, []);
+
+const handleDelete = async (id) => {
+  const formData = new FormData();
+  formData?.append("mobile", User);
+  formData?.append("productId", id);
+  const response = await postData("cart/remove", formData, true);
+  window?.location?.reload();
+};
+
+const handleAdd = async (item) => {
+  var count;
+  cartProducts?.map((items) => {
+    if (item?._id == items?.productId) {
+      count = items?.count + 1;
+    }
+  });
+
+  const formData = new FormData();
+  formData?.append("mobile", User);
+  formData?.append("productId", item?._id);
+  formData?.append("count", count);
+  const response = await postData("cart/update-count", formData, true);
+  window?.location?.reload();
+};
+const handleRemove = async (item) => {
+  var count;
+  cartProducts?.map((items) => {
+    if (item?._id == items?.productId) {
+      count = items?.count - 1;
+    }
+  });
+
+  if (count >= 1) {
+    const formData = new FormData();
+    formData?.append("mobile", User);
+    formData?.append("productId", item?._id);
+    formData?.append("count", count);
+    const response = await postData("cart/update-count", formData, true);
+    window?.location?.reload();
+  } else {
+    handleDelete(item?._id);
+  }
+};
+
+
+
+const handleProduct = (item) => {
+  return products?.map((item) => {
+    return (
+      <Grid sx={{display:'flex',width:'100%',gap:2,marginTop:'5%',height:'auto'}}>
+                <Grid sx={{width:matchesA?'36%':'18.5%'}}>
+                    <img src={`${serverURL}/images/${item?.images?.[0]}`} style={{width:'100%'}}></img>
+                </Grid>
+                <Grid sx={{width:'85.8%'}}>
+                  <Grid sx={{fontSize:matchesA?'16px':'22px',fontWeight:600,lineHeight:matchesA?'23px':'30px',letterSpacing:'-1.4%'}}>
+                  {item?.productName}
+                  </Grid>
+                  <Grid sx={{fontSize:matchesA?'10px':'14px',fontWeight:400,lineHeight:'20px',letterSpacing:'-1.4%',marginTop:'2%'}}>
+                  Size: 80mm x 90mm
+                  </Grid>
+                  <Grid sx={{fontSize:matchesA?'10px':'14px',fontWeight:400,lineHeight:'20px',letterSpacing:'-1.4%',marginTop:matchesA?'0%':'2%'}}>
+                  Quantity: {cartProducts?.map((items) => {
+                        if (item?._id == items?.productId) {
+                          return items?.count;
+                        }
+                      })}
+                  </Grid>
+                  <Grid sx={{display:'flex',flexDirection:'row',marginTop:matchesA?'0%':'2%'}}>
+                        <Grid sx={{fontSize:matchesA?'16px':'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹&nbsp;{item?.offerprice}{" "}</Grid>
+                        <Grid sx={{fontSize:matchesA?'10px':'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginLeft:'1%'}}><s>₹&nbsp;{item?.price}</s></Grid>
+                        <Grid  onClick={() => {
+                      handleDelete(item?._id);
+                    }} sx={{fontSize:matchesA?'10px':'12px',fontWeight:400,lineHeight:'26px',textDecoration:'underline',marginLeft:'auto',cursor:'pointer'}}>Remove</Grid>
+                </Grid>
+                </Grid>
+              </Grid>
+    );
+  });
+};
+
+
+
+
+
+
+
+
     return(<Grid sx={{width:'100%',backgroundImage: "linear-gradient(to bottom right, #171717,#171717,#070707,#070707)",fontFamily:'Montserrat'}}>
         <Grid>
             <NewHeader/>
@@ -28,28 +212,10 @@ const matchesA = useMediaQuery("(max-width:600px)");
               <Grid sx={{fontSize:matchesA?'12px':'16px',fontWeight:500,lineHeight:'26px',letterSpacing:'-1.4%',marginTop:'2%'}}>
               Not ready to checkout? Continue Shopping
               </Grid>
-              <Grid sx={{display:'flex',width:'100%',gap:2,marginTop:'2%',height:'auto'}}>
-                <Grid sx={{width:matchesA?'36%':'14.2%'}}>
-                    <img src={card}  style={{width:'100%'}}></img>
-                </Grid>
-                <Grid sx={{width:'85.8%'}}>
-                  <Grid sx={{fontSize:matchesA?'16px':'22px',fontWeight:600,lineHeight:matchesA?'23px':'30px',letterSpacing:'-1.4%'}}>
-                  Royal Black : DCH Digital instago  Google fastest 
-                  Review Card
-                  </Grid>
-                  <Grid sx={{fontSize:matchesA?'10px':'14px',fontWeight:400,lineHeight:'20px',letterSpacing:'-1.4%',marginTop:'2%'}}>
-                  Size: 80mm x 90mm
-                  </Grid>
-                  <Grid sx={{fontSize:matchesA?'10px':'14px',fontWeight:400,lineHeight:'20px',letterSpacing:'-1.4%',marginTop:matchesA?'0%':'2%'}}>
-                  Quantity: 1
-                  </Grid>
-                  <Grid sx={{display:'flex',flexDirection:'row',marginTop:matchesA?'0%':'2%'}}>
-                        <Grid sx={{fontSize:matchesA?'16px':'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹ 599</Grid>
-                        <Grid sx={{fontSize:matchesA?'10px':'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginLeft:'1%'}}><s>₹ 1499</s></Grid>
-                        <Grid sx={{fontSize:matchesA?'10px':'12px',fontWeight:400,lineHeight:'26px',textDecoration:'underline',marginLeft:'auto'}}>Remove</Grid>
-                </Grid>
-                </Grid>
-              </Grid>
+              
+             <Grid sx={{marginTop:'-1.5%'}}>
+               {handleProduct()}
+              </Grid> 
               <Grid>
               <Divider
                 style={{
@@ -60,7 +226,8 @@ const matchesA = useMediaQuery("(max-width:600px)");
               />
             </Grid>
             <Grid>
-            <Button
+            <Button 
+            onClick={handleAllProduct2}
              style={{
                     border:'1px solid #fff',
                     borderColor:'#fff',
@@ -98,13 +265,13 @@ const matchesA = useMediaQuery("(max-width:600px)");
             <Grid sx={{fontSize:'16px',fontWeight:600,lineHeight:'26px',letterSpacing:'-2%',marginTop:'3%'}}>
             Return Policy
             </Grid>
-            <Grid sx={{marginLeft:'auto'}}>
+            <Grid onClick={handleAbout} sx={{marginLeft:'auto',cursor:'pointer'}}>
             <img src={sub} width={15}style={{marginTop:matchesA?'60%':'180%'}}></img>
             </Grid>
             </Grid>
-            <Grid sx={{fontSize:matchesA?'10px':'16px',fontWeight:400,lineHeight:matchesA?'18px':'26px',marginTop:matchesA?'1%':'3%'}}>
+           {about?<></>:<Grid sx={{fontSize:matchesA?'10px':'16px',fontWeight:400,lineHeight:matchesA?'18px':'26px',marginTop:matchesA?'1%':'3%'}}>
             This is our example return policy which is everything you need to know about our returns.
-            </Grid>
+            </Grid>}
             <Grid>
               <Divider
                 style={{
@@ -119,13 +286,13 @@ const matchesA = useMediaQuery("(max-width:600px)");
             <Grid sx={{fontSize:'16px',fontWeight:600,lineHeight:'26px',letterSpacing:'-2%',marginTop:'3%'}}>
             Shipping Options
             </Grid>
-            <Grid sx={{marginLeft:'auto'}}>
+            <Grid onClick={handleAbout2} sx={{marginLeft:'auto',cursor:'pointer'}}>
             <img src={sub} width={15}style={{marginTop:matchesA?'60%':'180%'}}></img>
             </Grid>
             </Grid>
-            <Grid sx={{fontSize:matchesA?'10px':'16px',fontWeight:400,lineHeight:matchesA?'18px':'26px',marginTop:matchesA?'1%':'3%'}}>
+            {about2?<></>:<Grid sx={{fontSize:matchesA?'10px':'16px',fontWeight:400,lineHeight:matchesA?'18px':'26px',marginTop:matchesA?'1%':'3%'}}>
             This is our example return policy which is everything you need to know which is everything about our returns.
-            </Grid>
+            </Grid>}
             <Grid>
               <Divider
                 style={{
@@ -171,7 +338,7 @@ const matchesA = useMediaQuery("(max-width:600px)");
        Subtotal
        </Grid>
        <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%',marginLeft:'auto'}}>
-       $200
+       ₹{subTotal}
        </Grid>
       </Grid>
       <Grid sx={{display:'flex',marginTop:'3%'}}>
@@ -179,7 +346,7 @@ const matchesA = useMediaQuery("(max-width:600px)");
        Discount
        </Grid>
        <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%',marginLeft:'auto'}}>
-       -600
+       -₹{discountPrice}
        </Grid>
       </Grid>
       <Grid sx={{display:'flex',marginTop:'3%'}}>
@@ -195,7 +362,7 @@ const matchesA = useMediaQuery("(max-width:600px)");
        Estimated Tax
        </Grid>
        <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%',marginLeft:'auto'}}>
-       $200
+       ₹{((subTotal - discountPrice) * 18) / 100}{" "}
        </Grid>
       </Grid>
       <Grid sx={{display:'flex',marginTop:'3%'}}>
@@ -222,17 +389,32 @@ const matchesA = useMediaQuery("(max-width:600px)");
        Total
        </Grid>
        <Grid sx={{fontSize:'14px',fontWeight:400,letterSpacing:'-2.5%',marginLeft:'auto'}}>
-       $200
+  
+       ₹{subTotal -
+        discountPrice +
+        ((subTotal - discountPrice) * 18) / 100}{" "}
        </Grid>
 
       </Grid>
 
 
 
-
        <Grid>
             <Button
-            onClick={handleNagivate}
+           onClick={() =>
+                  navigate("/newcheckout", {
+                    state: {
+                      product:products,
+                      products: cartProducts,
+                      discount: discountPrice,
+                      subTotal: subTotal,
+                      totalPrice:
+                        subTotal -
+                        discountPrice +
+                        ((subTotal - discountPrice) * 18) / 100,
+                    },
+                  })
+                }
              style={{
                     border:'1px solid #fff',
                     borderColor:'#fff',

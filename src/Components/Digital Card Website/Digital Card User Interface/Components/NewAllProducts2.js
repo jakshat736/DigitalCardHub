@@ -65,7 +65,7 @@ const fetchProductByCategory = async () => {
     setLoading(true)
     const result = await getData('products/displayAllProduct')
 
-    setData(result.data)
+    setData(result?.data)
     if (result?.data?.length > 0) {
         setLoading(false)
     }

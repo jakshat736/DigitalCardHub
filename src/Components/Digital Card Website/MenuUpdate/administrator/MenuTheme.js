@@ -5,7 +5,7 @@ import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 import RemoveIcon from "@mui/icons-material/Remove";
 import Search from "@mui/icons-material/Search";
-import ShareIcon from "@mui/icons-material/Share";
+import ShareIcon from "@mui/icons-material/Share";import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SimCardDownloadIcon from "@mui/icons-material/SimCardDownload";
 import StarIcon from "@mui/icons-material/Star";
 import { FormGroup, Grid, IconButton, InputAdornment, Paper, TextField } from "@mui/material";
@@ -1802,6 +1802,7 @@ export default function MenuTheme({ data }) {
               height: "auto",
               marginTop: "0%",
               padding: 2,
+              flexDirection:'column'
             }}
           >
             <Grid
@@ -1837,7 +1838,7 @@ export default function MenuTheme({ data }) {
                     <ExpandMore fontSize="medium" />
                   )}
                 </Button>
-                <Box
+                {/* <Box
                   sx={{
                     height: 35,
                     transform: "translateZ(100px)",
@@ -1876,15 +1877,43 @@ export default function MenuTheme({ data }) {
                       />
                     ))}
                   </SpeedDial>
-                </Box>
+                </Box> */}
               </Grid>
             </Grid>
+
+            <Box sx={{ height: 40, transform: 'translateZ(0px)', flexGrow: 1 }}>
+      <SpeedDial
+        ariaLabel="SpeedDial basic example"
+        sx={{  "& .MuiSpeedDial-fab": {
+          boxShadow: "none", // Remove the box shadow
+          backgroundColor: "#fff", // Set background color to #fff
+        },
+        "& .MuiSpeedDial-fab:hover": {
+          boxShadow: "none",
+          backgroundColor: "#fff", // Ensure background color remains #fff on hover
+        },
+        "&.MuiSpeedDial-open .MuiSpeedDial-fab": {
+          boxShadow: "none",
+          backgroundColor: "#fff", // Ensure background color remains #fff when open/clicked
+        },position: 'absolute', bottom: 30, right: 2 }}
+        icon={<img src={moreicon} width={40}></img>}
+        direction="left"
+      >
+         {actions.map((action) => (
+                      <SpeedDialAction
+                        key={action.name}
+                        icon={action.icon}
+                        tooltipTitle={action.name}
+                      />
+                    ))}
+      </SpeedDial>
+    </Box>
           </Grid>
           {about ? <></> : <><Grid
             style={{
               display: "flex",
               justifyContent: "center",
-              marginTop: "-2%",
+              marginTop: matches?'-8%':"-5%",
             }}
           >
             <Divider
@@ -1904,7 +1933,7 @@ export default function MenuTheme({ data }) {
                   background: "#fff",
                   display: "flex",
                   height: "auto",
-                  marginTop: matches ? "-8%" : "-4%",
+                  marginTop: matches ? "-16%" : "-10%",
                   padding: 2,
                 }}
               >
@@ -1978,7 +2007,7 @@ export default function MenuTheme({ data }) {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
-                justifyContent: "space-between",
+                justifyContent:"space-around",
                 marginTop: "7%",
                 zIndex: 10,
               }}
@@ -2015,7 +2044,7 @@ export default function MenuTheme({ data }) {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
-                justifyContent: "space-between",
+                justifyContent:"space-around",
                 marginTop: "8%",
               }}
             >
