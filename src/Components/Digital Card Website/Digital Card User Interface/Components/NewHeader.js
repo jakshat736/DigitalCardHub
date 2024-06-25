@@ -4,6 +4,9 @@ import Box from "@mui/material/Box";
 import Logo from "../../Digital Card Assets/newdigitalcardhublogo.png";
 import bag from "../../Digital Card Assets/bag.png"
 import Menu from "@mui/material/Menu";
+import { useContext } from "react";
+import { SessionContext } from "../../../Services/SessionContext";
+import Swal from "sweetalert2";
 import MenuItem from "@mui/material/MenuItem";
 import menu from "../../Digital Card Assets/menu.png"
 import Toolbar from "@mui/material/Toolbar";
@@ -21,7 +24,7 @@ import { download } from "export-to-csv";
 export default function NewHeader()
  {
   var navigate=useNavigate()
-
+  const { cart, setCart } = useContext(SessionContext);
   const handleNagivate=()=>{
       navigate('/compitable')
   }
@@ -44,6 +47,8 @@ const handleCategory=()=>{
   navigate('/categoryproducts')
 }
 
+
+
   const matches = useMediaQuery("(max-width:1000px)");
 
   const classes = useStyles();
@@ -56,6 +61,22 @@ const handleCategory=()=>{
     setAnchorEl(null);
   };
 
+  const handleCart = () => {
+    if (cart.length > 0) {
+      navigate("/newthemecard");
+    } else {
+      Swal.fire({
+        title: "Cart Is Empty Add Some Product First",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+        icon: "warning",
+      });
+    }
+  };
 
   return (
     <Grid style={{ width: "100%",fontFamily:'Muli, sans-serif' }}>
@@ -222,8 +243,9 @@ const handleCategory=()=>{
                <Grid >
                 <img src={newLogin} width={22} ></img>
             </Grid>
-               <Grid >
+               <Grid onClick={() => handleCart()} >
                 <img src={bag} width={18} ></img>
+                {cart.length}
             </Grid>
             <Grid sx={{color:'#070707'}}>
                .

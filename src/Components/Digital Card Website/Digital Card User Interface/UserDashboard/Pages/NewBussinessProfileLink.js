@@ -841,7 +841,7 @@ export default function NewBussinessProfileLink() {
         </Grid>
 
 
-        <Grid sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center',marginTop:'3%'}}>
+        <Grid sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center',marginTop:'3%',}}>
                         <Button
                            style={{
                             border:'1px solid #289B00',

@@ -36,7 +36,6 @@ export default function CategoryProducts()
     navigate('/productcomponents')
 }
 
-
 const classes = useStyles();
 const [anchorEl, setAnchorEl] = React.useState(null);
 const open = Boolean(anchorEl);
@@ -55,7 +54,7 @@ const handleClose = () => {
     const sliderRef3 = useRef(null);
     const originalAutoplaySpeed = useRef(1000);
 
-////////////////////////
+///////////////////////////////////////////////
 
 
   useEffect(() => {
