@@ -57,7 +57,7 @@ export default function NewCheckOut3() {
               <Grid
                 sx={{
                   fontSize:matchesA?'10px':"17px",
-                  fontWeight: 700,
+                  fontWeight: 400,
                   lineHeight: "28px",
                   letterSpacing: "-.6%",
                 }}
@@ -83,7 +83,7 @@ export default function NewCheckOut3() {
               <Grid
                 sx={{
                   fontSize: matchesA?'10px':"17px",
-                  fontWeight: 400,
+                  fontWeight: 700,
                   lineHeight: "28px",
                   letterSpacing: "-.6%",
                   cursor:'pointer'

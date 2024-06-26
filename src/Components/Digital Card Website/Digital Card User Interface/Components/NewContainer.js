@@ -14,7 +14,7 @@ import slider5 from "../../Digital Card Assets/amazon.jpg";
 import slider11 from "../../Digital Card Assets/bussinesscard1.png";
 import slider22 from "../../Digital Card Assets/bussinesscard4.png";
 import slider33 from "../../Digital Card Assets/bussinesscard3.png";
-
+import { useNavigate } from "react-router-dom";
 import slider111 from "../../Digital Card Assets/oyo.jpg";
 import slider222 from "../../Digital Card Assets/flipkard.jpg";
 import slider333 from "../../Digital Card Assets/playstore.jpg";
@@ -29,6 +29,10 @@ export default function NewContainer()
 {   
     const matches = useMediaQuery("(max-width:1000px)");
     const matchesA = useMediaQuery("(max-width:600px)");
+    var navigate=useNavigate()
+  const handleNagivate=()=>{
+    navigate('/newallproduct2')
+}
     var settings = {
         dots: false,
         infinite: true,
@@ -103,6 +107,7 @@ export default function NewContainer()
                   </Grid></>:<></>}
                     {matches?<></>:<><Grid sx={{display:'flex',gap:4,alignItems:'center',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",flexDirection:matches?'column':'row'}}>
                     <Button
+                onClick={handleNagivate}
                 sx={{
                  border:'3.2px solid #fff',
                   height: 42,

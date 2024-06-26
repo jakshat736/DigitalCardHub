@@ -333,7 +333,7 @@ export default function DeliverDetails(props) {
                             <TextField label={"Pincode"} value={pincode} onChange={(e)=>setPincode(e.target.value)} fullWidth />
                         </Grid>
                       
-                        
+        
                         <Grid item xs={9} lg={6}>
                             <TextField value={number} onChange={(e)=>setNumber(e.target.value)} label={"Recipient's Number"} fullWidth />
                         </Grid>

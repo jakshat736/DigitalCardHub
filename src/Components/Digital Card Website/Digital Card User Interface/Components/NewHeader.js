@@ -4,6 +4,20 @@ import Box from "@mui/material/Box";
 import Logo from "../../Digital Card Assets/newdigitalcardhublogo.png";
 import bag from "../../Digital Card Assets/bag.png"
 import Menu from "@mui/material/Menu";
+import Grow from "@mui/material/Grow";
+import Paper from "@mui/material/Paper";
+import { getData, postData } from "../../../Services/NodeServices";
+import { useEffect } from "react";
+import Popper from "@mui/material/Popper";
+import MenuList from "@mui/material/MenuList";
+import { useContext } from "react";
+import {
+  ArrowDownwardRounded,
+  ArrowDropDown,
+  ShoppingBag,
+} from "@mui/icons-material";
+import { SessionContext } from "../../../Services/SessionContext";
+import Swal from "sweetalert2";
 import MenuItem from "@mui/material/MenuItem";
 import menu from "../../Digital Card Assets/menu.png"
 import Toolbar from "@mui/material/Toolbar";
@@ -14,6 +28,10 @@ import "animate.css";
 import {
   Container,
   useMediaQuery,
+  useTheme,
+  Button,  List,
+  ListItemButton,
+  ListItemText,
 } from "@mui/material";
 import Downarrow from "../../Digital Card Assets/downarrow.png"
 import { Grid } from "@mui/material";
@@ -21,7 +39,6 @@ import { download } from "export-to-csv";
 export default function NewHeader()
  {
   var navigate=useNavigate()
-
   const handleNagivate=()=>{
       navigate('/compitable')
   }
@@ -30,6 +47,10 @@ export default function NewHeader()
 }
 const handleNagivateCooperate=()=>{
   navigate('/cooperate')
+}
+
+const handleNagivateShop=()=>{
+  navigate('/newallproduct')
 }
 
 const handleNagivateProductComponents=()=>{
@@ -46,14 +67,73 @@ const handleCategory=()=>{
 
   const matches = useMediaQuery("(max-width:1000px)");
 
-  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const [category, setCategory] = React.useState([]);
+  const { cart, setCart } = useContext(SessionContext);
+  const Token = window.localStorage.getItem("Token");
+  const User = window.localStorage.getItem("UserNumber");
+
+  const func = async () => {
+    var formdata = new FormData();
+    formdata.append("mobile", User);
+    var response = await postData("cart/getAllProducts", formdata, true);
+    if (response) {
+      console.log(response.products);
+      setCart(response.products);
+    } else {
+    }
   };
+  useEffect(() => {
+    if (User != null) {
+      func();
+    }
+  }, []);
+  const FetchAllCategory = async () => {
+    var data = await getData("category/display_all_category");
+
+    setCategory(data.data);
+  };
+
+  React.useEffect(function () {
+    FetchAllCategory();
+  }, []);
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("xs"));
+  const medium = useMediaQuery(theme.breakpoints.down(900));
   const handleClose = () => {
     setAnchorEl(null);
+    setOpen(false);
+  };
+  function handleListKeyDown(event) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      setOpen(false);
+    } else if (event.key === "Escape") {
+      setOpen(false);
+    }
+  }
+
+
+  const handleCart = () => {
+    if (cart.length > 0) {
+      navigate("/cart");
+    } else {
+      Swal.fire({
+        title: "Cart Is Empty Add Some Product First",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+        icon: "warning",
+      });
+    }
   };
 
 
@@ -87,7 +167,80 @@ const handleCategory=()=>{
                <Grid onClick={handleNagivateHome}  sx={{cursor:'pointer'}}>
                 Home
                </Grid>
-               <Grid    sx={{cursor:'pointer',display:'flex',alignItems:'center',marginTop:'-1%'}}>
+
+               <Button
+               onClick={handleNagivateShop}
+                id="composition-button"
+                aria-controls={open ? "composition-menu" : undefined}
+                aria-expanded={open ? "true" : undefined}
+                aria-haspopup="true"
+                onMouseEnter={handleToggle}
+                onMouseLeave={handleToggle}
+                sx={{
+                      height:19,
+                      color: "#fff",
+                      fontWeight: 400,
+                      fontSize: "15px",
+                      textTransform: "none",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                }}
+              >
+                Shop
+                <Grid>
+                  <ArrowDropDown style={{marginTop:'40%'}} />
+                </Grid>
+                <Popper
+                  open={open}
+                  anchorEl={anchorRef.current}
+                  role={undefined}
+                  placement="bottom"
+                  transition
+                  disablePortal
+                  sx={{ zIndex: 40,marginLeft:'40%',marginTop:'4%'}}
+                >
+                  {({ TransitionProps, placement }) => (
+                    <Grow
+                      {...TransitionProps}
+                      style={{
+                        transformOrigin:
+                          placement === "bottom-start"
+                            ? "left top"
+                            : "left bottom",
+                      }}
+                    >
+                      <Paper sx={{ marginRight: 10,color:'#fff',backgroundImage: "linear-gradient(to bottom right, #171717,#171717)", }}>
+                        <MenuList
+                          autoFocusItem={open}
+                          id="composition-menu"
+                          aria-labelledby="composition-button"
+                          onKeyDown={handleListKeyDown}
+                          style={{ fontWeight: "bold", width: 250 }}
+                        >
+                          <List component="div">
+                            {category.map((item) => (
+                              <ListItemButton
+                                onClick={() =>
+                                  navigate(`/categoryproducts/${item._id}`, {
+                                    state: { category: item.categoryname },
+                                  })
+                                }
+                              >
+                                <ListItemText
+                                  primary={`${item.categoryname}`}
+                                  sx={{ color: "#fff", fontWeight: 700 }}
+                                />
+                              </ListItemButton>
+                            ))}
+                          </List>
+                        </MenuList>
+                      </Paper>
+                    </Grow>
+                  )}
+                </Popper>
+              </Button>
+               {/* <Grid    sx={{cursor:'pointer',display:'flex',alignItems:'center',marginTop:'-1%'}}>
                 <div onClick={handleNagivateProductComponents} > Shop </div>
                 <img onMouseEnter={handleClick} src={Downarrow} width={20} style={{marginTop:'-10%'}}></img>
                </Grid>
@@ -120,7 +273,7 @@ const handleCategory=()=>{
                             fontWeight: 500,
                           }}
                         >
-                          PVC Cards
+                         Instagram
                         </MenuItem>
 
                         <MenuItem
@@ -132,7 +285,7 @@ const handleCategory=()=>{
                           }}
                           onClick={handleClose}
                         >
-                          Metal Business Cards
+                         Google
                         </MenuItem>
 
                         <MenuItem
@@ -144,7 +297,7 @@ const handleCategory=()=>{
                           }}
                           onClick={handleClose}
                         >
-                         Wooden Card
+                        FaceBook
                         </MenuItem>
 
                         <MenuItem
@@ -156,7 +309,7 @@ const handleCategory=()=>{
                           }}
                           onClick={handleClose}
                         >
-                          Standess
+                         PVC cards
                         </MenuItem>
                         <MenuItem
                           className={classes.button1}
@@ -167,7 +320,7 @@ const handleCategory=()=>{
                           }}
                           onClick={handleClose}
                         >
-                          Review Stickers
+                          Review Tage & Cards
                         </MenuItem>
                         <MenuItem
                           className={classes.button1}
@@ -179,7 +332,7 @@ const handleCategory=()=>{
                           }}
                           onClick={handleClose}
                         >
-                          Google Products
+                         Bundle
                         </MenuItem>
                         <MenuItem
                           className={classes.button1}
@@ -190,7 +343,29 @@ const handleCategory=()=>{
                           }}
                           onClick={handleClose}
                         >
-                         Combos /Bundles
+                         Display Stands
+                        </MenuItem>
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",
+                            fontWeight: 500,
+                          }}
+                          onClick={handleClose}
+                        >
+                         Invitation Wallet Cards
+                        </MenuItem>
+                        <MenuItem
+                          className={classes.button1}
+                          style={{
+                            marginBottom: "3px",
+                            fontFamily: "Muli, sans-serif",
+                            fontWeight: 500,
+                          }}
+                          onClick={handleClose}
+                        >
+                        Menu Standee
                         </MenuItem>
                         <MenuItem
                         
@@ -205,7 +380,7 @@ const handleCategory=()=>{
                         All Product
                         </MenuItem>
                       </div>
-                    </Menu>
+                    </Menu> */}
 
 
 
@@ -222,8 +397,9 @@ const handleCategory=()=>{
                <Grid >
                 <img src={newLogin} width={22} ></img>
             </Grid>
-               <Grid >
+               <Grid onClick={() => handleCart()} >
                 <img src={bag} width={18} ></img>
+                {cart.length}
             </Grid>
             <Grid sx={{color:'#070707'}}>
                .

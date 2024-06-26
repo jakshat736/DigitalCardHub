@@ -549,7 +549,6 @@ const ProductCompoent = () => {
   }
 
 
-
   const handleClick = async (Token1, phone) => {
 
     if (Token1) {
@@ -572,6 +571,9 @@ const ProductCompoent = () => {
       setOpen(true)
     }
   };
+
+
+
   useEffect(() => {
     func();
   }, []);
