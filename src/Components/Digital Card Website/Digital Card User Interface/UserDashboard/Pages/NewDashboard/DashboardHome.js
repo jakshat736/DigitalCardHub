@@ -20,8 +20,6 @@ export default function DashboardHome()
        <Grid>
       <NewBussinessProfileEcommerce/>
        </Grid>
-       <Grid>
-      <Newfooter/>
-       </Grid>
+
     </Grid>)
 }

@@ -12,6 +12,7 @@ import logo1 from '../../Digital Card Assets/dchlogo.png';
 import { useParams } from 'react-router-dom';
 import heart from "../../Digital Card Assets/heart.png"
 import useMediaQuery from "@mui/material/useMediaQuery";
+import howtouseimage from "../../Digital Card Assets/howtouse.png"
 import upload from "../../Digital Card Assets/plussign.png";
 import { useStyles2 } from "../../Digital Card User Interface/Components//AllProductSlider";
 import use1 from "../../Digital Card Assets/use1.png"
@@ -663,7 +664,7 @@ export default function ProductComponents() {
     infinite: true,
     speed: 3000,
     autoplay: "true",
-    slidesToShow: matches ? 1 : 4,
+    slidesToShow: matches ? 1:matchesA?2 : 4,
     arrows: false,
     cssEase: 'linear',
     pauseOnHover: false,
@@ -674,7 +675,7 @@ export default function ProductComponents() {
     infinite: true,
     speed: 1000,
     dots: false,
-    slidesToShow: matches ? 1 : 4,
+    slidesToShow: matches ? 1: matchesA?2: 4,
     autospeed: 1,
     slidesToScroll: 4,
     arrows: false
@@ -684,14 +685,14 @@ export default function ProductComponents() {
     infinite: true,
     speed: 1000,
     dots: false,
-    slidesToShow: matches ? 1 : 3,
+    slidesToShow: matches ? 1 :matchesA?2: 3,
     slidesToScroll: matches ? 1 : 3,
     autoplay: "true",
     autospeed: 1,
     arrows: false,
   };
 
-  var data1 = [{ picture: r1, name: 'Ankit Narwariya' },
+  var data11 = [{ picture: r1, name: 'Ankit Narwariya' },
   { picture: r2, name: 'Chinmay Sharma' },
   { picture: r3, name: 'Juned Solanki' },
   { picture: r4, name: 'Harshit Jain' },
@@ -700,7 +701,7 @@ export default function ProductComponents() {
   { picture: r3, name: 'Satyveer Pal' },
   ]
   const showReview = () => {
-    return data1.map((item) => {
+    return data11.map((item) => {
       return (<Grid sx={{ width: '100%' }}>
         <Grid sx={{ width: 320, padding: 1.5, display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#000', flexDirection: 'column', background: '#fff', borderRadius: '10px' }}>
           <Grid>
@@ -728,9 +729,9 @@ export default function ProductComponents() {
 
 
 
-  var data1 = [photo2, photo3, photo4, photo2, photo3, photo4]
+  var data12 = [card11,card22, card33,card44,card55,card33]
   const showProducts = () => {
-    return data1.map((item) => {
+    return data12.map((item) => {
       return (<Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: matches ? '6%' : '14%' }}>
         <Grid sx={{ width: matchesB ? '320px' : '357px', height: matchesB ? '245px' : '260px', display: 'flex', alignItems: 'center', border: '1px solid #fff', borderRadius: '10px', background: '#fff', padding: 2, flexDirection: 'column' }}>
           <Grid sx={{ marginLeft: 'auto' }}><img src={heart} width={25}></img></Grid>
@@ -1040,10 +1041,10 @@ export default function ProductComponents() {
               >
                 <Grid
                   sx={{
-                    fontSize: "26px",
+                    fontSize:matches ? '24px' :"26px",
                     fontWeight: 700,
-                    lineHeight: "40px",
-                    marginTop: matches ? '2%' : '-1.5%'
+                    lineHeight: "34px",
+                    marginTop: matches ? '2%':matchesA?'5%' : '-1.5%'
                   }}
                 >
                 {data?.productName}
@@ -1409,7 +1410,7 @@ export default function ProductComponents() {
                 <Grid sx={{ marginTop: "4%", width: "100%" }}>
                   <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
                     <Grid
-                      sx={{ fontSize: "26px", fontWeight: 700, lineHeight: "26px" }}
+                      sx={{ fontSize: matches ? '22px':"26px", fontWeight: 700, lineHeight: "26px" }}
                     >
                       Features :
                     </Grid>
@@ -1463,9 +1464,9 @@ export default function ProductComponents() {
                       ></Grid>
                       <Grid
                         sx={{
-                          fontSize: "22px",
+                          fontSize:  matches ? '18px' :"22px",
                           fontWeight: 700,
-                          lineHeight: "40px",
+                          lineHeight: matches ? '30px' : "40px",
                           textAlign: "center",
                           marginTop: "3%",
                         }}
@@ -1484,9 +1485,9 @@ export default function ProductComponents() {
                       ></Grid>
                       <Grid
                         sx={{
-                          fontSize: "22px",
+                          fontSize:  matches ? '18px' :"22px",
                           fontWeight: 700,
-                          lineHeight: "40px",
+                          lineHeight: matches ? '30px' : "40px",
                           textAlign: "center",
                           marginTop: "3%",
                         }}
@@ -1507,9 +1508,9 @@ export default function ProductComponents() {
                     >
                       <Grid
                         sx={{
-                          fontSize: "22px",
+                          fontSize:  matches ? '18px' :"22px",
                           fontWeight: 700,
-                          lineHeight: "40px",
+                          lineHeight: matches ? '30px' : "40px",
                           textAlign: "center",
                         }}
                       >
@@ -1527,9 +1528,9 @@ export default function ProductComponents() {
 
                       <Grid
                         sx={{
-                          fontSize: "22px",
+                          fontSize:  matches ? '18px' :"22px",
                           fontWeight: 700,
-                          lineHeight: "40px",
+                          lineHeight: matches ? '30px' : "40px",
                           textAlign: "center",
                           marginTop: "12%",
                         }}
@@ -1639,52 +1640,9 @@ export default function ProductComponents() {
                 alignItems: 'center',
                 flexDirection: 'column',
               }}>
-              <Grid sx={{ fontSize: matchesB ? '30px' : '52px', fontWeight: 700, lineHeight: matchesB ? '30px' : '26px' }}>How to use me ?</Grid>
-              <Grid sx={{ display: 'flex', justifyContent: matchesB ? 'center' : "space-between", marginTop: '6%', flexDirection: matchesB ? 'column' : 'row', alignItems: matchesB ? 'center' : '', gap: matchesB ? 3 : 0 }}>
-                <Grid sx={{ width: matches ? '100%' : '25%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                  <Grid>
-                    <img src={use1} width={350}></img>
-                  </Grid>
-                  <Grid sx={{ fontSize: '32px', fontWeight: 700, lineHeight: '26px', marginTop: '4%' }}>
-                    Step 1
-                  </Grid>
-                  <Grid sx={{ fontSize: '22px', fontWeight: 400, lineHeight: '26px', marginTop: '3%', textAlign: 'center', width: '80%' }}>
-                    Norem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </Grid>
-                </Grid>
-                <Grid sx={{ width: matches ? '100%' : '25%', height: 500, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                  <Grid>
-                    <img src={use2} width={100}></img>
-                  </Grid>
-                  <Grid sx={{ fontSize: '32px', fontWeight: 700, lineHeight: '26px', marginTop: '4%' }}>
-                    Step 2
-                  </Grid>
-                  <Grid sx={{ fontSize: '22px', fontWeight: 400, lineHeight: '26px', marginTop: '3%', textAlign: 'center', width: '80%' }}>
-                    Norem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </Grid>
-                </Grid>
-                <Grid sx={{ width: matches ? '100%' : '25%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                  <Grid sx={{ marginTop: '10%' }}>
-                    <img src={use3} width={200}></img>
-                  </Grid>
-                  <Grid sx={{ fontSize: '32px', fontWeight: 700, lineHeight: '26px', marginTop: matchesB ? '2%' : '25%' }}>
-                    Step 3
-                  </Grid>
-                  <Grid sx={{ fontSize: '22px', fontWeight: 400, lineHeight: '26px', marginTop: '3%', textAlign: 'center', width: '80%' }}>
-                    Norem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </Grid>
-                </Grid>
-                <Grid sx={{ width: matches ? '100%' : '25%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                  <Grid>
-                    <img src={use4} width={160}></img>
-                  </Grid>
-                  <Grid sx={{ fontSize: '32px', fontWeight: 700, lineHeight: '26px', marginTop: '4%' }}>
-                    Step 4
-                  </Grid>
-                  <Grid sx={{ fontSize: '22px', fontWeight: 400, lineHeight: '26px', marginTop: '3%', textAlign: 'center', width: '80%' }}>
-                    Norem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </Grid>
-                </Grid>
+              <Grid sx={{ fontSize: matchesB ? '24px' : '52px', fontWeight: 700, lineHeight: matchesB ? '30px' : '26px' }}>How to use me ?</Grid>
+             <Grid sx={{width:'100%',marginTop:'3%'}}>
+                <img src={howtouseimage} style={{width:'100%',marginLeft:'-4%'}}></img>
               </Grid>
             </Grid>
           </Grid>)}
@@ -1695,13 +1653,13 @@ export default function ProductComponents() {
         sx={{
           width: "99%",
           height: 'auto',
-          marginTop: "10%",
+          marginTop: "5%",
           display: "flex",
           alignItems: 'center',
           flexDirection: 'column',
           color: '#fff'
         }}>
-        <Grid sx={{ fontSize: matches ? '30px' : '52px', fontWeight: 700, lineHeight: matches ? '35px' : '66px', width: matches ? '80%' : '70%', textAlign: 'center' }}>Bundle up your purchase And get great offers</Grid>
+        <Grid sx={{ fontSize: matches ? '24px' : '52px', fontWeight: 700, lineHeight: matches ? '35px' : '66px', width: matches ? '80%' : '70%', textAlign: 'center' }}>Bundle up your purchase And get great offers</Grid>
         <Grid sx={{ width: '100%', marginTop: '5%' }}>
           <Slider {...setting1}>
             {showProducts()}

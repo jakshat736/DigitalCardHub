@@ -277,7 +277,7 @@ const Ecommerce = () => {
                 <Grid
                     container
                     spacing={2}
-                    sx={{ display: "flex", justifyContent: "center", width: "90%", mt: mobile ? "2vh" : tablet ? "3vh" : "" }}
+                    sx={{ display: "flex", justifyContent: "center", width: "100%", mt: mobile ? "2vh" : tablet ? "3vh" : "" }}
                 >
                     <Grid item xs={12}>
                         <Typography

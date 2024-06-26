@@ -492,8 +492,6 @@ export default function NewBussinessProfile() {
      
       if (response.status) {
         setLoadingAnimation(false)
-        navigate('/links')
-         
       } else {
   
       }
