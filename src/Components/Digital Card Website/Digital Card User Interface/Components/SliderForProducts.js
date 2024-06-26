@@ -40,12 +40,14 @@ const useStyles = makeStyles({
 export default function SliderForProducts()
 {
     const matches = useMediaQuery("(max-width:700px)");
+    const matchesB = useMediaQuery("(max-width:500px)");
+    const matchesA = useMediaQuery("(max-width:1400px)");
     const sliderRef = useRef(null);
     const settings = {
       className: "center",
       centerMode: true,
       centerPadding: "60px",
-      slidesToShow: matches?1:5,
+      slidesToShow: matches?1:matchesA?3:5,
       arrows:false,
       slidesToScroll: 1,
       dots: true,
@@ -68,10 +70,10 @@ export default function SliderForProducts()
    const ShowSlider=()=>{
     return data.map((item,index)=>{
         return(<Grid  key={index}  style={{width:'100%',display:'flex',flexDirection:'column',background:'red'}}>
-          <Grid  onClick={() => handleImageClick(index)} style={{width:'240px',height:'300px',borderRadius:'24px',display:'flex',justifyContent:'center',flexDirection:'row',textAlign:'center',margin: '15px',borderrRadius: '10px', marginLeft: matches?'-0%':'8%'}}>
+          <Grid  onClick={() => handleImageClick(index)} style={{height:'300px',borderRadius:'24px',display:'flex',justifyContent:'center',flexDirection:'row',textAlign:'center',margin: '15px',borderrRadius: '10px'}}>
           <img src={item} style={{width:'98%',margin:4,borderRadius:10, objectFit: 'cover'}}></img>
           </Grid>
-          <Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: '2%',marginTop:matches?'0%':'2.5%',color:'#fff',justifyContent:'center',alignItems:'center',textAlign:'center',width:'100%' }}>
+          <Grid sx={{ display: 'flex', flexDirection: 'column',marginTop:matchesB?'-28%':matches?'-22%':'2.5%',color:'#fff',justifyContent:'center',alignItems:'center',textAlign:'center',width:'100%',height:matchesB?250:matches?300:"auto"}}>
               <Grid sx={{ fontSize: matches?'16px':'1vw', fontWeight: 700,width:'80%' }}>
                GOOGLE REVIEW CARD
               </Grid>

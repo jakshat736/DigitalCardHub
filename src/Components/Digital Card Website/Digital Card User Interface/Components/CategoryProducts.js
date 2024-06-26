@@ -6,10 +6,14 @@ import card from "../../Digital Card Assets/card.png"
 import card1 from "../../Digital Card Assets/card1.png"
 import card2 from "../../Digital Card Assets/card2.png"
 import card3 from "../../Digital Card Assets/card3.png"
+import {  useParams} from "react-router-dom";
 import Menu from "@mui/material/Menu";
+import {  useState } from 'react'
+import { getData, serverURL,postData } from '../../../Services/NodeServices'
 import { useStyles } from "../../Digital Card User Interface/Components/HoveredCss";
 import MenuItem from "@mui/material/MenuItem";
 import card4 from "../../Digital Card Assets/card4.png"
+import { useLocation } from "react-router-dom";
 import card5 from "../../Digital Card Assets/card5.png"
 import card6 from "../../Digital Card Assets/card6.png"
 import card7 from "../../Digital Card Assets/card7.png"
@@ -36,6 +40,22 @@ export default function CategoryProducts()
     navigate('/productcomponents')
 }
 
+const [add, setAdd] = useState(false);
+const [count, setCount] = useState(0);
+
+const handleClickAdd = () => {
+  setAdd(true);
+  var c = count + 1;
+  setCount(c);
+};
+
+const handleMinus = () => {
+  var c = count - 1;
+  if (c >= 0) {
+    setCount(c);
+  }
+};
+
 const classes = useStyles();
 const [anchorEl, setAnchorEl] = React.useState(null);
 const open = Boolean(anchorEl);
@@ -54,7 +74,36 @@ const handleClose = () => {
     const sliderRef3 = useRef(null);
     const originalAutoplaySpeed = useRef(1000);
 
+
+    const { _id } = useParams()
+    const [data, setData] = useState([])
+    const [loading, setLoading] = useState(true)
+    const location = useLocation()
+    const CategoryName = location.state.category
+
+    const fetchProductByCategory = async () => {
+        setLoading(true)
+        const result = await postData('products/fetchProductByCategory', { _id: _id })
+        setData(result.data)
+        if (result?.data?.length > 0) {
+            setLoading(false)
+        }
+    }
+    useEffect(() => {
+        fetchProductByCategory()
+    }, [_id])
+
+
+    useEffect(() => {
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'instant',
+        });
+    }, [])
+
 ///////////////////////////////////////////////
+
 
 
   useEffect(() => {
@@ -180,6 +229,116 @@ const handleClose = () => {
     arrows:false
    };
 
+
+   const ProximityComponent = () => {
+    return data?.map((item,index) => {
+        return (
+         <Grid key={item.id} item  md={matchesA?6:3.5} sx={{ display: "flex", justifyContent:matchesA?'center':"space-between",alignItems:'center',marginTop:'2%',width:'100%' }}>
+            <Grid  sx={{  display: 'flex',flexWrap: 'wrap',flexDirection:'column'}}>
+                 <Grid onClick={() => navigate(`/productcomponents/${item._id}`)} sx={{width:matchesB?'320px':'357px',height:'auto',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column',cursor:'pointer'}}>
+                     <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
+                     <Grid sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+                     {/* <Slider ref={el => sliderRefs.current[index] = el} {...settings} style={{display:'flex',alignItems:'center',}}>
+                     <div><img src={`${serverURL}/images/${item.images[0]}`} width={"60%"} /></div>
+                     <div><img src={`${serverURL}/images/${item.images[1]}`} width={"60%"} /></div>
+                     <div><img src={`${serverURL}/images/${item.images[2]}`} width={"60%"} /></div>
+                    </Slider> */}
+                    <img src={`${serverURL}/images/${item.images[0]}`} width={"60%"} />
+                    </Grid>
+                 </Grid>
+                 <Grid sx={{width:matchesB?'320px':'357px',height:'auto',marginTop:'1%'}}>
+                    <Grid sx={{display:'flex',width:'100%'}}>
+                     <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',width:matchesB?'70%':'75%'}}> {item.productName}</Grid>
+                     <Grid sx={{width:'25%'}}>
+                     <Rating style={{marginLeft:matchesB?'':'auto',marginTop:'2%',display:'flex'}}
+                 size="small"
+                 color="green"
+                 name="simple-controlled"
+                 value={5}
+                 />
+                     </Grid>
+                    </Grid>
+                    <Grid sx={{display:'flex',marginTop:'1%',alignItems:'center'}}>
+                    <Grid sx={{display:'flex',flexDirection:'column'}}>
+                     <Grid sx={{fontSize:'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹{item.offerprice}</Grid>
+                     <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginTop:'-4%'}}><s>₹{item.price}</s></Grid>
+                 </Grid>
+                 <Grid sx={{marginLeft:'auto'}}>
+                 {count == 0 ? (
+                        <Button
+                        onClick={handleClickAdd}
+                        style={{
+                         border:'1px solid #fff',
+                         borderColor:'#fff',
+                         width:matchesB?'250px': '271px',
+                         height: '34px',
+                         lineHeight:'36px',       
+                         color: "#fff",
+                         marginLeft:'2%',
+                         fontSize: "16px",
+                         fontWeight: 500,
+                         textTransform: "none",
+                         borderRadius: '10px',
+                         display:"flex",
+                         alignItems: "center",
+                         justifyContent: "center",
+                         cursor:'-moz-grab'
+                       }}>
+                      Add to cart
+                     </Button> 
+                     ) : (
+                       <div
+                         style={{
+                           border:'1px solid #fff',
+                         borderColor:'#fff',
+                         width:matchesB?'250px': '271px',
+                         height: '34px',
+                         lineHeight:'36px',       
+                         color: "#fff",
+                         marginLeft:'2%',
+                         fontSize: "16px",
+                         fontWeight: 500,
+                         textTransform: "none",
+                         borderRadius: '10px',
+                         display:"flex",
+                         alignItems: "center",
+                         justifyContent: "center",
+                         padding:2
+                         }}
+                       >
+                         <Grid
+                           sx={{display: "flex",gap:8}}
+                         >
+                           <Grid
+                             onClick={handleMinus}
+                             sx={{ fontSize: '20px',fontWeight:600, color: "#fff",cursor:'pointer' }}
+                           >
+                           -
+                           </Grid>
+                           <Grid sx={{ fontSize: '16px',fontWeight:500, color: "#fff" }}>
+                             {count}
+                           </Grid>
+                           <Grid
+                             onClick={handleClickAdd}
+                             sx={{ fontSize: '18px',fontWeight:600, color: "#fff",cursor:'pointer' }}
+                           >
+                           +
+                           </Grid>
+                         </Grid>
+                       </div>
+                     )}
+                 </Grid>
+                 </Grid>
+                 </Grid>
+                </Grid>
+         </Grid>
+        )
+
+       })
+   }
+
+   
+
   return(<Grid sx={{backgroundImage: "linear-gradient(to bottom right, #171717,#171717,#070707,#070707)",fontFamily:'Montserrat'}}>
   <Grid>
     <NewHeader/>
@@ -188,7 +347,7 @@ const handleClose = () => {
     <Grid sx={{width:'100%',marginTop:'3%'}}>
      <img src={headline} style={{width:'100%'}}></img>
     </Grid>
-      <Grid sx={{width:'82%',height:matchesA?'auto':1500,marginTop:'2%',display:'flex',flexDirection:'column'}}>
+      <Grid sx={{width:'82%',height:'auto',marginTop:'2%',display:'flex',flexDirection:'column'}}>
         <Grid sx={{display:'flex'}}>
         <Button
              style={{
@@ -353,541 +512,14 @@ const handleClose = () => {
 
                 </Grid>
 
+                <Grid container spacing={2} sx={{display: "flex", justifyContent:"space-between",marginBottom:'8%',marginTop:matchesA?'3%':'' }} >
+                    <ProximityComponent />
 
-                <Grid sx={{display:'flex',flexDirection:"column",marginTop:matchesB?'8%':'3%',gap:7}}>
-                    <Grid sx={{display:'flex',justifyContent:'space-between',flexDirection:matchesA?"column":'row',alignItems:matchesA?'center':'normal'}}>
-                   <Grid onClick={handleNagivate} sx={{display:'flex',flexDirection:'column',cursor:'pointer'}}>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
-                        <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
-                        <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
-                        <Slider ref={sliderRef} {...settings} style={{display:'flex',alignItems:'center',}}>
-                        <Typography><img src={card} width={270} style={{}}></img></Typography>  
-                        <Typography><img src={card2} width={270}></img></Typography>  
-                        <Typography><img src={card4} width={270}></img></Typography>  
-                       
-                       </Slider>
-                       </Grid>
-                    </Grid>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'120px':'110px',marginTop:'1%'}}>
-                       <Grid sx={{display:'flex',width:'100%'}}>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',width:'60%'}}>Royal Black : DCH Google Review Card</Grid>
-                        <Grid sx={{width:'40%'}}>
-                        <Rating style={{marginLeft:'auto',marginTop:'2%',display:'flex'}}
-                    size="small"
-                    color="green"
-                    name="simple-controlled"
-                    value={5}
-                    />
-                        </Grid>
-                       </Grid>
-                       <Grid sx={{display:'flex',marginTop:'1%',alignItems:'center'}}>
-                       <Grid sx={{display:'flex',flexDirection:'column'}}>
-                        <Grid sx={{fontSize:'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹ 599</Grid>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginTop:'-4%'}}><s>₹ 1499</s></Grid>
-                    </Grid>
-                    <Grid sx={{marginLeft:'auto'}}>
-                    <Button
-                   style={{
-                    border:'1px solid #fff',
-                    borderColor:'#fff',
-                    width:matchesB?'250px': '271px',
-                    height: '34px',
-                    lineHeight:'36px',       
-                    color: "#fff",
-                    marginLeft:'2%',
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    textTransform: "none",
-                    borderRadius: '10px',
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                 Add to cart
-                </Button> 
-                    </Grid>
-                    </Grid>
-                    </Grid>
-                   </Grid>
-
-                   <Grid sx={{display:'flex',flexDirection:'column'}}>
-                   <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
-                        <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
-                        <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
-                        <Slider ref={sliderRef2} {...settings} style={{display:'flex',alignItems:'center',}}>
-                        <Typography><img src={card} width={270} style={{}}></img></Typography>  
-                        <Typography><img src={card2} width={270}></img></Typography>  
-                        <Typography><img src={card4} width={270}></img></Typography>  
-                       
-                       </Slider>
-                       </Grid>
-                    </Grid>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'120px':'110px',marginTop:'1%'}}>
-                       <Grid sx={{display:'flex',width:'100%'}}>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',width:'60%'}}>Royal Black : DCH Google Review Card</Grid>
-                        <Grid sx={{width:'40%'}}>
-                        <Rating style={{marginLeft:'auto',marginTop:'2%',display:'flex'}}
-                    size="small"
-                    color="green"
-                    name="simple-controlled"
-                    value={5}
-                    />
-                        </Grid>
-                       </Grid>
-                       <Grid sx={{display:'flex',marginTop:'1%',alignItems:'center'}}>
-                       <Grid sx={{display:'flex',flexDirection:'column'}}>
-                        <Grid sx={{fontSize:'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹ 599</Grid>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginTop:'-4%'}}><s>₹ 1499</s></Grid>
-                    </Grid>
-                    <Grid sx={{marginLeft:'auto'}}>
-                    <Button
-                   style={{
-                    border:'1px solid #fff',
-                    borderColor:'#fff',
-                    width:matchesB?'250px': '271px',
-                    height: '34px',
-                    lineHeight:'36px',       
-                    color: "#fff",
-                    marginLeft:'2%',
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    textTransform: "none",
-                    borderRadius: '10px',
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                 Add to cart
-                </Button> 
-                    </Grid>
-                    </Grid>
-                    </Grid>
-                   </Grid>
-
-                   <Grid sx={{display:'flex',flexDirection:'column'}}>
-                   <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
-                        <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
-                        <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
-                        <Slider ref={sliderRef3} {...settings} style={{display:'flex',alignItems:'center',}}>
-                        <Typography><img src={card} width={270} style={{}}></img></Typography>  
-                        <Typography><img src={card2} width={270}></img></Typography>  
-                        <Typography><img src={card4} width={270}></img></Typography>  
-                       
-                       </Slider>
-                       </Grid>
-                    </Grid>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'120px':'110px',marginTop:'1%'}}>
-                       <Grid sx={{display:'flex',width:'100%'}}>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',width:'60%'}}>Royal Black : DCH Google Review Card</Grid>
-                        <Grid sx={{width:'40%'}}>
-                        <Rating style={{marginLeft:'auto',marginTop:'2%',display:'flex'}}
-                    size="small"
-                    color="green"
-                    name="simple-controlled"
-                    value={5}
-                    />
-                        </Grid>
-                       </Grid>
-                       <Grid sx={{display:'flex',marginTop:'1%',alignItems:'center'}}>
-                       <Grid sx={{display:'flex',flexDirection:'column'}}>
-                        <Grid sx={{fontSize:'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹ 599</Grid>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginTop:'-4%'}}><s>₹ 1499</s></Grid>
-                    </Grid>
-                    <Grid sx={{marginLeft:'auto'}}>
-                    <Button
-                   style={{
-                    border:'1px solid #fff',
-                    borderColor:'#fff',
-                    width:matchesB?'250px': '271px',
-                    height: '34px',
-                    lineHeight:'36px',       
-                    color: "#fff",
-                    marginLeft:'2%',
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    textTransform: "none",
-                    borderRadius: '10px',
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                 Add to cart
-                </Button> 
-                    </Grid>
-                    </Grid>
-                    </Grid>
-
-
-
-                   </Grid>
-          </Grid>
-
-
-          <Grid sx={{display:'flex',justifyContent:'space-between',flexDirection:matchesA?"column":'row',alignItems:matchesA?'center':'normal'}}>
-                   <Grid sx={{display:'flex',flexDirection:'column'}}>
-                   <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
-                        <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
-                        <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
-                        <Slider {...settings} style={{display:'flex',alignItems:'center',}}>
-                        <Typography><img src={card} width={270} style={{}}></img></Typography>  
-                        <Typography><img src={card2} width={270}></img></Typography>  
-                        <Typography><img src={card4} width={270}></img></Typography>  
-                       
-                       </Slider>
-                       </Grid>
-                    </Grid>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'120px':'110px',marginTop:'1%'}}>
-                       <Grid sx={{display:'flex',width:'100%'}}>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',width:'60%'}}>Royal Black : DCH Google Review Card</Grid>
-                        <Grid sx={{width:'40%'}}>
-                        <Rating style={{marginLeft:'auto',marginTop:'2%',display:'flex'}}
-                    size="small"
-                    color="green"
-                    name="simple-controlled"
-                    value={5}
-                    />
-                        </Grid>
-                       </Grid>
-                       <Grid sx={{display:'flex',marginTop:'1%',alignItems:'center'}}>
-                       <Grid sx={{display:'flex',flexDirection:'column'}}>
-                        <Grid sx={{fontSize:'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹ 599</Grid>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginTop:'-4%'}}><s>₹ 1499</s></Grid>
-                    </Grid>
-                    <Grid sx={{marginLeft:'auto'}}>
-                    <Button
-                   style={{
-                    border:'1px solid #fff',
-                    borderColor:'#fff',
-                    width:matchesB?'250px': '271px',
-                    height: '34px',
-                    lineHeight:'36px',       
-                    color: "#fff",
-                    marginLeft:'2%',
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    textTransform: "none",
-                    borderRadius: '10px',
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                 Add to cart
-                </Button> 
-                    </Grid>
-                    </Grid>
-                    </Grid>
-                   </Grid>
-
-                   <Grid sx={{display:'flex',flexDirection:'column'}}>
-                   <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
-                        <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
-                        <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
-                        <Slider  {...settings} style={{display:'flex',alignItems:'center',}}>
-                        <Typography><img src={card} width={270} style={{}}></img></Typography>  
-                        <Typography><img src={card2} width={270}></img></Typography>  
-                        <Typography><img src={card4} width={270}></img></Typography>  
-                       
-                       </Slider>
-                       </Grid>
-                    </Grid>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'120px':'110px',marginTop:'1%'}}>
-                       <Grid sx={{display:'flex',width:'100%'}}>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',width:'60%'}}>Royal Black : DCH Google Review Card</Grid>
-                        <Grid sx={{width:'40%'}}>
-                        <Rating style={{marginLeft:'auto',marginTop:'2%',display:'flex'}}
-                    size="small"
-                    color="green"
-                    name="simple-controlled"
-                    value={5}
-                    />
-                        </Grid>
-                       </Grid>
-                       <Grid sx={{display:'flex',marginTop:'1%',alignItems:'center'}}>
-                       <Grid sx={{display:'flex',flexDirection:'column'}}>
-                        <Grid sx={{fontSize:'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹ 599</Grid>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginTop:'-4%'}}><s>₹ 1499</s></Grid>
-                    </Grid>
-                    <Grid sx={{marginLeft:'auto'}}>
-                    <Button
-                   style={{
-                    border:'1px solid #fff',
-                    borderColor:'#fff',
-                    width:matchesB?'250px': '271px',
-                    height: '34px',
-                    lineHeight:'36px',       
-                    color: "#fff",
-                    marginLeft:'2%',
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    textTransform: "none",
-                    borderRadius: '10px',
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                 Add to cart
-                </Button> 
-                    </Grid>
-                    </Grid>
-                    </Grid>
-                   </Grid>
-
-                   <Grid sx={{display:'flex',flexDirection:'column'}}>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
-                        <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
-                        <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
-                        <Slider  {...settings} style={{display:'flex',alignItems:'center',}}>
-                        <Typography><img src={card} width={270} style={{}}></img></Typography>  
-                        <Typography><img src={card2} width={270}></img></Typography>  
-                        <Typography><img src={card4} width={270}></img></Typography>  
-                       
-                       </Slider>
-                       </Grid>
-                    </Grid>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'120px':'110px',marginTop:'1%'}}>
-                       <Grid sx={{display:'flex',width:'100%'}}>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',width:'60%'}}>Royal Black : DCH Google Review Card</Grid>
-                        <Grid sx={{width:'40%'}}>
-                        <Rating style={{marginLeft:'auto',marginTop:'2%',display:'flex'}}
-                    size="small"
-                    color="green"
-                    name="simple-controlled"
-                    value={5}
-                    />
-                        </Grid>
-                       </Grid>
-                       <Grid sx={{display:'flex',marginTop:'1%',alignItems:'center'}}>
-                       <Grid sx={{display:'flex',flexDirection:'column'}}>
-                        <Grid sx={{fontSize:'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹ 599</Grid>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginTop:'-4%'}}><s>₹ 1499</s></Grid>
-                    </Grid>
-                    <Grid sx={{marginLeft:'auto'}}>
-                    <Button
-                   style={{
-                    border:'1px solid #fff',
-                    borderColor:'#fff',
-                    width:matchesB?'250px': '271px',
-                    height: '34px',
-                    lineHeight:'36px',       
-                    color: "#fff",
-                    marginLeft:'2%',
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    textTransform: "none",
-                    borderRadius: '10px',
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                 Add to cart
-                </Button> 
-                    </Grid>
-                    </Grid>
-                    </Grid>
-                   </Grid>
-          </Grid>
-
-
-
-
-          <Grid sx={{display:'flex',justifyContent:'space-between',flexDirection:matchesA?"column":'row',alignItems:matchesA?'center':'normal'}}>
-                   <Grid sx={{display:'flex',flexDirection:'column'}}>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
-                        <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
-                        <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
-                        <Slider {...settings} style={{display:'flex',alignItems:'center',}}>
-                        <Typography><img src={card} width={270} style={{}}></img></Typography>  
-                        <Typography><img src={card2} width={270}></img></Typography>  
-                        <Typography><img src={card4} width={270}></img></Typography>  
-                       
-                       </Slider>
-                       </Grid>
-                    </Grid>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'120px':'110px',marginTop:'1%'}}>
-                       <Grid sx={{display:'flex',width:'100%'}}>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',width:'60%'}}>Royal Black : DCH Google Review Card</Grid>
-                        <Grid sx={{width:'40%'}}>
-                        <Rating style={{marginLeft:'auto',marginTop:'2%',display:'flex'}}
-                    size="small"
-                    color="green"
-                    name="simple-controlled"
-                    value={5}
-                    />
-                        </Grid>
-                       </Grid>
-                       <Grid sx={{display:'flex',marginTop:'1%',alignItems:'center'}}>
-                       <Grid sx={{display:'flex',flexDirection:'column'}}>
-                        <Grid sx={{fontSize:'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹ 599</Grid>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginTop:'-4%'}}><s>₹ 1499</s></Grid>
-                    </Grid>
-                    <Grid sx={{marginLeft:'auto'}}>
-                    <Button
-                   style={{
-                    border:'1px solid #fff',
-                    borderColor:'#fff',
-                    width:matchesB?'250px': '271px',
-                    height: '34px',
-                    lineHeight:'36px',       
-                    color: "#fff",
-                    marginLeft:'2%',
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    textTransform: "none",
-                    borderRadius: '10px',
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                 Add to cart
-                </Button> 
-                    </Grid>
-                    </Grid>
-                    </Grid>
-                   </Grid>
-
-                   <Grid sx={{display:'flex',flexDirection:'column'}}>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
-                        <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
-                        <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
-                        <Slider  {...settings} style={{display:'flex',alignItems:'center',}}>
-                        <Typography><img src={card} width={270} style={{}}></img></Typography>  
-                        <Typography><img src={card2} width={270}></img></Typography>  
-                        <Typography><img src={card4} width={270}></img></Typography>  
-                       
-                       </Slider>
-                       </Grid>
-                    </Grid>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'120px':'110px',marginTop:'1%'}}>
-                       <Grid sx={{display:'flex',width:'100%'}}>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',width:'60%'}}>Royal Black : DCH Google Review Card</Grid>
-                        <Grid sx={{width:'40%'}}>
-                        <Rating style={{marginLeft:'auto',marginTop:'2%',display:'flex'}}
-                    size="small"
-                    color="green"
-                    name="simple-controlled"
-                    value={5}
-                    />
-                        </Grid>
-                       </Grid>
-                       <Grid sx={{display:'flex',marginTop:'1%',alignItems:'center'}}>
-                       <Grid sx={{display:'flex',flexDirection:'column'}}>
-                        <Grid sx={{fontSize:'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹ 599</Grid>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginTop:'-4%'}}><s>₹ 1499</s></Grid>
-                    </Grid>
-                    <Grid sx={{marginLeft:'auto'}}>
-                    <Button
-                   style={{
-                    border:'1px solid #fff',
-                    borderColor:'#fff',
-                    width:matchesB?'250px': '271px',
-                    height: '34px',
-                    lineHeight:'36px',       
-                    color: "#fff",
-                    marginLeft:'2%',
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    textTransform: "none",
-                    borderRadius: '10px',
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                 Add to cart
-                </Button> 
-                    </Grid>
-                    </Grid>
-                    </Grid>
-                   </Grid>
-
-                   <Grid sx={{display:'flex',flexDirection:'column'}}>
-                 <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'255px':'260px',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column'}}>
-                        <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
-                        <Grid sx={{width:'100%',marginTop:-6,marginLeft:8}}>
-                        <Slider {...settings} style={{display:'flex',alignItems:'center',}}>
-                        <Typography><img src={card} width={270} style={{}}></img></Typography>  
-                        <Typography><img src={card2} width={270}></img></Typography>  
-                        <Typography><img src={card4} width={270}></img></Typography>  
-                       
-                       </Slider>
-                       </Grid>
-                    </Grid>
-                    <Grid sx={{width:matchesB?'320px':'357px',height:matchesB?'120px':'110px',marginTop:'1%'}}>
-                       <Grid sx={{display:'flex',width:'100%'}}>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',width:'60%'}}>Royal Black : DCH Google Review Card</Grid>
-                        <Grid sx={{width:'40%'}}>
-                        <Rating style={{marginLeft:'auto',marginTop:'2%',display:'flex'}}
-                    size="small"
-                    color="green"
-                    name="simple-controlled"
-                    value={5}
-                    />
-                        </Grid>
-                       </Grid>
-                       <Grid sx={{display:'flex',marginTop:'1%',alignItems:'center'}}>
-                       <Grid sx={{display:'flex',flexDirection:'column'}}>
-                        <Grid sx={{fontSize:'22px',fontWeight:700,lineHeight:'26px',color:'#19B300'}}>₹ 599</Grid>
-                        <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginTop:'-4%'}}><s>₹ 1499</s></Grid>
-                    </Grid>
-                    <Grid sx={{marginLeft:'auto'}}>
-                    <Button
-                   style={{
-                    border:'1px solid #fff',
-                    borderColor:'#fff',
-                    width:matchesB?'250px': '271px',
-                    height: '34px',
-                    lineHeight:'36px',       
-                    color: "#fff",
-                    marginLeft:'2%',
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    textTransform: "none",
-                    borderRadius: '10px',
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                 Add to cart
-                </Button> 
-                    </Grid>
-                    </Grid>
-                    </Grid>
-                   </Grid>
-
-
-
-
-          </Grid>
-        </Grid>
-
-
-        <Button 
-                  style={{
-                    border:'1px solid #fff',
-                    borderColor:'#fff',
-                    width:matchesB?100: '160px',
-                    height: matchesB?25:'40px',
-                    lineHeight:'36px',
-                    color: "#fff",
-                    marginLeft:'2%',
-                    boxShadow: "0px 0px 10px 3px rgba(255, 255, 255, 0.3)",
-                    marginTop:'5%',
-                    textTransform: "none",
-                    borderRadius: '10px',
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginLeft:'auto'
-                  }}>              
-                 <div style={{   fontSize: "17px",
-                    fontWeight: 600,}}>1</div><div style={{   fontSize: "14px",
-                        fontWeight: 400,marginLeft:'3%'}}>2</div><div style={{   fontSize: "14px",
-                            fontWeight: 400,marginLeft:'3%'}}>3... </div><div style={{   fontSize: "12px",
-                                fontWeight: 400}}>more</div>
-                  
-                </Button>
+                </Grid>
+    
       </Grid>
   </Grid>
-  <Grid sx={{marginTop:'4%'}}>
+  <Grid sx={{marginTop:'1%'}}>
     <Services/>
   </Grid>
   <Grid>
