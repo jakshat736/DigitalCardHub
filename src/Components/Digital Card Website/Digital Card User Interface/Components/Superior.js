@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import lines from "../../Digital Card Assets/line111.png"
-import superior from "../../Digital Card Assets/superior2.png"
+import superior from "../../Digital Card Assets/sup.png"
 import {
     useMediaQuery,
   } from "@mui/material";
@@ -39,7 +39,7 @@ export default function Superior()
                   WHY WE ARE SUPERIOR ?
                 </Grid>
                 <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'5%'}}>
-              <img src={superior}style={{width:matchesA?'80vw':'66vw'}} ></img>
+              <img src={superior}style={{width:matchesA?'81vw':'69vw'}} ></img>
               </Grid>
              </Grid>
 

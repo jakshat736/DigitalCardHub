@@ -869,6 +869,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           </div>
         </div>
 
+
+
         <div
           style={{
             display: "flex",

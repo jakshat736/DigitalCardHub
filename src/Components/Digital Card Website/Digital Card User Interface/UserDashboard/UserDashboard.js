@@ -147,8 +147,6 @@ const UserDashboard = () => {
       setDoorTags(response.data)
       setDoorTagDisplay("flex")
 
-
-
     }
   }
   const fetchAllStandeeTag = async (data1) => {
@@ -169,8 +167,6 @@ const UserDashboard = () => {
 
     }
   }
-
-
 
   const fetchCardDetail = async () => {
     setLoading(true)

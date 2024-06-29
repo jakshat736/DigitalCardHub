@@ -138,8 +138,8 @@ export default function NewAllProducts()
                       </Grid>
                     </Grid>
                     </Grid> 
-                    <Grid sx={{display:'flex',width:matches?'100%':'50%',height:matches?'auto':520,color:'#fff',justifyContent:matches?'center':'normal',marginTop:matches?'10%':''}}>
-                     <Grid sx={{display:'flex',flexDirection:'column',marginLeft:'auto'}}>
+                    <Grid sx={{display:'flex',width:matches?'100%':'50%',height:'auto',color:'#fff',alignItems:matches?'center':'normal',justifyContent:matches?'center':'normal',marginTop:matches?'10%':''}}>
+                     <Grid sx={{display:'flex',flexDirection:'column',marginLeft:matches?'':'auto'}}>
                         <Grid>
                             <img src={image1} style={{width:matches?'160px':'214px',height:matches?'155px':'205px'}}></img>
                         </Grid>

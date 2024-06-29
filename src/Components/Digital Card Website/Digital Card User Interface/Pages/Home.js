@@ -16,14 +16,14 @@ import Categories from '../Components/Categories';
 import Varieties from '../Components/Varieties';
 import { useEffect } from 'react';
 import Aos from "aos";
-import 'aos/dist/aos.css'
+import 'aos/dist/aos.css';
 import Lower from '../Components/Lower';
 import { CompanySlider } from '../Components/CompanySlider';
 import Header from '../../NewUpdate/components/administrator/Header';
-export default function Home() {
-    const sectionRef = useRef(null);
 
-    
+export default function Home() {
+
+    const sectionRef = useRef(null);
 
     const parentFunction = () => {
         var section = document.getElementById("mySection");

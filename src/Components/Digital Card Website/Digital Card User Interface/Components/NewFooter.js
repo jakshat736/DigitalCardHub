@@ -45,7 +45,7 @@ export default function Newfooter()
         </Grid>
             </Grid>
             
-            {matchesA?<></>:<><Grid sx={{width:'25%'}}>
+            {matchesA?<></>:<><Grid sx={{width:'25%',marginLeft:matchesA?'':'9%'}}>
             <Grid sx={{fontSize:'20px',fontWeight:700,lineHeight:'30px'}}>
             QUICK LINKS
             </Grid>
@@ -66,7 +66,7 @@ export default function Newfooter()
             </Grid>
             </Grid></>}
 
-            {matchesA?<></>:<><Grid sx={{width:'25%'}}>
+            {matchesA?<></>:<><Grid sx={{width:'25%',marginLeft:matchesA?'':'6%'}}>
             <Grid sx={{fontSize:'20px',fontWeight:700,lineHeight:'30px'}}>
             MORE LINKS
             </Grid>

@@ -135,6 +135,9 @@ import CategoryProducts from "./Components/Digital Card Website/Digital Card Use
 import NewBussinessProfile from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewBussinessProfile";
 import NewProfile from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewProfile";
 import DashboardHome from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewDashboard/DashboardHome";
+import Affiliate from "./Components/Digital Card Website/Digital Card User Interface/Components/Affiliate";
+import NewDCLogin from "./Components/Digital Card Website/Digital Card User Interface/Pages/NewDCLogin";
+import NewHowToCreate from "./Components/Digital Card Website/Digital Card User Interface/Components/NewHowToCreate";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 
@@ -150,13 +153,15 @@ function App() {
 								{/* DIGITAL CARD WEBSITE ROUTER START */}
 								<Route element={<DemoOtp/>} path="/demootp"/>  
 								<Route element={<HomePage />} path="/home" />
-								<Route element={<NewHome/>} path="/newhome" />
+								<Route element={<NewHome/>} path="/newhome"/>
+								<Route element={<Affiliate/>} path="/affiliate"/>
 								<Route element={<Instaredirect />} path="/aradhyarana" />
-								<Route element={<Home />} path="/home1" />
+								<Route element={<Home/>} path="/home1" />
 								<Route element={<NewCheckOut/>} path="/newcheckout" />
 								<Route element={<NewCheckOut2/>} path="/newcheckout2" />
 								<Route element={<NewCheckOut3/>} path="/newcheckout3" />
-								<Route element={<NewThemeCard/>} path="/newthemecard" />
+								<Route element={<NewThemeCard/>} path="/newthemecard"/>
+								<Route element={<NewHowToCreate/>} path="/newhowtocreate" />
 								<Route element={<ProductComponents/>} path="/productcomponents/:_id" />
 								<Route element={<NewAllProducts/>} path="/newallproduct" />
 								<Route element={<NewAllProduct2/>} path="/newallproduct2" />
@@ -184,6 +189,7 @@ function App() {
 								<Route element={< LoadingScreen1 />} path="/" />
 								<Route element={<Preview />} path="/preview" />
 								<Route element={<AdminLogin />} path="/adminlogin" />
+								<Route element={<NewDCLogin/>} path="/newlogin" />
 								<Route path="/dashboard/*" element={<DashBoard />} />
 								<Route path="/compatible-devices" element={<Compatibility />} />
 								<Route path="/how_to_create" element={<HowToUse />} />

@@ -251,7 +251,7 @@ export default function ProductComponents() {
           showConfirmButton: false,
 
         })
-
+        
         window.localStorage.setItem("Token", true)
         window.localStorage.setItem("User", true)
         window.localStorage.removeItem('data')
@@ -412,8 +412,7 @@ export default function ProductComponents() {
                       background: "#023569",
                       color: "#ffffff",
                     }
-                  }}
-                >
+                  }}>
                   Get Otp
                 </Button>
               </Grid>
@@ -889,9 +888,9 @@ export default function ProductComponents() {
                   Add More +
                 </Button>
 
-                <Button
-                onClick={() => handleClick(Token)}
-                  style={{
+                 <Button
+                 onClick={() => handleClick(Token)}
+                    style={{
                     border: '1px solid #000',
                     borderColor: '#dfe6e9',
                     height: matchesB ? 25 : '2.7vw',
@@ -1781,6 +1780,8 @@ export default function ProductComponents() {
       </Grid>
       {ViewCard()}
       {LoginComponent()}
+      {SignUpComponent()}
+      {ChangePasswordComponent()}
     </Grid>
   );
 }

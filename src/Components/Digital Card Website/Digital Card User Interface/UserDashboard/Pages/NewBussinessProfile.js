@@ -1201,6 +1201,8 @@ export default function NewBussinessProfile() {
                   </div>
                 </IconButton>
                 </Grid>
+
+                
                 <Typography>{save==true?"Saved Successfully":save==false?"Not Saved":''}</Typography>  
                 <Grid onClick={()=>setOpenDialog(true)}  sx={{marginLeft:'1%'}}>
                     <img src={icon} width={32} style={{marginTop:'1%'}} ></img>
