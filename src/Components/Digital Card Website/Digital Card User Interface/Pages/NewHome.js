@@ -131,7 +131,8 @@ export default function NewHome() {
           <Grid>
             <NewFeatures />
           </Grid>
-           {/* <Grid
+
+           <Grid
             sx={{
               position: "sticky",
               bottom: "0",
@@ -141,7 +142,7 @@ export default function NewHome() {
             }}
           >
             <MiniYouTube />
-          </Grid>  */}
+          </Grid> 
 
           <Grid>
             <Newfooter />
