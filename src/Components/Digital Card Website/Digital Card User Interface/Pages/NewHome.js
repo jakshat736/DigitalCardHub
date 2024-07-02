@@ -137,7 +137,7 @@ export default function NewHome() {
               position: "sticky",
               bottom: "0",
               zIndex: 50,
-              width: matchesA ? "40%" : "30%",
+              width: matchesA ? "50%" : "30%",
               marginLeft: "auto",
             }}
           >

@@ -160,7 +160,7 @@ function App() {
 								<Route element={<NewCheckOut/>} path="/newcheckout" />
 								<Route element={<NewCheckOut2/>} path="/newcheckout2" />
 								<Route element={<NewCheckOut3/>} path="/newcheckout3" />
-								<Route element={<NewThemeCard/>} path="/newthemecard"/>
+								<Route element={<NewThemeCard/>} path="/newcart"/>
 								<Route element={<NewHowToCreate/>} path="/newhowtocreate" />
 								<Route element={<ProductComponents/>} path="/productcomponents/:_id" />
 								<Route element={<NewAllProducts/>} path="/newallproduct" />

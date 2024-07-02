@@ -374,7 +374,6 @@ export default function ProductComponents() {
     formdata.append("mobile", User);
     var response = await postData("cart/getAllProducts", formdata, true);
     if (response) {
-      console.log(response.products.length)
       setCart(response.products.length);
     } else {
 
@@ -590,7 +589,7 @@ export default function ProductComponents() {
       formdata.append("Description", description);
       var response = await postData("cart/add", formdata, true);
       if (response.result == true) {
-        navigate('/newthemecard')
+        navigate('/newcart')
         func();
       }
     } else {

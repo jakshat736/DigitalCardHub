@@ -44,7 +44,7 @@ export default function MiniYouTube()
 
                         <IconButton 
                             onClick={handleClose} 
-                            sx={{ position: 'absolute', top: -20, right: -2 }}
+                            sx={{ position: 'absolute', top: -20, right:matches?-9: -2 }}
                         >
                            <img src={closess} width={20}></img>
                         </IconButton>
