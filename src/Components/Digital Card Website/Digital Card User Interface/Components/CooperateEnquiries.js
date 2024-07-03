@@ -54,7 +54,7 @@ export default function CooperateEnquiries()
             </Grid>
             <Grid sx={{display:'flex',width:'100%',height:'auto',marginTop:'5%',justifyContent:'space-between'}}>
                 <Grid sx={{width:'100%'}}>
-              <Grid sx={{width:matchesA?'100%':'460px',height:matchesA?'420px':'430px',borderRadius:'10px',border:'1px solid #fff',padding:3}}>
+              <Grid sx={{width:matchesA?'100%':'460px',height:matchesB?'420px':matchesA?'450px':'430px',borderRadius:'10px',border:'1px solid #fff',padding:3}}>
                <Grid sx={{fontSize:'22px',fontWeight:600,lineHeight:'26px',letterSpacing:'-2.4%'}}>Name</Grid>
                <Grid><input type="text" style={{height:40,borderColor:'#ffff',border:'1px solid #ffff',borderRadius:'10px',width:'100%',background:'transparent'}} placeholder="Enter your Full Name"></input></Grid>
                <Grid sx={{fontSize:'22px',fontWeight:600,lineHeight:'26px',letterSpacing:'-2.4%',marginTop:'1.6%'}}>Email or Number</Grid>
@@ -67,9 +67,9 @@ export default function CooperateEnquiries()
              style={{
                     border:'1px solid #fff',
                     borderColor:'#fff',
-                    height:matchesB?35: '2.7vw',
+                    height:matchesB?35:matchesA?35 :'2.7vw',
                     color: "#000",
-                    fontSize:matchesB?'15px': "1.3vw",
+                    fontSize:matchesB?'15px': matchesA?'16px':"1.3vw",
                     fontWeight: 500,
                     textTransform: "none",
                     borderRadius: '10px',
@@ -94,7 +94,7 @@ export default function CooperateEnquiries()
           </Grid>
         </Grid>
         <Grid sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center',color:'#fff'}}>
-        <Grid sx={{fontSize:matchesB?'22px':'44px',fontWeight:700,lineHeight:matchesB?'28px':'50px',marginTop:matchesB?'8%':'5%',width:matchesB?'90%':'50%',textAlign:'center'}}>
+        <Grid sx={{fontSize:matchesA?'22px':'44px',fontWeight:700,lineHeight:matchesA?'28px':'50px',marginTop:matchesB?'8%':'5%',width:matchesB?'90%':'50%',textAlign:'center'}}>
         Some of our cooperate customers
             </Grid>
             </Grid>

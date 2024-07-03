@@ -137,11 +137,10 @@ import NewProfile from "./Components/Digital Card Website/Digital Card User Inte
 import DashboardHome from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewDashboard/DashboardHome";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
+
 	const [cart, setCart] = useState([]);
-
-
-	return (
-
+	
+	 return(
 		<div>
 			<SessionContext.Provider value={{ cart, setCart }}>
 				<SnackbarProvider autoHideDuration={4000} variant='success' anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
@@ -161,7 +160,7 @@ function App() {
 								<Route element={<ProductComponents/>} path="/productcomponents/:_id" />
 								<Route element={<NewAllProducts/>} path="/newallproduct" />
 								<Route element={<NewAllProduct2/>} path="/newallproduct2" />
-								<Route element={<CategoryProducts/>} path="/categoryproducts" />
+								<Route element={<CategoryProducts/>} path="/categoryproducts/:_id" />
 								<Route element={<CooperateEnquiries/>} path="/cooperate"/>
 								<Route element={<DCLogin/>} path="/digitalcardlogin"/>
 								<Route element={<DCSignUp />} path="/digitalcardsignup" />

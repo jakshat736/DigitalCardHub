@@ -12,6 +12,7 @@ import logo1 from '../../Digital Card Assets/dchlogo.png';
 import { useParams } from 'react-router-dom';
 import heart from "../../Digital Card Assets/heart.png"
 import useMediaQuery from "@mui/material/useMediaQuery";
+import howtouseimage from "../../Digital Card Assets/howtouse.png"
 import upload from "../../Digital Card Assets/plussign.png";
 import { useStyles2 } from "../../Digital Card User Interface/Components//AllProductSlider";
 import use1 from "../../Digital Card Assets/use1.png"
@@ -219,6 +220,7 @@ export default function ProductComponents() {
     const response = await postData('products/getProductById', formData, true)
     console.log(response.data?.images)
     setData(response.data)
+    
     if (response?.data != undefined) {
       setLoading(false)
       setShow(true)
@@ -393,29 +395,39 @@ export default function ProductComponents() {
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={2} sx={{ p: "8% 5%" }}>
-            <Grid item xs={9}>
-              <TextField label="Registered Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
-            </Grid>
-            <Grid item xs={3} sx={{ display: "flex" }}>
-              <Button
-                fullWidth
-                onClick={handleSubmit}
-                sx={{
-                  background: "#001E3C",
-                  color: "#ffffff",
-                  p: "2% 10%",
-                  fontSize: { xs: "0.6em", md: "0.9em", lg: "0.9em" },
-                  fontWeight: 600,
-                  "&:hover": {
-                    background: "#023569",
+              <Grid item xs={9}>
+                <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
+              </Grid>
+              <Grid item xs={3} sx={{ display: "flex" }}>
+                <Button
+                  fullWidth
+                  onClick={handleopenotpdailog}
+                  sx={{
+                    background: "#001E3C",
                     color: "#ffffff",
-                  }
-                }}
-              >
-                Login
-              </Button>
+                    p: "2% 10%",
+                    fontSize: { xs: "0.6em", md: "0.9em", lg: "0.9em" },
+                    fontWeight: 600,
+                    "&:hover": {
+                      background: "#023569",
+                      color: "#ffffff",
+                    }
+                  }}
+                >
+                  Get Otp
+                </Button>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
+
+              </Grid>
+              <Grid item xs={12}>
+                OTP not received ? <a style={{ cursor: 'pointer' }} onClick={handleopenotpdailog}>Resend</a>
+              </Grid>
+              <Grid item xs={12}>
+                {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
+              </Grid>
             </Grid>
-          </Grid>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} variant="contained">
@@ -448,20 +460,19 @@ export default function ProductComponents() {
   const handleopenotpdailog = async () => {
 
     if (phoneNo != '') {
-      var otpval = OtpGenerator()
-      setOtp(otpval)
-      const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
-      const response = await postData('otp/api', { url: apiUrl })
-      // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41
+        var otpval = OtpGenerator()
+
+        setOtp(otpval)
+
+        const apiUrl = `https://cloud.bulkpromo.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=6676AB42323B3&access_token=666ff52aa9a38`;
+        const response = await postData('otp/api', { url: apiUrl })
     } else {
-      Swal.fire({
-        text: "Enter the Number First",
-        timer: 1000
-      })
+        Swal.fire({
+            text: "Enter the Number First",
+            timer: 1000
+        })
     }
-
-
-  }
+}
 
   const SignUpComponent = () => {
     return (
@@ -566,7 +577,6 @@ export default function ProductComponents() {
   }
 
 
-
   const handleClick = async (Token1, phone) => {
 
     if (Token1) {
@@ -581,14 +591,14 @@ export default function ProductComponents() {
       formdata.append("Description", description);
       var response = await postData("cart/add", formdata, true);
       if (response.result == true) {
-
-        navigate('/cart')
+        navigate('/newthemecard')
         func();
       }
     } else {
       setOpen(true)
     }
   };
+
   useEffect(() => {
     func();
   }, []);
@@ -654,7 +664,7 @@ export default function ProductComponents() {
     infinite: true,
     speed: 3000,
     autoplay: "true",
-    slidesToShow: matches ? 1 : 4,
+    slidesToShow: matches ? 1:matchesA?2 : 4,
     arrows: false,
     cssEase: 'linear',
     pauseOnHover: false,
@@ -665,7 +675,7 @@ export default function ProductComponents() {
     infinite: true,
     speed: 1000,
     dots: false,
-    slidesToShow: matches ? 1 : 4,
+    slidesToShow: matches ? 1: matchesA?2: 4,
     autospeed: 1,
     slidesToScroll: 4,
     arrows: false
@@ -675,14 +685,14 @@ export default function ProductComponents() {
     infinite: true,
     speed: 1000,
     dots: false,
-    slidesToShow: matches ? 1 : 3,
+    slidesToShow: matches ? 1 :matchesA?2: 3,
     slidesToScroll: matches ? 1 : 3,
     autoplay: "true",
     autospeed: 1,
     arrows: false,
   };
 
-  var data1 = [{ picture: r1, name: 'Ankit Narwariya' },
+  var data11 = [{ picture: r1, name: 'Ankit Narwariya' },
   { picture: r2, name: 'Chinmay Sharma' },
   { picture: r3, name: 'Juned Solanki' },
   { picture: r4, name: 'Harshit Jain' },
@@ -691,7 +701,7 @@ export default function ProductComponents() {
   { picture: r3, name: 'Satyveer Pal' },
   ]
   const showReview = () => {
-    return data1.map((item) => {
+    return data11.map((item) => {
       return (<Grid sx={{ width: '100%' }}>
         <Grid sx={{ width: 320, padding: 1.5, display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#000', flexDirection: 'column', background: '#fff', borderRadius: '10px' }}>
           <Grid>
@@ -719,9 +729,9 @@ export default function ProductComponents() {
 
 
 
-  var data1 = [photo2, photo3, photo4, photo2, photo3, photo4]
+  var data12 = [card11,card22, card33,card44,card55,card33]
   const showProducts = () => {
-    return data1.map((item) => {
+    return data12.map((item) => {
       return (<Grid sx={{ display: 'flex', flexDirection: 'column', marginLeft: matches ? '6%' : '14%' }}>
         <Grid sx={{ width: matchesB ? '320px' : '357px', height: matchesB ? '245px' : '260px', display: 'flex', alignItems: 'center', border: '1px solid #fff', borderRadius: '10px', background: '#fff', padding: 2, flexDirection: 'column' }}>
           <Grid sx={{ marginLeft: 'auto' }}><img src={heart} width={25}></img></Grid>
@@ -844,18 +854,19 @@ export default function ProductComponents() {
             </Grid>
             <Grid sx={{ width: '100%', height: matches ? 'auto' : 210, padding: 1.8 }}>
               <Grid sx={{ display: 'flex' }}>
+               
                 <Grid sx={{ width: 200, height: matches ? 'auto' : 136 }}>
-                  <Grid><img src={popupcard} style={{ width: '100%' }}></img></Grid>
+                  <Grid><img src={`${serverURL}/images/${data.images?.[0]}`} style={{ width: '70%' }}></img></Grid>
                 </Grid>
                 <Grid>
                   <Grid sx={{ fontSize: matches ? '15px' : '18px', fontWeight: 600, lineHeight: matches ? '18px' : '26px', letterSpacing: '-2.4%' }}>
-                    Sky white : DCH instago fast review card
+                  {data?.productName}
                   </Grid>
                   <Grid sx={{ fontSize: matches ? '14px' : '18px', fontWeight: 600, lineHeight: matches ? '15px' : '36px', letterSpacing: '-2.4%' }}>
-                    Qty: x2
+                    Qty: x{value}
                   </Grid>
                   <Grid sx={{ fontSize: matches ? '14px' : '18px', fontWeight: 600, lineHeight: matches ? '15px' : '36px', letterSpacing: '-2.4%', color: '#23F900' }}>
-                    Rs. 599
+                  ₹ {data?.offerprice}
                   </Grid>
                 </Grid>
               </Grid>
@@ -879,6 +890,7 @@ export default function ProductComponents() {
                 </Button>
 
                 <Button
+                onClick={() => handleClick(Token)}
                   style={{
                     border: '1px solid #000',
                     borderColor: '#dfe6e9',
@@ -939,21 +951,22 @@ export default function ProductComponents() {
           >
             <Grid
               sx={{
-                width: "86%",
+                width: "85%",
                 height: "auto",
                 marginTop: matchesA ? '1%' : "5%",
                 display: "flex",
-                flexDirection: matchesA ? 'column' : 'row'
+                flexDirection: matchesA ? 'column' : 'row',
               }}
             >
               <Grid
                 sx={{
-                  position: matchesA ? "-moz-initial" : 'sticky', zIndex: '2', top: 100,
-                  width: matchesA ? '100%' : "50%",
-                  height: matches ? 'auto' : 600,
-                  ml: { xs: 0, md: 10 }
+                  position: matchesA ? "-moz-initial" : "sticky", zIndex: '2', top: 100,
+                  width: matchesA ? '100%' : "45%",
+                  height:matchesA?'auto':550,
+                  display:'flex',alignItems:'center',flexDirection:'column'
                 }}
               >
+              
                 <Grid
                   sx={{
                     width: matches ? '90vw' : 550,
@@ -961,7 +974,7 @@ export default function ProductComponents() {
                     borderRadius: "10px",
                     height: matches ? '70vw' : 360,
                     background: "#fff",
-                    ml: 0
+                    ml: 0,
                   }}
                 >
                   <Slider asNavFor={nav2} arrows={false} ref={(slider1) => setNav1(slider1)}>
@@ -972,9 +985,9 @@ export default function ProductComponents() {
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
-                        ml: { xs: 9, sm: 15, md: 15 }
+                       marginLeft:'23%',
+                       marginTop:'7%'
                       }}>
-
                         <img src={`${serverURL}/images/${item}`} width={"50%"} />
                       </Grid>
                     ))}
@@ -989,12 +1002,13 @@ export default function ProductComponents() {
                     }}
                   />
                 </Grid>
-                <Grid sx={{ marginTop: "3%", ml: { xs: 0, md: -17 }, mr: { xs: 0, md: 5 } }}>
+                <Grid sx={{ marginTop: "4%", width:'70%',marginLeft:'3%' }}>
                   <Slider
                     asNavFor={nav1}
                     ref={(slider2) => setNav2(slider2)}
                     slidesToShow={data?.images?.length == 2 ? 2 : data?.images?.length > 2 ? 3 : 1}
                     swipeToSlide={true}
+                    arrows={false}
                     focusOnSelect={true}>
                     {data?.images?.map((item) => (
                       <Grid item xs={12} >
@@ -1017,7 +1031,7 @@ export default function ProductComponents() {
 
               <Grid
                 sx={{
-                  width: matchesA ? '100%' : "50%",
+                  width: matchesA ? '100%' : "55%",
                   height: "auto",
                   display: "flex",
                   flexDirection: "column",
@@ -1027,13 +1041,13 @@ export default function ProductComponents() {
               >
                 <Grid
                   sx={{
-                    fontSize: "26px",
+                    fontSize:matches ? '24px' :"26px",
                     fontWeight: 700,
-                    lineHeight: "40px",
-                    marginTop: matches ? '2%' : ''
+                    lineHeight: "34px",
+                    marginTop: matches ? '2%':matchesA?'5%' : '-1.5%'
                   }}
                 >
-                  Sky White : DCH Instago Review Card
+                {data?.productName}
                 </Grid>
                 <Grid sx={{ display: "flex", gap: 1, marginTop: "2%", marginLeft: matchesB ? '-60%' : matches ? '-70%' : '' }}>
                   <Grid
@@ -1044,7 +1058,7 @@ export default function ProductComponents() {
                       color: "#19B300",
                     }}
                   >
-                    ₹ 599
+                  ₹ {data?.offerprice}
                   </Grid>
                   <Grid
                     sx={{
@@ -1054,12 +1068,12 @@ export default function ProductComponents() {
                       color: "#A39C00",
                     }}
                   >
-                    <s>₹ 1499</s>
+                    <s>₹ {data?.price}</s>
                   </Grid>
                 </Grid>
-                <Grid sx={{ display: "flex", marginTop: "3%" }}>
-                  <Button
-                    onClick={handleNagivate}
+                <Grid sx={{ display: "flex", marginTop: "3%",marginLeft:'-2%' }}>
+                  <Grid
+                    // onClick={handleNagivate}
                     style={{
                       border: "1px solid #fff",
                       borderColor: "#fff",
@@ -1076,13 +1090,13 @@ export default function ProductComponents() {
                       justifyContent: "center",
                       gap: 40,
                       background: "#fff",
-                      cursor: 'pointer'
+                      
                     }}
                   >
-                    <div style={{ fontSize: "24px", fontWeight: 500 }}>-</div>{" "}
-                    <div>1</div>{" "}
-                    <div style={{ fontSize: "18px", fontWeight: 500 }}>+</div>
-                  </Button>
+                    <div onClick={() => handleRemove()} style={{ fontSize: matchesB ? "12px" : "1.6vw", fontWeight: 600,cursor: 'pointer', }}>-</div>{" "}
+                    <div style={{fontSize: matchesB ? "12px" : "1vw", fontWeight: 600,}}>{value}</div>{" "}
+                    <div onClick={() => handleAdd()} style={{ fontSize: matchesB ? "12px" : "1.3vw", fontWeight: 600,cursor: 'pointer' }}>+</div>
+                  </Grid>
                   <Button
                     onClick={handleViewCard}
                     style={{
@@ -1130,13 +1144,15 @@ export default function ProductComponents() {
                     </Grid>
                   </Grid>
                   <Grid sx={{ marginTop: "1%" }}>
-                    <Grid
+                    <Grid 
                       sx={{ fontSize: "18px", fontWeight: 600, lineHeight: "26px" }}
                     >
                       Name
                     </Grid>
                     <Grid sx={{ marginTop: "-1%" }}>
                       <input
+                        onChange={(e) => setCompanyName(e.target.value)}
+                        value={companyName}
                         type="text"
                         style={{
                           height: 40,
@@ -1160,6 +1176,8 @@ export default function ProductComponents() {
                     </Grid>
                     <Grid sx={{ marginTop: "-1%" }}>
                       <input
+                        value={description}
+                        onChange={(e) => setDescrition(e.target.value)}
                         type="text"
                         style={{
                           height: 40,
@@ -1269,7 +1287,17 @@ export default function ProductComponents() {
                         >
                           Upload Logo
                         </Grid>
-                        <Button
+
+                        <label htmlFor="icon-button-file1">
+                      <input
+                        style={{ display: "none" }}
+                        accept="image/*"
+                        id="icon-button-file1"
+                        type="file"
+                        onChange={handleIcon}
+                      />
+                      <Button
+                         component="span"
                           style={{
                             border: "1px solid #fff",
                             borderColor: "#fff",
@@ -1299,6 +1327,7 @@ export default function ProductComponents() {
                             Choose file
                           </div>
                         </Button>
+                    </label>
                       </Grid>
                     </Grid>
                   </Grid>
@@ -1381,7 +1410,7 @@ export default function ProductComponents() {
                 <Grid sx={{ marginTop: "4%", width: "100%" }}>
                   <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
                     <Grid
-                      sx={{ fontSize: "26px", fontWeight: 700, lineHeight: "26px" }}
+                      sx={{ fontSize: matches ? '22px':"26px", fontWeight: 700, lineHeight: "26px" }}
                     >
                       Features :
                     </Grid>
@@ -1435,9 +1464,9 @@ export default function ProductComponents() {
                       ></Grid>
                       <Grid
                         sx={{
-                          fontSize: "22px",
+                          fontSize:  matches ? '18px' :"22px",
                           fontWeight: 700,
-                          lineHeight: "40px",
+                          lineHeight: matches ? '30px' : "40px",
                           textAlign: "center",
                           marginTop: "3%",
                         }}
@@ -1456,9 +1485,9 @@ export default function ProductComponents() {
                       ></Grid>
                       <Grid
                         sx={{
-                          fontSize: "22px",
+                          fontSize:  matches ? '18px' :"22px",
                           fontWeight: 700,
-                          lineHeight: "40px",
+                          lineHeight: matches ? '30px' : "40px",
                           textAlign: "center",
                           marginTop: "3%",
                         }}
@@ -1479,9 +1508,9 @@ export default function ProductComponents() {
                     >
                       <Grid
                         sx={{
-                          fontSize: "22px",
+                          fontSize:  matches ? '18px' :"22px",
                           fontWeight: 700,
-                          lineHeight: "40px",
+                          lineHeight: matches ? '30px' : "40px",
                           textAlign: "center",
                         }}
                       >
@@ -1499,9 +1528,9 @@ export default function ProductComponents() {
 
                       <Grid
                         sx={{
-                          fontSize: "22px",
+                          fontSize:  matches ? '18px' :"22px",
                           fontWeight: 700,
-                          lineHeight: "40px",
+                          lineHeight: matches ? '30px' : "40px",
                           textAlign: "center",
                           marginTop: "12%",
                         }}
@@ -1611,52 +1640,9 @@ export default function ProductComponents() {
                 alignItems: 'center',
                 flexDirection: 'column',
               }}>
-              <Grid sx={{ fontSize: matchesB ? '30px' : '52px', fontWeight: 700, lineHeight: matchesB ? '30px' : '26px' }}>How to use me ?</Grid>
-              <Grid sx={{ display: 'flex', justifyContent: matchesB ? 'center' : "space-between", marginTop: '6%', flexDirection: matchesB ? 'column' : 'row', alignItems: matchesB ? 'center' : '', gap: matchesB ? 3 : 0 }}>
-                <Grid sx={{ width: matches ? '100%' : '25%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                  <Grid>
-                    <img src={use1} width={350}></img>
-                  </Grid>
-                  <Grid sx={{ fontSize: '32px', fontWeight: 700, lineHeight: '26px', marginTop: '4%' }}>
-                    Step 1
-                  </Grid>
-                  <Grid sx={{ fontSize: '22px', fontWeight: 400, lineHeight: '26px', marginTop: '3%', textAlign: 'center', width: '80%' }}>
-                    Norem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </Grid>
-                </Grid>
-                <Grid sx={{ width: matches ? '100%' : '25%', height: 500, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                  <Grid>
-                    <img src={use2} width={100}></img>
-                  </Grid>
-                  <Grid sx={{ fontSize: '32px', fontWeight: 700, lineHeight: '26px', marginTop: '4%' }}>
-                    Step 2
-                  </Grid>
-                  <Grid sx={{ fontSize: '22px', fontWeight: 400, lineHeight: '26px', marginTop: '3%', textAlign: 'center', width: '80%' }}>
-                    Norem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </Grid>
-                </Grid>
-                <Grid sx={{ width: matches ? '100%' : '25%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                  <Grid sx={{ marginTop: '10%' }}>
-                    <img src={use3} width={200}></img>
-                  </Grid>
-                  <Grid sx={{ fontSize: '32px', fontWeight: 700, lineHeight: '26px', marginTop: matchesB ? '2%' : '25%' }}>
-                    Step 3
-                  </Grid>
-                  <Grid sx={{ fontSize: '22px', fontWeight: 400, lineHeight: '26px', marginTop: '3%', textAlign: 'center', width: '80%' }}>
-                    Norem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </Grid>
-                </Grid>
-                <Grid sx={{ width: matches ? '100%' : '25%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                  <Grid>
-                    <img src={use4} width={160}></img>
-                  </Grid>
-                  <Grid sx={{ fontSize: '32px', fontWeight: 700, lineHeight: '26px', marginTop: '4%' }}>
-                    Step 4
-                  </Grid>
-                  <Grid sx={{ fontSize: '22px', fontWeight: 400, lineHeight: '26px', marginTop: '3%', textAlign: 'center', width: '80%' }}>
-                    Norem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </Grid>
-                </Grid>
+              <Grid sx={{ fontSize: matchesB ? '24px' : '52px', fontWeight: 700, lineHeight: matchesB ? '30px' : '26px' }}>How to use me ?</Grid>
+             <Grid sx={{width:'100%',marginTop:'3%'}}>
+                <img src={howtouseimage} style={{width:'100%',marginLeft:'-4%'}}></img>
               </Grid>
             </Grid>
           </Grid>)}
@@ -1667,13 +1653,13 @@ export default function ProductComponents() {
         sx={{
           width: "99%",
           height: 'auto',
-          marginTop: "10%",
+          marginTop: "5%",
           display: "flex",
           alignItems: 'center',
           flexDirection: 'column',
           color: '#fff'
         }}>
-        <Grid sx={{ fontSize: matches ? '30px' : '52px', fontWeight: 700, lineHeight: matches ? '35px' : '66px', width: matches ? '80%' : '70%', textAlign: 'center' }}>Bundle up your purchase And get great offers</Grid>
+        <Grid sx={{ fontSize: matches ? '24px' : '52px', fontWeight: 700, lineHeight: matches ? '35px' : '66px', width: matches ? '80%' : '70%', textAlign: 'center' }}>Bundle up your purchase And get great offers</Grid>
         <Grid sx={{ width: '100%', marginTop: '5%' }}>
           <Slider {...setting1}>
             {showProducts()}
@@ -1794,6 +1780,7 @@ export default function ProductComponents() {
         <Newfooter />
       </Grid>
       {ViewCard()}
+      {LoginComponent()}
     </Grid>
   );
 }

@@ -631,7 +631,6 @@ const handleUpdate = async (verify) => {
       {loadingAnimation==true?
       <Container maxWidth="xl" sx={{height:"100vh",overflow:'hidden',width:"100vw"}}>
         <Grid container spacing={2} sx={{display:"flex",justifyContent:"center",alignItems:"center",overflow:'hidden'}}>
-          
           <Preloader/>
           </Grid></Container>:
       <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', paddingX: "20px" }}>
@@ -793,7 +792,9 @@ const handleUpdate = async (verify) => {
                             required
                            
                         />
-                        <Typography>{save==true?"Saved Successfully":save==false?"Not Saved":''}</Typography>  </Grid>
+                        <Typography>{save==true?"Saved Successfully":save==false?"Not Saved":''}</Typography>  
+                        </Grid>
+
               <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
                 <TextField value={phone} type='number' InputProps={{
                   startAdornment: (
@@ -805,13 +806,13 @@ const handleUpdate = async (verify) => {
               </Grid>
               
               <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
-                <TextField value={whatsappNo} type='number' InputProps={{
+                <TextField type='number' InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
                       <WhatsAppIcon />
                     </InputAdornment>
                   ),
-                }} onChange={(e) => setWhatsappNo(e.target.value)} sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }} label='Whatsapp Number' />
+                }} value={whatsappNo}  onChange={(e) => setWhatsappNo(e.target.value)}  sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }} label='Whatsapp Number' />
               </Grid>
               <Grid item xs={12} style={{ display: 'flex', justifyContent: "center", marginBottom: 8 }}>
                 <TextField value={address} onChange={(e) => setAddress(e.target.value)} sx={{ width: mobile ? "95%" : tablet ? "100%" : '60%' }} label='Address' />
