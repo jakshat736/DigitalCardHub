@@ -2,7 +2,7 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Logo from "../../Digital Card Assets/newdigitalcardhublogo.png";
-import bag from "../../Digital Card Assets/bag.png"
+import bag from "../../Digital Card Assets/bag1.png"
 import Menu from "@mui/material/Menu";
 import close11 from "../../Digital Card Assets/close11.png"
 import logo22 from "../../Digital Card Assets/logo22.png"
@@ -245,11 +245,11 @@ const handleSubmit = async () => {
 
 
 
-useEffect(() => {
-  if (localStorage.getItem("User") && goahead) {
-      navigate('/userdashboard')
-  }
-}, [])
+// useEffect(() => {
+//   if (localStorage.getItem("User") && goahead) {
+//       navigate('/userdashboard')
+//   }
+// }, [])
 
 
 
@@ -465,18 +465,18 @@ const handleopenotpdailog = async () => {
             display: "flex",
             zIndex: 5,
             justifyContent:matches?"space-between":"center",
-            padding: 20,
+            padding: matchesA?5:20,
           }}
         >
           <Toolbar style={{display:'flex',justifyContent:matches?"space-between":'none',}} >
-          {matches?<><Grid sx={{marginLeft:'1%'}}>
+          {matches?<><Grid sx={{marginLeft:matchesA?'-2%':'1%'}}>
                  <SideBar/>
                 {/* <img src={menu} width={28}></img> */}
             </Grid></>:<></>}
             <Grid onClick={handleNagivateHome} sx={{marginLeft:matches?'0':'6%',cursor:'pointer'}}>
                 <img src={Logo} width={matches?120:140} ></img>
             </Grid>
-            {matches?<><Grid >
+            {matches?<><Grid>
                 <img src={bag} width={20} ></img>
             </Grid></>:<></>}
 
@@ -501,6 +501,7 @@ const handleopenotpdailog = async () => {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                       
                 }}
                 >
                 <Grid onClick={handleNagivateShop}> Shop</Grid>
@@ -514,7 +515,7 @@ const handleopenotpdailog = async () => {
                   placement="bottom"
                   transition
                   disablePortal
-                  sx={{ zIndex: 40,marginLeft:matchesC?'24%':'32%',marginTop:'4%'}}
+                  sx={{ zIndex: 300,marginLeft:matchesC?'24%':'32%',marginTop:'4%'}}
                 >
                   {({ TransitionProps, placement }) => (
                     <Grow
@@ -573,7 +574,7 @@ const handleopenotpdailog = async () => {
                 <img src={newLogin} width={22} ></img>
             </Grid>
                <Grid sx={{cursor:'pointer'}} onClick={() => handleCart()} >
-                <img src={bag} width={18} ></img>
+                <img src={bag} width={16} ></img>
                 {cart.length}
             </Grid>
             <Grid sx={{color:'#070707'}}>

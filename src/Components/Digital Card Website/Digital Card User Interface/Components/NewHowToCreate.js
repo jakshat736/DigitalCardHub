@@ -17,6 +17,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import mockup1 from "../../Digital Card Assets/mockupc1.png"
 import mockup2 from "../../Digital Card Assets/mockupc2.png"
 import mockup3 from "../../Digital Card Assets/mockupc3.png"
+import mockup4 from "../../Digital Card Assets/mockupc4.png"
 import mockup5 from "../../Digital Card Assets/mockupc5.png"
 
 import right from "../../Digital Card Assets/righthow.png"
@@ -205,7 +206,7 @@ export default function NewHowToCreate() {
               </Grid>
             </Grid>
 
-<Grid sx={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+<Grid sx={{display:'flex',alignItems:matche?'normal':'center',justifyContent:matche?'normal':'center'}}>
  {matches?<></>:<Grid sx={{marginLeft:'4.3%'}}>
 <img src={create} height={450} width={1}></img>
  </Grid>}
@@ -244,7 +245,7 @@ export default function NewHowToCreate() {
 
 
 
-            <Grid sx={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+            <Grid sx={{display:'flex',alignItems:matche?'normal':'center',justifyContent:matche?'normal':'center'}}>
             {matches?<></>:<Grid sx={{marginLeft:'4.3%'}}>
 <img src={create} height={450} width={1}></img>
  </Grid>}
@@ -284,7 +285,7 @@ export default function NewHowToCreate() {
 
 
 
-            <Grid sx={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+            <Grid sx={{display:'flex',alignItems:matche?'normal':'center',justifyContent:matche?'normal':'center'}}>
             {matches?<></>:<Grid sx={{marginLeft:'4.3%'}}>
 <img src={create} height={450} width={1}></img>
  </Grid>}
@@ -292,7 +293,6 @@ export default function NewHowToCreate() {
  <img src={mockup3} style={{width:matchesA?'50%': '40%',marginLeft:'15%',marginTop:matche?'10%':'-2%'}}></img>
  </Grid>
 </Grid>
-
 
 <Grid sx={{ display: "flex", alignItems: "center" }}>
               <Grid>
@@ -324,12 +324,12 @@ export default function NewHowToCreate() {
 
 
 
-            <Grid sx={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+            <Grid sx={{display:'flex',alignItems:matche?'normal':'center',justifyContent:matche?'normal':'center'}}>
             {matches?<></>:<Grid sx={{marginLeft:'4.3%'}}>
 <img src={create} height={450} width={1}></img>
  </Grid>}
  <Grid sx={{height:matchesA?200: 300}}>
- <img src={mockup3} style={{width:matchesA?'50%': '40%',marginLeft:'15%',marginTop:matche?'10%':'-2%'}}></img>
+ <img src={mockup4} style={{width:matchesA?'50%': '40%',marginLeft:'15%',marginTop:matche?'10%':'-2%'}}></img>
  </Grid>
 </Grid>
 
@@ -363,9 +363,9 @@ export default function NewHowToCreate() {
             </Grid>
 
 
-<Grid sx={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+<Grid sx={{display:'flex',alignItems:matche?'normal':'center',justifyContent:matche?'normal':'center'}}>
 {matches?<></>:<Grid sx={{marginLeft:'4.3%'}}>
- <img src={create} height={400} width={1}></img>
+ <img src={create} height={matche?600:400} width={1}></img>
  </Grid>}
  <Grid>
  <img src={mockup5} style={{width:matchesA?'70%': '50%',marginLeft:'15%',marginTop:'4%'}}></img>
@@ -374,9 +374,9 @@ export default function NewHowToCreate() {
 
 
 
-<Grid sx={{ display: "flex", alignItems: "center" }}>
+<Grid sx={{ display: "flex", alignItems:"center" }}>
               <Grid>
-                <img src={right} width={matchesA?50: 80} style={{marginTop:'-50%'}}></img>
+                <img src={right} width={matchesA?50: 80} style={{marginTop: matche?"":'-50%'}}></img>
               </Grid>
             </Grid>
  

@@ -43,18 +43,18 @@ export default function ConnectNow()
     <Button
             sx={{
                  border:'3px solid #fff',
-                  height: matches?42:48,
+                  height: matches?30:48,
                   width:matches?150:'14vw',
                   background:'transparent',
                   color: "#fff",
                   fontWeight: "bold",
                   justifyContent: "center",
                   textTransform: "none",
-                  padding: 2.6,
+                  padding: matches?2:2.6,
                   display: "flex",
                   borderRadius: 20,
                   marginTop: "3%",
-                  fontSize: "20px",
+                  fontSize: matches?'14px':"20px",
                   fontWeight: 700,
                   alignItems:'center',
                   fontFamily:'Montserrat',
@@ -67,7 +67,7 @@ export default function ConnectNow()
        </Grid>
 
        <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:matches?'-8%':'20%',marginLeft:matches?'70%':'0%'}} >
-        <img src={matches?arrow2:arror} width={matches?25:120} ></img>
+        <img src={matches?arrow2:arror} width={matches?40:120} ></img>
        </Grid>
        <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',fontSize:matches?16:'2vw',fontWeight:600,lineHeight:matches?'24px':'3vw',textAlign:'center',flexDirection:'column',marginTop:'-5%'}} >
       CUSTOMISE WITH OUR

@@ -20,6 +20,7 @@ import slider111 from "../../Digital Card Assets/oyo.jpg";
 import slider222 from "../../Digital Card Assets/flipkard.jpg";
 import slider333 from "../../Digital Card Assets/playstore.jpg";
 import slider444 from "../../Digital Card Assets/swiggy.jpg";
+import shop from "../../Digital Card Assets/shop.png"
 import slider555 from "../../Digital Card Assets/go.jpg";
 import {
   useMediaQuery,
@@ -121,15 +122,11 @@ const handleSubmit = async () => {
 
 }
 
-
-
-
-
-useEffect(() => {
-  if (localStorage.getItem("User") && goahead) {
-      navigate('/userdashboard')
-  }
-}, [])
+// useEffect(() => {
+//   if (localStorage.getItem("User") && goahead) {
+//       navigate('/userdashboard')
+//   }
+// }, [])
 
 
 
@@ -398,23 +395,20 @@ const loginPage=()=>{
                 <img src={backgroundimg} style={{width:matchesA ? '100%':'70%',marginTop:matchesA ? '-12%':'0%' }}></img>
                 </Grid></>:<></>}
                 <Grid sx={{marginTop:matchesA ? '-82%':"-66%",zIndex:40,width:'100%',display:matches?'flex':'',justifyContent:matches?'center':'normal',flexDirection:'column',alignContent:matches?'center':"normal"}}>
-                    <Grid sx={{fontSize:matchesA ? '22px' : matches ? '30px' : '2.8vw',fontWeight:700,lineHeight:matches?'30px':'52px',fontFamily:'Montserrat',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",textAlign:matches?'center':"normal"}}>
+                    <Grid sx={{fontSize:matchesA ? '22px' : matches ? '30px' : '2.8vw',fontWeight:700,lineHeight:matches?'30px':'48px',fontFamily:'Montserrat',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",textAlign:matches?'center':"normal"}}>
                      MAKE YOUR  BUSSINES DIGITAL WITH US.
                     </Grid>
-                    <Grid sx={{fontSize:matchesA ? '14px':matches?20:'1.6vw',fontWeight:400,lineHeight:matchesA ? '22px':'36px',fontFamily:'Montserrat',marginTop:'1%',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",textAlign:matches?'center':"normal"}}>
+                    <Grid sx={{fontSize:matchesA ? '14px':matches?20:'1.6vw',fontWeight:400,lineHeight:matchesA ? '22px':'32px',fontFamily:'Montserrat',marginTop:'1%',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",textAlign:matches?'center':"normal"}}>
                     digital business card platform makes convienient and reliaeble
                     </Grid>
-                    {matches?<><Grid sx={{marginTop:'4%',display:'flex',gap:4,alignItems:'center',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",flexDirection:matches?'column':'row'}}>
-                  <img src={learnmore} width={80}></img>
-                  </Grid></>:<></>}
-                    {matches?<></>:<><Grid sx={{display:'flex',gap:4,alignItems:'center',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",flexDirection:matches?'column':'row'}}>
-                    <Button
-                onClick={handleNagivate}
+                    {matches?<></>:<><Grid sx={{display:'flex',gap:4,alignItems:'center',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal"}}>
+                    <Grid>
+                    <Button onClick={handleClickOpen}
                 sx={{
                  border:'3.2px solid #fff',
                   height: 42,
-                  width:matches?170:'16vw',
-                  background:'#070707',
+                  width:matches?170:'16.5vw',
+                  background:'transparent',
                   color: "#fff",
                   fontWeight: "bold",
                   justifyContent: "center",
@@ -424,14 +418,19 @@ const loginPage=()=>{
                   borderRadius: 20,
                   marginTop: "3%",
                   fontSize: "14px",
+                  lineHeight:'22px',
                   fontWeight: 700,
                   alignItems:'center',
                   fontFamily:'Montserrat'
                 }}
               >
-              Shop Now
+             Create Now
               </Button>
-              <Grid sx={{marginTop:'2%',marginLeft:'1%'}}>
+              </Grid>
+              <Grid onClick={handleNagivate}  sx={{marginTop:'1%',cursor:'pointer'}}>
+                <img src={shop} width={100}></img>
+              </Grid>
+              {/* <Grid sx={{marginTop:'2%',marginLeft:'1%'}}>
               <Grid
                  onClick={handleClickOpen}
                 sx={{
@@ -449,7 +448,7 @@ const loginPage=()=>{
               >
                Create Now <KeyboardArrowRightIcon style={{color:'#ffff',marginLeft:'-.8%',marginTop:'.5%'}}/>
               </Grid>
-              </Grid>
+              </Grid> */}
                     </Grid></>}
                 </Grid>
             </Grid>
@@ -471,14 +470,14 @@ const loginPage=()=>{
     </Grid>
            </Grid>
 
-{matches?<><Grid sx={{display:'flex',justifyContent:'center',alignContent:'center',marginTop:matchesA ? '4%':'0%' }}>
+{matches?<><Grid sx={{display:'flex',justifyContent:'center',alignContent:'center',marginTop:matchesA ? '7%':'6%' }}>
 <Button
    onClick={handleNagivate}
                 sx={{ 
                  border:'3.2px solid #fff',
-                  height: matches?30:42,
-                  width:matches?170:'16vw',
-                  background:'#070707',
+                  height: matches?26:35,
+                  width:matches?170:'17vw',
+                  background:'transparent',
                   color: "#fff",
                   fontWeight: "bold",
                   justifyContent: "center",
@@ -488,7 +487,8 @@ const loginPage=()=>{
                   borderRadius: 20,
                   marginTop: "3%",
                   fontSize: "14px",
-                  fontWeight: 700,
+                  fontWeight: 600,
+                  lineHeight:'20px',
                   alignItems:'center',
                   fontFamily:'Montserrat'
                 }}

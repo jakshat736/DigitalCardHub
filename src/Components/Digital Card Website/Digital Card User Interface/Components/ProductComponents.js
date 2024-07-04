@@ -944,7 +944,8 @@ export default function ProductComponents() {
               justifyContent: "center",
               fontFamily: "Montserrat",
               color: "#fff",
-              flexDirection: "column"
+              flexDirection: "column",
+              zIndex:50
             }}
           >
             <Grid
@@ -984,7 +985,8 @@ export default function ProductComponents() {
                         justifyContent: "center",
                         alignItems: "center",
                        marginLeft:'23%',
-                       marginTop:'7%'
+                       marginTop:'7%',
+                       zIndex:50
                       }}>
                         <img src={`${serverURL}/images/${item}`} width={"50%"} />
                       </Grid>
@@ -1039,9 +1041,9 @@ export default function ProductComponents() {
               >
                 <Grid
                   sx={{
-                    fontSize:matches ? '24px' :"26px",
+                    fontSize:matches ? '20px' :"26px",
                     fontWeight: 700,
-                    lineHeight: "34px",
+                    lineHeight: matches?'30px':"34px",
                     marginTop: matches ? '2%':matchesA?'5%' : '-1.5%'
                   }}
                 >
@@ -1091,9 +1093,9 @@ export default function ProductComponents() {
                       
                     }}
                   >
-                    <div onClick={() => handleRemove()} style={{ fontSize: matchesB ? "12px" : "1.6vw", fontWeight: 600,cursor: 'pointer', }}>-</div>{" "}
-                    <div style={{fontSize: matchesB ? "12px" : "1vw", fontWeight: 600,}}>{value}</div>{" "}
-                    <div onClick={() => handleAdd()} style={{ fontSize: matchesB ? "12px" : "1.3vw", fontWeight: 600,cursor: 'pointer' }}>+</div>
+                    <div onClick={() => handleRemove()} style={{ fontSize: matchesB ? "20px" : "22px", fontWeight: 600,cursor: 'pointer', }}>-</div>{" "}
+                    <div style={{fontSize: matchesB ? "20px" : "16px", fontWeight: 600,}}>{value}</div>{" "}
+                    <div onClick={() => handleAdd()} style={{fontSize: matchesB ? "20px" : "20px", fontWeight: 600,cursor: 'pointer' }}>+</div>
                   </Grid>
                   <Button
                     onClick={handleViewCard}
@@ -1103,7 +1105,7 @@ export default function ProductComponents() {
                       width: matches ? 155 : "13vw",
                       height: matches ? 35 : "2.5vw",
                       color: "#fff",
-                      fontSize: matchesB ? "12px" : ".9vw",
+                      fontSize: matchesB ? "12px" : "14px",
                       fontWeight: 500,
                       marginLeft: "2%",
                       textTransform: "none",
@@ -1274,7 +1276,7 @@ export default function ProductComponents() {
                         />
                       </Grid>
                     </Grid>
-                    <Grid sx={{ marginLeft: "auto" }}>
+                    <Grid sx={{ marginLeft: matches?'':"auto" }}>
                       <Grid>
                         <Grid
                           sx={{
@@ -1338,9 +1340,10 @@ export default function ProductComponents() {
                       border: "1px solid #bdc3c7",
                       borderColor: "#bdc3c7",
                       background: '#fff',
-                      height: "2.7vw",
+                      height:matches?30: "2.7vw",
                       color: "#000",
-                      fontSize: "1.1vw",
+                      fontSize:matches?'12px':"1.1vw",
+                      width:matches?150:'',
                       fontWeight: 500,
                       marginTop: '3%',
                       textTransform: "none",

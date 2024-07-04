@@ -21,18 +21,18 @@ export default function MiniYouTube()
           {showPlayer && (
                     <Grid container sx={{ position: 'relative', justifyContent: 'center' }}>
                 
-                         {/* <video 
+                         <video 
                             style={{ marginLeft: 'auto' }} 
                             width={160} 
                             height={240} 
-                            src="https://youtube.com/shorts/8HwufXUV5nY?si=3SikrmvE7irEJlv1" 
+                            src="\amiteshvedio.mp4" 
                             muted
                             controls 
                             autoPlay 
                             loop 
                         
-                        /> */}
-               <iframe
+                        />
+               {/* <iframe
         width="160"
         height="240"
         src="https://www.youtube.com/embed/8HwufXUV5nY?autoplay=1&mute=1&loop=1&playlist=8HwufXUV5nY"
@@ -40,7 +40,7 @@ export default function MiniYouTube()
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
         style={{ marginLeft: 'auto' }}
-                      ></iframe>
+                      ></iframe> */}
 
                         <IconButton 
                             onClick={handleClose} 

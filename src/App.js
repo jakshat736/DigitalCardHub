@@ -138,6 +138,11 @@ import DashboardHome from "./Components/Digital Card Website/Digital Card User I
 import Affiliate from "./Components/Digital Card Website/Digital Card User Interface/Components/Affiliate";
 import NewDCLogin from "./Components/Digital Card Website/Digital Card User Interface/Pages/NewDCLogin";
 import NewHowToCreate from "./Components/Digital Card Website/Digital Card User Interface/Components/NewHowToCreate";
+import NewMenuDashBoard from "./Components/Digital Card Website/MenuUpdate/adminpannel/NewMenuDashBoard";
+import NewUserDashBoard from "./Components/Digital Card Website/MenuUpdate/adminpannel/NewUserDashBoard";
+import OrderList from "./Components/Digital Card Website/MenuUpdate/adminpannel/OrderList";
+import Coupons from "./Components/Digital Card Website/MenuUpdate/adminpannel/Coupons";
+import NewSelfOrder from "./Components/Digital Card Website/MenuUpdate/adminpannel/NewSelfOrder";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 
@@ -152,20 +157,20 @@ function App() {
 							<Routes>
 								{/* DIGITAL CARD WEBSITE ROUTER START */}
 								<Route element={<DemoOtp/>} path="/demootp"/>  
-								<Route element={<HomePage />} path="/home" />
+								<Route element={<HomePage />} path="/home"/>
 								<Route element={<NewHome/>} path="/newhome"/>
 								<Route element={<Affiliate/>} path="/affiliate"/>
 								<Route element={<Instaredirect />} path="/aradhyarana" />
-								<Route element={<Home/>} path="/home1" />
+								<Route element={<Home/>} path="/home1"/>
 								<Route element={<NewCheckOut/>} path="/newcheckout" />
 								<Route element={<NewCheckOut2/>} path="/newcheckout2" />
-								<Route element={<NewCheckOut3/>} path="/newcheckout3" />
+								<Route element={<NewCheckOut3/>} path="/newcheckout3"/>
 								<Route element={<NewThemeCard/>} path="/newcart"/>
-								<Route element={<NewHowToCreate/>} path="/newhowtocreate" />
-								<Route element={<ProductComponents/>} path="/productcomponents/:_id" />
-								<Route element={<NewAllProducts/>} path="/newallproduct" />
-								<Route element={<NewAllProduct2/>} path="/newallproduct2" />
-								<Route element={<CategoryProducts/>} path="/categoryproducts/:_id" />
+								<Route element={<NewHowToCreate/>} path="/newhowtocreate"/>
+								<Route element={<ProductComponents/>} path="/productcomponents/:_id"/>
+								<Route element={<NewAllProducts/>} path="/newallproduct"/>
+								<Route element={<NewAllProduct2/>} path="/newallproduct2"/>
+								<Route element={<CategoryProducts/>} path="/categoryproducts/:_id"/>
 								<Route element={<CooperateEnquiries/>} path="/cooperate"/>
 								<Route element={<DCLogin/>} path="/digitalcardlogin"/>
 								<Route element={<DCSignUp />} path="/digitalcardsignup" />
@@ -199,9 +204,9 @@ function App() {
 								<Route path="/partialPackage" element={<PartialPackage />} />
 								<Route path="/confirmation/:tmid" element={<PaymentConfirmation />} />
 								<Route path="/partialconfirmation/:tmid" element={<PartialConfirmation />} />
-								<Route path="/addresspage" element={<AddressPage />} />
+								<Route path="/addresspage" element={<AddressPage/>} />
 								<Route path="/productspage/:_id" element={<ProductsPage />} />
-								<Route path="/allproducts" element={<AllProducts />} />
+								<Route path="/allproducts" element={<AllProducts/>} />
 								<Route path="/compitable" element={<CompitableDevices/>} />
 								<Route path="/productscomponent/:_id" element={<ProductCompoent />} />
 								<Route path="/orderform" element={<OrderForm />} />
@@ -251,12 +256,17 @@ function App() {
 
 								{/* Menu */}
 
-								<Route path="/box" element={<Box />} />
-								<Route path="/menus/:menuId" element={<Menu />} />
-								<Route element={<MenuTheme />} path="/menutheme/:menuId" />
+								<Route path="/box" element={<Box />}/>
+								<Route path="/menus/:menuId" element={<Menu />}/>
+								<Route element={<MenuTheme />} path="/menutheme/:menuId"/>
 								<Route element={<MenuTheme2/>} path="/menu2" />
 								<Route element={<MenuTheme3/>} path="/menu3" />
 								<Route path="/menuDashboard/:menuId" element={<MenuDashBoard />} />
+								<Route path="/newmenudashboard/*" element={<NewMenuDashBoard/>} />
+								<Route path="/newuserdashboard" element={<NewUserDashBoard/>} />
+								<Route path="/orderlist" element={<OrderList/>} />
+								<Route path="/coupons" element={<Coupons/>} />
+								<Route path="/newselforder" element={<NewSelfOrder/>} />
 								<Route path="/addmenu" element={<AddMenu />} />
 								<Route path="/coupon" element={<Coupon/>} />
 								<Route path="/category" element={<Categorys/>} />

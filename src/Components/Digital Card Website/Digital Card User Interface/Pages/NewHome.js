@@ -93,14 +93,12 @@ export default function NewHome() {
           <Grid sx={{ position: "sticky", top: "0", zIndex: 50 }}>
             <NewHeader />
           </Grid>
-
           <Grid>
             <NewContainer />
           </Grid>
           <Grid>
             <Introducing />
           </Grid>
-
           <Grid>
             <ConnectNow />
           </Grid>
@@ -132,17 +130,17 @@ export default function NewHome() {
             <NewFeatures />
           </Grid>
 
-           <Grid
+           {matches?<></>:<Grid
             sx={{
               position: "sticky",
               bottom: "0",
               zIndex: 50,
-              width: matchesA ? "50%" : "30%",
+              width: matchesA ? "50%" : "20%",
               marginLeft: "auto",
             }}
           >
             <MiniYouTube />
-          </Grid> 
+          </Grid> }
 
           <Grid>
             <Newfooter />

@@ -1095,7 +1095,7 @@ export default function CompatibleDevices() {
                 <Grid
                   key={model.name}
                   item
-                  className={classes.button5}
+                  className={matchesA ? classes.button55 : classes.button5}
                   sx={{
                     width: { xs: "40%", sm: "30%", md: "20%" },
                     margin: 1,

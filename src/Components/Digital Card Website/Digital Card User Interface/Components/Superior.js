@@ -10,7 +10,7 @@ export default function Superior()
     const matches = useMediaQuery("(max-width:1100px)");
     const matchesA = useMediaQuery("(max-width:700px)");
     const matchesB = useMediaQuery("(max-width:1300px)");
-    return(<Grid sx={{width:'100%',height:'auto',marginTop:matchesA?'25%':'10%',position:'relative'}}>
+    return(<Grid sx={{width:'100%',height:'auto',marginTop:matchesA?'30%':'17%',position:'relative'}}>
             
              <Grid sx={{display:'flex'}}>
 

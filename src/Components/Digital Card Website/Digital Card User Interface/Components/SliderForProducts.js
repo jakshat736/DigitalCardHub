@@ -101,7 +101,7 @@ export default function SliderForProducts()
                   Buy Now
                 </Button>
                   <Grid sx={{ display: 'flex', flexDirection: 'column',marginLeft:'4%' }}>
-                    <Grid sx={{ fontSize:matches?'12px': '.9vw', fontWeight: 600, color: '#fff'}}>₹149.00 </Grid><Grid sx={{ fontSize: matches?'10px':'.7vw', fontWeight: 500, color: '#fff'}}><s>₹150.00</s></Grid>
+                    <Grid sx={{ fontSize:matches?'12px': '.9vw', fontWeight: 600, color: '#19B300'}}>₹149.00 </Grid><Grid sx={{ fontSize: matches?'10px':'.7vw', fontWeight: 500, color: '#A39C00'}}><s>₹150.00</s></Grid>
                 </Grid>
               </Grid>
             </Grid>

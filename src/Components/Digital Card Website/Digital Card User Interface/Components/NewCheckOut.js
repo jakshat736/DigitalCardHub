@@ -15,16 +15,12 @@ import { postData } from '../../../Services/NodeServices';
 import useMediaQuery from '@mui/material/useMediaQuery';
 export default function NewCheckOut() {
   const matches = useMediaQuery("(max-width:1000px)");
-  const matchesA = useMediaQuery("(max-width:600px)");
+  const matchesA = useMediaQuery("(max-width:1000px)");
 
   var navigate=useNavigate()
   const handleNagivate=()=>{
     navigate('/newcheckout3')
 }
-
-
-
-
 
 const location = useLocation();
 
@@ -298,16 +294,17 @@ const handleProduct = (item) => {
                 style={{
                   backgroundColor: "#bdc3c7",
                   width: "100%",
-                  marginTop: "3%",
+                  marginTop:"3%",
                 }}
               />
 
               <Grid
                 sx={{
-                  marginTop: "3%",
+                  marginTop:matches?'12%': "3%",
                   border: "1px solid #bdc3c7",
                   borderRadius: "10px",
                   color: "#fff",
+                  height:matches?35:40,
                   p: "2px 4px",
                   display: "flex",
                   alignItems: "center"
@@ -486,8 +483,8 @@ const handleProduct = (item) => {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid sx={{ width:matchesA?'100%': "45%", marginTop: "2.5%", display: "flex",marginTop:matches?'5%':'3%' }}>
-              <Grid sx={{ width:matchesA?'100%': "90%", marginLeft: "auto" }}>
+            <Grid sx={{ width:matchesA?'100%': "45%", marginTop:"2.5%", display: "flex",marginTop:matches?'5%':'3%' }}>
+              <Grid sx={{ width:matchesA?'100%': "90%", marginLeft: "auto",marginTop:matches?'10%':'' }}>
                 <Grid
                   sx={{
                     fontSize: "22px",
@@ -498,7 +495,7 @@ const handleProduct = (item) => {
                 >
                   Shipping Information
                 </Grid>
-                <Grid sx={{ marginTop: "2%", gap: 2, display: "flex" }}>
+                <Grid sx={{ marginTop:matches?'': "2%", gap: 2, display: "flex" }}>
                   <input
                      value={name} onChange={(e)=>setName(e.target.value)}
                     type="text"

@@ -20,6 +20,7 @@ export default function Services()
         pauseOnHover: false
       };
       const matches = useMediaQuery("(max-width:600px)");
+      const matchesA = useMediaQuery("(max-width:500px)");
 
     return(<Grid sx={{width:'100%',display:'flex',justifyContent:"center",alignItems:'center',flexDirection:'column'}}>
         <Grid sx={{alignItems:'center',fontSize:matches?'22px':'2.8vw',fontWeight:700,lineHeight:'30px',color:'#fff'}}>
@@ -28,10 +29,10 @@ export default function Services()
         <div className="slider-container">
       <Slider {...settings}>
         <Grid sx={{marginTop:'5%'}}>
-        <img src={matches?service:service} style={{width:'100%'}}></img>
+        <img src={matches?service:service} style={{width:matches?'100%':'100%'}}></img>
         </Grid>
         <Grid>
-        <img src={matches?service2:service2} style={{width:'100%'}}></img>
+        <img src={matches?service2:service2} style={{width:matches?'100%':'100%'}}></img>
         </Grid>
       </Slider>
     </div>
