@@ -270,7 +270,7 @@ function App() {
 								<Route path="/addmenu" element={<AddMenu />} />
 								<Route path="/coupon" element={<Coupon/>} />
 								<Route path="/category" element={<Categorys/>} />
-								<Route path="/displayallthecategory" element={<DispalyAllTheCategory/>} />
+								<Route path="/displayallthecategory" element={<DispalyAllTheCategory/>}/>  
 								<Route path="/vieworder" element={<ViewOrder />} />
 								<Route path="/orderdetail" element={<OrderDetail />} />
 								<Route path="/button" element={<MyComponent />} />

@@ -10,6 +10,7 @@ import slider2 from "../../Digital Card Assets/insta.jpg";
 import slider3 from "../../Digital Card Assets/fb.jpg";
 import slider4 from "../../Digital Card Assets/in.jpg";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import l from "../../Digital Card Assets/l.png"
 import slider5 from "../../Digital Card Assets/amazon.jpg";
 import close11 from "../../Digital Card Assets/close11.png"
 import slider11 from "../../Digital Card Assets/bussinesscard1.png";

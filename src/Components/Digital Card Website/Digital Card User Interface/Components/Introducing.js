@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import stand1 from "../../Digital Card Assets/stands1.jpg";
+import stand1 from "../../Digital Card Assets/k.png";
 import stand2 from "../../Digital Card Assets/stands2.jpg";
 import stand3 from "../../Digital Card Assets/stands3.jpg"
 import stand4 from "../../Digital Card Assets/stands4.jpg";
@@ -15,8 +15,7 @@ import blurrectangle from "../../Digital Card Assets/blurrectangle.png"
 import {
   useMediaQuery,
 } from "@mui/material";
-
-
+                        
 export default function Introducing()
 {
     const matches = useMediaQuery("(max-width:900px)");

@@ -4,6 +4,7 @@ import self from "../assets/self.png";
 import self2 from "../assets/self2.png";
 import view from "../assets/view.png";
 import view2 from "../assets/view2.png";
+import ring from "../../Digital Card Assets/ring.png"
 import coup from "../assets/coup.png";
 import coup2 from "../assets/coup2.png";
 import edit from "../assets/edit.png";
@@ -21,6 +22,7 @@ import OrderList from "./OrderList";
 import Coupons from "./Coupons";
 import SelfOrder from "./NewSelfOrder";
 import NewSelfOrder from "./NewSelfOrder";
+import Notification from "../administrator/Notification";
 
 export default function NewMenuDashBoard() {
   var navigate = useNavigate()
@@ -188,6 +190,35 @@ export default function NewMenuDashBoard() {
             </div>
             <div>Edit menu items</div>
           </Grid>
+
+
+          <Grid
+           onClick={()=>navigate('/newmenudashboard/notification')}
+            className={classes.buttonss}
+            fullWidth
+            style={{
+              height: "60px",
+              fontSize: "20px",
+              fontWeight: 500,
+              lineHeight: "22px",
+              textTransform: "none",
+              borderRadius: "6px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              letterSpacing: "-2.2%",
+              gap: 23,
+              cursor: "pointer",
+            }}
+          >
+            <div style={{ marginTop: "1%", marginLeft: "8%" }}>
+              {" "}
+              <img src={ring} width={20}></img>{" "}
+            </div>
+            <div>Notification setting</div>
+          </Grid>
+
+
           <Grid
            onClick={()=>navigate('/newmenudashboard/newuserdashboard')}
             className={classes.buttonss}
@@ -245,7 +276,7 @@ export default function NewMenuDashBoard() {
           </Grid>
           <Grid
             sx={{
-              marginTop: "38%",
+              marginTop: "18%",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -262,6 +293,7 @@ export default function NewMenuDashBoard() {
           <Route element={<OrderList/>} path="/orderlist" />
           <Route element={<Coupons/>} path="/coupons" />
           <Route element={<NewSelfOrder/>} path="/newselforder" />
+          <Route element={<Notification/>} path="/notification"/>
         </Routes>
       </Grid>
     </Grid>

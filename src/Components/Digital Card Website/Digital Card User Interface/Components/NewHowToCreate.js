@@ -322,8 +322,6 @@ export default function NewHowToCreate() {
               </Grid>
             </Grid>
 
-
-
             <Grid sx={{display:'flex',alignItems:matche?'normal':'center',justifyContent:matche?'normal':'center'}}>
             {matches?<></>:<Grid sx={{marginLeft:'4.3%'}}>
 <img src={create} height={450} width={1}></img>
