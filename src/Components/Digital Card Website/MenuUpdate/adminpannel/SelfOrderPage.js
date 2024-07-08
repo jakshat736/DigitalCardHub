@@ -82,8 +82,7 @@ export default function SelfOrderPage() {
 
 
 
-
-
+  
 
   const handleCatygory = () => {
     setCategory(true);

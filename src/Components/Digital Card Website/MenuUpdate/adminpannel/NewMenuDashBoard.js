@@ -1,14 +1,5 @@
 import { Grid, Divider, Button, ListItemButton } from "@mui/material";
 import menu from "../assets/menubar.png";
-import self from "../assets/self.png";
-import self2 from "../assets/self2.png";
-import view from "../assets/view.png";
-import view2 from "../assets/view2.png";
-import ring from "../../Digital Card Assets/ring.png"
-import coup from "../assets/coup.png";
-import coup2 from "../assets/coup2.png";
-import edit from "../assets/edit.png";
-import editdd from "../assets/editdd.png";
 import { useStyles } from "./HoveredCss";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
@@ -22,15 +13,85 @@ import OrderList from "./OrderList";
 import Coupons from "./Coupons";
 import SelfOrder from "./NewSelfOrder";
 import NewSelfOrder from "./NewSelfOrder";
-import Notification from "../administrator/Notification";
+import Notification from "./Notification";
+import EditMenuItem from "./EditMenuItem";
+import { Icon } from '@iconify/react';
+import { useState } from "react";
 
 export default function NewMenuDashBoard() {
   var navigate = useNavigate()
   const [checked, setChecked] = React.useState(true);
-  
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
+
+
+  const [self, setSelf] = useState(true);
+  const [vieworder, setViewOrder] = useState(false);
+  const [coupon, setCoupon] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [notification, setNotification] = useState(false);
+  const [detial, setDetail] = useState(false);
+
+
+  
+  const handleSelf = () => {
+    setSelf(true);
+    vieworder(false);
+    coupon(false);
+    edit(false);
+    notification(false);
+    detial(false);
+  };
+
+  const handleViewOrder = () => {
+    setSelf(false);
+    vieworder(true);
+    coupon(false);
+    edit(false);
+    notification(false);
+    detial(false);
+  };
+
+  const handleCoupon = () => {
+    setSelf(false);
+    vieworder(false);
+    coupon(true);
+    edit(false);
+    notification(false);
+    detial(false);
+  };
+
+  const handleEdit = () => {
+    setSelf(false);
+    vieworder(false);
+    coupon(false);
+    edit(true);
+    notification(false);
+    detial(false);
+  };
+
+  const handleNotication = () => {
+    setSelf(false);
+    vieworder(false);
+    coupon(false);
+    edit(false);
+    notification(true);
+    detial(false);
+  };
+
+  const handleDetail = () => {
+    setSelf(false);
+    vieworder(false);
+    coupon(false);
+    edit(false);
+    notification(false);
+    detial(true);
+  };
+
+
+
+
   const classes = useStyles();
   return (
     <Grid
@@ -109,7 +170,7 @@ export default function NewMenuDashBoard() {
           >
             <div style={{ marginTop: "1%", marginLeft: "8%" }}>
               {" "}
-              <img src={self2} width={20}></img>{" "}
+              <Icon icon="mdi:cookie-edit"  style={{fontSize:'24px'}} />
             </div>
             <div>Self order</div>
           </Grid>
@@ -135,7 +196,7 @@ export default function NewMenuDashBoard() {
           >
             <div style={{ marginTop: "1%", marginLeft: "8%" }}>
               {" "}
-              <img src={view2} width={20}></img>{" "}
+              <Icon icon="solar:documents-bold" style={{fontSize:'24px'}}/>
             </div>
             <div>View order</div>
           </Grid>
@@ -161,12 +222,13 @@ export default function NewMenuDashBoard() {
           >
             <div style={{ marginTop: "1%", marginLeft: "8%" }}>
               {" "}
-              <img src={coup2} width={20}></img>{" "}
+              <Icon icon="ri:discount-percent-fill"  style={{fontSize:'22px'}} />
             </div>
             <div>Coupons</div>
           </Grid>
 
           <Grid
+            onClick={()=>navigate('/newmenudashboard/editmenuitem')}
             className={classes.buttonss}
             fullWidth
             style={{
@@ -186,7 +248,7 @@ export default function NewMenuDashBoard() {
           >
             <div style={{ marginTop: "1%", marginLeft: "8%" }}>
               {" "}
-              <img src={self2} width={20}></img>{" "}
+              <Icon icon="tdesign:map-edit"  style={{fontSize:'22px'}} />
             </div>
             <div>Edit menu items</div>
           </Grid>
@@ -213,7 +275,7 @@ export default function NewMenuDashBoard() {
           >
             <div style={{ marginTop: "1%", marginLeft: "8%" }}>
               {" "}
-              <img src={ring} width={20}></img>{" "}
+              <Icon icon="material-symbols:wifi-notification-rounded"  style={{fontSize:'22px'}}/>
             </div>
             <div>Notification setting</div>
           </Grid>
@@ -240,7 +302,7 @@ export default function NewMenuDashBoard() {
           >
             <div style={{ marginTop: "1%", marginLeft: "8%" }}>
               {" "}
-              <img src={editdd} width={20}></img>{" "}
+              <Icon icon="tabler:list-details"  style={{fontSize:'22px'}} />
             </div>
             <div>Edit restaurent details</div>
           </Grid>
@@ -293,7 +355,8 @@ export default function NewMenuDashBoard() {
           <Route element={<OrderList/>} path="/orderlist" />
           <Route element={<Coupons/>} path="/coupons" />
           <Route element={<NewSelfOrder/>} path="/newselforder" />
-          <Route element={<Notification/>} path="/notification"/>
+          <Route element={<Notification/>} path="/notification"/>4
+          <Route element={<EditMenuItem/>} path="/editmenuitem"/>
         </Routes>
       </Grid>
     </Grid>
