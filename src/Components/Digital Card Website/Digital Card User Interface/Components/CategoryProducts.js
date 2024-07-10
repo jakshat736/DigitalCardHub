@@ -523,11 +523,11 @@ const handleClose = () => {
     <Services/>
   </Grid>
   <Grid>
-  <Grid sx={{width:'100%',height:matches?'auto':800,display:'flex',alignItems:'center',flexDirection:"column",color:'#fff',marginTop:matchesA?'8%':'12%'}}>
-                <Grid sx={{fontSize:matches?'24px':'52px',fontWeight:600,lineHeight:matches?'30px':'52px',letterSpacing:'-2.4%',textAlign:matches?'center':'',width:matchesB?'70%':'100%'}}>
+  <Grid sx={{width:'100%',height:matches?'auto':800,display:'flex',alignItems:'center',justifyContent:'center',flexDirection:"column",color:'#fff',marginTop:matchesA?'8%':'12%'}}>
+                <Grid sx={{fontSize:matches?'24px':'52px',fontWeight:600,lineHeight:matches?'30px':'52px',letterSpacing:'-2.4%',textAlign:matches?'center':'',width:matchesB?'70%':'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
                 OUR TOP PROFESSIONALS
                 </Grid>
-                <Grid sx={{fontSize:matches?'18px':'22px',fontWeight:400,lineHeight:matches?'24px':'46px',letterSpacing:'2%',marginTop:'1%',textAlign:matches?'center':'',width:matchesB?'85%':'100%'}}>
+                <Grid sx={{fontSize:matches?'18px':'22px',fontWeight:400,lineHeight:matches?'24px':'46px',letterSpacing:'2%',marginTop:'1%',textAlign:matches?'center':'',width:matchesB?'85%':'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
                 They are our reviews with happy user
                 </Grid>
                 <Grid sx={{marginTop:'5%',display:'flex',width:'100%',justifyContent:'space-between'}}>

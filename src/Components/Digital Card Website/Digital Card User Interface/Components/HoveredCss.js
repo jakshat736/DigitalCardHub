@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
+  
     '@keyframes vibrate': {
         '0%': { transform: 'translate(0, 0)' },
         '25%': { transform: 'translate(1px, -1px)' },
@@ -43,6 +44,18 @@ const useStyles = makeStyles((theme) => ({
      '&:hover': {
          color:' #fff',
          fontSize:'25px',
+         fontWeight:500,
+     },
+   },
+
+   
+   button55: {
+    color:'#fff',
+    fontSize:'15px',
+    fontWeight:400,
+     '&:hover': {
+         color:' #fff',
+         fontSize:'16px',
          fontWeight:500,
      },
    },

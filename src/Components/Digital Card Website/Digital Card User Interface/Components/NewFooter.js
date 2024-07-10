@@ -13,7 +13,8 @@ import {useMediaQuery} from "@mui/material";
 export default function Newfooter()
 {
 
-  const matchesA = useMediaQuery("(max-width:800px)");
+  const matchesA = useMediaQuery("(max-width:1100px)");
+ 
 
     return(<Grid sx={{width:'100%',height:'auto',background:'#fff',display:'flex',justifyContent:'center',alignItems:'center',borderTopRightRadius: 10,
         borderTopLeftRadius: 10, boxShadow: "0px 0px 10px 3px rgba(255, 255, 255, 1)",flexDirection:'column'}}>
@@ -45,7 +46,7 @@ export default function Newfooter()
         </Grid>
             </Grid>
             
-            {matchesA?<></>:<><Grid sx={{width:'25%'}}>
+            {matchesA?<></>:<><Grid sx={{width:'25%',marginLeft:matchesA?'':'9%'}}>
             <Grid sx={{fontSize:'20px',fontWeight:700,lineHeight:'30px'}}>
             QUICK LINKS
             </Grid>
@@ -66,7 +67,7 @@ export default function Newfooter()
             </Grid>
             </Grid></>}
 
-            {matchesA?<></>:<><Grid sx={{width:'25%'}}>
+            {matchesA?<></>:<><Grid sx={{width:'25%',marginLeft:matchesA?'':'6%'}}>
             <Grid sx={{fontSize:'20px',fontWeight:700,lineHeight:'30px'}}>
             MORE LINKS
             </Grid>

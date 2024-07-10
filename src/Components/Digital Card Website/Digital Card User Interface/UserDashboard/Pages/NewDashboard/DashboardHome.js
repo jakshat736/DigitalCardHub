@@ -7,11 +7,10 @@ import NewBussinessProfileHeader from "../NewBussinessProfileHeader";
 
 export default function DashboardHome()
 {
-    return(
-    <Grid sx={{background:'#000',fontFamily:'Montserrat'}}>
-      {/* <Grid>
+    return(<Grid sx={{background:'#000',fontFamily:'Montserrat'}}>
+      <Grid>
         <NewBussinessProfileHeader/>
-      </Grid> */}
+      </Grid>
        <Grid>
         <NewBussinessProfile/>
        </Grid>

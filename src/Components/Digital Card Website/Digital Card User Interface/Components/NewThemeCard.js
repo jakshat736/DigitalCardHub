@@ -33,6 +33,7 @@ const handleAbout2 = () => {
 
 const matches = useMediaQuery("(max-width:1000px)");
 const matchesA = useMediaQuery("(max-width:600px)");
+const matchesB = useMediaQuery("(max-width:1300px)");
 
 const [cartProducts, setCartProducts] = useState([]);
 
@@ -232,9 +233,9 @@ const handleProduct = (item) => {
                     border:'1px solid #fff',
                     borderColor:'#fff',
                     width:'100%',
-                    height:matchesA?35:'2.7vw',
+                    height:matchesA?35:40,
                     color: "#fff",
-                    fontSize: matchesA?'12px':".8vw",
+                    fontSize: matchesA?'12px':"14px",
                     marginTop:'4%',
                     fontWeight: 500,
                     textTransform: "none",
@@ -247,7 +248,7 @@ const handleProduct = (item) => {
                 </Button>
             </Grid>
             
-            <Grid sx={{marginTop:'10%'}}>
+            <Grid sx={{marginTop:matchesA?'15%':'10%'}}>
                 <Grid sx={{fontSize:'22px',fontWeight:600,lineHeight:'26px',letterSpacing:'-2%'}}>
                 Order Information
                 </Grid>
@@ -326,11 +327,11 @@ const handleProduct = (item) => {
             </Grid>
 
      <Grid sx={{width:matches?'100%':'40%',display:'flex'}}>
-        <Grid sx={{display:'flex',width:matches?'100%':'80%',marginLeft:'auto',flexDirection:'column',marginTop:'5%'}}>
+        <Grid sx={{display:'flex',width:matches?'100%':'80%',marginLeft:'auto',flexDirection:'column',marginTop:matchesA?'12%':'5%'}}>
       <Grid sx={{fontSize:'22px',fontWeight:600,lineHeight:'44px',letterSpacing:'-2.5%'}}>
       Order Summary
       </Grid>
-      <Grid sx={{marginTop:'3%'}}>
+      <Grid sx={{marginTop:matchesA?'':'3%'}}>
       <input type="text" style={{height:40,borderColor:'#ffff',border:'1px solid #ffff',borderRadius:'10px',width:'100%',background:'transparent'}} placeholder="Enter coupon code here"></input>
       </Grid>
       <Grid sx={{display:'flex',marginTop:'3%'}}>
@@ -419,9 +420,9 @@ const handleProduct = (item) => {
                     border:'1px solid #fff',
                     borderColor:'#fff',
                     width:'100%',
-                    height:matchesA?38:'2.7vw',
+                    height:matchesA?38:40,
                     color: "#fff",
-                    fontSize:matchesA?'14px':".8vw",
+                    fontSize:matchesA?'14px':"14px",
                     marginTop:'5%',
                     fontWeight: 500,
                     textTransform: "none",
@@ -435,7 +436,7 @@ const handleProduct = (item) => {
             </Grid> 
 
             <Grid sx={{marginTop:'5%'}}>
-              <img src={cardphn} width={matchesA?300:450}></img>
+              <img src={cardphn} width={matchesA?300:matchesB?300:450}></img>
             </Grid>
        </Grid>
       </Grid>

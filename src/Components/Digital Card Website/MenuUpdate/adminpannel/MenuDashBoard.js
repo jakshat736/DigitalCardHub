@@ -161,30 +161,7 @@ export default function MenuDashBoard() {
             <WhatsAppIcon sx={{ mr: { xs: 5, md: 0 } }} /> Share Business on WhatsApp
           </Button>
         </Grid>
-
-
-
-
-
-
-
-
-
-
-
-
       </Grid>
-
-
-
-
-
-
-
-
-
-
-
 
     </Grid>
   )

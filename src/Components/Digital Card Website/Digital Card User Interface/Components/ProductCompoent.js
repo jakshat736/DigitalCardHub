@@ -223,7 +223,7 @@ const ProductCompoent = () => {
           showConfirmButton: false,
 
         })
-
+        
         window.localStorage.setItem("Token", true)
         window.localStorage.setItem("User", true)
         window.localStorage.removeItem('data')

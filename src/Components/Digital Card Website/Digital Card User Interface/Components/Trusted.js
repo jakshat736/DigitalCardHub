@@ -7,7 +7,7 @@ export default function Trusted()
 {
     const matches = useMediaQuery("(max-width:700px)");
     const matchesA = useMediaQuery("(max-width:500px)");
-    return(<Grid sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',color:'#fff',marginBottom:'10%',height:matches?'50vw':'30vw',marginTop:matchesA?'-15%':'0%'}}>
+    return(<Grid sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',color:'#fff',marginBottom:matchesA?'4%':'',height:matches?'auto':'auto',marginTop:matchesA?'-1%':'%'}}>
  <Grid sx={{display:'flex',justifyContent:"space-between",alignItems:'center',width:matches?'90%':'60%',position:'relative'}}>
       <Grid>
         <img src={image1} width={matches?70:150} style={{zIndex:2}}></img>

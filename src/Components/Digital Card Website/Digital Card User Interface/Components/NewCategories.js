@@ -18,7 +18,7 @@ export default function NewCategories()
          <Grid sx={{alignItems:'center',fontSize:matches?'22px':'2.8vw',fontWeight:700,lineHeight:matches?'30px':'52px',color:'#fff',width:matches?'80%':'60%',textAlign:'center'}}>
          CATEGORIES WE WORK WITH
       </Grid>
-      <Grid sx={{alignItems:'center',fontSize:matches?'12px':'20px',fontWeight:400,lineHeight:matches?'20px':'30px',color:'#fff',width:'50%',textAlign:'center',marginTop:'1.5%'}}>
+      <Grid sx={{alignItems:'center',fontSize:matches?'12px':'20px',fontWeight:400,lineHeight:matches?'20px':'30px',color:'#fff',width:'75%',textAlign:'center',marginTop:'1.5%'}}>
       We have wide range categories to grow your business digitally and with review systems
       </Grid>
        {matchesA?<></>:<><Grid sx={{width:matches?'90%':'68%',height:500,display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',gap:10,marginBottom:'5%',marginTop:'1.4%'}}>

@@ -36,7 +36,7 @@ export default function TopBrand()
     })
    }
 
-    return(<div style={{width:'100%',marginTop:'-9%'}}>
+    return(<div style={{width:'100%',marginTop:'3%'}}>
    <Slider {...settings}>
     {showSlider()}    
   </Slider>

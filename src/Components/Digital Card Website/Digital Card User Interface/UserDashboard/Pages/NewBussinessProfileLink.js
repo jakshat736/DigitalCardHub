@@ -313,7 +313,6 @@ export default function NewBussinessProfileLink() {
         <Divider
           style={{
             backgroundColor: "#95a5a6",
-            marginTop: "1%",
           }}
         />
         <Grid

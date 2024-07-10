@@ -268,6 +268,15 @@ return(
         </MenuItem>
         </Link>
 
+        <Link to="/dashboard/affiliate" className={classes.link}>
+        <MenuItem >
+          <ListItemIcon>
+            <RemoveRedEyeIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Display Affiliate</ListItemText>
+        </MenuItem>
+        </Link>
+
 
         <MenuItem onClick={()=>handleLogout()}>
           <ListItemIcon>

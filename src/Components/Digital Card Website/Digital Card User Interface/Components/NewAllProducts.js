@@ -38,7 +38,9 @@ export default function NewAllProducts()
     const [statuscamera,setStatuscamera]=useState(false)
     const [statuscamera2,setStatuscamera2]=useState(false)
     const [statuscamera3,setStatuscamera3]=useState(false)
+    const matchesB = useMediaQuery("(max-width:600px)");
     const matches = useMediaQuery("(max-width:900px)");
+    const matchesA = useMediaQuery("(max-width:1300px)");
   
      const CustomPrevArrow = (props) => {
       const { className, onClick } = props;
@@ -106,8 +108,8 @@ export default function NewAllProducts()
               Explore
               </Button>
                     </Grid>
-                    <Grid sx={{display:'flex',marginTop:'8%',alignItems:"center",gap:5}}>
-                        <Grid sx={{display:'flex',gap:4}}>
+                    <Grid sx={{display:'flex',marginTop:'8%',alignItems:"center",gap:matches?1:5}}>
+                        <Grid sx={{display:'flex',gap:matches?1:4}}>
                           <Grid>
                             <img src={hand} width={50} style={{marginTop:'2%'}}></img>
                           </Grid>
@@ -123,7 +125,7 @@ export default function NewAllProducts()
                    <Grid>
                     <img src={line} width={1}></img>
                    </Grid>
-                   <Grid sx={{display:'flex',gap:4}}>
+                   <Grid sx={{display:'flex',gap:matches?1:4,marginLeft:matches?'4%':''}}>
                           <Grid>
                             <img src={search} width={40} style={{marginTop:'2%'}}></img>
                           </Grid>
@@ -138,8 +140,8 @@ export default function NewAllProducts()
                       </Grid>
                     </Grid>
                     </Grid> 
-                    <Grid sx={{display:'flex',width:matches?'100%':'50%',height:matches?'auto':520,color:'#fff',justifyContent:matches?'center':'normal',marginTop:matches?'10%':''}}>
-                     <Grid sx={{display:'flex',flexDirection:'column',marginLeft:'auto'}}>
+                    <Grid sx={{display:'flex',width:matches?'100%':'50%',height:'auto',color:'#fff',alignItems:matches?'center':'normal',justifyContent:matches?'center':'normal',marginTop:matches?'10%':''}}>
+                     <Grid sx={{display:'flex',flexDirection:'column',marginLeft:matches?'':'auto'}}>
                         <Grid>
                             <img src={image1} style={{width:matches?'160px':'214px',height:matches?'155px':'205px'}}></img>
                         </Grid>
@@ -159,11 +161,11 @@ export default function NewAllProducts()
                 </Grid>
             </Grid>
 
-            <Grid sx={{width:matches?'95%':'82%',height:matches?'auto':800,marginTop:matches?'10%':'1.5%',display:'flex',alignItems:'center',flexDirection:"column",color:'#fff'}}>
+            <Grid sx={{width:matches?'95%':'82%',height:'auto',marginTop:matches?'10%':'1.5%',display:'flex',alignItems:'center',flexDirection:"column",color:'#fff'}}>
                 <Grid sx={{fontSize:matches?'24px':'52px',fontWeight:600,lineHeight:matches?'30px':'52px',letterSpacing:'-2.4%'}}>
                 Our Latest Arrivals
                 </Grid>
-                <Grid sx={{marginTop:'4%',display:'flex',width:'100%',justifyContent:'space-between',flexDirection:matches?'column':'row',gap:matches?5:'',alignItems:matches?'center':'normal'}}>
+                <Grid sx={{marginTop:'4%',display:'flex',width:'100%',justifyContent:'space-between',flexDirection:matchesA?'column':'row',gap:matchesA?5:'',alignItems:matchesA?'center':'normal'}}>
                <Grid className={classes.imageContainer}>
                     <Grid sx={{height:350}}>
                     <Grid sx={{marginTop:'7%'}}>
@@ -176,7 +178,7 @@ export default function NewAllProducts()
                     <Grid className={classes.animatedImage3} sx={{zIndex:10,alignItems:'center'}}>
                         <img src={Blur} style={{width:'100%',borderRadius:'18px',position:'relative'}}></img>
 
-                    <Grid sx={{position:"absolute",marginTop:matches?'13%':'3%',zIndex:30,marginLeft:'1%',display:'flex'}}>
+                    <Grid sx={{position:"absolute",marginTop:matchesB?'9.5%':matches?'6%':matchesA?'5%':'3%',zIndex:30,marginLeft:'1%',display:'flex'}}>
                         <Grid>
                      <Grid sx={{fontSize:'15px',fontWeight:500,letterSpacing:'-2.6%',lineHeight:'26px',color:'#fff',fontFamily:'poppins'}}>
                         NCF Business Cards
@@ -226,7 +228,7 @@ export default function NewAllProducts()
                     <Grid className={classes.animatedImage3}  sx={{zIndex:10,alignItems:'center'}}>
                         <img src={Blur} style={{width:'100%',borderRadius:'18px',position:'relative'}}></img>
 
-                    <Grid sx={{position:"absolute",marginTop:matches?'13%':'3%',zIndex:30,marginLeft:'1%',display:'flex'}}>
+                    <Grid sx={{position:"absolute",marginTop:matchesB?'9.5%':matches?'6%':matchesA?'5%':'3%',zIndex:30,marginLeft:'1%',display:'flex'}}>
                         <Grid>
                      <Grid sx={{fontSize:'15px',fontWeight:500,letterSpacing:'-2.6%',lineHeight:'26px',color:'#fff',fontFamily:'poppins'}}>
                         NCF Business Cards
@@ -280,7 +282,7 @@ export default function NewAllProducts()
                     <Grid className={classes.animatedImage3} sx={{zIndex:10,alignItems:'center'}}>
                         <img src={Blur} style={{width:'100%',borderRadius:'18px',position:'relative'}}></img>
 
-                    <Grid sx={{position:"absolute",marginTop:matches?'13%':'3%',zIndex:30,marginLeft:'1%',display:'flex'}}>
+                    <Grid sx={{position:"absolute",marginTop:matchesB?'9.5%':matches?'6%':matchesA?'5%':'3%',zIndex:30,marginLeft:'1%',display:'flex'}}>
                         <Grid>
                      <Grid sx={{fontSize:'15px',fontWeight:500,letterSpacing:'-2.6%',lineHeight:'26px',color:'#fff',fontFamily:'poppins'}}>
                         NCF Business Cards
@@ -327,7 +329,7 @@ export default function NewAllProducts()
             </Grid>    
 
 
-            <Grid sx={{width:'100%',height:matches?'auto':800,display:'flex',alignItems:'center',flexDirection:"column",color:'#fff',marginTop:matches?'8%':'',}}>
+            <Grid sx={{width:'100%',height:matches?'auto':800,display:'flex',alignItems:'center',flexDirection:"column",color:'#fff',marginTop:matches?'8%':'12%',}}>
                 <Grid sx={{fontSize:matches?'24px':'52px',fontWeight:600,lineHeight:matches?'30px':'52px',letterSpacing:'-2.4%',textAlign:matches?'center':'',width:matches?'80%':'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
                 OUR TOP PROFESSIONALS
                 </Grid>

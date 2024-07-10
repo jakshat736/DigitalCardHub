@@ -1,13 +1,12 @@
-import {Typography,  Grid,Paper,IconButton} from "@mui/material";
-import NewHeader from "./NewHeader";
-import iphn from "../../Digital Card Assets/iphn.png"
-import useMediaQuery from '@mui/material/useMediaQuery';
-import SearchIcon from '@mui/icons-material/Search';
-import InputBase from '@mui/material/InputBase';
-import { useTheme } from '@mui/material/styles';
-import { useStyles } from "../../Digital Card User Interface/Components/HoveredCss";
 import React, { useEffect, useState } from "react";
-import Newfooter from "./NewFooter";
+import { Typography, Grid, Paper, IconButton, InputBase } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import SearchIcon from "@mui/icons-material/Search";
+import { useStyles } from "../../Digital Card User Interface/Components/HoveredCss";
+import NewHeader from "./NewHeader";
+import NewFooter from "./NewFooter";
+import iphn from "../../Digital Card Assets/iphn.png";
 
     const IosDevices = [
       {
@@ -806,151 +805,424 @@ import Newfooter from "./NewFooter";
       
     
 
-       export default function CompitableDevices()
-   {  
-         const classes = useStyles(); 
-         const theme = useTheme();
-          const matches = useMediaQuery(theme.breakpoints.down('md'));
-          const matchesA = useMediaQuery("(max-width:700px)");
+//        export default function CompitableDevices()
+//    {  
+//          const classes = useStyles(); 
+//          const theme = useTheme();
+//           const matches = useMediaQuery(theme.breakpoints.down('md'));
+//           const matchesA = useMediaQuery("(max-width:700px)");
       
-      const [iosDevices, setIosDevices] = useState(IosDevices);
-      const [androidDevices, setAndroidDevices] = useState(AndroidDevices);
+//       const [iosDevices, setIosDevices] = useState(IosDevices);
+//       const [androidDevices, setAndroidDevices] = useState(AndroidDevices);
     
-      useEffect(()=>{
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior:'instant',
-          });
-      },[])
+//       useEffect(()=>{
+//         window.scroll({
+//             top: 0,
+//             left: 0,
+//             behavior:'instant',
+//           });
+//       },[])
     
-      const IosComponent = () => {
-        return iosDevices.map((heading) => {
-          return (
+//       const IosComponent = () => {
+//         return iosDevices.map((heading) => {
+//           return (
 
 
-            <Paper
-            elevation={6}
-            sx={{
-              display: "flex",
-              flexDirection:"column",
-              padding:2.2,
-              width: "100%"
-              ,borderRadius:'10px',border:'1px solid #636e72',background: "radial-gradient(#636e72,#414141 )",
-              color:'#fff'
-            }}
-          >
-            <Grid item xs={12}>
-              <Grid sx={{ margin: 1,fontSize:matchesA?'22px':'28px',fontWeight:700,lineHeight:'30px' }}>{heading.heading}</Grid>
-            </Grid>
-            <Grid sx={{display:'flex',flexWrap:'wrap',margin:1.5,width:'100%',justifyContent:"space-between",textAlign:"left"}}>
-            {
-              heading.models.map((model)=>{
-                  return(
-                      <Grid  className={classes.button5} sx={{width:{xs:'40%',sm:'30%',md:'20%'},margin:1,cursor:'pointer'}}>{model.name}</Grid>
-                  )
-              })
-            }
-            </Grid>
-          </Paper>
+//             <Paper
+//             elevation={6}
+//             sx={{
+//               display: "flex",
+//               flexDirection:"column",
+//               padding:matchesA?1.4:2.2,
+//               width: "100%"
+//               ,borderRadius:'10px',border:'1px solid #2d3436',background:"#000",
+//               color:'#fff'
+//             }}
+//           >
+//             <Grid item xs={12}>
+//               <Grid sx={{ margin: 1,fontSize:matchesA?'22px':'28px',fontWeight:700,lineHeight:'30px' }}>{heading.heading}</Grid>
+//             </Grid>
+//             <Grid sx={{display:'flex',flexWrap:'wrap',margin:1.5,width:'100%',justifyContent:"space-between",textAlign:"left"}}>
+//             {
+//               heading.models.map((model)=>{
+//                   return(
+//                       <Grid  className={matchesA?classes.button55:classes.button5} sx={{width:{xs:'40%',sm:'30%',md:'20%'},margin:1,cursor:'pointer'}}>{model.name}</Grid>
+//                   )
+//               })
+//             }
+//             </Grid>
+//           </Paper>
 
 
-          );
-        });
-      };
+//           );
+//         });
+//       };
     
       
-      const AndroidComponent = () => {
-        return androidDevices.map((heading) => {
-          return (
-            <Paper
-            elevation={6}
-            sx={{
-              display: "flex",
-              flexDirection:"column",
-              padding:2.2,
-              width: "100%"
-              ,borderRadius:'10px',border:'1px solid #636e72',background: "radial-gradient(#636e72,#414141 )",
-              color:'#fff',
-              marginBottom:'3%'
-            }}
-          >
-            <Grid item xs={12}>
-              <Grid sx={{ margin: 1,fontSize:matchesA?'22px':'28px',fontWeight:700,lineHeight:'30px' }}>{heading.heading}</Grid>
-            </Grid>
-            <Grid sx={{display:'flex',flexWrap:'wrap',margin:1.5,width:'100%',justifyContent:"space-between",textAlign:"left"}}>
-            {
-              heading.models.map((model)=>{
-                  return(
-                      <Grid  className={classes.button5} sx={{width:{xs:'40%',sm:'30%',md:'20%'},margin:1,cursor:'pointer'}}>{model.name}</Grid>
-                  )
-              })
-            }
-            </Grid>
-          </Paper>
+//       const AndroidComponent = () => {
+//         return androidDevices.map((heading) => {
+//           return (
+//             <Paper
+//             elevation={6}
+//             sx={{
+//               display: "flex",
+//               flexDirection:"column",
+//               padding:2.2,
+//               width: "100%"
+//               ,borderRadius:'10px',border:'1px solid #2d3436',background: "#000",
+//               color:'#fff',
+//               marginBottom:'3%'
+//             }}
+//           >
+//             <Grid item xs={12}>
+//               <Grid sx={{ margin: 1,fontSize:matchesA?'22px':'28px',fontWeight:700,lineHeight:'30px' }}>{heading.heading}</Grid>
+//             </Grid>
+//             <Grid sx={{display:'flex',flexWrap:'wrap',margin:1.5,width:'100%',justifyContent:"space-between",textAlign:"left"}}>
+//             {
+//               heading.models.map((model)=>{
+//                   return(
+//                       <Grid  className={classes.button5} sx={{width:{xs:'40%',sm:'30%',md:'20%'},margin:1,cursor:'pointer',fontSize:matchesA?'15px':'24px'}}>{model.name}</Grid>
+//                   )
+//               })
+//             }
+//             </Grid>
+//           </Paper>
 
-          );
-        });
-      };
+//           );
+//         });
+//       };
     
     
 
 
     
 
-    return( <Grid>
+//     return( <Grid>
+//       <Grid>
+//         <Grid sx={{position:'sticky',top:'0',zIndex:50}}>
+//             <NewHeader/>
+//             </Grid>
+//     <Grid sx={{width:'100%',height:'auto',backgroundImage: "linear-gradient(to bottom right, #171717,#171717,#070707,#070707)",fontFamily:'Montserrat',color:'#fff',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}}>
+//    <Grid sx={{width:matchesA?'90%':'100%',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}}>
+//     <Grid sx={{marginTop:'5%',fontSize:matchesA?'24px':'40px',fontWeight:700,lineHeight:'36px',color:'#fff',textAlign:'center'}}>
+//     IS YOUR PHONE DCH COMPITABLE ?
+//     </Grid>
+//     <Grid sx={{marginTop:'1%',fontSize:matchesA?'14px':'20px',fontWeight:400,lineHeight:matchesA?'28px':'36px',color:'#fff',textAlign:'center',width:matchesA?'70%':'100%'}}>
+//     Here’s a list of smartphones that are compatible with DCH feature.
+//     </Grid>
+//     <Paper
+//       component="form"
+//       sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: matches?280:500,borderRadius:1.5,height:matches?38:45,marginTop:'2%',backgroundImage: "radial-gradient(,#636e72,#636e72)",border:'1px solid #b2bec3' }}>
+//      <InputBase
+//         sx={{ ml: 1, flex: 1 }}
+//         placeholder="Enter device name to search"
+//         inputProps={{ 'aria-label': 'search google maps' }}
+//       />
+//       <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+//         <SearchIcon />
+//       </IconButton>
+//     </Paper>
+    
+//     <Grid sx={{width:'82%'}}>
+//     <Grid sx={{display:'flex',marginTop:'6%',alignItems:'center'}}>
+//     <Grid sx={{fontSize:matchesA?'24px':'36px',fontWeight:700,lineHeight:'30px',color:'#fff'}}>Updated List</Grid>
+//     <Grid>
+//         <img src={iphn} width={matchesA?50:100} ></img>
+//     </Grid>
+//     </Grid>
+//     <Grid sx={{fontSize:matchesA?'18px':'26px',fontWeight:600,marginTop:'1%'}}>
+//     IOS Devices
+//     </Grid>
+//     <Grid>
+//     <IosComponent/>
+//       <Grid/>
+
+
+//        <Grid sx={{fontSize:matchesA?'20px':'26px',fontWeight:600,marginTop:'4%'}}>
+//         Android Devices
+//        </Grid>
+//        <Grid>
+//        <AndroidComponent/>
+//        </Grid>
+//     </Grid>
+//    </Grid>
+//     </Grid>
+//     </Grid>
+    
+//       </Grid>
+//       <Newfooter/>
+//         </Grid>)
+// }
+
+export default function CompatibleDevices() {
+  const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+  const matchesA = useMediaQuery("(max-width:700px)");
+
+  const [iosDevices, setIosDevices] = useState(IosDevices);
+  const [androidDevices, setAndroidDevices] = useState(AndroidDevices);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, []);
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filterDevices = (devices) => {
+    return devices.map((brand) => ({
+      ...brand,
+      models: brand.models.filter((model) =>
+        model.name.toLowerCase().includes(searchQuery.toLowerCase())
+      ),
+    })).filter((brand) => brand.models.length > 0); // Filter out brands with no matching models
+  };
+
+  const IosComponent = () => {
+    const filteredIosDevices = filterDevices(iosDevices);
+    return (
       <Grid>
-        <Grid sx={{position:'sticky',top:'0',zIndex:50}}>
-            <NewHeader/>
+        {filteredIosDevices.map((brand) => (
+          <Paper
+            key={brand.heading}
+            elevation={6}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              padding: matchesA ? 1.4 : 2.2,
+              width: "100%",
+              borderRadius: "10px",
+              border: "1px solid #2d3436",
+              background: "#000",
+              color: "#fff",
+            }}
+          >
+            <Typography
+              variant="h4"
+              sx={{
+                margin: 1,
+                fontSize: matchesA ? "22px" : "28px",
+                fontWeight: 700,
+                lineHeight: "30px",
+              }}
+            >
+              {brand.heading}
+            </Typography>
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                margin: 1.5,
+                width: "100%",
+                justifyContent: "space-between",
+                textAlign: "left",
+              }}
+            >
+              {brand.models.map((model) => (
+                <Grid
+                  key={model.name}
+                  item
+                  className={matchesA ? classes.button55 : classes.button5}
+                  sx={{
+                    width: { xs: "40%", sm: "30%", md: "20%" },
+                    margin: 1,
+                    cursor: "pointer",
+                  }}
+                >
+                  {model.name}
+                </Grid>
+              ))}
             </Grid>
-    <Grid sx={{width:'100%',height:'auto',backgroundImage: "linear-gradient(to bottom right, #171717,#171717,#070707,#070707)",fontFamily:'Montserrat',color:'#fff',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}}>
-   <Grid sx={{width:matchesA?'90%':'100%',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}}>
-    <Grid sx={{marginTop:'5%',fontSize:matchesA?'24px':'40px',fontWeight:700,lineHeight:'36px',color:'#fff',textAlign:'center'}}>
-    IS YOUR PHONE DCH COMPITABLE ?
-    </Grid>
-    <Grid sx={{marginTop:'1%',fontSize:matchesA?'14px':'20px',fontWeight:400,lineHeight:matchesA?'28px':'36px',color:'#fff',textAlign:'center',width:matchesA?'70%':'100%'}}>
-    Here’s a list of smartphones that are compatible with DCH feature.
-    </Grid>
-    <Paper
-      component="form"
-      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: matches?280:500,borderRadius:1.5,height:matches?38:45,marginTop:'2%',backgroundImage: "radial-gradient(,#636e72,#636e72)",border:'1px solid #b2bec3' }}>
-     <InputBase
-        sx={{ ml: 1, flex: 1 }}
-        placeholder="Enter device name to search"
-        inputProps={{ 'aria-label': 'search google maps' }}
-      />
-      <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-        <SearchIcon />
-      </IconButton>
-    </Paper>
-    
-    <Grid sx={{width:'82%'}}>
-    <Grid sx={{display:'flex',marginTop:'6%',alignItems:'center'}}>
-    <Grid sx={{fontSize:matchesA?'24px':'36px',fontWeight:700,lineHeight:'30px',color:'#fff'}}>Updated List</Grid>
-    <Grid>
-        <img src={iphn} width={matchesA?50:100} ></img>
-    </Grid>
-    </Grid>
-    <Grid sx={{fontSize:matchesA?'18px':'26px',fontWeight:600,marginTop:'1%'}}>
-    IOS Devices
-    </Grid>
-    <Grid>
-    <IosComponent/>
-      <Grid/>
-
-
-       <Grid sx={{fontSize:matchesA?'20px':'26px',fontWeight:600,marginTop:'4%'}}>
-        Android Devices
-       </Grid>
-       <Grid>
-       <AndroidComponent/>
-       </Grid>
-    </Grid>
-   </Grid>
-    </Grid>
-    </Grid>
-    
+          </Paper>
+        ))}
       </Grid>
-      <Newfooter/>
-        </Grid>)
+    );
+  };
+
+  const AndroidComponent = () => {
+    const filteredAndroidDevices = filterDevices(androidDevices);
+    return (
+      <Grid>
+        {filteredAndroidDevices.map((brand) => (
+          <Paper
+            key={brand.heading}
+            elevation={6}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              padding: 2.2,
+              width: "100%",
+              borderRadius: "10px",
+              border: "1px solid #2d3436",
+              background: "#000",
+              color: "#fff",
+              marginBottom: "3%",
+            }}
+          >
+            <Typography
+              variant="h4"
+              sx={{
+                margin: 1,
+                fontSize: matchesA ? "22px" : "28px",
+                fontWeight: 700,
+                lineHeight: "30px",
+              }}
+            >
+              {brand.heading}
+            </Typography>
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                margin: 1.5,
+                width: "100%",
+                justifyContent: "space-between",
+                textAlign: "left",
+              }}
+            >
+              {brand.models.map((model) => (
+                <Grid
+                  key={model.name}
+                  item
+                  className={matchesA ? classes.button55 : classes.button5}
+                  sx={{
+                    width: { xs: "40%", sm: "30%", md: "20%" },
+                    margin: 1,
+                    cursor: "pointer",
+                    fontSize: matchesA ? "15px" : "24px",
+                  }}
+                >
+                  {model.name}
+                </Grid>
+              ))}
+            </Grid>
+          </Paper>
+        ))}
+      </Grid>
+    );
+  };
+
+  return (
+    <Grid>
+      <NewHeader />
+      <Grid
+        sx={{
+          width: "100%",
+          height: "auto",
+          backgroundImage: "linear-gradient(to bottom right, #171717,#171717,#070707,#070707)",
+          fontFamily: "Montserrat",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <Grid
+          sx={{
+            width: matchesA ? "90%" : "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+          <Typography
+            variant="h3"
+            sx={{
+              marginTop: "5%",
+              fontSize: matchesA ? "24px" : "40px",
+              fontWeight: 700,
+              lineHeight: "36px",
+              color: "#fff",
+              textAlign: "center",
+            }}
+          >
+            IS YOUR PHONE DCH COMPATIBLE ?
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              marginTop: "1%",
+              fontSize: matchesA ? "14px" : "20px",
+              fontWeight: 400,
+              lineHeight: matchesA ? "28px" : "36px",
+              color: "#fff",
+              textAlign: "center",
+              width: matchesA ? "70%" : "100%",
+            }}
+          >
+            Here’s a list of smartphones that are compatible with DCH feature.
+          </Typography>
+          <Paper
+            component="form"
+            sx={{
+              p: "2px 4px",
+              display: "flex",
+              alignItems: "center",
+              width: matches ? 280 : 500,
+              borderRadius: 1.5,
+              height: matches ? 38 : 45,
+              marginTop: "2%",
+              backgroundImage: "radial-gradient(,#636e72,#636e72)",
+              border: "1px solid #b2bec3",
+            }}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Enter device name to search"
+              inputProps={{ "aria-label": "search devices" }}
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+            <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+              <SearchIcon />
+            </IconButton>
+          </Paper>
+          <Grid sx={{ width: "82%" }}>
+            <Grid sx={{ display: "flex", marginTop: "6%", alignItems: "center" }}>
+              <Typography
+                variant="h3"
+                sx={{
+                  fontSize: matchesA ? "24px" : "36px",
+                  fontWeight: 700,
+                  lineHeight: "30px",
+                  color: "#fff",
+                }}
+              >
+                Updated List
+              </Typography>
+              <img src={iphn} width={matchesA ? 50 : 100} alt="iPhone" />
+            </Grid>
+            <Typography
+              variant="h4"
+              sx={{ fontSize: matchesA ? "18px" : "26px", fontWeight: 600, marginTop: "1%" }}
+            >
+              IOS Devices
+            </Typography>
+            <IosComponent />
+            <Typography
+              variant="h4"
+              sx={{ fontSize: matchesA ? "20px" : "26px", fontWeight: 600, marginTop: "4%" }}
+            >
+              Android Devices
+            </Typography>
+            <AndroidComponent />
+          </Grid>
+        </Grid>
+      </Grid>
+      <NewFooter />
+    </Grid>
+  );
 }

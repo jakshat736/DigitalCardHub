@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import stand1 from "../../Digital Card Assets/stands1.jpg";
+import stand1 from "../../Digital Card Assets/k.png";
 import stand2 from "../../Digital Card Assets/stands2.jpg";
 import stand3 from "../../Digital Card Assets/stands3.jpg"
 import stand4 from "../../Digital Card Assets/stands4.jpg";
@@ -15,8 +15,7 @@ import blurrectangle from "../../Digital Card Assets/blurrectangle.png"
 import {
   useMediaQuery,
 } from "@mui/material";
-
-
+                        
 export default function Introducing()
 {
     const matches = useMediaQuery("(max-width:900px)");
@@ -49,7 +48,7 @@ export default function Introducing()
        {matchesB?<><Grid sx={{fontSize:matchesB?'22px':matchesA?'18px':'2.8vw',fontWeight:700,lineHeight:matchesA?'28px':matches?"36px":'52px',textAlign:'center',color:'#fff',padding:1}}>
             INTRODUCING OUR WIDE RANGE OF NFC PRODUCTS.
             </Grid></>:<></>}
-    <Grid sx={{width:'100%',display:'flex'}}>
+    <Grid sx={{width:'100%',display:'flex',marginTop:matchesA?'1%':''}}>
           <Grid sx={{width:'60%',height:'auto',display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',}}>
            <Grid sx={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',width:'80%'}}>
             {matchesB?<></>:<><Grid sx={{fontSize:matchesB?'22px':matchesA?'18px':'2.8vw',fontWeight:700,lineHeight:matchesA?'28px':matches?"36px":'52px',textAlign:'center'}}>

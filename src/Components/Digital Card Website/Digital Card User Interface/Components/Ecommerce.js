@@ -17,7 +17,7 @@ export default function Ecommerce()
     <img src={matchesA?blurbackgroundEcommerce2:blurbackgroundEcommerce} style={{width:matches?'100%':'100%',height:'auto'}}></img>
     <Grid sx={{color:'#fff',position:'absolute',width:'100%'}}>
      <Grid sx={{display:'flex',flexDirection:'column',alignItems:'center'}}>
-        <Grid sx={{color:'#fff',fontSize:matchesB?'22px':'2.5vw',fontWeight:700,lineHeight:matchesB?'30px':'3.3vw',marginTop:'6%',textAlign:'center'}}>
+        <Grid sx={{color:'#fff',fontSize:matchesB?'22px':'2.5vw',fontWeight:700,lineHeight:matchesB?'30px':'3.3vw',marginTop:'6%',textAlign:'center',width:'90%'}}>
         DIGITAL PROFILE WITH MENU
         </Grid>
         </Grid>

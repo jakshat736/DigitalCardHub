@@ -5,7 +5,10 @@ import FiberNewIcon from '@mui/icons-material/FiberNew';
 import HelpIcon from '@mui/icons-material/Help';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import bag from "../../Digital Card Assets/newbag.png"
+import sale from "../../Digital Card Assets/salenew.png"
+import news from "../../Digital Card Assets/newnew.png"
+import i from "../../Digital Card Assets/inew.png"
 export default function Lower(props) {
   const navigate=useNavigate()
   const handleButtonClick = () => {
@@ -14,34 +17,30 @@ export default function Lower(props) {
     //   props.callParentFunction();
     // }
 
-    navigate('/allproducts')
+    navigate('/newallproduct2')
 
     // Other logic in the Lower component
   };
   return (
     <Grid>
-      <Paper sx={{ borderTopLeftRadius: 15, borderTopRightRadius: 15,width:{xs:"100vw"},backgroundColor:'#0c5273' }}>
+      <Paper sx={{ borderTopLeftRadius:'20px', borderTopRightRadius:'20px',width:{xs:"100vw"},height:55,zIndex:100,backgroundColor:'#ecf0f1',display:'flex',alignItems:'center',justifyContent:'center' }}>
         <Grid container spacing={2}>
           <Grid
             item
             xs={12}
-            sx={{ display: { md: 'none', xs: 'flex' }, justifyContent:'space-around'}}
+            sx={{ display: { md: 'none', xs: 'flex' },color:'#000', justifyContent:'space-around',alignItems:'center'}}
           >
-            <IconButton sx={{display:"flex",flexDirection:'column',color:'#fff',}} onClick={()=>navigate('/shop')}>
-              <StoreIcon />
-              <Typography>Shop</Typography>
+            <IconButton sx={{display:"flex",flexDirection:'column'}} onClick={()=>navigate('/newallproduct2')}>
+              <img src={bag} width={32}></img>
             </IconButton >
-            <IconButton sx={{display:"flex",flexDirection:'column',color:'#fff'}} onClick={handleButtonClick}>
-              <LoyaltyIcon />
-              <Typography>Sale</Typography>
+            <IconButton sx={{display:"flex",flexDirection:'column'}} onClick={handleButtonClick}>
+            <img src={sale} width={32}></img>
             </IconButton >
-            <IconButton sx={{display:"flex",flexDirection:'column',color:'#fff'}} onClick={handleButtonClick}>
-              <FiberNewIcon />
-              <Typography>New</Typography>
+            <IconButton sx={{display:"flex",flexDirection:'column'}} onClick={handleButtonClick}>
+            <img src={news} width={32}></img>
             </IconButton>
-            <IconButton sx={{display:"flex",flexDirection:'column',color:'#fff'}} href='https://youtu.be/dfj0V7aHbCM?si=ED7JFPvgDEAJ4kYX'>
-              <HelpIcon />
-              <Typography>Help</Typography>
+            <IconButton sx={{display:"flex",flexDirection:'column'}} href='https://youtu.be/dfj0V7aHbCM?si=ED7JFPvgDEAJ4kYX'>
+            <img src={i} width={32}></img>
             </IconButton>
           </Grid>
         </Grid>

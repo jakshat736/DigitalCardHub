@@ -34,7 +34,7 @@ import { getData, serverURL } from '../../../Services/NodeServices'
 import {  useState } from 'react'
 import Preloader from './Preloader'
 export default function NewAllProduct2()
-{  
+{
   const [add, setAdd] = useState(false);
   const [count, setCount] = useState(0);
 
@@ -166,8 +166,8 @@ const sliderRefs = useRef([]);
        return data?.map((item,index) => {
            return (
             <Grid key={item.id} item  md={matchesA?6:3.5} sx={{ display: "flex", justifyContent:matchesA?'center':"space-between",alignItems:'center',marginTop:'2%',width:'100%' }}>
-               <Grid  sx={{  display: 'flex',flexWrap: 'wrap',flexDirection:'column'}}>
-                    <Grid onClick={() => navigate(`/productcomponents/${item._id}`)} sx={{width:matchesB?'320px':'357px',height:'auto',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column',cursor:'pointer'}}>
+               <Grid onClick={() => navigate(`/productcomponents/${item._id}`)}  sx={{  display: 'flex',flexWrap: 'wrap',flexDirection:'column',cursor:'pointer'}}>
+                    <Grid sx={{width:matchesB?'320px':'357px',height:'auto',display:'flex',alignItems:'center',border:'1px solid #fff',borderRadius:'10px',background:'#fff',padding:2,flexDirection:'column',cursor:'pointer'}}>
                         <Grid  sx={{marginLeft:'auto'}}><img src={heart} width={25}></img></Grid>
                         <Grid sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
                         {/* <Slider ref={el => sliderRefs.current[index] = el} {...settings} style={{display:'flex',alignItems:'center',}}>
@@ -196,7 +196,28 @@ const sliderRefs = useRef([]);
                         <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',color:'#A39C00',marginTop:'-4%'}}><s>₹{item.price}</s></Grid>
                     </Grid>
                     <Grid sx={{marginLeft:'auto'}}>
-                    {count == 0 ? (
+
+                    <Button
+                           style={{
+                            border:'1px solid #fff',
+                            borderColor:'#fff',
+                            width:matchesB?'250px': '271px',
+                            height: '34px',
+                            lineHeight:'36px',       
+                            color: "#fff",
+                            marginLeft:'2%',
+                            fontSize: "16px",
+                            fontWeight: 500,
+                            textTransform: "none",
+                            borderRadius: '10px',
+                            display:"flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            cursor:'-moz-grab'
+                          }}>
+                         Enquiry Now
+                        </Button> 
+                    {/* {count == 0 ? (
                            <Button
                            onClick={handleClickAdd}
                            style={{
@@ -258,8 +279,11 @@ const sliderRefs = useRef([]);
                               </Grid>
                             </Grid>
                           </div>
-                        )}
+                        )} */}
                     </Grid>
+
+
+
                     </Grid>
                     </Grid>
                    </Grid>
@@ -281,16 +305,16 @@ const sliderRefs = useRef([]);
                 :
   <Grid sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center',fontFamily:'Montserrat',flexDirection:"column",color:'#fff'}}>
     <Grid sx={{width:'100%',marginTop:'3%'}}>
-     <img src={headline} style={{width:'100%'}}></img>
+     <img src={headline} style={{width:'100%',}}></img>
     </Grid>
       <Grid sx={{width:'82%',height:'auto',marginTop:'2%',display:'flex',flexDirection:'column'}}>
-        <Grid sx={{display:'flex'}}>
+        <Grid sx={{display:'flex',marginTop:matchesA?'3%':''}}>
         <Button
              style={{
                     border:'1px solid #fff',
                     borderColor:'#fff',
                     width:matchesB?80:'13vw',
-                    height:matchesB?25: '2.7vw',
+                    height:matchesB?32: '2.7vw',
                     color: "#fff",
                     fontSize:matchesB?'12px': "1.1vw",
                     fontWeight: 500,
@@ -309,7 +333,7 @@ const sliderRefs = useRef([]);
                     border:'1px solid #fff',
                     borderColor:'#fff',
                     width:matchesB?80:'13vw',
-                    height:matchesB?25: '2.7vw',
+                    height:matchesB?32: '2.7vw',
                     color: "#fff",
                     fontSize:matchesB?'12px': "1.1vw",
                     fontWeight: 500,
@@ -328,7 +352,7 @@ const sliderRefs = useRef([]);
                     border:'1px solid #fff',
                     borderColor:'#fff',
                     width: matchesB?100:'11vw',
-                    height:matchesB?25:'2.7vw',
+                    height:matchesB?32:'2.7vw',
                     lineHeight:'36px',
                     color: "#fff",
                     marginLeft:'2%',
@@ -448,10 +472,8 @@ const sliderRefs = useRef([]);
 
                 </Grid>
 
-
-                <Grid container spacing={2} sx={{display: "flex", justifyContent:"space-between",marginBottom:'8%' }} >
+                <Grid container spacing={2} sx={{display: "flex", justifyContent:"space-between",marginBottom:'8%',marginTop:matchesA?'3%':'' }} >
                     <ProximityComponent />
-
                 </Grid>
                   
 
