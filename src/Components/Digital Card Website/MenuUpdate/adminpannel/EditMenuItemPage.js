@@ -20,16 +20,22 @@ import right from "../../Digital Card Assets/righticonpopup.png"
 import Dialog from "@mui/material/Dialog";
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import add from "../../Digital Card Assets/adds.png"
+import minus from "../../Digital Card Assets/minuss.png"
 export default function EditMenuItemPage()
 {
 
-    const matches = useMediaQuery("(max-width:600px)");
-    const matchesA = useMediaQuery("(max-width:1400px)");
-    const matchesB = useMediaQuery("(max-width:500px)");
+    const matches = useMediaQuery("(max-width:1000px)");
+    const matchesB = useMediaQuery("(max-width:600px)");
+
     const [view, setView] = useState(false);
     const [view2, setView2] = useState(false);
     const [food, setFood] = useState(false);
     const [openDrawer2, setOpenDrawer2] = useState(false);
+    const [openDrawer3, setOpenDrawer3] = useState(false);
+    const [openDrawer, setOpenDrawer] = useState(false);
+    const [category, setcategory] = useState(true);
+    const [item, setItem] = useState(true);
 
 
 const handleFood = () => {
@@ -37,7 +43,15 @@ const handleFood = () => {
   setOpenDrawer2(!openDrawer2);
 };
 
+const handlecategory = () => {
+  setcategory(!category);
+  setOpenDrawer(!openDrawer);
+};
 
+const handleItem = () => {
+  setItem(!item);
+  setOpenDrawer3(!openDrawer3);
+};
 
 const handleViewCard = () => {
     setView(true);
@@ -336,15 +350,28 @@ const handleViewCard = () => {
 
 
     return(<Grid sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
-    <Grid sx={{width:'85%',marginTop:'3%',color:'#000'}}>
-        <Grid sx={{width:'100%',height:'auto',display:'flex'}}>
-          <Grid sx={{width:'50%'}}>
-            <Grid sx={{fontSize:'26px',fontWeight:600,color:'#fff',marginLeft:'6%'}}>Edit categories</Grid>
-            <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',marginTop:'2%'}}>
-            <Grid sx={{width:'90%',height:'280px',border:'1px solid #E9E9E9',background:'#E9E9E9',borderRadius:'10px',padding:2.5,color:'#000',display:'flex',flexDirection:"column"}}>
-             <Grid sx={{fontSize:'20px',fontWeight:600,display:'flex',justifyContent:'center',alignItems:'center'}}>Add new category</Grid>
+    <Grid sx={{width:matchesB?'97%':'85%',marginTop:'3%',color:'#000'}}>
+        <Grid sx={{width:'100%',height:'auto',display:'flex',flexDirection:matches?'column':'row'}}>
+          <Grid sx={{width:matches?'100%':'50%'}}>
+            <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',}}>
+              <Grid sx={{display:'flex',justifyContent:"space-between",alignItems:'center',width:'90%'}}>
+            <Grid sx={{fontSize:matchesB?'18px':'26px',fontWeight:600,color:'#fff'}}>Edit categories</Grid>
+            <Grid onClick={handlecategory} sx={{cursor:'pointer'}}>
+            {openDrawer ? (
+                <img src={minus} width={20}></img>
+              ) : (
+                <img src={add} width={20}></img>
+              )}
+            
+            </Grid>
+            </Grid>
+            </Grid>
+
+            {category?<Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',marginTop:'2%'}}>
+            <Grid sx={{width:'90%',height:matchesB?'auto':'280px',border:'1px solid #E9E9E9',background:'#E9E9E9',borderRadius:'10px',padding:2.5,color:'#000',display:'flex',flexDirection:"column"}}>
+             <Grid sx={{fontSize:matchesB?'16px':'20px',textAlign:'center',fontWeight:600,display:'flex',justifyContent:'center',alignItems:'center'}}>Add new category</Grid>
              <Grid sx={{marginTop:'4%'}}>
-                <Grid sx={{fontSize:'16px',fontWeight:500,color:'#000'}}>Category name *</Grid>
+                <Grid sx={{fontSize:matchesB?'12px':'16px',fontWeight:500,color:'#000'}}>Category name *</Grid>
              <Grid
                 sx={{
                   border: "1px solid #000",
@@ -353,7 +380,7 @@ const handleViewCard = () => {
                   p: "2px 4px",
                   display: "flex",
                   alignItems: "center",
-                  height: "52px",
+                  height: matchesB?'40px':"52px",
                   width: "100%",
                   marginTop:'1%'
                 }}
@@ -383,7 +410,7 @@ const handleViewCard = () => {
                   border: "1px solid #000",
                   borderColor: "#000",
                   background:'#000',
-                  height:"52px",
+                  height: matchesB?'40px':"52px",
                   color: "#fff",
                   fontSize: "18px",
                   fontWeight: 500,
@@ -402,13 +429,34 @@ const handleViewCard = () => {
               </Button>
            </Grid>
           </Grid>
+           
+          :<></>}
+
+<Divider
+                    style={{
+                      backgroundColor: "#fff",
+                      width:"100%",
+                      marginTop: "4%",
+                    }}
+                  />
 
 
 
-
-          <Grid sx={{fontSize:'26px',fontWeight:600,color:'#fff',marginLeft:'6%',marginTop:'8%'}}>Add menu items</Grid>
+          <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'8%'}}>
+              <Grid sx={{display:'flex',justifyContent:"space-between",alignItems:'center',width:'90%'}}>
+            <Grid sx={{fontSize: matchesB?'18px':'26px',fontWeight:600,color:'#fff'}}>Add menu items</Grid>
+            <Grid onClick={handleItem} sx={{cursor:'pointer'}}>
+            {openDrawer3 ? (
+                <img src={minus} width={20}></img>
+              ) : (
+                <img src={add} width={20}></img>
+              )}
+            
+            </Grid>
+            </Grid>
+            </Grid>
             <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',marginTop:'2%'}}>
-            <Grid sx={{width:'90%',height:'auto',border:'1px solid #E9E9E9',background:'#E9E9E9',borderRadius:'10px',padding:2.5,color:'#000',display:'flex',flexDirection:"column"}}>
+            {item?<Grid sx={{width:'90%',height:'auto',border:'1px solid #E9E9E9',background:'#E9E9E9',borderRadius:'10px',padding:2.5,color:'#000',display:'flex',flexDirection:"column"}}>
             <Grid sx={{width:'100%',display:'flex',gap:3}}>
            <Grid>
             <Grid sx={{fontSize:'14px',fontWeight:500,color:'#000',lineHeight:'18px'}}>Name <b style={{color:'red'}}>*</b></Grid>
@@ -420,7 +468,7 @@ const handleViewCard = () => {
                     p: "2px 4px",
                     display: "flex",
                     alignItems: "center",
-                    height: "45px",
+                    height: matchesB?'40px': "45px",
                     width:"100%",
                   }}
                 >
@@ -441,7 +489,7 @@ const handleViewCard = () => {
                     p: "2px 4px",
                     display: "flex",
                     alignItems: "center",
-                    height: "45px",
+                    height:  matchesB?'40px':"45px",
                     width:"100%",
                   }}
                 >
@@ -467,7 +515,7 @@ const handleViewCard = () => {
                         alignItems: "center",
                         fontSize:'16px',
                         background:'transparent',
-                        height: "45px",
+                        height: matchesB?'40px': "45px",
                         width:'100%',
                         marginTop:'1%',
                       }}>
@@ -489,14 +537,14 @@ const handleViewCard = () => {
                         display: "flex",
                         alignItems: "center",
                         background:'transparent',
-                        height:160,
+                        height:matchesB?130:160,
                         padding:2,
                         width: "100%",
                         marginTop:'1%'}}  placeholder="Enter a food category name."></textarea></Grid>
                 </Grid>
 
 
-            <Grid sx={{width:'100%',display:'flex',justifyContent:'space-between',marginTop:'3%'}}>
+            <Grid sx={{width:'100%',display:'flex',justifyContent:'space-between',marginTop:'3%',flexDirection:matches?'column':'row'}}>
                 <Grid>
                         <Grid
                           sx={{
@@ -550,7 +598,7 @@ const handleViewCard = () => {
 
 
                     <Grid>
-                <Grid sx={{fontSize:'14px',fontWeight:500,color:'#000',lineHeight:'18px'}}>Sort order <b style={{color:'red'}}>*</b></Grid>
+                <Grid sx={{fontSize:'14px',fontWeight:500,color:'#000',lineHeight:'18px',marginTop:matches?'5%':''}}>Sort order <b style={{color:'red'}}>*</b></Grid>
                
                 <select
                       style={{
@@ -576,7 +624,7 @@ const handleViewCard = () => {
 
 
 
-<Grid sx={{width:'100%',height:'90px',borderRadius:'10px',background:'#D6D6D6',display:'flex',padding:2,marginTop:'3%',flexDirection:'column'}}>
+<Grid sx={{width:'100%',height:matches?'auto':'90px',borderRadius:'10px',background:'#D6D6D6',display:'flex',padding:2,marginTop:'3%',flexDirection:'column'}}>
 <Grid sx={{fontSize:'18px',fontWeight:500,lineHeight:'20px'}}>
 Food type *
 </Grid>
@@ -595,13 +643,13 @@ Food type *
 
 <Grid sx={{width:'100%',height:'auto',borderRadius:'10px',border:'1px solid #000',display:'flex',padding:2,marginTop:'5%',flexDirection:'column'}}>
     <Grid sx={{display:'flex',alignItems:'center',justifyContent:'space-around',marginTop:'4%'}}>
-     <Grid sx={{fontSize:'20px',fontWeight:500,lineHeight:'20px'}}>
+     <Grid sx={{fontSize: matchesB?'12px':'20px',fontWeight:500,lineHeight:'20px'}}>
      Qty.
      </Grid>
-     <Grid sx={{fontSize:'20px',fontWeight:600,lineHeight:'20px',textDecoration:'underline'}}>
+     <Grid sx={{fontSize: matchesB?'12px':'20px',fontWeight:600,lineHeight:'20px',textDecoration:'underline'}}>
     Item Quantity
      </Grid>
-     <Grid sx={{fontSize:'20px',fontWeight:500,lineHeight:'20px'}}>
+     <Grid sx={{fontSize: matchesB?'12px':'20px',fontWeight:500,lineHeight:'20px'}}>
     Price
      </Grid>
     </Grid>
@@ -614,7 +662,7 @@ Food type *
                     }}
                   />
 
-                  <Grid sx={{fontSize:'22px',marginTop:'4%',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                  <Grid sx={{fontSize: matchesB?'16px':'22px',marginTop:'4%',display:'flex',alignItems:'center',justifyContent:'center'}}>
                   No Data Available
                   </Grid>
                   <Divider
@@ -631,9 +679,9 @@ Food type *
                   border: "1px solid #000",
                   borderColor: "#000",
                   background:'#000',
-                  height:"52px",
+                  height: matchesB?'40px':"52px",
                   color: "#fff",
-                  fontSize: "20px",
+                  fontSize:  matchesB?'14px':"20px",
                   fontWeight: 700,
                   marginTop:'6%',
                   textTransform: "none",
@@ -655,14 +703,14 @@ Food type *
 
 
 <Grid sx={{width:'100%',height:'auto',borderRadius:'10px',border:'1px solid #000',display:'flex',padding:2,marginTop:'4%',flexDirection:'column'}}>
-<Grid sx={{fontSize:'20px',fontWeight:600,marginTop:'4%',display:'flex',alignItems:'center',justifyContent:'center',marginTop:'4%',textDecoration:'underline'}}>
+<Grid sx={{fontSize: matchesB?'14px':'20px',fontWeight:600,marginTop:'4%',display:'flex',alignItems:'center',justifyContent:'center',marginTop:'4%',textDecoration:'underline'}}>
 Add on options
                   </Grid>
     <Grid sx={{display:'flex',alignItems:'center',justifyContent:'space-around',marginTop:'4%'}}>
-     <Grid sx={{fontSize:'20px',fontWeight:500,lineHeight:'20px'}}>
+     <Grid sx={{fontSize: matchesB?'14px':'20px',fontWeight:500,lineHeight:'20px'}}>
    Add On
      </Grid>
-     <Grid sx={{fontSize:'20px',fontWeight:500,lineHeight:'20px'}}>
+     <Grid sx={{fontSize: matchesB?'14px':'20px',fontWeight:500,lineHeight:'20px'}}>
     Price
      </Grid>
     </Grid>
@@ -674,7 +722,7 @@ Add on options
                       marginTop: "4%",
                     }}
                   />
-  <Grid sx={{fontSize:'22px',marginTop:'4%',display:'flex',alignItems:'center',justifyContent:'center'}}>
+  <Grid sx={{fontSize: matchesB?'16px':'22px',marginTop:'4%',display:'flex',alignItems:'center',justifyContent:'center'}}>
                   No Data Available
                   </Grid>
                   <Divider
@@ -691,9 +739,9 @@ Add on options
                   border: "1px solid #000",
                   borderColor: "#000",
                   background:'#000',
-                  height:"52px",
+                  height: matchesB?'40px':"52px",
                   color: "#fff",
-                  fontSize: "20px",
+                  fontSize: matchesB?'13px': "20px",
                   fontWeight: 700,
                   marginTop:'6%',
                   textTransform: "none",
@@ -725,7 +773,7 @@ Add on options
                   border: "1px solid #4cd137",
                   borderColor: "#4cd137",
                   background:'#4cd137',
-                  height:"52px",
+                  height: matchesB?'40px':"52px",
                   color: "#fff",
                   fontSize: "20px",
                   fontWeight: 700,
@@ -749,7 +797,7 @@ Add on options
                   border: "1px solid red",
                   borderColor: "red",
                   background:'red',
-                  height:"52px",
+                  height: matchesB?'40px':"52px",
                   color: "#fff",
                   fontSize: "20px",
                   fontWeight: 700,
@@ -767,19 +815,30 @@ Add on options
               Reset
               </Button>
 
-           </Grid>
+           </Grid>:<></>}
+
+
+           <Divider
+                    style={{
+                      backgroundColor: "#fff",
+                      width:"100%",
+                      marginTop: "4%",
+                    }}
+                  />
+
+
           </Grid>      
          </Grid>
 
 
 
-         <Grid sx={{width:'50%'}}>
+         <Grid sx={{width:matches?'100%':'50%',marginTop:matches?'8%':'',marginBottom:'5%'}}>
          <Grid sx={{fontSize:'26px',fontWeight:600,color:'#fff',marginLeft:'6%'}}>Menu Items</Grid>
             <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',marginTop:'2%'}}>
             <Grid sx={{width:'90%',height:'auto',border:'1px solid #E9E9E9',background:'#E9E9E9',borderRadius:'10px',color:'#000',display:'flex',flexDirection:"column"}}>
                 <Grid sx={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:2.5}}>
-                   <Grid sx={{fontSize:'20px',fontWeight:600}}>category name</Grid>
-                   <Grid sx={{fontSize:'20px',fontWeight:600}}>items</Grid>
+                   <Grid sx={{fontSize: matchesB?'14px':'20px',fontWeight:600}}>category name</Grid>
+                   <Grid sx={{fontSize: matchesB?'14px':'20px',fontWeight:600}}>items</Grid>
                 </Grid>
                 <Divider
                     style={{
@@ -791,7 +850,7 @@ Add on options
 
 <Grid sx={{padding:2.6}}>
 <Grid sx={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:'2%'}}>
-<Grid sx={{fontSize:'18px',fontWeight:500}}>
+<Grid sx={{fontSize: matchesB?'14px':'18px',fontWeight:500}}>
 Burgers
 </Grid>
 <Grid>
@@ -828,11 +887,11 @@ Burgers
 </Grid>
 
 {food?<></>:<Grid sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-<Grid sx={{marginTop:'3.5%',width:'90%',maxHeight:'250px',overflow:'scroll',scrollbarWidth:'none'}}>
+<Grid sx={{marginTop:'3.5%',width:matchesB?'100%':'90%',maxHeight:'250px',overflow:'scroll',scrollbarWidth:'none'}}>
 <Grid sx={{display:'flex',alignItems:'center'}}>
 <Grid><Avatar alt="Remy Sharp" src={burgur} /></Grid>
-<Grid sx={{marginLeft:'10%',fontSize:'16px',fontWeight:500}}>Ham Burger</Grid>
-<Grid sx={{marginLeft:'auto',gap:6,display:'flex',alignItems:'center'}}>
+<Grid sx={{marginLeft:'10%',fontSize: matchesB?'12px':'16px',fontWeight:500}}>Ham Burger</Grid>
+<Grid sx={{marginLeft:'auto',gap:matchesB?1:6,display:'flex',alignItems:'center'}}>
 <Grid sx={{fontSize:'18px',fontWeight:600,color:'#00B412'}}>89/-</Grid>
 <Grid><img src={dark} width={10}></img></Grid>
 </Grid>
@@ -847,8 +906,8 @@ Burgers
                   />
         <Grid sx={{display:'flex',alignItems:'center',marginTop:'3%'}}>
 <Grid><Avatar alt="Remy Sharp" src={burgur2} /></Grid>
-<Grid sx={{marginLeft:'10%',fontSize:'16px',fontWeight:500}}>Cheese Burger</Grid>
-<Grid sx={{marginLeft:'auto',gap:6,display:'flex',alignItems:'center'}}>
+<Grid sx={{marginLeft:'10%',fontSize: matchesB?'12px':'16px',fontWeight:500}}>Cheese Burger</Grid>
+<Grid sx={{marginLeft:'auto',gap: matchesB?1:6,display:'flex',alignItems:'center'}}>
 <Grid sx={{fontSize:'18px',fontWeight:600,color:'#00B412'}}>102/-</Grid>
 <Grid><img src={dark} width={10}></img></Grid>
 </Grid>
@@ -864,8 +923,8 @@ Burgers
                   />
         <Grid sx={{display:'flex',alignItems:'center',marginTop:'3%'}}>
 <Grid><Avatar alt="Remy Sharp" src={burgur3} /></Grid>
-<Grid sx={{marginLeft:'10%',fontSize:'16px',fontWeight:500}}>Paneer Burger</Grid>
-<Grid sx={{marginLeft:'auto',gap:6,display:'flex',alignItems:'center'}}>
+<Grid sx={{marginLeft:'10%',fontSize: matchesB?'12px':'16px',fontWeight:500}}>Paneer Burger</Grid>
+<Grid sx={{marginLeft:'auto',gap: matchesB?1:6,display:'flex',alignItems:'center'}}>
 <Grid sx={{fontSize:'18px',fontWeight:600,color:'#00B412'}}>100/-</Grid>
 <Grid><img src={dark} width={10}></img></Grid>
 </Grid>
@@ -882,8 +941,8 @@ Burgers
                   />
         <Grid sx={{display:'flex',alignItems:'center',marginTop:'3%'}}>
 <Grid><Avatar alt="Remy Sharp" src={burgur} /></Grid>
-<Grid sx={{marginLeft:'10%',fontSize:'16px',fontWeight:500}}>Chicken Burger</Grid>
-<Grid sx={{marginLeft:'auto',gap:6,display:'flex',alignItems:'center'}}>
+<Grid sx={{marginLeft:'10%',fontSize: matchesB?'12px':'16px',fontWeight:500}}>Chicken Burger</Grid>
+<Grid sx={{marginLeft:'auto',gap: matchesB?1:6,display:'flex',alignItems:'center'}}>
 <Grid sx={{fontSize:'18px',fontWeight:600,color:'#00B412'}}>100/-</Grid>
 <Grid><img src={dark} width={10}></img></Grid>
 </Grid>
@@ -899,8 +958,8 @@ Burgers
                   />
         <Grid sx={{display:'flex',alignItems:'center',marginTop:'3%'}}>
 <Grid><Avatar alt="Remy Sharp" src={burgur} /></Grid>
-<Grid sx={{marginLeft:'10%',fontSize:'16px',fontWeight:500}}>Chicken Burger</Grid>
-<Grid sx={{marginLeft:'auto',gap:6,display:'flex',alignItems:'center'}}>
+<Grid sx={{marginLeft:'10%',fontSize: matchesB?'12px':'16px',fontWeight:500}}>Chicken Burger</Grid>
+<Grid sx={{marginLeft:'auto',gap: matchesB?1:6,display:'flex',alignItems:'center'}}>
 <Grid sx={{fontSize:'18px',fontWeight:600,color:'#00B412'}}>100/-</Grid>
 <Grid><img src={dark} width={10}></img></Grid>
 </Grid>
@@ -917,8 +976,8 @@ Burgers
                   />
         <Grid sx={{display:'flex',alignItems:'center',marginTop:'3%'}}>
 <Grid><Avatar alt="Remy Sharp" src={burgur} /></Grid>
-<Grid sx={{marginLeft:'10%',fontSize:'16px',fontWeight:500}}>Chicken Burger</Grid>
-<Grid sx={{marginLeft:'auto',gap:6,display:'flex',alignItems:'center'}}>
+<Grid sx={{marginLeft:'10%',fontSize: matchesB?'12px':'16px',fontWeight:500}}>Chicken Burger</Grid>
+<Grid sx={{marginLeft:'auto',gap: matchesB?1:6,display:'flex',alignItems:'center'}}>
 <Grid sx={{fontSize:'18px',fontWeight:600,color:'#00B412'}}>100/-</Grid>
 <Grid><img src={dark} width={10}></img></Grid>
 </Grid>
@@ -939,7 +998,7 @@ Burgers
                   />
 
 <Grid sx={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:'5%'}}>
-<Grid sx={{fontSize:'18px',fontWeight:500}}>
+<Grid sx={{fontSize: matchesB?'14px':'18px',fontWeight:500}}>
 Burgers
 </Grid>
 <Grid >
@@ -986,7 +1045,7 @@ Burgers
                   />
 
 <Grid sx={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:'5%'}}>
-<Grid sx={{fontSize:'18px',fontWeight:500}}>
+<Grid sx={{fontSize: matchesB?'14px':'18px',fontWeight:500}}>
 Burgers
 </Grid>
 <Grid >
@@ -1032,7 +1091,7 @@ Burgers
                   />
 
 <Grid sx={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:'5%'}}>
-<Grid sx={{fontSize:'18px',fontWeight:500}}>
+<Grid sx={{fontSize: matchesB?'14px':'18px',fontWeight:500}}>
 Burgers
 </Grid>
 <Grid >
@@ -1079,55 +1138,7 @@ Burgers
                   />
 
 <Grid sx={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:'5%'}}>
-<Grid sx={{fontSize:'18px',fontWeight:500}}>
-Burgers
-</Grid>
-<Grid >
-<Button
-                style={{
-                  border: "1px solid #000",
-                  borderColor: "#000",
-                  background:'#000',
-                  height:"34px",
-                  width:'54px',
-                  color: "#fff",
-                  fontSize: "14px",
-                  fontWeight: 600,
-                  textTransform: "none",
-                  borderRadius: "6px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  lineHeight:'22px',
-                  letterSpacing:'-2.2%',
-              
-                  
-                }}
-              >
-             Edit
-              </Button>
-</Grid>
-<Grid sx={{fontSize:'26px',fontWeight:500}}>
-<AddIcon fontSize="small" />
-</Grid>
-</Grid>            
-
-
-
-
-
-
-<Divider
-                    style={{
-                      backgroundColor: "#000",
-                      width:"100%",
-                      height:'1px',
-                      marginTop:'5%'
-                    }}
-                  />
-
-<Grid sx={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:'5%'}}>
-<Grid sx={{fontSize:'18px',fontWeight:500}}>
+<Grid sx={{fontSize: matchesB?'14px':'18px',fontWeight:500}}>
 Burgers
 </Grid>
 <Grid >
@@ -1175,54 +1186,7 @@ Burgers
                   />
 
 <Grid sx={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:'5%'}}>
-<Grid sx={{fontSize:'18px',fontWeight:500}}>
-Burgers
-</Grid>
-<Grid >
-<Button
-                style={{
-                  border: "1px solid #000",
-                  borderColor: "#000",
-                  background:'#000',
-                  height:"34px",
-                  width:'54px',
-                  color: "#fff",
-                  fontSize: "14px",
-                  fontWeight: 600,
-                  textTransform: "none",
-                  borderRadius: "6px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  lineHeight:'22px',
-                  letterSpacing:'-2.2%',
-              
-                  
-                }}
-              >
-             Edit
-              </Button>
-</Grid>
-<Grid sx={{fontSize:'26px',fontWeight:500}}>
-<AddIcon fontSize="small" />
-</Grid>
-</Grid>            
-
-
-
-
-
-<Divider
-                    style={{
-                      backgroundColor: "#000",
-                      width:"100%",
-                      height:'1px',
-                      marginTop:'5%'
-                    }}
-                  />
-
-<Grid sx={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:'5%'}}>
-<Grid sx={{fontSize:'18px',fontWeight:500}}>
+<Grid sx={{fontSize: matchesB?'14px':'18px',fontWeight:500}}>
 Burgers
 </Grid>
 <Grid >
@@ -1270,7 +1234,7 @@ Burgers
                   />
 
 <Grid sx={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:'5%'}}>
-<Grid sx={{fontSize:'18px',fontWeight:500}}>
+<Grid sx={{fontSize: matchesB?'14px':'18px',fontWeight:500}}>
 Burgers
 </Grid>
 <Grid >
@@ -1317,7 +1281,102 @@ Burgers
                   />
 
 <Grid sx={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:'5%'}}>
-<Grid sx={{fontSize:'18px',fontWeight:500}}>
+<Grid sx={{fontSize: matchesB?'14px':'18px',fontWeight:500}}>
+Burgers
+</Grid>
+<Grid >
+<Button
+                style={{
+                  border: "1px solid #000",
+                  borderColor: "#000",
+                  background:'#000',
+                  height:"34px",
+                  width:'54px',
+                  color: "#fff",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  textTransform: "none",
+                  borderRadius: "6px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  lineHeight:'22px',
+                  letterSpacing:'-2.2%',
+              
+                  
+                }}
+              >
+             Edit
+              </Button>
+</Grid>
+<Grid sx={{fontSize:'26px',fontWeight:500}}>
+<AddIcon fontSize="small" />
+</Grid>
+</Grid>            
+
+
+
+
+
+
+<Divider
+                    style={{
+                      backgroundColor: "#000",
+                      width:"100%",
+                      height:'1px',
+                      marginTop:'5%'
+                    }}
+                  />
+
+<Grid sx={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:'5%'}}>
+<Grid sx={{fontSize: matchesB?'14px':'18px',fontWeight:500}}>
+Burgers
+</Grid>
+<Grid >
+<Button
+                style={{
+                  border: "1px solid #000",
+                  borderColor: "#000",
+                  background:'#000',
+                  height:"34px",
+                  width:'54px',
+                  color: "#fff",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  textTransform: "none",
+                  borderRadius: "6px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  lineHeight:'22px',
+                  letterSpacing:'-2.2%',
+              
+                  
+                }}
+              >
+             Edit
+              </Button>
+</Grid>
+<Grid sx={{fontSize:'26px',fontWeight:500}}>
+<AddIcon fontSize="small" />
+</Grid>
+</Grid>            
+
+
+
+
+
+<Divider
+                    style={{
+                      backgroundColor: "#000",
+                      width:"100%",
+                      height:'1px',
+                      marginTop:'5%'
+                    }}
+                  />
+
+<Grid sx={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:'5%'}}>
+<Grid sx={{fontSize:matchesB?'14px':'18px',fontWeight:500}}>
 Burgers
 </Grid>
 <Grid >

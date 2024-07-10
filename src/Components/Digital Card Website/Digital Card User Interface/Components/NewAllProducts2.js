@@ -474,7 +474,6 @@ const sliderRefs = useRef([]);
 
                 <Grid container spacing={2} sx={{display: "flex", justifyContent:"space-between",marginBottom:'8%',marginTop:matchesA?'3%':'' }} >
                     <ProximityComponent />
-
                 </Grid>
                   
 

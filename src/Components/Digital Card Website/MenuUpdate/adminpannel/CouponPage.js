@@ -4,17 +4,22 @@ import clock from "../assets/watch.png";
 import table from "../assets/table.png";
 import right from "../assets/righta.png";
 import live from "../assets/live2.png";
-import load from "../assets/load.png"
+import load from "../assets/load.png";
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 export default function CouponPage()
 {
+  const matches = useMediaQuery("(max-width:1400px)");
+  const matchesA = useMediaQuery("(max-width:700px)");
+
     return(<Grid sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
         <Grid sx={{width:'85%',height:'auto',marginBottom:'4%'}}>
-          <Grid sx={{marginTop:'4%',display:'flex',gap:6,alignItems:'center'}}>
+          <Grid sx={{marginTop:'4%',display:'flex',gap:matches?2:6,alignItems:'center',flexDirection:matches?'column':'row'}}>
           <Button
                   style={{
                     border: "1px solid #000",
                     borderColor: "#000",
-                    width: "8vw",
+                    width: matches?'100%':"8vw",
                     height: "35px",
                     color: "#000",
                     background: "#fff",
@@ -30,20 +35,20 @@ export default function CouponPage()
                 >
                   Add +
                 </Button>
-                <Grid sx={{fontSize:'17px',fontWeight:400,lineHeight:'22px',color:'#fff'}}>
+                <Grid sx={{fontSize:matchesA?'14px':'17px',fontWeight:400,lineHeight:'22px',color:'#fff',textAlign:'center'}}>
                 Add discount coupons for your restaurant to attract your people to take more interest in your busines.
                 </Grid>
           </Grid>
           <Divider
               style={{
                 backgroundColor: "#C2C2C2",
-                marginTop: "2%",
+                marginTop: matchesA?"4%":"2%",
               }}
             />
-            <Grid sx={{marginTop:'2%',display:'flex',justifyContent:'space-between'}}>
+            <Grid sx={{marginTop:matchesA?'4%':'2%',display:'flex',justifyContent:'space-between',flexDirection:matches?'column':'row',gap:matches?2:''}}>
                 <Grid>
                 <Grid>
-                    <Grid sx={{fontSize:'20px',fontWeight:600,lineHeight:'18px',color:'#fff'}}>Coupon code</Grid>
+                    <Grid sx={{fontSize:matches?'14px':'20px',fontWeight:600,lineHeight:'18px',color:'#fff'}}>Coupon code</Grid>
                 </Grid>
                 <Grid
                 sx={{
@@ -54,12 +59,12 @@ export default function CouponPage()
                   display: "flex",
                   alignItems: "center",
                   height: "35px",
-                  width: "300px",
+                  width: matches?'100%':"300px",
                   marginTop:'2%'
                 }}
               >
                 <InputBase
-                  style={{ color: "#fff",fontSize:'14px' }}
+                  style={{ color: "#fff",fontSize:matches?'10px':'14px' }}
                   sx={{ ml: 1, flex: 1 }}
                   placeholder="Enter Coupon Code"
                 />
@@ -70,7 +75,7 @@ export default function CouponPage()
 
               <Grid>
                 <Grid>
-                    <Grid sx={{fontSize:'20px',fontWeight:600,lineHeight:'18px',color:'#fff'}}>Offer (%)</Grid>
+                    <Grid sx={{fontSize:matches?'14px':'20px',fontWeight:600,lineHeight:'18px',color:'#fff'}}>Offer (%)</Grid>
                 </Grid>
                 <Grid
                 sx={{
@@ -81,7 +86,7 @@ export default function CouponPage()
                   display: "flex",
                   alignItems: "center",
                   height: "35px",
-                  width: "300px",
+                  width: matches?'100%':"300px",
                   marginTop:'2%'
                 }}
               >
@@ -96,7 +101,7 @@ export default function CouponPage()
 
               <Grid>
                 <Grid>
-                    <Grid sx={{fontSize:'20px',fontWeight:600,lineHeight:'18px',color:'#fff'}}>Offer time</Grid>
+                    <Grid sx={{fontSize:matches?'14px':'20px',fontWeight:600,lineHeight:'18px',color:'#fff'}}>Offer time</Grid>
                 </Grid>
                 <Grid sx={{display:'flex',alignItems:'center',gap:.8}}>
                 <Grid
@@ -108,17 +113,17 @@ export default function CouponPage()
                   display: "flex",
                   alignItems: "center",
                   height: "35px",
-                  width: "140px",
+                  width:matches?'100%': "140px",
                   marginTop:'2%'
                 }}
               >
                 <InputBase
-                  style={{ color: "#fff",fontSize:'14px' }}
+                  style={{ color: "#fff",fontSize:matches?'10px':'14px' }}
                   sx={{ ml: 1, flex: 1 }}
                   placeholder="Time (Hr)"
                 />
               </Grid>
-              <Grid sx={{fontSize:'16px',fontWeight:600,lineHeight:'18px',color:'#fff'}}>To</Grid>
+              <Grid sx={{fontSize:matches?'14px':'16px',fontWeight:600,lineHeight:'18px',color:'#fff'}}>To</Grid>
               <Grid
                 sx={{
                   border: "1px solid #fff",
@@ -128,12 +133,12 @@ export default function CouponPage()
                   display: "flex",
                   alignItems: "center",
                   height: "35px",
-                  width: "140px",
+                  width: matches?'100%':"140px",
                   marginTop:'2%'
                 }}
               >
                 <InputBase
-                  style={{ color: "#fff",fontSize:'14px' }}
+                  style={{ color: "#fff",fontSize:matches?'10px':'14px' }}
                   sx={{ ml: 1, flex: 1 }}
                   placeholder="Time (Hr)"
                 />
@@ -145,23 +150,23 @@ export default function CouponPage()
             <Divider
               style={{
                 backgroundColor: "#C2C2C2",
-                marginTop: "3%",
+                marginTop:matchesA?"5%":"3%",
               }}
             />
 
             <Grid sx={{fontSize:'12px',fontWeight:400,lineHeight:'18px',color:'#fff',marginTop:'2%'}}>
             You Should have to change the coupans on daily basis or these coupons will be automatically closed after 24 hours.
             </Grid>
-
-
-            <Grid sx={{fontSize:'24px',fontWeight:600,lineHeight:'18px',color:'#fff',marginTop:'3.5%'}}>
+            
+            <Grid sx={{fontSize:matches?'18px':'24px',fontWeight:600,lineHeight:'18px',color:'#fff',marginTop:matchesA?"7%":'3.5%'}}>
             Previous Offers
             </Grid>
 
-  <Grid sx={{display:'flex',marginTop:'3%',width:'100%',justifyContent:'space-between'}}>
-  <Grid
+  <Grid container sx={{display: "flex", justifyContent:matches?'center':"space-between",marginTop:matchesA?'3%':'1%',alignItems:'center',gap:matches?4:6 }} >
+
+<Grid   item  md={matches?5.5:3.5} 
             sx={{
-              width: "300px",
+              width: matchesA?"100%":"300px",
               height: "auto",
               background: "#fff",
               borderRadius: "10px",
@@ -213,7 +218,7 @@ export default function CouponPage()
                 <Grid sx={{ fontSize: "14px", fontWeight: 600 }}>Start time :</Grid>
                 <Grid
                   sx={{
-                    fontSize: "12px",
+                    fontSize: matchesA?"10px":"12px",
                     fontWeight: 500,
                      color: "#747474"
                   }}
@@ -233,7 +238,7 @@ export default function CouponPage()
                 End time   :
                 </Grid>
                 <Grid
-                  sx={{ fontSize: "12px", fontWeight: 500, color: "#747474" }}
+                  sx={{ fontSize: matchesA?"10px":"12px", fontWeight: 500, color: "#747474" }}
                 >
               10:00 pm, 25 June 2024{" "}
                 </Grid>
@@ -297,7 +302,7 @@ export default function CouponPage()
                   style={{
                     border: "1px solid #0066FF",
                     borderColor: "#0066FF",
-                    width: "14vw",
+                    width: matches?'60%':"14vw",
                     height: "30px",
                     color: "#fff",
                     background: "#0066FF",
@@ -306,7 +311,6 @@ export default function CouponPage()
                     textTransform: "none",
                     borderRadius: "6px",
                     display: "flex",
-                    lineHeight: "36px",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
@@ -318,9 +322,9 @@ export default function CouponPage()
 
 
 
-          <Grid
+          <Grid item  md={matches?5.5:3.5} 
             sx={{
-              width: "300px",
+              width: matchesA?"100%":"300px",
               height: "auto",
               background: "#fff",
               borderRadius: "10px",
@@ -372,7 +376,7 @@ export default function CouponPage()
                 <Grid sx={{ fontSize: "14px", fontWeight: 600 }}>Start time :</Grid>
                 <Grid
                   sx={{
-                    fontSize: "12px",
+                    fontSize:matchesA?"10px": "12px",
                     fontWeight: 500,
                      color: "#747474"
                   }}
@@ -392,7 +396,7 @@ export default function CouponPage()
                 End time   :
                 </Grid>
                 <Grid
-                  sx={{ fontSize: "12px", fontWeight: 500, color: "#747474" }}
+                  sx={{ fontSize: matchesA?"10px":"12px", fontWeight: 500, color: "#747474" }}
                 >
               10:00 pm, 25 June 2024{" "}
                 </Grid>
@@ -456,7 +460,7 @@ export default function CouponPage()
                   style={{
                     border: "1px solid #0066FF",
                     borderColor: "#0066FF",
-                    width: "14vw",
+                    width: matches?'60%': "14vw",
                     height: "30px",
                     color: "#fff",
                     background: "#0066FF",
@@ -465,7 +469,6 @@ export default function CouponPage()
                     textTransform: "none",
                     borderRadius: "6px",
                     display: "flex",
-                    lineHeight: "36px",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
@@ -477,9 +480,9 @@ export default function CouponPage()
 
 
 
-          <Grid
+          <Grid item  md={matches?5.5:3.5} 
             sx={{
-              width: "300px",
+              width: matchesA?"100%":"300px",
               height: "auto",
               background: "#fff",
               borderRadius: "10px",
@@ -531,7 +534,7 @@ export default function CouponPage()
                 <Grid sx={{ fontSize: "14px", fontWeight: 600 }}>Start time :</Grid>
                 <Grid
                   sx={{
-                    fontSize: "12px",
+                    fontSize:matchesA?"10px": "12px",
                     fontWeight: 500,
                      color: "#747474"
                   }}
@@ -551,7 +554,7 @@ export default function CouponPage()
                 End time   :
                 </Grid>
                 <Grid
-                  sx={{ fontSize: "12px", fontWeight: 500, color: "#747474" }}
+                  sx={{ fontSize:matchesA?"10px": "12px", fontWeight: 500, color: "#747474" }}
                 >
               10:00 pm, 25 June 2024{" "}
                 </Grid>
@@ -615,7 +618,7 @@ export default function CouponPage()
                   style={{
                     border: "1px solid #0066FF",
                     borderColor: "#0066FF",
-                    width: "14vw",
+                    width: matches?'60%': "14vw",
                     height: "30px",
                     color: "#fff",
                     background: "#0066FF",
@@ -624,7 +627,6 @@ export default function CouponPage()
                     textTransform: "none",
                     borderRadius: "6px",
                     display: "flex",
-                    lineHeight: "36px",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
@@ -633,15 +635,15 @@ export default function CouponPage()
                 </Button>
            </Grid>
           </Grid>
-</Grid>
 
 
 
 
-<Grid sx={{display:'flex',marginTop:'6%',width:'100%',justifyContent:'space-between'}}>
-  <Grid
+
+
+<Grid   item  md={matches?5.5:3.5} 
             sx={{
-              width: "300px",
+              width: matchesA?"100%":"300px",
               height: "auto",
               background: "#fff",
               borderRadius: "10px",
@@ -693,7 +695,7 @@ export default function CouponPage()
                 <Grid sx={{ fontSize: "14px", fontWeight: 600 }}>Start time :</Grid>
                 <Grid
                   sx={{
-                    fontSize: "12px",
+                    fontSize: matchesA?"10px":"12px",
                     fontWeight: 500,
                      color: "#747474"
                   }}
@@ -713,7 +715,7 @@ export default function CouponPage()
                 End time   :
                 </Grid>
                 <Grid
-                  sx={{ fontSize: "12px", fontWeight: 500, color: "#747474" }}
+                  sx={{ fontSize: matchesA?"10px":"12px", fontWeight: 500, color: "#747474" }}
                 >
               10:00 pm, 25 June 2024{" "}
                 </Grid>
@@ -777,7 +779,7 @@ export default function CouponPage()
                   style={{
                     border: "1px solid #0066FF",
                     borderColor: "#0066FF",
-                    width: "14vw",
+                    width: matches?'60%':"14vw",
                     height: "30px",
                     color: "#fff",
                     background: "#0066FF",
@@ -786,7 +788,6 @@ export default function CouponPage()
                     textTransform: "none",
                     borderRadius: "6px",
                     display: "flex",
-                    lineHeight: "36px",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
@@ -798,9 +799,10 @@ export default function CouponPage()
 
 
 
-          <Grid
+        
+<Grid   item  md={matches?5.5:3.5} 
             sx={{
-              width: "300px",
+              width: matchesA?"100%":"300px",
               height: "auto",
               background: "#fff",
               borderRadius: "10px",
@@ -852,7 +854,7 @@ export default function CouponPage()
                 <Grid sx={{ fontSize: "14px", fontWeight: 600 }}>Start time :</Grid>
                 <Grid
                   sx={{
-                    fontSize: "12px",
+                    fontSize: matchesA?"10px":"12px",
                     fontWeight: 500,
                      color: "#747474"
                   }}
@@ -872,7 +874,7 @@ export default function CouponPage()
                 End time   :
                 </Grid>
                 <Grid
-                  sx={{ fontSize: "12px", fontWeight: 500, color: "#747474" }}
+                  sx={{ fontSize: matchesA?"10px":"12px", fontWeight: 500, color: "#747474" }}
                 >
               10:00 pm, 25 June 2024{" "}
                 </Grid>
@@ -936,7 +938,7 @@ export default function CouponPage()
                   style={{
                     border: "1px solid #0066FF",
                     borderColor: "#0066FF",
-                    width: "14vw",
+                    width: matches?'60%':"14vw",
                     height: "30px",
                     color: "#fff",
                     background: "#0066FF",
@@ -945,7 +947,6 @@ export default function CouponPage()
                     textTransform: "none",
                     borderRadius: "6px",
                     display: "flex",
-                    lineHeight: "36px",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
@@ -956,10 +957,10 @@ export default function CouponPage()
           </Grid>
 
 
-
-          <Grid
+      
+<Grid   item  md={matches?5.5:3.5} 
             sx={{
-              width: "300px",
+              width: matchesA?"100%":"300px",
               height: "auto",
               background: "#fff",
               borderRadius: "10px",
@@ -1011,7 +1012,7 @@ export default function CouponPage()
                 <Grid sx={{ fontSize: "14px", fontWeight: 600 }}>Start time :</Grid>
                 <Grid
                   sx={{
-                    fontSize: "12px",
+                    fontSize: matchesA?"10px":"12px",
                     fontWeight: 500,
                      color: "#747474"
                   }}
@@ -1031,7 +1032,7 @@ export default function CouponPage()
                 End time   :
                 </Grid>
                 <Grid
-                  sx={{ fontSize: "12px", fontWeight: 500, color: "#747474" }}
+                  sx={{ fontSize: matchesA?"10px":"12px", fontWeight: 500, color: "#747474" }}
                 >
               10:00 pm, 25 June 2024{" "}
                 </Grid>
@@ -1095,7 +1096,7 @@ export default function CouponPage()
                   style={{
                     border: "1px solid #0066FF",
                     borderColor: "#0066FF",
-                    width: "14vw",
+                    width: matches?'60%':"14vw",
                     height: "30px",
                     color: "#fff",
                     background: "#0066FF",
@@ -1104,7 +1105,6 @@ export default function CouponPage()
                     textTransform: "none",
                     borderRadius: "6px",
                     display: "flex",
-                    lineHeight: "36px",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
@@ -1113,21 +1113,14 @@ export default function CouponPage()
                 </Button>
            </Grid>
           </Grid>
-</Grid>
+          </Grid>
 
 
+  <Grid container sx={{display: "flex", justifyContent:matches?'center':"space-between",marginTop:matchesA?'15%':'8%',alignItems:'center',gap:4 }} >
 
-<Grid
-          sx={{
-            marginTop: "8%",
-            display: "flex",
-            justifyContent: "space-between",
-            background:'#000'
-          }}
-        >
-          <Grid
+<Grid   item  md={matches?5.5:3.5} 
             sx={{
-              width: "300px",
+              width:matchesA?"100%": "300px",
               height: "auto",
               background: "#fff",
               borderRadius: "10px",
@@ -1161,7 +1154,7 @@ export default function CouponPage()
                   style={{
                     border: "1px solid #BDF3FF",
                     borderColor: "#BDF3FF",
-                    width: "7vw",
+                    width:matches?'100%': "7vw",
                     height: "29px",
                     color: "#0047FF",
                     background: "#BDF3FF",
@@ -1170,7 +1163,6 @@ export default function CouponPage()
                     textTransform: "none",
                     borderRadius: "10px",
                     display: "flex",
-                    lineHeight: "36px",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
@@ -1358,16 +1350,15 @@ export default function CouponPage()
                   style={{
                     border: "1px solid #000",
                     borderColor: "#000",
-                    width: "8vw",
+                    width:matches?'100%': "8vw",
                     height: "25px",
                     color: "#fff",
                     background: "#000",
-                    fontSize: "12px",
+                    fontSize:matchesA?"10px": "12px",
                     fontWeight: 600,
                     textTransform: "none",
                     borderRadius: "10px",
                     display: "flex",
-                    lineHeight: "36px",
                     alignItems: "center",
                     justifyContent: "center",
                     gap: 8,
@@ -1385,7 +1376,7 @@ export default function CouponPage()
                 </Button>{" "}
               </Grid>
               <Grid sx={{ gap: 0.8, display: "flex", alignItems: "center" }}>
-                <Grid sx={{ fontSize: "14px", fontWeight: 700, color: "#000" }}>
+                <Grid sx={{ fontSize:matchesA?"12px": "14px", fontWeight: 700, color: "#000" }}>
                   Total
                 </Grid>
                 <Grid
@@ -1397,9 +1388,9 @@ export default function CouponPage()
             </Grid>
           </Grid>
 
-          <Grid
+          <Grid  item  md={matches?5.5:3.5} 
             sx={{
-              width: "300px",
+              width:matchesA?"100%": "300px",
               height: "auto",
               background: "#fff",
               borderRadius: "10px",
@@ -1433,7 +1424,7 @@ export default function CouponPage()
                   style={{
                     border: "1px solid #E5FFC4",
                     borderColor: "#E5FFC4",
-                    width: "7vw",
+                    width:matches?'100%': "7vw",
                     height: "29px",
                     color: "#64B300",
                     background: "#E5FFC4",
@@ -1630,16 +1621,15 @@ export default function CouponPage()
                   style={{
                     border: "1px solid #000",
                     borderColor: "#000",
-                    width: "8vw",
+                    width: matches?'100%':"8vw",
                     height: "25px",
                     color: "#fff",
                     background: "#000",
-                    fontSize: "12px",
+                    fontSize: matchesA?"10px":"12px",
                     fontWeight: 600,
                     textTransform: "none",
                     borderRadius: "10px",
                     display: "flex",
-                    lineHeight: "36px",
                     alignItems: "center",
                     justifyContent: "center",
                     gap: 8,
@@ -1657,7 +1647,7 @@ export default function CouponPage()
                 </Button>{" "}
               </Grid>
               <Grid sx={{ gap: 0.8, display: "flex", alignItems: "center" }}>
-                <Grid sx={{ fontSize: "14px", fontWeight: 700, color: "#000" }}>
+                <Grid sx={{ fontSize: matchesA?"12px":"14px", fontWeight: 700, color: "#000" }}>
                   Total
                 </Grid>
                 <Grid
@@ -1669,9 +1659,9 @@ export default function CouponPage()
             </Grid>
           </Grid>
 
-          <Grid
+          <Grid  item  md={matches?5.5:3.5} 
             sx={{
-              width: "300px",
+              width:matchesA?"100%": "300px",
               height: "auto",
               background: "#fff",
               borderRadius: "10px",
@@ -1705,7 +1695,7 @@ export default function CouponPage()
                   style={{
                     border: "1px solid #FFDDC4",
                     borderColor: "#FFDDC4",
-                    width: "7vw",
+                    width:matches?'100%': "7vw",
                     height: "29px",
                     color: "#FF6B00",
                     background: "#FFDDC4",
@@ -1902,16 +1892,15 @@ export default function CouponPage()
                   style={{
                     border: "1px solid #000",
                     borderColor: "#000",
-                    width: "8vw",
+                    width:matches?'100%': "8vw",
                     height: "25px",
                     color: "#fff",
                     background: "#000",
-                    fontSize: "12px",
+                    fontSize: matchesA?"10px":"12px",
                     fontWeight: 600,
                     textTransform: "none",
                     borderRadius: "10px",
                     display: "flex",
-                    lineHeight: "36px",
                     alignItems: "center",
                     justifyContent: "center",
                     gap: 8,
@@ -1929,7 +1918,7 @@ export default function CouponPage()
                 </Button>{" "}
               </Grid>
               <Grid sx={{ gap: 0.8, display: "flex", alignItems: "center" }}>
-                <Grid sx={{ fontSize: "14px", fontWeight: 700, color: "#000" }}>
+                <Grid sx={{ fontSize:matchesA?"12px": "14px", fontWeight: 700, color: "#000" }}>
                   Total
                 </Grid>
                 <Grid
@@ -1944,7 +1933,7 @@ export default function CouponPage()
 
 
         <Grid sx={{width:'100%',marginLeft:'auto', position: "fixed",zIndex:100,bottom:0,marginBottom:'4%'}}>
-  <img src={live} width={200} style={{marginLeft:'52%'}}></img></Grid>
+  <img src={live} width={200} style={{marginLeft:matches?'':'52%'}}></img></Grid>
 
         </Grid>
     </Grid>)

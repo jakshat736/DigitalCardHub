@@ -324,6 +324,11 @@ export default function SelfOrderPage() {
                       <img src={s1} width={100}></img>
                     </Grid>
                     <Grid
+                      sx={{border:'1px solid #000',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'24px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
+                    >
+                   <div>-</div><div>1</div><div>+</div>
+                    </Grid>
+                    <Grid
                       sx={{ fontSize: "14px", fontWeight: 500, color: "#000" }}
                     >
                       espresso

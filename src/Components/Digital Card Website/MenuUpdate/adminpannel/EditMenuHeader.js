@@ -3,7 +3,10 @@ import { Grid, Divider, Paper, InputBase, IconButton, Button } from "@mui/materi
 import live from "../assets/livesupport.png";
 import SearchIcon from "@mui/icons-material/Search";
 import eye from "../../Digital Card Assets/eye.png"
+import useMediaQuery from '@mui/material/useMediaQuery';
 export default function EditMenuHeader() {
+  const matches = useMediaQuery("(max-width:1000px)");
+  const matchesA = useMediaQuery("(max-width:700px)");
   return (
     <Grid sx={{ width: "100%" }}>
       <Grid
@@ -19,20 +22,22 @@ export default function EditMenuHeader() {
       >
         <Grid
           sx={{
-            width: "85%",
+            width: matchesA?'97%':"85%",
             height: 86,
             display: "flex",
             alignItems: "center",
+            flexDirection:matches?"column":'row'
+            ,justifyContent:matches?'center':'normal'
           }}
         >
-          <Grid sx={{width:'30%'}}>
+          <Grid sx={{width:matches?'100%':'30%',display:'flex',alignItems:matches?'center':'normal',justifyContent:matches?'center':'normal'}}>
             <Grid
-              sx={{ fontSize: "30px", fontWeight: 700, lineHeight: "30px" }}>
+              sx={{ fontSize:matches?'20px':"30px", fontWeight: 700, lineHeight:matches?'': "30px" }}>
            Edit menu items
             </Grid>
           </Grid>
-          <Grid sx={{display:'flex',alignItems:'center',gap:2,width:'50%',marginLeft:'auto'}}>
-          <Grid sx={{textAlign:'center',fontSize:'10px'}}>
+          <Grid sx={{display:'flex',alignItems:'center',gap:2,width:matches?'100%':'50%',marginLeft:matches?'':'auto',marginTop:matches?'2%':''}}>
+          <Grid sx={{textAlign:'center',fontSize:matchesA?'8px':'10px'}}>
            you can make changes and see the changes in your existing restaurant menu fro this dashboard.
           </Grid>
           <Grid>
@@ -40,7 +45,7 @@ export default function EditMenuHeader() {
                   style={{
                     border: "1px solid #0066FF",
                     borderColor: "#0066FF",
-                    width: "9vw",
+                    width: 110,
                     height: "34px",
                     color: "#fff",
                     background: "#0066FF",

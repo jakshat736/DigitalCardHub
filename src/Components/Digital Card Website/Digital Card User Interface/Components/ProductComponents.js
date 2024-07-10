@@ -45,7 +45,7 @@ import { postData, serverURL } from '../../../Services/NodeServices';
 import { SessionContext } from '../../../Services/SessionContext';
 import React, { useContext } from 'react';
 import OtpGenerator from '../ReviewTag/OtpGenerator';
-import Preloader from './Preloader'
+import Preloader from './Preloader';
 
 export default function ProductComponents() {
 

@@ -1611,7 +1611,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             }}
           >
             <Grid sx={{ marginLeft: "2%" }}>
-              <SideBar />
+              <SideBar/>
             </Grid>
 
             <Paper

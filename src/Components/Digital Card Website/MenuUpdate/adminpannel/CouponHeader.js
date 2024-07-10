@@ -2,7 +2,13 @@ import { Grade } from "@mui/icons-material";
 import { Grid, Divider, Paper, InputBase, IconButton } from "@mui/material";
 import live from "../assets/livesupport.png";
 import SearchIcon from "@mui/icons-material/Search";
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 export default function CouponHeader() {
+
+  const matches = useMediaQuery("(max-width:1000px)");
+  const matchesA = useMediaQuery("(max-width:700px)");
+
   return (
     <Grid sx={{ width: "100%" }}>
       <Grid
@@ -19,19 +25,22 @@ export default function CouponHeader() {
         <Grid
           sx={{
             width: "85%",
-            height: 86,
+            height:86,
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
+            justifyContent: matches?'center':"space-between",
+            flexDirection:matches?'column':'row',
+            gap:matchesA?.6:''
+
           }}
         >
-          <Grid>
+          <Grid sx={{display:'flex',flexDirection:matches?'row':'column',alignItems:'center',gap:matches?1:''}}>
             <Grid
-              sx={{ fontSize: "30px", fontWeight: 700, lineHeight: "30px" }}
+              sx={{ fontSize:matches?'20px':"30px", fontWeight: 700 }}
             >
               Coupons
             </Grid>
-            <Grid sx={{ marginTop: "2%", fontWeight: 300, fontSize: "12px" }}>
+            <Grid sx={{ marginTop: "2%", fontWeight: 300, fontSize: "12px"}}>
               24 June 2024
             </Grid>
           </Grid>
@@ -42,7 +51,7 @@ export default function CouponHeader() {
                 p: "2px 4px",
                 display: "flex",
                 alignItems: "center",
-                width: 350,
+                width: matchesA?'100%':350,
                 borderRadius: 4,
                 height: 38,
                 background: "transparent",
