@@ -1,29 +1,23 @@
-import { Box, Button, Grid, TextField, Typography, Container, useTheme, useMediaQuery, InputAdornment, IconButton, AppBar, Toolbar } from '@mui/material';
-import React, { useState } from 'react';
-import logo from "../Digital Card Website/Digital Card Assets/IndiaBuzz.png";
-import bg from "../Digital Card Website/Digital Card Assets/login_img.png";
-import { useLocation, useNavigate } from 'react-router-dom';
-import { postData } from '../Services/NodeServices';
-import Swal from 'sweetalert2';
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import logo1 from '../Digital Card Website/Digital Card Assets/dchlogo.png'
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Box, Button, Container, Grid, IconButton, InputAdornment, TextField, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import Navbar from '../Digital Card Website/Digital Card User Interface/Components/Navbar';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import logo from "../Digital Card Website/Digital Card Assets/IndiaBuzz.png";
+import bg from "../Digital Card Website/Digital Card Assets/login_img.png";
+import { postData } from '../Services/NodeServices';
 export default function MasterLogin() {
     const theme = useTheme();
     const mobile = useMediaQuery(theme.breakpoints.down("sm"));
     const medium = useMediaQuery(theme.breakpoints.down("md"));
-    const location = useLocation();
    
     const [open, setOpen] = useState(false);
     const [open1, setOpen1] = useState(false);
     const [email, setEmail] = useState("");
-    const [number, setNumber] = useState("");
     const [message, setMessage] = useState("");
     const [changeMessage, setChangeMessage] = useState("");
     const [newPassword, setNewPassword] = useState("")
@@ -63,9 +57,6 @@ export default function MasterLogin() {
     const handleClose = () => {
         setOpen(false)
     }
-    const handleClose1 = () => {
-        setOpen1(false)
-    }
     const handleCheck = async () => {
 
         var formData = new FormData()
@@ -76,7 +67,7 @@ export default function MasterLogin() {
 
         var result = await postData('master/chkMasterLogin', formData, true)
 
-        if (result.status == "exist") {
+        if (result.status === "exist") {
 
             setOpen1(true)
             setMessage("")
@@ -162,7 +153,7 @@ export default function MasterLogin() {
                 <Box sx={{ background: "#ffffff", p: 0, width: { xs: "100vw", md: "80vw" }, borderRadius: { xs: "4%", md: "0%" }, mt: { xs: "22%", lg: "0%" } }}>
                     <Grid container spacing={0}>
                         <Grid item xs={12} lg={5} sx={{ p: { xs: "14% 5%", lg: "8% 5%" } }}>
-                            <img src={logo} width={"20%"} style={{ display: mobile ? "block" : medium ? "block" : "none", margin: "auto" }} />
+                            <img alt="img" src={logo} width={"20%"} style={{ display: mobile ? "block" : medium ? "block" : "none", margin: "auto" }} />
                             <Typography sx={{
                                 fontSize: { xs: "1.5em", md: "2.6em", lg: "2.4em" },
                                 fontWeight: 700,
@@ -233,7 +224,7 @@ export default function MasterLogin() {
                                 alignItems: "flex-end",
                                 mt: "2%"
                             }}>
-                                <img src={logo} width={"20%"} />
+                                <img alt="img" src={logo} width={"20%"} />
                                 <Typography sx={{ color: "#696969", fontFamily: "OXANIUM", fontWeight: 600, textAlign: "left" }}>
                                     We've got tips and tools to keep your business
                                 </Typography>
@@ -241,7 +232,7 @@ export default function MasterLogin() {
                                     growing while you're out of the office.
                                 </Typography>
                             </Box>
-                            <img src={bg} width={"60%"} />
+                            <img alt="img" src={bg} width={"60%"} />
                         </Grid>
                     </Grid>
                 </Box>

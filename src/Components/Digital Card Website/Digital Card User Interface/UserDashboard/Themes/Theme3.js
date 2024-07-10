@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Container,
   Dialog,
   DialogContent,
   Grid,
@@ -11,77 +10,50 @@ import {
   TextField,
   Typography,
   useMediaQuery,
-  useTheme,
+  useTheme
 } from "@mui/material";
 import React, { useState } from "react";
-import './Theme9.css'
-import review from "./ThemeAssets/reviewicon.png"
+import './Theme9.css';
+import review from "./ThemeAssets/reviewicon.png";
 
 import {
-  ArrowDownwardSharp,
-  ArrowDropDownSharp,
-  ArrowDropUpSharp,
   Close,
-  Email,
-  Facebook,
-  FacebookOutlined,
-  Instagram,
-  Language,
-  LinkedIn,
   LocationOn,
-  MapSharp,
-  Save,
   SaveAlt,
   Share,
-  Twitter,
-  WhatsApp,
+  WhatsApp
 } from "@mui/icons-material";
-import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 
-import { serverURL } from "../../../../Services/NodeServices";
-import { useNavigate } from "react-router-dom";
-import ReactPlayer from "react-player";
-import bg from "./ThemeAssets/theme6.jpg";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import EmailIcon from "@mui/icons-material/Email";
 import CallIcon from "@mui/icons-material/Call";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import Clock from "react-live-clock";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { postData } from "../../../../Services/NodeServices";
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import phonepe from './ThemeAssets/phonepe.png'
-import paytm from './ThemeAssets/paytm.png'
-import gpay from './ThemeAssets/gpay.png'
-import Instagramgif from '../Themes/ThemeAssets/Instagram (1).gif';
-import Whatsappgif from '../Themes/ThemeAssets/Whatsapp (2).gif';
+import { Helmet } from "react-helmet";
+import Clock from "react-live-clock";
+import ReactPlayer from "react-player";
+import { useNavigate } from "react-router-dom";
+import { postData, serverURL } from "../../../../Services/NodeServices";
+import Behancegif from '../Themes/ThemeAssets/Behance.gif';
+import Discordgif from '../Themes/ThemeAssets/Discord.gif';
+import Dropboxgif from '../Themes/ThemeAssets/Dropbox.gif';
 import Facebookgif from '../Themes/ThemeAssets/Facebook (1).gif';
 import Githubgif from '../Themes/ThemeAssets/Github.gif';
-import Telegramgif from '../Themes/ThemeAssets/Telegram.gif';
-import Youtubegif from '../Themes/ThemeAssets/Youtube (1).gif';
-import Discordgif from '../Themes/ThemeAssets/Discord.gif';
-import Linkedingif from '../Themes/ThemeAssets/Linkedin.gif';
-import Twittergif from '../Themes/ThemeAssets/Twitter.gif';
 import Gmailgif from '../Themes/ThemeAssets/Gmail.gif';
-import Googlegif from '../Themes/ThemeAssets/Google.gif';
-import Behancegif from '../Themes/ThemeAssets/Behance.gif';
-import Paypalgif from '../Themes/ThemeAssets/Paypal (1).gif';
-import Snapchatgif from '../Themes/ThemeAssets/Snapchat.gif';
-import Skypegif from '../Themes/ThemeAssets/Skype.gif';
-import Pinterestgif from '../Themes/ThemeAssets/Pinterest.gif';
 import Drivegif from '../Themes/ThemeAssets/Google Drive.gif';
-import Dropboxgif from '../Themes/ThemeAssets/Dropbox.gif';
+import Googlegif from '../Themes/ThemeAssets/Google.gif';
+import Instagramgif from '../Themes/ThemeAssets/Instagram (1).gif';
+import Linkedingif from '../Themes/ThemeAssets/Linkedin.gif';
+import Paypalgif from '../Themes/ThemeAssets/Paypal (1).gif';
+import Pinterestgif from '../Themes/ThemeAssets/Pinterest.gif';
 import Redditgif from '../Themes/ThemeAssets/Reddit.gif';
-import { Helmet } from "react-helmet";
+import Skypegif from '../Themes/ThemeAssets/Skype.gif';
+import Snapchatgif from '../Themes/ThemeAssets/Snapchat.gif';
+import Telegramgif from '../Themes/ThemeAssets/Telegram.gif';
+import Twittergif from '../Themes/ThemeAssets/Twitter.gif';
+import Whatsappgif from '../Themes/ThemeAssets/Whatsapp (2).gif';
+import Youtubegif from '../Themes/ThemeAssets/Youtube (1).gif';
 export default function Theme3({ data, products, gallery, ecommerce }) {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down(600));
   const tablet = useMediaQuery(theme.breakpoints.down(960));
-
-  console.log(data)
-
   const navigate = useNavigate();
   const UserId = window.localStorage.getItem("userId");
   const [number, setNumber] = React.useState();
@@ -107,6 +79,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
     const section = document.getElementById("hero");
     section.scrollIntoView({ behavior: 'instant' });
   },[])
+  
   const handleClick = async (title, url) => {
     try {
       await navigator.share({
@@ -640,7 +613,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
     >
       <Helmet>
         <meta property="og:title" content={data?.fullname} />
-        <meta property="og:image" content={'data:image/jpeg;base64,' +arrayBufferToBase64(data?.companylogo.data?.data)} />
+        <meta property="og:image" content={'data:image/jpeg;base64,' + arrayBufferToBase64(data?.companylogo.data?.data)} />
         <meta property="og:url" content={ `http://digitalcardhub.in/#/${data?.companyId}`} />
       </Helmet>
 
@@ -809,8 +782,14 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
           >
             {" "}
             <Grid item xs={12} sx={{ marginBottom: 1, marginTop: -10 }}>
-              <img
+              {/* <img
                 src={'data:image/jpeg;base64,' +arrayBufferToBase64(data?.companylogo.data?.data)}
+                width={120}
+                height={120}
+                style={{ borderRadius: "60%", boxShadow: "2px 2px 15px 2px" }}
+              /> */}
+                <img
+                src={`${serverURL}/images/${data?.companylogo}`}
                 width={120}
                 height={120}
                 style={{ borderRadius: "60%", boxShadow: "2px 2px 15px 2px" }}
@@ -1038,7 +1017,7 @@ export default function Theme3({ data, products, gallery, ecommerce }) {
                 <img src={Googlegif} style={{width:70,}}/>
               </IconButton>
             </Grid>
-
+            
             {
                 data?.links.map((item)=>{
                   return(

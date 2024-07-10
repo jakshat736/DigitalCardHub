@@ -1,76 +1,55 @@
 import {
-    Box,
-    Button,
-    Container,
-    Divider,
-    Grid,
-    IconButton,
-    InputAdornment,
-    Paper,
-    TextField,
-    Typography,
-    useMediaQuery,
-    useTheme,
-  } from "@mui/material";
-  import phonepe from './ThemeAssets/phonepe.png'
-import paytm from './ThemeAssets/paytm.png'
-import gpay from './ThemeAssets/gpay.png'
-  import zomato from './ThemeAssets/zomato.png'
-import swiggy from './ThemeAssets/swiggy.png'
-import skype from './ThemeAssets/skype.png'
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  InputAdornment,
+  Paper,
+  TextField,
+  Typography,
+  useMediaQuery,
+  useTheme
+} from "@mui/material";
+import gpay from './ThemeAssets/gpay.png';
+import paytm from './ThemeAssets/paytm.png';
+import phonepe from './ThemeAssets/phonepe.png';
+import skype from './ThemeAssets/skype.png';
+import zomato from './ThemeAssets/zomato.png';
 
-  import React from "react";
-  import review from "./ThemeAssets/reviewicon.png"
-  import ChatIcon from '@mui/icons-material/Chat';
-  import './Theme9.css'
   import {
-    Apple,
-    ArrowDownwardSharp,
-    ArrowDropDownSharp,
-    ArrowDropUpSharp,
-    DataArray,
-    Email,
-    Facebook,
-    FacebookOutlined,
-    Instagram,
-    Language,
-    LinkedIn,
-    LocationOn,
-    MapSharp,
-    Pinterest,
-    Receipt,
-    Save,
-    SaveAlt,
-    Share,
-    Twitter,
-    Web,
-    WhatsApp,
-    YouTube,
-  } from "@mui/icons-material";
-  import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+  Facebook,
+  Instagram,
+  Language,
+  LinkedIn,
+  LocationOn,
+  Pinterest,
+  SaveAlt,
+  Share,
+  Twitter,
+  WhatsApp,
+  YouTube
+} from "@mui/icons-material";
+import ChatIcon from '@mui/icons-material/Chat';
+import React from "react";
+import './Theme9.css';
   
-  import { serverURL } from "../../../../Services/NodeServices";
-  import { useNavigate } from "react-router-dom";
-  import ReactPlayer from "react-player";
-  import bg from "./ThemeAssets/theme6.jpg";
-  import Behance from "./ThemeAssets/behance.png";
-  import dribble from "./ThemeAssets/dribble.png";
-  import discord from "./ThemeAssets/discord.png";
-  import thread from "./ThemeAssets/threads.png";
-  import playstore from "./ThemeAssets/playstore.png";
-  import appstore from "./ThemeAssets/appstore.png";
-  import reviewicon from "./ThemeAssets/review.png";
-  import home from "./ThemeAssets/home.png"
-  import edit from "./ThemeAssets/pencil.png"
-  import logo from "./ThemeAssets/dchlogo.png"
-  import EmailIcon from "@mui/icons-material/Email";
   import CallIcon from "@mui/icons-material/Call";
-  import LocationOnIcon from "./ThemeAssets/locationicon.png";
-  import FacebookIcon from "./ThemeAssets/facebookicon.png";
-  import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-  import Clock from "react-live-clock";
-  import VisibilityIcon from "@mui/icons-material/Visibility";
-  import { postData } from "../../../../Services/NodeServices";
+import EmailIcon from "@mui/icons-material/Email";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import ReactPlayer from "react-player";
+import { useNavigate } from "react-router-dom";
+import { postData, serverURL } from "../../../../Services/NodeServices";
+import appstore from "./ThemeAssets/appstore.png";
+import Behance from "./ThemeAssets/behance.png";
+import logo from "./ThemeAssets/dchlogo.png";
+import discord from "./ThemeAssets/discord.png";
+import dribble from "./ThemeAssets/dribble.png";
+import home from "./ThemeAssets/home.png";
+import edit from "./ThemeAssets/pencil.png";
+import playstore from "./ThemeAssets/playstore.png";
+import reviewicon from "./ThemeAssets/review.png";
+import thread from "./ThemeAssets/threads.png";
 
   export default function Theme11({ data, products, gallery, ecommerce }) {
     const theme = useTheme();

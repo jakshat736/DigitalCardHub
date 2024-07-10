@@ -1,0 +1,14 @@
+.custom-prev-arrow,
+.custom-next-arrow {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.custom-prev-arrow img,
+.custom-next-arrow img {
+  width: 30px;
+  height: 30px;
+  fill: #000; /* Change the color as per your design */
+}

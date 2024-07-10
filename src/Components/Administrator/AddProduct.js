@@ -35,6 +35,7 @@ const AddProduct = () => {
   const [categoryName, setCategoryName] = useState("");
   const [subCategoryName, setSubCategoryName] = useState("");
   const [getProductname, setProductname] = useState("");
+  const [color,setColor]=useState('');
   const [getprice, setPrice] = useState("");
   const [getOfferprice, setOfferprice] = useState("");
   const [getDescription, setDescrition] = useState("");
@@ -87,7 +88,6 @@ const AddProduct = () => {
 
   const fetchAllProducts=async()=>{
     const result=await getData('products/displayAllProduct')
-    
     setProducts(result.data)
     console.log(result.data)
 }
@@ -281,7 +281,7 @@ const AddProduct = () => {
             </FormControl>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <TextField
               onChange={(event) => setProductname(event.target.value)}
               fullWidth
@@ -291,7 +291,7 @@ const AddProduct = () => {
             />
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <TextField
               onChange={(event) => setPrice(event.target.value)}
               fullWidth
@@ -301,7 +301,7 @@ const AddProduct = () => {
             />
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <TextField
               onChange={(event) => setOfferprice(event.target.value)}
               fullWidth
@@ -310,7 +310,15 @@ const AddProduct = () => {
               value={getOfferprice}
             />
           </Grid>
-
+          <Grid item xs={3}>
+            <TextField
+              onChange={(event) => setColor(event.target.value)}
+              fullWidth
+              label="Color"
+              variant="outlined"
+              value={color}
+            />
+          </Grid>
           
           <Grid item xs={12}>
             <TextField

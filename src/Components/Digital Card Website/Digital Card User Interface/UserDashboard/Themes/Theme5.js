@@ -1,4 +1,13 @@
 import {
+  ArrowDropDownSharp,
+  ArrowDropUpSharp,
+  Save,
+  Share,
+  WhatsApp,
+  YouTube
+} from "@mui/icons-material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import {
   Box,
   Button,
   Container,
@@ -12,42 +21,16 @@ import {
   useTheme,
 } from "@mui/material";
 import React from "react";
-import './Theme5.css'
-import review from "./ThemeAssets/reviewicon.png"
-import {
-  ArrowDownwardSharp,
-  ArrowDropDownSharp,
-  ArrowDropUpSharp,
-  Email,
-  FacebookOutlined,
-  Instagram,
-  LinkedIn,
-  LocationOn,
-  MapSharp,
-  Save,
-  Share,
-  WhatsApp,
-  YouTube,
-} from "@mui/icons-material";
-import coverImg from "./ThemeAssets/back.jpg";
-import logo from "./ThemeAssets/instagram.png";
-import { serverURL } from "../../../../Services/NodeServices";
-import { useNavigate } from "react-router-dom";
-import ReactPlayer from "react-player";
-import fb from "./ThemeAssets/facebook_icon.png";
-import linkedin from "./ThemeAssets/linkedin.png";
-import wtap from "./ThemeAssets/whatsapp.png";
-import insta from "./ThemeAssets/instagram-logo.png";
-import email from "./ThemeAssets/email.png";
-import location from "./ThemeAssets/placeholder.png";
 import Clock from "react-live-clock";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import { postData } from "../../../../Services/NodeServices";
-import phonepe from './ThemeAssets/phonepe.png'
-import paytm from './ThemeAssets/paytm.png'
-import gpay from './ThemeAssets/gpay.png'
-import RateReviewIcon from '@mui/icons-material/RateReview';
-import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import ReactPlayer from "react-player";
+import { useNavigate } from "react-router-dom";
+import { postData, serverURL } from "../../../../Services/NodeServices";
+import './Theme5.css';
+import fb from "./ThemeAssets/facebook_icon.png";
+import insta from "./ThemeAssets/instagram-logo.png";
+import linkedin from "./ThemeAssets/linkedin.png";
+import review from "./ThemeAssets/reviewicon.png";
+import wtap from "./ThemeAssets/whatsapp.png";
 export default function Theme5({ data, products, gallery, ecommerce }) {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down(600));

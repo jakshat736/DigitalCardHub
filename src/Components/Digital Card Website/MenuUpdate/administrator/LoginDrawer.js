@@ -11,8 +11,8 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import logo1 from '../../Digital Card Assets/dchlogo.png'
 import { postData } from '../../../Services/NodeServices';
+import logo1 from '../../Digital Card Assets/dchlogo.png';
 import OtpGenerator from './OtpGenerator';
 
 const drawerBleeding = 150;
@@ -56,56 +56,66 @@ function MenuEdgeDrawer(props) {
     const handleSubmit = async () => {
 
 
-        var formData = new FormData
+        if (phoneNo !== '') {
+            var formData = new FormData
 
-        formData.append('phone', phoneNo)
-        // formData.append('password', password)
-
-
-        var result = await postData('customerLogin/chkLogin', formData, true)
+            formData.append('phone', phoneNo)
+            // formData.append('password', password)
 
 
-        if (result.status) {
-            window.localStorage.setItem("userId", result.data._id)
-            var formData = new FormData()
-            formData.append('menuId', props?.tagId)
-            formData.append('phone', result.data.phone)
-
-            var response = await postData('index/customerLogin', formData, true)
-
-            if (response.status == 'true') {
+            var result = await postData('customerLogin/chkLogin', formData, true)
 
 
+            if (result.status) {
+                window.localStorage.setItem("userId", result.data._id)
+                var formData = new FormData()
+                formData.append('menuId', props?.tagId)
+                formData.append('phone', result.data.phone)
+
+                var response = await postData('index/customerLogin', formData, true)
+
+                if (response.status == 'true') {
+
+
+                    Swal.fire({
+                        title: 'Successfully Logged In!',
+                        imageUrl: logo1,
+                        imageWidth: 200,
+                        imageHeight: 200,
+                        imageAlt: 'Custom image',
+                        background: '#001e3c',
+                        timer: 1500,
+                        width: 500,
+                        padding: 15,
+                        color: '#fff',
+                        showConfirmButton: false,
+
+                    })
+                    navigate('/userdashboard')
+                    window.localStorage.setItem("User", true)
+                    window.localStorage.removeItem('data')
+                    window.localStorage.setItem("data", JSON.stringify(result.data))
+                }
+
+
+            } else {
                 Swal.fire({
-                    title: 'Successfully Logged In!',
-                    imageUrl: logo1,
-                    imageWidth: 200,
-                    imageHeight: 200,
-                    imageAlt: 'Custom image',
-                    background: '#001e3c',
-                    timer: 1500,
-                    width: 500,
-                    padding: 15,
-                    color: '#fff',
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Fail to Login',
                     showConfirmButton: false,
-
+                    timer: 1500
                 })
-                navigate('/userdashboard')
-                window.localStorage.setItem("User", true)
-                window.localStorage.removeItem('data')
-                window.localStorage.setItem("data", JSON.stringify(result.data))
+
             }
-
-
         } else {
             Swal.fire({
                 position: 'center',
                 icon: 'error',
-                title: 'Fail to Login',
+                title: 'Enter Number First',
                 showConfirmButton: false,
                 timer: 1500
             })
-
         }
 
     }
@@ -138,17 +148,14 @@ function MenuEdgeDrawer(props) {
 
             setOtp(otpval)
 
-            const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
+            const apiUrl = `https://cloud.bulkpromo.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=6676AB42323B3&access_token=666ff52aa9a38`;
             const response = await postData('otp/api', { url: apiUrl })
-            // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41
         } else {
             Swal.fire({
                 text: "Enter the Number First",
                 timer: 1000
             })
         }
-
-
     }
 
     return (

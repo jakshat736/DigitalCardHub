@@ -11,8 +11,8 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import logo1 from '../../Digital Card Assets/dchlogo.png'
 import { postData } from '../../../Services/NodeServices';
+import logo1 from '../../Digital Card Assets/dchlogo.png';
 import OtpGenerator from './OtpGenerator';
 
 const drawerBleeding = 150;
@@ -52,43 +52,41 @@ function InviteEdgeDrawer(props) {
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
     };
-
     const handleSubmit = async () => {
+
+        if (phoneNo !== '') {
             var formData = new FormData
-
             formData.append('phone', phoneNo)
-
             var result = await postData('customerLogin/chkLogin', formData, true)
 
-
             if (result.status) {
-                window.localStorage.setItem("userId",result.data._id)
+                window.localStorage.setItem("userId", result.data._id)
                 var formData = new FormData()
-                formData.append('inviteId',  props?.tagdId)
+                formData.append('inviteId', props?.tagId)
                 formData.append('phone', result.data.phone)
                 var response = await postData('invite/customerLogin', formData, true)
-            
+
                 if (response.status == 'true') {
-                    
-                    
+
+
                     Swal.fire({
                         title: 'Successfully Logged In!',
-                        imageUrl:logo1,
+                        imageUrl: logo1,
                         imageWidth: 200,
                         imageHeight: 200,
                         imageAlt: 'Custom image',
-                        background:'#001e3c',
-                        timer:1500,
-                        width:500,
-                        padding:15,
-                        color:'#fff',
-                        showConfirmButton:false,
-                        
-                      })
+                        background: '#001e3c',
+                        timer: 1500,
+                        width: 500,
+                        padding: 15,
+                        color: '#fff',
+                        showConfirmButton: false,
+
+                    })
                     navigate('/userdashboard')
-                    window.localStorage.setItem("User",true)
+                    window.localStorage.setItem("User", true)
                     window.localStorage.removeItem('data')
-                    window.localStorage.setItem("data",JSON.stringify(result.data))
+                    window.localStorage.setItem("data", JSON.stringify(result.data))
                 }
             }
             else {
@@ -101,12 +99,21 @@ function InviteEdgeDrawer(props) {
                 })
 
             }
+        } else {
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Enter Number First',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
     }
 
     // This is used only for the example
     const container = windows !== undefined ? () => window().document.body : undefined;
     const handleOtp = (value) => {
-        if (value.length == 4) {
+        if (value.length === 4) {
             if (otp == value) {
                 // setMessage("")
                 setVerified(true)
@@ -131,17 +138,14 @@ function InviteEdgeDrawer(props) {
 
             setOtp(otpval)
 
-            const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
+            const apiUrl = `https://cloud.bulkpromo.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=6676AB42323B3&access_token=666ff52aa9a38`;
             const response = await postData('otp/api', { url: apiUrl })
-            // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41
         } else {
             Swal.fire({
                 text: "Enter the Number First",
                 timer: 1000
             })
         }
-
-
     }
 
     return (
@@ -200,10 +204,19 @@ function InviteEdgeDrawer(props) {
                             <Button
                                 fullWidth
                                 onClick={handleopenotpdailog}
-                                sx={{ fontSize: 25, backgroundColor: '#F3B419', color: "black", "&:hover": { backgroundColor: '#F3B419' } }}>
-                                <Typography class='font'>
-                                    Get Otp
-                                </Typography>
+                                sx={{
+                                    background: "#001E3C",
+                                    color: "#ffffff",
+                                    p: "2% 10%",
+                                    fontSize: { xs: "0.6em", md: "0.9em", lg: "0.9em" },
+                                    fontWeight: 600,
+                                    "&:hover": {
+                                        background: "#023569",
+                                        color: "#ffffff",
+                                    }
+                                }}
+                            >
+                                Get Otp
                             </Button>
                         </Grid>
                         <Grid item xs={12}>
@@ -230,7 +243,7 @@ InviteEdgeDrawer.propTypes = {
      * You won't need it on your project.
      */
     windows: PropTypes.func,
-    tagId:PropTypes.string
+    tagId: PropTypes.string
 };
 
 

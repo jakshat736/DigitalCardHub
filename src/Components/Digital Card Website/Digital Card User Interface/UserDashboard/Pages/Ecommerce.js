@@ -96,6 +96,13 @@ const Ecommerce = () => {
         setProductData(newData);
     };
 
+
+    const handleProductDescriptionChange = (index, value) => {
+        const newData = [...productData];
+        newData[index] = { ...newData[index], productdescription: value };
+        setProductData(newData);
+    };
+
     const handleProductMrpChange = (index, value) => {
         const newData = [...productData];
         newData[index] = { ...newData[index], price: value };
@@ -129,6 +136,7 @@ const Ecommerce = () => {
                 productsName[index] = {
                     index: index,
                     productname: item.productname,
+                    productdescription: item.productdescription,
                     price: item.price,
                     offerprice: item.offerprice,
                 };
@@ -269,7 +277,7 @@ const Ecommerce = () => {
                 <Grid
                     container
                     spacing={2}
-                    sx={{ display: "flex", justifyContent: "center", width: "90%", mt: mobile ? "2vh" : tablet ? "3vh" : "" }}
+                    sx={{ display: "flex", justifyContent: "center", width: "100%", mt: mobile ? "2vh" : tablet ? "3vh" : "" }}
                 >
                     <Grid item xs={12}>
                         <Typography
@@ -372,6 +380,14 @@ const Ecommerce = () => {
                                     value={productData[index]?.productname || ""}
                                     onChange={(event) =>
                                         handleProductNameChange(index, event.target.value)
+                                    }
+                                />
+                                <TextField
+                                    sx={{ width: { xs: "80%", md: "80%" }, margin: 1 }}
+                                    label="Description"
+                                    value={productData[index]?.productdescription || ""}
+                                    onChange={(event) =>
+                                        handleProductDescriptionChange(index, event.target.value)
                                     }
                                 />
                                 <TextField

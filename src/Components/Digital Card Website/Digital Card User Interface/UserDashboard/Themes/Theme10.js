@@ -1,56 +1,38 @@
 import {
-    Box,
-    Button,
-    Container,
-    Grid,
-    IconButton,
-    InputAdornment,
-    Paper,
-    TextField,
-    Typography,
-    useMediaQuery,
-    useTheme,
-  } from "@mui/material";
-  import review from "./ThemeAssets/reviewicon.png"
-  import React from "react";
-  import './Theme9.css'
-  import {
-    ArrowDownwardSharp,
-    ArrowDropDownSharp,
-    ArrowDropUpSharp,
-    Email,
-    Facebook,
-    FacebookOutlined,
-    Instagram,
-    LinkedIn,
-    LocationOn,
-    MapSharp,
-    Save,
-    SaveAlt,
-    Share,
-    WhatsApp,
-  } from "@mui/icons-material";
-  import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+  SaveAlt,
+  Share,
+  WhatsApp
+} from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  InputAdornment,
+  Paper,
+  TextField,
+  Typography,
+  useMediaQuery,
+  useTheme
+} from "@mui/material";
+import React from "react";
+import './Theme9.css';
+import review from "./ThemeAssets/reviewicon.png";
   
-  import { serverURL } from "../../../../Services/NodeServices";
-  import { useNavigate } from "react-router-dom";
   import ReactPlayer from "react-player";
-  import bg from "./ThemeAssets/theme6.jpg";
-  import InstagramIcon from "./ThemeAssets/instagramicon.png";
+import { useNavigate } from "react-router-dom";
+import { serverURL } from "../../../../Services/NodeServices";
+import InstagramIcon from "./ThemeAssets/instagramicon.png";
 
-  import EmailIcon from "./ThemeAssets/gmailicon.png";
-  import CallIcon from "./ThemeAssets/callicon.png";
-  import LocationOnIcon from "./ThemeAssets/locationicon.png";
-  import FacebookIcon from "./ThemeAssets/facebookicon.png";
-  import WhatsAppIcon from "./ThemeAssets/whatsappicon.png";
-  import Clock from "react-live-clock";
   import VisibilityIcon from "@mui/icons-material/Visibility";
-  import { postData } from "../../../../Services/NodeServices";
-  import YouTubeIcon from './ThemeAssets/youtubeicon.png';
-  import phonepe from './ThemeAssets/phonepe.png'
-  import paytm from './ThemeAssets/paytm.png'
-  import gpay from './ThemeAssets/gpay.png'
-  import RateReviewIcon from '@mui/icons-material/RateReview';
+import Clock from "react-live-clock";
+import { postData } from "../../../../Services/NodeServices";
+import CallIcon from "./ThemeAssets/callicon.png";
+import FacebookIcon from "./ThemeAssets/facebookicon.png";
+import EmailIcon from "./ThemeAssets/gmailicon.png";
+import LocationOnIcon from "./ThemeAssets/locationicon.png";
+import WhatsAppIcon from "./ThemeAssets/whatsappicon.png";
+import YouTubeIcon from './ThemeAssets/youtubeicon.png';
   export default function Theme10({ data, products, gallery, ecommerce }) {
     const theme = useTheme();
     const mobile = useMediaQuery(theme.breakpoints.down(600));

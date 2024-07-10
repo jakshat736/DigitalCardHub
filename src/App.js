@@ -1,132 +1,146 @@
-import logo from './logo.svg';
-
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from './Components/Digital Card Website/Digital Card User Interface/Pages/Home';
+import { Route, Routes } from "react-router-dom";
+import './App.css';
 import DCLogin from './Components/Digital Card Website/Digital Card User Interface/Pages/DCLogin';
 import DCSignUp from './Components/Digital Card Website/Digital Card User Interface/Pages/DCSignUp';
-import DemoPage from './Components/DemoPage/DemoPage';
-import DarshitTraders from './Components/DemoPage/DarshitTraders';
-import UserDashboard from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/UserDashboard';
+import HomePage from './Components/Digital Card Website/Digital Card User Interface/Pages/Home';
 import ChangePassword from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/ChangePassword';
 import CompanyName from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/CompanyName';
-import ThemePage from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/ThemePage';
+import Ecommerce from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/Ecommerce';
+import Gallery from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/Gallery';
 import Information from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/Information';
 import Links from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/Links';
 import Payment from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/Payment';
 import Products from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/Products';
-import Ecommerce from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/Ecommerce';
-import Gallery from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/Gallery';
-import Theme1 from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/Theme1';
+import ThemePage from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/ThemePage';
 import Card from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/Card';
-import LoadingScreen from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/LoadingScreen';
-import NFCCard from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/NFCCard';
-import { HashRouter } from "react-router-dom";
-import Preview from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/Preview';
-import AdminLogin from './Components/Administrator/Login/AdminLogin';
-import DashBoard from './Components/Administrator/Login/DashBoard';
-import Compatibility from './Components/Digital Card Website/Digital Card User Interface/Components/Compatibility';
-import DesignUpload from './Components/Digital Card Website/Digital Card User Interface/PaymentFlow/DesignUpload';
-import Packages from './Components/Digital Card Website/Digital Card User Interface/PaymentFlow/Packages';
-import PaymentConfirmation from './Components/Digital Card Website/Digital Card User Interface/PaymentFlow/PaymentConfirmation';
-import HowToUse from './Components/Digital Card Website/Digital Card User Interface/Components/HowToUse';
-import PartialDesignUploadPage from './Components/Digital Card Website/Digital Card User Interface/PaymentFlow/PartialDesignUploadPage';
-import LoadingScreen1 from './Components/Digital Card Website/Digital Card User Interface/Pages/LoadingScreen1';
-import AddressPage from './Components/Digital Card Website/Digital Card User Interface/PaymentFlow/AddressPage';
-import PartialPackage from './Components/Digital Card Website/Digital Card User Interface/PaymentFlow/PartialPackage';
-import PartialConfirmation from './Components/Digital Card Website/Digital Card User Interface/PaymentFlow/PartialConfirmation';
-import ProductsPage from './Components/Digital Card Website/Digital Card User Interface/Components/ProductsPage';
-import ProductCompoent from './Components/Digital Card Website/Digital Card User Interface/Components/ProductCompoent';
-import OrderForm from './Components/Digital Card Website/Digital Card User Interface/Components/OrderForm';
-import SignUp from './Components/Digital Card Website/Digital Card User Interface/ReviewTag/SignUp';
-import ReviewHome from './Components/Digital Card Website/Digital Card User Interface/ReviewTag/ReviewHome';
-import ReviewLoadingScreen1 from './Components/Digital Card Website/Digital Card User Interface/ReviewTag/LoadingScreen1';
-import LogIn from './Components/Digital Card Website/Digital Card User Interface/ReviewTag/LogIn';
-import Dashboard from './Components/Digital Card Website/Digital Card User Interface/ReviewTag/Dashboard';
-import ReviewChangePassword from './Components/Digital Card Website/Digital Card User Interface/ReviewTag/UserComponents/ChangePassword';
-import ReviewLoadingScreen2 from './Components/Digital Card Website/Digital Card User Interface/StandeeTag/LoadingScreen1';
-import SignUp1 from './Components/Digital Card Website/Digital Card User Interface/StandeeTag/SignUp';
-import LogIn1 from './Components/Digital Card Website/Digital Card User Interface/StandeeTag/LogIn';
-import StandeeHome from './Components/Digital Card Website/Digital Card User Interface/StandeeTag/StandeeHome';
-import HotelLinks from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/HotelLinks';
-import MenuLink from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/MenuLink';
-import { ParallaxProvider } from 'react-scroll-parallax';
-import ImageUploaderAndCropper from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/ImageUploaderAndCropper';
-import NewThemeInfo from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewThemeInfo';
-import Home from './Components/Digital Card Website/NewUpdate/components/administrator/Home';
-import Enter from './Components/Digital Card Website/NewUpdate/components/administrator/Enter';
-import { SessionContext } from './Components/Services/SessionContext';
+import UserDashboard from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/UserDashboard';
+
+import { SnackbarProvider } from 'notistack';
 import { useState } from 'react';
-import CartPage from './Components/Digital Card Website/Digital Card User Interface/Components/CartPage';
-import DeliverDetails from './Components/Digital Card Website/Digital Card User Interface/Components/DeliverDetails';
-import { useEffect } from 'react';
-import OrderComplete from './Components/Digital Card Website/Digital Card User Interface/Components/OrderComplete';
+import { HashRouter } from "react-router-dom";
+import { ParallaxProvider } from 'react-scroll-parallax';
 import Chri from './Components/Administrator/Chri';
-import Shop from './Components/Digital Card Website/Digital Card User Interface/Components/Shop';
-import Box from './Components/Digital Card Website/MenuUpdate/administrator/Box';
-import Menu from './Components/Digital Card Website/MenuUpdate/administrator/Menu';
-import AddMenu from './Components/Digital Card Website/MenuUpdate/adminpannel/AddMenu';
-import ViewOrder from './Components/Digital Card Website/MenuUpdate/adminpannel/ViewOrder';
-import OrderDetail from './Components/Digital Card Website/MenuUpdate/adminpannel/OrderDetail';
-import PrintRecipt from './Components/Digital Card Website/MenuUpdate/adminpannel/PrintRecipt';
-import AllMenu from './Components/Digital Card Website/MenuUpdate/adminpannel/AllMenu';
-import Form from './Components/Digital Card Website/MenuUpdate/adminpannel/Form';
-import EditMenu from './Components/Digital Card Website/MenuUpdate/adminpannel/EditMenu';
-import Kitchen from './Components/Digital Card Website/MenuUpdate/adminpannel/Kitchen';
-import Selectqy from './Components/Digital Card Website/MenuUpdate/adminpannel/Selectqy';
-import FloatingMenu from './Components/Digital Card Website/MenuUpdate/administrator/FloatingMenu';
-import UploadMenuCsv from './Components/Digital Card Website/MenuUpdate/adminpannel/UploadMenuCsv';
-import UploadYourLogo from './Components/Digital Card Website/MenuUpdate/adminpannel/UploadYourLogo';
-import MyComponent from './Components/Digital Card Website/MenuUpdate/administrator/Button ';
-import MenuDashBoard from './Components/Digital Card Website/MenuUpdate/adminpannel/MenuDashBoard';
-import Invite from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/Invite';
-import Home1 from './Components/Digital Card Website/Digital Card User Interface/Invite/Home';
-import Invitation from './Components/Digital Card Website/Digital Card User Interface/Invite/Invitation';
-import Details from './Components/Digital Card Website/MenuUpdate/adminpannel/Details';
-import OrderComplete1 from './Components/Digital Card Website/MenuUpdate/adminpannel/OrderComplete';
-import OrderDelivered from './Components/Digital Card Website/MenuUpdate/adminpannel/OrderDelivered';
-import LinkGenrator from './Components/Administrator/LinkGenrator';
-import Example from './Components/Administrator/Example';
-import ActivationPage from './Components/Digital Card Website/MenuUpdate/administrator/ActivationPage';
-import MenuLogIn from './Components/Digital Card Website/MenuUpdate/administrator/LogIn';
-import MenuSignUp from './Components/Digital Card Website/MenuUpdate/administrator/SignUp';
-import InviteActivationPage from './Components/Digital Card Website/Digital Card User Interface/Invite/ActivationPage';
-import InviteLogIn from './Components/Digital Card Website/Digital Card User Interface/Invite/LogIn';
-import InviteSignUp from './Components/Digital Card Website/Digital Card User Interface/Invite/SignUp';
 import DownloadContact from './Components/Administrator/DownloadContact';
 import DownloadContact2 from './Components/Administrator/DownloadContact2';
 import DownloadContact3 from './Components/Administrator/DownloadContact3';
 import DownloadContact4 from './Components/Administrator/DownloadContact4';
-import { SnackbarProvider } from 'notistack';
-import ActivateTag from './Components/Digital Card Website/VehicleTag/ActivateTag';
-import VehicleNumber from './Components/Digital Card Website/VehicleTag/VehicleNumber';
-import VerifyNumber from './Components/Digital Card Website/VehicleTag/VerifyNumber';
-import ScanQr from './Components/Digital Card Website/VehicleTag/ScanQr';
-import { MessageSend } from './Components/Digital Card Website/VehicleTag/MessageSend';
-import Register from './Components/Digital Card Website/VehicleTag/Register';
-import Cong from './Components/Digital Card Website/VehicleTag/Cong';
-import VehicleLogin from './Components/Digital Card Website/VehicleTag/LogIn';
-import VehicleSignup from './Components/Digital Card Website/VehicleTag/SignUp';
-import VehicleHome from './Components/Digital Card Website/VehicleTag/VehicleHome';
+import LinkGenrator from './Components/Administrator/LinkGenrator';
+import AdminLogin from './Components/Administrator/Login/AdminLogin';
+import DashBoard from './Components/Administrator/Login/DashBoard';
 import SelfOrder from './Components/Administrator/SelfOrder';
-import MasterLogin from './Components/MasterDashboard/LogIn';
-import MasterDashboard from './Components/MasterDashboard/MasterDashboard';
-import DoorTagHome from './Components/Digital Card Website/DoorTag/DoorTagHome';
-import DoorSignup from './Components/Digital Card Website/DoorTag/SignUp';
-import DoorLogin from './Components/Digital Card Website/DoorTag/LogIn';
-import DoorTagRegister from './Components/Digital Card Website/DoorTag/DoorTagRegister';
+import Instaredirect from './Components/DemoPage/Instaredirect';
 import AllProducts from './Components/Digital Card Website/Digital Card User Interface/Components/AllProducts';
-import CardHome from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/CardHome';
-import MultiSignUp from './Components/Digital Card Website/Digital Card User Interface/MultiLink.js/SignUp';
+import CartPage from './Components/Digital Card Website/Digital Card User Interface/Components/CartPage';
+import Compatibility from './Components/Digital Card Website/Digital Card User Interface/Components/Compatibility';
+import DeliverDetails from './Components/Digital Card Website/Digital Card User Interface/Components/DeliverDetails';
+import HowToUse from './Components/Digital Card Website/Digital Card User Interface/Components/HowToUse';
+import OrderComplete from './Components/Digital Card Website/Digital Card User Interface/Components/OrderComplete';
+import OrderForm from './Components/Digital Card Website/Digital Card User Interface/Components/OrderForm';
+import ProductCompoent from './Components/Digital Card Website/Digital Card User Interface/Components/ProductCompoent';
+import ProductsPage from './Components/Digital Card Website/Digital Card User Interface/Components/ProductsPage';
+import Shop from './Components/Digital Card Website/Digital Card User Interface/Components/Shop';
+import InviteActivationPage from './Components/Digital Card Website/Digital Card User Interface/Invite/ActivationPage';
+import Home1 from './Components/Digital Card Website/Digital Card User Interface/Invite/Home';
+import Invitation from './Components/Digital Card Website/Digital Card User Interface/Invite/Invitation';
+import InviteLogIn from './Components/Digital Card Website/Digital Card User Interface/Invite/LogIn';
+import InviteSignUp from './Components/Digital Card Website/Digital Card User Interface/Invite/SignUp';
 import MultiLogIn from './Components/Digital Card Website/Digital Card User Interface/MultiLink.js/LogIn';
 import MultiHome from './Components/Digital Card Website/Digital Card User Interface/MultiLink.js/MultiHome';
-import Instaredirect from './Components/DemoPage/Instaredirect';
+import MultiSignUp from './Components/Digital Card Website/Digital Card User Interface/MultiLink.js/SignUp';
+import LoadingScreen1 from './Components/Digital Card Website/Digital Card User Interface/Pages/LoadingScreen1';
+import AddressPage from './Components/Digital Card Website/Digital Card User Interface/PaymentFlow/AddressPage';
+import DesignUpload from './Components/Digital Card Website/Digital Card User Interface/PaymentFlow/DesignUpload';
+import Packages from './Components/Digital Card Website/Digital Card User Interface/PaymentFlow/Packages';
+import PartialConfirmation from './Components/Digital Card Website/Digital Card User Interface/PaymentFlow/PartialConfirmation';
+import PartialDesignUploadPage from './Components/Digital Card Website/Digital Card User Interface/PaymentFlow/PartialDesignUploadPage';
+import PartialPackage from './Components/Digital Card Website/Digital Card User Interface/PaymentFlow/PartialPackage';
+import PaymentConfirmation from './Components/Digital Card Website/Digital Card User Interface/PaymentFlow/PaymentConfirmation';
+import Dashboard from './Components/Digital Card Website/Digital Card User Interface/ReviewTag/Dashboard';
+import ReviewLoadingScreen1 from './Components/Digital Card Website/Digital Card User Interface/ReviewTag/LoadingScreen1';
+import LogIn from './Components/Digital Card Website/Digital Card User Interface/ReviewTag/LogIn';
+import ReviewHome from './Components/Digital Card Website/Digital Card User Interface/ReviewTag/ReviewHome';
+import SignUp from './Components/Digital Card Website/Digital Card User Interface/ReviewTag/SignUp';
+import ReviewChangePassword from './Components/Digital Card Website/Digital Card User Interface/ReviewTag/UserComponents/ChangePassword';
+import ReviewLoadingScreen2 from './Components/Digital Card Website/Digital Card User Interface/StandeeTag/LoadingScreen1';
+import LogIn1 from './Components/Digital Card Website/Digital Card User Interface/StandeeTag/LogIn';
+import SignUp1 from './Components/Digital Card Website/Digital Card User Interface/StandeeTag/SignUp';
+import StandeeHome from './Components/Digital Card Website/Digital Card User Interface/StandeeTag/StandeeHome';
+import HotelLinks from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/HotelLinks';
+import ImageUploaderAndCropper from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/ImageUploaderAndCropper';
+import Invite from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/Invite';
+import MenuLink from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/MenuLink';
+import NewThemeInfo from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewThemeInfo';
+import Preview from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/Preview';
+import CardHome from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/CardHome';
+import LoadingScreen from './Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/LoadingScreen';
+import DoorTagHome from './Components/Digital Card Website/DoorTag/DoorTagHome';
+import DoorTagRegister from './Components/Digital Card Website/DoorTag/DoorTagRegister';
+import DoorLogin from './Components/Digital Card Website/DoorTag/LogIn';
+import DoorSignup from './Components/Digital Card Website/DoorTag/SignUp';
+import ActivationPage from './Components/Digital Card Website/MenuUpdate/administrator/ActivationPage';
+import Box from './Components/Digital Card Website/MenuUpdate/administrator/Box';
+import MyComponent from './Components/Digital Card Website/MenuUpdate/administrator/Button ';
+import FloatingMenu from './Components/Digital Card Website/MenuUpdate/administrator/FloatingMenu';
+import MenuLogIn from './Components/Digital Card Website/MenuUpdate/administrator/LogIn';
+import Menu from './Components/Digital Card Website/MenuUpdate/administrator/Menu';
+import MenuTheme from './Components/Digital Card Website/MenuUpdate/administrator/MenuTheme';
+import MenuSignUp from './Components/Digital Card Website/MenuUpdate/administrator/SignUp';
+import AddMenu from './Components/Digital Card Website/MenuUpdate/adminpannel/AddMenu';
+import AllMenu from './Components/Digital Card Website/MenuUpdate/adminpannel/AllMenu';
+import Details from './Components/Digital Card Website/MenuUpdate/adminpannel/Details';
+import EditMenu from './Components/Digital Card Website/MenuUpdate/adminpannel/EditMenu';
+import Form from './Components/Digital Card Website/MenuUpdate/adminpannel/Form';
+import Kitchen from './Components/Digital Card Website/MenuUpdate/adminpannel/Kitchen';
+import MenuDashBoard from './Components/Digital Card Website/MenuUpdate/adminpannel/MenuDashBoard';
+import OrderComplete1 from './Components/Digital Card Website/MenuUpdate/adminpannel/OrderComplete';
+import OrderDelivered from './Components/Digital Card Website/MenuUpdate/adminpannel/OrderDelivered';
+import OrderDetail from './Components/Digital Card Website/MenuUpdate/adminpannel/OrderDetail';
+import PrintRecipt from './Components/Digital Card Website/MenuUpdate/adminpannel/PrintRecipt';
+import Selectqy from './Components/Digital Card Website/MenuUpdate/adminpannel/Selectqy';
+import UploadMenuCsv from './Components/Digital Card Website/MenuUpdate/adminpannel/UploadMenuCsv';
+import UploadYourLogo from './Components/Digital Card Website/MenuUpdate/adminpannel/UploadYourLogo';
+import ViewOrder from './Components/Digital Card Website/MenuUpdate/adminpannel/ViewOrder';
+import Enter from './Components/Digital Card Website/NewUpdate/components/administrator/Enter';
+import Home from './Components/Digital Card Website/NewUpdate/components/administrator/Home';
+import ActivateTag from './Components/Digital Card Website/VehicleTag/ActivateTag';
+import Cong from './Components/Digital Card Website/VehicleTag/Cong';
+import VehicleLogin from './Components/Digital Card Website/VehicleTag/LogIn';
+import { MessageSend } from './Components/Digital Card Website/VehicleTag/MessageSend';
+import Register from './Components/Digital Card Website/VehicleTag/Register';
+import ScanQr from './Components/Digital Card Website/VehicleTag/ScanQr';
+import VehicleSignup from './Components/Digital Card Website/VehicleTag/SignUp';
+import VehicleHome from './Components/Digital Card Website/VehicleTag/VehicleHome';
+import VehicleNumber from './Components/Digital Card Website/VehicleTag/VehicleNumber';
+import VerifyNumber from './Components/Digital Card Website/VehicleTag/VerifyNumber';
+import MasterLogin from './Components/MasterDashboard/LogIn';
+import MasterDashboard from './Components/MasterDashboard/MasterDashboard';
+import { SessionContext } from './Components/Services/SessionContext';
+import MenuTheme2 from "./Components/Digital Card Website/MenuUpdate/administrator/MenuTheme2";
+import MenuTheme3 from "./Components/Digital Card Website/MenuUpdate/administrator/MenuTheme3";
+import Categorys from "./Components/Digital Card Website/MenuUpdate/adminpannel/Categorys";
+import Coupon from "./Components/Digital Card Website/MenuUpdate/adminpannel/coupon";
+import DispalyAllTheCategory from "./Components/Digital Card Website/MenuUpdate/adminpannel/DispalyAllTheCategory";
+import NewHome from "./Components/Digital Card Website/Digital Card User Interface/Pages/NewHome";
+import DemoOtp from "./Components/Digital Card Website/Digital Card User Interface/Pages/DemoOtp";
+import CompitableDevices from "./Components/Digital Card Website/Digital Card User Interface/Components/CompitableDevices";
+import NewAllProducts from "./Components/Digital Card Website/Digital Card User Interface/Components/NewAllProducts";
+import NewAllProduct2 from "./Components/Digital Card Website/Digital Card User Interface/Components/NewAllProducts2";
+import ProductComponents from "./Components/Digital Card Website/Digital Card User Interface/Components/ProductComponents";
+import NewThemeCard from "./Components/Digital Card Website/Digital Card User Interface/Components/NewThemeCard";
+import NewCheckOut from "./Components/Digital Card Website/Digital Card User Interface/Components/NewCheckOut";
+import NewCheckOut2 from "./Components/Digital Card Website/Digital Card User Interface/Components/NewCheckOut2";
+import NewCheckOut3 from "./Components/Digital Card Website/Digital Card User Interface/Components/NewCheckOut3";
+import CooperateEnquiries from "./Components/Digital Card Website/Digital Card User Interface/Components/CooperateEnquiries";
+import CategoryProducts from "./Components/Digital Card Website/Digital Card User Interface/Components/CategoryProducts";
+import NewBussinessProfile from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewBussinessProfile";
+import NewProfile from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewProfile";
+import DashboardHome from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewDashboard/DashboardHome";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
+
 	const [cart, setCart] = useState([]);
-
-
-	return (
-
+	
+	 return(
 		<div>
 			<SessionContext.Provider value={{ cart, setCart }}>
 				<SnackbarProvider autoHideDuration={4000} variant='success' anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
@@ -134,13 +148,22 @@ function App() {
 						<HashRouter>
 							<Routes>
 								{/* DIGITAL CARD WEBSITE ROUTER START */}
+								<Route element={<DemoOtp/>} path="/demootp"/>  
 								<Route element={<HomePage />} path="/home" />
+								<Route element={<NewHome/>} path="/newhome" />
 								<Route element={<Instaredirect />} path="/aradhyarana" />
 								<Route element={<Home />} path="/home1" />
-								<Route element={<DCLogin />} path="/digitalcardlogin" />
+								<Route element={<NewCheckOut/>} path="/newcheckout" />
+								<Route element={<NewCheckOut2/>} path="/newcheckout2" />
+								<Route element={<NewCheckOut3/>} path="/newcheckout3" />
+								<Route element={<NewThemeCard/>} path="/newthemecard" />
+								<Route element={<ProductComponents/>} path="/productcomponents/:_id" />
+								<Route element={<NewAllProducts/>} path="/newallproduct" />
+								<Route element={<NewAllProduct2/>} path="/newallproduct2" />
+								<Route element={<CategoryProducts/>} path="/categoryproducts/:_id" />
+								<Route element={<CooperateEnquiries/>} path="/cooperate"/>
+								<Route element={<DCLogin/>} path="/digitalcardlogin"/>
 								<Route element={<DCSignUp />} path="/digitalcardsignup" />
-								<Route element={<DemoPage />} path="/demopage" />
-								<Route element={<DarshitTraders />} path="/darshittraders" />
 								<Route element={<UserDashboard />} path="/userdashboard" />
 								<Route element={<ChangePassword />} path="/changepassword" />
 								<Route element={<CompanyName />} path="/companyname" />
@@ -148,7 +171,8 @@ function App() {
 								<Route element={<Information />} path="/information" />
 								<Route element={<NewThemeInfo />} path="/newthemeinfo" />
 								<Route element={<Links />} path="/links" />
-								<Route element={<HotelLinks />} path="/hotellinks" />
+								<Route element={<NewProfile/>} path="/newprofile"/>
+								<Route element={<HotelLinks />} path="/hotellinks"/>
 								<Route element={<MenuLink />} path="/menulink" />
 								<Route element={<Payment />} path="/payment" />
 								<Route element={<Products />} path="/products" />
@@ -171,6 +195,7 @@ function App() {
 								<Route path="/addresspage" element={<AddressPage />} />
 								<Route path="/productspage/:_id" element={<ProductsPage />} />
 								<Route path="/allproducts" element={<AllProducts />} />
+								<Route path="/compitable" element={<CompitableDevices/>} />
 								<Route path="/productscomponent/:_id" element={<ProductCompoent />} />
 								<Route path="/orderform" element={<OrderForm />} />
 								<Route path="/ab" element={<ImageUploaderAndCropper />} />
@@ -221,15 +246,21 @@ function App() {
 
 								<Route path="/box" element={<Box />} />
 								<Route path="/menus/:menuId" element={<Menu />} />
+								<Route element={<MenuTheme />} path="/menutheme/:menuId" />
+								<Route element={<MenuTheme2/>} path="/menu2" />
+								<Route element={<MenuTheme3/>} path="/menu3" />
 								<Route path="/menuDashboard/:menuId" element={<MenuDashBoard />} />
 								<Route path="/addmenu" element={<AddMenu />} />
+								<Route path="/coupon" element={<Coupon/>} />
+								<Route path="/category" element={<Categorys/>} />
+								<Route path="/displayallthecategory" element={<DispalyAllTheCategory/>} />
 								<Route path="/vieworder" element={<ViewOrder />} />
 								<Route path="/orderdetail" element={<OrderDetail />} />
 								<Route path="/button" element={<MyComponent />} />
 								<Route path="/printrecipt" element={<PrintRecipt />} />
 								<Route path="/allmenu" element={<AllMenu />} />
 								<Route path="/form" element={<Form />} />
-								<Route path="/editmenu" element={<EditMenu />} />
+								<Route path="/editmenu" element={<EditMenu />}/>
 								<Route path="/kitchen" element={<Kitchen />} />
 								<Route path="/selectqy" element={<Selectqy />} />
 								<Route path="/floatingmenu" element={<FloatingMenu />} />
@@ -263,9 +294,9 @@ function App() {
 								<Route path="/door/:id" element={<DoorTagHome />} />
 								<Route path="/dooraddressupdate" element={<DoorTagRegister />} />
 
-							{/* Master Dashboard */}
-							<Route path="/masterlogin" element={<MasterLogin />} />
-							<Route path="/masterdashboard" element={<MasterDashboard />} />
+								{/* Master Dashboard */}
+								<Route path="/masterlogin" element={<MasterLogin />} />
+								<Route path="/masterdashboard" element={<MasterDashboard />} />
 
 							</Routes>
 						</HashRouter>

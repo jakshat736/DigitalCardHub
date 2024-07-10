@@ -1,48 +1,41 @@
+import MaterialTable from "@material-table/core";
+import { AddToHomeScreen, Delete } from "@mui/icons-material";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import {
   Button,
+  CardHeader,
   Container,
   Grid,
   IconButton,
   Paper,
+  Stack,
   TextField,
   Typography,
   useMediaQuery,
-  useTheme,
-  CardHeader,
-  Stack
+  useTheme
 } from "@mui/material";
-import React, { useState } from "react";
-import Navbar from "./UserComponents/Navbar";
-import Footer from "./UserComponents/Footer";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { useLocation, useNavigate } from "react-router-dom";
-import { getData, postData } from "../../../Services/NodeServices";
-import AddToHomeScreenIcon from "@mui/icons-material/AddToHomeScreen";
-import { AddToHomeScreen, Delete } from "@mui/icons-material";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import Swal from "sweetalert2";
-import { useEffect } from "react";
 import Switch from '@mui/material/Switch';
-import MaterialTable from "@material-table/core";
-import google from './UserAssets/Google.gif'
-import { type } from "@testing-library/user-event/dist/type";
-import loadingAnimation from '../../Digital Card Assets/Loading.gif'
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { getData, postData } from "../../../Services/NodeServices";
 import Preloader from "../Components/Preloader";
+import google from './UserAssets/Google.gif';
+import Footer from "./UserComponents/Footer";
+import Navbar from "./UserComponents/Navbar";
 const UserDashboard = () => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down(600));
   const tablet = useMediaQuery(theme.breakpoints.down(960));
   const [open, setOpen] = React.useState(false);
   const [cardData, setCardData] = useState([]);
-  const location = useLocation();
-  const [open1, setOpen1] = React.useState(false);
-  const [open2, setOpen2] = React.useState(false);
   const [open3, setOpen3] = React.useState(false);
   const [tagDialog, setTagDialog] = React.useState(false);
   const [multiTagDialog, setMultiTagDialog] = React.useState(false);
@@ -63,7 +56,6 @@ const UserDashboard = () => {
   const [menuDisplay, setMenuDisplay] = useState('none')
   const [inviteDisplay, setInviteDisplay] = useState('none')
   const [inviteId, setInviteId] = useState('')
-  const [standeeTagDisplay, setStandeeTagDisplay] = useState('none')
   const [vehicleTagDisplay, setVehicleTagDisplay] = useState('none')
   const [doorTagDisplay, setDoorTagDisplay] = useState('none')
   const [tagId, setTagId] = useState('')
@@ -81,11 +73,6 @@ const UserDashboard = () => {
   const [multiEdit, setMultiEdit] = useState(false)
   const [multiLinkEdit, setMultiLinkEdit] = useState(false)
   const [loading, setLoading] = useState(false)
-
-  const handleClose1 = () => {
-    setOpen1(false);
-    setOpen2(false)
-  };
 
   const userId = window.localStorage.getItem("userId");
   const user = window.localStorage.getItem("User");
@@ -120,7 +107,6 @@ const UserDashboard = () => {
     var formData = new FormData();
     formData.append("phone", data?.phone)
     const response = await postData('index/getTagsByPhone', formData, true);
-    console.log(response?.data)
     if (response.status == true) {
       setMenuDisplay("flex")
 
@@ -157,7 +143,6 @@ const UserDashboard = () => {
     var formData = new FormData();
     formData.append("phone", data?.phone)
     const response = await postData('door/getTagsByPhone', formData, true);
-    console.log("Hello", response.data)
     if (response.status == true) {
       setDoorTags(response.data)
       setDoorTagDisplay("flex")
@@ -180,10 +165,7 @@ const UserDashboard = () => {
         formData1.append('link', `https://digitalcardhub.in/#/${companyId}`);
         const response1 = await postData('standee/updateLink', formData1, true);
       }
-
-      setStandeeTagDisplay("flex")
       setStandeeTag([response.data])
-      console.log(response.data)
 
     }
   }
@@ -201,7 +183,6 @@ const UserDashboard = () => {
     setAmount(result.data == undefined ? 0 : result.data.packageAmount);
     setStatus(result.data == undefined ? "" : result.data.paymentStatus);
     setCompanyId(result.data == undefined ? "" : result.data.companyId);
-    setTimeout(handleDialog(result.data == undefined ? 0 : result.data.packageAmount), 10000);
     if (result.data != undefined) { window.localStorage.setItem("CardId", result.data._id); }
     if (result.data != undefined) {
       var createDate = convertToISODate(result.data.createdDate)
@@ -244,15 +225,6 @@ const UserDashboard = () => {
 
   useEffect(() => { }, [status]);
 
-  const handleDialog = (amount) => {
-    if (amount != 499 && amount != 799 && amount != 999) {
-      setOpen1(true);
-    }
-
-    if (amount == 499) {
-      setOpen2(true)
-    }
-  };
 
 
   const targetDate = new Date(createdDate); // Your target date (ISO 8601 format: yyyy-mm-dd)
@@ -281,10 +253,6 @@ const UserDashboard = () => {
     }
   }, [createdDate]);
 
-
-
-
-  console.log(" jsbj", standeeTag.length)
   const handleClickOpen = () => {
     if (amount != 499) { setOpen(true); }
     else {
@@ -518,10 +486,8 @@ const UserDashboard = () => {
 
     }
     setMultiEdit(false)
-    console.log(multiLinks)
   }
   const handleMultiLinkEditDialog = () => {
-    console.log(multiLinks)
     setMultiLink('')
     setMultiLinkTitle('')
     setMultiLinkIndex('')
@@ -997,14 +963,12 @@ const UserDashboard = () => {
       },
     };
     const response = await postData("api/proxy", requestBody);
-    console.log("bodyyyyyy", response);
 
     navigate(response.data.instrumentResponse.redirectInfo.url);
     handleCheck("DIGITALCARDONLINE", randomString);
   };
   const handleCheck = async (merchantId, transactinId) => {
     const response = await getData(`/check-status?tmid=${transactinId}`);
-    console.log("bodyyyyyy", response);
   };
 
   const handleChange = async (id, status) => {
@@ -1027,9 +991,7 @@ const UserDashboard = () => {
     formData.append("enquiry", status == 'false' ? 'true' : 'false');
 
     const response = await postData('carddetails/updateEnquiry', formData, true)
-
     fetchCardDetail()
-
   };
 
   return (

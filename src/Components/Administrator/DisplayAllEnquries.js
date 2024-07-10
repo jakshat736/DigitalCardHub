@@ -159,18 +159,14 @@ const table = useMaterialReactTable({
         setEnquiries(result.reverse())
     }
 
-
-    
-
     return(
-      
-        
         <Grid container spacing={2} style={{  display:"flex",
         justifyContent:'center',
         alignItems:'center'}}>
           <Grid item xs={12} sm={12} style={{marginTop:20,fontSize:matches?10:20}}>
-          <MaterialReactTable table={table} /></Grid>  </Grid>
-
+          <MaterialReactTable table={table}/>
+          </Grid> 
+           </Grid>
     )
     
 }

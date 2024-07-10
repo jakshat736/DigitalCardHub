@@ -1,41 +1,38 @@
-import { Avatar, Box, Grid, IconButton, Paper, Typography, Button, TextField, DialogActions, DialogContent, DialogTitle, Dialog, useMediaQuery, useTheme, Stack } from '@mui/material'
-import React, { useContext } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
-import Navbar from './Navbar'
+import { Avatar, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, Paper, Stack, TextField, Typography, useMediaQuery, useTheme } from '@mui/material';
+import React, { useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import Navbar from './Navbar';
 
-import bg from "../../Digital Card Assets/footer.png";
-import Footer from "./Footer";
 import { Add, FiberManualRecord, Remove } from '@mui/icons-material';
-import { useState } from 'react';
-import img1 from '../../Digital Card Assets/icons/1.png'
-import img2 from '../../Digital Card Assets/icons/2.png'
-import img3 from '../../Digital Card Assets/icons/3.png'
-import img4 from '../../Digital Card Assets/icons/4.png'
-import img5 from '../../Digital Card Assets/icons/5.png'
-import img6 from '../../Digital Card Assets/icons/6.png'
-import img7 from '../../Digital Card Assets/icons/7.png'
-import img8 from '../../Digital Card Assets/icons/8.png'
-import img9 from '../../Digital Card Assets/icons/9.png'
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import { postData, serverURL } from '../../../Services/NodeServices';
 import Slider from 'react-slick';
 import Swal from 'sweetalert2';
+import { postData, serverURL } from '../../../Services/NodeServices';
 import { SessionContext } from '../../../Services/SessionContext';
+import logo1 from '../../Digital Card Assets/dchlogo.png';
+import bg from "../../Digital Card Assets/footer.png";
+import img1 from '../../Digital Card Assets/icons/1.png';
+import img2 from '../../Digital Card Assets/icons/2.png';
+import img4 from '../../Digital Card Assets/icons/4.png';
+import img5 from '../../Digital Card Assets/icons/5.png';
+import img6 from '../../Digital Card Assets/icons/6.png';
+import img8 from '../../Digital Card Assets/icons/8.png';
 import OtpGenerator from '../ReviewTag/OtpGenerator';
-import logo1 from '../../Digital Card Assets/dchlogo.png'
-import { makeStyles } from '@mui/styles';
-import Varieties from './Varieties';
+import Footer from "./Footer";
 import Preloader from './Preloader';
+import Varieties from './Varieties';
 
 
 
 const ProductCompoent = () => {
   const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.down("sm"))
+
   const { cart, setCart } = useContext(SessionContext);
   const Token = window.localStorage.getItem("Token");
   const User = window.localStorage.getItem("UserNumber")
-  const matches = useMediaQuery(theme.breakpoints.down("sm"))
+
 
 
   const navigate = useNavigate()
@@ -82,6 +79,8 @@ const ProductCompoent = () => {
     setPassword(inputValue);
     validatePassword(inputValue);
   };
+
+  console.log(otp)
 
   const validatePassword = (value) => {
     // Define the regular expressions to check for lowercase, uppercase, number, and special character.
@@ -199,64 +198,61 @@ const ProductCompoent = () => {
       setLoading(false)
       setShow(true)
     }
-
   }
 
   const handleSubmit = async () => {
-    var formData = new FormData()
+    if (phoneNo !== "") {
+      var formData = new FormData()
+      formData.append('phone', phoneNo)
+      // formData.append('password', password)
+      var result = await postData('customerLogin/chkLogin', formData, true)
+      if (result.status) {
+        window.localStorage.setItem("userId", result?.data?._id)
+        window.localStorage.setItem("UserNumber", result?.data?.phone)
+        Swal.fire({
+          title: 'Successfully Logged In!',
+          imageUrl: logo1,
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: 'Custom image',
+          background: '#001e3c',
+          timer: 1500,
+          width: 500,
+          padding: 15,
+          color: '#fff',
+          showConfirmButton: false,
 
-    formData.append('phone', phoneNo)
-    // formData.append('password', password)
+        })
 
+        window.localStorage.setItem("Token", true)
+        window.localStorage.setItem("User", true)
+        window.localStorage.removeItem('data')
+        window.localStorage.setItem("data", JSON.stringify(result?.data))
+        handleClick(true, result?.data?.phone)
 
-    var result = await postData('customerLogin/chkLogin', formData, true)
+      }
+      else {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Fail to Login',
+          showConfirmButton: false,
+          timer: 1500
+        })
 
-
-    if (result.status) {
-
-      window.localStorage.setItem("userId", result?.data?._id)
-      window.localStorage.setItem("UserNumber", result?.data?.phone)
-      // Swal.fire({
-      //         position: 'center',
-      //         icon: 'success',
-      //         title:'Login Succesfully',
-      //         showConfirmButton: false,
-      //         timer: 1500
-      // })
-      Swal.fire({
-        title: 'Successfully Logged In!',
-        imageUrl: logo1,
-        imageWidth: 200,
-        imageHeight: 200,
-        imageAlt: 'Custom image',
-        background: '#001e3c',
-        timer: 1500,
-        width: 500,
-        padding: 15,
-        color: '#fff',
-        showConfirmButton: false,
-
-      })
-
-      window.localStorage.setItem("Token", true)
-      window.localStorage.setItem("User", true)
-      window.localStorage.removeItem('data')
-      window.localStorage.setItem("data", JSON.stringify(result?.data))
-      handleClick(true, result?.data?.phone)
-
-    }
-    else {
+      }
+    } else {
       Swal.fire({
         position: 'center',
         icon: 'error',
-        title: 'Fail to Login',
+        title: 'Enter Number First',
         showConfirmButton: false,
         timer: 1500
       })
-
     }
 
   }
+
   const handleClose = () => {
     setOpen(false)
     setOpen1(false)
@@ -371,39 +367,39 @@ const ProductCompoent = () => {
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={2} sx={{ p: "8% 5%" }}>
-            <Grid item xs={9}>
-              <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
-            </Grid>
-            <Grid item xs={3} sx={{ display: "flex" }}>
-              <Button
-                fullWidth
-                onClick={handleopenotpdailog}
-                sx={{
-                  background: "#001E3C",
-                  color: "#ffffff",
-                  p: "2% 10%",
-                  fontSize: { xs: "0.6em", md: "0.9em", lg: "0.9em" },
-                  fontWeight: 600,
-                  "&:hover": {
-                    background: "#023569",
+              <Grid item xs={9}>
+                <TextField label="Whatsapp Number" type='tel' fullWidth value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)} />
+              </Grid>
+              <Grid item xs={3} sx={{ display: "flex" }}>
+                <Button
+                  fullWidth
+                  onClick={handleopenotpdailog}
+                  sx={{
+                    background: "#001E3C",
                     color: "#ffffff",
-                  }
-                }}
-              >
-                Get Otp
-              </Button>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
+                    p: "2% 10%",
+                    fontSize: { xs: "0.6em", md: "0.9em", lg: "0.9em" },
+                    fontWeight: 600,
+                    "&:hover": {
+                      background: "#023569",
+                      color: "#ffffff",
+                    }
+                  }}
+                >
+                  Get Otp
+                </Button>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
 
+              </Grid>
+              <Grid item xs={12}>
+                OTP not received ? <a style={{ cursor: 'pointer' }} onClick={handleopenotpdailog}>Resend</a>
+              </Grid>
+              <Grid item xs={12}>
+                {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              OTP not received ? <a style={{ cursor: 'pointer' }} onClick={handleopenotpdailog}>Resend</a>
-            </Grid>
-            <Grid item xs={12}>
-              {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
-            </Grid>
-          </Grid>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} variant="contained">
@@ -416,41 +412,38 @@ const ProductCompoent = () => {
 
   const handleOtp = (value) => {
     if (value.length == 4) {
-        if (otp == value) {
-            // setMessage("")
-            setVerified(true)
-            handleSubmit()
-        } else {
-            setVerified(false)
-            Swal.fire({
-                position: 'center',
-                icon: 'error',
-                title: 'Wrong Otp',
-                showConfirmButton: false,
-                timer: 1500
-            })
-        }
+      if (otp == value) {
+        // setMessage("")
+        setVerified(true)
+        handleSubmit()
+      } else {
+        setVerified(false)
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Wrong Otp',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
     }
-}
+  }
 
-const handleopenotpdailog = async () => {
+  const handleopenotpdailog = async () => {
 
     if (phoneNo != '') {
         var otpval = OtpGenerator()
 
         setOtp(otpval)
 
-        const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
+        const apiUrl = `https://cloud.bulkpromo.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=6676AB42323B3&access_token=666ff52aa9a38`;
         const response = await postData('otp/api', { url: apiUrl })
-        // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41
     } else {
         Swal.fire({
             text: "Enter the Number First",
             timer: 1000
         })
     }
-
-    
 }
 
   const SignUpComponent = () => {
@@ -556,8 +549,7 @@ const handleopenotpdailog = async () => {
   }
 
 
-
-  const handleClick = async (Token1,phone) => {
+  const handleClick = async (Token1, phone) => {
 
     if (Token1) {
       var formdata = new FormData();
@@ -579,6 +571,9 @@ const handleopenotpdailog = async () => {
       setOpen(true)
     }
   };
+
+
+
   useEffect(() => {
     func();
   }, []);
@@ -639,8 +634,8 @@ const handleopenotpdailog = async () => {
         (show && <Grid container spacing={2} sx={{ display: "flex", justifyContent: 'center' }} >
           <Grid item xs={12} sx={{ mt: 15, display: { xs: 'block', md: 'none' } }}>
             <Typography sx={{ fontSize: 25, color: "#fff", textAlign: 'center' }}>{data?.productName}</Typography>
-
           </Grid>
+
           <Grid item xs={10} md={5} sx={{ mt: { xs: 0, md: 15 } }}>
             <Slider asNavFor={nav2} arrows={false} ref={(slider1) => setNav1(slider1)}>
               {data?.images.map((item) => (
@@ -655,7 +650,6 @@ const handleopenotpdailog = async () => {
               slidesToShow={data?.images.length == 2 ? 2 : data?.images.length > 2 ? 3 : 1}
               swipeToSlide={true}
               focusOnSelect={true}
-
             >
               {data?.images.map((item) => (
                 <Grid item xs={12} >

@@ -1,35 +1,17 @@
+import { Box, Divider, Grid, Paper, Typography,Button } from '@mui/material'
 import React from 'react'
-import r1 from '../../Digital Card Assets/r1.png'
-import r2 from '../../Digital Card Assets/r2.png'
-import r3 from '../../Digital Card Assets/r3.png'
-import r4 from '../../Digital Card Assets/r4.png'
-import r5 from '../../Digital Card Assets/r5.png'
-import r6 from '../../Digital Card Assets/r6.png'
-import r7 from '../../Digital Card Assets/r7.png'
-import r8 from '../../Digital Card Assets/r8.png'
-import r9 from '../../Digital Card Assets/r9.png'
-import r10 from '../../Digital Card Assets/r10.png'
-import { Box, Divider, Grid, Paper, Typography } from '@mui/material'
+import { useNavigate, useParams } from 'react-router-dom'
 import Navbar from './Navbar'
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
-
-import bg from "../../Digital Card Assets/footer.png";
-import Footer from "./Footer";
-import { getData, postData, serverURL } from '../../../Services/NodeServices'
-import { useEffect } from 'react'
-import { useState } from 'react'
-import { LocalTaxi } from '@mui/icons-material'
+import { useEffect, useState } from 'react'
+import { getData, serverURL } from '../../../Services/NodeServices'
+import bg from "../../Digital Card Assets/footer.png"
+import Footer from "./Footer"
 import Lower from './Lower'
 import Preloader from './Preloader'
 
 const AllProducts = () => {
+    const matches = useMediaQuery("(max-width:600px)");
     const { _id } = useParams()
     const [data, setData] = useState([])
 
@@ -62,8 +44,57 @@ const AllProducts = () => {
     const ProximityComponent = () => {
         return data?.map((item) => {
             return (
-                <Grid item xs={5} md={3.8} sx={{ display: "flex", justifyContent: "center", mb: 2, mt: 2 }}>
-                    <Paper elevation={2} sx={{ width: "90%", bgcolor: "#001E3C", cursor: 'pointer' }} onClick={() => navigate(`/productscomponent/${item._id}`)}>
+                <Grid item xs={12} md={3.8} sx={{ display: "flex", justifyContent: "center",marginTop:'2%' }}>
+                <Box
+               sx={{
+             display: 'flex',
+             flexWrap: 'wrap',
+             '& > :not(style)': {
+              m: 1,
+             width: 300,
+              height: 'auto',
+            },
+              }}>
+                
+            <Paper elevation={15} sx={{background:'#60a3bc',cursor: 'pointer',padding:3}} onClick={() => navigate(`/productscomponent/${item._id}`)}>
+                            <Grid sx={{ display: "flex" }}>
+                                <img src={`${serverURL}/images/${item.images[0]}`} width={"100%"} />
+                            </Grid>
+                            <Grid sx={{fontSize:'18px',fontWeight:600,color:'#fff',marginTop:'5%'}}>
+                                {item.productName}
+                            </Grid>
+                            <Grid sx={{display:'flex',marginTop:'5%'}}>
+                            <Button
+              style={{
+                borderColor: "#0078ad",
+              
+                background: "#0078ad",
+                color: "#fff",
+                fontSize: "14px",
+                fontWeight: 400,
+                textTransform: "none",
+                borderRadius: 6,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              variant="outlined"
+            >
+               Enquiry Now
+            </Button>
+                 <Grid sx={{marginLeft:'4%'}} >
+                        <Grid sx={{width:'#000080',fontSize:'26px',fontWeight:600}}>₹{item.offerprice}</Grid>
+                         <Grid sx={{fontSize:12,color:'#2f3640'}}>(inc. all taxes)</Grid>
+                            </Grid>
+                         
+                            <Grid sx={{width:'#718093',fontSize:'14px',fontWeight:300,marginTop:'3.5%',marginLeft:'-4%'}}><s>₹{item.price}</s></Grid>
+                           
+                     </Grid>
+            </Paper>
+                 </Box>
+
+    
+                    {/* <Paper elevation={2} sx={{ width: "90%", bgcolor: "#001E3C", cursor: 'pointer' }} onClick={() => navigate(`/productscomponent/${item._id}`)}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
                                 <img src={`${serverURL}/images/${item.images[0]}`} width={"50%"} />
@@ -78,7 +109,7 @@ const AllProducts = () => {
                             </Grid>
 
                         </Grid>
-                    </Paper>
+                    </Paper> */}
 
                 </Grid>
 
@@ -87,8 +118,8 @@ const AllProducts = () => {
         })
     }
     return (
-        <Grid id='top' sx={{ bgcolor: "#001E3C" }}>
-            <Grid sx={{ position: 'fixed', bottom: 0, zIndex: 2 }}>
+        <Grid id='top' sx={{ bgcolor: "#0078ad",fontFamily:'Muli, sans-serif'}}>
+            <Grid sx={{ position: 'fixed', bottom: -2, zIndex: 2 }}>
                 <Lower />
             </Grid>
             <Navbar />
@@ -97,9 +128,9 @@ const AllProducts = () => {
                     <Preloader />
                 </Grid>
                 :
-                <Grid container spacing={2} sx={{ display: "flex", justifyContent: 'center' }} >
-                    <Grid item xs={12} sx={{ mt: 12 }}>
-                        <Typography sx={{ fontSize: 45, textAlign: "center", color: "#fff" }}>Our OutStanding Digital Products</Typography>
+                <Grid container spacing={2} sx={{display: "flex", justifyContent: 'center',marginBottom:'8%' }} >
+                    <Grid item xs={10} sx={{ mt:matches?10:13 }}>
+                        <Typography sx={{ fontSize:matches?'26px':'40px',fontWeight:700,textAlign: "center", color: "#fff" }}>Explore Our Innovative Solutions</Typography>
                     </Grid>
                     <ProximityComponent />
 

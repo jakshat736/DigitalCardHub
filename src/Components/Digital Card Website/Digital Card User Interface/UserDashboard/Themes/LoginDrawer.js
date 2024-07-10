@@ -1,21 +1,20 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
 import { Global } from '@emotion/react';
-import { styled } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { grey } from '@mui/material/colors';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
-import Typography from '@mui/material/Typography';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import { Grid, TextField } from '@mui/material';
-import { postData } from '../../../../Services/NodeServices';
-import { useLocation, useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import Typography from '@mui/material/Typography';
+import { grey } from '@mui/material/colors';
+import { styled } from '@mui/material/styles';
 import { useSnackbar } from 'notistack';
+import PropTypes from 'prop-types';
+import * as React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { postData } from '../../../../Services/NodeServices';
+import logo1 from '../../../Digital Card Assets/dchlogo.png';
 import OtpGenerator from '../../ReviewTag/OtpGenerator';
-
+import useMediaQuery from "@mui/material/useMediaQuery";
 const drawerBleeding = 150;
 
 const Root = styled('div')(({ theme }) => ({
@@ -55,37 +54,53 @@ function SwipeableEdgeDrawer(props) {
     };
 
     const handleSubmit = async () => {
-        var formData = new FormData()
+        if (phoneNo !== '') {
+            var formData = new FormData()
+            formData.append('phone', phoneNo)
+            // formData.append('password', password)
+            var result = await postData('customerLogin/chkLogin', formData, true)
+            if (result.status) {
 
-        formData.append('phone', phoneNo)
-        // formData.append('password', password)
+                window.localStorage.setItem("userId", result.data._id)
+                window.localStorage.setItem("UserNumber", result?.data?.phone)
+                Swal.fire({
+                    title: 'Successfully Logged In!',
+                    imageUrl: logo1,
+                    imageWidth: 200,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                    background: '#001e3c',
+                    timer: 1500,
+                    width: 500,
+                    padding: 15,
+                    color: '#fff',
+                    showConfirmButton: false,
 
+                })
+                navigate('/userdashboard')
+                window.localStorage.setItem("User", true)
+                window.localStorage.removeItem('data')
+                window.localStorage.setItem("data", JSON.stringify(result.data))
 
-        var result = await postData('customerLogin/chkLogin', formData, true)
+            }
+            else {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Fail to Login',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
 
-
-        if (result.status) {
-
-            window.localStorage.setItem("userId", result.data._id)
-            window.localStorage.setItem("UserNumber", result?.data?.phone)
-
-
-            enqueueSnackbar('Successfully Logged In!');
-            navigate('/userdashboard')
-            window.localStorage.setItem("User", true)
-            window.localStorage.removeItem('data')
-            window.localStorage.setItem("data", JSON.stringify(result.data))
-
-        }
-        else {
+            }
+        } else {
             Swal.fire({
                 position: 'center',
                 icon: 'error',
-                title: 'Fail to Login',
+                title: 'Enter Number First',
                 showConfirmButton: false,
                 timer: 1500
             })
-
         }
 
     }
@@ -118,19 +133,16 @@ function SwipeableEdgeDrawer(props) {
 
             setOtp(otpval)
 
-            const apiUrl = `https://soft7.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41`;
+            const apiUrl = `https://cloud.bulkpromo.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=6676AB42323B3&access_token=666ff52aa9a38`;
             const response = await postData('otp/api', { url: apiUrl })
-            // https://soft7.in/api/send?number=917225051627&type=text&message=test+message&instance_id=65B92B5C6DD7D&access_token=65b928bbcea41
         } else {
             Swal.fire({
                 text: "Enter the Number First",
                 timer: 1000
             })
         }
-
-
     }
-
+    const matches = useMediaQuery("(max-width:600px)");
     return (
         <Root>
             <CssBaseline />
@@ -142,7 +154,19 @@ function SwipeableEdgeDrawer(props) {
                 }}
             />
 
-            <Button onClick={toggleDrawer(true)} variant='contained' sx={{ fontSize: 25, backgroundColor: '#F3B419', color: "black", "&:hover": { backgroundColor: '#F3B419' } }}><Typography class='font'>Get Started</Typography></Button>
+            <Button onClick={toggleDrawer(true)} sx={{
+                fontSize: 25, borderColor: '#171717', borderRadius: 0, borderColor: "#000",
+                width: 200,
+                height: 50,
+                color: "#fff",
+                fontSize: "22px",
+                fontWeight: 500,
+                textTransform: "none",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)', backgroundColor: '#171717', fontFamily: 'poppins', color: "#fff", "&:hover": { backgroundColor: '#171717' }
+            }}><Typography class='font'>Get Started</Typography></Button>
             <SwipeableDrawer
                 container={container}
                 anchor="bottom"
@@ -154,28 +178,32 @@ function SwipeableEdgeDrawer(props) {
                 ModalProps={{
                     keepMounted: true,
                 }}
-                sx={{ borderRadius: 4 }}
+                sx={{ borderRadius: 4, }}
             >
                 <StyledBox
                     sx={{
-                        position: 'absolute',
-                        borderTopLeftRadius: 8,
-                        borderTopRightRadius: 8,
-                        visibility: 'visible',
+                        position: "fixed",
+                        bottom: -35,
+                        width: "100%",
+                        height: "40%",
+
                         right: 0,
                         left: 0,
+                        background: "radial-gradient( #414141,#171717)"
                     }}
                 >
-                    <Grid container spacing={2} sx={{ p: 2 }}>
-                        <Grid item xs={12}>
+                    <Grid container spacing={2} sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                        <Grid item xs={12} >
                             <Typography sx={{
-                                fontSize: { xs: "1.5em", md: "2.6em", lg: "2.4em" },
+                                fontSize: { xs: "1.3em", md: "2.6em", lg: "2.4em" },
                                 fontWeight: 700,
                                 fontFamily: "OXANIUM",
-                                color: "#000000",
+                                color: "#fff",
                                 letterSpacing: "-0.2px",
                                 mb: "2.5vh",
-                                textAlign: "center"
+                                textAlign: "center",
+                                marginTop: '2%'
+
                             }}>
                                 Login / Signup
                             </Typography>
@@ -203,6 +231,7 @@ function SwipeableEdgeDrawer(props) {
                         <Grid item xs={12}>
                             {verified == true ? "Verified" : verified == false ? "Not Verified" : ""}
                         </Grid>
+
                     </Grid>
                 </StyledBox>
             </SwipeableDrawer>
