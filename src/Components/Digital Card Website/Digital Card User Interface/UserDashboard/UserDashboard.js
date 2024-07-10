@@ -991,9 +991,7 @@ const UserDashboard = () => {
     formData.append("enquiry", status == 'false' ? 'true' : 'false');
 
     const response = await postData('carddetails/updateEnquiry', formData, true)
-
     fetchCardDetail()
-
   };
 
   return (
