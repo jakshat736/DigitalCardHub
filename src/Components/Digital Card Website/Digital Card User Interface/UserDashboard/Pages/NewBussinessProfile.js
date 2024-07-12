@@ -492,6 +492,7 @@ export default function NewBussinessProfile() {
      
       if (response.status) {
         setLoadingAnimation(false)
+        navigate('/links')
       } else {
   
       }
@@ -589,22 +590,22 @@ export default function NewBussinessProfile() {
           marginLeft: { xs: "0%", sm: "20%", md: "35%" },
         }}
       >
-        <DialogTitle sx={{ backgroundColor: "#001e3c", color: "white" }}>
-          Your Unique Card Id
+        <DialogTitle sx={{ backgroundColor: "#006268", color: "white",fontSize:'16px'}}>
+           What is unique card id ?
         </DialogTitle>
-        <DialogContent>
-          <DialogContentText sx={{ color: "#001e3c", fontWeight: "bolder" }}>
+        <DialogContent sx={{background:'#006268'}}>
+          <DialogContentText sx={{ color: "#001e3c", fontWeight: "bolder",background:'#006268' }}>
            <img src={help} width={"100%"}/>
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={{background:'#006268'}}>
         
           <Button
             onClick={handleClose1}
             variant="contained"
             sx={{
-              backgroundColor: "#001e3c",
-              "&:hover": { backgroundColor: "#001e3c" },
+              backgroundColor: "#006268",
+              "&:hover": { backgroundColor: "#006268" },
             }}
           >
             Close
@@ -617,7 +618,7 @@ export default function NewBussinessProfile() {
 
 
   return (
-    <Grid sx={{ width: "100%", background: "#000", fontFamily: "Montserrat" }}>
+    <Grid sx={{ width: "100%", background: "#ecf0f1", fontFamily: "Montserrat" }}>
 
       <Grid
         sx={{
@@ -631,7 +632,7 @@ export default function NewBussinessProfile() {
           color: "#000000",
         }}
       >
-        <Grid
+        {/* <Grid
           sx={{
             fontSize:matches?'20px':"28px",
             fontWeight: 500,
@@ -641,16 +642,15 @@ export default function NewBussinessProfile() {
           }}
         >
           Profile Setup
-        </Grid>
+        </Grid> */}
 
         <Grid
           sx={{
-            width: "82%",
+            width: "100%",
             height: 'auto',
             background: "#fff",
             borderTopRightRadius: '10px',
             borderTopLeftRadius: '10px',
-            marginTop: "1.5%",
             padding: 3,
             color: "#000",
           }}
@@ -663,7 +663,7 @@ export default function NewBussinessProfile() {
               flexDirection:matches?"column":'row'
             }}
           >
-            <Grid sx={{ width: matches?"100%":"30%" }}>
+            <Grid sx={{ width: matches?"100%":"35%" }}>
               <Grid
                 sx={{ fontSize: matches?'15px':"22px", fontWeight: 500, lineHeight: "36px" }}
               >
@@ -752,10 +752,12 @@ export default function NewBussinessProfile() {
                     sx={{
                       fontSize:matches?'12px':  "14px",
                       fontWeight: 400,
-                      marginTop: "2%",
+                      marginTop: "1.5%",
                       lineHeight: "20px",
                     }}
-                  >
+                  ><div>
+                    (250*250px)
+                  </div>
                     Upload Your Profile Photo For your business profile
                   </Grid>
                 </Grid>
@@ -763,11 +765,11 @@ export default function NewBussinessProfile() {
 
               </Grid>
             </Grid>
-            <Grid sx={{ width:matches?'100%':"60%" }}>
+            <Grid sx={{ width:matches?'100%':"55%" }}>
               <Grid
                 sx={{ fontSize: matches?'15px':"22px", fontWeight: 500, lineHeight: "36px" }}
               >
-                profile banner :
+                Profile Banner :
               </Grid>
               <Divider style={{ backgroundColor: "#000", marginTop: ".8%" }} />
               <Grid sx={{ display: "flex", alignItems: "center" }}>
@@ -782,7 +784,6 @@ export default function NewBussinessProfile() {
                 height: 150,
                 marginLeft: -10,
                 backgroundColor:"black"
-
               }}
             >
               <source src={coverVideo.url} type="video/mp4" />
@@ -823,10 +824,10 @@ export default function NewBussinessProfile() {
                   border: "1px solid #000",
                   borderColor: "#000",
                   height: matches?28: "35px",
-                  width:matches?'80px':  "150px",
+                  width:matches?'120px':  "150px",
                   lineHeight: "36px",
                   color: "#000",
-                  fontSize: matches?'8px': "14px",
+                  fontSize: matches?'12px': "14px",
                   fontWeight: 500,
                   textTransform: "none",
                   borderRadius: "10px",
@@ -872,10 +873,12 @@ export default function NewBussinessProfile() {
                     sx={{
                       fontSize:matches?'12px': "14px",
                       fontWeight: 400,
-                      marginTop: "2%",
+                      marginTop: "1.5%",
                       lineHeight: "20px",
                     }}
-                  >
+                  ><div>
+                  (1080*250px)
+                </div>
                     Upload Your Profile Banner For your business profile
                   </Grid>
                 </Grid>
@@ -894,7 +897,7 @@ export default function NewBussinessProfile() {
             <Grid
               sx={{ fontSize:matches?'15px': "22px", fontWeight: 500, lineHeight: "36px" }}
             >
-              personal details :
+              Personal Details :
             </Grid>
             <Divider
               style={{
@@ -921,7 +924,7 @@ export default function NewBussinessProfile() {
                     marginTop: ".5%",
                   }}
                 >
-                  first name*
+                  Full Name <span style={{color:'red'}}>*</span>
                 </Grid>
                 <Grid
                   sx={{
@@ -932,7 +935,7 @@ export default function NewBussinessProfile() {
                     display: "flex",
                     alignItems: "center",
                     height: "35px",
-                    width: matches?'100%':"300px",
+                    width: matches?'100%':"400px",
                   }}
                 >
                   <InputBase
@@ -964,7 +967,7 @@ export default function NewBussinessProfile() {
                     display: "flex",
                     alignItems: "center",
                     height: "35px",
-                    width: matches?'100%':"300px",
+                    width: matches?'100%':"400px",
                   }}
                 >
                   <InputBase
@@ -997,7 +1000,7 @@ export default function NewBussinessProfile() {
                     display: "flex",
                     alignItems: "center",
                     height: "35px",
-                    width: matches?'100%':"300px",
+                    width: matches?'100%':"400px",
                   }}
                 >
                   <InputBase
@@ -1021,7 +1024,7 @@ export default function NewBussinessProfile() {
                     lineHeight: "36px",
                   }}
                 >
-                  Bio
+                  Bio/About
                 </Grid>
                 <Grid
                   sx={{
@@ -1073,7 +1076,7 @@ export default function NewBussinessProfile() {
                     display: "flex",
                     alignItems: "center",
                     height: "35px",
-                    width:matches?'100%':"300px",
+                    width:matches?'100%':"400px",
                   }}
                 >
                   <InputBase
@@ -1105,7 +1108,7 @@ export default function NewBussinessProfile() {
                     display: "flex",
                     alignItems: "center",
                     height: "35px",
-                    width:matches?'100%':"300px",
+                    width:matches?'100%':"400px",
                   }}
                 >
                   <InputBase
@@ -1136,7 +1139,7 @@ export default function NewBussinessProfile() {
                     display: "flex",
                     alignItems: "center",
                     height: "35px",
-                    width:matches?'100%':"300px",
+                    width:matches?'100%':"400px",
                   }}
                 >
                   <InputBase
@@ -1155,7 +1158,7 @@ export default function NewBussinessProfile() {
                     fontWeight: 500,
                     lineHeight: "36px",
                     marginTop: "1.5%",
-                  }} >unique card id*
+                  }} >Unique Card Id*
                 </Grid>
                 <Grid sx={{display:'flex',alignItems:"center"}}>
                 <Grid
@@ -1216,7 +1219,7 @@ export default function NewBussinessProfile() {
                             border:'1px solid #289B00',
                             borderColor:'#289B00',
                             background:'#289B00',
-                            width:'50%',
+                            width:matches?'100%':'50%',
                             height:matches?'32px':'40px',
                             lineHeight:'36px',       
                             color: "#fff",

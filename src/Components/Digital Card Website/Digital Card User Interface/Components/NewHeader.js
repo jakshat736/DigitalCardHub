@@ -83,8 +83,8 @@ const handleNagivateProductComponents=()=>{
   navigate('/newallproduct')
 }
 
-const handleNagivateAffiliate=()=>{
-  navigate('/Affiliate')
+const handleNagivateAllProducts=()=>{
+  navigate('/newallproduct2')
 }
 
 const handleCategory=()=>{
@@ -149,7 +149,7 @@ const handleCategory=()=>{
 
   const handleCart = () => {
     if (cart.length > 0) {
-      navigate("/cart");
+      navigate("/newcart");
     } else {
       Swal.fire({
         title: "Cart Is Empty Add Some Product First",
@@ -515,7 +515,7 @@ const handleopenotpdailog = async () => {
                   placement="bottom"
                   transition
                   disablePortal
-                  sx={{ zIndex: 300,marginLeft:matchesC?'24%':'32%',marginTop:'4%'}}
+                  sx={{ zIndex: 300,marginLeft:matchesC?'24%':'50%',marginTop:'4%'}}
                 >
                   {({ TransitionProps, placement }) => (
                     <Grow
@@ -558,18 +558,16 @@ const handleopenotpdailog = async () => {
                 </Popper>
               </Button>
             
-               <Grid onClick={handleNagivate} sx={{cursor:'pointer'}}>
-                Compitable Device
-               </Grid>
+               
                <Grid onClick={handleNagivaCreate}  sx={{cursor:'pointer'}}>
                 How to create
                </Grid>
                <Grid onClick={handleNagivateCooperate} sx={{cursor:'pointer'}}>
                Cooperate Enquiries
                </Grid>
-               <Grid onClick={handleNagivateAffiliate} sx={{cursor:'pointer'}}>
-               Affiliate
-               </Grid>
+               {/* <Grid onClick={handleNagivateAllProducts} sx={{cursor:'pointer'}}>
+               All Products
+               </Grid> */}
                <Grid onClick={handleClickOpen} sx={{cursor:'pointer'}} >
                 <img src={newLogin} width={22} ></img>
             </Grid>

@@ -24,7 +24,7 @@ export default function NewBussinessProfileLink() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const matches = useMediaQuery("(max-width:1000px)");
   const matchesA = useMediaQuery("(max-width:1300px)");
-
+  const matchesB = useMediaQuery("(max-width:1400px)");
   const navigate = useNavigate();
   const cardId = window.localStorage.getItem("CardId");
   const userId = window.localStorage.getItem("userId");
@@ -201,6 +201,7 @@ export default function NewBussinessProfileLink() {
       true
     );
     if (response.status) {
+      navigate('/ecommerce')
       setLoadingAnimation(false);
     } else {
     }
@@ -303,27 +304,21 @@ export default function NewBussinessProfileLink() {
     >
       <Grid
         sx={{
-          width: "82%",
+          width: "100%",
           height: "auto",
           padding: 3,
           background: "#fff",
           color: "#000",
         }}
       >
-        <Divider
-          style={{
-            backgroundColor: "#95a5a6",
-          }}
-        />
         <Grid
           sx={{
             fontSize: matchesA ? "15px" : "22px",
             fontWeight: 500,
             lineHeight: "36px",
-            marginTop: "3%",
           }}
         >
-          Social Links :
+          Social/Professional Links :
         </Grid>
         <Divider
           style={{
@@ -360,7 +355,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -393,7 +388,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -435,7 +430,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -468,7 +463,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -510,7 +505,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -543,7 +538,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -585,7 +580,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -641,7 +636,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -740,11 +735,13 @@ export default function NewBussinessProfileLink() {
                 sx={{
                   display:
                     otherLink[index]?.title === "Others" ? "flex" : "none",
-                  justifyContent: "center",
-                  marginBottom: 8,
-                  flexDirection: "column",
-                  alignItems: "center",
-                  marginTop: "2%",
+                    border:'1px solid #000',
+                    height:'35px',
+                    width: matchesA?"100%":'50%',
+                    color:'#000',
+                    borderRadius:'10px',
+                    justifyContent: "center",
+                    marginTop:  matches?"4%":"1.5%",
                 }}
               >
                 <InputBase
@@ -755,6 +752,7 @@ export default function NewBussinessProfileLink() {
                     handleCustomTitle(index, event.target.value)
                   }
                   label="Title"
+                  placeholder="Title"
                 />
               </Grid>
 
@@ -763,7 +761,7 @@ export default function NewBussinessProfileLink() {
                   display: "flex",
                   border:'1px solid #000',
                   height:'35px',
-                  width: matches?"100%":'50%',
+                  width: matchesA?"100%":'50%',
                   color:'#000',
                   borderRadius:'10px',
                   justifyContent: "center",
@@ -779,6 +777,7 @@ export default function NewBussinessProfileLink() {
                     handleLinkChange(index, event.target.value)
                   }
                   label="Link"
+                  placeholder="Paste Your Link Here"
                 />
               </Grid>
             </>
@@ -824,7 +823,7 @@ export default function NewBussinessProfileLink() {
               marginTop: "3%",
             }}
           >
-            Youtube videos :
+            YouTube Videos :
           </Grid>
           <Divider
             style={{
@@ -852,7 +851,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-              videos
+          video 1
             </Grid>
             <Grid
               sx={{
@@ -863,7 +862,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -885,7 +884,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-              videos
+             video 2
             </Grid>
             <Grid
               sx={{
@@ -896,7 +895,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -928,7 +927,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-              videos
+              video 3
             </Grid>
             <Grid
               sx={{
@@ -939,7 +938,7 @@ export default function NewBussinessProfileLink() {
                 display: link3,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -962,7 +961,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-              videos
+           video 4
             </Grid>
             <Grid
               sx={{
@@ -973,7 +972,7 @@ export default function NewBussinessProfileLink() {
                 display: link4,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -1005,7 +1004,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-              videos
+               video 5
             </Grid>
             <Grid
               sx={{
@@ -1016,7 +1015,7 @@ export default function NewBussinessProfileLink() {
                 display: link5,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -1039,7 +1038,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-              videos
+       video 6
             </Grid>
             <Grid
               sx={{
@@ -1050,7 +1049,7 @@ export default function NewBussinessProfileLink() {
                 display: link6,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -1082,7 +1081,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-              videos
+            video 7
             </Grid>
             <Grid
               sx={{
@@ -1093,7 +1092,7 @@ export default function NewBussinessProfileLink() {
                 display: link7,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -1116,7 +1115,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-              videos
+            video 8
             </Grid>
             <Grid
               sx={{
@@ -1127,7 +1126,7 @@ export default function NewBussinessProfileLink() {
                 display: link8,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -1159,7 +1158,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-              videos
+              video 9
             </Grid>
             <Grid
               sx={{
@@ -1170,7 +1169,7 @@ export default function NewBussinessProfileLink() {
                 display: link9,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -1193,7 +1192,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-              videos
+              video 10
             </Grid>
             <Grid
               sx={{
@@ -1204,7 +1203,7 @@ export default function NewBussinessProfileLink() {
                 display: link10,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%" : "550px",
+                width: matchesA ? "100%":matchesB?"600px":'650px',
               }}
             >
               <InputBase
@@ -1249,7 +1248,7 @@ export default function NewBussinessProfileLink() {
                 letterSpacing: "-2.2%",
               }}
             >
-              Add more Vedios
+              Add more videos
               <img
                 src={add}
                 width={matchesA ? 14 : 18}
@@ -1259,6 +1258,13 @@ export default function NewBussinessProfileLink() {
           </Grid>
         </Grid>
 
+        <Divider
+            style={{
+              backgroundColor: "#95a5a6",
+              marginTop: "3%",
+            }}
+          />
+
         <Grid
           sx={{
             fontSize: matchesA ? "15px" : "22px",
@@ -1267,7 +1273,7 @@ export default function NewBussinessProfileLink() {
             marginTop: "3%",
           }}
         >
-          Add team members :
+          Add Team Members :
         </Grid>
         <Divider
           style={{
@@ -1292,7 +1298,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-              company Name
+              Company Name
             </Grid>
             <Grid
               sx={{
@@ -1428,7 +1434,7 @@ export default function NewBussinessProfileLink() {
               border: "1px solid #289B00",
               borderColor: "#289B00",
               background: "#289B00",
-              width: "50%",
+              width: matchesA?'100%':"50%",
               height: matches ? "32px" : "40px",
               lineHeight: "36px",
               color: "#fff",

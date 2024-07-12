@@ -102,7 +102,7 @@ export default function DeliverDetails(props) {
             formData.append("phone",number)
             formData.append("date",date)
             formData.append("fullAddress",address+" "+pincode)
-          
+    
             formData.append("products",JSON.stringify(cartProducts))
             const result=await postData('orders/addOrderDetails',formData,true)
             console.log("hdj",result.data._id)
@@ -347,8 +347,7 @@ export default function DeliverDetails(props) {
                                     fontSize: matches1 ? 14 : 15,
                                    
                                 }}
-                                 onClick={()=>handlePay(location.state.totalPrice)}
-                                                           >
+                                 onClick={()=>handlePay(location.state.totalPrice)}>
                                 Proceed To Payment
                             </Button>
                         </Grid>

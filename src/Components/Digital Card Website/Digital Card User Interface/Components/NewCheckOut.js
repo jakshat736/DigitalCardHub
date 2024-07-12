@@ -13,10 +13,12 @@ import { format } from 'date-fns';
 import { useTheme } from "@mui/material/styles";
 import { postData } from '../../../Services/NodeServices';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import useRazorpay from "react-razorpay";
+import companylogo from "../../Digital Card Assets/Companylogo.png"
+
 export default function NewCheckOut() {
   const matches = useMediaQuery("(max-width:1000px)");
   const matchesA = useMediaQuery("(max-width:1000px)");
-
   var navigate=useNavigate()
   const handleNagivate=()=>{
     navigate('/newcheckout3')
@@ -39,6 +41,59 @@ const [district,setDistrict]=useState('')
 const [state,setState]=useState('')
 const [number,setNumber]=useState(User)
 const [cartProducts, setCartProducts] = useState([])
+
+const [Razorpay] = useRazorpay();
+  var price=location.state.totalPrice
+  var price=location.state.totalPrice
+  const options = {
+    key:"rzp_test_GQ6XaPC6gMPNwH", // Enter the Key ID generated from the Dashboard
+    amount:price*100 , // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    currency: "INR",
+    name: "Digital Card Hub",
+    description: "Test Transaction",
+    image: {companylogo},
+    handler: function (response) {
+      alert(response.razorpay_payment_id);
+      alert(response.razorpay_signature);
+    },
+    prefill: {
+      name: "Piyush Garg",
+      email: "youremail@example.com",
+      contact: "9999999999",
+    },
+    notes: {
+      address: "Razorpay Corporate Office",
+    },
+    theme: {
+      color: "#3399cc",
+    },
+  };
+
+
+
+
+
+const handlePayment = async () => {
+
+
+  const rzp1 = new Razorpay(options);
+
+  rzp1.on("payment.failed", function (response) {
+    alert(response.error.code);
+    alert(response.error.description);
+    alert(response.error.source);
+    alert(response.error.step);
+    alert(response.error.reason);
+    alert(response.error.metadata.payment_id);
+  });
+
+  rzp1.open();
+
+}
+
+
+
+
 
 const func = async (User) => {
   var formdata = new FormData();
@@ -112,13 +167,14 @@ function generateRandomCharacter() {
    console.log("bodyyyyyy",response)
    
    window.open(`${response.data.instrumentResponse.redirectInfo.url}`)
-   }else{
+   }
+   else{
     Swal.fire({
         title:"First fill all the fields"
     })
    }
-  
   };
+  
 const item = {
     id: "43287ghy32te7234",
     productname: "Silver Diamond Necklace",
@@ -286,7 +342,7 @@ const handleProduct = (item) => {
                   }}
                 >
                  
-{handleProduct()}
+            {handleProduct()}
 
                 </Grid>
               </Grid>
@@ -637,7 +693,7 @@ const handleProduct = (item) => {
                 </Grid>
                 <Grid>
                 <Button
-                  onClick={handleNagivate}
+                  onClick={handlePayment}
                 fullWidth
                 style={{
                   border: "1px solid #bdc3c7",

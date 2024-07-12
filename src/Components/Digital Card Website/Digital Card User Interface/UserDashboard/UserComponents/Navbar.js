@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import { postData } from '../../../../Services/NodeServices';
 import logo from "../../../Digital Card Assets/New Logo New.png";
 import { SessionContext } from '../../../../Services/SessionContext';
-
+import newlogo from "../../../Digital Card Assets/logoss.png";
 const settings = ['Change Password', 'Logout'];
 const Navbar = () => {
 
@@ -71,13 +71,13 @@ const Navbar = () => {
     };
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: "#001e3c" }}>
+        <AppBar position="static" sx={{ backgroundColor: "#000000" }}>
             <Container maxWidth="xl" >
                 <Toolbar disableGutters sx={{
-                    display: 'flex', justifyContent: 'space-between'
+                    display: 'flex', justifyContent: 'space-between',alignItems:'center'
                 }
                 }>
-                    <img onClick={() => navigate("/digitalcard")} src={logo} style={{ width: mobile ? "100px" :tablet?"120px":"130px" }} />
+                    <img onClick={() => navigate("/digitalcard")} src={newlogo} style={{ width: mobile ? "100px" :tablet?"120px":"130px" }} />
                     <Box sx={{ flexGrow: 0, display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
                         <Grid sx={{ display: mobile?'none':tablet?"flex":"flex", justifyContent: 'center', alignItems: 'center', margin: 1 }}>
                             <Typography >Hey, {userData.name}</Typography>

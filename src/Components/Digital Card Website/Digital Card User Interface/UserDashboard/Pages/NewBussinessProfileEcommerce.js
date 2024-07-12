@@ -28,8 +28,11 @@ export default function NewBussinessProfileEcommerce() {
   const navigate = useNavigate();
   const theme = useTheme();
   const matches = useMediaQuery("(max-width:1300px)");
+  const matchesA = useMediaQuery("(max-width:600px)");
+
   const mobile = useMediaQuery(theme.breakpoints.down(600));
   const tablet = useMediaQuery(theme.breakpoints.down(960));
+
   const [productData, setProductData] = useState(Array(4).fill(null));
   const [data, setData] = useState(false);
   const [loadingAnimation, setLoadingAnimation] = useState(true);
@@ -221,29 +224,23 @@ export default function NewBussinessProfileEcommerce() {
     >
       <Grid
         sx={{
-          width: "82%",
+          width: "100%",
           height: "auto",
           padding: 3,
           background: "#fff",
           color: "#000",
         }}
       >
-        <Divider
-          style={{
-            backgroundColor: "#95a5a6",
-            marginTop: "1%",
-          }}
-        />
 
         <Grid
           sx={{
             fontSize: matches ? "15px" : "22px",
             fontWeight: 500,
             lineHeight: "36px",
-            marginTop: "3%",
-          }}
-        >
-          add Products/services
+          }}>
+
+          Add Products/services
+          
         </Grid>
         <Divider
           style={{
@@ -282,7 +279,7 @@ export default function NewBussinessProfileEcommerce() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: "20px",
+                    fontSize: matchesA?'20px': matches ? '30px' : "20px",
                     fontWeight: 600,
                   }}
                 >
@@ -299,13 +296,13 @@ export default function NewBussinessProfileEcommerce() {
                         : productData[index]?.productimg.url
                     }
                     sx={{
-                      width: matches ? 50 : "5vw",
-                      height: matches ? 50 : "5.3vw",
+                      width: matchesA?50:matches ? 180 : "5vw",
+                      height:matchesA?50: matches ? 180 : "5.3vw",
                     }}
                   />
                   <Grid sx={{ marginLeft: "5%" }}>
-                    <Grid sx={{ fontSize: "10px", fontWeight: 600 }}>
-                      Upload product Image
+                    <Grid sx={{ fontSize:matchesA?'10px': matches ? '22px' : "10px", fontWeight: 600 }}>
+                      Upload Product Image
                     </Grid>
                     <Grid>
                       <label htmlFor="icon-button-file1">
@@ -324,9 +321,9 @@ export default function NewBussinessProfileEcommerce() {
                             border: "1px solid #000",
                             borderColor: "#000",
                             marginTop: "3%",
-                            height: "25px",
-                            width: "120px",
-                            lineHeight: "28px",
+                            height:matchesA?'25px': matches ? '40px' :  "25px",
+                            width:matchesA?'120px': matches ? '250px' : "120px",
+                            lineHeight:matchesA?'28px': matches ? '40px' :  "28px",
                             color: "#000",
                             fontSize: "12px",
                             fontWeight: 400,
@@ -420,7 +417,7 @@ export default function NewBussinessProfileEcommerce() {
                     <InputBase
                       style={{ color: "#000" }}
                       sx={{ ml: 1, flex: 1, fontSize: "12px" }}
-                      placeholder="enter about your product"
+                      placeholder="Enter About your product"
                       value={productData[index]?.productdescription || ""}
                       onChange={(event) =>
                         handleProductDescriptionChange(
@@ -436,6 +433,7 @@ export default function NewBussinessProfileEcommerce() {
                     display: "flex",
                     justifyContent: "space-between",
                     marginTop: "2%",
+                    gap: 1,
                   }}
                 >
                   <Grid>
@@ -458,7 +456,7 @@ export default function NewBussinessProfileEcommerce() {
                         display: "flex",
                         alignItems: "center",
                         height: "30px",
-                        width: "90%",
+                        width:matchesA?'90%': matches ? '40vw' :"90%",
                         marginTop: "-1%",
                       }}
                     >
@@ -493,7 +491,7 @@ export default function NewBussinessProfileEcommerce() {
                         display: "flex",
                         alignItems: "center",
                         height: "30px",
-                        width: "90%",
+                        width:matchesA?'90%': matches ? '40vw' :"90%",
                         marginTop: "-1%",
                       }}
                     >
@@ -643,7 +641,7 @@ export default function NewBussinessProfileEcommerce() {
               border: "1px solid #289B00",
               borderColor: "#289B00",
               background: "#289B00",
-              width: "50%",
+              width:matches?"100%":"50%",
               height: matches ? "32px" : "40px",
               lineHeight: "36px",
               color: "#fff",

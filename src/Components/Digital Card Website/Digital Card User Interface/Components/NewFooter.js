@@ -10,11 +10,36 @@ import i5 from "../../Digital Card Assets/i5.png"
 import i6 from "../../Digital Card Assets/i6.png"
 import threephn from "../../Digital Card Assets/threephn.png"
 import {useMediaQuery} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 export default function Newfooter()
 {
-
+  var navigate=useNavigate()
   const matchesA = useMediaQuery("(max-width:1100px)");
- 
+    
+  const handleContact=()=>{
+    navigate('/cooperate')
+}
+
+const handleTerm=()=>{
+  navigate('/termandcondition')
+}
+
+const handleRefund=()=>{
+  navigate('/refund')
+}
+
+const handlePrivacy=()=>{
+  navigate('/privacypolicy')
+}
+
+const handleAffiliate=()=>{
+  navigate('/affiliate')
+}
+
+const handleCompitableDevices=()=>{
+  navigate('/compitable')
+}
 
     return(<Grid sx={{width:'100%',height:'auto',background:'#fff',display:'flex',justifyContent:'center',alignItems:'center',borderTopRightRadius: 10,
         borderTopLeftRadius: 10, boxShadow: "0px 0px 10px 3px rgba(255, 255, 255, 1)",flexDirection:'column'}}>
@@ -46,26 +71,32 @@ export default function Newfooter()
         </Grid>
             </Grid>
             
-            {matchesA?<></>:<><Grid sx={{width:'25%',marginLeft:matchesA?'':'9%'}}>
+         <Grid sx={{width:matchesA?'100%':'25%',marginLeft:matchesA?'':'9%',display:matchesA?'flex':'',alignItems:matchesA?'center':'center',flexDirection:'column'}}>
             <Grid sx={{fontSize:'20px',fontWeight:700,lineHeight:'30px'}}>
             QUICK LINKS
             </Grid>
-            <Grid sx={{marginTop:'4%'}}>
+            <Grid onClick={handleContact} sx={{marginTop:'4%',cursor:'pointer'}}>
             <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',letterSpacing:'-2%',zIndex:10}}>Contact us</Grid>
             </Grid>
-            <Grid sx={{marginTop:'1%'}}>
+            <Grid onClick={handleTerm}  sx={{marginTop:'1%',cursor:'pointer'}}>
             <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',letterSpacing:'-2%',zIndex:10}}>Terms and Conditions</Grid>
             </Grid>
-            <Grid sx={{marginTop:'1%'}}>
+            <Grid onClick={handlePrivacy}  sx={{marginTop:'1%',cursor:'pointer'}}>
             <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',letterSpacing:'-2%',zIndex:10}}>Privacy and Policy</Grid>
             </Grid>
-            <Grid sx={{marginTop:'1%'}}>
+            <Grid onClick={handleRefund} sx={{marginTop:'1%',cursor:'pointer'}}>
             <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',letterSpacing:'-2%',zIndex:10}}>Refund Policy</Grid>
             </Grid>
-            <Grid sx={{marginTop:'1%'}}>
+            <Grid onClick={handleRefund} sx={{marginTop:'1%',cursor:'pointer'}}>
             <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',letterSpacing:'-2%',zIndex:10}}>Shipping Policy</Grid>
             </Grid>
-            </Grid></>}
+            <Grid onClick={handleAffiliate} sx={{marginTop:'1%',cursor:'pointer'}}>
+            <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',letterSpacing:'-2%',zIndex:10}}>Affiliate</Grid>
+            </Grid>
+            <Grid onClick={handleCompitableDevices} sx={{marginTop:'1%',cursor:'pointer'}}>
+            <Grid sx={{fontSize:'16px',fontWeight:500,lineHeight:'26px',letterSpacing:'-2%',zIndex:10}}>CompitableDevices</Grid>
+            </Grid>
+            </Grid>
 
             {matchesA?<></>:<><Grid sx={{width:'25%',marginLeft:matchesA?'':'6%'}}>
             <Grid sx={{fontSize:'20px',fontWeight:700,lineHeight:'30px'}}>

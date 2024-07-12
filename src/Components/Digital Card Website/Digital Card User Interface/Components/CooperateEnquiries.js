@@ -14,8 +14,12 @@ import b6 from "../../Digital Card Assets/bb6.jpg"
 import b7 from "../../Digital Card Assets/bb7.jpg"
 import b8 from "../../Digital Card Assets/bb8.jpg"
 import Newfooter from "./NewFooter";
+import { useEffect } from "react";
 export default function CooperateEnquiries()
 {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
     const matches = useMediaQuery("(max-width:900px)");
     const matchesA = useMediaQuery("(max-width:1400px)");

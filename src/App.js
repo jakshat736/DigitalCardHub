@@ -143,6 +143,11 @@ import NewUserDashBoard from "./Components/Digital Card Website/MenuUpdate/admin
 import OrderList from "./Components/Digital Card Website/MenuUpdate/adminpannel/OrderList";
 import Coupons from "./Components/Digital Card Website/MenuUpdate/adminpannel/Coupons";
 import NewSelfOrder from "./Components/Digital Card Website/MenuUpdate/adminpannel/NewSelfOrder";
+import TermAndCondition from "./Components/Digital Card Website/Digital Card User Interface/Components/TermAndCondition";
+import PrivacyPolicy from "./Components/Digital Card Website/Digital Card User Interface/Components/PrivacyPolicy";
+import RefundPolicy from "./Components/Digital Card Website/Digital Card User Interface/Components/RefundPolicy";
+import NewBussinessProfileLink from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewBussinessProfileLink";
+import NewBussinessProfileEcommerce from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewBussinessProfileEcommerce";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 
@@ -163,6 +168,9 @@ function App() {
 								<Route element={<Instaredirect />} path="/aradhyarana" />
 								<Route element={<Home/>} path="/home1"/>
 								<Route element={<NewCheckOut/>} path="/newcheckout" />
+								<Route element={<TermAndCondition/>} path="/termandcondition" />
+								<Route element={<PrivacyPolicy/>} path="/privacypolicy" />
+								<Route element={<RefundPolicy/>} path="/refund" />
 								<Route element={<NewCheckOut2/>} path="/newcheckout2" />
 								<Route element={<NewCheckOut3/>} path="/newcheckout3"/>
 								<Route element={<NewThemeCard/>} path="/newcart"/>
@@ -183,6 +191,8 @@ function App() {
 								<Route element={<Links />} path="/links" />
 								<Route element={<NewProfile/>} path="/newprofile"/>
 								<Route element={<DashboardHome/>} path="/dashboardhome" />
+								<Route element={<NewBussinessProfileLink/>} path="/newlink" />
+								<Route element={<NewBussinessProfileEcommerce/>} path="/newecommerce" />
 								<Route element={<HotelLinks />} path="/hotellinks"/>
 								<Route element={<MenuLink />} path="/menulink" />
 								<Route element={<Payment />} path="/payment" />
