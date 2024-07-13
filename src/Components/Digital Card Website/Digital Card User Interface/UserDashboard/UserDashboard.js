@@ -83,6 +83,20 @@ const UserDashboard = () => {
 
 
 
+  const handleinformation=()=>{
+    navigate('/information')
+  }
+
+
+  const handleLinks=()=>{
+    navigate('/links')
+  }
+
+  const handleinEcommerce=()=>{
+    navigate('/ecommerce')
+  }
+
+
   const fetchAllTag = async () => {
     var formData = new FormData();
     formData.append("phone", data?.phone)
@@ -1288,8 +1302,70 @@ const UserDashboard = () => {
                     >
                       See Now
                     </Button>
+                  </Grid>
+
+
+                  <Grid item xs={6} >
+                    <Typography>Personal And Business Detail : </Typography>
+                  </Grid>
+                  <Grid item xs={6} >
+
+                    <Button
+                      variant="contained"
+                      onClick={handleinformation}
+                      sx={{
+                        borderRadius: 2,
+                        backgroundImage:
+                          "linear-gradient(to top left,#48dbfb,#001e3c)",
+                      }}
+                    >
+                      See Now
+                    </Button>
 
                   </Grid>
+
+
+                  <Grid item xs={6} >
+                    <Typography>Social Links : </Typography>
+                  </Grid>
+                  <Grid item xs={6} >
+
+                    <Button
+                      variant="contained"
+                      onClick={handleLinks}
+                      sx={{
+                        borderRadius: 2,
+                        backgroundImage:
+                          "linear-gradient(to top left,#48dbfb,#001e3c)",
+                      }}
+                    >
+                      See Now
+                    </Button>
+
+                  </Grid>
+
+
+                  <Grid item xs={6} >
+                    <Typography>Build Your Ecommerce : </Typography>
+                  </Grid>
+                  <Grid item xs={6} >
+
+                    <Button
+                      variant="contained"
+                      onClick={handleinEcommerce}
+                      sx={{
+                        borderRadius: 2,
+                        backgroundImage:
+                          "linear-gradient(to top left,#48dbfb,#001e3c)",
+                      }}
+                    >
+                      See Now
+                    </Button>
+
+                  </Grid>
+
+
+
                   <Grid item xs={6}>
                     <Typography>Share : </Typography>
                   </Grid>

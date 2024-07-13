@@ -148,6 +148,9 @@ import PrivacyPolicy from "./Components/Digital Card Website/Digital Card User I
 import RefundPolicy from "./Components/Digital Card Website/Digital Card User Interface/Components/RefundPolicy";
 import NewBussinessProfileLink from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewBussinessProfileLink";
 import NewBussinessProfileEcommerce from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewBussinessProfileEcommerce";
+import NewCardHome from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/NewCardHome";
+import NewCardHome2 from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/NewCardHome2";
+import MainDashboard from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/MainDashboard";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 
@@ -205,6 +208,7 @@ function App() {
 								<Route element={<Preview />} path="/preview" />
 								<Route element={<AdminLogin />} path="/adminlogin" />
 								<Route element={<NewDCLogin/>} path="/newlogin" />
+								<Route element={<MainDashboard/>} path="/maindashboard" />
 								<Route path="/dashboard/*" element={<DashBoard />} />
 								<Route path="/compatible-devices" element={<Compatibility />} />
 								<Route path="/how_to_create" element={<HowToUse />} />
@@ -300,7 +304,8 @@ function App() {
 								<Route path="/menusignup" element={<MenuSignUp />} />
 								<Route path="/menulogin" element={<MenuLogIn />} />
 								<Route path="/cardhome" element={<CardHome />} />
-
+								<Route path="/newcardhome" element={<NewCardHome/>} />
+								<Route path="/newcardhome2" element={<NewCardHome2/>} />
 
 								{/* Vehicle Tag Update */}
 								<Route path="/activatetag" element={<ActivateTag />} />

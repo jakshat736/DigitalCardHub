@@ -635,7 +635,7 @@ const Information = () => {
   return (
     <Grid>
       <Grid sx={{ position: "sticky", top: "0", zIndex: 50 }}>
-      <Navbar />
+      <Navbar/>
       </Grid>
       {loadingAnimation == true ?
         <Container maxWidth="xl" sx={{ height: "100vh", overflow: 'hidden', width: "100vw" }}>
