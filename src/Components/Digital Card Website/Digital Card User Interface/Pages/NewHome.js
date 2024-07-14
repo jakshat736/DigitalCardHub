@@ -130,7 +130,7 @@ export default function NewHome() {
             <NewFeatures />
           </Grid>
 
-           {matches?<></>:<Grid
+          {matches ? <></> : <Grid
             sx={{
               position: "sticky",
               bottom: "0",
@@ -140,7 +140,7 @@ export default function NewHome() {
             }}
           >
             <MiniYouTube />
-          </Grid> }
+          </Grid>}
 
           <Grid>
             <Newfooter />

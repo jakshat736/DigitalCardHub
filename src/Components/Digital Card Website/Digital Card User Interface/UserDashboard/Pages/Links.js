@@ -78,8 +78,8 @@ const Links = () => {
     };
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
-    
+    }, []);
+
 
     const handleMemberChange = (index, value) => {
         const newData = [...addMember];
@@ -285,46 +285,46 @@ const Links = () => {
     };
     return (
         <Grid>
-           <Grid sx={{ position: "sticky", top: "0", zIndex: 50 }}>
-      <Navbar />
-      </Grid>
+            <Grid sx={{ position: "sticky", top: "0", zIndex: 50 }}>
+                <Navbar />
+            </Grid>
             {loadingAnimation == true ?
                 <Container maxWidth="xl" sx={{ height: "100vh", overflow: 'hidden', width: "100vw" }}>
                     <Grid container spacing={2} sx={{ display: "flex", justifyContent: "center", alignItems: "center", overflow: 'hidden' }}>
 
                         <Preloader />
                     </Grid></Container> :
-                  <Grid container sx={{ display: 'flex', justifyContent: 'center',background:'#ecf0f1' }}>
-                  <Grid item xs={12} sx={{display:'flex',alignItems:'center',height:60}}>
-                    <Grid>
-                    <Button sx={{
-                      borderRadius: 10,
-                      backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                      display: "flex",
-                      flexDirection: "row",
-                       marginLeft:'4%',
-                       color:'#000',
-                      textAlign: "center",
-                    }} onClick={() => navigate('/information')} variant='contained'><NavigateBeforeIcon />Back</Button>
+                <Grid container sx={{ display: 'flex', justifyContent: 'center', background: '#ecf0f1' }}>
+                    <Grid item xs={12} sx={{ display: 'flex', alignItems: 'center', height: 60 }}>
+                        <Grid>
+                            <Button sx={{
+                                borderRadius: 10,
+                                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                                display: "flex",
+                                flexDirection: "row",
+                                marginLeft: '4%',
+                                color: '#000',
+                                textAlign: "center",
+                            }} onClick={() => navigate('/userDashboard')} variant='contained'><NavigateBeforeIcon />Back</Button>
+                        </Grid>
+                        <Grid sx={{ width: matchesA ? '60%' : '85%', display: 'flex', alignContent: 'center', justifyContent: 'center' }}>
+                            <Grid
+                                sx={{
+                                    fontSize: matchesA ? '22px' : "28px",
+                                    fontWeight: 500,
+                                    lineHeight: "28px",
+                                    letterSpacing: "-2.4%",
+                                    color: "#000",
+                                }}
+                            >
+                                Profile Setup
+                            </Grid>
+                        </Grid>
                     </Grid>
-                    <Grid sx={{width:matchesA?'60%':'85%',display:'flex',alignContent:'center',justifyContent:'center'}}>
-                     <Grid
-                    sx={{
-                    fontSize:matchesA?'22px':"28px",
-                    fontWeight: 500,
-                    lineHeight: "28px",
-                    letterSpacing: "-2.4%",
-                    color: "#000",
-                  }}
-                >
-                  Profile Setup
-                </Grid>
-                </Grid>
-                  </Grid>
-        <Grid item xs={12} >
-           <NewBussinessProfileLink/>
-          </Grid>
-           
+                    <Grid item xs={12} >
+                        <NewBussinessProfileLink />
+                    </Grid>
+
                 </Grid>}
 
             <Footer />
@@ -336,7 +336,7 @@ export default Links
 
 
 
-  {/* <Grid item xs={4} sx={{ display: 'flex', justifyContent: "center", marginTop: "2vh", marginBottom: "2vh" }}>
+{/* <Grid item xs={4} sx={{ display: 'flex', justifyContent: "center", marginTop: "2vh", marginBottom: "2vh" }}>
                         <Button sx={{
                             borderRadius: 10,
                             backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
@@ -347,7 +347,7 @@ export default Links
                             alignItems: "center",
                         }} onClick={() => handleSubmit()} variant='contained'>Save<BeenhereIcon /></Button>
                     </Grid> */}
-                    {/* <Grid item xs={4} style={{ display: 'flex', justifyContent: 'flex-end', marginTop: "2vh", marginBottom: "2vh" }}>
+{/* <Grid item xs={4} style={{ display: 'flex', justifyContent: 'flex-end', marginTop: "2vh", marginBottom: "2vh" }}>
                         <Button sx={{
                             borderRadius: 10,
                             backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
