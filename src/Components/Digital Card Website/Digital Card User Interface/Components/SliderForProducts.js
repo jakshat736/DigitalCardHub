@@ -65,7 +65,7 @@ export default function SliderForProducts() {
 
   const ShowSlider = () => {
     return data.map((item, index) => {
-      return (<Grid key={index} sx={{ width: '100%', display: 'flex', flexDirection: 'column', mb: 10 }}>
+      return (<Grid key={index} sx={{ width: '100%', display: 'block', flexDirection: 'column', mb: 10 }}>
         <Grid onClick={() => handleImageClick(index)} style={{ height: '300px', borderRadius: '24px', display: 'flex', justifyContent: 'center', flexDirection: 'row', textAlign: 'center', margin: '15px', borderrRadius: '10px' }}>
           <img src={item} style={{ width: '98%', margin: 4, borderRadius: 10, objectFit: 'cover' }}></img>
         </Grid>
@@ -112,7 +112,7 @@ export default function SliderForProducts() {
     <Grid sx={{ alignItems: 'center', fontSize: matches ? '12px' : '20px', fontWeight: 400, lineHeight: matches ? '20px' : '30px', color: '#fff', width: '60%', textAlign: 'center', marginTop: '1.5%' }}>
       Material that elevates the experience
     </Grid>
-    <Grid sx={{ width: '100%', marginTop: '5%', display: 'block' }} className={useStyle.dots}>
+    <Grid sx={{ width: '100%', marginTop: '5%', display: 'block !important', height: 'fit-content !important' }} className={useStyle.dots}>
       <Slider ref={sliderRef} {...settings} >
         {ShowSlider()}
       </Slider>
