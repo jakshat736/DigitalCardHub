@@ -46,47 +46,49 @@ const Ecommerce = () => {
         formData.append("customerId", userId);
         var result = await postData("carddetails/getcardDetails", formData, true);
         // console.log(result.data.products);
-        if(result!=false)    
-        {        if (result.data.ecommerce.length == 0) {
-            setProductData(Array(4).fill(null));
+        if (result != false) {
+            if (result.data.ecommerce.length == 0) {
+                setProductData(Array(4).fill(null));
+            } else {
+                setData(true);
+                let productData = [...result.data.ecommerce];
+
+                if (productData.length < 4) {
+                    const emptyProduct = {
+                        productName: "",
+                        productimage: "",
+                    };
+
+                    const emptyProductCount = 4 - productData.length;
+                    productData = [
+                        ...productData,
+                        ...Array(emptyProductCount).fill(emptyProduct),
+                    ];
+                }
+
+                setProductData(productData);
+                const newData = [...productData];
+
+                productData.map((item, index) => {
+                    if (item != null) {
+                        oldImg[index] = { productimg: item.productimg };
+                        setTemp(oldImg);
+                        newData[index] = {
+                            ...newData[index],
+                            productimg: { url: `${serverURL}/images/${item.productimg}` },
+                        };
+
+                        setProductData(newData);
+                    }
+                });
+            }
         } else {
-            setData(true);
-            let productData = [...result.data.ecommerce];
+            navigate('/userdashboard')
+        }
+        if (result === false || result?.data != undefined) {
+            setLoadingAnimation(false)
+        }
 
-            if (productData.length < 4) {
-                const emptyProduct = {
-                    productName: "",
-                    productimage: "",
-                };
-
-                const emptyProductCount = 4 - productData.length;
-                productData = [
-                    ...productData,
-                    ...Array(emptyProductCount).fill(emptyProduct),
-                ];
-            }
-
-            setProductData(productData);
-            const newData = [...productData];
-
-            productData.map((item, index) => {
-                if(item!=null){
-                oldImg[index] = { productimg: item.productimg };
-                setTemp(oldImg);
-                newData[index] = {
-                    ...newData[index],
-                    productimg: { url: `${serverURL}/images/${item.productimg}` },
-                };
-
-                setProductData(newData);
-            }
-            });}}else{
-                navigate('/userdashboard')
-            }
-            if(result===false || result?.data!=undefined){
-                setLoadingAnimation(false)
-              }
-        
 
     };
     React.useEffect(() => {
@@ -107,8 +109,8 @@ const Ecommerce = () => {
     };
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
-    
+    }, []);
+
 
     const handleProductMrpChange = (index, value) => {
         const newData = [...productData];
@@ -134,7 +136,7 @@ const Ecommerce = () => {
     };
 
     const handleSubmit = async () => {
-       setLoadingAnimation(true)
+        setLoadingAnimation(true)
         var formData = new FormData();
         formData.append("_id", cardId);
         let productsName = [];
@@ -179,37 +181,37 @@ const Ecommerce = () => {
         );
         if (response.status == true) {
             fetchCardDetail();
-           
+
         }
     };
 
-    const handleAdd=()=>{
+    const handleAdd = () => {
 
         const emptyProduct = {
-          productName: '',
-          productimage: '',
+            productName: '',
+            productimage: '',
         };
 
-     if(productData[0]!=null && productData[1]!=null && productData[2]!=null && productData[3]!=null){
-    
-    
-        setProductData([...productData,...Array(1).fill(emptyProduct)])
-     }else {
-        Swal.fire({
-            position: 'center',
-            icon: 'warning',
-            title: 'Fill The Empty Columns',
-            showConfirmButton: false,
-            timer: 1500
-        })
-     }
-      }
+        if (productData[0] != null && productData[1] != null && productData[2] != null && productData[3] != null) {
 
-      const handleShow=async(id,show)=>{
+
+            setProductData([...productData, ...Array(1).fill(emptyProduct)])
+        } else {
+            Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: 'Fill The Empty Columns',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    }
+
+    const handleShow = async (id, show) => {
         var formData = new FormData();
         formData.append("cardId", cardId);
         formData.append("productId", id);
-        formData.append("show", show=="true"?"false":"true");
+        formData.append("show", show == "true" ? "false" : "true");
         var response = await postData(
             "carddetails/showUpdate",
             formData,
@@ -219,55 +221,55 @@ const Ecommerce = () => {
             fetchCardDetail();
             window.location.reload();
         }
-      }
+    }
     return (
         <Grid>
-           <Grid sx={{ position: "sticky", top: "0", zIndex: 50 }}>
-      <Navbar />
-      </Grid>
-            {loadingAnimation==true?
-      <Container maxWidth="xl" sx={{height:"100vh",overflow:'hidden',width:"100vw"}}>
-        <Grid container spacing={2} sx={{display:"flex",justifyContent:"center",alignItems:"center",overflow:'hidden'}}>
-          
-          <Preloader/>
-          </Grid></Container>:
-             <Grid container sx={{ display: 'flex', justifyContent: 'center',background:'#ecf0f1' }}>
-             <Grid item xs={12} sx={{display:'flex',alignItems:'center',height:60}}>
-               <Grid>
-               <Button sx={{
-                 borderRadius: 10,
-                 backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-                 display: "flex",
-                 flexDirection: "row",
-                  marginLeft:'4%',
-                  color:'#000',
-                 textAlign: "center",
-               }} onClick={() => navigate('/links')} variant='contained'><NavigateBeforeIcon />Back</Button>
-               </Grid>
-               <Grid sx={{width:matchesA?'60%':'85%',display:'flex',alignContent:'center',justifyContent:'center'}}>
-                <Grid
-               sx={{
-               fontSize:matchesA?'22px':"28px",
-               fontWeight: 500,
-               lineHeight: "28px",
-               letterSpacing: "-2.4%",
-               color: "#000",
-             }}
-           >
-             Profile Setup
-           </Grid>
-           </Grid>
-             </Grid>
+            <Grid sx={{ position: "sticky", top: "0", zIndex: 50 }}>
+                <Navbar />
+            </Grid>
+            {loadingAnimation == true ?
+                <Container maxWidth="xl" sx={{ height: "100vh", overflow: 'hidden', width: "100vw" }}>
+                    <Grid container spacing={2} sx={{ display: "flex", justifyContent: "center", alignItems: "center", overflow: 'hidden' }}>
+
+                        <Preloader />
+                    </Grid></Container> :
+                <Grid container sx={{ display: 'flex', justifyContent: 'center', background: '#ecf0f1' }}>
+                    <Grid item xs={12} sx={{ display: 'flex', alignItems: 'center', height: 60 }}>
+                        <Grid>
+                            <Button sx={{
+                                borderRadius: 10,
+                                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                                display: "flex",
+                                flexDirection: "row",
+                                marginLeft: '4%',
+                                color: '#000',
+                                textAlign: "center",
+                            }} onClick={() => navigate('/userDashboard')} variant='contained'><NavigateBeforeIcon />Back</Button>
+                        </Grid>
+                        <Grid sx={{ width: matchesA ? '60%' : '85%', display: 'flex', alignContent: 'center', justifyContent: 'center' }}>
+                            <Grid
+                                sx={{
+                                    fontSize: matchesA ? '22px' : "28px",
+                                    fontWeight: 500,
+                                    lineHeight: "28px",
+                                    letterSpacing: "-2.4%",
+                                    color: "#000",
+                                }}
+                            >
+                                Profile Setup
+                            </Grid>
+                        </Grid>
+                    </Grid>
 
 
 
-             <Grid item xs={12} >
-           <NewBussinessProfileEcommerce/>
-          </Grid>
-           
+                    <Grid item xs={12} >
+                        <NewBussinessProfileEcommerce />
+                    </Grid>
 
-                
-            </Grid>}
+
+
+                </Grid>}
             <Footer />
         </Grid >
     );

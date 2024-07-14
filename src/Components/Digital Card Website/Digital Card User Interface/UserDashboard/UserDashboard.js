@@ -83,16 +83,16 @@ const UserDashboard = () => {
 
 
 
-  const handleinformation=()=>{
+  const handleinformation = () => {
     navigate('/information')
   }
 
 
-  const handleLinks=()=>{
+  const handleLinks = () => {
     navigate('/links')
   }
 
-  const handleinEcommerce=()=>{
+  const handleinEcommerce = () => {
     navigate('/ecommerce')
   }
 
@@ -1432,7 +1432,7 @@ const UserDashboard = () => {
                       </>
                     )}
                   </Grid>
-
+                  {/* 
                   <Grid item xs={6}>
                     <Typography>Edit : </Typography>
                   </Grid>
@@ -1454,7 +1454,7 @@ const UserDashboard = () => {
                         </Button>
                       </>
                     )}
-                  </Grid>
+                  </Grid> */}
 
                 </Grid>
               </Paper>

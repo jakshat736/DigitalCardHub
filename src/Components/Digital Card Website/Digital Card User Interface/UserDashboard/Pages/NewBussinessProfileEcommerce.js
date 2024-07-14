@@ -159,7 +159,7 @@ export default function NewBussinessProfileEcommerce() {
       true
     );
     if (response.status == true) {
-      navigate("/preview");
+      navigate("/userDashboard");
       setLoadingAnimation(false);
     }
   };
@@ -240,7 +240,7 @@ export default function NewBussinessProfileEcommerce() {
           }}>
 
           Add Products/services
-          
+
         </Grid>
         <Divider
           style={{
@@ -279,7 +279,7 @@ export default function NewBussinessProfileEcommerce() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: matchesA?'20px': matches ? '30px' : "20px",
+                    fontSize: matchesA ? '20px' : matches ? '30px' : "20px",
                     fontWeight: 600,
                   }}
                 >
@@ -296,47 +296,43 @@ export default function NewBussinessProfileEcommerce() {
                         : productData[index]?.productimg.url
                     }
                     sx={{
-                      width: matchesA?50:matches ? 180 : "5vw",
-                      height:matchesA?50: matches ? 180 : "5.3vw",
+                      width: matchesA ? 50 : matches ? 180 : "5vw",
+                      height: matchesA ? 50 : matches ? 180 : "5.3vw",
                     }}
                   />
                   <Grid sx={{ marginLeft: "5%" }}>
-                    <Grid sx={{ fontSize:matchesA?'10px': matches ? '22px' : "10px", fontWeight: 600 }}>
+                    <Grid sx={{ fontSize: matchesA ? '10px' : matches ? '22px' : "10px", fontWeight: 600 }}>
                       Upload Product Image
                     </Grid>
                     <Grid>
-                      <label htmlFor="icon-button-file1">
+                      <Button
+                        variant="text"
+                        component="label"
+                        style={{
+                          border: "1px solid #000",
+                          borderColor: "#000",
+                          marginTop: "3%",
+                          height: matchesA ? '25px' : matches ? '40px' : "25px",
+                          width: matchesA ? '120px' : matches ? '250px' : "120px",
+                          lineHeight: matchesA ? '28px' : matches ? '40px' : "28px",
+                          color: "#000",
+                          fontSize: "12px",
+                          fontWeight: 400,
+                          textTransform: "none",
+                          borderRadius: "4px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
                         <input
-                          style={{ display: "none" }}
+                          hidden
                           accept="image/*"
-                          onChange={(event) =>
-                            handleProductImageChange(index, event)
-                          }
+                          onChange={(event) => handleProductImageChange(index, event)}
                           type="file"
                         />
-                        <Button
-                          aria-label="upload picture"
-                          component="span"
-                          style={{
-                            border: "1px solid #000",
-                            borderColor: "#000",
-                            marginTop: "3%",
-                            height:matchesA?'25px': matches ? '40px' :  "25px",
-                            width:matchesA?'120px': matches ? '250px' : "120px",
-                            lineHeight:matchesA?'28px': matches ? '40px' :  "28px",
-                            color: "#000",
-                            fontSize: "12px",
-                            fontWeight: 400,
-                            textTransform: "none",
-                            borderRadius: "4px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                        >
-                          Upload Image
-                        </Button>
-                      </label>
+                        Upload Image
+                      </Button>
                     </Grid>
                     <Grid
                       sx={{
@@ -456,7 +452,7 @@ export default function NewBussinessProfileEcommerce() {
                         display: "flex",
                         alignItems: "center",
                         height: "30px",
-                        width:matchesA?'90%': matches ? '40vw' :"90%",
+                        width: matchesA ? '90%' : matches ? '40vw' : "90%",
                         marginTop: "-1%",
                       }}
                     >
@@ -491,7 +487,7 @@ export default function NewBussinessProfileEcommerce() {
                         display: "flex",
                         alignItems: "center",
                         height: "30px",
-                        width:matchesA?'90%': matches ? '40vw' :"90%",
+                        width: matchesA ? '90%' : matches ? '40vw' : "90%",
                         marginTop: "-1%",
                       }}
                     >
@@ -641,7 +637,7 @@ export default function NewBussinessProfileEcommerce() {
               border: "1px solid #289B00",
               borderColor: "#289B00",
               background: "#289B00",
-              width:matches?"100%":"50%",
+              width: matches ? "100%" : "50%",
               height: matches ? "32px" : "40px",
               lineHeight: "36px",
               color: "#fff",

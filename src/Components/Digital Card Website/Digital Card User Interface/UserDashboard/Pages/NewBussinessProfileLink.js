@@ -201,7 +201,7 @@ export default function NewBussinessProfileLink() {
       true
     );
     if (response.status) {
-      navigate('/ecommerce')
+      navigate('/userDashboard')
       setLoadingAnimation(false);
     } else {
     }
@@ -355,7 +355,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -388,7 +388,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -430,7 +430,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -463,7 +463,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -505,7 +505,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -538,7 +538,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -580,7 +580,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -636,7 +636,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -673,14 +673,14 @@ export default function NewBussinessProfileLink() {
               >
                 {" "}
                 <Grid
-                  sx={{ display: "flex", width: "100%", marginTop:  matches?"8%":"2.2%" }}
+                  sx={{ display: "flex", width: "100%", marginTop: matches ? "8%" : "2.2%" }}
                 >
                   <FormControl fullWidth sx={{ width: "100%" }}>
                     <InputLabel id="demo-simple-select-label">
                       Choose Title for Link
                     </InputLabel>
                     <Select
-                    sx={{scrollbarWidth:'none'}}
+                      sx={{ scrollbarWidth: 'none' }}
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       value={otherLink[index]?.title || ""}
@@ -727,7 +727,7 @@ export default function NewBussinessProfileLink() {
                     </Select>
                   </FormControl>
                   <IconButton onClick={() => handleDeleteLink(index)}>
-                    <Delete style={{color:'#000'}} />
+                    <Delete style={{ color: '#000' }} />
                   </IconButton>
                 </Grid>
               </Grid>
@@ -735,13 +735,13 @@ export default function NewBussinessProfileLink() {
                 sx={{
                   display:
                     otherLink[index]?.title === "Others" ? "flex" : "none",
-                    border:'1px solid #000',
-                    height:'35px',
-                    width: matchesA?"100%":'50%',
-                    color:'#000',
-                    borderRadius:'10px',
-                    justifyContent: "center",
-                    marginTop:  matches?"4%":"1.5%",
+                  border: '1px solid #000',
+                  height: '35px',
+                  width: matchesA ? "100%" : '50%',
+                  color: '#000',
+                  borderRadius: '10px',
+                  justifyContent: "center",
+                  marginTop: matches ? "4%" : "1.5%",
                 }}
               >
                 <InputBase
@@ -759,14 +759,14 @@ export default function NewBussinessProfileLink() {
               <Grid
                 style={{
                   display: "flex",
-                  border:'1px solid #000',
-                  height:'35px',
-                  width: matchesA?"100%":'50%',
-                  color:'#000',
-                  borderRadius:'10px',
+                  border: '1px solid #000',
+                  height: '35px',
+                  width: matchesA ? "100%" : '50%',
+                  color: '#000',
+                  borderRadius: '10px',
                   justifyContent: "center",
                   marginBottom: 8,
-                  marginTop:  matches?"4%":"1.5%",
+                  marginTop: matches ? "4%" : "1.5%",
                 }}
               >
                 <InputBase
@@ -783,7 +783,7 @@ export default function NewBussinessProfileLink() {
             </>
           ))}
 
-          <Grid sx={{ width:"50%", marginTop: "3%" }}>
+          <Grid sx={{ width: "50%", marginTop: "3%" }}>
             <Button
               onClick={() => handleAddLink()}
               fullWidth
@@ -851,7 +851,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-          video 1
+              video 1
             </Grid>
             <Grid
               sx={{
@@ -862,7 +862,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -884,7 +884,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-             video 2
+              video 2
             </Grid>
             <Grid
               sx={{
@@ -895,7 +895,7 @@ export default function NewBussinessProfileLink() {
                 display: "flex",
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -938,7 +938,7 @@ export default function NewBussinessProfileLink() {
                 display: link3,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -961,7 +961,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-           video 4
+              video 4
             </Grid>
             <Grid
               sx={{
@@ -972,7 +972,7 @@ export default function NewBussinessProfileLink() {
                 display: link4,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -1004,7 +1004,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-               video 5
+              video 5
             </Grid>
             <Grid
               sx={{
@@ -1015,7 +1015,7 @@ export default function NewBussinessProfileLink() {
                 display: link5,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -1038,7 +1038,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-       video 6
+              video 6
             </Grid>
             <Grid
               sx={{
@@ -1049,7 +1049,7 @@ export default function NewBussinessProfileLink() {
                 display: link6,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -1081,7 +1081,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-            video 7
+              video 7
             </Grid>
             <Grid
               sx={{
@@ -1092,7 +1092,7 @@ export default function NewBussinessProfileLink() {
                 display: link7,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -1115,7 +1115,7 @@ export default function NewBussinessProfileLink() {
                 marginTop: ".5%",
               }}
             >
-            video 8
+              video 8
             </Grid>
             <Grid
               sx={{
@@ -1126,7 +1126,7 @@ export default function NewBussinessProfileLink() {
                 display: link8,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -1169,7 +1169,7 @@ export default function NewBussinessProfileLink() {
                 display: link9,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -1203,7 +1203,7 @@ export default function NewBussinessProfileLink() {
                 display: link10,
                 alignItems: "center",
                 height: "35px",
-                width: matchesA ? "100%":matchesB?"600px":'650px',
+                width: matchesA ? "100%" : matchesB ? "600px" : '650px',
               }}
             >
               <InputBase
@@ -1259,11 +1259,11 @@ export default function NewBussinessProfileLink() {
         </Grid>
 
         <Divider
-            style={{
-              backgroundColor: "#95a5a6",
-              marginTop: "3%",
-            }}
-          />
+          style={{
+            backgroundColor: "#95a5a6",
+            marginTop: "3%",
+          }}
+        />
 
         <Grid
           sx={{
@@ -1334,89 +1334,89 @@ export default function NewBussinessProfileLink() {
           </Grid>
 
           <Grid sx={{ width: matchesA ? "45%" : "40%", marginLeft: "auto" }}>
-           
-           
-          
-          <Grid
+
+
+
+            <Grid
               sx={{
                 fontSize: matchesA ? "13px" : "16px",
                 fontWeight: 500,
-                marginTop:'1%'
+                marginTop: '1%'
 
               }}
             >
               Team Members :
             </Grid>
             {companyName !== '' &&
-            <>
-            {addMember?.map((item, index) => (
-              
-            <Grid
-              sx={{
-                border: "1px solid #000",
-                borderRadius: "10px",
-                color: "#000",
-                p: "2px 4px",
-                display: "flex",
-                alignItems: "center",
-                height: "35px",
-                width: "100%",
-                marginTop:'2%'
-              }}
-            >
-              <InputBase
-                style={{ color: "#000" }}
-                sx={{ ml: 1, flex: 1 }}
-                placeholder="Enter His/her unique id"
-                value={item?.uniqueId || ""}
-                onChange={(event) => handleMemberChange(index, event.target.value)}
-              />
-              <IconButton
-                 onClick={() => handleMemberDelete(index)}
-                color="primary"
-                sx={{ p: "10px" }}
-                aria-label="directions"
-              >
-                <DeleteIcon
-                  fontSize="small"
-                  color="#000"
-                  style={{ color: "#000" }}
-                />
-              </IconButton>
-            </Grid>
-               ))}
-            <Button
-            onClick={() => handleAddLinkMember()}
-              fullWidth
-              style={{
-                border: "1px solid #000",
-                borderColor: "#000",
-                background: "#0D0D0D",
-                height: matchesA ? "30px" : "36px",
-                color: "#fff",
-                fontSize: matchesA ? "9px" : "16px",
-                fontWeight: 500,
-                textTransform: "none",
-                borderRadius: "5px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                lineHeight: "22px",
-                letterSpacing: "-2.2%",
-                marginTop: "4%",
-              }}
-            >
-              Add more Vedios
-              <img
-                src={add}
-                width={matchesA ? 15 : 18}
-                style={{ marginLeft: "2%" }}
-              ></img>
-            </Button>
-            </>
-          }
+              <>
+                {addMember?.map((item, index) => (
+
+                  <Grid
+                    sx={{
+                      border: "1px solid #000",
+                      borderRadius: "10px",
+                      color: "#000",
+                      p: "2px 4px",
+                      display: "flex",
+                      alignItems: "center",
+                      height: "35px",
+                      width: "100%",
+                      marginTop: '2%'
+                    }}
+                  >
+                    <InputBase
+                      style={{ color: "#000" }}
+                      sx={{ ml: 1, flex: 1 }}
+                      placeholder="Enter His/her unique id"
+                      value={item?.uniqueId || ""}
+                      onChange={(event) => handleMemberChange(index, event.target.value)}
+                    />
+                    <IconButton
+                      onClick={() => handleMemberDelete(index)}
+                      color="primary"
+                      sx={{ p: "10px" }}
+                      aria-label="directions"
+                    >
+                      <DeleteIcon
+                        fontSize="small"
+                        color="#000"
+                        style={{ color: "#000" }}
+                      />
+                    </IconButton>
+                  </Grid>
+                ))}
+                <Button
+                  onClick={() => handleAddLinkMember()}
+                  fullWidth
+                  style={{
+                    border: "1px solid #000",
+                    borderColor: "#000",
+                    background: "#0D0D0D",
+                    height: matchesA ? "30px" : "36px",
+                    color: "#fff",
+                    fontSize: matchesA ? "9px" : "16px",
+                    fontWeight: 500,
+                    textTransform: "none",
+                    borderRadius: "5px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    lineHeight: "22px",
+                    letterSpacing: "-2.2%",
+                    marginTop: "4%",
+                  }}
+                >
+                  Add more Vedios
+                  <img
+                    src={add}
+                    width={matchesA ? 15 : 18}
+                    style={{ marginLeft: "2%" }}
+                  ></img>
+                </Button>
+              </>
+            }
           </Grid>
-      
+
         </Grid>
 
         <Grid
@@ -1429,12 +1429,12 @@ export default function NewBussinessProfileLink() {
           }}
         >
           <Button
-          onClick={() => handleSubmit()}
+            onClick={() => handleSubmit()}
             style={{
               border: "1px solid #289B00",
               borderColor: "#289B00",
               background: "#289B00",
-              width: matchesA?'100%':"50%",
+              width: matchesA ? '100%' : "50%",
               height: matches ? "32px" : "40px",
               lineHeight: "36px",
               color: "#fff",

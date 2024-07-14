@@ -635,39 +635,39 @@ const Information = () => {
   return (
     <Grid>
       <Grid sx={{ position: "sticky", top: "0", zIndex: 50 }}>
-      <Navbar/>
+        <Navbar />
       </Grid>
       {loadingAnimation == true ?
         <Container maxWidth="xl" sx={{ height: "100vh", overflow: 'hidden', width: "100vw" }}>
           <Grid container spacing={2} sx={{ display: "flex", justifyContent: "center", alignItems: "center", overflow: 'hidden' }}>
             <Preloader />
           </Grid></Container> :
-        <Grid container sx={{ display: 'flex', justifyContent: 'center',background:'#ecf0f1' }}>
-          <Grid item xs={12} sx={{mt:matchesA?.8:2,display:'flex',alignItems:'center'}}>
+        <Grid container sx={{ display: 'flex', justifyContent: 'center', background: '#ecf0f1' }}>
+          <Grid item xs={12} sx={{ mt: matchesA ? .8 : 2, display: 'flex', alignItems: 'center' }}>
             <Grid>
-            <Button sx={{
-              borderRadius: 10,
-              backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
-              display: "flex",
-              flexDirection: "row",
-              color:'#000',
-               marginLeft:'4%',
-              textAlign: "center",
-            }} onClick={() => navigate('/userDashboard')} variant='contained'><NavigateBeforeIcon />Back</Button>
+              <Button sx={{
+                borderRadius: 10,
+                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                display: "flex",
+                flexDirection: "row",
+                color: '#000',
+                marginLeft: '4%',
+                textAlign: "center",
+              }} onClick={() => navigate('/userDashboard')} variant='contained'><NavigateBeforeIcon />Back</Button>
             </Grid>
-            <Grid sx={{width:matchesA?'60%':'85%',display:'flex',alignContent:'center',justifyContent:'center'}}>
-             <Grid
-          sx={{
-            fontSize:matchesA?'22px':"28px",
-            fontWeight: 500,
-            lineHeight: "28px",
-            letterSpacing: "-2.4%",
-            color: "#000",
-          }}
-        >
-          Profile Setup
-        </Grid>
-        </Grid>
+            <Grid sx={{ width: matchesA ? '60%' : '85%', display: 'flex', alignContent: 'center', justifyContent: 'center' }}>
+              <Grid
+                sx={{
+                  fontSize: matchesA ? '22px' : "28px",
+                  fontWeight: 500,
+                  lineHeight: "28px",
+                  letterSpacing: "-2.4%",
+                  color: "#000",
+                }}
+              >
+                Profile Setup
+              </Grid>
+            </Grid>
           </Grid>
 
 
