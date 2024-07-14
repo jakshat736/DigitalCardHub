@@ -70,7 +70,7 @@ export default function NewHeader() {
     navigate('/cooperate')
   }
 
-  const handleNagivateShop = () => {
+  const handleNavigateShop = () => {
     navigate('/newallproduct')
   }
 
@@ -422,7 +422,7 @@ export default function NewHeader() {
                 justifyContent: "center",
                 lineHeight: '22px',
                 letterSpacing: '-2.2%',
-                "&:hover":{
+                "&:hover": {
                   color: "#000",
                 }
               }}
@@ -480,24 +480,24 @@ export default function NewHeader() {
 
                 <Button
                   id="composition-button"
-                  aria-controls={open ? "composition-menu" : undefined}
-                  aria-expanded={open ? "true" : undefined}
+                  aria-controls={open ? 'composition-menu' : undefined}
+                  aria-expanded={open ? 'true' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={handleToggle}
                   onMouseLeave={handleToggle}
+                  ref={anchorRef}
                   sx={{
                     height: 19,
-                    color: "#fff",
+                    color: '#fff',
                     fontWeight: 400,
-                    fontSize: "15px",
-                    textTransform: "none",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-
+                    fontSize: '15px',
+                    textTransform: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}
                 >
-                  <Grid onClick={handleNagivateShop}> Shop</Grid>
+                  <Grid onClick={handleNavigateShop}>Shop</Grid>
                   <Grid>
                     <ArrowDropDown style={{ marginTop: '40%' }} />
                   </Grid>
@@ -505,32 +505,35 @@ export default function NewHeader() {
                     open={open}
                     anchorEl={anchorRef.current}
                     role={undefined}
-                    placement="bottom"
+                    placement="bottom-start"
                     transition
                     disablePortal
-                    sx={{ zIndex: 300, marginLeft: matchesC ? '24%' : '50%', marginTop: '4%' }}
                   >
                     {({ TransitionProps, placement }) => (
                       <Grow
                         {...TransitionProps}
                         style={{
-                          transformOrigin:
-                            placement === "bottom-start"
-                              ? "left top"
-                              : "left bottom",
+                          transformOrigin: placement === 'bottom-start' ? 'left top' : 'left bottom',
                         }}
                       >
-                        <Paper sx={{ marginRight: 10, color: '#fff', backgroundImage: "linear-gradient(to bottom right, #171717,#171717)", }}>
+                        <Paper
+                          sx={{
+                            marginRight: 10,
+                            color: '#fff',
+                            backgroundImage: 'linear-gradient(to bottom right, #171717,#171717)',
+                          }}
+                        >
                           <MenuList
                             autoFocusItem={open}
                             id="composition-menu"
                             aria-labelledby="composition-button"
                             onKeyDown={handleListKeyDown}
-                            style={{ fontWeight: "bold", width: 250 }}
+                            style={{ fontWeight: 'bold', width: 250 }}
                           >
                             <List component="div">
                               {category.map((item) => (
                                 <ListItemButton
+                                  key={item._id}
                                   onClick={() =>
                                     navigate(`/categoryproducts/${item._id}`, {
                                       state: { category: item.categoryname },
@@ -539,7 +542,7 @@ export default function NewHeader() {
                                 >
                                   <ListItemText
                                     primary={`${item.categoryname}`}
-                                    sx={{ color: "#fff", fontWeight: 700 }}
+                                    sx={{ color: '#fff', fontWeight: 700 }}
                                   />
                                 </ListItemButton>
                               ))}
@@ -550,8 +553,6 @@ export default function NewHeader() {
                     )}
                   </Popper>
                 </Button>
-
-
                 <Grid onClick={handleNagivaCreate} sx={{ cursor: 'pointer' }}>
                   How to create
                 </Grid>
