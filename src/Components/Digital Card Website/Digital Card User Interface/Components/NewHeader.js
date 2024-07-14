@@ -33,12 +33,12 @@ import {
   Container,
   useMediaQuery,
   useTheme,
-  Button,  List,
+  Button, List,
   ListItemButton,
   ListItemText,
 } from "@mui/material";
 import Downarrow from "../../Digital Card Assets/downarrow.png"
-import { Grid,InputBase ,IconButton} from "@mui/material";
+import { Grid, InputBase, IconButton } from "@mui/material";
 import { download } from "export-to-csv";
 import SideBar from "./SideBar";
 
@@ -53,43 +53,42 @@ import mockup11 from "../../Digital Card Assets/mockup11.png"
 import or from "../../Digital Card Assets/or.png"
 
 import OtpGenerator from '../ReviewTag/OtpGenerator';
-import {  useState } from 'react';
+import { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import logo1 from '../../Digital Card Assets/dchlogo.png';
 import { useLocation } from 'react-router-dom';
 
-export default function NewHeader()
- {
-  var navigate=useNavigate()
-  const handleNagivate=()=>{
-      navigate('/compitable')
+export default function NewHeader() {
+  var navigate = useNavigate()
+  const handleNagivate = () => {
+    navigate('/compitable')
   }
-  const handleNagivateHome=()=>{
+  const handleNagivateHome = () => {
     navigate('/newhome')
-}
-const handleNagivateCooperate=()=>{
-  navigate('/cooperate')
-}
+  }
+  const handleNagivateCooperate = () => {
+    navigate('/cooperate')
+  }
 
-const handleNagivateShop=()=>{
-  navigate('/newallproduct')
-}
+  const handleNagivateShop = () => {
+    navigate('/newallproduct')
+  }
 
-const handleNagivaCreate=()=>{
-  navigate('/newhowtocreate')
-}
+  const handleNagivaCreate = () => {
+    navigate('/newhowtocreate')
+  }
 
-const handleNagivateProductComponents=()=>{
-  navigate('/newallproduct')
-}
+  const handleNagivateProductComponents = () => {
+    navigate('/newallproduct')
+  }
 
-const handleNagivateAllProducts=()=>{
-  navigate('/newallproduct2')
-}
+  const handleNagivateAllProducts = () => {
+    navigate('/newallproduct2')
+  }
 
-const handleCategory=()=>{
-  navigate('/categoryproducts')
-}
+  const handleCategory = () => {
+    navigate('/categoryproducts')
+  }
 
   const matches = useMediaQuery("(max-width:1350px)");
   const matchesC = useMediaQuery("(max-width:1400px)");
@@ -167,133 +166,122 @@ const handleCategory=()=>{
 
 
 
-///////////////////////////////////////////
-const { enqueueSnackbar } = useSnackbar();
-const location = useLocation();
-let goahead = (location?.state?.goahead !== undefined && location?.state?.goahead !== null) ? location.state.goahead : true;
+  ///////////////////////////////////////////
+  const { enqueueSnackbar } = useSnackbar();
+  const location = useLocation();
+  let goahead = (location?.state?.goahead !== undefined && location?.state?.goahead !== null) ? location.state.goahead : true;
 
-// const [emailId, setEmailId] = useState("");
-// const [password, setPassword] = useState("");
-// const [open, setOpen] = useState(false);
-// const [open1, setOpen1] = useState(false);
-const [phoneNo, setPhoneNo] = useState("");
-// const [number, setNumber] = useState();
-// const [message, setMessage] = useState("");
-// const [changeMessage, setChangeMessage] = useState("");
-// const [newPassword, setNewPassword] = useState("")
-const [showPassword, setShowPassword] = useState(false);
-const [otp, setOtp] = useState();
+  // const [emailId, setEmailId] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [open, setOpen] = useState(false);
+  // const [open1, setOpen1] = useState(false);
+  const [phoneNo, setPhoneNo] = useState("");
+  const [enterOpt, setEnterOtp] = useState("");
+  // const [number, setNumber] = useState();
+  // const [message, setMessage] = useState("");
+  // const [changeMessage, setChangeMessage] = useState("");
+  // const [newPassword, setNewPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false);
+  const [otp, setOtp] = useState();
 
-const [verified, setVerified] = useState()
-// const handleClickShowPassword = () => setShowPassword(!showPassword);
-// const handleMouseDownPassword = () => setShowPassword(!showPassword);
-const handleSubmit = async () => {
+  const [verified, setVerified] = useState()
+  // const handleClickShowPassword = () => setShowPassword(!showPassword);
+  // const handleMouseDownPassword = () => setShowPassword(!showPassword);
+  const handleSubmit = async () => {
     if (phoneNo !== '') {
-        var formData = new FormData()
-        formData.append('phone', phoneNo)
-        var result = await postData('customerLogin/chkLogin', formData, true)
-        if (result.status) {
+      var formData = new FormData()
+      formData.append('phone', phoneNo)
+      var result = await postData('customerLogin/chkLogin', formData, true)
+      if (result.status) {
 
-            window.localStorage.setItem("userId", result.data._id)
-            window.localStorage.setItem("UserNumber", result?.data?.phone)
-            window.localStorage.setItem("UserEmail", result?.data?.email)
+        window.localStorage.setItem("userId", result.data._id)
+        window.localStorage.setItem("UserNumber", result?.data?.phone)
+        window.localStorage.setItem("UserEmail", result?.data?.email)
 
 
-            Swal.fire({
-                title: 'Successfully Logged In!',
-                imageUrl: logo1,
-                imageWidth: 200,
-                imageHeight: 200,
-                imageAlt: 'Custom image',
-                background: '#001e3c',
-                timer: 1500,
-                width: 500,
-                padding: 15,
-                color: '#fff',
-                showConfirmButton: false,
-
-            })
-            navigate('/userdashboard')
-            window.localStorage.setItem("User", true)
-            window.localStorage.removeItem('data')
-            window.localStorage.setItem("data", JSON.stringify(result.data))
-
-        }
-        else {
-            Swal.fire({
-                position: 'center',
-                icon: 'error',
-                title: 'Fail to Login',
-                showConfirmButton: false,
-                timer: 1500
-            })
-
-        }
-    } else {
         Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'Enter Number First',
-            showConfirmButton: false,
-            timer: 1500
+          title: 'Successfully Logged In!',
+          imageUrl: logo1,
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: 'Custom image',
+          background: '#001e3c',
+          timer: 1500,
+          width: 500,
+          padding: 15,
+          color: '#fff',
+          showConfirmButton: false,
+
         })
+        navigate('/userdashboard')
+        window.localStorage.setItem("User", true)
+        window.localStorage.removeItem('data')
+        window.localStorage.setItem("data", JSON.stringify(result.data))
+
+      }
+      else {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Fail to Login',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
+      }
+    } else {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Enter Number First',
+        showConfirmButton: false,
+        timer: 1500
+      })
     }
 
-}
-
-
-
-
-
-// useEffect(() => {
-//   if (localStorage.getItem("User") && goahead) {
-//       navigate('/userdashboard')
-//   }
-// }, [])
-
-
-
-const handleOtp = (value) => {
-  if (value.length == 4) {
-      if (otp == value) {
-          // setMessage("")
-          setVerified(true)
-          handleSubmit()
-      } else {
-          setVerified(false)
-          Swal.fire({
-              position: 'center',
-              icon: 'error',
-              title: 'Wrong Otp',
-              showConfirmButton: false,
-              timer: 1500
-          })
-      }
   }
-}
 
-const handleopenotpdailog = async () => {
+  const handleOtp = () => {
+    if (enterOpt?.length == 4) {
+      if (otp == enterOpt) {
+        // setMessage("")
+        setVerified(true)
+        handleSubmit()
+      } else {
+        setVerified(false)
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Wrong Otp',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    }
+  }
 
-  if (phoneNo != '') {
+  const handleopenotpdailog = async () => {
+
+    if (phoneNo != '') {
       var otpval = OtpGenerator()
 
       setOtp(otpval)
 
       const apiUrl = `https://cloud.bulkpromo.in/api/send?number=91${phoneNo}&type=text&message=Your Otp For Digital Card Hub - ${otpval}&instance_id=6676AB42323B3&access_token=666ff52aa9a38`;
       const response = await postData('otp/api', { url: apiUrl })
-  } else {
+    } else {
       Swal.fire({
-          text: "Enter the Number First",
-          timer: 1000
+        text: "Enter the Number First",
+        timer: 1000
       })
+    }
   }
-}
 
 
 
 
 
-///////////////////////////////////////////
+  ///////////////////////////////////////////
 
 
 
@@ -311,279 +299,284 @@ const handleopenotpdailog = async () => {
   const handleClickOpen = () => {
     setOpenss(true);
   };
-  
+
   const handleClosess = () => {
     setOpenss(false);
   };
-  
-  const loginPage=()=>{
-  
-    return( <Dialog
+
+  const loginPage = () => {
+
+    return (<Dialog
       open={openss}
       onClose={handleClosess}
       PaperProps={{
         style: {
-          width:'100%',
-          height:  400,
+          width: '100%',
+          height: 400,
           borderRadius: 10,
-        },}}
+        },
+      }}
     >
-      <Grid sx={{width: '100%', height:400,display:'flex' }}>
-        {matchesA?<></>:<Grid sx={{width:'45%', height:400 ,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',padding:2,backgroundImage: "linear-gradient(to bottom right, #171717,#171717)",}}>
-           <Grid sx={{marginTop:'2%'}}><img src={logo11} width={80}></img></Grid>
-           <Grid sx={{fontSize:'18px',fontWeight:600,lineHeight:'28px',letterSpacing:'-2.4%',color:'#fff',marginTop:'4%'}}>
+      <Grid sx={{ width: '100%', height: 400, display: 'flex' }}>
+        {matchesA ? <></> : <Grid sx={{ width: '45%', height: 400, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 2, backgroundImage: "linear-gradient(to bottom right, #171717,#171717)", }}>
+          <Grid sx={{ marginTop: '2%' }}><img src={logo11} width={80}></img></Grid>
+          <Grid sx={{ fontSize: '18px', fontWeight: 600, lineHeight: '28px', letterSpacing: '-2.4%', color: '#fff', marginTop: '4%' }}>
             WELCOME BACK
-           </Grid>
-           <Grid sx={{marginTop:'5%'}}><img src={mockup11} width={220}></img></Grid>
+          </Grid>
+          <Grid sx={{ marginTop: '5%' }}><img src={mockup11} width={220}></img></Grid>
         </Grid>}
-        <Grid sx={{width:matchesA?'100%':'55%', height:400 ,padding:2,display:'flex',flexDirection:'column'}}>
-        <Grid  onClick={handleClosess} style={{marginLeft:'auto',cursor:'pointer'}}><img src={close11} width={20} style={{left:100,marginLeft:'auto'}}></img></Grid>
-        <Grid sx={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}>
-        <Grid sx={{fontSize:'26px',fontWeight:700,lineHeight:'28px',letterSpacing:'-2.4%',color:'#000',marginTop:'3%'}}>
-        Login Now
-        </Grid>
-        <Grid  sx={{fontSize:'18px',fontWeight:400,lineHeight:'26px',letterSpacing:'-2.4%',color:'#000',marginTop:'3%'}}>
-        Activate your card here !
-        </Grid>
-  
-        <Grid
+        <Grid sx={{ width: matchesA ? '100%' : '55%', height: 400, padding: 2, display: 'flex', flexDirection: 'column' }}>
+          <Grid onClick={handleClosess} style={{ marginLeft: 'auto', cursor: 'pointer' }}><img src={close11} width={20} style={{ left: 100, marginLeft: 'auto' }}></img></Grid>
+          <Grid sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <Grid sx={{ fontSize: '26px', fontWeight: 700, lineHeight: '28px', letterSpacing: '-2.4%', color: '#000', marginTop: '3%' }}>
+              Login Now
+            </Grid>
+            <Grid sx={{ fontSize: '18px', fontWeight: 400, lineHeight: '26px', letterSpacing: '-2.4%', color: '#000', marginTop: '3%' }}>
+              Activate your card here !
+            </Grid>
+
+            <Grid
               sx={{
-                      border: "1.8px solid #888888",
-                      marginTop:'2%',
-                      borderRadius: "10px",
-                      color: "#000",
-                      p: "2px 4px",
-                      display: "flex",
-                      alignItems: "center",
-                      height: "40px",
-                      width:'100%',
-                    }}
-                  >
-                    <InputBase
-                      style={{ color: "#000" }}
-                      sx={{ ml: 1, flex: 1 }}
-                      placeholder="Email Address or number"
-                      value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)}
-                      
-                    />
-  
-                     <IconButton
-                    type="button"
-                    sx={{ p: "10px" }}  
-                    onClick={handleopenotpdailog}
-                  >
-                    <div
-                  
-                      style={{
-                        border: "1px solid #000",
-                        background: "#000",
-                        color: "#fff",
-                        fontSize: "14px",
-                        fontWeight: 500,
-                        width:matches?70: 100,
-                        borderRadius: "5px",
-                        height:25,
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      Get OTP
-                    </div>
-                  </IconButton>
-                  </Grid>
-  
-                  <Grid
-                    sx={{
-                      border: "2px solid #888888",
-                      marginTop:'5%',
-                      borderRadius: "10px",
-                      color: "#000",
-                      p: "2px 4px",
-                      display: "flex",
-                      alignItems: "center",
-                      height: "35px",
-                      width:matches?'100%':"300px",
-                    }}
-                  >
-                    <InputBase
-                      style={{ color: "#000" }}
-                      sx={{ ml: 1, flex: 1 }}
-                      placeholder="Enter OTP"
-                      onChange={(event) => handleOtp(event.target.value)} 
-                    />
-                  </Grid>
-  
-         
-                  <Button
-                   fullWidth
-                  sx={{
+                border: "1.8px solid #888888",
+                marginTop: '2%',
+                borderRadius: "10px",
+                color: "#000",
+                p: "2px 4px",
+                display: "flex",
+                alignItems: "center",
+                height: "40px",
+                width: '100%',
+              }}
+            >
+              <InputBase
+                style={{ color: "#000" }}
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="Whatsapp Number"
+                value={phoneNo} onChange={(event) => setPhoneNo(event.target.value)}
+
+              />
+
+              <IconButton
+                type="button"
+                sx={{ p: "10px" }}
+                onClick={handleopenotpdailog}
+              >
+                <div
+
+                  style={{
                     border: "1px solid #000",
-                  borderColor: "#000",
-                  background:'#0D0D0D',
-                  height:"40px",
-                  color: "#fff",
-                  fontSize: "16px",
-                  fontWeight: 500,
-                  marginTop:'6%',
-                  textTransform: "none",
-                  borderRadius: "5px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  lineHeight:'22px',
-                  letterSpacing:'-2.2%'
+                    background: "#000",
+                    color: "#fff",
+                    fontSize: "14px",
+                    fontWeight: 500,
+                    width: matches ? 70 : 100,
+                    borderRadius: "5px",
+                    height: 25,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
-               LOGIN
-                </Button>
-  
-                <Grid style={{marginTop:'6%',display:'flex',gap:3}}>
-                 <div style={{fontSize:'13px',fontWeight:400,}}>OTP not received?</div><div  onClick={handleopenotpdailog} style={{fontSize:'13px',fontWeight:500,color:'#0377FF',cursor:'pointer'}}>Resend OTP</div>
-                </Grid>
-                <Grid style={{marginTop:'4%'}}>
-                  <img src={or} style={{width:'100%'}}></img>
-                </Grid>
-                <Grid style={{marginTop:'2%',display:'flex'}}>
+                  Get OTP
+                </div>
+              </IconButton>
+            </Grid>
+
+            <Grid
+              sx={{
+                border: "2px solid #888888",
+                marginTop: '5%',
+                borderRadius: "10px",
+                color: "#000",
+                p: "2px 4px",
+                display: "flex",
+                alignItems: "center",
+                height: "35px",
+                width: matches ? '100%' : "300px",
+              }}
+            >
+              <InputBase
+                style={{ color: "#000" }}
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="Enter OTP"
+                onChange={(event) => setEnterOtp(event.target.value)}
+              />
+            </Grid>
+
+
+            <Button
+              fullWidth
+              sx={{
+                border: "1px solid #000",
+                borderColor: "#000",
+                background: '#0D0D0D',
+                height: "40px",
+                color: "#fff",
+                fontSize: "16px",
+                fontWeight: 500,
+                marginTop: '6%',
+                textTransform: "none",
+                borderRadius: "5px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                lineHeight: '22px',
+                letterSpacing: '-2.2%',
+                "&:hover":{
+                  color: "#000",
+                }
+              }}
+              onClick={() => handleOtp()}
+            >
+              LOGIN
+            </Button>
+
+            <Grid style={{ marginTop: '6%', display: 'flex', gap: 3 }}>
+              <div style={{ fontSize: '13px', fontWeight: 400, }}>OTP not received?</div><div onClick={handleopenotpdailog} style={{ fontSize: '13px', fontWeight: 500, color: '#0377FF', cursor: 'pointer' }}>Resend OTP</div>
+            </Grid>
+            <Grid style={{ marginTop: '4%' }}>
+              <img src={or} style={{ width: '100%' }}></img>
+            </Grid>
+            <Grid style={{ marginTop: '2%', display: 'flex' }}>
               <img src={logo22} width={60}></img>
-              </Grid>
-  
-        </Grid></Grid>
+            </Grid>
+
+          </Grid></Grid>
       </Grid>
     </Dialog>)
   }
-  
+
   return (
-    <Grid style={{ width: "100%",fontFamily:'Muli, sans-serif' }}>
-    <Grid style={{ position: "sticky" }}>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar
-          position="static"
-          style={{
-            backgroundImage: "linear-gradient(to bottom right, #171717,#171717)",
-            height: 80,
-            display: "flex",
-            zIndex: 5,
-            justifyContent:matches?"space-between":"center",
-            padding: matchesA?5:20,
-          }}
-        >
-          <Toolbar style={{display:'flex',justifyContent:matches?"space-between":'none',}} >
-          {matches?<><Grid sx={{marginLeft:matchesA?'-2%':'1%'}}>
-                 <SideBar/>
+    <Grid style={{ width: "100%", fontFamily: 'Muli, sans-serif' }}>
+      <Grid style={{ position: "sticky" }}>
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar
+            position="static"
+            style={{
+              backgroundImage: "linear-gradient(to bottom right, #171717,#171717)",
+              height: 80,
+              display: "flex",
+              zIndex: 5,
+              justifyContent: matches ? "space-between" : "center",
+              padding: matchesA ? 5 : 20,
+            }}
+          >
+            <Toolbar style={{ display: 'flex', justifyContent: matches ? "space-between" : 'none', }} >
+              {matches ? <><Grid sx={{ marginLeft: matchesA ? '-2%' : '1%' }}>
+                <SideBar />
                 {/* <img src={menu} width={28}></img> */}
-            </Grid></>:<></>}
-            <Grid onClick={handleNagivateHome} sx={{marginLeft:matches?'0':'6%',cursor:'pointer'}}>
-                <img src={Logo} width={matches?120:140} ></img>
-            </Grid>
-            {matches?<><Grid>
+              </Grid></> : <></>}
+              <Grid onClick={handleNagivateHome} sx={{ marginLeft: matches ? '0' : '6%', cursor: 'pointer' }}>
+                <img src={Logo} width={matches ? 120 : 140} ></img>
+              </Grid>
+              {matches ? <><Grid>
                 <img src={bag} width={20} ></img>
-            </Grid></>:<></>}
+              </Grid></> : <></>}
 
-            {matches?<></>:<Grid sx={{marginLeft:'auto',gap: 7,color: "#fff",fontWeight: 300,fontSize: "15px",display:'flex'}}>
-               <Grid onClick={handleNagivateHome}  sx={{cursor:'pointer'}}>
-                Home
-               </Grid>
-
-               <Button
-                id="composition-button"
-                aria-controls={open ? "composition-menu" : undefined}
-                aria-expanded={open ? "true" : undefined}
-                aria-haspopup="true"
-                onMouseEnter={handleToggle}
-                onMouseLeave={handleToggle}
-                sx={{
-                      height:19,
-                      color: "#fff",
-                      fontWeight: 400,
-                      fontSize: "15px",
-                      textTransform: "none",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                       
-                }}
-                >
-                <Grid onClick={handleNagivateShop}> Shop</Grid>
-                <Grid>
-                  <ArrowDropDown style={{marginTop:'40%'}} />
+              {matches ? <></> : <Grid sx={{ marginLeft: 'auto', gap: 7, color: "#fff", fontWeight: 300, fontSize: "15px", display: 'flex' }}>
+                <Grid onClick={handleNagivateHome} sx={{ cursor: 'pointer' }}>
+                  Home
                 </Grid>
-                <Popper
-                  open={open}
-                  anchorEl={anchorRef.current}
-                  role={undefined}
-                  placement="bottom"
-                  transition
-                  disablePortal
-                  sx={{ zIndex: 300,marginLeft:matchesC?'24%':'50%',marginTop:'4%'}}
+
+                <Button
+                  id="composition-button"
+                  aria-controls={open ? "composition-menu" : undefined}
+                  aria-expanded={open ? "true" : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={handleToggle}
+                  onMouseLeave={handleToggle}
+                  sx={{
+                    height: 19,
+                    color: "#fff",
+                    fontWeight: 400,
+                    fontSize: "15px",
+                    textTransform: "none",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+
+                  }}
                 >
-                  {({ TransitionProps, placement }) => (
-                    <Grow
-                      {...TransitionProps}
-                      style={{
-                        transformOrigin:
-                          placement === "bottom-start"
-                            ? "left top"
-                            : "left bottom",
-                      }}
-                    >
-                      <Paper sx={{ marginRight: 10,color:'#fff',backgroundImage: "linear-gradient(to bottom right, #171717,#171717)", }}>
-                        <MenuList
-                          autoFocusItem={open}
-                          id="composition-menu"
-                          aria-labelledby="composition-button"
-                          onKeyDown={handleListKeyDown}
-                          style={{ fontWeight: "bold", width: 250 }}
-                        >
-                          <List component="div">
-                            {category.map((item) => (
-                              <ListItemButton
-                                onClick={() =>
-                                  navigate(`/categoryproducts/${item._id}`, {
-                                    state: { category: item.categoryname },
-                                  })
-                                }
-                              >
-                                <ListItemText
-                                  primary={`${item.categoryname}`}
-                                  sx={{ color: "#fff", fontWeight: 700 }}
-                                />
-                              </ListItemButton>
-                            ))}
-                          </List>
-                        </MenuList>
-                      </Paper>
-                    </Grow>
-                  )}
-                </Popper>
-              </Button>
-            
-               
-               <Grid onClick={handleNagivaCreate}  sx={{cursor:'pointer'}}>
-                How to create
-               </Grid>
-               <Grid onClick={handleNagivateCooperate} sx={{cursor:'pointer'}}>
-               Cooperate Enquiries
-               </Grid>
-               {/* <Grid onClick={handleNagivateAllProducts} sx={{cursor:'pointer'}}>
+                  <Grid onClick={handleNagivateShop}> Shop</Grid>
+                  <Grid>
+                    <ArrowDropDown style={{ marginTop: '40%' }} />
+                  </Grid>
+                  <Popper
+                    open={open}
+                    anchorEl={anchorRef.current}
+                    role={undefined}
+                    placement="bottom"
+                    transition
+                    disablePortal
+                    sx={{ zIndex: 300, marginLeft: matchesC ? '24%' : '50%', marginTop: '4%' }}
+                  >
+                    {({ TransitionProps, placement }) => (
+                      <Grow
+                        {...TransitionProps}
+                        style={{
+                          transformOrigin:
+                            placement === "bottom-start"
+                              ? "left top"
+                              : "left bottom",
+                        }}
+                      >
+                        <Paper sx={{ marginRight: 10, color: '#fff', backgroundImage: "linear-gradient(to bottom right, #171717,#171717)", }}>
+                          <MenuList
+                            autoFocusItem={open}
+                            id="composition-menu"
+                            aria-labelledby="composition-button"
+                            onKeyDown={handleListKeyDown}
+                            style={{ fontWeight: "bold", width: 250 }}
+                          >
+                            <List component="div">
+                              {category.map((item) => (
+                                <ListItemButton
+                                  onClick={() =>
+                                    navigate(`/categoryproducts/${item._id}`, {
+                                      state: { category: item.categoryname },
+                                    })
+                                  }
+                                >
+                                  <ListItemText
+                                    primary={`${item.categoryname}`}
+                                    sx={{ color: "#fff", fontWeight: 700 }}
+                                  />
+                                </ListItemButton>
+                              ))}
+                            </List>
+                          </MenuList>
+                        </Paper>
+                      </Grow>
+                    )}
+                  </Popper>
+                </Button>
+
+
+                <Grid onClick={handleNagivaCreate} sx={{ cursor: 'pointer' }}>
+                  How to create
+                </Grid>
+                <Grid onClick={handleNagivateCooperate} sx={{ cursor: 'pointer' }}>
+                  Cooperate Enquiries
+                </Grid>
+                {/* <Grid onClick={handleNagivateAllProducts} sx={{cursor:'pointer'}}>
                All Products
                </Grid> */}
-               <Grid onClick={handleClickOpen} sx={{cursor:'pointer'}} >
-                <img src={newLogin} width={22} ></img>
-            </Grid>
-               <Grid sx={{cursor:'pointer'}} onClick={() => handleCart()} >
-                <img src={bag} width={16} ></img>
-                {cart.length}
-            </Grid>
-            <Grid sx={{color:'#070707'}}>
-               .
-               </Grid>
-            </Grid>}
-           </Toolbar>
-        </AppBar>
-      </Box>
+                <Grid onClick={handleClickOpen} sx={{ cursor: 'pointer' }} >
+                  <img src={newLogin} width={22} ></img>
+                </Grid>
+                <Grid sx={{ cursor: 'pointer' }} onClick={() => handleCart()} >
+                  <img src={bag} width={16} ></img>
+                  {cart.length}
+                </Grid>
+                <Grid sx={{ color: '#070707' }}>
+                  .
+                </Grid>
+              </Grid>}
+            </Toolbar>
+          </AppBar>
+        </Box>
       </Grid>
       {loginPage()}
-      </Grid>
+    </Grid>
   );
 }
