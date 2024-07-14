@@ -2,14 +2,11 @@ import { Grid } from "@mui/material";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import stand1 from "../../Digital Card Assets/k.png";
-import stand2 from "../../Digital Card Assets/stands2.jpg";
-import stand3 from "../../Digital Card Assets/stands3.jpg"
-import stand4 from "../../Digital Card Assets/stands4.jpg";
-import stand5 from "../../Digital Card Assets/stands5.jpg";
-import stand6 from "../../Digital Card Assets/stands6.jpg";
-import stand7 from "../../Digital Card Assets/stands7.jpg"
-import stand9 from "../../Digital Card Assets/stands9.jpg";
+import stand2 from "../../Digital Card Assets/ncard1.jpg";
+import stand3 from "../../Digital Card Assets/ncard2.jpg"
+import stand4 from "../../Digital Card Assets/ncard3.jpg";
+import stand5 from "../../Digital Card Assets/ncard4.jpg";
+
 
 import blurrectangle from "../../Digital Card Assets/blurrectangle.png"
 import {
@@ -35,7 +32,7 @@ export default function Introducing()
       };
 
 
-      var data=[stand1,stand2,stand3,stand4,stand5,stand6,stand7,stand9]
+      var data=[stand2,stand3,stand4,stand5,stand2,stand3,stand4,stand5]
       const showSlider=()=>{
           return data.map((item)=>{
               return(<Grid sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>

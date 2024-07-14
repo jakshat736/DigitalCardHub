@@ -223,7 +223,6 @@ function SwipeableEdgeDrawer(props) {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField label="One Time Password(OTP)" fullWidth onChange={(event) => handleOtp(event.target.value)} inputProps={{ maxLength: 4 }} />
-
                         </Grid>
                         <Grid item xs={12}>
                             OTP not received ? <a style={{ cursor: 'pointer' }} onClick={handleopenotpdailog}>Resend</a>

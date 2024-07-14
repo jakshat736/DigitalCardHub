@@ -1,4 +1,4 @@
-import { Grid, Button, Typography, TextField, useTheme, useMediaQuery, CircularProgress, Box, DialogContentText, Container } from '@mui/material'
+import { Grid, Button, Typography, TextField, useTheme, useMediaQuery, CircularProgress, Box, DialogContentText, Container, Stack } from '@mui/material'
 import React, { useState } from 'react'
 import Navbar from '../UserComponents/Navbar'
 import Footer from '../UserComponents/Footer'
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { Avatar } from '@mui/material'
 import { postData } from '../../../../Services/NodeServices'
 import { serverURL } from '../../../../Services/NodeServices'
+import { useEffect } from "react";
 import InputAdornment from '@mui/material/InputAdornment';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import CallIcon from '@mui/icons-material/Call';
@@ -44,6 +45,7 @@ const Information = () => {
 
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down(600));
+  const matchesA = useMediaQuery("(max-width:600px)");
   const tablet = useMediaQuery(theme.breakpoints.down(960));
   const [crop, setCrop] = useState({}); // Stores the crop data
   const [image, setImage] = useState(null);
@@ -173,6 +175,9 @@ const Information = () => {
     setOpen1(false)
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
 
   const DialogComponent = () => {
@@ -629,35 +634,43 @@ const Information = () => {
   }
   return (
     <Grid>
-      <Navbar />
+      <Grid sx={{ position: "sticky", top: "0", zIndex: 50 }}>
+      <Navbar/>
+      </Grid>
       {loadingAnimation == true ?
         <Container maxWidth="xl" sx={{ height: "100vh", overflow: 'hidden', width: "100vw" }}>
           <Grid container spacing={2} sx={{ display: "flex", justifyContent: "center", alignItems: "center", overflow: 'hidden' }}>
             <Preloader />
           </Grid></Container> :
-        <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Grid item xs={6} sx={{mt: 2}}>
+        <Grid container sx={{ display: 'flex', justifyContent: 'center',background:'#ecf0f1' }}>
+          <Grid item xs={12} sx={{mt:matchesA?.8:2,display:'flex',alignItems:'center'}}>
+            <Grid>
             <Button sx={{
               borderRadius: 10,
-              backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
+              backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-evenly",
+              color:'#000',
+               marginLeft:'4%',
               textAlign: "center",
-              alignItems: "center",
             }} onClick={() => navigate('/userDashboard')} variant='contained'><NavigateBeforeIcon />Back</Button>
+            </Grid>
+            <Grid sx={{width:matchesA?'60%':'85%',display:'flex',alignContent:'center',justifyContent:'center'}}>
+             <Grid
+          sx={{
+            fontSize:matchesA?'22px':"28px",
+            fontWeight: 500,
+            lineHeight: "28px",
+            letterSpacing: "-2.4%",
+            color: "#000",
+          }}
+        >
+          Profile Setup
+        </Grid>
+        </Grid>
           </Grid>
-          <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2,}}>
-            <Button sx={{
-              borderRadius: 10,
-              backgroundImage: "linear-gradient(to top left,#48dbfb,#001e3c)",
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-evenly",
-              textAlign: "center",
-              alignItems: "center",
-            }} onClick={() => navigate('/links')} variant='contained'>Skip<NavigateNextIcon /></Button>
-          </Grid>
+
+
           <Grid item xs={12} >
             <DashboardHome />
           </Grid>

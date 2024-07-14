@@ -28,7 +28,7 @@ const CardHome = () => {
     <Grid sx={{ display: "flex", justifyContent: 'center',background:'#f5f6fa' }}>
       <Grid container spacing={2} sx={{ display: 'block', width: 450 ,background: "radial-gradient( #414141,#171717)",height:'100vh'}}>
         <Grid item xs={12} sx={{ borderBottomLeftRadius: '10%', borderBottomRightRadius: "10%",background: "radial-gradient( #414141,#171717)" , display: 'flex', alignItems: 'center', justifyContent: 'center',height:200}}>
-          <div >
+          <div>
             <img  src={digitallogo} width={150}/>
           </div>
         </Grid>

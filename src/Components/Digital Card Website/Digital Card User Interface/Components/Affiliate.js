@@ -8,10 +8,16 @@ import FormControl from '@mui/material/FormControl';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import FormLabel from '@mui/material/FormLabel';
 import Newfooter from "./NewFooter";
+import { useEffect } from "react";
 export default function Affiliate()
 {
 
   const matches = useMediaQuery("(max-width:900px)");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
 
     return(<Grid sx={{backgroundImage: "linear-gradient(to bottom right, #171717,#171717,#070707,#070707)"}}>
            <Grid>
