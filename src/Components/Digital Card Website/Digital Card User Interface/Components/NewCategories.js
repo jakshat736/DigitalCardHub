@@ -9,6 +9,7 @@ import card6 from "../../Digital Card Assets/card6.png"
 import card7 from "../../Digital Card Assets/card7.png"
 import { useStyles } from "../../Digital Card User Interface/Components/ImageRotateCss";
 import useMediaQuery from '@mui/material/useMediaQuery';
+
 export default function NewCategories()
 {  const classes = useStyles()
     const matches = useMediaQuery("(max-width:1200px)");

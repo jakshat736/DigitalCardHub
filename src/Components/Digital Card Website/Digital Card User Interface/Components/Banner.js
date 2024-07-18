@@ -10,6 +10,8 @@ import b5 from "../../Digital Card Assets/bb5.jpg"
 import b6 from "../../Digital Card Assets/bb6.jpg"
 import b7 from "../../Digital Card Assets/bb7.jpg"
 import b8 from "../../Digital Card Assets/bb8.jpg"
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 export default function TopBrand()
 {
     const matches = useMediaQuery("(max-width:500px)");
@@ -30,7 +32,10 @@ export default function TopBrand()
     return data.map((item)=>{
         return(<div style={{width:'100%'}}>
           <div style={{width:'95%',height:'95%',borderRadius:'45%',display:'flex',justifyContent:'center',flexDirection:'row'}}>
-          <img src={item} style={{width:'100%',margin:0}}></img>
+          <LazyLoadImage
+            src={item} style={{width:'100%',margin:0}}
+           effect="blur" // this will add a blur effect until the image loads
+          />
           </div>
         </div>)
     })

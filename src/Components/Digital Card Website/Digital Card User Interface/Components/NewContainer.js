@@ -44,6 +44,11 @@ import logo22 from "../../Digital Card Assets/logo22.png"
 import { useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { postData } from '../../../Services/NodeServices';
+
+
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 export default function NewContainer()
 {   
     const matches = useMediaQuery("(max-width:1000px)");
@@ -365,7 +370,11 @@ const loginPage=()=>{
       const showSlider=()=>{
           return data.map((item)=>{
               return(<Grid>
-                  <img src={item} style={{width:"95%",borderRadius:2}}/>
+
+          <LazyLoadImage
+       src={item} style={{width:"95%",borderRadius:2}}
+        effect="blur" // this will add a blur effect until the image loads
+      />
               </Grid>)
           })
       }
@@ -374,7 +383,10 @@ const loginPage=()=>{
       const showSlider2=()=>{
           return data2.map((item)=>{
               return(<Grid>
-                  <img src={item} style={{width:"85%",borderRadius:2}}/>
+ <LazyLoadImage
+       src={item} style={{width:"85%",borderRadius:2}}
+        effect="blur" // this will add a blur effect until the image loads
+      />
               </Grid>)
           })
       }
@@ -383,7 +395,10 @@ const loginPage=()=>{
       const showSlider3=()=>{
           return data3.map((item)=>{
               return(<Grid sx={{zIndex:100}}>
-                  <img src={item} style={{width:"95%",borderRadius:2}}/>
+                <LazyLoadImage
+       src={item} style={{width:"95%",borderRadius:2}}
+        effect="blur" // this will add a blur effect until the image loads
+      />
               </Grid>)
           })
       }
@@ -391,12 +406,20 @@ const loginPage=()=>{
     return(<Grid sx={{padding:2,color:'#fff',height:matches?'auto':530}}>
          <Grid sx={{marginLeft:matches?"0%":'5.5%',width:matches?'100%':'94%',display:'flex',flexDirection:matches?"column":'row',justifyContent:matches?'center':'none',alignItems:matches?'center':'none'}}>
             <Grid sx={{marginLeft:matches?'0%':'3%',position:'relative',width:matches?"99%":'40%',marginTop:'-2%'}}>
-              {matches?<></>:<> <img src={backgroundimg} style={{width:'90%'}}></img></>}
+              {matches?<></>:<>
+                <LazyLoadImage
+                  src={backgroundimg} style={{width:'90%',zIndex:10}}
+              effect="blur" // this will add a blur effect until the image loads
+/> </>}
+              
                {matches?<><Grid sx={{display:matches?'flex':'none',justifyContent:matches?'center':'normal',alignItems:matches?'center':"normal"}}>
-                <img src={backgroundimg} style={{width:matchesA ? '100%':'70%',marginTop:matchesA ? '-12%':'0%' }}></img>
+               <LazyLoadImage
+       src={backgroundimg} style={{width:matchesA ? '100%':'70%',marginTop:matchesA ? '-12%':'0%',zIndex:10 }}
+        effect="blur" // this will add a blur effect until the image loads
+         />
                 </Grid></>:<></>}
                 <Grid sx={{marginTop:matchesA ? '-82%':"-66%",zIndex:40,width:'100%',display:matches?'flex':'',justifyContent:matches?'center':'normal',flexDirection:'column',alignContent:matches?'center':"normal"}}>
-                    <Grid sx={{fontSize:matchesA ? '22px' : matches ? '30px' : '2.8vw',fontWeight:700,lineHeight:matches?'30px':'48px',fontFamily:'Montserrat',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",textAlign:matches?'center':"normal"}}>
+                    <Grid sx={{fontSize:matchesA ? '22px' : matches ? '30px' : '2.8vw',zIndex:50,color:'#fff',fontWeight:700,lineHeight:matches?'30px':'48px',fontFamily:'Montserrat',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",textAlign:matches?'center':"normal"}}>
                      MAKE YOUR  BUSSINES DIGITAL WITH US.
                     </Grid>
                     <Grid sx={{fontSize:matchesA ? '14px':matches?20:'1.6vw',fontWeight:400,lineHeight:matchesA ? '22px':'32px',fontFamily:'Montserrat',marginTop:'1%',display:matches?'flex':'',justifyContent:matches?'center':'normal',alignContent:matches?'center':"normal",textAlign:matches?'center':"normal"}}>
@@ -428,7 +451,7 @@ const loginPage=()=>{
              Create Now
               </Button>
               </Grid>
-              <Grid onClick={handleNagivate}  sx={{marginTop:'1%',cursor:'pointer'}}>
+              <Grid onClick={handleNagivate}  sx={{marginTop:'1%',cursor:'pointer',zIndex:30}}>
                 <img src={shop} width={100}></img>
               </Grid>
               {/* <Grid sx={{marginTop:'2%',marginLeft:'1%'}}>

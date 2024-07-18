@@ -36,6 +36,7 @@
     "react-easy-crop": "^5.0.2",
     "react-helmet": "^6.1.0",
     "react-image-crop": "^10.1.8",
+    "react-lazy-load-image-component": "^1.6.2",
     "react-live-clock": "^6.1.14",
     "react-player": "^2.12.0",
     "react-pricing": "^0.1.5",

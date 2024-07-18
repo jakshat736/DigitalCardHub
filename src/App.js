@@ -151,6 +151,8 @@ import NewBussinessProfileEcommerce from "./Components/Digital Card Website/Digi
 import NewCardHome from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/NewCardHome";
 import NewCardHome2 from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/NewCardHome2";
 import MainDashboard from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/MainDashboard";
+import InvitationPage from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/InvitationPage";
+import NewMultiHome from "./Components/Digital Card Website/Digital Card User Interface/MultiLink.js/NewMultiHome";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 
@@ -172,8 +174,8 @@ function App() {
 								<Route element={<Home/>} path="/home1"/>
 								<Route element={<NewCheckOut/>} path="/newcheckout" />
 								<Route element={<TermAndCondition/>} path="/termandcondition" />
-								<Route element={<PrivacyPolicy/>} path="/privacypolicy" />
-								<Route element={<RefundPolicy/>} path="/refund" />
+								<Route element={<PrivacyPolicy/>} path="/privacypolicy"/>
+								<Route element={<RefundPolicy/>} path="/refund"/>
 								<Route element={<NewCheckOut2/>} path="/newcheckout2" />
 								<Route element={<NewCheckOut3/>} path="/newcheckout3"/>
 								<Route element={<NewThemeCard/>} path="/newcart"/>
@@ -190,6 +192,7 @@ function App() {
 								<Route element={<CompanyName />} path="/companyname" />
 								<Route element={<ThemePage />} path="/themepage" />
 								<Route element={<Information />} path="/information" />
+								<Route element={<InvitationPage/>} path="/invitationpage" />
 								<Route element={<NewThemeInfo />} path="/newthemeinfo" />
 								<Route element={<Links />} path="/links" />
 								<Route element={<NewProfile/>} path="/newprofile"/>
@@ -256,7 +259,7 @@ function App() {
 								<Route path="/multisignup" element={<MultiSignUp />} />
 								<Route path="/multilogin" element={<MultiLogIn />} />
 								<Route path="/multi/:id" element={<MultiHome />} />
-
+								<Route path="newmultihome" element={<NewMultiHome/>} />
 
 								{/* Standee Tags Routes */}
 								<Route path="/standeesignup" element={<SignUp1 />} />

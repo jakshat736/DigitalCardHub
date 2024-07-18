@@ -91,10 +91,10 @@ export default function NewHome() {
       ) : (
         <Grid>
           <Grid sx={{ position: "sticky", top: "0", zIndex: 50 }}>
-            <NewHeader />
+            < NewHeader />
           </Grid>
           <Grid>
-            <NewContainer />
+            <NewContainer/>
           </Grid>
           <Grid>
             <Introducing />

@@ -11,6 +11,8 @@ import i6 from "../../Digital Card Assets/i6.png"
 import threephn from "../../Digital Card Assets/threephn.png"
 import {useMediaQuery} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function Newfooter()
 {
@@ -181,7 +183,10 @@ const handleCompitableDevices=()=>{
         </Grid></>:<></>}  
         </Grid>
         {matchesA?<></>:<Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',position:'absolute',bottom:'-36%'}}>
-          <img src={threephn} width={500}></img>
+        <LazyLoadImage
+           src={threephn} width={500}
+           effect="blur" // this will add a blur effect until the image loads
+          />
         </Grid>}
         </Grid>
         {matchesA?<></>:<Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',fontSize:'20px',fontWeight:400,letterSpacing:'-2%',lineHeight:'16px',marginTop:'10%'}}>

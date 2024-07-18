@@ -53,7 +53,7 @@ const CardHome = () => {
         {/* <Grid item xs={12} class='font1' sx={{ display: "flex", justifyContent: 'center', fontSize: 32, marginBottom: 2, marginTop: 2, color: '#000' }}>
           Don't have an account ?
         </Grid>
-        <Grid item xs={12} sx={{ display: "flex", justifyContent: 'center' }}>
+        <Grid item xs={12} sx={{ display: "flex", justifyContent: 'center'}}>
           <Button variant='contained' onClick={() => navigate('/digitalcardsignup')} sx={{ fontSize: 20, backgroundColor: '#F3B419', color: "black", "&:hover": { backgroundColor: '#F3B419' } }}><Typography class='font'>Create Now</Typography></Button>
         </Grid> */}
 

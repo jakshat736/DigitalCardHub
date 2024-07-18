@@ -1776,6 +1776,7 @@ export default function MenuTheme({ data }) {
               </Grid>
               <Grid sx={{ fontSize: 8 }}>DELIVERY</Grid>
             </Grid>
+            
           </Grid>
           <Grid
             style={{

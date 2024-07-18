@@ -10,6 +10,8 @@ import s5 from "../../Digital Card Assets/ss5.jpg"
 import s6 from "../../Digital Card Assets/ss6.jpg"
 import s7 from "../../Digital Card Assets/ss7.jpg"
 import s8 from "../../Digital Card Assets/ss8.jpg"
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { Grid, Button } from '@mui/material';
 import "../Components/YourStyles.css"
 import { makeStyles } from "@mui/styles";
@@ -67,7 +69,10 @@ export default function SliderForProducts() {
     return data.map((item, index) => {
       return (<Grid key={index} sx={{ width: '100%', display: 'block', flexDirection: 'column', mb: 10 }}>
         <Grid onClick={() => handleImageClick(index)} style={{ height: '300px', borderRadius: '24px', display: 'flex', justifyContent: 'center', flexDirection: 'row', textAlign: 'center', margin: '15px', borderrRadius: '10px' }}>
-          <img src={item} style={{ width: '98%', margin: 4, borderRadius: 10, objectFit: 'cover' }}></img>
+        <LazyLoadImage
+           src={item} style={{ width: '98%', margin: 4, borderRadius: 10, objectFit: 'cover' }}
+           effect="blur" // this will add a blur effect until the image loads
+          />
         </Grid>
         <Grid sx={{ display: 'flex', flexDirection: 'column', marginTop: matchesB ? '-28%' : matches ? '-22%' : '2.5%', color: '#fff', justifyContent: 'center', alignItems: 'center', textAlign: 'center', width: '100%', height: matchesB ? 250 : matches ? 300 : "auto" }}>
           <Grid sx={{ fontSize: matches ? '16px' : '1vw', fontWeight: 700, width: '80%' }}>
