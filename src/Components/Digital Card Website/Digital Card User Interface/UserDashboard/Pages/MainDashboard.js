@@ -1,15 +1,28 @@
-import {  useMediaQuery, Button, Divider, Grid, Dialog, Paper, InputBase, IconButton } from "@mui/material";
+import {  useMediaQuery, Button, Divider, Grid, Dialog, Paper, InputBase, IconButton, RadioGroup, FormControlLabel } from "@mui/material";
 import Navbar from "../UserComponents/Navbar";
 import eye from "../../../Digital Card Assets/eyes.png"
 import g from "../../../Digital Card Assets/google.png"
+import ankit from "../../../Digital Card Assets/ankit.jpg"
+import eyem from "../../../Digital Card Assets/eyem.png"
 import personal from "../../../Digital Card Assets/personal.png"
 import right from "../../../Digital Card Assets/right123.png"
+import contact from "../../../Digital Card Assets/contact.png"
 import links from "../../../Digital Card Assets/links.png"
+import Avatar from '@mui/material/Avatar';
+import ringm from "../../../Digital Card Assets/ringm.png"
+import Radio from '@mui/material/Radio';
 import service from "../../../Digital Card Assets/service.png"
 import close from "../../../Digital Card Assets/cross.png"
+import gg from "../../../Digital Card Assets/g.png"
+import h from "../../../Digital Card Assets/h.png"
 import edit from "../../../Digital Card Assets/edit.png"
 import Checkbox from '@mui/material/Checkbox';
 import count2 from "../../../Digital Card Assets/count2.png"
+import vehical from "../../../Digital Card Assets/vehical.png"
+import restaurantdetailsnew from "../../../Digital Card Assets/restaurantnew.png"
+import invite from "../../../Digital Card Assets/invite.png"
+import multinew from "../../../Digital Card Assets/multi.png"
+import door from "../../../Digital Card Assets/door.png"
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
@@ -72,6 +85,8 @@ export default function MainDashboard()
     const [countm,setCountm]= useState(false)
     const [create2,setCreate2]= useState(false)
     const [appoint,setAppoint]= useState(false)
+    const [createAppoint,setCreateAppoint]= useState(false)
+    const [updateProfile,setUpdateProfile]= useState(false)
 
     const handleCreate2 = () => {
       setCreate2(true);
@@ -79,7 +94,22 @@ export default function MainDashboard()
     const handleCloseCreate2 = () => {
       setCreate2(false);
     };
+
+    const handleUpdateProfileDetail = () => {
+      setUpdateProfile(true);
+    };
+    const handleCloseUpdateProfileDetail = () => {
+      setUpdateProfile(false);
+    };
     
+    const handleCreateAppointment = () => {
+      setCreateAppoint(true);
+    };
+    const handleCloseCreateAppointment = () => {
+      setCreateAppoint(false);
+    };
+    
+
     const handleAppointment = () => {
       setAppoint(true);
     };
@@ -564,6 +594,157 @@ export default function MainDashboard()
           </Dialog>
         );
       };
+
+
+
+      
+
+      const CreateAppointment = () => {
+        return (
+          <Dialog
+            PaperProps={{
+              style: {
+                width: matches ? "100%" : '30%',
+                height: matches ? 400 : 420,
+                borderRadius: 10,
+                background:'#ecf0f1'
+              },
+            }}
+            open={createAppoint}
+            onClose={handleCloseCreateAppointment}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <Grid sx={{ width: '100%',color:'#000'}}>
+            <Grid sx={{ width: '100%', height: 60, display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#2d3436' }}>
+                  <Grid sx={{ fontSize: matches ? '20px' : '24px', fontWeight: 500, lineHeight: '36px', color: '#fff', marginLeft: '2%', marginTop: '-.5%' }}>Tag Count / Tap</Grid>
+                  <Grid onClick={handleCloseCreateAppointment}
+                    aria-label="close"
+                    sx={{
+                      position: "absolute",
+                      right: 10,
+                      top: 16,
+                      color: "inherit",
+                      cursor: 'pointer'
+                    }}>
+                   <CloseIcon fontSize="medium" sx={{color:'#fff'}}/>
+                  </Grid>
+                </Grid>
+                <Grid sx={{display: 'flex',padding:3, marginTop:'2%',flexDirection:'column'}}>
+                <Grid sx={{fontSize:'14px',fontWeight:500,lineHeight:'26px'}}>
+                  Name
+                </Grid>
+             
+               <Grid
+                sx={{
+                  border: "1.8px solid #636e72",
+                  borderRadius: "10px",
+                  color: "#000",
+                  p: "2px 4px",
+                  display: "flex",
+                  alignItems: "center",
+                  height: "40px",
+                  width:'100%' ,
+                }}
+              >
+                <InputBase
+                  style={{ color: "#000",fontSize:'12px' }}
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="Paste your Name"
+                />
+              </Grid>
+
+              <Grid sx={{display:'flex',gap:2,marginTop:'4%'}}>
+              <Grid
+                sx={{
+                  border: "1.8px solid #636e72",
+                  borderRadius: "10px",
+                  color: "#000",
+                  p: "2px 4px",
+                  display: "flex",
+                  alignItems: "center",
+                  height: "40px",
+                  width:'100%' ,
+                }}
+              >
+                <InputBase
+                  style={{ color: "#000",fontSize:'12px' }}
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="Paste your Name"
+                />
+                 <IconButton
+                  type="button"
+                  sx={{ p: "10px" }}
+                >
+                <img src={gg} width={15}></img>
+                </IconButton>
+              </Grid>
+
+              <Grid
+                sx={{
+                  border: "1.8px solid #636e72",
+                  borderRadius: "10px",
+                  color: "#000",
+                  p: "2px 4px",
+                  display: "flex",
+                  alignItems: "center",
+                  height: "40px",
+                  width:'100%' ,
+                }}
+              >
+                <InputBase
+                  style={{ color: "#000",fontSize:'12px' }}
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="Paste your Name"
+                />
+                 <IconButton
+                  type="button"
+                  sx={{ p: "10px" }}
+                >
+                <img src={h} width={15}></img>
+                </IconButton>
+              </Grid>
+              </Grid>
+
+              <Grid sx={{display:'flex',padding:1,justifyContent:'space-between',width:'100%',height:60,background:'#D6D6D6',borderRadius:'15px',marginTop:'5%'}}>
+             <Grid sx={{display:'flex',alignItems:'center',width:'50%'}}><Grid><img src={ringm} width={25} style={{marginTop:'14%'}}></img></Grid><Grid sx={{fontSize:'15px',marginLeft:'3%',fontWeight:500}}>mobile notifiation :</Grid> </Grid><Grid>
+             <RadioGroup
+        row
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        name="row-radio-buttons-group"
+      >
+        <FormControlLabel value="female" control={<Radio />} label="Female" />
+        <FormControlLabel value="male" control={<Radio />} label="Male" />
+      </RadioGroup>
+             </Grid>
+              </Grid>
+              <Button
+                      style={{
+                        marginTop:'5%',
+                        border: '1px solid #000',
+                        borderColor: '#000',
+                        height: matchesB ? 35 : '40px',
+                        color: "#fff",
+                        fontSize: matchesB ? '12px' : "1.3vw",
+                        fontWeight: 600,
+                        textTransform: "none",
+                        borderRadius: '6px',
+                        display: "flex",
+                        background: '#000',
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }} fullWidth>
+                    Create
+                    </Button>
+               <Grid sx={{fontSize:'14px',fontWeight:300,color:'#000',textAlign:'center',lineHeight:'18px',marginTop:'2%'}}>
+               create a new appointment by filling necessary information into it.
+               </Grid>
+              </Grid>
+               </Grid>
+          </Dialog>
+        );
+      };
+  
    
 
 
@@ -679,7 +860,7 @@ export default function MainDashboard()
           <Dialog
             PaperProps={{
               style: {
-                width: matches ? "100%" : '80%',
+                width: matches ? "100%" : '28%',
                 height: matches ? 'auto' : 270,
                 borderRadius: 10,
                 background:'#ecf0f1'
@@ -1029,13 +1210,19 @@ export default function MainDashboard()
             aria-describedby="alert-dialog-description"
           >
             <Grid sx={{ width: '100%', height: 'auto' ,color:'#000'}}>
-            <Grid sx={{display:'flex',justifyContent:"space-between",alignItems:'center',padding:matches1?2:3,background:'#2d3436'}}>
-            <Grid sx={{fontSize:matches2?'20px':'24px',fontWeight:600,color:'#fff'}}>
-            Tag Activation
-            </Grid>
-            <Grid>
-                <img src={crose} width={matches2?15:20}  onClick={handleCloseTage}  style={{cursor:'pointer'}}></img>
-            </Grid>
+            <Grid sx={{display:'flex',justifyContent:"center",alignItems:'center',padding:matches1?2:3,background:'#2d3436'}}>
+            <Grid sx={{ fontSize: matches ? '20px' : '25px', fontWeight: 500, lineHeight: '36px', color: '#fff', marginLeft: '2%', marginTop: '-.5%' }}>Tage Activation</Grid>
+                  <Grid onClick={handleCloseTage}
+                    aria-label="close"
+                    sx={{
+                      position: "absolute",
+                      right: 10,
+                      top: 16,
+                      color: "inherit",
+                      cursor: 'pointer'
+                    }}>
+                   <CloseIcon fontSize="large" sx={{color:'#fff'}}/>
+                  </Grid>
              </Grid>
 
              <Divider
@@ -1060,7 +1247,7 @@ export default function MainDashboard()
                 display: "flex",
                 alignItems: "center",
                 width: matches2?'70%':300,
-                borderRadius: 4,
+                borderRadius: '6px',
                 height:matches2?30:38,
                 background: "transparent",
                 border: "1px solid #000",
@@ -1419,13 +1606,19 @@ export default function MainDashboard()
           aria-describedby="alert-dialog-description"
         >
           <Grid sx={{ width: '100%', height: 'auto' ,color:'#000'}}>
-          <Grid sx={{display:'flex',justifyContent:"space-between",alignItems:'center',padding:matches1?2:3,background:'#2d3436'}}>
-          <Grid sx={{fontSize:matches2?'20px':'28px',fontWeight:600,color:'#fff'}}>
-          Appointments
-          </Grid>
-          <Grid>
-              <img src={crose} width={matches2?15:20}  onClick={handleCloseAppointment}  style={{cursor:'pointer'}}></img>
-          </Grid>
+          <Grid sx={{display:'flex',justifyContent:"center",alignItems:'center',padding:matches1?2:3,background:'#2d3436'}}>
+          <Grid sx={{ fontSize: matches ? '20px' : '28px', fontWeight: 600, lineHeight: '36px', color: '#fff', marginLeft: '2%', marginTop: '-.5%' }}>Appointments</Grid>
+                  <Grid onClick={handleCloseAppointment}
+                    aria-label="close"
+                    sx={{
+                      position: "absolute",
+                      right: 10,
+                      top: 16,
+                      color: "inherit",
+                      cursor: 'pointer'
+                    }}>
+                    <CloseIcon fontSize="medium" style={{color:'#fff'}}/>
+                  </Grid>
            </Grid>
 
            <Divider
@@ -1444,7 +1637,7 @@ export default function MainDashboard()
              Appointments
              </Grid>
             <Grid>
-            <Button 
+            <Button onClick={handleCreateAppointment}
               style={{
                 border: "1px solid #000",
                 borderColor: "#000",
@@ -1657,13 +1850,19 @@ Chinmay sharma
             aria-describedby="alert-dialog-description"
           >
             <Grid sx={{ width: '100%', height: 'auto' ,color:'#000'}}>
-            <Grid sx={{display:'flex',justifyContent:"space-between",alignItems:'center',padding:matches1?2:3,background:'#2d3436'}}>
-            <Grid sx={{fontSize:matches2?'20px':'24px',fontWeight:600,color:'#fff'}}>
-            Multi Tag Activation
-            </Grid>
-            <Grid>
-                <img src={crose} width={matches2?15:20}  onClick={handleCloseMultiTage}  style={{cursor:'pointer'}}></img>
-            </Grid>
+            <Grid sx={{display:'flex',justifyContent:"center",alignItems:'center',padding:matches1?2:3,background:'#2d3436'}}>
+            <Grid sx={{ fontSize: matches ? '20px' : '28px', fontWeight: 500, lineHeight: '36px', color: '#fff', marginLeft: '2%', marginTop: '-.5%' }}>Multi Profile Activation</Grid>
+                  <Grid onClick={handleCloseMultiTage}
+                    aria-label="close"
+                    sx={{
+                      position: "absolute",
+                      right: 10,
+                      top: 16,
+                      color: "inherit",
+                      cursor: 'pointer'
+                    }}>
+                   <CloseIcon fontSize="large" sx={{color:'#fff'}}/>
+                  </Grid>
              </Grid>
 
              <Divider
@@ -1688,15 +1887,15 @@ Chinmay sharma
                 display: "flex",
                 alignItems: "center",
                 width: matchesA?'60%':300,
-                borderRadius: 4,
+                borderRadius: '6px',
                 height:matches2?25: 38,
                 background: "transparent",
-                border: "1px solid #000",
+                border: "1px solid #636e72",
               }}
             >
               <InputBase
                 sx={{ ml: 1, flex: 1, color: "#000", fontSize: "14px" }}
-                placeholder="Enter search......."
+                placeholder="Search......."
               />
               <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
               <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
@@ -1706,7 +1905,7 @@ Chinmay sharma
             </Grid>
 
 <Grid sx={{border:'1px solid #000',width:'100%',height:350,borderRadius:'15px',background:'#fff',marginTop:'3%',padding:matches?1:2,color:'#000',overflow:'scroll',scrollbarWidth:'none'}}>
-<Grid sx={{display:'flex',alignItems:'center',justifyContent:"space-between"}}>
+<Grid sx={{display:'flex',justifyContent:'space-between',alignItems:'center',width:'100%'}}>
     <Grid sx={{fontSize:matches2?'13px':'22px',fontWeight:500}}>
     Tag Id
     </Grid>
@@ -1755,7 +1954,10 @@ Chinmay sharma
                 </Button>
     </Grid>
     
-<Grid sx={{display:'flex',alignItems:'center',gap:2.2,cursor:'pointer'}}>
+<Grid sx={{display:'flex',alignItems:'center',gap:matches2?1:3,cursor:'pointer'}}>
+<Grid>
+<img src={eyem} width={24}></img>
+</Grid>
 <Grid onClick={handleAddLink}>
 <img src={edit} width={24}></img>
 </Grid>
@@ -1815,7 +2017,10 @@ Chinmay sharma
                 Active
                 </Button>
     </Grid>
-    <Grid sx={{display:'flex',alignItems:'center',gap:2.2,cursor:'pointer'}}>
+    <Grid sx={{display:'flex',alignItems:'center',gap:matches2?1:3,cursor:'pointer'}}>
+    <Grid>
+<img src={eyem} width={24}></img>
+</Grid>
     <Grid   onClick={handleAddLink}>
 <img src={edit} width={24}></img>
 </Grid>
@@ -1852,7 +2057,10 @@ Chinmay sharma
                 Active
                 </Button>
     </Grid>
-    <Grid sx={{display:'flex',alignItems:'center',gap:2.2,cursor:'pointer'}}>
+    <Grid sx={{display:'flex',alignItems:'center',gap:matches2?1:3,cursor:'pointer'}}>
+    <Grid>
+<img src={eyem} width={24}></img>
+</Grid>
     <Grid   onClick={handleAddLink}>
 <img src={edit} width={24}></img>
 </Grid>
@@ -1861,16 +2069,226 @@ Chinmay sharma
 </Grid>
 </Grid>
 </Grid>
-
-
-
-
-
 </Grid>
-
-
              </Grid>
             </Grid>
+          </Dialog>
+        );
+      };
+    
+    
+
+
+
+      const UpdateProfileDetail = () => {
+        return (
+          <Dialog
+          fullWidth
+          maxWidth={false}
+            PaperProps={{
+              style: {
+                width:matches1?'98%':'30%',
+                height: 'auto',
+                overflow:'scroll',
+                scrollbarWidth:'none',
+                borderRadius: 10,
+                backgroundImage: "radial-gradient(#f5f6fa,#fff)",
+              },
+            }}
+            open={updateProfile}
+            onClose={handleCloseUpdateProfileDetail}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <Grid sx={{ width: '100%', height: 'auto' ,color:'#000'}}>
+            <Grid sx={{display:'flex',justifyContent:"center",alignItems:'center',padding:1.6,background:'#2d3436'}}>
+            <Grid sx={{ fontSize: matches ? '20px' : '25px', fontWeight: 500, lineHeight: '36px', color: '#fff', marginLeft: '2%', marginTop: '-.5%' }}>Personal details</Grid>
+                  <Grid onClick={handleCloseUpdateProfileDetail}
+                    aria-label="close"
+                    sx={{
+                      position: "absolute",
+                      right: 10,
+                      top: 16,
+                      color: "inherit",
+                      cursor: 'pointer'
+                    }}>
+                   <CloseIcon fontSize="medium" sx={{color:'#fff'}}/>
+                  </Grid>
+             </Grid>
+             <Grid>
+           <Grid sx={{padding:.8,display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
+              <Grid>
+                <img src={contact} width={50}></img>
+              </Grid>
+              <Grid sx={{fontSize:'22px',fontWeight:600,lineHeight:'26px'}}>
+              Update Profile details
+              </Grid>
+           </Grid>
+           </Grid>
+           <Divider
+              style={{
+                background:'#2d3436',
+              }}
+            />
+
+            <Grid sx={{padding:2}}>
+             <Grid sx={{fontSize:'22px',fontWeight:500}}>
+              Profile:
+             </Grid>
+             <Divider
+              style={{
+                background:'#2d3436',
+                width:'20%'
+              }}
+            />
+             <Grid sx={{ display: "flex", alignItems: "center",border:'1px solid #000',borderRadius:'10px',padding:1 ,marginTop:'2%'}}>
+                <Avatar
+                  fullWidth
+                  alt="Remy Sharp"
+                  sx={{ width: matches ? 70 : '6vw', height: matches ? 70 : '6vw', marginTop: "2%" }}
+                />
+
+                <Grid sx={{ marginLeft: "4%", marginTop: matches ? '4%' : "2%" }}>
+                  <Grid>
+                    <label htmlFor="icon-button-file1">
+                      <input
+                        style={{ display: "none" }}
+                        accept="image/*"
+                        id="icon-button-file1"
+                        type="file"
+                      />
+                      <Button
+                        aria-label="upload picture"
+                        component="span"
+                        style={{
+                          border: "1px solid #000",
+                          borderColor: "#000",
+                          height: matches ? 28 : "35px",
+                          width: matches ? '120px' : "150px",
+                          lineHeight: "36px",
+                          color: "#000",
+                          fontSize: matches ? '12px' : "14px",
+                          fontWeight: 500,
+                          textTransform: "none",
+                          borderRadius: "10px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        Upload Logo
+                      </Button>
+                    </label>
+                  </Grid>
+                  <Grid
+                    sx={{
+                      fontSize: matches ? '12px' : "14px",
+                      fontWeight: 400,
+                      marginTop: "1.5%",
+                      lineHeight: "20px",
+                    }}
+                  ><div>
+                      (250*250px)
+                    </div>
+                    Upload Your Profile Photo For your business profile
+                  </Grid>
+                </Grid>
+              </Grid>
+              
+            <Grid sx={{fontSize:'18px',fontWeight:500,marginTop:'3%'}}>
+            Full Name*
+             </Grid>
+             <Grid
+                sx={{
+                  border: "1.8px solid #636e72",
+                  borderRadius: "10px",
+                  marginTop:'.8%',
+                  color: "#000",
+                  p: "2px 4px",
+                  display: "flex",
+                  alignItems: "center",
+                  height: "40px",
+                  width:'100%' ,
+                }}
+              >
+                <InputBase
+                  style={{ color: "#000" }}
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="Paste your Name"
+                />
+              </Grid> 
+
+
+              <Grid sx={{fontSize:'18px',fontWeight:500,marginTop:'3%'}}>
+              Designation*
+             </Grid>
+             <Grid
+                sx={{
+                  border: "1.8px solid #636e72",
+                  borderRadius: "10px",
+                  marginTop:'.8%',
+                  color: "#000",
+                  p: "2px 4px",
+                  display: "flex",
+                  alignItems: "center",
+                  height: "40px",
+                  width:'100%' ,
+                }}
+              >
+                <InputBase
+                  style={{ color: "#000" }}
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="Paste your designation"
+                />
+              </Grid> 
+
+
+              <Grid sx={{fontSize:'18px',fontWeight:500,marginTop:'3%'}}>
+              Number*
+             </Grid>
+             <Grid
+                sx={{
+                  border: "1.8px solid #636e72",
+                  borderRadius: "10px",
+                  marginTop:'.8%',
+                  color: "#000",
+                  p: "2px 4px",
+                  display: "flex",
+                  alignItems: "center",
+                  height: "40px",
+                  width:'100%' ,
+                }}
+              >
+                <InputBase
+                  style={{ color: "#000" }}
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="Paste your number"
+                />
+              </Grid> 
+              <Button
+                  style={{
+                    border: "1px solid #0000",
+                    marginTop:'3%',
+                    borderColor: "#0000",
+                    width:"100%",
+                    height: matches2?'25px': "45px",
+                    color: "#fff",
+                    background: "#000",
+                    fontSize: matches2?'12px': "18px",
+                    fontWeight: 500,
+                    textTransform: "none",
+                    borderRadius: "8px",
+                    display: "flex",
+                    lineHeight: "36px",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                save changes
+                </Button>
+            </Grid>
+         </Grid>
+
           </Dialog>
         );
       };
@@ -1901,13 +2319,19 @@ Chinmay sharma
             aria-describedby="alert-dialog-description"
           >
             <Grid sx={{ width: '100%', height: 'auto' ,color:'#000'}}>
-            <Grid sx={{display:'flex',justifyContent:"space-between",alignItems:'center',padding:matches1?2:3,background:'#2d3436'}}>
-            <Grid sx={{fontSize:matches2?'20px':'24px',fontWeight:600,color:'#fff'}}>
-            Add Multi Tags
-            </Grid>
-            <Grid>
-                <img src={crose} width={matches2?15:20}  onClick={handleCloseAddLinks}  style={{cursor:'pointer'}}></img>
-            </Grid>
+            <Grid sx={{display:'flex',justifyContent:"center",alignItems:'center',padding:matches1?2:3,background:'#2d3436'}}>
+            <Grid sx={{ fontSize: matches ? '20px' : '28px', fontWeight: 500, lineHeight: '36px', color: '#fff', marginLeft: '2%', marginTop: '-.5%' }}>Add Multi Tage</Grid>
+                  <Grid onClick={handleCloseAddLinks}
+                    aria-label="close"
+                    sx={{
+                      position: "absolute",
+                      right: 10,
+                      top: 16,
+                      color: "inherit",
+                      cursor: 'pointer'
+                    }}>
+                   <CloseIcon fontSize="large" sx={{color:'#fff'}}/>
+                  </Grid>
              </Grid>
 
              <Divider
@@ -1917,39 +2341,55 @@ Chinmay sharma
                 height:matches2?'1px':'2px'
               }}
             />
-               <Grid sx={{width:'100%',textAlign:'center',fontSize:'16px',marginTop:'3%',display:'flex',alignItems:'center',justifyContent:'center',color:'#000'}}>
-               Activate your Multi tage and social media tags from here.
+               <Grid sx={{width:'100%',height:95,textAlign:'center',marginTop:'1%',display:'flex',padding:2,background:'#E9E9E9',color:'#000'}}>
+               <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%'}}>
+               <Grid >
+        <Avatar
+        alt="Remy Sharp"
+        src={ankit}
+        sx={{ width: 80, height: 80 }}
+      />
                </Grid>
-             <Grid sx={{padding:matches1?2:3,width:'100%',marginTop:'1%'}}>
-            <Grid sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-               <Grid sx={{fontSize:matches2?'16px':'22px',fontWeight:500}}>
-               Multi Tag List
+               <Grid sx={{marginLeft:'3%'}}>
+               <Grid sx={{fontSize:'20px',fontWeight:600,textAlign:'left'}}>
+                Harshit Jain
                </Grid>
-               <Paper
-              component="form"
-              sx={{
-                p: "2px 4px",
-                display: "flex",
-                alignItems: "center",
-                width: matchesA?'50%':300,
-                borderRadius: 4,
-                height:matches2?25: 38,
-                background: "transparent",
-                border: "1px solid #000",
-              }}
-            >
-              <InputBase
-                sx={{ ml: 1, flex: 1, color: "#000", fontSize: "14px" }}
-                placeholder="Enter search......."
-              />
-              <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-              <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-                <SearchIcon style={{ color: "#000" ,fontSize:'20px'}} />
-              </IconButton>
-            </Paper>
-            </Grid>
+               <Grid sx={{fontSize:'14px',fontWeight:300,marginTop:'1.4%'}}>
+               Manager at Ibuzz Tech
+               </Grid>
+               </Grid>
+               </Grid>
+               </Grid>
 
-<Grid sx={{border:'1px solid #000',width:'100%',height:300,borderRadius:'15px',background:'#fff',marginTop:'3%',padding:matches?1:2,color:'#000',overflow:'scroll',scrollbarWidth:'none'}}>
+               <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'2%'}}>
+                 
+               <Button onClick={handleUpdateProfileDetail}
+                style={{
+                  border: "1px solid #000",
+                  borderColor: "#000",
+                  background:'#fff',
+                  height:matches2?'35px':"42px",
+                  width:matches2?'100%':'40%',
+                  color: "#000",
+                  fontSize:matches2?'10px': "16px",
+                  fontWeight: 600,
+                  textTransform: "none",
+                  borderRadius: "10px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  lineHeight:'22px',
+                  letterSpacing:'-2.2%',
+                  gap:10
+
+                }}
+              >
+            <img src={contact} width={25}></img>  Update Profile details
+              </Button>
+
+               </Grid>
+  <Grid sx={{padding:matches1?2:3,width:'100%'}}>
+<Grid sx={{border:'1px solid #000',width:'100%',height:300,borderRadius:'15px',background:'#fff',padding:matches?1:2,color:'#000',overflow:'scroll',scrollbarWidth:'none'}}>
 <Grid sx={{display:'flex',alignItems:'center',justifyContent:"space-between"}}>
     <Grid sx={{fontSize:matches2?'13px':'22px',fontWeight:500}}>
     Title
@@ -2302,7 +2742,7 @@ Chinmay sharma
                   
                 }}
               >
-             <img src={g} width={matchesA?15:20}></img> <div style={{marginLeft:'5%'}}>Activate</div>
+             <img src={multinew} width={matchesA?15:20}></img> <div style={{marginLeft:'5%'}}>Activate</div>
               </Button>
                     </Grid>
                 </Grid> 
@@ -2338,7 +2778,7 @@ Chinmay sharma
                   
                 }}
               >
-             <img src={g} width={matchesA?15:20}></img> <div style={{marginLeft:'5%'}}>Activate</div>
+             <img src={restaurantdetailsnew} width={matchesA?15:20}></img> <div style={{marginLeft:'5%'}}>Activate</div>
               </Button>
                     </Grid>
                 </Grid> 
@@ -2376,7 +2816,7 @@ Chinmay sharma
                   
                 }}
               >
-             <img src={g} width={matchesA?15:20}></img> <div style={{marginLeft:'5%'}}>Activate</div>
+             <img src={invite} width={matchesA?15:20}></img> <div style={{marginLeft:'5%'}}>Activate</div>
               </Button>
                     </Grid>
                 </Grid> 
@@ -2412,7 +2852,7 @@ Chinmay sharma
                   
                 }}
               >
-             <img src={g} width={matchesA?15:20}></img> <div style={{marginLeft:'5%'}}>Activate</div>
+             <img src={vehical} width={matchesA?15:20}></img> <div style={{marginLeft:'5%'}}>Activate</div>
               </Button>
                     </Grid>
                 </Grid> 
@@ -2448,7 +2888,7 @@ Chinmay sharma
                   
                 }}
               >
-             <img src={g} width={matchesA?15:20}></img> <div style={{marginLeft:'5%'}}>Activate</div>
+             <img src={door} width={matchesA?15:20}></img> <div style={{marginLeft:'5%'}}>Activate</div>
               </Button>
                     </Grid>
                 </Grid> 
@@ -2560,5 +3000,7 @@ Chinmay sharma
         {handleNewLinks()}
         {Success()}
         {AppointmentsDialog()}
+        {CreateAppointment()}
+        {UpdateProfileDetail()}
     </Grid>)
 }

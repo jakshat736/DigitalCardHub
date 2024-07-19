@@ -1,10 +1,8 @@
 import { Grid } from "@mui/material";
 import Header from "../adminpannel/Header";
-import NewBussinessProfile from "../../Digital Card User Interface/UserDashboard/Pages/NewBussinessProfile";
-import NewBussinessProfileLink from "../../Digital Card User Interface/UserDashboard/Pages/NewBussinessProfileLink";
-import NewBussinessProfileEcommerce from "../../Digital Card User Interface/UserDashboard/Pages/NewBussinessProfileEcommerce";
-import Link from "./Link";
-import Ecommerce from "./Ecommerce";
+import PersonalInformation from "./PersonalInformation";
+
+
 
 
 export default function NewUserDashBoard()
@@ -14,13 +12,7 @@ export default function NewUserDashBoard()
         <Header/>
        </Grid>
        <Grid>
-        <NewBussinessProfile/>
-       </Grid>
-       <Grid>
-       <Link/>
-       </Grid>
-       <Grid>
-       <Ecommerce/>
+        <PersonalInformation/>
        </Grid>
     </Grid>)
 }

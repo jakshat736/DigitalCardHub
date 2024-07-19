@@ -35,7 +35,7 @@ import "slick-carousel/slick/slick.css";
 import Swal from "sweetalert2";
 import { postData, serverURL } from "../../../../Services/NodeServices";
 import snapchatnew from "../Themes/ThemeAssets/snapchatnew.png";
-
+import morelatest from '../Themes/ThemeAssets/morelatest.png';
 import behance from '../../../Digital Card Assets/behance.png';
 import logo1 from '../../../Digital Card Assets/dchlogo.png';
 import discord from '../../../Digital Card Assets/discord.png';
@@ -1651,7 +1651,7 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           <Grid
             style={{
               width: "100%",
-              height: 95,
+              height: matches?80:90,
               position: "relative",
               background: "#fff",
               borderRadius: "15px 15px 0px  0px",
@@ -1722,50 +1722,8 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             ></Grid>
           </Grid>
           <Grid style={{ background: "#fff" }}>
-            <Grid style={{ display: "flex", flexDirection: "row" }}>
-              <Box
-                sx={{
-                  height: 50,
-                  transform: "translateZ(100px)",
-                  flexGrow: 1,
-                  position: "relative",
-                  marginTop: matches ? "-8.7%" : '-5%',
-                }}
-              >
-                <SpeedDial
-                  ariaLabel="SpeedDial basic example"
-                  sx={{
-                    '& .MuiSpeedDial-fab': {
-                      boxShadow: 'none', // Remove the box shadow
-                      backgroundColor: '#fff' // Set background color to #fff
-                    },
-                    '& .MuiSpeedDial-fab:hover': {
-                      boxShadow: 'none',
-                      backgroundColor: '#fff' // Ensure background color remains #fff on hover
-                    },
-                    '&.MuiSpeedDial-open .MuiSpeedDial-fab': {
-                      boxShadow: 'none',
-                      backgroundColor: '#fff' // Ensure background color remains #fff when open/clicked
-                    }, position: "absolute", right: 6, bottom: 1
-                  }}
-                  direction="left"
-                  icon={
-                    <img src={moreicons} width={40}></img>
-                  }
-                >
-                  {actions.map((action) => (
-                    <SpeedDialAction
-                      key={action.name}
-                      icon={action.icon}
-                      tooltipTitle={action.name}
-                      onClick={() => handleClickIcon(action.name)}
-                    />
-                  ))}
-                </SpeedDial>
-              </Box>
-            </Grid>
             <Grid
-              style={{ marginLeft: matches ? "4%" : "6%", marginTop: matches ? "-2%" : '3%' }}
+              style={{ marginLeft: matches ? "4%" : "6%", marginTop: '3%' }}
             >
               <Grid
                 style={{
@@ -4142,14 +4100,14 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
           </Grid>
 
           <Grid
-            onClick={handleClickSignup}
+            // onClick={handleClickSignup}
             sx={{
               background: `linear-gradient(to bottom, #FD0000 0%, #F5C92B 20%, #2FF52B 40%, #2BE9F5 60%, #2B3FF5 80%, #D92BF5 100%)`,
               marginLeft: matches ? "66%" : "20%",
               position: "fixed",
               bottom: matches ? 0 : 0,
-              width: matches ? "82px" : "82px",
-              height: matches ? "82px" : "82px",
+              width: matches ? "70px" : "70px",
+              height: matches ? "70px" : "70px",
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
@@ -4163,26 +4121,65 @@ export default function Theme12({ data, products, gallery, ecommerce }) {
             <Grid
               sx={{
                 // background: 'linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3)',
-                width: matches ? "70px" : "70px",
-                height: matches ? "70px" : "70px",
+                width: matches ? "60px" : "60px",
+                height: matches ? "60px" : "60px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: "95px",
                 cursor: "pointer",
-                backgroundImage: "radial-gradient(#fff,#D0D0D0 )",
+                background: "#dcdde1",
               }}
             >
-              <Grid
+             
+
+
+             <Grid style={{ display: "flex", flexDirection: "row" }}>
+              <Box
                 sx={{
-                  fontSize: "16px",
-                  fontWeight: 600,
-                  textAlign: "center",
-                  color: "#000",
+                  height: 50,
+                  transform: "translateZ(100px)",
+                  flexGrow: 1,
+                  position: "relative",
                 }}
               >
-                Create<br></br> Your
-              </Grid>
+                <SpeedDial
+                  ariaLabel="SpeedDial basic example"
+                  sx={{
+                    '& .MuiSpeedDial-fab': {
+                      boxShadow: 'none', // Remove the box shadow
+                      background: "#dcdde1", // Set background color to #fff
+                    },
+                    '& .MuiSpeedDial-fab:hover': {
+                      boxShadow: 'none',
+                      background: "#dcdde1", // Ensure background color remains #fff on hover
+                    },
+                    '&.MuiSpeedDial-open .MuiSpeedDial-fab': {
+                      boxShadow: 'none',
+                      background: "#dcdde1",// Ensure background color remains #fff when open/clicked
+                    }, position: "absolute", right:-28,bottom:-2.1
+                  }}
+                  direction="left"
+                  icon={
+                    <img src={morelatest} width={23}></img>
+                  }
+                >
+                  {actions.map((action) => (
+                    <SpeedDialAction
+                      key={action.name}
+                      icon={action.icon}
+                      tooltipTitle={action.name}
+                      onClick={() => handleClickIcon(action.name)}
+                    />
+                  ))}
+                </SpeedDial>
+              </Box>
+            </Grid>
+
+
+
+
+             
             </Grid>
           </Grid>
         </Grid>

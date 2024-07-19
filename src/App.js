@@ -270,7 +270,6 @@ function App() {
 								<Route path="/shop" element={<Shop />} />
 								{/* <Route path="/review/dashboard" element={<Dashboard/>} />   */}
 
-
 								{/* Menu */}
 
 								<Route path="/box" element={<Box />}/>
@@ -278,10 +277,10 @@ function App() {
 								<Route element={<MenuTheme />} path="/menutheme/:menuId"/>
 								<Route element={<MenuTheme2/>} path="/menu2" />
 								<Route element={<MenuTheme3/>} path="/menu3" />
-								<Route path="/menuDashboard/:menuId" element={<MenuDashBoard />} />
-								<Route path="/newmenudashboard/*" element={<NewMenuDashBoard/>} />
-								<Route path="/newuserdashboard" element={<NewUserDashBoard/>} />
-								<Route path="/orderlist" element={<OrderList/>} />
+								<Route path="/menuDashboard/:menuId" element={<MenuDashBoard />}/>
+								<Route path="/newmenudashboard/*" element={<NewMenuDashBoard />}/>
+								<Route path="/newuserdashboard" element={<NewUserDashBoard />}/>
+								<Route path="/orderlist" element={<OrderList/>}/>
 								<Route path="/coupons" element={<Coupons/>} />
 								<Route path="/newselforder" element={<NewSelfOrder/>} />
 								<Route path="/addmenu" element={<AddMenu />} />

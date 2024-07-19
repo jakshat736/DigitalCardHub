@@ -15,6 +15,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import burgur2 from "../../Digital Card Assets/burgur2.png"
 import dark from "../../Digital Card Assets/rightdark.png"
 import { useState } from "react";
+import live from "../assets/live2.png";
 import close from "../../Digital Card Assets/cross.png"
 import right from "../../Digital Card Assets/righticonpopup.png"
 import Dialog from "@mui/material/Dialog";
@@ -1413,7 +1414,12 @@ Burgers
           </Grid>
           </Grid>
          </Grid>
-        </Grid>     
+        </Grid>  
+
+
+               <Grid sx={{width:'100%',marginLeft:'auto', position: "fixed",zIndex:100,bottom:0,marginBottom:'4%'}}>
+  <img src={live} width={200} style={{marginLeft:matchesB?'':'52%'}}></img></Grid>
+
     </Grid>
     {ViewQuantity()}
     {ViewAddOn()}
