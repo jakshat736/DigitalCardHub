@@ -153,6 +153,10 @@ import NewCardHome2 from "./Components/Digital Card Website/Digital Card User In
 import MainDashboard from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/MainDashboard";
 import InvitationPage from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/InvitationPage";
 import NewMultiHome from "./Components/Digital Card Website/Digital Card User Interface/MultiLink.js/NewMultiHome";
+import VehicleProfile from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/VehicleProfile";
+import VehicalSuccess from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/VehicalSuccess";
+import VehicleAbout from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/VehicleAbout";
+import Utube from "./Components/Digital Card Website/Digital Card User Interface/Components/Utube";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 
@@ -183,6 +187,7 @@ function App() {
 								<Route element={<ProductComponents/>} path="/productcomponents/:_id"/>
 								<Route element={<NewAllProducts/>} path="/newallproduct"/>
 								<Route element={<NewAllProduct2/>} path="/newallproduct2"/>
+								<Route element={<Utube/>} path="/utube"/>
 								<Route element={<CategoryProducts/>} path="/categoryproducts/:_id"/>
 								<Route element={<CooperateEnquiries/>} path="/cooperate"/>
 								<Route element={<DCLogin/>} path="/digitalcardlogin"/>
@@ -193,6 +198,9 @@ function App() {
 								<Route element={<ThemePage />} path="/themepage" />
 								<Route element={<Information />} path="/information" />
 								<Route element={<InvitationPage/>} path="/invitationpage" />
+								<Route element={<VehicleProfile/>} path="/vehicle" />
+								<Route element={<VehicalSuccess/>} path="/vehiclesuccess" />
+								<Route element={<VehicleAbout/>} path="/vehicleabout"/>
 								<Route element={<NewThemeInfo />} path="/newthemeinfo" />
 								<Route element={<Links />} path="/links" />
 								<Route element={<NewProfile/>} path="/newprofile"/>

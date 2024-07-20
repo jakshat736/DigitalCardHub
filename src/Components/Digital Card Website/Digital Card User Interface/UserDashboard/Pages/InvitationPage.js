@@ -70,7 +70,7 @@ export default function InvitationPage()
               <Grid sx={{display:'flex',alignItems:'center',height:400,marginTop:'1%',flexDirection:'column',border:'1px solid #353535',borderRadius:'4px',justifyContent:'center',background:'#f5f6fa'}}>
                 <Grid><img src={upload} width={45}></img></Grid>
                 <Grid sx={{fontSize:'20px',fontWeight:600,marginTop:'2%'}}>
-                Upload video
+                Upload Image
                 </Grid>
                 <Grid sx={{fontSize:'10px',textAlign:'center',width:'50%',fontWeight:400,marginTop:'2%'}}>
                 The video format should be less then 5 Mb and 390w by 840h.
@@ -239,14 +239,14 @@ export default function InvitationPage()
             />
 
 
-<Grid sx={{display:'flex',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:1}}>
-    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600}}>
+<Grid sx={{display:'flex',width:'100%',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:1}}>
+    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600,width:'33%'}}>
     Wedding Invitation
     </Grid>
-    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600}}>
+    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600,width:'33%',display:'flex',justifyContent:'center',alignItems:'center'}}>
     10:23 Am, 1 june 24
     </Grid>
-    <Grid sx={{display:'flex',gap:1,flexDirection:matches3?'column':'row',alignItems:'center'}}>
+    <Grid sx={{display:'flex',gap:1,flexDirection:matches3?'column':'row',alignItems:'center',width:'33%'}}>
     <Button
                 style={{
                   border: "1px solid #158FFF",
@@ -263,201 +263,8 @@ export default function InvitationPage()
                   alignItems: "center",
                   justifyContent: "center",
                   lineHeight:'22px',
-                  letterSpacing:'-2.2%'
-                  
-                }}
-              >
-             <VisibilityIcon sx={{fontSize:'18px',marginLeft:'-3%'}}/>Preview
-              </Button>
-              <Button
-                style={{
-                  border: "1px solid #000",
-                  borderColor: "#000",
-                  background:'#000',
-                  height:matches3?'20px':matches2?'26px':"34px",
-                  width:matches2?'80px':'40px',
-                  color: "#fff",
-                  fontSize:matches2?'10px': "14px",
-                  fontWeight: 500,
-                  textTransform: "none",
-                  borderRadius: "4px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  lineHeight:'22px',
-                  letterSpacing:'-2.2%'
-                  
-                }}
-              >
-             Edit
-              </Button>
-              </Grid>
-</Grid>
-<Divider
-              style={{
-                background:'#B7B7B7',
-                height:'1px',
-                marginTop:'1.5%'
-              }}
-            />
-
-
-
-
-<Grid sx={{display:'flex',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:1}}>
-    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600}}>
-    Wedding Invitation
-    </Grid>
-    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600}}>
-    10:23 Am, 1 june 24
-    </Grid>
-    <Grid sx={{display:'flex',gap:1,flexDirection:matches3?'column':'row',alignItems:'center'}}>
-    <Button
-                style={{
-                  border: "1px solid #158FFF",
-                  borderColor: "#158FFF",
-                  background:'#158FFF',
-                  height:matches3?'20px':matches2?'26px':"34px",
-                  width:matches2?'50px':'100px',
-                  color: "#fff",
-                  fontSize:matches2?'10px': "14px",
-                  fontWeight: 400,
-                  textTransform: "none",
-                  borderRadius: "4px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  lineHeight:'22px',
-                  letterSpacing:'-2.2%'
-                  
-                }}
-              >
-             <VisibilityIcon sx={{fontSize:'18px',marginLeft:'-3%'}}/>Preview
-              </Button>
-              <Button
-                style={{
-                  border: "1px solid #000",
-                  borderColor: "#000",
-                  background:'#000',
-                  height:matches3?'20px':matches2?'26px':"34px",
-                  width:matches2?'80px':'40px',
-                  color: "#fff",
-                  fontSize:matches2?'10px': "14px",
-                  fontWeight: 500,
-                  textTransform: "none",
-                  borderRadius: "4px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  lineHeight:'22px',
-                  letterSpacing:'-2.2%'
-                  
-                }}
-              >
-             Edit
-              </Button>
-              </Grid>
-</Grid>
-<Divider
-              style={{
-                background:'#B7B7B7',
-                height:'1px',
-                marginTop:'1.5%'
-              }}
-            />
-
-
-
-<Grid sx={{display:'flex',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:1}}>
-    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600}}>
-    Wedding Invitation
-    </Grid>
-    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600}}>
-    10:23 Am, 1 june 24
-    </Grid>
-    <Grid sx={{display:'flex',gap:1,flexDirection:matches3?'column':'row',alignItems:'center'}}>
-    <Button
-                style={{
-                  border: "1px solid #158FFF",
-                  borderColor: "#158FFF",
-                  background:'#158FFF',
-                  height:matches3?'20px':matches2?'26px':"34px",
-                  width:matches2?'50px':'100px',
-                  color: "#fff",
-                  fontSize:matches2?'10px': "14px",
-                  fontWeight: 400,
-                  textTransform: "none",
-                  borderRadius: "4px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  lineHeight:'22px',
-                  letterSpacing:'-2.2%'
-                  
-                }}
-              >
-             <VisibilityIcon sx={{fontSize:'18px',marginLeft:'-3%'}}/>Preview
-              </Button>
-              <Button
-                style={{
-                  border: "1px solid #000",
-                  borderColor: "#000",
-                  background:'#000',
-                  height:matches3?'20px':matches2?'26px':"34px",
-                  width:matches2?'80px':'40px',
-                  color: "#fff",
-                  fontSize:matches2?'10px': "14px",
-                  fontWeight: 500,
-                  textTransform: "none",
-                  borderRadius: "4px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  lineHeight:'22px',
-                  letterSpacing:'-2.2%'
-                  
-                }}
-              >
-             Edit
-              </Button>
-              </Grid>
-</Grid>
-<Divider
-              style={{
-                background:'#B7B7B7',
-                height:'1px',
-                marginTop:'1.5%'
-              }}
-            />
-
-
-
-
-<Grid sx={{display:'flex',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:1}}>
-    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600}}>
-    Wedding Invitation
-    </Grid>
-    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600}}>
-    10:23 Am, 1 june 24
-    </Grid>
-    <Grid sx={{display:'flex',gap:1,flexDirection:matches3?'column':'row',alignItems:'center'}}>
-    <Button
-                style={{
-                  border: "1px solid #158FFF",
-                  borderColor: "#158FFF",
-                  background:'#158FFF',
-                  height:matches3?'20px':matches2?'26px':"34px",
-                  width:matches2?'50px':'100px',
-                  color: "#fff",
-                  fontSize:matches2?'10px': "14px",
-                  fontWeight: 400,
-                  textTransform: "none",
-                  borderRadius: "4px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  lineHeight:'22px',
-                  letterSpacing:'-2.2%'
+                  letterSpacing:'-2.2%',
+                  marginLeft:'auto'
                   
                 }}
               >
@@ -499,14 +306,14 @@ export default function InvitationPage()
 
 
 
-<Grid sx={{display:'flex',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:1}}>
-    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600}}>
+<Grid sx={{display:'flex',width:'100%',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:1}}>
+    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600,width:'33%'}}>
     Wedding Invitation
     </Grid>
-    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600}}>
+    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600,width:'33%',display:'flex',justifyContent:'center',alignItems:'center'}}>
     10:23 Am, 1 june 24
     </Grid>
-    <Grid sx={{display:'flex',gap:1,flexDirection:matches3?'column':'row',alignItems:'center'}}>
+    <Grid sx={{display:'flex',gap:1,flexDirection:matches3?'column':'row',alignItems:'center',width:'33%'}}>
     <Button
                 style={{
                   border: "1px solid #158FFF",
@@ -523,7 +330,208 @@ export default function InvitationPage()
                   alignItems: "center",
                   justifyContent: "center",
                   lineHeight:'22px',
+                  letterSpacing:'-2.2%',
+                  marginLeft:'auto'
+                  
+                }}
+              >
+             <VisibilityIcon sx={{fontSize:'18px',marginLeft:'-3%'}}/>Preview
+              </Button>
+              <Button
+                style={{
+                  border: "1px solid #000",
+                  borderColor: "#000",
+                  background:'#000',
+                  height:matches3?'20px':matches2?'26px':"34px",
+                  width:matches2?'80px':'40px',
+                  color: "#fff",
+                  fontSize:matches2?'10px': "14px",
+                  fontWeight: 500,
+                  textTransform: "none",
+                  borderRadius: "4px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  lineHeight:'22px',
                   letterSpacing:'-2.2%'
+                  
+                }}
+              >
+             Edit
+              </Button>
+              </Grid>
+</Grid>
+<Divider
+              style={{
+                background:'#B7B7B7',
+                height:'1px',
+                marginTop:'1.5%'
+              }}
+            />
+
+
+
+
+<Grid sx={{display:'flex',width:'100%',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:1}}>
+    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600,width:'33%'}}>
+    Wedding Invitation
+    </Grid>
+    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600,width:'33%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+    10:23 Am, 1 june 24
+    </Grid>
+    <Grid sx={{display:'flex',gap:1,flexDirection:matches3?'column':'row',alignItems:'center',width:'33%'}}>
+    <Button
+                style={{
+                  border: "1px solid #158FFF",
+                  borderColor: "#158FFF",
+                  background:'#158FFF',
+                  height:matches3?'20px':matches2?'26px':"34px",
+                  width:matches2?'50px':'100px',
+                  color: "#fff",
+                  fontSize:matches2?'10px': "14px",
+                  fontWeight: 400,
+                  textTransform: "none",
+                  borderRadius: "4px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  lineHeight:'22px',
+                  letterSpacing:'-2.2%',
+                  marginLeft:'auto'
+                  
+                }}
+              >
+             <VisibilityIcon sx={{fontSize:'18px',marginLeft:'-3%'}}/>Preview
+              </Button>
+              <Button
+                style={{
+                  border: "1px solid #000",
+                  borderColor: "#000",
+                  background:'#000',
+                  height:matches3?'20px':matches2?'26px':"34px",
+                  width:matches2?'80px':'40px',
+                  color: "#fff",
+                  fontSize:matches2?'10px': "14px",
+                  fontWeight: 500,
+                  textTransform: "none",
+                  borderRadius: "4px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  lineHeight:'22px',
+                  letterSpacing:'-2.2%'
+                  
+                }}
+              >
+             Edit
+              </Button>
+              </Grid>
+</Grid>
+<Divider
+              style={{
+                background:'#B7B7B7',
+                height:'1px',
+                marginTop:'1.5%'
+              }}
+            />
+
+
+
+
+<Grid sx={{display:'flex',width:'100%',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:1}}>
+    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600,width:'33%'}}>
+    Wedding Invitation
+    </Grid>
+    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600,width:'33%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+    10:23 Am, 1 june 24
+    </Grid>
+    <Grid sx={{display:'flex',gap:1,flexDirection:matches3?'column':'row',alignItems:'center',width:'33%'}}>
+    <Button
+                style={{
+                  border: "1px solid #158FFF",
+                  borderColor: "#158FFF",
+                  background:'#158FFF',
+                  height:matches3?'20px':matches2?'26px':"34px",
+                  width:matches2?'50px':'100px',
+                  color: "#fff",
+                  fontSize:matches2?'10px': "14px",
+                  fontWeight: 400,
+                  textTransform: "none",
+                  borderRadius: "4px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  lineHeight:'22px',
+                  letterSpacing:'-2.2%',
+                  marginLeft:'auto'
+                  
+                }}
+              >
+             <VisibilityIcon sx={{fontSize:'18px',marginLeft:'-3%'}}/>Preview
+              </Button>
+              <Button
+                style={{
+                  border: "1px solid #000",
+                  borderColor: "#000",
+                  background:'#000',
+                  height:matches3?'20px':matches2?'26px':"34px",
+                  width:matches2?'80px':'40px',
+                  color: "#fff",
+                  fontSize:matches2?'10px': "14px",
+                  fontWeight: 500,
+                  textTransform: "none",
+                  borderRadius: "4px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  lineHeight:'22px',
+                  letterSpacing:'-2.2%'
+                  
+                }}
+              >
+             Edit
+              </Button>
+              </Grid>
+</Grid>
+<Divider
+              style={{
+                background:'#B7B7B7',
+                height:'1px',
+                marginTop:'1.5%'
+              }}
+            />
+
+
+
+
+
+
+<Grid sx={{display:'flex',width:'100%',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:1}}>
+    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600,width:'33%'}}>
+    Wedding Invitation
+    </Grid>
+    <Grid sx={{fontSize:matches3?'10px':matches2?'12px':'18px',fontWeight:600,width:'33%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+    10:23 Am, 1 june 24
+    </Grid>
+    <Grid sx={{display:'flex',gap:1,flexDirection:matches3?'column':'row',alignItems:'center',width:'33%'}}>
+    <Button
+                style={{
+                  border: "1px solid #158FFF",
+                  borderColor: "#158FFF",
+                  background:'#158FFF',
+                  height:matches3?'20px':matches2?'26px':"34px",
+                  width:matches2?'50px':'100px',
+                  color: "#fff",
+                  fontSize:matches2?'10px': "14px",
+                  fontWeight: 400,
+                  textTransform: "none",
+                  borderRadius: "4px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  lineHeight:'22px',
+                  letterSpacing:'-2.2%',
+                  marginLeft:'auto'
                   
                 }}
               >
@@ -566,7 +574,7 @@ export default function InvitationPage()
 
           </Grid>
             <Grid sx={{fontSize:matchesA?'14px':'18px',fontWeight:400,color:'#fff',marginTop:'3.2%',textAlign:'center'}}>Copyrights © 2024 Powered By IndiaBuzz</Grid>
-            <Grid sx={{display:'flex',marginLeft:'auto',width:'100%',marginTop:'-1%'}}>
+            <Grid sx={{display:'flex',marginLeft:'auto',width:'100%',marginTop:matches2?'5%':'-1%'}}>
             <Button  onClick={handleBack}
                       style={{
                         border: '1px solid #fff',

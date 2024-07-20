@@ -69,6 +69,10 @@ export default function MainDashboard()
       navigate('/newmenudashboard')
     }
 
+    const handleVehical=()=>{
+      navigate('/vehicle')
+    }
+
     const handleChange = (event) => {
       setChecked(event.target.checked);
     };
@@ -87,12 +91,20 @@ export default function MainDashboard()
     const [appoint,setAppoint]= useState(false)
     const [createAppoint,setCreateAppoint]= useState(false)
     const [updateProfile,setUpdateProfile]= useState(false)
+    const [enquary,setEnquary]= useState(false)
 
     const handleCreate2 = () => {
       setCreate2(true);
     };
     const handleCloseCreate2 = () => {
       setCreate2(false);
+    };
+
+    const handleEnquary = () => {
+      setEnquary(true);
+    };
+    const handleCloseEnquary = () => {
+      setEnquary(false);
     };
 
     const handleUpdateProfileDetail = () => {
@@ -643,7 +655,7 @@ export default function MainDashboard()
                   p: "2px 4px",
                   display: "flex",
                   alignItems: "center",
-                  height: "40px",
+                  height: matches2?'30px':"40px",
                   width:'100%' ,
                 }}
               >
@@ -663,7 +675,7 @@ export default function MainDashboard()
                   p: "2px 4px",
                   display: "flex",
                   alignItems: "center",
-                  height: "40px",
+                  height: matches2?'30px': "40px",
                   width:'100%' ,
                 }}
               >
@@ -688,7 +700,7 @@ export default function MainDashboard()
                   p: "2px 4px",
                   display: "flex",
                   alignItems: "center",
-                  height: "40px",
+                  height:  matches2?'30px':"40px",
                   width:'100%' ,
                 }}
               >
@@ -706,8 +718,8 @@ export default function MainDashboard()
               </Grid>
               </Grid>
 
-              <Grid sx={{display:'flex',padding:1,justifyContent:'space-between',width:'100%',height:60,background:'#D6D6D6',borderRadius:'15px',marginTop:'5%'}}>
-             <Grid sx={{display:'flex',alignItems:'center',width:'50%'}}><Grid><img src={ringm} width={25} style={{marginTop:'14%'}}></img></Grid><Grid sx={{fontSize:'15px',marginLeft:'3%',fontWeight:500}}>mobile notifiation :</Grid> </Grid><Grid>
+              <Grid sx={{display:'flex',padding:1,justifyContent:matches1?'center':'space-between',flexDirection:matches1?'column':'row',width:'100%',height:matches1?'auto':60,background:'#D6D6D6',borderRadius:'15px',marginTop:'5%'}}>
+             <Grid sx={{display:'flex',alignItems:'center',width:matches1?'100%':'50%'}}><Grid><img src={ringm} width={25} style={{marginTop:'14%'}}></img></Grid><Grid sx={{fontSize:'15px',marginLeft:'3%',fontWeight:500}}>mobile notifiation :</Grid> </Grid><Grid>
              <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -725,7 +737,7 @@ export default function MainDashboard()
                         borderColor: '#000',
                         height: matchesB ? 35 : '40px',
                         color: "#fff",
-                        fontSize: matchesB ? '12px' : "1.3vw",
+                        fontSize: matchesB ? '14px' : "1.3vw",
                         fontWeight: 600,
                         textTransform: "none",
                         borderRadius: '6px',
@@ -874,7 +886,7 @@ export default function MainDashboard()
             <Grid sx={{ width: '100%', height: matches ? 'auto' : 260 }}>
               <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', background: '#ecf0f1' }}>
                 <Grid sx={{ width: '100%', height: 60, display: 'flex', justifyContent: 'center', alignItems: 'center', border: '1px solid #fff', background: '#ecf0f1' }}>
-                  <Grid sx={{ fontSize: matches ? '20px' : '22px', fontWeight: 600, lineHeight: '36px', color: '#000', marginLeft: '2%', marginTop: '-.5%' }}>Edit Tag</Grid>
+                  <Grid sx={{ fontSize: matches ? '20px' : '26px', fontWeight: 600, lineHeight: '36px', color: '#000', marginLeft: '2%', marginTop: '-.5%' }}>Edit Tag</Grid>
                   <Grid onClick={handleCloseLinks}
                     aria-label="close"
                     sx={{
@@ -892,10 +904,10 @@ export default function MainDashboard()
                     <Grid sx={{fontSize:'18px',fontWeight:500,lineHeight:'30px'}}>
                     Tag link
                     </Grid>
-                    <Grid sx={{ display: 'flex', alignItems: "center" }}>
+                    <Grid sx={{ display: 'flex', alignItems: "center",marginTop:'2%' }}>
               <Grid
                 sx={{
-                  border: "1.8px solid #000",
+                  border: "1.8px solid #636e72",
                   borderRadius: "10px",
                   color: "#000",
                   p: "2px 4px",
@@ -923,7 +935,7 @@ export default function MainDashboard()
     </Grid>
     
     
-                  <Grid sx={{ display: 'flex', marginTop: '4%' }}>
+                  <Grid sx={{ display: 'flex', marginTop: '5%' }}>
                     <Button
                       style={{
                         border: '1px solid #000',
@@ -1201,7 +1213,7 @@ export default function MainDashboard()
                 width:matches1?'98%':'60%',
                 height: 'auto',
                 borderRadius: 10,
-                backgroundImage: "radial-gradient(#f5f6fa,#fff)",
+                background:'#f5f6fa',
               },
             }}
             open={tage}
@@ -1264,7 +1276,7 @@ export default function MainDashboard()
             </Paper>
             </Grid>
 
-<Grid sx={{border:'1px solid #000',width:'100%',height:350,borderRadius:'15px',background:'#fff',marginTop:'3%',padding:matches?1:2,color:'#000',overflow:'scroll',scrollbarWidth:'none'}}>
+<Grid sx={{border:'1px solid #000',width:'100%',height:350,borderRadius:'15px',background:'#f5f6fa',marginTop:'3%',padding:matches?1:2,color:'#000',overflow:'scroll',scrollbarWidth:'none'}}>
 <Grid sx={{display:'flex',alignItems:'center',justifyContent:"space-between"}}>
     <Grid sx={{fontSize:matches2?'13px':'22px',fontWeight:500}}>
     Tag Id
@@ -1287,11 +1299,11 @@ export default function MainDashboard()
             />
 
 
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:2}}>
-    <Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400}}>
-    asdf21
+<Grid sx={{display:'flex',width:'100%',background:'#f5f6fa',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:2}}>
+    <Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400,width:'33%'}}>
+    asdf
     </Grid>
-    <Grid>
+    <Grid sx={{width:'33%',display:'flex',alignItems:'center',justifyContent:'center'}}>
     <Button
                   style={{
                     border: "1px solid #FFEBDF",
@@ -1315,14 +1327,15 @@ export default function MainDashboard()
     </Grid>
 
 
-<Grid sx={{display:'flex',alignItems:'center',gap:2.2,cursor:'pointer'}}>
-<Grid  onClick={handleLinks}>
+<Grid sx={{display:'flex',alignItems:'center',gap:2.2,cursor:'pointer',width:'33%'}}>
+<Grid  onClick={handleLinks} sx={{marginLeft:'auto'}}>
 <img src={edit} width={24}></img>
 </Grid>
 <Grid onClick={handleCount}>
 <img src={count2} width={24}></img>
 </Grid>
 </Grid>
+
 
     {/* <Button onClick={handleLinks}
                 style={{
@@ -1349,11 +1362,11 @@ export default function MainDashboard()
 </Grid>
 
 
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?'':2}}>
-    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400}}>
+<Grid sx={{display:'flex',width:'100%',background:'#f5f6fa',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?'':2}}>
+    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400,width:'33%'}}>
    hA867
     </Grid>
-    <Grid >
+    <Grid style={{width:'33%',display:'flex',alignItems:'center',justifyContent:'center'}}>
     <Button
                   style={{
                     border: "1px solid #E5FFC4",
@@ -1375,8 +1388,8 @@ export default function MainDashboard()
                 Active
                 </Button>
     </Grid>
-    <Grid sx={{display:'flex',alignItems:'center',gap:2}}>
-<Grid>
+  <Grid sx={{display:'flex',alignItems:'center',gap:2,width:'33%'}}>
+<Grid style={{marginLeft:'auto'}}>
 <img src={edit} width={24}></img>
 </Grid>
 <Grid>
@@ -1386,11 +1399,11 @@ export default function MainDashboard()
 </Grid>
 
 
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?'':2}}>
-    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400}}>
+<Grid sx={{display:'flex',width:'100%',background:'#f5f6fa',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?'':2}}>
+    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400,width:'33%'}}>
    hA867
     </Grid>
-    <Grid >
+    <Grid style={{width:'33%',display:'flex',alignItems:'center',justifyContent:'center'}}>
     <Button
                   style={{
                     border: "1px solid #E5FFC4",
@@ -1412,8 +1425,8 @@ export default function MainDashboard()
                 Active
                 </Button>
     </Grid>
-    <Grid sx={{display:'flex',alignItems:'center',gap:2}}>
-<Grid>
+  <Grid sx={{display:'flex',alignItems:'center',gap:2,width:'33%'}}>
+<Grid style={{marginLeft:'auto'}}>
 <img src={edit} width={24}></img>
 </Grid>
 <Grid>
@@ -1423,11 +1436,11 @@ export default function MainDashboard()
 </Grid>
 
 
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?'':2}}>
-    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400}}>
+<Grid sx={{display:'flex',width:'100%',background:'#f5f6fa',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?'':2}}>
+    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400,width:'33%'}}>
    hA867
     </Grid>
-    <Grid >
+    <Grid style={{width:'33%',display:'flex',alignItems:'center',justifyContent:'center'}}>
     <Button
                   style={{
                     border: "1px solid #E5FFC4",
@@ -1449,8 +1462,8 @@ export default function MainDashboard()
                 Active
                 </Button>
     </Grid>
-    <Grid sx={{display:'flex',alignItems:'center',gap:2}}>
-<Grid>
+  <Grid sx={{display:'flex',alignItems:'center',gap:2,width:'33%'}}>
+<Grid style={{marginLeft:'auto'}}>
 <img src={edit} width={24}></img>
 </Grid>
 <Grid>
@@ -1460,11 +1473,12 @@ export default function MainDashboard()
 </Grid>
 
 
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?'':2}}>
-    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400}}>
+
+<Grid sx={{display:'flex',width:'100%',background:'#f5f6fa',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?'':2}}>
+    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400,width:'33%'}}>
    hA867
     </Grid>
-    <Grid >
+    <Grid style={{width:'33%',display:'flex',alignItems:'center',justifyContent:'center'}}>
     <Button
                   style={{
                     border: "1px solid #E5FFC4",
@@ -1486,8 +1500,8 @@ export default function MainDashboard()
                 Active
                 </Button>
     </Grid>
-    <Grid sx={{display:'flex',alignItems:'center',gap:2}}>
-<Grid>
+  <Grid sx={{display:'flex',alignItems:'center',gap:2,width:'33%'}}>
+<Grid style={{marginLeft:'auto'}}>
 <img src={edit} width={24}></img>
 </Grid>
 <Grid>
@@ -1497,11 +1511,11 @@ export default function MainDashboard()
 </Grid>
 
 
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?'':2}}>
-    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400}}>
+<Grid sx={{display:'flex',width:'100%',background:'#f5f6fa',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?'':2}}>
+    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400,width:'33%'}}>
    hA867
     </Grid>
-    <Grid >
+    <Grid style={{width:'33%',display:'flex',alignItems:'center',justifyContent:'center'}}>
     <Button
                   style={{
                     border: "1px solid #E5FFC4",
@@ -1523,8 +1537,8 @@ export default function MainDashboard()
                 Active
                 </Button>
     </Grid>
-    <Grid sx={{display:'flex',alignItems:'center',gap:2}}>
-<Grid>
+  <Grid sx={{display:'flex',alignItems:'center',gap:2,width:'33%'}}>
+<Grid style={{marginLeft:'auto'}}>
 <img src={edit} width={24}></img>
 </Grid>
 <Grid>
@@ -1535,11 +1549,11 @@ export default function MainDashboard()
 
 
 
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?'':2}}>
-    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400}}>
+<Grid sx={{display:'flex',width:'100%',background:'#f5f6fa',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?'':2}}>
+    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400,width:'33%'}}>
    hA867
     </Grid>
-    <Grid >
+    <Grid style={{width:'33%',display:'flex',alignItems:'center',justifyContent:'center'}}>
     <Button
                   style={{
                     border: "1px solid #E5FFC4",
@@ -1561,8 +1575,8 @@ export default function MainDashboard()
                 Active
                 </Button>
     </Grid>
-    <Grid sx={{display:'flex',alignItems:'center',gap:2}}>
-<Grid>
+  <Grid sx={{display:'flex',alignItems:'center',gap:2,width:'33%'}}>
+<Grid style={{marginLeft:'auto'}}>
 <img src={edit} width={24}></img>
 </Grid>
 <Grid>
@@ -1570,6 +1584,7 @@ export default function MainDashboard()
 </Grid>
 </Grid>
 </Grid>
+
 
 
 
@@ -1582,6 +1597,227 @@ export default function MainDashboard()
         );
       };
     
+
+
+
+
+
+
+    
+    const EnquiriesDialog = () => {
+      return (
+        <Dialog
+        fullWidth
+        maxWidth={false}
+          PaperProps={{
+            style: {
+              width:matches1?'98%':'60%',
+              height: 'auto',
+              borderRadius: 10,
+              backgroundImage: "radial-gradient(#f5f6fa,#fff)",
+            },
+          }}
+          open={enquary}
+          onClose={handleCloseEnquary}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <Grid sx={{ width: '100%', height: 'auto' ,color:'#000'}}>
+          <Grid sx={{display:'flex',justifyContent:"center",alignItems:'center',padding:matches1?2:3,background:'#2d3436'}}>
+          <Grid sx={{ fontSize: matches ? '20px' : '25px', fontWeight: 500, lineHeight: '36px', color: '#fff', marginLeft: '2%', marginTop: '-.5%' }}>Enquiries Page</Grid>
+                <Grid onClick={handleCloseEnquary}
+                  aria-label="close"
+                  sx={{
+                    position: "absolute",
+                    right: 10,
+                    top: 16,
+                    color: "inherit",
+                    cursor: 'pointer'
+                  }}>
+                 <CloseIcon fontSize="large" sx={{color:'#fff'}}/>
+                </Grid>
+           </Grid>
+
+           <Divider
+            style={{
+              background:'#2d3436',
+              color:'#000',
+              height:matches2?'1px':'2px'
+            }}
+          />
+           <Grid sx={{padding:matches1?2:3,width:'100%',marginTop:'1%'}}>
+          <Grid sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+             <Grid sx={{fontSize:matches2?'16px':'22px',fontWeight:500}}>
+             Enquiries List
+             </Grid>
+             <Paper
+            component="form"
+            sx={{
+              p: "2px 4px",
+              display: "flex",
+              alignItems: "center",
+              width: matches2?'70%':300,
+              borderRadius: '6px',
+              height:matches2?30:38,
+              background: "transparent",
+              border: "1px solid #000",
+            }}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1, color: "#000", fontSize: "14px" }}
+              placeholder="Enter search......."
+            />
+            <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+            <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+              <SearchIcon style={{ color: "#000" }} />
+            </IconButton>
+          </Paper>
+          </Grid>
+
+<Grid sx={{border:'1px solid #000',width:'100%',height:350,borderRadius:'15px',background:'#fff',marginTop:'3%',padding:matches?1:2,color:'#000',overflow:'scroll',scrollbarWidth:'none'}}>
+<Grid sx={{display:'flex',alignItems:'center',justifyContent:"space-between"}}>
+  <Grid sx={{fontSize:matches2?'13px':'22px',fontWeight:500}}>
+  Name
+  </Grid>
+  <Grid  sx={{fontSize:matches2?'13px':'22px',fontWeight:500}}>
+ Number
+  </Grid>
+  <Grid  sx={{fontSize:matches2?'13px':'22px',fontWeight:500}}>
+  Message
+  </Grid>
+</Grid>
+
+  <Divider
+            style={{
+              background:'#000',
+              color:'#000',
+              height:'1.4px',
+              marginTop:'1.5%'
+            }}
+          />
+
+
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:2}}>
+  <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,width:'33%'}}>
+  Ankit
+  </Grid>
+  <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,width:'33%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+ +91 9179109464
+  </Grid>
+<Grid sx={{width:'33%',display:'flex'}}>
+ <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,marginLeft:'auto'}}>
+ I Want to Buy Your Card
+ </Grid>
+</Grid>
+</Grid>
+
+
+
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:2}}>
+  <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,width:'33%'}}>
+  Ankit
+  </Grid>
+  <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,width:'33%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+ +91 9179109464
+  </Grid>
+<Grid sx={{width:'33%',display:'flex'}}>
+ <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,marginLeft:'auto'}}>
+ I Want to Buy Your Card
+ </Grid>
+</Grid>
+</Grid>
+
+
+
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:2}}>
+  <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,width:'33%'}}>
+  Ankit
+  </Grid>
+  <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,width:'33%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+ +91 9179109464
+  </Grid>
+<Grid sx={{width:'33%',display:'flex'}}>
+ <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,marginLeft:'auto'}}>
+ I Want to Buy Your Card
+ </Grid>
+</Grid>
+</Grid>
+
+
+
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:2}}>
+  <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,width:'33%'}}>
+  Ankit
+  </Grid>
+  <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,width:'33%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+ +91 9179109464
+  </Grid>
+<Grid sx={{width:'33%',display:'flex'}}>
+ <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,marginLeft:'auto'}}>
+ I Want to Buy Your Card
+ </Grid>
+</Grid>
+</Grid>
+
+
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:2}}>
+  <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,width:'33%'}}>
+  Ankit
+  </Grid>
+  <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,width:'33%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+ +91 9179109464
+  </Grid>
+<Grid sx={{width:'33%',display:'flex'}}>
+ <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,marginLeft:'auto'}}>
+ I Want to Buy Your Card
+ </Grid>
+</Grid>
+</Grid>
+
+
+
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:2}}>
+  <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,width:'33%'}}>
+  Ankit
+  </Grid>
+  <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,width:'33%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+ +91 9179109464
+  </Grid>
+<Grid sx={{width:'33%',display:'flex'}}>
+ <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,marginLeft:'auto'}}>
+ I Want to Buy Your Card
+ </Grid>
+</Grid>
+</Grid>
+
+
+
+
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:matches2?.0:2}}>
+  <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,width:'33%'}}>
+  Ankit
+  </Grid>
+  <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,width:'33%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+ +91 9179109464
+  </Grid>
+<Grid sx={{width:'33%',display:'flex'}}>
+ <Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:400,marginLeft:'auto'}}>
+ I Want to Buy Your Card
+ </Grid>
+</Grid>
+</Grid>
+
+
+
+</Grid>
+
+
+           </Grid>
+          </Grid>
+        </Dialog>
+      );
+    };
+
     
 
 
@@ -1688,130 +1924,129 @@ export default function MainDashboard()
           />
 
 
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%'}}>
-  <Grid>
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%'}}>
+  <Grid sx={{width:'25%'}}>
    <Checkbox {...label} size="medium" />
   </Grid>
   
-<Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400}}>
-Chinmay sharma
+<Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400,width:'25%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+Juned Khanna
 </Grid> 
-<Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:300}}>
+<Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:300,width:'25%',display:'flex',justifyContent:'center',alignItems:'center'}}>
 5:30 pm , 18 july
 </Grid> 
-<Grid sx={{cursor:'pointer'}}>
-<Grid>
-<img src={edit} width={24}></img>
+<Grid sx={{cursor:'pointer',width:'25%',display:'flex'}}>
+<Grid sx={{marginLeft:'auto'}}>
+<img src={edit} width={matches2?15:24}></img>
 </Grid>
 </Grid>
 </Grid>
 
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%'}}>
-  <Grid>
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%'}}>
+  <Grid sx={{width:'25%'}}>
    <Checkbox {...label} size="medium" />
   </Grid>
   
-<Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400}}>
-Ankit sharma
+<Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400,width:'25%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+Ankit Sharma
 </Grid> 
-<Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:300}}>
-3:30 pm , 18 june
-</Grid> 
-<Grid sx={{cursor:'pointer'}}>
-<Grid>
-<img src={edit} width={24}></img>
-</Grid>
-</Grid>
-</Grid>
-
-
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%'}}>
-  <Grid>
-   <Checkbox {...label} size="medium" />
-  </Grid>
-  
-<Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400}}>
-Harshit jain
-</Grid> 
-<Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:300}}>
-5:20 pm , 8 july
-</Grid> 
-<Grid sx={{cursor:'pointer'}}>
-<Grid>
-<img src={edit} width={24}></img>
-</Grid>
-</Grid>
-</Grid>
-
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%'}}>
-  <Grid>
-   <Checkbox {...label} size="medium" />
-  </Grid>
-  
-<Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400}}>
-Pwan sharma
-</Grid> 
-<Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:300}}>
+<Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:300,width:'25%',display:'flex',justifyContent:'center',alignItems:'center'}}>
 5:30 pm , 18 july
 </Grid> 
-<Grid sx={{cursor:'pointer'}}>
-<Grid>
-<img src={edit} width={24}></img>
+<Grid sx={{cursor:'pointer',width:'25%',display:'flex'}}>
+<Grid sx={{marginLeft:'auto'}}>
+<img src={edit} width={matches2?15:24}></img>
 </Grid>
 </Grid>
 </Grid>
 
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%'}}>
-  <Grid>
+
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%'}}>
+  <Grid sx={{width:'25%'}}>
    <Checkbox {...label} size="medium" />
   </Grid>
   
-<Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400}}>
-Chirag Pandit
+<Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400,width:'25%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+Ankit Khanna
 </Grid> 
-<Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:300}}>
+<Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:300,width:'25%',display:'flex',justifyContent:'center',alignItems:'center'}}>
 5:30 pm , 18 july
 </Grid> 
-<Grid sx={{cursor:'pointer'}}>
-<Grid>
-<img src={edit} width={24}></img>
+<Grid sx={{cursor:'pointer',width:'25%',display:'flex'}}>
+<Grid sx={{marginLeft:'auto'}}>
+<img src={edit} width={matches2?15:24}></img>
 </Grid>
 </Grid>
 </Grid>
 
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%'}}>
-  <Grid>
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%'}}>
+  <Grid sx={{width:'25%'}}>
    <Checkbox {...label} size="medium" />
   </Grid>
   
-<Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400}}>
-Chinmay sharma
+<Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400,width:'25%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+Harshit Jain
 </Grid> 
-<Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:300}}>
+<Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:300,width:'25%',display:'flex',justifyContent:'center',alignItems:'center'}}>
 5:30 pm , 18 july
 </Grid> 
-<Grid sx={{cursor:'pointer'}}>
-<Grid>
-<img src={edit} width={24}></img>
+<Grid sx={{cursor:'pointer',width:'25%',display:'flex'}}>
+<Grid sx={{marginLeft:'auto'}}>
+<img src={edit} width={matches2?15:24}></img>
 </Grid>
 </Grid>
 </Grid>
 
-
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%'}}>
-  <Grid>
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%'}}>
+  <Grid sx={{width:'25%'}}>
    <Checkbox {...label} size="medium" />
   </Grid>
   
-<Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400}}>
-Chinmay sharma
+<Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400,width:'25%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+Juned Khanna
 </Grid> 
-<Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:300}}>
+<Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:300,width:'25%',display:'flex',justifyContent:'center',alignItems:'center'}}>
 5:30 pm , 18 july
 </Grid> 
-<Grid sx={{cursor:'pointer'}}>
-<Grid>
-<img src={edit} width={24}></img>
+<Grid sx={{cursor:'pointer',width:'25%',display:'flex'}}>
+<Grid sx={{marginLeft:'auto'}}>
+<img src={edit} width={matches2?15:24}></img>
+</Grid>
+</Grid>
+</Grid>
+
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%'}}>
+  <Grid sx={{width:'25%'}}>
+   <Checkbox {...label} size="medium" />
+  </Grid>
+  
+<Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400,width:'25%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+Juned Khanna
+</Grid> 
+<Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:300,width:'25%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+5:30 pm , 18 july
+</Grid> 
+<Grid sx={{cursor:'pointer',width:'25%',display:'flex'}}>
+<Grid sx={{marginLeft:'auto'}}>
+<img src={edit} width={matches2?15:24}></img>
+</Grid>
+</Grid>
+</Grid>
+
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%'}}>
+  <Grid sx={{width:'25%'}}>
+   <Checkbox {...label} size="medium" />
+  </Grid>
+  
+<Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400,width:'25%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+Juned Khanna
+</Grid> 
+<Grid sx={{fontSize:matches2?'12px':'16px',fontWeight:300,width:'25%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+5:30 pm , 18 july
+</Grid> 
+<Grid sx={{cursor:'pointer',width:'25%',display:'flex'}}>
+<Grid sx={{marginLeft:'auto'}}>
+<img src={edit} width={matches2?15:24}></img>
 </Grid>
 </Grid>
 </Grid>
@@ -1927,11 +2162,11 @@ Chinmay sharma
             />
 
 
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:2}}>
-    <Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400}}>
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:2}}>
+    <Grid sx={{fontSize:matches2?'12px':'20px',fontWeight:400,width:'33%'}}>
     1
     </Grid>
-    <Grid>
+    <Grid sx={{display:'flex',width:'33%',alignItems:'center',justifyContent:"center"}}>
     <Button
                   style={{
                     border: "1px solid #FFEBDF",
@@ -1954,15 +2189,15 @@ Chinmay sharma
                 </Button>
     </Grid>
     
-<Grid sx={{display:'flex',alignItems:'center',gap:matches2?1:3,cursor:'pointer'}}>
-<Grid>
-<img src={eyem} width={24}></img>
+<Grid sx={{display:'flex',alignItems:'center',gap:matches2?1:3,width:'33%',cursor:'pointer'}}>
+<Grid sx={{marginLeft:'auto'}}>
+<img src={eyem} width={matches2?16:24}></img>
 </Grid>
 <Grid onClick={handleAddLink}>
-<img src={edit} width={24}></img>
+<img src={edit}  width={matches2?16:24}></img>
 </Grid>
 <Grid onClick={handleCountm}>
-<img src={count2} width={24}></img>
+<img src={count2}  width={matches2?16:24}></img>
 </Grid>
 </Grid>
 
@@ -1991,11 +2226,11 @@ Chinmay sharma
 </Grid>
 
 
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:2}}>
-    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400}}>
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:2}}>
+    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400,width:'33%'}}>
    2
     </Grid>
-    <Grid >
+    <Grid sx={{display:'flex',width:'33%',alignItems:'center',justifyContent:"center"}}>
     <Button
                   style={{
                     border: "1px solid #E5FFC4",
@@ -2017,25 +2252,26 @@ Chinmay sharma
                 Active
                 </Button>
     </Grid>
-    <Grid sx={{display:'flex',alignItems:'center',gap:matches2?1:3,cursor:'pointer'}}>
-    <Grid>
-<img src={eyem} width={24}></img>
+    <Grid sx={{display:'flex',alignItems:'center',gap:matches2?1:3,cursor:'pointer',width:'33%'}}>
+    <Grid sx={{marginLeft:'auto'}}>
+<img src={eyem}  width={matches2?16:24}></img>
 </Grid>
     <Grid   onClick={handleAddLink}>
-<img src={edit} width={24}></img>
+<img src={edit}  width={matches2?16:24}></img>
 </Grid>
     <Grid onClick={handleCount}>
-<img src={count2} width={24}></img>
+<img src={count2}  width={matches2?16:24}></img>
 </Grid>
 </Grid>
 </Grid>
 
 
-<Grid sx={{display:'flex',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:2}}>
-    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400}}>
+
+<Grid sx={{display:'flex',width:'100%',background:'#fff',height:'52px',borderRadius:'10px',alignItems:'center',justifyContent:"space-between",marginTop:'1.5%',padding:2}}>
+    <Grid sx={{fontSize:matches2?'13px':'20px',fontWeight:400,width:'33%'}}>
    3
     </Grid>
-    <Grid >
+    <Grid sx={{display:'flex',width:'33%',alignItems:'center',justifyContent:"center"}}>
     <Button
                   style={{
                     border: "1px solid #E5FFC4",
@@ -2057,18 +2293,19 @@ Chinmay sharma
                 Active
                 </Button>
     </Grid>
-    <Grid sx={{display:'flex',alignItems:'center',gap:matches2?1:3,cursor:'pointer'}}>
-    <Grid>
-<img src={eyem} width={24}></img>
+    <Grid sx={{display:'flex',alignItems:'center',gap:matches2?1:3,cursor:'pointer',width:'33%'}}>
+    <Grid sx={{marginLeft:'auto'}}>
+<img src={eyem}  width={matches2?16:24}></img>
 </Grid>
     <Grid   onClick={handleAddLink}>
-<img src={edit} width={24}></img>
+<img src={edit}  width={matches2?16:24}></img>
 </Grid>
     <Grid onClick={handleCount}>
-<img src={count2} width={24}></img>
+<img src={count2}  width={matches2?16:24}></img>
 </Grid>
 </Grid>
 </Grid>
+
 </Grid>
              </Grid>
             </Grid>
@@ -2118,9 +2355,9 @@ Chinmay sharma
              <Grid>
            <Grid sx={{padding:.8,display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
               <Grid>
-                <img src={contact} width={50}></img>
+                <img src={contact} width={matches2?40:50}></img>
               </Grid>
-              <Grid sx={{fontSize:'22px',fontWeight:600,lineHeight:'26px'}}>
+              <Grid sx={{fontSize:matches2?'18px':'22px',fontWeight:600,lineHeight:'26px'}}>
               Update Profile details
               </Grid>
            </Grid>
@@ -2132,20 +2369,14 @@ Chinmay sharma
             />
 
             <Grid sx={{padding:2}}>
-             <Grid sx={{fontSize:'22px',fontWeight:500}}>
+             <Grid sx={{fontSize:matches2?'15px':'22px',fontWeight:500}}>
               Profile:
              </Grid>
-             <Divider
-              style={{
-                background:'#2d3436',
-                width:'20%'
-              }}
-            />
              <Grid sx={{ display: "flex", alignItems: "center",border:'1px solid #000',borderRadius:'10px',padding:1 ,marginTop:'2%'}}>
                 <Avatar
                   fullWidth
                   alt="Remy Sharp"
-                  sx={{ width: matches ? 70 : '6vw', height: matches ? 70 : '6vw', marginTop: "2%" }}
+                  sx={{ width: matches ? 70 : '5vw', height: matches ? 70 : '5vw', marginTop: "2%" }}
                 />
 
                 <Grid sx={{ marginLeft: "4%", marginTop: matches ? '4%' : "2%" }}>
@@ -2182,10 +2413,10 @@ Chinmay sharma
                   </Grid>
                   <Grid
                     sx={{
-                      fontSize: matches ? '12px' : "14px",
+                      fontSize: matches ? '12px' : "12px",
                       fontWeight: 400,
                       marginTop: "1.5%",
-                      lineHeight: "20px",
+                      lineHeight: "18px",
                     }}
                   ><div>
                       (250*250px)
@@ -2195,7 +2426,7 @@ Chinmay sharma
                 </Grid>
               </Grid>
               
-            <Grid sx={{fontSize:'18px',fontWeight:500,marginTop:'3%'}}>
+            <Grid sx={{fontSize:matches2?'14px':'18px',fontWeight:500,marginTop:'3%'}}>
             Full Name*
              </Grid>
              <Grid
@@ -2207,7 +2438,7 @@ Chinmay sharma
                   p: "2px 4px",
                   display: "flex",
                   alignItems: "center",
-                  height: "40px",
+                  height: matches2?'30px':"40px",
                   width:'100%' ,
                 }}
               >
@@ -2219,7 +2450,7 @@ Chinmay sharma
               </Grid> 
 
 
-              <Grid sx={{fontSize:'18px',fontWeight:500,marginTop:'3%'}}>
+              <Grid sx={{fontSize:matches2?'14px':'18px',fontWeight:500,marginTop:'3%'}}>
               Designation*
              </Grid>
              <Grid
@@ -2231,7 +2462,7 @@ Chinmay sharma
                   p: "2px 4px",
                   display: "flex",
                   alignItems: "center",
-                  height: "40px",
+                  height: matches2?'30px': "40px",
                   width:'100%' ,
                 }}
               >
@@ -2243,7 +2474,7 @@ Chinmay sharma
               </Grid> 
 
 
-              <Grid sx={{fontSize:'18px',fontWeight:500,marginTop:'3%'}}>
+              <Grid sx={{fontSize:matches2?'14px':'18px',fontWeight:500,marginTop:'3%'}}>
               Number*
              </Grid>
              <Grid
@@ -2255,7 +2486,7 @@ Chinmay sharma
                   p: "2px 4px",
                   display: "flex",
                   alignItems: "center",
-                  height: "40px",
+                  height: matches2?'30px': "40px",
                   width:'100%' ,
                 }}
               >
@@ -2271,7 +2502,7 @@ Chinmay sharma
                     marginTop:'3%',
                     borderColor: "#0000",
                     width:"100%",
-                    height: matches2?'25px': "45px",
+                    height: matches2?'40px': "45px",
                     color: "#fff",
                     background: "#000",
                     fontSize: matches2?'12px': "18px",
@@ -2369,7 +2600,7 @@ Chinmay sharma
                   borderColor: "#000",
                   background:'#fff',
                   height:matches2?'35px':"42px",
-                  width:matches2?'100%':'40%',
+                  width:matches2?'80%':'40%',
                   color: "#000",
                   fontSize:matches2?'10px': "16px",
                   fontWeight: 600,
@@ -2590,15 +2821,16 @@ Chinmay sharma
         <Grid>
         <Navbar/>
         </Grid>
-        <Grid sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItems:'center',width:'100%',height:'auto',marginTop:'1.5%'}}>
-            <Grid sx={{fontSize:matches?'18px':'30px',fontWeight:700,color:'#fff',fontFamily:'Montserrat'}}>Business profile dashboard</Grid>
-          <Grid sx={{width:'90%',height:'auto',border:'1px solid #fff',borderRadius:'10px',marginTop:'2%',color:'#fff'}}>
+        <Grid sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItems:'center',width:'100%',height:'auto',marginTop:matches2?'3%':'1.5%'}}>
+            <Grid sx={{fontSize:matches?'20px':'30px',fontWeight:700,color:'#fff',fontFamily:'Montserrat'}}>Business profile dashboard</Grid>
+          <Grid sx={{width:'90%',height:'auto',border:'1px solid #fff',borderRadius:'10px',marginTop:matches2?'5%':'2%',color:'#fff'}}>
             <Grid sx={{width:'100%',height:matchesA?'auto':'12vh',padding:2,display:'flex',justifyContent:'space-between',flexDirection:matchesA?'column':'row',alignItems:'center'}}>
+             
               <Grid>
                 <Grid sx={{fontSize:matchesA?'14px':matches?'14px':'20px',fontWeight:400,textAlign:matchesA?'center':''}}>
                 Company name
                 </Grid>
-                <Grid sx={{fontSize:matches?'16px':'26px',fontWeight:600,marginTop:'1%',textAlign:matchesA?'center':''}}>
+                <Grid sx={{fontSize:matches?'20px':'26px',fontWeight:600,marginTop:'1%',textAlign:matchesA?'center':''}}>
                 iBuzz6
                 </Grid>
               </Grid>
@@ -2607,7 +2839,7 @@ Chinmay sharma
                 <Grid sx={{fontSize:matchesA?'14px':matches?'14px':'20px',fontWeight:400,textAlign:matchesA?'center':''}}>
                 Created on
                 </Grid>
-                <Grid sx={{fontSize:matches?'16px':'26px',fontWeight:600,marginTop:'1%',textAlign:matchesA?'center':''}}>
+                <Grid sx={{fontSize:matches?'20px':'26px',fontWeight:600,marginTop:'1%',textAlign:matchesA?'center':''}}>
                 June 24
                 </Grid>
               </Grid>
@@ -2822,7 +3054,7 @@ Chinmay sharma
                 </Grid> 
 
 
-                <Grid sx={{width:'100%',height:'10vh',cursor:'pointer',marginTop:'6%',border:'1px solid #000',background:'#D9D9D9',borderRadius:'6px',padding:1.4,color:'#000',display:'flex',alignItems:'center'}}>
+                <Grid onClick={handleVehical} sx={{width:'100%',height:'10vh',cursor:'pointer',marginTop:'6%',border:'1px solid #000',background:'#D9D9D9',borderRadius:'6px',padding:1.4,color:'#000',display:'flex',alignItems:'center'}}>
                     <Grid sx={{width:'60%'}}>
                         <Grid sx={{fontSize:matchesA?'14px':'18px',fontWeight:700,lineHeight:'22px'}}>
                         Vehicle Profile
@@ -2943,7 +3175,7 @@ Chinmay sharma
           </Grid>
 
 
-          <Grid sx={{width:matchesA?'150px':'130px',height:matchesA?'200px':'180px',border:'1px solid #fff',background:'#fff',padding:2,gap:1,borderRadius:'10px',display:'flex',alignItems:'center',flexDirection:'column',justifyContent:'center'}}>
+          <Grid onClick={handleEnquary} sx={{width:matchesA?'150px':'130px',cursor:'pointer',height:matchesA?'200px':'180px',border:'1px solid #fff',background:'#fff',padding:2,gap:1,borderRadius:'10px',display:'flex',alignItems:'center',flexDirection:'column',justifyContent:'center'}}>
             <Grid>
                 <img src={social2} width={60}></img>
             </Grid>
@@ -3002,5 +3234,6 @@ Chinmay sharma
         {AppointmentsDialog()}
         {CreateAppointment()}
         {UpdateProfileDetail()}
+        {EnquiriesDialog()}
     </Grid>)
 }
