@@ -6,6 +6,7 @@ import crose from "../../Digital Card Assets/cr.png"
 import i from "../../Digital Card Assets/enquary.png"
 import time from "../../Digital Card Assets/time.png"
 import useMediaQuery from '@mui/material/useMediaQuery';
+import live from "../assets/live2.png";
 
 export default function NoticationPage()
 {
@@ -577,13 +578,11 @@ Template 5
                  </Grid>
                 </Grid>
 
-
-
-
-                {EditDialog()}
-                {AllTransaction()}
-
+                <Grid sx={{width:'100%',marginLeft:'auto', position: "fixed",zIndex:100,bottom:0,marginBottom:'4%'}}>
+                <img src={live} width={200} style={{marginLeft:matchesA?'':'52%'}}></img></Grid>
 
              </Grid>
+             {EditDialog()}
+             {AllTransaction()}
     </Grid>)
 }

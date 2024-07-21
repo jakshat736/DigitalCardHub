@@ -6,6 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import image1 from "../assets/image1.png";
+import live from "../assets/live2.png";
 import image2 from "../assets/image2.png";
 import image3 from "../assets/image3.png";
 import image4 from "../assets/image4.png";
@@ -614,14 +615,14 @@ export default function SelfOrderPage() {
                       <img src={image1} width={100}></img>
                     </Grid>
                     <Grid
-                      sx={{border:'1px solid #000',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
-                    >
-                   <div>-</div><div>1</div><div>+</div>
-                    </Grid>
-                    <Grid
                       sx={{ fontSize: "14px", fontWeight: 500, color: "#000" }}
                     >
                       espresso
+                    </Grid>
+                    <Grid
+                      sx={{border:'1px solid #000',marginTop:'1.5%',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
+                    >
+                   <div>-</div><div>1</div><div>+</div>
                     </Grid>
                   </Grid>
 
@@ -636,15 +637,16 @@ export default function SelfOrderPage() {
                     <Grid>
                       <img src={image2} width={100}></img>
                     </Grid>
-                    <Grid
-                      sx={{border:'1px solid #000',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
-                    >
-                   <div>-</div><div>1</div><div>+</div>
-                    </Grid>
+                  
                     <Grid
                       sx={{ fontSize: "14px", fontWeight: 500, color: "#000" }}
                     >
                       Copuccino
+                    </Grid>
+                    <Grid
+                      sx={{border:'1px solid #000',marginTop:'1.5%',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
+                    >
+                   <div>-</div><div>1</div><div>+</div>
                     </Grid>
                   </Grid>
 
@@ -659,15 +661,16 @@ export default function SelfOrderPage() {
                     <Grid>
                       <img src={image3} width={100}></img>
                     </Grid>
-                    <Grid
-                      sx={{border:'1px solid #000',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
-                    >
-                   <div>-</div><div>1</div><div>+</div>
-                    </Grid>
+                  
                     <Grid
                       sx={{ fontSize: "14px", fontWeight: 500, color: "#000" }}
                     >
                       Dosa
+                    </Grid>
+                    <Grid
+                      sx={{border:'1px solid #000',marginTop:'1.5%',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
+                    >
+                   <div>-</div><div>1</div><div>+</div>
                     </Grid>
                   </Grid>
 
@@ -682,15 +685,16 @@ export default function SelfOrderPage() {
                     <Grid>
                       <img src={image4} width={100}></img>
                     </Grid>
-                    <Grid
-                      sx={{border:'1px solid #000',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
-                    >
-                   <div>-</div><div>1</div><div>+</div>
-                    </Grid>
+                  
                     <Grid
                       sx={{ fontSize: "14px", fontWeight: 500, color: "#000" }}
                     >
                       filter coffee
+                    </Grid>
+                    <Grid
+                      sx={{border:'1px solid #000',marginTop:'1.5%',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
+                    >
+                   <div>-</div><div>1</div><div>+</div>
                     </Grid>
                   </Grid>
 
@@ -705,15 +709,16 @@ export default function SelfOrderPage() {
                     <Grid>
                       <img src={image5} width={100}></img>
                     </Grid>
-                    <Grid
-                      sx={{border:'1px solid #000',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
-                    >
-                   <div>-</div><div>1</div><div>+</div>
-                    </Grid>
+                  
                     <Grid
                       sx={{ fontSize: "14px", fontWeight: 500, color: "#000" }}
                     >
                       Cold Brew
+                    </Grid>
+                    <Grid
+                      sx={{border:'1px solid #000',marginTop:'1.5%',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
+                    >
+                   <div>-</div><div>1</div><div>+</div>
                     </Grid>
                   </Grid>
 
@@ -728,15 +733,16 @@ export default function SelfOrderPage() {
                     <Grid>
                       <img src={image2} width={100}></img>
                     </Grid>
-                    <Grid
-                      sx={{border:'1px solid #000',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
-                    >
-                   <div>-</div><div>1</div><div>+</div>
-                    </Grid>
+                 
                     <Grid
                       sx={{ fontSize: "14px", fontWeight: 500, color: "#000" }}
                     >
                       Lattes
+                    </Grid>
+                    <Grid
+                      sx={{border:'1px solid #000',marginTop:'1.5%',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
+                    >
+                   <div>-</div><div>1</div><div>+</div>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -759,15 +765,16 @@ export default function SelfOrderPage() {
                     <Grid>
                       <img src={image2} width={100}></img>
                     </Grid>
-                    <Grid
-                      sx={{border:'1px solid #000',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
-                    >
-                   <div>-</div><div>1</div><div>+</div>
-                    </Grid>
+                   
                     <Grid
                       sx={{ fontSize: "14px", fontWeight: 500, color: "#000" }}
                     >
                       espresso
+                    </Grid>
+                    <Grid
+                      sx={{border:'1px solid #000',marginTop:'1.5%',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
+                    >
+                   <div>-</div><div>1</div><div>+</div>
                     </Grid>
                   </Grid>
 
@@ -782,16 +789,17 @@ export default function SelfOrderPage() {
                     <Grid>
                       <img src={image2} width={100}></img>
                     </Grid>
-                    <Grid
-                      sx={{border:'1px solid #000',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
-                    >
-                   <div>-</div><div>1</div><div>+</div>
-                    </Grid>
+                   
                     <Grid
                       sx={{ fontSize: "14px", fontWeight: 500, color: "#000" }}
                     >
                       Copuccino
                     </Grid>
+                    <Grid
+                      sx={{border:'1px solid #000',marginTop:'1.5%',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
+                    >
+                   <div>-</div><div>1</div><div>+</div>
+                    </Grid>
                   </Grid>
 
                   <Grid
@@ -805,16 +813,17 @@ export default function SelfOrderPage() {
                     <Grid>
                       <img src={image4} width={100}></img>
                     </Grid>
-                    <Grid
-                      sx={{border:'1px solid #000',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
-                    >
-                   <div>-</div><div>1</div><div>+</div>
-                    </Grid>
+                   
                     <Grid
                       sx={{ fontSize: "14px", fontWeight: 500, color: "#000" }}
                     >
                       Dosa
                     </Grid>
+                    <Grid
+                      sx={{border:'1px solid #000',marginTop:'1.5%',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
+                    >
+                   <div>-</div><div>1</div><div>+</div>
+                    </Grid>
                   </Grid>
 
                   <Grid
@@ -828,15 +837,16 @@ export default function SelfOrderPage() {
                     <Grid>
                       <img src={image4} width={100}></img>
                     </Grid>
-                    <Grid
-                      sx={{border:'1px solid #000',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
-                    >
-                   <div>-</div><div>1</div><div>+</div>
-                    </Grid>
+                   
                     <Grid
                       sx={{ fontSize: "14px", fontWeight: 500, color: "#000" }}
                     >
                       filter coffee
+                    </Grid>
+                    <Grid
+                      sx={{border:'1px solid #000',marginTop:'1.5%',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
+                    >
+                   <div>-</div><div>1</div><div>+</div>
                     </Grid>
                   </Grid>
 
@@ -851,15 +861,16 @@ export default function SelfOrderPage() {
                     <Grid>
                       <img src={image3} width={100}></img>
                     </Grid>
-                    <Grid
-                      sx={{border:'1px solid #000',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
-                    >
-                   <div>-</div><div>1</div><div>+</div>
-                    </Grid>
+                  
                     <Grid
                       sx={{ fontSize: "14px", fontWeight: 500, color: "#000" }}
                     >
                       Cold Brew
+                    </Grid>
+                    <Grid
+                      sx={{border:'1px solid #000',marginTop:'1.5%',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
+                    >
+                   <div>-</div><div>1</div><div>+</div>
                     </Grid>
                   </Grid>
 
@@ -875,14 +886,14 @@ export default function SelfOrderPage() {
                       <img src={image5} width={100}></img>
                     </Grid>
                     <Grid
-                      sx={{border:'1px solid #000',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
-                    >
-                   <div>-</div><div>1</div><div>+</div>
-                    </Grid>
-                    <Grid
                       sx={{ fontSize: "14px", fontWeight: 500, color: "#000" }}
                     >
                       Lattes
+                    </Grid>
+                    <Grid
+                      sx={{border:'1px solid #000',marginTop:'1.5%',background:'#000',color:'#fff',fontSize:'13px',fontWeight:400,padding:.8,borderRadius:'4px',width:70,height:'22px',display:'flex',alignItems:'center',justifyContent:"space-around"}}
+                    >
+                   <div>-</div><div>1</div><div>+</div>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -2827,6 +2838,11 @@ export default function SelfOrderPage() {
 
 
         </Grid>
+
+        <Grid sx={{width:'100%',marginLeft:'auto', position: "fixed",zIndex:100,bottom:0,marginBottom:'4%'}}>
+  <img src={live} width={200} style={{marginLeft:'52%'}}></img>
+  </Grid>
+
       </Grid>
     </Grid>
   );

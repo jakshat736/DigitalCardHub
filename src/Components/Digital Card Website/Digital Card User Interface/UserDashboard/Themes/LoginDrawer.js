@@ -38,6 +38,7 @@ const Puller = styled('div')(({ theme }) => ({
 }));
 
 function SwipeableEdgeDrawer(props) {
+    
     const { windows } = props;
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();

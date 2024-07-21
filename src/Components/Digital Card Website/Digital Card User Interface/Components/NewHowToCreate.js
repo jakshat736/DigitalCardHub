@@ -150,7 +150,7 @@ export default function NewHowToCreate() {
      {creates?<><Grid
         sx={{
           width: "100%",
-          height:matchesA?'220vh': matches?'300vh':'410vh',
+          height:matchesA?'220vh': matche?'450vh':'410vh',
           position: "relative",
           color: "#fff",
           marginBottom:'4%',

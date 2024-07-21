@@ -4,6 +4,8 @@ import superior from "../../Digital Card Assets/sup.png"
 import {
   useMediaQuery,
 } from "@mui/material";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function Superior() {
   const matches = useMediaQuery("(max-width:1100px)");
@@ -38,7 +40,10 @@ export default function Superior() {
         WHY WE ARE SUPERIOR ?
       </Grid>
       <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '5%' }}>
-        <img src={superior} style={{ width: matchesA ? '81vw' : '69vw' }} ></img>
+      <LazyLoadImage
+            src={superior} style={{ width: matchesA ? '81vw' : '69vw' }} 
+           effect="blur" // this will add a blur effect until the image loads
+          />
       </Grid>
     </Grid>
 

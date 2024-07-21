@@ -7,6 +7,8 @@ import stand3 from "../../Digital Card Assets/ncard2.jpg"
 import stand4 from "../../Digital Card Assets/ncard3.jpg";
 import stand5 from "../../Digital Card Assets/ncard4.jpg";
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import blurrectangle from "../../Digital Card Assets/blurrectangle.png"
 import {
@@ -36,7 +38,10 @@ export default function Introducing()
       const showSlider=()=>{
           return data.map((item)=>{
               return(<Grid sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-                  <img src={item} style={{width:"95%"}}/>
+                  <LazyLoadImage
+            src={item} style={{width:"95%"}}
+           effect="blur" // this will add a blur effect until the image loads
+          />
               </Grid>)
           })
       }

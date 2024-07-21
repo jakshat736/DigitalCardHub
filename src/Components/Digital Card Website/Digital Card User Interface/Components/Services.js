@@ -4,7 +4,8 @@ import service2 from "../../Digital Card Assets/service2.png"
 import React from "react";
 import Slider from "react-slick";
 import useMediaQuery from '@mui/material/useMediaQuery';
-
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 export default function Services()
 {
     const settings = {
@@ -29,10 +30,16 @@ export default function Services()
         <div className="slider-container">
       <Slider {...settings}>
         <Grid sx={{marginTop:'5%'}}>
-        <img src={matches?service:service} style={{width:matches?'100%':'100%'}}></img>
+        <LazyLoadImage
+            src={matches?service:service} style={{width:matches?'100%':'100%'}}
+           effect="blur" // this will add a blur effect until the image loads
+          />
         </Grid>
         <Grid>
-        <img src={matches?service2:service2} style={{width:matches?'100%':'100%'}}></img>
+        <LazyLoadImage
+            src={matches?service2:service2} style={{width:matches?'100%':'100%'}}
+           effect="blur" // this will add a blur effect until the image loads
+          />
         </Grid>
       </Slider>
     </div>

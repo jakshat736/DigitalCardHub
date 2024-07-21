@@ -566,8 +566,8 @@ export default function NewHeader() {
                   <img src={newLogin} width={22} ></img>
                 </Grid>
                 <Grid sx={{ cursor: 'pointer' }} onClick={() => handleCart()} >
-                  <img src={bag} width={16} ></img>
-                  {cart.length}
+                 <img src={bag} width={16} ></img>
+               {cart.length}
                 </Grid>
                 <Grid sx={{ color: '#070707' }}>
                   .

@@ -5,6 +5,8 @@ import blurbackgroundEcommerce2 from "../../Digital Card Assets/background22.png
 import right from "../../Digital Card Assets/righticon.png"
 import mobiles from '../../Digital Card Assets/teenphn.png'
 import mobile11 from "../../Digital Card Assets/singlephn.png"
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 export default function Ecommerce()
 {
     const matches = useMediaQuery("(max-width:1050px)");
@@ -53,10 +55,16 @@ export default function Ecommerce()
             </Grid>
         </Grid>
         {matchesB?<></>:<><Grid>
-         <img src={mobiles} width={matches?300:550}></img>
+            <LazyLoadImage
+            src={mobiles} width={matches?300:550}
+           effect="blur" // this will add a blur effect until the image loads
+          />
         </Grid></>}
         {matchesB?<><Grid > 
-         <img src={mobile11} width={148} ></img>
+            <LazyLoadImage
+            src={mobile11} width={148}
+           effect="blur" // this will add a blur effect until the image loads
+          />
         </Grid></>:<></>}
 
         </Grid>

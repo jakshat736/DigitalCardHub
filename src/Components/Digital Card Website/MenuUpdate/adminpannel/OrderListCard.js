@@ -24,6 +24,7 @@ export default function OrderListCard() {
     cssEase: 'linear',
     pauseOnHover: false,
     autoplaySpeed: 0,
+    centerMode: true,
   };
 
   var data11 = [{  name: 'Ankit Narwariya' },
@@ -1926,7 +1927,8 @@ Recent orders :
 
 
 <Grid sx={{width:'100%',marginLeft:'auto', position: "fixed",zIndex:100,bottom:0,marginBottom:'4%'}}>
-  <img src={live} width={200} style={{marginLeft:matches?'':'52%'}}></img></Grid>
+  <img src={live} width={200} style={{marginLeft:matches?'':'52%'}}></img>
+  </Grid>
       </Grid>
     </Grid>
   );

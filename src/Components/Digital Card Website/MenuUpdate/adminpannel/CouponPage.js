@@ -6,16 +6,23 @@ import right from "../assets/righta.png";
 import live from "../assets/live2.png";
 import load from "../assets/load.png";
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useState } from "react";
 
 export default function CouponPage()
 {
   const matches = useMediaQuery("(max-width:1400px)");
   const matchesA = useMediaQuery("(max-width:700px)");
 
+  const [create,setCreate]=useState(true)
+
+   const handleClick=()=>{
+    setCreate(!create)
+   }
+
     return(<Grid sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
         <Grid sx={{width:'85%',height:'auto',marginBottom:'4%'}}>
           <Grid sx={{marginTop:'4%',display:'flex',gap:matches?2:6,alignItems:'center',flexDirection:matches?'column':'row'}}>
-          <Button
+          <Button onClick={handleClick}
                   style={{
                     border: "1px solid #000",
                     borderColor: "#000",
@@ -45,7 +52,7 @@ export default function CouponPage()
                 marginTop: matchesA?"4%":"2%",
               }}
             />
-            <Grid sx={{marginTop:matchesA?'4%':'2%',display:'flex',justifyContent:'space-between',flexDirection:matches?'column':'row',gap:matches?2:''}}>
+            {create?<></>:<> <Grid sx={{marginTop:matchesA?'4%':'2%',display:'flex',justifyContent:'space-between',flexDirection:matches?'column':'row',gap:matches?2:''}}>
                 <Grid>
                 <Grid>
                     <Grid sx={{fontSize:matches?'14px':'20px',fontWeight:600,lineHeight:'18px',color:'#fff'}}>Coupon code</Grid>
@@ -145,14 +152,14 @@ export default function CouponPage()
               </Grid>
               </Grid>
               </Grid>
-            </Grid>
+            </Grid></>}
 
-            <Divider
+            {create?<></>:<><Divider
               style={{
                 backgroundColor: "#C2C2C2",
                 marginTop:matchesA?"5%":"3%",
               }}
-            />
+            /></>}
 
             <Grid sx={{fontSize:'12px',fontWeight:400,lineHeight:'18px',color:'#fff',marginTop:'2%'}}>
             You Should have to change the coupans on daily basis or these coupons will be automatically closed after 24 hours.

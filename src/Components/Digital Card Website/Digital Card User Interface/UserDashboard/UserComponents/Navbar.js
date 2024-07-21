@@ -14,6 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import password from "../../../Digital Card Assets/password.png"
+import logout from "../../../Digital Card Assets/logout.png"
 import { postData } from '../../../../Services/NodeServices';
 import logo from "../../../Digital Card Assets/New Logo New.png";
 import { SessionContext } from '../../../../Services/SessionContext';
@@ -74,13 +76,14 @@ const Navbar = () => {
         <AppBar position="static" sx={{ backgroundColor: "#000000" }}>
             <Container maxWidth="xl" >
                 <Toolbar disableGutters sx={{
-                    display: 'flex', justifyContent: 'space-between',alignItems:'center'
+                    display: 'flex',width:'100%',alignItems:'center',justifyContent:'center'
                 }
                 }>
-                    <img onClick={() => navigate("/digitalcard")} src={newlogo} style={{ width: mobile ? "100px" :tablet?"120px":"130px" }} />
+                    <Grid sx={{display: 'flex',width:'93.5%',alignItems:'center',justifyContent:"space-between"}}>
+                    <img onClick={() => navigate("/digitalcard")} src={newlogo} style={{ width: mobile ? "80px" :tablet?"100px":"110px" }} />
                     <Box sx={{ flexGrow: 0, display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
                         <Grid sx={{ display: mobile?'none':tablet?"flex":"flex", justifyContent: 'center', alignItems: 'center', margin: 1 }}>
-                            <Typography >Hey, {userData.name}</Typography>
+                            <Typography>Hey,User {userData.name}</Typography>
                         </Grid>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -104,15 +107,16 @@ const Navbar = () => {
                             onClose={handleCloseNavMenu}
                         >
 
-                            <MenuItem onClick={() => handleNavigate()}>
-                                <Typography textAlign="center">Change Password</Typography>
+                            <MenuItem onClick={() => handleNavigate()} style={{gap:6}}>
+                            <img src={password} width={24} style={{marginTop:'1%'}}></img> <Typography textAlign="center"> Change Password</Typography>
                             </MenuItem>
-                            <MenuItem onClick={() => handleLogout()}>
-                                <Typography textAlign="center">Logout</Typography>
+                            <MenuItem onClick={() => handleLogout()} style={{gap:6}}>
+                            <img src={logout} width={24} style={{marginTop:'1%'}}></img>  <Typography textAlign="center">Logout</Typography>
                             </MenuItem>
 
                         </Menu>
                     </Box>
+                    </Grid>
                 </Toolbar>
             </Container>
         </AppBar>

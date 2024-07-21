@@ -151,6 +151,12 @@ import NewBussinessProfileEcommerce from "./Components/Digital Card Website/Digi
 import NewCardHome from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/NewCardHome";
 import NewCardHome2 from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Themes/NewCardHome2";
 import MainDashboard from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/MainDashboard";
+import InvitationPage from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/InvitationPage";
+import NewMultiHome from "./Components/Digital Card Website/Digital Card User Interface/MultiLink.js/NewMultiHome";
+import VehicleProfile from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/VehicleProfile";
+import VehicalSuccess from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/VehicalSuccess";
+import VehicleAbout from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/VehicleAbout";
+import Utube from "./Components/Digital Card Website/Digital Card User Interface/Components/Utube";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 
@@ -172,8 +178,8 @@ function App() {
 								<Route element={<Home/>} path="/home1"/>
 								<Route element={<NewCheckOut/>} path="/newcheckout" />
 								<Route element={<TermAndCondition/>} path="/termandcondition" />
-								<Route element={<PrivacyPolicy/>} path="/privacypolicy" />
-								<Route element={<RefundPolicy/>} path="/refund" />
+								<Route element={<PrivacyPolicy/>} path="/privacypolicy"/>
+								<Route element={<RefundPolicy/>} path="/refund"/>
 								<Route element={<NewCheckOut2/>} path="/newcheckout2" />
 								<Route element={<NewCheckOut3/>} path="/newcheckout3"/>
 								<Route element={<NewThemeCard/>} path="/newcart"/>
@@ -181,6 +187,7 @@ function App() {
 								<Route element={<ProductComponents/>} path="/productcomponents/:_id"/>
 								<Route element={<NewAllProducts/>} path="/newallproduct"/>
 								<Route element={<NewAllProduct2/>} path="/newallproduct2"/>
+								<Route element={<Utube/>} path="/utube"/>
 								<Route element={<CategoryProducts/>} path="/categoryproducts/:_id"/>
 								<Route element={<CooperateEnquiries/>} path="/cooperate"/>
 								<Route element={<DCLogin/>} path="/digitalcardlogin"/>
@@ -190,6 +197,10 @@ function App() {
 								<Route element={<CompanyName />} path="/companyname" />
 								<Route element={<ThemePage />} path="/themepage" />
 								<Route element={<Information />} path="/information" />
+								<Route element={<InvitationPage/>} path="/invitationpage" />
+								<Route element={<VehicleProfile/>} path="/vehicle" />
+								<Route element={<VehicalSuccess/>} path="/vehiclesuccess" />
+								<Route element={<VehicleAbout/>} path="/vehicleabout"/>
 								<Route element={<NewThemeInfo />} path="/newthemeinfo" />
 								<Route element={<Links />} path="/links" />
 								<Route element={<NewProfile/>} path="/newprofile"/>
@@ -256,7 +267,7 @@ function App() {
 								<Route path="/multisignup" element={<MultiSignUp />} />
 								<Route path="/multilogin" element={<MultiLogIn />} />
 								<Route path="/multi/:id" element={<MultiHome />} />
-
+								<Route path="newmultihome" element={<NewMultiHome/>} />
 
 								{/* Standee Tags Routes */}
 								<Route path="/standeesignup" element={<SignUp1 />} />
@@ -267,7 +278,6 @@ function App() {
 								<Route path="/shop" element={<Shop />} />
 								{/* <Route path="/review/dashboard" element={<Dashboard/>} />   */}
 
-
 								{/* Menu */}
 
 								<Route path="/box" element={<Box />}/>
@@ -275,10 +285,10 @@ function App() {
 								<Route element={<MenuTheme />} path="/menutheme/:menuId"/>
 								<Route element={<MenuTheme2/>} path="/menu2" />
 								<Route element={<MenuTheme3/>} path="/menu3" />
-								<Route path="/menuDashboard/:menuId" element={<MenuDashBoard />} />
-								<Route path="/newmenudashboard/*" element={<NewMenuDashBoard/>} />
-								<Route path="/newuserdashboard" element={<NewUserDashBoard/>} />
-								<Route path="/orderlist" element={<OrderList/>} />
+								<Route path="/menuDashboard/:menuId" element={<MenuDashBoard />}/>
+								<Route path="/newmenudashboard/*" element={<NewMenuDashBoard />}/>
+								<Route path="/newuserdashboard" element={<NewUserDashBoard />}/>
+								<Route path="/orderlist" element={<OrderList/>}/>
 								<Route path="/coupons" element={<Coupons/>} />
 								<Route path="/newselforder" element={<NewSelfOrder/>} />
 								<Route path="/addmenu" element={<AddMenu />} />

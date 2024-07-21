@@ -11,6 +11,10 @@ import images2 from "../../Digital Card Assets/backgroundnew2.png"
 import arrow2 from "../../Digital Card Assets/arrow2new.png"
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
+
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 export default function ConnectNow()
 {
     
@@ -67,7 +71,10 @@ export default function ConnectNow()
        </Grid>
 
        <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:matches?'-8%':'20%',marginLeft:matches?'70%':'0%'}} >
-        <img src={matches?arrow2:arror} width={matches?40:120} ></img>
+       <LazyLoadImage
+           src={matches?arrow2:arror} width={matches?40:120}
+           effect="blur" // this will add a blur effect until the image loads
+          />
        </Grid>
        <Grid sx={{display:'flex',justifyContent:'center',alignItems:'center',fontSize:matches?16:'2vw',fontWeight:600,lineHeight:matches?'24px':'3vw',textAlign:'center',flexDirection:'column',marginTop:'-5%'}} >
       CUSTOMISE WITH OUR
