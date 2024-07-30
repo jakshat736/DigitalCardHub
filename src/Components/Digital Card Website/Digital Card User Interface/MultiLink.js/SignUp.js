@@ -18,6 +18,7 @@ export default function MultiSignUp() {
     const tagId=location.state.tagId
 
     const navigate = useNavigate();
+
     const [fullName, setFullName] = useState("");
     const [phoneNo, setPhoneNo] = useState("");
     const [emailId, setEmailId] = useState("");
@@ -33,6 +34,7 @@ export default function MultiSignUp() {
         setPassword(inputValue);
         validatePassword(inputValue);
     };
+    
     const handleClickShowPassword = () => setShowPassword(!showPassword);
 const handleMouseDownPassword = () => setShowPassword(!showPassword);
 

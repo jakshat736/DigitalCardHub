@@ -73,7 +73,7 @@ const Navbar = () => {
     };
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: "#000000" }}>
+        <AppBar position="static" sx={{ backgroundColor: "#131313" }}>
             <Container maxWidth="xl" >
                 <Toolbar disableGutters sx={{
                     display: 'flex',width:'100%',alignItems:'center',justifyContent:'center'

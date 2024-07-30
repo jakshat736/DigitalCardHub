@@ -19,9 +19,9 @@ const Card = () => {
     const [show, setShow] = useState(false)
 
     const [loadingAnimation, setLoadingAnimation] = useState(true)
+
     React.useEffect(() => {
         fetchCardDetail();
-
     }, []);
 
     const fetchCardDetail = async () => {

@@ -157,6 +157,13 @@ import VehicleProfile from "./Components/Digital Card Website/Digital Card User 
 import VehicalSuccess from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/VehicalSuccess";
 import VehicleAbout from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/VehicleAbout";
 import Utube from "./Components/Digital Card Website/Digital Card User Interface/Components/Utube";
+import VehicleDashboard from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/VehicleDashboard";
+import CarVehicle from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/CarVehicle";
+import CarVehicleContact from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/CarVehicleContact";
+import BikeVehicle from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/BikeVehicle";
+import BikeVehicleContact from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/BikeVehicleContact";
+import NewBussinessDashboard1 from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewBussinessDashboard1";
+import NewBussinessDashboard2 from "./Components/Digital Card Website/Digital Card User Interface/UserDashboard/Pages/NewBussinessDashboard2";
 // import { Parallax } from './Components/Digital Card Website/Digital Card User Interface/Pages/Parallax';
 function App() {
 
@@ -192,7 +199,7 @@ function App() {
 								<Route element={<CooperateEnquiries/>} path="/cooperate"/>
 								<Route element={<DCLogin/>} path="/digitalcardlogin"/>
 								<Route element={<DCSignUp />} path="/digitalcardsignup" />
-								<Route element={<UserDashboard />} path="/userdashboard" />
+								<Route element={<UserDashboard />} path="/userdashboard"/>
 								<Route element={<ChangePassword />} path="/changepassword" />
 								<Route element={<CompanyName />} path="/companyname" />
 								<Route element={<ThemePage />} path="/themepage" />
@@ -201,6 +208,11 @@ function App() {
 								<Route element={<VehicleProfile/>} path="/vehicle" />
 								<Route element={<VehicalSuccess/>} path="/vehiclesuccess" />
 								<Route element={<VehicleAbout/>} path="/vehicleabout"/>
+								<Route element={<VehicleDashboard/>} path="/vehicledashboard"/>
+								<Route element={<CarVehicle/>} path="/carvehicle"/>
+								<Route element={<CarVehicleContact/>} path="/carvehiclecontact"/>
+								<Route element={<BikeVehicleContact/>} path="/bikevehiclecontact"/>
+								<Route element={<BikeVehicle/>} path="/bikevehicle"/>
 								<Route element={<NewThemeInfo />} path="/newthemeinfo" />
 								<Route element={<Links />} path="/links" />
 								<Route element={<NewProfile/>} path="/newprofile"/>
@@ -220,6 +232,8 @@ function App() {
 								<Route element={<AdminLogin />} path="/adminlogin" />
 								<Route element={<NewDCLogin/>} path="/newlogin" />
 								<Route element={<MainDashboard/>} path="/maindashboard" />
+								<Route element={<NewBussinessDashboard1/>} path="/newbussinessdashboard1" />
+								<Route element={<NewBussinessDashboard2/>} path="/newbussinessdashboard2" />
 								<Route path="/dashboard/*" element={<DashBoard />} />
 								<Route path="/compatible-devices" element={<Compatibility />} />
 								<Route path="/how_to_create" element={<HowToUse />} />

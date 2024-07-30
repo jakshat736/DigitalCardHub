@@ -39,6 +39,7 @@ const MultiHome = () => {
     if (response.status == 'false') {
       setDisplay('block')
     }
+    
     else {
       if (response?.data?.status == 'Active' && response?.data?.links?.length > 0) {
         setDisplayPage('block')
